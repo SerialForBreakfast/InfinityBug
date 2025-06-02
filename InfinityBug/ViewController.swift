@@ -1,3 +1,14 @@
+// MARK: – UIView extension for finding containing UICollectionViewCell
+private extension UIView {
+    /// Walks up the view hierarchy to find the nearest UICollectionViewCell, if any.
+    func containingCollectionViewCell() -> UICollectionViewCell? {
+        var view: UIView? = self
+        while let current = view, !(current is UICollectionViewCell) {
+            view = current.superview
+        }
+        return view as? UICollectionViewCell
+    }
+}
 //
 //  ViewController.swift
 //  InfinityBug
@@ -18,7 +29,21 @@
 //}
 
 
+
 import UIKit
+
+/// A custom cell that draws a green border when focused.
+class HighlightCollectionViewCell: UICollectionViewCell {
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
+        if context.nextFocusedView === self {
+            self.layer.borderWidth = 4
+            self.layer.borderColor = UIColor.green.cgColor
+        } else if context.previouslyFocusedView === self {
+            self.layer.borderWidth = 0
+        }
+    }
+}
 
 /// Our main view controller for the tvOS EPG example.
 final class ViewController: UIViewController {
@@ -153,8 +178,8 @@ final class ViewController: UIViewController {
         ])
         
         // Register a simple cell for genres
-        let registration = UICollectionView.CellRegistration<UICollectionViewListCell, Genre> { cell, indexPath, genre in
-            var content = cell.defaultContentConfiguration()
+        let registration = UICollectionView.CellRegistration<HighlightCollectionViewCell, Genre> { cell, indexPath, genre in
+            var content = UIListContentConfiguration.cell()
             content.text = genre.name
             content.textProperties.color = .white
             content.textProperties.font = .systemFont(ofSize: 24, weight: .medium)
@@ -221,7 +246,7 @@ final class ViewController: UIViewController {
         }
         
         // Cell registration for “listing” items
-        let listingRegistration = UICollectionView.CellRegistration<UICollectionViewCell, Listing> { cell, indexPath, listing in
+        let listingRegistration = UICollectionView.CellRegistration<HighlightCollectionViewCell, Listing> { cell, indexPath, listing in
             // A very simple cell: just a colored box with a centered title.
             cell.contentView.layer.cornerRadius = 8
             cell.contentView.layer.masksToBounds = true
@@ -359,10 +384,19 @@ final class ViewController: UIViewController {
         print("[DEBUG] Starting async fetch for channel \(channelID). Sleeping for \(simulatedDelaySeconds)s…")
         Thread.sleep(forTimeInterval: simulatedDelaySeconds)
         
-        // 2. Create fake listings
+        // 2. Create fake timetable-style listings
         var newListings: [Listing] = []
         for idx in 1...listingsPerChannel {
-            let title = "Episode \(idx)"
+            // Generate a mock time slot (e.g., 00:00, 00:30, 01:00, etc.)
+            let totalMinutes = (idx - 1) * 30
+            let hour = (totalMinutes / 60) % 24
+            let minute = totalMinutes % 60
+            let formatter = DateFormatter()
+            formatter.dateFormat = "h:mm a"
+            let date = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date()) ?? Date()
+            let timeString = formatter.string(from: date)
+            let showName = "Show \(idx)"
+            let title = "\(timeString) – \(showName)"
             let listing = Listing(title: title)
             newListings.append(listing)
         }
@@ -395,19 +429,31 @@ final class ViewController: UIViewController {
     /// Whenever focus updates in the EPG, we want to reflect which category is “active” on the left.
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         super.didUpdateFocus(in: context, with: coordinator)
-        
-        // Identify if the newly focused view is somewhere inside epgCollectionView.
-        if let nextFocused = context.nextFocusedView, nextFocused.isDescendant(of: epgCollectionView) {
-            // Find which indexPath is being focused in EPG
-            if let indexPath = epgCollectionView.indexPathForItem(at: epgCollectionView.convert(nextFocused.bounds.origin, from: nextFocused)) {
+
+        guard let nextFocused = context.nextFocusedView else { return }
+
+        // If focus moved into the EPG collection view or one of its cells
+        if nextFocused.isDescendant(of: epgCollectionView) {
+            // 1. Try finding a cell
+            if let cell = nextFocused.containingCollectionViewCell(),
+               let indexPath = epgCollectionView.indexPath(for: cell),
+               indexPath.section < channels.count
+            {
                 let focusedChannel = channels[indexPath.section]
                 highlightCategory(for: focusedChannel.genre)
             }
+            // 2. If it's a header supplementary view (tagged), use that
             else if let header = nextFocused as? UICollectionReusableView {
                 let section = header.tag
-                let focusedChannel = channels[section]
-                highlightCategory(for: focusedChannel.genre)
+                if section < channels.count {
+                    let focusedChannel = channels[section]
+                    highlightCategory(for: focusedChannel.genre)
+                }
             }
+        }
+        // If focus moved into the categories collection view, allow proper focus transfer
+        else if nextFocused.isDescendant(of: categoriesCollectionView) {
+            // Optionally, you could de-select any previously highlighted genre if desired.
         }
     }
     
