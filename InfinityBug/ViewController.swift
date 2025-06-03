@@ -34,6 +34,8 @@ final class ViewController: UIViewController {
         cv.accessibilityLabel = "Categories"
         cv.accessibilityHint = "Swipe up or down to browse categories. Select a category to view its shows."
         cv.accessibilityTraits = .adjustable
+        cv.shouldGroupAccessibilityChildren = false
+        cv.isAccessibilityElement = false
         return cv
     }()
     private lazy var headerCategoryCollectionView: UICollectionView = {
@@ -48,6 +50,8 @@ final class ViewController: UIViewController {
         cv.accessibilityLabel = "Quick Navigation"
         cv.accessibilityHint = "Swipe left or right to quickly jump between categories."
         cv.accessibilityTraits = .adjustable
+        cv.shouldGroupAccessibilityChildren = false
+        cv.isAccessibilityElement = false
         return cv
     }()
     private lazy var epgCollectionView: UICollectionView = {
@@ -64,6 +68,8 @@ final class ViewController: UIViewController {
         cv.accessibilityLabel = "TV Guide"
         cv.accessibilityHint = "Browse shows by category. Swipe left or right to view different time slots."
         cv.accessibilityTraits = .adjustable
+        cv.shouldGroupAccessibilityChildren = false
+        cv.isAccessibilityElement = false
         return cv
     }()
 
@@ -86,6 +92,8 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .black
         view.accessibilityLabel = "EPG Main View"
+        view.shouldGroupAccessibilityChildren = false
+        view.isAccessibilityElement = false
 
         configureGenresAndChannels()
         configureCategoryCollectionView()
@@ -146,7 +154,7 @@ final class ViewController: UIViewController {
             cell.backgroundColor = .darkGray
             cell.accessibilityLabel = "\(genre.name) category"
             cell.accessibilityHint = "Select to view \(genre.name) shows"
-            cell.accessibilityTraits = [.button, .header, .selected]
+            cell.accessibilityTraits = .button
             cell.isAccessibilityElement = true
         }
         categoryDataSource = UICollectionViewDiffableDataSource<CategorySection, Genre>(
@@ -174,7 +182,7 @@ final class ViewController: UIViewController {
             cell.backgroundColor = .gray
             cell.accessibilityLabel = "\(genre.name) category"
             cell.accessibilityHint = "Double tap to jump to \(genre.name) shows"
-            cell.accessibilityTraits = [.button, .header, .selected]
+            cell.accessibilityTraits = .button
             cell.isAccessibilityElement = true
         }
         headerCategoryDataSource = UICollectionViewDiffableDataSource<CategorySection, Genre>(
