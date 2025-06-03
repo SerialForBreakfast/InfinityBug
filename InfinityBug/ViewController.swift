@@ -1,35 +1,3 @@
-// MARK: – UIView extension for finding containing UICollectionViewCell
-private extension UIView {
-    /// Walks up the view hierarchy to find the nearest UICollectionViewCell, if any.
-    func containingCollectionViewCell() -> UICollectionViewCell? {
-        var view: UIView? = self
-        while let current = view, !(current is UICollectionViewCell) {
-            view = current.superview
-        }
-        return view as? UICollectionViewCell
-    }
-}
-//
-//  ViewController.swift
-//  InfinityBug
-//
-//  Created by Joseph McCraw on 6/1/25.
-//
-
-//import UIKit
-//
-//class ViewController: UIViewController {
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        // Do any additional setup after loading the view.
-//    }
-//
-//
-//}
-
-
-
 import UIKit
 
 /// A custom cell that draws a green border when focused.
@@ -46,44 +14,80 @@ class HighlightCollectionViewCell: UICollectionViewCell {
 }
 
 /// Our main view controller for the tvOS EPG example.
+/// 
+/// ARCHITECTURE OVERVIEW:
+/// 1. DATA MODEL:
+///    - Genres: Categories like "Horror", "Comedy", "Sports", etc.
+///    - Channels: Each genre has multiple channels (e.g., "Horror Channel 1", "Horror Channel 2")
+///    - Listings: Each channel has multiple time-slotted shows (e.g., "10:00 AM – Horror Show 3")
+///
+/// 2. COLLECTION VIEW STRUCTURE:
+///    - Left column: Categories (genres) - vertical list
+///    - Top header: Horizontal categories for quick navigation
+///    - Main area: EPG grid where each channel is a SECTION, and listings are ITEMS within that section
+///
+/// 3. DATA FLOW:
+///    - App starts: Create empty sections for all channels (no listings yet)
+///    - Async loading: Each channel fetches its listings on a background thread with staggered delays
+///    - UI updates: When listings are ready, update the diffable data source snapshot
+///
+/// 4. POTENTIAL ISSUES:
+///    - If a channel's async fetch fails or doesn't complete, that channel will show no listings
+///    - Out-of-bounds errors occur when collection view requests more sections than we have channels
+///    - Snapshot inconsistencies can cause missing listings or crashes
 final class ViewController: UIViewController {
     // MARK: – Configurable Constants
-    
-    /// Number of genres (categories).  e.g. `["Horror", "Comedy", "Drama", ...]`.
-    private let genreNames: [String] = [
-        "Horror", "Comedy", "Drama", "Sports",
-        "Kids", "Documentary", "News", "Music"
-    ]
-    
-    /// Number of channels per genre.  Let’s say 10 per category by default.
+    private let genreNames: [String] = ["Horror", "Comedy", "Drama", "Sports", "Kids", "Documentary", "News", "Music"]
     private let channelsPerGenre: Int = 10
-    
-    /// Number of listings (episodes) per channel (carousel length).
     private let listingsPerChannel: Int = 20
-    
-    /// Simulated network delay (in seconds) for each channel’s listings.
     private let simulatedDelaySeconds: TimeInterval = 1.0
-    
-    /// Category column width (points).
     private let categoryColumnWidth: CGFloat = 250
-    
+
     // MARK: – UI Elements
-    
-    /// Left side: list of genres (categories).
     private lazy var categoriesCollectionView: UICollectionView = {
-        let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, environment -> NSCollectionLayoutSection? in
-            return self?.createCategoryListSection()
+        let layout = UICollectionViewCompositionalLayout { _, _ -> NSCollectionLayoutSection? in
+            // Reuse the same section definition from createCategoryListSection()
+            return self.createCategoryListSection()
         }
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .black
         cv.remembersLastFocusedIndexPath = true
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.allowsFocus = true
         cv.accessibilityIdentifier = "CategoriesCollectionView"
+        cv.accessibilityLabel = "Categories"
         return cv
     }()
-    
-    /// Right side: the EPG.
+    private lazy var headerCategoryCollectionView: UICollectionView = {
+        let layout = UICollectionViewCompositionalLayout { _, _ -> NSCollectionLayoutSection? in
+            // One‐item horizontal group
+            let itemSize = NSCollectionLayoutSize(
+                widthDimension: .estimated(120),
+                heightDimension: .absolute(44)
+            )
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8)
+
+            let groupSize = NSCollectionLayoutSize(
+                widthDimension: .estimated(120),
+                heightDimension: .absolute(52)
+            )
+            // **DEPRECATED replaced by subitems:**
+            let group = NSCollectionLayoutGroup.horizontal(
+                layoutSize: groupSize,
+                subitems: [item]
+            )
+            let section = NSCollectionLayoutSection(group: group)
+            section.orthogonalScrollingBehavior = .continuous
+            return section
+        }
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.backgroundColor = .darkGray
+        cv.remembersLastFocusedIndexPath = true
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.accessibilityIdentifier = "HeaderCategoryCollectionView"
+        cv.accessibilityLabel = "Header Categories"
+        return cv
+    }()
     private lazy var epgCollectionView: UICollectionView = {
         let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, environment -> NSCollectionLayoutSection? in
             return self?.createChannelSection(forSection: sectionIndex, in: environment)
@@ -95,144 +99,180 @@ final class ViewController: UIViewController {
         cv.isPrefetchingEnabled = true
         cv.prefetchDataSource = self
         cv.accessibilityIdentifier = "EPGCollectionView"
+        cv.accessibilityLabel = "EPG Channel Listings"
         return cv
     }()
-    
+
     // MARK: – Diffable Data Sources
-    
-    /// Section for categories view only has one section (we'll call it Section.main).
     private enum CategorySection { case main }
     private var categoryDataSource: UICollectionViewDiffableDataSource<CategorySection, Genre>!
-    
-    /// For EPG, each "section" is a Channel.  We’ll use the Channel object as our section identifier.
-    private var epgDataSource: UICollectionViewDiffableDataSource<Channel, Listing>!
-    
+    private var epgDataSource: UICollectionViewDiffableDataSource<Genre, Listing>!
+    private var headerCategoryDataSource: UICollectionViewDiffableDataSource<CategorySection, Genre>!
+
     // MARK: – Data Storage
-    
-    /// Complete list of `Genre` objects (left-hand side).
     private var genres: [Genre] = []
-    
-    /// Complete list of `Channel` objects (each has a genre, name, and eventually listings).
-    /// Note: We store these in an array.  The index of `channels[i]` corresponds to section `i` in epgCollectionView.
     private var channels: [Channel] = []
-    
-    // A lookup from Channel.id -> its position in `channels[]` (so we know which section to reload).
     private var channelIndexLookup: [UUID: Int] = [:]
     
+    // Serial queue to ensure snapshot updates happen one at a time
+    private let snapshotUpdateQueue = DispatchQueue(label: "com.epg.snapshot.updates", qos: .userInitiated)
+
     // MARK: – Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        
+        view.accessibilityLabel = "EPG Main View"
+
         configureGenresAndChannels()
         configureCategoryCollectionView()
+        configureHeaderCategoryCollectionView()
         configureEPGCollectionView()
+        performInitialHeaderSnapshot()
         performInitialSnapshots()
         simulateAsyncLoadingForAllChannels()
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // Ensure the focus environment updates after layout changes.
         epgCollectionView.collectionViewLayout.invalidateLayout()
     }
-    
+
     // MARK: – Setup Data Models
-    
     private func configureGenresAndChannels() {
-        // 1. Create Genre objects from genreNames
+        // Create genres from the predefined genre names
         genres = genreNames.map { Genre(name: $0) }
-        
-        // 2. Create `channelsPerGenre * genres.count` channels, assign genre accordingly.
-        //    e.g. first 10 => "Horror", next 10 => "Comedy", etc.
+
+        // Create channels: for each genre, create channelsPerGenre number of channels
+        // This creates a total of genreNames.count * channelsPerGenre channels
+        // For example: 8 genres * 10 channels = 80 total channels
         var tempChannels: [Channel] = []
-        for (genreIndex, genre) in genres.enumerated() {
+        for genre in genres {
             for channelIdx in 0..<channelsPerGenre {
-                let channelNumber = genreIndex * channelsPerGenre + channelIdx + 1
                 let channelName = "\(genre.name) Channel \(channelIdx + 1)"
-                var channel = Channel(name: channelName, genre: genre)
+                let channel = Channel(name: channelName, genre: genre)
                 tempChannels.append(channel)
             }
         }
         channels = tempChannels
-        
-        // 3. Build lookup from Channel.id -> its index in `channels[]`
+
+        // Create a lookup dictionary to quickly find a channel's index by its UUID
+        // This is used later in fetchListings to locate which channel to update
         for (idx, chan) in channels.enumerated() {
             channelIndexLookup[chan.id] = idx
         }
-        
         print("[DEBUG] Configured \(genres.count) genres and \(channels.count) total channels.")
     }
-    
+
     // MARK: – Category Collection View (Left Column)
-    
     private func configureCategoryCollectionView() {
         view.addSubview(categoriesCollectionView)
-        
         NSLayoutConstraint.activate([
             categoriesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             categoriesCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             categoriesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             categoriesCollectionView.widthAnchor.constraint(equalToConstant: categoryColumnWidth)
         ])
-        
-        // Register a simple cell for genres
-        let registration = UICollectionView.CellRegistration<HighlightCollectionViewCell, Genre> { cell, indexPath, genre in
+        // Register cell for categories (genre names) with accessibility label
+        let categoryRegistration = UICollectionView.CellRegistration<HighlightCollectionViewCell, Genre> { cell, indexPath, genre in
             var content = UIListContentConfiguration.cell()
             content.text = genre.name
             content.textProperties.color = .white
             content.textProperties.font = .systemFont(ofSize: 24, weight: .medium)
             cell.contentConfiguration = content
             cell.backgroundColor = .darkGray
-            cell.accessibilityLabel = "Genre: \(genre.name)"
+            cell.accessibilityLabel = "Category: \(genre.name)"
             cell.accessibilityTraits = .button
         }
-        
-        categoryDataSource = UICollectionViewDiffableDataSource<CategorySection, Genre>(collectionView: categoriesCollectionView) {
-            collectionView, indexPath, genre -> UICollectionViewCell? in
+        categoryDataSource = UICollectionViewDiffableDataSource<CategorySection, Genre>(
+            collectionView: categoriesCollectionView
+        ) { collectionView, indexPath, genre in
+            return collectionView.dequeueConfiguredReusableCell(using: categoryRegistration, for: indexPath, item: genre)
+        }
+        categoriesCollectionView.delegate = self
+
+        // Initial snapshot for categories
+        var categorySnapshot = NSDiffableDataSourceSnapshot<CategorySection, Genre>()
+        categorySnapshot.appendSections([.main])
+        categorySnapshot.appendItems(genres, toSection: .main)
+        categoryDataSource.apply(categorySnapshot, animatingDifferences: false)
+    }
+
+    // MARK: – Header Category Collection View (Top Horizontal Bar)
+    private func configureHeaderCategoryCollectionView() {
+        let registration = UICollectionView.CellRegistration<HighlightCollectionViewCell, Genre> { cell, indexPath, genre in
+            var content = UIListContentConfiguration.cell()
+            content.text = genre.name
+            content.textProperties.color = .white
+            content.textProperties.font = .systemFont(ofSize: 18, weight: .semibold)
+            cell.contentConfiguration = content
+            cell.backgroundColor = .gray
+            cell.accessibilityLabel = "Jump to genre: \(genre.name)"
+            cell.accessibilityTraits = .button
+        }
+        headerCategoryDataSource = UICollectionViewDiffableDataSource<CategorySection, Genre>(
+            collectionView: headerCategoryCollectionView
+        ) { collectionView, indexPath, genre in
             return collectionView.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: genre)
         }
-        
-        // Initial snapshot (empty for now, we'll apply real data below)
+        headerCategoryCollectionView.delegate = self
+    }
+
+    private func performInitialHeaderSnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<CategorySection, Genre>()
         snapshot.appendSections([.main])
         snapshot.appendItems(genres, toSection: .main)
-        categoryDataSource.apply(snapshot, animatingDifferences: false)
-        
-        // Highlight nothing initially
-        categoriesCollectionView.selectItem(at: nil, animated: false, scrollPosition: [])
-        
-        categoriesCollectionView.delegate = self
+        headerCategoryDataSource.apply(snapshot, animatingDifferences: false)
     }
-    
+
     // MARK: – EPG (Right Column) Collection View
-    
     private func configureEPGCollectionView() {
+        view.addSubview(headerCategoryCollectionView)
         view.addSubview(epgCollectionView)
-        
+
         NSLayoutConstraint.activate([
+            // Position the header bar
+            headerCategoryCollectionView.leadingAnchor.constraint(equalTo: categoriesCollectionView.trailingAnchor),
+            headerCategoryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerCategoryCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            headerCategoryCollectionView.heightAnchor.constraint(equalToConstant: 52),
+
+            // Place the EPG collection view below the header
             epgCollectionView.leadingAnchor.constraint(equalTo: categoriesCollectionView.trailingAnchor),
             epgCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            epgCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            epgCollectionView.topAnchor.constraint(equalTo: headerCategoryCollectionView.bottomAnchor),
             epgCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
-        // Register channel header supplementary for channel names
-        let headerRegistration = UICollectionView.SupplementaryRegistration<UICollectionReusableView>(elementKind: UICollectionView.elementKindSectionHeader) { [weak self] supplementaryView, elementKind, indexPath in
+
+        // Register channel header supplementary
+        let headerRegistration = UICollectionView.SupplementaryRegistration<UICollectionReusableView>(
+            elementKind: UICollectionView.elementKindSectionHeader
+        ) { [weak self] supplementaryView, elementKind, indexPath in
             guard let self = self else { return }
-            let channel = self.channels[indexPath.section]
+            print("[DEBUG] SupplementaryView: indexPath.section=\(indexPath.section), genres.count=\(self.genres.count)")
+            let snapshot = self.epgDataSource.snapshot()
+            print("[DEBUG] SupplementaryView: snapshot section count = \(snapshot.sectionIdentifiers.count), sections = \(snapshot.sectionIdentifiers)")
+            
+            // CRITICAL: indexPath.section must correspond to a valid genre index
+            // If indexPath.section >= genres.count, this means the collection view
+            // is asking for more sections than we have genres - this is a bug!
+            guard indexPath.section >= 0, indexPath.section < self.genres.count else {
+                print("[ERROR] SupplementaryView: indexPath.section out of bounds: section=\(indexPath.section), genres.count=\(self.genres.count)")
+                return
+            }
+            
+            // Get the genre for this section - section index = genre index
+            let genre = self.genres[indexPath.section]
             let labelTag = 1001
             if let existing = supplementaryView.viewWithTag(labelTag) as? UILabel {
-                existing.text = channel.name
+                existing.text = genre.name
             } else {
                 let label = UILabel(frame: supplementaryView.bounds)
                 label.tag = labelTag
                 label.translatesAutoresizingMaskIntoConstraints = false
                 label.font = .systemFont(ofSize: 22, weight: .bold)
                 label.textColor = .white
-                label.text = channel.name
-                label.accessibilityLabel = "Channel: \(channel.name)"
+                label.text = genre.name
+                label.accessibilityLabel = "Genre: \(genre.name)"
                 supplementaryView.addSubview(label)
                 NSLayoutConstraint.activate([
                     label.leadingAnchor.constraint(equalTo: supplementaryView.leadingAnchor, constant: 16),
@@ -243,16 +283,16 @@ final class ViewController: UIViewController {
             }
             supplementaryView.tag = indexPath.section
             supplementaryView.backgroundColor = .black
+            supplementaryView.accessibilityLabel = "Genre Header"
         }
-        
-        // Cell registration for “listing” items
+
+        // Cell registration for "listing" items
         let listingRegistration = UICollectionView.CellRegistration<HighlightCollectionViewCell, Listing> { cell, indexPath, listing in
-            // A very simple cell: just a colored box with a centered title.
+            // Configure the visual appearance of each listing cell
             cell.contentView.layer.cornerRadius = 8
             cell.contentView.layer.masksToBounds = true
             cell.contentView.backgroundColor = listing.artworkColor
-            
-            // Remove any existing label before adding new one
+
             let labelTag = 2001
             if let existing = cell.contentView.viewWithTag(labelTag) as? UILabel {
                 existing.text = listing.title
@@ -272,197 +312,259 @@ final class ViewController: UIViewController {
                     label.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor)
                 ])
             }
-            
+
+            // Set accessibility label to include the show name (which includes genre)
+            // e.g., "Listing: 10:00 AM – Horror Show 3"
             cell.accessibilityLabel = "Listing: \(listing.title)"
             cell.accessibilityTraits = .button
         }
-        
-        epgDataSource = UICollectionViewDiffableDataSource<Channel, Listing>(collectionView: epgCollectionView) {
-            (collectionView, indexPath, listing) -> UICollectionViewCell? in
-            return collectionView.dequeueConfiguredReusableCell(using: listingRegistration, for: indexPath, item: listing)
+
+        epgDataSource = UICollectionViewDiffableDataSource<Genre, Listing>(
+            collectionView: epgCollectionView
+        ) { collectionView, indexPath, listing in
+            return collectionView.dequeueConfiguredReusableCell(
+                using: listingRegistration,
+                for: indexPath,
+                item: listing
+            )
         }
-        
+
         epgDataSource.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
             guard let self = self else { return nil }
-            return collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
+            return collectionView.dequeueConfiguredReusableSupplementary(
+                using: headerRegistration,
+                for: indexPath
+            )
         }
-        
+
         epgCollectionView.delegate = self
     }
-    
+
     // MARK: – Layout Definitions
-    
-    /// Creates one “channel section” in the EPG. Each channel is a section, with a header and a horizontal carousel of listings.
+
     private func createChannelSection(forSection sectionIndex: Int, in environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
         // 1. Item size: fixed 200×120
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(200),
-            heightDimension: .absolute(120)
-        )
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(200), heightDimension: .absolute(120))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 4, bottom: 4, trailing: 4)
-        
-        // 2. Group: horizontal group showing, say, 3 items per “page” (but can scroll)
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(0.9),
-            heightDimension: .absolute(128)
+
+        // 2. Group: horizontal group showing 3 items side by side
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .absolute(128))
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitems: Array(repeating: item, count: 3) // **replaced deprecated initializer**
         )
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
-        
+
         // 3. Section: a group, orthogonally scrolling
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.interGroupSpacing = 8
-        
+
         // 4. Channel header
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(50)
-        )
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerSize,
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
         )
         section.boundarySupplementaryItems = [sectionHeader]
-        
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 0)
         return section
     }
-    
-    /// Creates the single section for the Categories list (one vertical list, full height cells of fixed size).
+
     private func createCategoryListSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(60)
-        )
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(60))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8)
-        
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(68)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(68))
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitems: [item] // **replaced deprecated initializer**
         )
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
-        
+
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0)
         return section
     }
-    
+
     // MARK: – Initial Snapshot Population
-    
+
     private func performInitialSnapshots() {
-        // 1. Categories: already applied in configureCategoryCollectionView()
+        // Create an empty snapshot for the EPG collection view
+        // Each GENRE becomes a "section" in the collection view (8 sections total)
+        // Initially, each section has no items (empty listings array)
+        var snapshot = NSDiffableDataSourceSnapshot<Genre, Listing>()
         
-        // 2. EPG: initially add all channels with zero listings (we’ll patch in listings later)
-        var snapshot = NSDiffableDataSourceSnapshot<Channel, Listing>()
-        for channel in channels {
-            snapshot.appendSections([channel])
-            // No items yet; we’ll populate suddenly after simulated delay
-            snapshot.appendItems([], toSection: channel)
+        // Add each genre as a section (only once per genre)
+        for genre in genres {
+            snapshot.appendSections([genre])  // Genre becomes a section
+            snapshot.appendItems([], toSection: genre)  // No listings yet
         }
+        
+        // Validate the snapshot before applying
+        let expectedSectionCount = genres.count  // Should be 8 genres, not 80 channels
+        let actualSectionCount = snapshot.sectionIdentifiers.count
+        if expectedSectionCount != actualSectionCount {
+            print("[ERROR] Snapshot section count mismatch: expected=\(expectedSectionCount), actual=\(actualSectionCount)")
+        }
+        
         epgDataSource.apply(snapshot, animatingDifferences: false)
+        print("[DEBUG] performInitialSnapshots: snapshot section count = \(snapshot.sectionIdentifiers.count), genres.count = \(genres.count)")
+        
+        // Verify the data source has the correct number of sections
+        let dataSourceSectionCount = epgDataSource.snapshot().sectionIdentifiers.count
+        if dataSourceSectionCount != expectedSectionCount {
+            print("[ERROR] DataSource section count mismatch after apply: expected=\(expectedSectionCount), actual=\(dataSourceSectionCount)")
+        }
     }
-    
+
     // MARK: – Simulated Async Loading
-    
-    /// Loop through every channel and simulate an asynchronous “network” fetch for its listings.
+
     private func simulateAsyncLoadingForAllChannels() {
+        print("[DEBUG] 🚀 Starting async loading for \(channels.count) channels across \(genres.count) genres")
+        
+        // Log the channel distribution for debugging
+        for genre in genres {
+            let genreChannels = channels.filter { $0.genre == genre }
+            print("[DEBUG] Genre '\(genre.name)': \(genreChannels.count) channels")
+        }
+        
+        // Schedule async loading for every channel
+        // Each channel gets a slightly staggered delay to simulate real-world async behavior
         for (index, channel) in channels.enumerated() {
             let channelID = channel.id
-            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + simulatedDelaySeconds + Double(index) * 0.05) {
-                // We introduce a slight stagger (0.05s per channel) to avoid flooding main thread all at once.
+            let delay = simulatedDelaySeconds + Double(index) * 0.05
+            print("[DEBUG] Scheduling channel \(index): '\(channel.name)' (Genre: \(channel.genre.name)) with delay \(delay)s")
+            
+            DispatchQueue.global(qos: .background).asyncAfter(
+                deadline: .now() + delay
+            ) {
+                // This calls fetchListings for each channel after a delay
+                // The delay increases by 0.05 seconds for each subsequent channel
                 self.fetchListings(forChannelID: channelID)
             }
         }
     }
-    
-    /// Simulates “fetching” listings for a given channel by sleeping, then creating fake Listing items, then updating the diffable snapshot.
+
     private func fetchListings(forChannelID channelID: UUID) {
-        // 1. Sleep to simulate network latency
         print("[DEBUG] Starting async fetch for channel \(channelID). Sleeping for \(simulatedDelaySeconds)s…")
         Thread.sleep(forTimeInterval: simulatedDelaySeconds)
-        
-        // 2. Create fake timetable-style listings
+
+        // Find which channel this UUID corresponds to
+        guard let sectionIndex = channelIndexLookup[channelID] else {
+            print("[ERROR] Channel ID \(channelID) not found.")
+            return
+        }
+        let channel = channels[sectionIndex]
+        print("[DEBUG] fetchListings: Populating listings for channel at sectionIndex=\(sectionIndex), channel.name=\(channel.name), genre=\(channel.genre.name)")
+
+        // Generate fake listings for this channel
+        // Each listing has a time slot and show name based on the channel's genre
         var newListings: [Listing] = []
         for idx in 1...listingsPerChannel {
-            // Generate a mock time slot (e.g., 00:00, 00:30, 01:00, etc.)
-            let totalMinutes = (idx - 1) * 30
+            let totalMinutes = (idx - 1) * 30  // 30-minute time slots
             let hour = (totalMinutes / 60) % 24
             let minute = totalMinutes % 60
             let formatter = DateFormatter()
             formatter.dateFormat = "h:mm a"
-            let date = Calendar.current.date(bySettingHour: hour, minute: minute, second: 0, of: Date()) ?? Date()
+            let date = Calendar.current.date(
+                bySettingHour: hour, minute: minute, second: 0, of: Date()
+            ) ?? Date()
             let timeString = formatter.string(from: date)
-            let showName = "Show \(idx)"
+            // Show name includes the channel name and genre (e.g., "10:00 AM – Horror Channel 1: Horror Show 3")
+            let showName = "\(channel.name): \(channel.genre.name) Show \(idx)"
             let title = "\(timeString) – \(showName)"
             let listing = Listing(title: title)
             newListings.append(listing)
         }
-        
-        // 3. Find which section index corresponds to channelID
-        guard let sectionIndex = channelIndexLookup[channelID] else {
-            print("[ERROR] Channel ID \(channelID) not found in lookup.")
-            return
-        }
-        
-        // 4. Update our local `channels[sectionIndex].listings`
+
+        // Update the channel's listings in our data model
         channels[sectionIndex].listings = newListings
-        
-        // 5. UI update on main thread: append items to the section’s snapshot
-        DispatchQueue.main.async {
-            var currentSnapshot = self.epgDataSource.snapshot()
-            let channelSection = self.channels[sectionIndex]
-            currentSnapshot.deleteSections([channelSection])
-            currentSnapshot.appendSections([channelSection])
-            currentSnapshot.appendItems(newListings, toSection: channelSection)
-            
-            self.epgDataSource.apply(currentSnapshot, animatingDifferences: true) {
-                print("[DEBUG] Applied snapshot for channel section \(sectionIndex) with \(newListings.count) listings.")
-            }
-        }
-    }
-    
-    // MARK: – Focus & Category Highlighting
-    
-    /// Whenever focus updates in the EPG, we want to reflect which category is “active” on the left.
-    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        super.didUpdateFocus(in: context, with: coordinator)
 
-        guard let nextFocused = context.nextFocusedView else { return }
-
-        // If focus moved into the EPG collection view or one of its cells
-        if nextFocused.isDescendant(of: epgCollectionView) {
-            // 1. Try finding a cell
-            if let cell = nextFocused.containingCollectionViewCell(),
-               let indexPath = epgCollectionView.indexPath(for: cell),
-               indexPath.section < channels.count
-            {
-                let focusedChannel = channels[indexPath.section]
-                highlightCategory(for: focusedChannel.genre)
-            }
-            // 2. If it's a header supplementary view (tagged), use that
-            else if let header = nextFocused as? UICollectionReusableView {
-                let section = header.tag
-                if section < channels.count {
-                    let focusedChannel = channels[section]
-                    highlightCategory(for: focusedChannel.genre)
+        // FIXED: Use serial queue directly, then dispatch to main for UI updates
+        // This ensures all snapshot operations happen atomically
+        snapshotUpdateQueue.async {
+            // Get the current snapshot from the data source on main thread
+            DispatchQueue.main.sync {
+                let currentSnapshot = self.epgDataSource.snapshot()
+                var updatedSnapshot = currentSnapshot
+                let genreSection = channel.genre  // ✅ FIXED: Use genre as section, not channel
+                
+                // Add listings to the genre section (multiple channels can add to same genre section)
+                if updatedSnapshot.sectionIdentifiers.contains(genreSection) {
+                    // Add new items to the existing genre section
+                    // Note: We append instead of replacing since multiple channels contribute to same genre
+                    updatedSnapshot.appendItems(newListings, toSection: genreSection)
+                    
+                    // Apply the updated snapshot to refresh the UI on main thread
+                    self.epgDataSource.apply(updatedSnapshot, animatingDifferences: true) {
+                        print("[DEBUG] ✅ Successfully loaded \(newListings.count) listings for \(channel.name) in genre \(genreSection.name) (section index: \(sectionIndex)). Genre section now has \(updatedSnapshot.itemIdentifiers(inSection: genreSection).count) total listings")
+                    }
+                } else {
+                    print("[ERROR] ❌ Genre section \(genreSection.name) not found in snapshot. Available sections: \(updatedSnapshot.sectionIdentifiers.map { $0.name })")
                 }
             }
         }
-        // If focus moved into the categories collection view, allow proper focus transfer
+    }
+
+    // MARK: – Focus & Category Highlighting
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
+        guard let nextFocused = context.nextFocusedView else { return }
+
+        if nextFocused.isDescendant(of: headerCategoryCollectionView) {
+            // Focused the top header—no sync needed here.
+        }
+        else if nextFocused.isDescendant(of: epgCollectionView) {
+            // Locate containing cell, then highlight that genre on the left.
+            if let cell = nextFocused.containingCollectionViewCell(),
+               let indexPath = epgCollectionView.indexPath(for: cell) {
+                // DEFENSIVE: Check bounds before accessing genres array
+                guard indexPath.section >= 0, indexPath.section < genres.count else {
+                    print("[ERROR] Focus: indexPath.section out of bounds: section=\(indexPath.section), genres.count=\(genres.count)")
+                    return
+                }
+                let focusedGenre = genres[indexPath.section]
+                print("[DEBUG] Focus: Accessing genre[\(indexPath.section)] of \(genres.count)")
+                highlightCategory(for: focusedGenre)
+            }
+            else if let header = nextFocused as? UICollectionReusableView {
+                let section = header.tag
+                // DEFENSIVE: Check bounds before accessing genres array
+                guard section >= 0, section < genres.count else {
+                    print("[ERROR] Focus: header.tag out of bounds: tag=\(section), genres.count=\(genres.count)")
+                    return
+                }
+                let focusedGenre = genres[section]
+                print("[DEBUG] Focus: Accessing genre[\(section)] of \(genres.count)")
+                highlightCategory(for: focusedGenre)
+            }
+        }
         else if nextFocused.isDescendant(of: categoriesCollectionView) {
-            // Optionally, you could de-select any previously highlighted genre if desired.
+            // Nothing special—user can move focus back to the left column normally.
         }
     }
-    
-    /// Selects the given genre in the categoriesCollectionView (and scrolls it into view).
+
     private func highlightCategory(for genre: Genre) {
-        guard let index = genres.firstIndex(of: genre) else { return }
+        // DEFENSIVE: Check bounds before accessing genres array
+        guard let index = genres.firstIndex(of: genre), index >= 0, index < genres.count else {
+            print("[ERROR] highlightCategory: genre not found or index out of bounds. index=\(String(describing: genres.firstIndex(of: genre))), genres.count=\(genres.count)")
+            return
+        }
         let indexPath = IndexPath(item: index, section: 0)
-        categoriesCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
-        
+        // DEFENSIVE: Double-check indexPath is valid
+        guard indexPath.section == 0, indexPath.item >= 0, indexPath.item < genres.count else {
+            print("[ERROR] highlightCategory: indexPath out of bounds. item=\(indexPath.item), genres.count=\(genres.count)")
+            return
+        }
+        print("[DEBUG] highlightCategory: Selecting item \(indexPath.item) in genres.count=\(genres.count)")
+        categoriesCollectionView.selectItem(
+            at: indexPath,
+            animated: true,
+            scrollPosition: .centeredVertically
+        )
         print("[DEBUG] Highlighting genre '\(genre.name)' at index \(index).")
     }
 }
@@ -471,26 +573,62 @@ final class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        // If desired, kick off preloading images or data here.
-        // In our mock example, everything is local, so no prefetch is strictly needed.
-        print("[DEBUG] Prefetching items at indexPaths: \(indexPaths)")
+        print("[DEBUG] Prefetching items at \(indexPaths)")
     }
 }
 
 // MARK: – UICollectionViewDelegate (Category Taps)
 
 extension ViewController: UICollectionViewDelegate {
-    // When the user clicks/taps on a category, scroll to that genre’s first channel section.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == categoriesCollectionView {
-            let selectedGenre = genres[indexPath.item]
-            // Find the first channel in `channels[]` whose genre matches.
-            if let firstChannelIndex = channels.firstIndex(where: { $0.genre == selectedGenre }) {
-                let targetSection = firstChannelIndex
-                let targetIndexPath = IndexPath(item: 0, section: targetSection)
-                epgCollectionView.scrollToItem(at: targetIndexPath, at: .top, animated: true)
-                print("[DEBUG] Category '\(selectedGenre.name)' tapped—scrolling to channel section #\(targetSection).")
+        if collectionView == categoriesCollectionView || collectionView == headerCategoryCollectionView {
+            guard indexPath.item >= 0, indexPath.item < genres.count else {
+                print("[ERROR] didSelectItemAt: indexPath.item out of bounds: item=\(indexPath.item), genres.count=\(genres.count)")
+                return
             }
+            let selectedGenre = genres[indexPath.item]
+            
+            // Find the section index for this genre (should match the genre index)
+            guard let genreSectionIndex = genres.firstIndex(of: selectedGenre),
+                  genreSectionIndex >= 0, genreSectionIndex < genres.count else {
+                print("[ERROR] didSelectItemAt: Genre \(selectedGenre.name) not found or index out of bounds.")
+                return
+            }
+            
+            // Check if that genre section has any loaded listings
+            let currentSnapshot = epgDataSource.snapshot()
+            let listingCount = currentSnapshot.itemIdentifiers(inSection: selectedGenre).count
+            print("[DEBUG] didSelectItemAt: Genre '\(selectedGenre.name)' section has \(listingCount) listings")
+            
+            if listingCount > 0 {
+                // Safe to scroll to the first item in the genre section
+                let targetIndexPath = IndexPath(item: 0, section: genreSectionIndex)
+                epgCollectionView.scrollToItem(at: targetIndexPath, at: .top, animated: true)
+            } else {
+                // No listings yet: scroll section header into view instead
+                let headerIndexPath = IndexPath(item: 0, section: genreSectionIndex)
+                if let headerAttr = epgCollectionView.layoutAttributesForSupplementaryElement(
+                    ofKind: UICollectionView.elementKindSectionHeader,
+                    at: headerIndexPath
+                ) {
+                    epgCollectionView.scrollRectToVisible(headerAttr.frame, animated: true)
+                } else {
+                    print("[ERROR] didSelectItemAt: No header attributes for genre section \(genreSectionIndex)")
+                }
+            }
+            print("[DEBUG] Genre '\(selectedGenre.name)' tapped—scrolling to section \(genreSectionIndex).")
         }
+    }
+}
+
+// MARK: – UIView utility for finding containing collection view cell
+private extension UIView {
+    /// Walks up the view hierarchy to find the nearest UICollectionViewCell, if any.
+    func containingCollectionViewCell() -> UICollectionViewCell? {
+        var view: UIView? = self
+        while let current = view, !(current is UICollectionViewCell) {
+            view = current.superview
+        }
+        return view as? UICollectionViewCell
     }
 }
