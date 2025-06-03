@@ -13,28 +13,6 @@ class HighlightCollectionViewCell: UICollectionViewCell {
     }
 }
 
-/// Our main view controller for the tvOS EPG example.
-/// 
-/// ARCHITECTURE OVERVIEW:
-/// 1. DATA MODEL:
-///    - Genres: Categories like "Horror", "Comedy", "Sports", etc.
-///    - Channels: Each genre has multiple channels (e.g., "Horror Channel 1", "Horror Channel 2")
-///    - Listings: Each channel has multiple time-slotted shows (e.g., "10:00 AM – Horror Show 3")
-///
-/// 2. COLLECTION VIEW STRUCTURE:
-///    - Left column: Categories (genres) - vertical list
-///    - Top header: Horizontal categories for quick navigation
-///    - Main area: EPG grid where each channel is a SECTION, and listings are ITEMS within that section
-///
-/// 3. DATA FLOW:
-///    - App starts: Create empty sections for all channels (no listings yet)
-///    - Async loading: Each channel fetches its listings on a background thread with staggered delays
-///    - UI updates: When listings are ready, update the diffable data source snapshot
-///
-/// 4. POTENTIAL ISSUES:
-///    - If a channel's async fetch fails or doesn't complete, that channel will show no listings
-///    - Out-of-bounds errors occur when collection view requests more sections than we have channels
-///    - Snapshot inconsistencies can cause missing listings or crashes
 final class ViewController: UIViewController {
     // MARK: – Configurable Constants
     private let genreNames: [String] = ["Horror", "Comedy", "Drama", "Sports", "Kids", "Documentary", "News", "Music"]
