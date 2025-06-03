@@ -46,7 +46,6 @@ final class ViewController: UIViewController {
     // MARK: – UI Elements
     private lazy var categoriesCollectionView: UICollectionView = {
         let layout = UICollectionViewCompositionalLayout { _, _ -> NSCollectionLayoutSection? in
-            // Reuse the same section definition from createCategoryListSection()
             return self.createCategoryListSection()
         }
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -55,37 +54,22 @@ final class ViewController: UIViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.accessibilityIdentifier = "CategoriesCollectionView"
         cv.accessibilityLabel = "Categories"
+        cv.accessibilityHint = "Swipe up or down to browse categories. Select a category to view its shows."
+        cv.accessibilityTraits = .adjustable
         return cv
     }()
     private lazy var headerCategoryCollectionView: UICollectionView = {
         let layout = UICollectionViewCompositionalLayout { _, _ -> NSCollectionLayoutSection? in
-            // One‐item horizontal group
-            let itemSize = NSCollectionLayoutSize(
-                widthDimension: .estimated(120),
-                heightDimension: .absolute(44)
-            )
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8)
-
-            let groupSize = NSCollectionLayoutSize(
-                widthDimension: .estimated(120),
-                heightDimension: .absolute(52)
-            )
-            // **DEPRECATED replaced by subitems:**
-            let group = NSCollectionLayoutGroup.horizontal(
-                layoutSize: groupSize,
-                subitems: [item]
-            )
-            let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .continuous
-            return section
+            return self.createCategoryListSection()
         }
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .darkGray
         cv.remembersLastFocusedIndexPath = true
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.accessibilityIdentifier = "HeaderCategoryCollectionView"
-        cv.accessibilityLabel = "Header Categories"
+        cv.accessibilityLabel = "Quick Navigation"
+        cv.accessibilityHint = "Swipe left or right to quickly jump between categories."
+        cv.accessibilityTraits = .adjustable
         return cv
     }()
     private lazy var epgCollectionView: UICollectionView = {
@@ -99,7 +83,9 @@ final class ViewController: UIViewController {
         cv.isPrefetchingEnabled = true
         cv.prefetchDataSource = self
         cv.accessibilityIdentifier = "EPGCollectionView"
-        cv.accessibilityLabel = "EPG Channel Listings"
+        cv.accessibilityLabel = "TV Guide"
+        cv.accessibilityHint = "Browse shows by category. Swipe left or right to view different time slots."
+        cv.accessibilityTraits = .adjustable
         return cv
     }()
 
@@ -180,8 +166,10 @@ final class ViewController: UIViewController {
             content.textProperties.font = .systemFont(ofSize: 24, weight: .medium)
             cell.contentConfiguration = content
             cell.backgroundColor = .darkGray
-            cell.accessibilityLabel = "Category: \(genre.name)"
-            cell.accessibilityTraits = .button
+            cell.accessibilityLabel = "\(genre.name) category"
+            cell.accessibilityHint = "Select to view \(genre.name) shows"
+            cell.accessibilityTraits = [.button, .header, .selected]
+            cell.isAccessibilityElement = true
         }
         categoryDataSource = UICollectionViewDiffableDataSource<CategorySection, Genre>(
             collectionView: categoriesCollectionView
@@ -206,8 +194,10 @@ final class ViewController: UIViewController {
             content.textProperties.font = .systemFont(ofSize: 18, weight: .semibold)
             cell.contentConfiguration = content
             cell.backgroundColor = .gray
-            cell.accessibilityLabel = "Jump to genre: \(genre.name)"
-            cell.accessibilityTraits = .button
+            cell.accessibilityLabel = "\(genre.name) category"
+            cell.accessibilityHint = "Double tap to jump to \(genre.name) shows"
+            cell.accessibilityTraits = [.button, .header, .selected]
+            cell.isAccessibilityElement = true
         }
         headerCategoryDataSource = UICollectionViewDiffableDataSource<CategorySection, Genre>(
             collectionView: headerCategoryCollectionView
@@ -272,7 +262,10 @@ final class ViewController: UIViewController {
                 label.font = .systemFont(ofSize: 22, weight: .bold)
                 label.textColor = .white
                 label.text = genre.name
-                label.accessibilityLabel = "Genre: \(genre.name)"
+                label.accessibilityLabel = "\(genre.name) category"
+                label.accessibilityHint = "Shows in \(genre.name) category"
+                label.accessibilityTraits = [.header, .selected]
+                label.isAccessibilityElement = true
                 supplementaryView.addSubview(label)
                 NSLayoutConstraint.activate([
                     label.leadingAnchor.constraint(equalTo: supplementaryView.leadingAnchor, constant: 16),
@@ -283,7 +276,9 @@ final class ViewController: UIViewController {
             }
             supplementaryView.tag = indexPath.section
             supplementaryView.backgroundColor = .black
-            supplementaryView.accessibilityLabel = "Genre Header"
+            supplementaryView.accessibilityLabel = "\(genre.name) category"
+            supplementaryView.accessibilityTraits = [.header, .selected]
+            supplementaryView.isAccessibilityElement = true
         }
 
         // Cell registration for "listing" items
@@ -315,8 +310,9 @@ final class ViewController: UIViewController {
 
             // Set accessibility label to include the show name (which includes genre)
             // e.g., "Listing: 10:00 AM – Horror Show 3"
-            cell.accessibilityLabel = "Listing: \(listing.title)"
-            cell.accessibilityTraits = .button
+            cell.accessibilityLabel = "Show: \(listing.title)"
+            cell.accessibilityHint = "Double tap to select this show"
+            cell.accessibilityTraits = [.button, .playsSound]
         }
 
         epgDataSource = UICollectionViewDiffableDataSource<Genre, Listing>(

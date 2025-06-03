@@ -1,0 +1,130 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+Important Rules
+11. Swift Specific
+  - Maintain a memlog folder(include a changelog, directory_tree, and tasks.md)
+  - only update the memlog when changes are accepted, not before.
+  - Maintain a build_and_test_all.sh which builds and tests every target in the repo. and creates a build_results folder with a build summary and the logs for each
+    - You are helping with the HotPotato cross-platform game project. The build script Builds and tests the app for iOS, macOS, and tvOS, Generates logs in build_results, Creates a summary report
+  - Use a sared unified HotPotatoLogger class for each application, which has static methods for every logging category.
+  - Use this HotPotatoLogger to compare expectations and actual results for debugging purposes, don't use any other strategy for logging.
+  - All files/functions should have up-to-date comments which describe the intentions(and leverage Xcode quickhelp formatting)
+  - If you make a change to a type, change the access level, change the async property, you must search for all uses of it and update their implementation across the entire repo.
+  - If you make a change to anything async, you must provide a comment explaining its concurrency requirements and how its used.  You must examine how that change will affect its interactions with other components and make sure that the update doesn't break the current implementation in other areas of the code.
+  - Use optionality when needed
+  - Be intentional with access levels
+  - Consider mutablilty for let vs var, etc
+  - Use descriptive class and variable names
+  - Don't add new emojis to the codebase. It is annoying and unprofessional.
+  - Maintain useful Unit tests, don't test basic math or array counting, just test the business logic of our code
+  - Never skip/disable Unit tests to try to get the tests to pass.
+  - Use Constructor Injection for DI, Determine if a protocol abstraction would help.
+  - Use SFSymbols where appropriate
+  - Find and offer to use already existing(and recently maintained) git repos that solve problems we are currently working on.
+  - never use cocoapods or carthage.  Only SPM, or just extract the relevant files/classes/etc.
+  - for SPM always use compatible Exact git versions.
+  - Make sure that components work together with expected ins/outs
+  - When creating a models for parsing json, look up the api response or sample code or the sdk documentation directly, and use that as a reference, do not guess.
+  - Before creating a protocol, class, enum, or a file, perform a search on the codebase for existing implementations, and check the memlog/directory_tree.  Never create unnecessary duplicates.
+  - When making any updates to a protocol, you must search for all existing implementations, and update those with the new protocol requirements.
+  - When adding a file, make sure that target membership is configured in the Xcode projects properly.
+- Validate all the tests and the builds to ensure correctness.  All targets must pass.
+- Never open or interact with the xcode GUI.  Only use command line interface. 
+- Do not require user feedback for executing work already included in tasks.md, just execute the steps.
+ - Always question when are you changing the protocol to match the implementation, or if the implementation should be changed.
+ - Use grep and regex heavily to search, understand and change operations on multiple files instead of going one by one.
+ - In an Xcode workspace with multiple targets, all target-specific Swift files must use an OS prefix (iOS, tvOS, macOS) for clarity, e.g., iOSContentView.swift, ensuring disambiguation across platforms.
+- If I use the shorthand "Iterate" that is short for, respect the important rules and concurrency guidelines, run the build_and_test_all.sh, examine the build_summary, and associated bugs, analyze them all holistically, fix all the bugs and run the build_and_test_all.sh, until all builds and tests pass.
+
+ConcurrencyGuidelines.md:
+	1.	Embrace Swift’s Structured Concurrency:
+	•	Always use async/await for asynchronous operations.
+	•	Use Task groups (and async let) to manage parallel work in a structured way, ensuring proper lifetime and error propagation.
+	2.	Isolate Mutable State with Actors:
+	•	Use actors to encapsulate and protect mutable shared state from data races.
+	•	Ensure that state modifications are confined within the actor’s context, avoiding concurrent writes from outside code.
+	3.	Mark UI and Critical Code with Global Actors:
+	•	Use the @MainActor attribute (or other global actor annotations) to ensure that UI updates and other thread-sensitive operations run on the correct thread.
+	•	This minimizes the risk of unexpected behavior due to thread-switching.
+	4.	Avoid Blocking in Asynchronous Contexts:
+	•	Ensure that asynchronous functions do not perform blocking operations (like heavy computations or synchronous I/O).
+	•	Offload such work to background queues or specialized tasks to keep the concurrency model responsive.
+	5.	Handle Cancellation and Errors Gracefully:
+	•	Check for task cancellation using Task.isCancelled and propagate errors using Swift’s built‑in error handling with async functions.
+	•	This makes sure long-running or background tasks can terminate cleanly if needed.
+	6.	Enforce Sendable Data and Thread Safety:
+	•	Use Sendable types for data shared across concurrent tasks to help the compiler verify thread safety.
+	•	Mark closures passed between concurrency contexts with @Sendable to maintain data consistency.
+	7.	Document and Test Concurrency Assumptions:
+	•	Provide clear documentation for concurrent sections of your code.
+	•	Write tests that specifically target race conditions, deadlocks, and proper cancellation handling.
+  8. Avoid @unchecked Sendable and @preconcurrency as code smell, and conform to best practices for all code in the repo.
+
+- When you've read this, section output "RULES ARE READ AND RESPECTED JOE, NO GREEN M&Ms" and summarize these 11. Swift Specific requirements, to prove you've read and understand these rules.
+
+
+
+11. Swift Specific
+  - Maintain a memlog folder(include a changelog, directory_tree, and tasks.md)
+  - only update the memlog when changes are accepted, not before.
+  - Maintain a build_and_test_all.sh which builds and tests every target in the repo. and creates a build_results folder with a build summary and the logs for each
+    - You are helping with the HotPotato cross-platform game project. The build script Builds and tests the app for iOS, macOS, and tvOS, Generates logs in build_results, Creates a summary report
+  - Use a shared unified ProjectLogger class for each application, which has static methods for every logging category.
+  - Use this ProjectLogger to compare expectations and actual results for debugging purposes, don't use any other strategy for logging.
+  - All files/functions should have up-to-date comments which describe the intentions(and leverage Xcode quickhelp formatting)
+  - If you make a change to a type, change the access level, change the async property, you must search for all uses of it and update their implementation across the entire repo.
+  - If you make a change to anything async, you must provide a comment explaining its concurrency requirements and how its used.  You must examine how that change will affect its interactions with other components and make sure that the update doesn't break the current implementation in other areas of the code.
+  - Use optionality when needed
+  - Be intentional with access levels
+  - Consider mutablilty for let vs var, etc
+  - Use descriptive class and variable names
+  - Don't add new emojis to the codebase. It is annoying and unprofessional.
+  - Maintain useful Unit tests, don't test basic math or array counting, just test the business logic of our code
+  - Never skip/disable Unit tests to try to get the tests to pass.
+  - Use Constructor Injection for DI, Determine if a protocol abstraction would help.
+  - Use SFSymbols where appropriate
+  - Find and offer to use already existing(and recently maintained) git repos that solve problems we are currently working on.
+  - never use cocoapods or carthage.  Only SPM, or just extract the relevant files/classes/etc.
+  - for SPM always use compatible Exact git versions.
+  - Make sure that components work together with expected ins/outs
+  - When creating a models for parsing json, look up the api response or sample code or the sdk documentation directly, and use that as a reference, do not guess.
+  - Before creating a protocol, class, enum, or a file, perform a search on the codebase for existing implementations, and check the memlog/directory_tree.  Never create unnecessary duplicates.
+  - When making any updates to a protocol, you must search for all existing implementations, and update those with the new protocol requirements.
+  - When adding a file, make sure that target membership is configured in the Xcode projects properly.
+- Validate all the tests and the builds to ensure correctness.  All targets must pass.
+- Never open or interact with the xcode GUI.  Only use command line interface. 
+- Do not require user feedback for executing work already included in tasks.md, just execute the steps.
+ - Always question when are you changing the protocol to match the implementation, or if the implementation should be changed.
+ - Use grep and regex heavily to search, understand and change operations on multiple files instead of going one by one.
+ - In an Xcode workspace with multiple targets, all target-specific Swift files must use an OS prefix (iOS, tvOS, macOS) for clarity, e.g., iOSContentView.swift, ensuring disambiguation across platforms.
+- If I use the shorthand "Iterate" that is short for, respect the important rules and concurrency guidelines, run the build_and_test_all.sh, examine the build_summary, and associated bugs, search for all the current errors in the logs, perform a Root Cause Analysis, fix all the bugs and run the build_and_test_all.sh, until all builds and tests pass.
+
+ConcurrencyGuidelines.md:
+	1.	Embrace Swift’s Structured Concurrency:
+	•	Always use async/await for asynchronous operations.
+	•	Use Task groups (and async let) to manage parallel work in a structured way, ensuring proper lifetime and error propagation.
+	2.	Isolate Mutable State with Actors:
+	•	Use actors to encapsulate and protect mutable shared state from data races.
+	•	Ensure that state modifications are confined within the actor’s context, avoiding concurrent writes from outside code.
+	3.	Mark UI and Critical Code with Global Actors:
+	•	Use the @MainActor attribute (or other global actor annotations) to ensure that UI updates and other thread-sensitive operations run on the correct thread.
+	•	This minimizes the risk of unexpected behavior due to thread-switching.
+	4.	Avoid Blocking in Asynchronous Contexts:
+	•	Ensure that asynchronous functions do not perform blocking operations (like heavy computations or synchronous I/O).
+	•	Offload such work to background queues or specialized tasks to keep the concurrency model responsive.
+	5.	Handle Cancellation and Errors Gracefully:
+	•	Check for task cancellation using Task.isCancelled and propagate errors using Swift’s built‑in error handling with async functions.
+	•	This makes sure long-running or background tasks can terminate cleanly if needed.
+	6.	Enforce Sendable Data and Thread Safety:
+	•	Use Sendable types for data shared across concurrent tasks to help the compiler verify thread safety.
+	•	Mark closures passed between concurrency contexts with @Sendable to maintain data consistency.
+	7.	Document and Test Concurrency Assumptions:
+	•	Provide clear documentation for concurrent sections of your code.
+	•	Write tests that specifically target race conditions, deadlocks, and proper cancellation handling.
+  8. Avoid @unchecked Sendable and @preconcurrency as code smell, and conform to best practices for all code in the repo.
+
+- When you've read this, section output "RULES ARE READ AND RESPECTED JOE, NO GREEN M&Ms" and summarize these 11. Swift Specific requirements, to prove you've read and understand these rules.
+
