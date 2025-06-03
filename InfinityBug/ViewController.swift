@@ -14,6 +14,30 @@ class HighlightCollectionViewCell: UICollectionViewCell {
 }
 
 final class ViewController: UIViewController {
+    // MARK: - Accessibility Container Support
+    override var accessibilityElements: [Any]? {
+        get {
+            // Return the sidebar cells as the primary accessibility elements
+            var elements: [Any] = []
+            
+            // Add category collection view cells
+            for index in 0..<genres.count {
+                let indexPath = IndexPath(item: index, section: 0)
+                if let cell = categoriesCollectionView.cellForItem(at: indexPath) {
+                    elements.append(cell)
+                }
+            }
+            
+            // Add the EPG collection view as a single element
+            elements.append(epgCollectionView)
+            
+            return elements
+        }
+        set {
+            // Do nothing - we manage this dynamically
+        }
+    }
+
     // MARK: – Configurable Constants
     private let genreNames: [String] = ["Horror", "Comedy", "Drama", "Sports", "Kids", "Documentary", "News", "Music"]
     private let channelsPerGenre: Int = 10
@@ -33,22 +57,6 @@ final class ViewController: UIViewController {
         cv.accessibilityIdentifier = "CategoriesCollectionView"
         cv.accessibilityLabel = "Categories"
         cv.accessibilityHint = "Swipe up or down to browse categories. Select a category to view its shows."
-        cv.accessibilityTraits = .adjustable
-        cv.shouldGroupAccessibilityChildren = false
-        cv.isAccessibilityElement = false
-        return cv
-    }()
-    private lazy var headerCategoryCollectionView: UICollectionView = {
-        let layout = UICollectionViewCompositionalLayout { _, _ -> NSCollectionLayoutSection? in
-            return self.createCategoryListSection()
-        }
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .darkGray
-        cv.remembersLastFocusedIndexPath = true
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.accessibilityIdentifier = "HeaderCategoryCollectionView"
-        cv.accessibilityLabel = "Quick Navigation"
-        cv.accessibilityHint = "Swipe left or right to quickly jump between categories."
         cv.accessibilityTraits = .adjustable
         cv.shouldGroupAccessibilityChildren = false
         cv.isAccessibilityElement = false
@@ -77,7 +85,6 @@ final class ViewController: UIViewController {
     private enum CategorySection { case main }
     private var categoryDataSource: UICollectionViewDiffableDataSource<CategorySection, Genre>!
     private var epgDataSource: UICollectionViewDiffableDataSource<Genre, Listing>!
-    private var headerCategoryDataSource: UICollectionViewDiffableDataSource<CategorySection, Genre>!
 
     // MARK: – Data Storage
     private var genres: [Genre] = []
@@ -97,9 +104,7 @@ final class ViewController: UIViewController {
 
         configureGenresAndChannels()
         configureCategoryCollectionView()
-        configureHeaderCategoryCollectionView()
         configureEPGCollectionView()
-        performInitialHeaderSnapshot()
         performInitialSnapshots()
         simulateAsyncLoadingForAllChannels()
     }
@@ -107,6 +112,16 @@ final class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         epgCollectionView.collectionViewLayout.invalidateLayout()
+        
+        // Refresh accessibility elements after layout
+        DispatchQueue.main.async { [weak self] in
+            self?.refreshAccessibilityElements()
+        }
+    }
+
+    private func refreshAccessibilityElements() {
+        // Force VoiceOver to re-evaluate accessibility elements
+        UIAccessibility.post(notification: .layoutChanged, argument: nil)
     }
 
     // MARK: – Setup Data Models
@@ -171,51 +186,15 @@ final class ViewController: UIViewController {
         categoryDataSource.apply(categorySnapshot, animatingDifferences: false)
     }
 
-    // MARK: – Header Category Collection View (Top Horizontal Bar)
-    private func configureHeaderCategoryCollectionView() {
-        let registration = UICollectionView.CellRegistration<HighlightCollectionViewCell, Genre> { cell, indexPath, genre in
-            var content = UIListContentConfiguration.cell()
-            content.text = genre.name
-            content.textProperties.color = .white
-            content.textProperties.font = .systemFont(ofSize: 18, weight: .semibold)
-            cell.contentConfiguration = content
-            cell.backgroundColor = .gray
-            cell.accessibilityLabel = "\(genre.name) category"
-            cell.accessibilityHint = "Double tap to jump to \(genre.name) shows"
-            cell.accessibilityTraits = .button
-            cell.isAccessibilityElement = true
-        }
-        headerCategoryDataSource = UICollectionViewDiffableDataSource<CategorySection, Genre>(
-            collectionView: headerCategoryCollectionView
-        ) { collectionView, indexPath, genre in
-            return collectionView.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: genre)
-        }
-        headerCategoryCollectionView.delegate = self
-    }
-
-    private func performInitialHeaderSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<CategorySection, Genre>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(genres, toSection: .main)
-        headerCategoryDataSource.apply(snapshot, animatingDifferences: false)
-    }
-
     // MARK: – EPG (Right Column) Collection View
     private func configureEPGCollectionView() {
-        view.addSubview(headerCategoryCollectionView)
         view.addSubview(epgCollectionView)
 
         NSLayoutConstraint.activate([
-            // Position the header bar
-            headerCategoryCollectionView.leadingAnchor.constraint(equalTo: categoriesCollectionView.trailingAnchor),
-            headerCategoryCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerCategoryCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            headerCategoryCollectionView.heightAnchor.constraint(equalToConstant: 52),
-
             // Place the EPG collection view below the header
             epgCollectionView.leadingAnchor.constraint(equalTo: categoriesCollectionView.trailingAnchor),
             epgCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            epgCollectionView.topAnchor.constraint(equalTo: headerCategoryCollectionView.bottomAnchor),
+            epgCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             epgCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
@@ -496,10 +475,7 @@ final class ViewController: UIViewController {
         super.didUpdateFocus(in: context, with: coordinator)
         guard let nextFocused = context.nextFocusedView else { return }
 
-        if nextFocused.isDescendant(of: headerCategoryCollectionView) {
-            // Focused the top header—no sync needed here.
-        }
-        else if nextFocused.isDescendant(of: epgCollectionView) {
+        if nextFocused.isDescendant(of: epgCollectionView) {
             // Locate containing cell, then highlight that genre on the left.
             if let cell = nextFocused.containingCollectionViewCell(),
                let indexPath = epgCollectionView.indexPath(for: cell) {
@@ -563,7 +539,7 @@ extension ViewController: UICollectionViewDataSourcePrefetching {
 
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == categoriesCollectionView || collectionView == headerCategoryCollectionView {
+        if collectionView == categoriesCollectionView {
             guard indexPath.item >= 0, indexPath.item < genres.count else {
                 print("[ERROR] didSelectItemAt: indexPath.item out of bounds: item=\(indexPath.item), genres.count=\(genres.count)")
                 return
