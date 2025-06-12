@@ -1,5 +1,99 @@
 import UIKit
 import SwiftUI
+import Combine
+import os
+
+// MARK: - Focus Diagnostics (Strategy A)
+
+/// Centralised, opt‑in focus & VoiceOver telemetry.
+/// Call `FocusLogger.shared.start()` once at app launch.
+final class FocusLogger {
+    static let shared = FocusLogger()
+
+    /// Points‑of‑interest log visible in Instruments.
+    let log: OSLog = .init(subsystem: Bundle.main.bundleIdentifier ?? "InfinityBug",
+                           category: "Focus")
+
+    private var cancellables: Set<AnyCancellable> = []
+    private init() {}
+
+    /// Starts logging VoiceOver status and element focus hops.
+    func start() {
+        guard cancellables.isEmpty else { return }     // idempotent
+
+        // 1️⃣  VoiceOver enabled / disabled
+        NotificationCenter.default.publisher(
+            for: UIAccessibility.voiceOverStatusDidChangeNotification
+        )
+        .sink { _ in
+            let enabled = UIAccessibility.isVoiceOverRunning
+            os_signpost(.event, log: self.log,
+                        name: "VOStatus", "%{public}s", enabled.description)
+            print("🟣 VoiceOver \(enabled ? "ENABLED" : "DISABLED")")
+        }
+        .store(in: &cancellables)
+
+        // 2️⃣  Element focus hops
+        NotificationCenter.default.publisher(
+            for: UIAccessibility.elementFocusedNotification
+        )
+        .sink { [weak self] note in
+            guard
+                let self,
+                let element = note.userInfo?[UIAccessibility.focusedElementUserInfoKey] as? NSObject
+            else { return }
+
+            let description = Self.describe(element)
+            os_signpost(.event, log: self.log, name: "AXFocus", "%{public}s", description)
+            print("🟢 AX → \(description)")
+        }
+        .store(in: &cancellables)
+    }
+
+    /// Human‑readable element summary for logs.
+    static func describe(_ element: NSObject) -> String {
+        if let view = element as? UIView {
+            return "\(type(of: view))(id: \(view.accessibilityIdentifier ?? "nil"), " +
+                   "label: \(view.accessibilityLabel ?? "nil"))"
+        } else {
+            return String(describing: element)
+        }
+    }
+}
+
+// MARK: - Custom Hosting Controller for Focus Management
+class FocusableHostingController<Content: View>: UIHostingController<Content> {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Start Strategy A diagnostics
+        FocusLogger.shared.start()
+        // Configure the view to be focusable
+        view.isUserInteractionEnabled = true
+        view.isAccessibilityElement = true
+        view.accessibilityTraits = .none
+        print("[FOCUS] FocusableHostingController viewDidLoad")
+        print("[FOCUS] View isUserInteractionEnabled: \(view.isUserInteractionEnabled)")
+    }
+    
+    override var preferredFocusEnvironments: [UIFocusEnvironment] {
+        print("[FOCUS] FocusableHostingController preferredFocusEnvironments called")
+        
+        // Always prefer our own view first to ensure we can receive focus
+        let environments: [UIFocusEnvironment] = [self.view]
+        print("[FOCUS] Preferred environments count: \(environments.count)")
+        return environments
+    }
+    
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
+        
+        if context.nextFocusedView === self.view {
+            print("[FOCUS] SwiftUI EPG hosting controller view gained focus")
+        } else if context.previouslyFocusedView === self.view {
+            print("[FOCUS] SwiftUI EPG hosting controller view lost focus")
+        }
+    }
+}
 
 // MARK: - Coordinator for UIKit <-> SwiftUI Communication
 class EPGCoordinator: ObservableObject {
@@ -30,18 +124,22 @@ class HighlightCollectionViewCell: UICollectionViewCell {
     }
 }
 
-// MARK: - SwiftUI EPG View
-struct EPGView: View {
+// MARK: - Focus Environment for SwiftUI-UIKit Integration
+struct FocusableEPGView: View {
     @ObservedObject var coordinator: EPGCoordinator
-    @State private var focusedGenre: Genre?
+    @FocusState private var focusedListing: UUID?
     
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
                 LazyVStack(spacing: 16) {
                     ForEach(coordinator.genres, id: \.id) { genre in
-                        GenreSection(genre: genre, channels: channelsForGenre(genre))
-                            .id(genre.id)
+                        FocusableGenreSection(
+                            genre: genre,
+                            channels: channelsForGenre(genre),
+                            focusedListing: $focusedListing
+                        )
+                        .id(genre.id)
                     }
                 }
                 .padding()
@@ -49,9 +147,29 @@ struct EPGView: View {
             .background(Color.black)
             .accessibilityLabel("TV Guide")
             .accessibilityHint("Browse shows by category. Swipe to view different time slots.")
-            .onChange(of: coordinator.selectedGenre) { selectedGenre in
-                if let selectedGenre = selectedGenre {
-                    scrollToGenre(selectedGenre, proxy: proxy)
+            .onAppear {
+                print("[FOCUS] SwiftUI EPG view appeared")
+            }
+            .onChange(of: coordinator.selectedGenre) { oldValue, newSelectedGenre in
+                print("[FOCUS] SwiftUI: coordinator.selectedGenre changed to: \(newSelectedGenre?.name ?? "nil")")
+                if let genre = newSelectedGenre {
+                    scrollToGenre(genre, proxy: proxy)
+                    // Focus the first listing immediately if available, otherwise wait for data
+                    focusFirstListing(in: genre)
+                }
+            }
+            .onChange(of: coordinator.channels) { oldValue, newChannels in
+                print("[FOCUS] SwiftUI: coordinator.channels updated")
+                // If a genre is selected and we don't have focus yet, try to focus the first item
+                if focusedListing == nil, let currentSelectedGenre = coordinator.selectedGenre {
+                    let listingsForSelectedGenre = channelsForGenre(currentSelectedGenre)
+                                                    .flatMap { $0.listings }
+                    if !listingsForSelectedGenre.isEmpty {
+                        print("[FOCUS] SwiftUI: Attempting to focus first listing for \(currentSelectedGenre.name)")
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                             focusFirstListing(in: currentSelectedGenre)
+                        }
+                    }
                 }
             }
         }
@@ -62,19 +180,33 @@ struct EPGView: View {
     }
     
     private func scrollToGenre(_ genre: Genre, proxy: ScrollViewProxy) {
+        print("[FOCUS] SwiftUI: Scrolling to genre: \(genre.name)")
         withAnimation(.easeInOut(duration: 0.5)) {
             proxy.scrollTo(genre.id, anchor: .top)
         }
     }
+    
+    private func focusFirstListing(in genre: Genre) {
+        let channelsForGenre = channelsForGenre(genre)
+        guard let firstChannel = channelsForGenre.first,
+              let firstListing = firstChannel.listings.first else {
+            print("[FOCUS] SwiftUI: No listings found for genre \(genre.name)")
+            return
+        }
+        
+        print("[FOCUS] SwiftUI: Focusing first listing: \(firstListing.title)")
+        focusedListing = firstListing.id
+    }
 }
 
-struct GenreSection: View {
+struct FocusableGenreSection: View {
     let genre: Genre
     let channels: [Channel]
+    @FocusState.Binding var focusedListing: UUID?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            // Genre Header
+            // Genre Header - not focusable
             Text(genre.name)
                 .font(.title2)
                 .fontWeight(.bold)
@@ -84,15 +216,26 @@ struct GenreSection: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 16)
             
-            // Channel Listings
+            // Channel Listings - each cell is focusable
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 8) {
-                    ForEach(allListingsForGenre(), id: \.id) { listing in
-                        ListingCard(listing: listing)
+                    ForEach(allListingsForGenre(), id: \.id) { (listing: Listing) in
+                        let isFocused = focusedListing == listing.id
+                        FocusableListingCard(listing: listing, isFocused: isFocused)
+                            .focused($focusedListing, equals: listing.id)
+                            .onAppear {
+                                if isFocused {
+                                    print("[FOCUS] SwiftUI: Listing appeared and is focused: \(listing.title)")
+                                }
+                            }
                     }
                 }
                 .padding(.horizontal, 16)
             }
+        }
+        // Remove focusable from container
+        .onAppear {
+            print("[FOCUS] SwiftUI: Genre section appeared: \(genre.name)")
         }
     }
     
@@ -101,9 +244,9 @@ struct GenreSection: View {
     }
 }
 
-struct ListingCard: View {
+struct FocusableListingCard: View {
     let listing: Listing
-    @FocusState private var isFocused: Bool
+    let isFocused: Bool
     
     var body: some View {
         VStack {
@@ -117,7 +260,6 @@ struct ListingCard: View {
         .frame(width: 200, height: 120)
         .background(Color(listing.artworkColor))
         .cornerRadius(8)
-        .focused($isFocused)
         .accessibilityLabel("Show: \(listing.title)")
         .accessibilityHint("Double tap to select this show")
         .accessibilityAddTraits([.isButton])
@@ -127,6 +269,12 @@ struct ListingCard: View {
                 .stroke(isFocused ? Color.green : Color.clear, lineWidth: 4)
         )
         .animation(.easeInOut(duration: 0.2), value: isFocused)
+        .focusable(true) // Ensure each card is focusable
+        .onAppear {
+            if isFocused {
+                print("[FOCUS] SwiftUI: Listing card appeared and is focused: \(listing.title)")
+            }
+        }
     }
 }
 
@@ -184,11 +332,15 @@ final class ViewController: UIViewController {
     }()
 
     // SwiftUI EPG View
-    private lazy var epgHostingController: UIHostingController<EPGView> = {
-        let epgView = EPGView(coordinator: coordinator)
-        let hostingController = UIHostingController(rootView: epgView)
+    private lazy var epgHostingController: FocusableHostingController<FocusableEPGView> = {
+        let epgView = FocusableEPGView(coordinator: coordinator)
+        let hostingController = FocusableHostingController(rootView: epgView)
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         hostingController.view.backgroundColor = .black
+        
+        // Enable focus for tvOS navigation
+        hostingController.view.isUserInteractionEnabled = true
+        
         return hostingController
     }()
 
@@ -203,6 +355,42 @@ final class ViewController: UIViewController {
     
     // Serial queue to ensure snapshot updates happen one at a time
     private let snapshotUpdateQueue = DispatchQueue(label: "com.epg.snapshot.updates", qos: .userInitiated)
+    
+    // Thread-safe access queue for shared data
+    private let dataAccessQueue = DispatchQueue(label: "com.epg.data.access", qos: .userInitiated, attributes: .concurrent)
+
+    // Add focus guide for UIKit/SwiftUI handoff
+    private var focusGuide: UIFocusGuide!
+
+    // MARK: - Thread-Safe Data Access
+    private func getChannel(byID channelID: UUID) -> (channel: Channel, index: Int)? {
+        return dataAccessQueue.sync {
+            guard let index = channelIndexLookup[channelID],
+                  index < channels.count else {
+                return nil
+            }
+            return (channels[index], index)
+        }
+    }
+    
+    private func updateChannelListings(at index: Int, with listings: [Listing]) {
+        dataAccessQueue.sync(flags: .barrier) {
+            guard index < channels.count else { return }
+            channels[index].listings = listings
+        }
+    }
+    
+    private func getAllChannels() -> [Channel] {
+        return dataAccessQueue.sync {
+            return channels
+        }
+    }
+    
+    private func getAllGenres() -> [Genre] {
+        return dataAccessQueue.sync {
+            return genres
+        }
+    }
 
     // MARK: – Lifecycle
     override func viewDidLoad() {
@@ -216,7 +404,35 @@ final class ViewController: UIViewController {
         configureCategoryCollectionView()
         configureEPGView()
         performInitialSnapshots()
-        simulateAsyncLoadingForAllChannels()
+        
+        // DELAY heavy background operations to prevent app launch failures
+        print("[DEBUG] App launch complete - scheduling background data loading in 1 second...")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            print("[DEBUG] Starting delayed background data loading...")
+            self.simulateAsyncLoadingForAllChannels()
+        }
+        
+        // Configure focus guide for cell-to-cell navigation
+        focusGuide = UIFocusGuide()
+        focusGuide.isEnabled = true
+        view.addLayoutGuide(focusGuide)
+        
+        // Position focus guide between cells
+        NSLayoutConstraint.activate([
+            focusGuide.leadingAnchor.constraint(equalTo: categoriesCollectionView.trailingAnchor),
+            focusGuide.trailingAnchor.constraint(equalTo: epgHostingController.view.leadingAnchor),
+            focusGuide.topAnchor.constraint(equalTo: view.topAnchor),
+            focusGuide.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        // Initial focus on first category cell
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            if let firstCell = self.categoriesCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) {
+                firstCell.setNeedsFocusUpdate()
+                firstCell.updateFocusIfNeeded()
+            }
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -241,6 +457,18 @@ final class ViewController: UIViewController {
         view.addSubview(epgHostingController.view)
         epgHostingController.didMove(toParent: self)
         
+        // Ensure the hosting controller view can receive focus
+        epgHostingController.view.isUserInteractionEnabled = true
+        epgHostingController.view.backgroundColor = .black
+        
+        // Configure the view for focus
+        epgHostingController.view.isAccessibilityElement = true
+        epgHostingController.view.accessibilityLabel = "TV Guide"
+        epgHostingController.view.accessibilityTraits = .none
+        
+        print("[FOCUS] Configuring EPG view...")
+        print("[FOCUS] EPG view isUserInteractionEnabled: \(epgHostingController.view.isUserInteractionEnabled)")
+        
         // Set up constraints
         NSLayoutConstraint.activate([
             epgHostingController.view.leadingAnchor.constraint(equalTo: categoriesCollectionView.trailingAnchor),
@@ -248,35 +476,191 @@ final class ViewController: UIViewController {
             epgHostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
             epgHostingController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
+        print("[FOCUS] EPG view constraints configured")
+    }
+
+    // MARK: - Focus Helper Methods
+    private func attemptFocusTransferToEPG() {
+        print("[FOCUS] Attempting manual focus transfer to EPG...")
+        
+        // Force the hosting controller to become the preferred focus environment
+        focusGuide.preferredFocusEnvironments = [epgHostingController]
+        
+        // Use the focus guide to transfer focus
+        print("[FOCUS] Using focus guide to transfer focus...")
+        setNeedsFocusUpdate()
+        updateFocusIfNeeded()
+        
+        // Also try direct focus on the hosting controller
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            print("[FOCUS] Attempting direct focus on EPG hosting controller...")
+            self.epgHostingController.setNeedsFocusUpdate()
+            self.epgHostingController.updateFocusIfNeeded()
+            
+            // Verify focus state after attempt
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                let currentFocus = UIFocusSystem.focusSystem(for: self.view)?.focusedItem
+                print("[FOCUS] Focus transfer attempt completed")
+                print("[FOCUS] Current focused item: \(currentFocus.map { "\(type(of: $0))" } ?? "none")")
+                
+                if let currentFocus = currentFocus {
+                    if let focusView = currentFocus as? UIView {
+                        let isInEPG = focusView.isDescendant(of: self.epgHostingController.view)
+                        print("[FOCUS] Is focused item in EPG view? \(isInEPG)")
+                        
+                        if !isInEPG {
+                            print("[FOCUS] Focus transfer failed, trying alternative approach...")
+                            // Try setting the EPG as preferred focus environment
+                            self.epgHostingController.view.setNeedsFocusUpdate()
+                            self.epgHostingController.view.updateFocusIfNeeded()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private func transferFocusToEPGFirstItem() {
+        print("[FOCUS] Transferring focus to EPG first item...")
+        
+        // First, ensure the EPG view is ready to receive focus
+        epgHostingController.view.isUserInteractionEnabled = true
+        
+        // Configure focus guide for the transition
+        focusGuide.isEnabled = true
+        focusGuide.preferredFocusEnvironments = [epgHostingController]
+        
+        // Force focus update on the EPG view
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            // First update the focus guide
+            self.setNeedsFocusUpdate()
+            self.updateFocusIfNeeded()
+            
+            // Then force focus on the EPG
+            self.epgHostingController.setNeedsFocusUpdate()
+            self.epgHostingController.updateFocusIfNeeded()
+            
+            // Verify focus state after a short delay
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                let currentFocus = UIFocusSystem.focusSystem(for: self.view)?.focusedItem
+                if let focusView = currentFocus as? UIView {
+                    let isInEPG = focusView.isDescendant(of: self.epgHostingController.view)
+                    print("[FOCUS] Focus transfer result - In EPG: \(isInEPG)")
+                    
+                    if !isInEPG {
+                        print("[FOCUS] Focus transfer failed, trying alternative approach...")
+                        // Try direct focus on the first listing
+                        if let firstGenre = self.coordinator.genres.first {
+                            self.coordinator.selectGenre(firstGenre)
+                            
+                            // Force another focus update after genre selection
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                // Try to force focus on the EPG view again
+                                self.focusGuide.preferredFocusEnvironments = [self.epgHostingController]
+                                self.setNeedsFocusUpdate()
+                                self.updateFocusIfNeeded()
+                                
+                                // Also try direct focus on the EPG
+                                self.epgHostingController.setNeedsFocusUpdate()
+                                self.epgHostingController.updateFocusIfNeeded()
+                                
+                                // If still not focused, try one more time with a longer delay
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                    if let currentFocus = UIFocusSystem.focusSystem(for: self.view)?.focusedItem as? UIView,
+                                       !currentFocus.isDescendant(of: self.epgHostingController.view) {
+                                        print("[FOCUS] Final attempt to transfer focus...")
+                                        self.focusGuide.preferredFocusEnvironments = [self.epgHostingController]
+                                        self.setNeedsFocusUpdate()
+                                        self.updateFocusIfNeeded()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
+        
+        let previousView = context.previouslyFocusedView
+        let nextView = context.nextFocusedView
+        
+        // Log focus transitions
+        if let prev = previousView, let next = nextView {
+            print("[FOCUS] Focus transition: \(type(of: prev)) → \(type(of: next))")
+        }
+        
+        // Handle focus guide activation
+        if nextView == focusGuide {
+            // Find the currently focused cell in categories
+            if let focusedCell = context.previouslyFocusedView as? UICollectionViewCell,
+               let indexPath = categoriesCollectionView.indexPath(for: focusedCell) {
+                // Find the corresponding first listing in EPG
+                let genre = self.coordinator.genres[indexPath.item]
+                if let firstChannel = self.coordinator.channels.first(where: { $0.genre == genre }),
+                   let firstListing = firstChannel.listings.first {
+                    // Update focus guide to target the first listing
+                    focusGuide.preferredFocusEnvironments = [epgHostingController]
+                    print("[FOCUS] Focus guide activated - targeting first listing in EPG \(firstListing.title)")
+                }
+            }
+        }
+        
+        // Update focus guide targeting based on current focus
+        if let nextView = nextView {
+            if nextView.isDescendant(of: categoriesCollectionView) {
+                // When in categories, target the first listing of the focused genre
+                if let cell = nextView as? UICollectionViewCell,
+                   let indexPath = categoriesCollectionView.indexPath(for: cell) {
+                    let genre = self.coordinator.genres[indexPath.item]
+                    focusGuide.preferredFocusEnvironments = [epgHostingController]
+                    print("[FOCUS] FocusGuide targeting first listing in EPG for genre: \(genre.name)")
+                }
+            } else if nextView.isDescendant(of: epgHostingController.view) {
+                // When in EPG, target the corresponding category
+                focusGuide.preferredFocusEnvironments = [categoriesCollectionView]
+                print("[FOCUS] FocusGuide targeting Categories")
+            }
+        }
     }
 
     // MARK: – Setup Data Models
     private func configureGenresAndChannels() {
         // Create genres from the predefined genre names
-        genres = genreNames.map { Genre(name: $0) }
+        let newGenres = genreNames.map { Genre(name: $0) }
 
         // Create channels: for each genre, create channelsPerGenre number of channels
         // This creates a total of genreNames.count * channelsPerGenre channels
         // For example: 8 genres * 10 channels = 80 total channels
         var tempChannels: [Channel] = []
-        for genre in genres {
+        var tempChannelIndexLookup: [UUID: Int] = [:]
+        
+        for genre in newGenres {
             for channelIdx in 0..<channelsPerGenre {
                 let channelName = "\(genre.name) Channel \(channelIdx + 1)"
                 let channel = Channel(name: channelName, genre: genre)
                 tempChannels.append(channel)
+                // Create a lookup dictionary to quickly find a channel's index by its UUID
+                tempChannelIndexLookup[channel.id] = tempChannels.count - 1
             }
         }
-        channels = tempChannels
 
-        // Create a lookup dictionary to quickly find a channel's index by its UUID
-        // This is used later in fetchListings to locate which channel to update
-        for (idx, chan) in channels.enumerated() {
-            channelIndexLookup[chan.id] = idx
+        // Thread-safe assignment of all data at once
+        dataAccessQueue.sync(flags: .barrier) {
+            self.genres = newGenres
+            self.channels = tempChannels
+            self.channelIndexLookup = tempChannelIndexLookup
         }
         
         // Update coordinator with initial data
-        coordinator.updateData(genres: genres, channels: channels)
-        print("[DEBUG] Configured \(genres.count) genres and \(channels.count) total channels.")
+        coordinator.updateData(genres: getAllGenres(), channels: getAllChannels())
+        print("[DEBUG] Configured \(newGenres.count) genres and \(tempChannels.count) total channels.")
     }
 
     // MARK: – Category Collection View (Left Column)
@@ -311,7 +695,7 @@ final class ViewController: UIViewController {
         // Initial snapshot for categories
         var categorySnapshot = NSDiffableDataSourceSnapshot<CategorySection, Genre>()
         categorySnapshot.appendSections([.main])
-        categorySnapshot.appendItems(genres, toSection: .main)
+        categorySnapshot.appendItems(getAllGenres(), toSection: .main)
         categoryDataSource.apply(categorySnapshot, animatingDifferences: false)
     }
 
@@ -342,27 +726,49 @@ final class ViewController: UIViewController {
     // MARK: – Simulated Async Loading
 
     private func simulateAsyncLoadingForAllChannels() {
-        print("[DEBUG] 🚀 Starting async loading for \(channels.count) channels across \(genres.count) genres")
+        let currentChannels = getAllChannels()
+        let currentGenres = getAllGenres()
+        
+        print("[DEBUG] Starting async loading for \(currentChannels.count) channels across \(currentGenres.count) genres")
         
         // Log the channel distribution for debugging
-        for genre in genres {
-            let genreChannels = channels.filter { $0.genre == genre }
+        for genre in currentGenres {
+            let genreChannels = currentChannels.filter { $0.genre == genre }
             print("[DEBUG] Genre '\(genre.name)': \(genreChannels.count) channels")
         }
         
-        // Schedule async loading for every channel
-        // Each channel gets a slightly staggered delay to simulate real-world async behavior
-        for (index, channel) in channels.enumerated() {
-            let channelID = channel.id
-            let delay = simulatedDelaySeconds + Double(index) * 0.05
-            print("[DEBUG] Scheduling channel \(index): '\(channel.name)' (Genre: \(channel.genre.name)) with delay \(delay)s")
+        // Process channels in smaller batches to reduce resource pressure and prevent launch failures
+        let batchSize = 10  // Process 10 channels at a time
+        let totalBatches = (currentChannels.count + batchSize - 1) / batchSize
+        
+        print("[DEBUG] Processing \(currentChannels.count) channels in \(totalBatches) batches of \(batchSize)")
+        
+        for batchIndex in stride(from: 0, to: currentChannels.count, by: batchSize) {
+            let endIndex = min(batchIndex + batchSize, currentChannels.count)
+            let batch = Array(currentChannels[batchIndex..<endIndex])
+            let currentBatchNumber = (batchIndex / batchSize) + 1
             
-            DispatchQueue.global(qos: .background).asyncAfter(
-                deadline: .now() + delay
-            ) {
-                // This calls fetchListings for each channel after a delay
-                // The delay increases by 0.05 seconds for each subsequent channel
-                self.fetchListings(forChannelID: channelID)
+            // Stagger each batch to spread the load over time
+            let batchDelay = Double(batchIndex / batchSize) * 0.5  // 500ms between batches
+            
+            print("[DEBUG] Scheduling batch \(currentBatchNumber)/\(totalBatches) with \(batch.count) channels, delay: \(batchDelay)s")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + batchDelay) {
+                print("[DEBUG] Starting batch \(currentBatchNumber)/\(totalBatches)")
+                
+                for (localIndex, channel) in batch.enumerated() {
+                    let channelID = channel.id
+                    let globalIndex = batchIndex + localIndex
+                    let additionalDelay = self.simulatedDelaySeconds + Double(localIndex) * 0.05
+                    
+                    print("[DEBUG] Scheduling channel \(globalIndex): '\(channel.name)' (Genre: \(channel.genre.name)) with delay \(additionalDelay)s")
+                    
+                    DispatchQueue.global(qos: .background).asyncAfter(
+                        deadline: .now() + additionalDelay
+                    ) {
+                        self.fetchListings(forChannelID: channelID)
+                    }
+                }
             }
         }
     }
@@ -371,12 +777,12 @@ final class ViewController: UIViewController {
         print("[DEBUG] Starting async fetch for channel \(channelID). Sleeping for \(simulatedDelaySeconds)s…")
         Thread.sleep(forTimeInterval: simulatedDelaySeconds)
 
-        // Find which channel this UUID corresponds to
-        guard let sectionIndex = channelIndexLookup[channelID] else {
-            print("[ERROR] Channel ID \(channelID) not found.")
+        // Thread-safe lookup of channel data
+        guard let (channel, sectionIndex) = getChannel(byID: channelID) else {
+            print("[ERROR] Channel ID \(channelID) not found or index out of bounds.")
             return
         }
-        let channel = channels[sectionIndex]
+        
         print("[DEBUG] fetchListings: Populating listings for channel at sectionIndex=\(sectionIndex), channel.name=\(channel.name), genre=\(channel.genre.name)")
 
         // Generate fake listings for this channel
@@ -399,46 +805,67 @@ final class ViewController: UIViewController {
             newListings.append(listing)
         }
 
-        // Update the channel's listings in our data model
-        channels[sectionIndex].listings = newListings
+        // Thread-safe update of channel's listings in our data model
+        updateChannelListings(at: sectionIndex, with: newListings)
 
-        // Update SwiftUI view on main thread
+        // Update SwiftUI view on main thread with latest data
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            // Update coordinator with new data
-            self.coordinator.updateData(genres: self.genres, channels: self.channels)
+            // Update coordinator with thread-safe data access
+            self.coordinator.updateData(genres: self.getAllGenres(), channels: self.getAllChannels())
             print("[DEBUG] ✅ Successfully loaded \(newListings.count) listings for \(channel.name) in genre \(channel.genre.name)")
         }
     }
 
     // MARK: – Focus & Category Highlighting
 
-    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        super.didUpdateFocus(in: context, with: coordinator)
-        guard let nextFocused = context.nextFocusedView else { return }
-
-        if nextFocused.isDescendant(of: epgHostingController.view) {
-            // SwiftUI EPG view is focused - for now just log
-            print("[DEBUG] Focus: SwiftUI EPG view focused")
+    override var preferredFocusEnvironments: [UIFocusEnvironment] {
+        print("[FOCUS] preferredFocusEnvironments called")
+        
+        // Find the currently focused cell
+        if let focusedCell = UIFocusSystem.focusSystem(for: view)?.focusedItem as? UICollectionViewCell {
+            print("[FOCUS] Returning focused category cell")
+            return [focusedCell]
         }
-        else if nextFocused.isDescendant(of: categoriesCollectionView) {
-            // Nothing special—user can move focus back to the left column normally.
+        
+        // If no cell is focused, return the first cell
+        if let firstCell = categoriesCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) {
+            print("[FOCUS] Returning first category cell")
+            return [firstCell]
         }
+        
+        print("[FOCUS] No cells available, returning categories collection view")
+        return [categoriesCollectionView]
     }
-
+    
+    override func shouldUpdateFocus(in context: UIFocusUpdateContext) -> Bool {
+        let shouldUpdate = super.shouldUpdateFocus(in: context)
+        let previousView = context.previouslyFocusedView
+        let nextView = context.nextFocusedView
+        
+        print("[FOCUS] shouldUpdateFocus called")
+        print("[FOCUS] From: \(previousView.map { "\(type(of: $0))" } ?? "nil")")
+        print("[FOCUS] To: \(nextView.map { "\(type(of: $0))" } ?? "nil")")
+        print("[FOCUS] Should update: \(shouldUpdate)")
+        
+        // Allow all focus updates by default but log the decision
+        return shouldUpdate
+    }
+    
     private func highlightCategory(for genre: Genre) {
+        let currentGenres = getAllGenres()
         // DEFENSIVE: Check bounds before accessing genres array
-        guard let index = genres.firstIndex(of: genre), index >= 0, index < genres.count else {
-            print("[ERROR] highlightCategory: genre not found or index out of bounds. index=\(String(describing: genres.firstIndex(of: genre))), genres.count=\(genres.count)")
+        guard let index = currentGenres.firstIndex(of: genre), index >= 0, index < currentGenres.count else {
+            print("[ERROR] highlightCategory: genre not found or index out of bounds. index=\(String(describing: currentGenres.firstIndex(of: genre))), genres.count=\(currentGenres.count)")
             return
         }
         let indexPath = IndexPath(item: index, section: 0)
         // DEFENSIVE: Double-check indexPath is valid
-        guard indexPath.section == 0, indexPath.item >= 0, indexPath.item < genres.count else {
-            print("[ERROR] highlightCategory: indexPath out of bounds. item=\(indexPath.item), genres.count=\(genres.count)")
+        guard indexPath.section == 0, indexPath.item >= 0, indexPath.item < currentGenres.count else {
+            print("[ERROR] highlightCategory: indexPath out of bounds. item=\(indexPath.item), genres.count=\(currentGenres.count)")
             return
         }
-        print("[DEBUG] highlightCategory: Selecting item \(indexPath.item) in genres.count=\(genres.count)")
+        print("[DEBUG] highlightCategory: Selecting item \(indexPath.item) in genres.count=\(currentGenres.count)")
         categoriesCollectionView.selectItem(
             at: indexPath,
             animated: true,
@@ -453,18 +880,43 @@ final class ViewController: UIViewController {
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoriesCollectionView {
-            guard indexPath.item >= 0, indexPath.item < genres.count else {
-                print("[ERROR] didSelectItemAt: indexPath.item out of bounds: item=\(indexPath.item), genres.count=\(genres.count)")
-                return
-            }
-            let selectedGenre = genres[indexPath.item]
+            let currentGenres = getAllGenres()
+            guard indexPath.item >= 0, indexPath.item < currentGenres.count else { return }
+            let selectedGenre = currentGenres[indexPath.item]
             
-            // Notify SwiftUI view of genre selection via coordinator
+            print("[FOCUS] Genre selected: '\(selectedGenre.name)' at index \(indexPath.item)")
+            
+            // Update the coordinator which will trigger SwiftUI updates
             coordinator.selectGenre(selectedGenre)
-            print("[DEBUG] Genre '\(selectedGenre.name)' selected - notified SwiftUI EPG via coordinator.")
+            print("[FOCUS] Notified SwiftUI EPG via coordinator")
+            
+            // Transfer focus to EPG view and focus first item
+            print("[FOCUS] Requesting focus transfer to EPG...")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                print("[FOCUS] Triggering focus transfer...")
+                self.transferFocusToEPGFirstItem()
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
+        // Only log once per cell during initial setup
+        if collectionView == categoriesCollectionView && indexPath.item == 0 {
+            print("[FOCUS] Categories collection view can focus items")
+        }
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if let previousIndexPath = context.previouslyFocusedIndexPath {
+            print("[FOCUS] Collection view focus moved FROM index \(previousIndexPath)")
+        }
+        if let nextIndexPath = context.nextFocusedIndexPath {
+            print("[FOCUS] Collection view focus moved TO index \(nextIndexPath)")
         }
     }
 }
+
 
 // MARK: – UIView utility for finding containing collection view cell
 private extension UIView {
@@ -475,5 +927,46 @@ private extension UIView {
             view = current.superview
         }
         return view as? UICollectionViewCell
+    }
+}
+
+// MARK: – Remote Press Handling
+extension ViewController {
+    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        guard let press = presses.first else {
+            super.pressesEnded(presses, with: event)
+            return
+        }
+        // Determine the currently focused view
+        let currentFocused = UIFocusSystem.focusSystem(for: self.view)?.focusedItem as? UIView
+        switch press.type {
+        case .rightArrow:
+            print("[FOCUS] REMOTE RIGHT tap")
+            if let focusView = currentFocused,
+               focusView.isDescendant(of: categoriesCollectionView) {
+                print("[FOCUS] ⮕ From sidebar – forcing focus into EPG")
+                transferFocusToEPGFirstItem()
+                return
+            }
+        case .leftArrow:
+            print("[FOCUS] REMOTE LEFT tap")
+            if let focusView = currentFocused,
+               focusView.isDescendant(of: epgHostingController.view) {
+                print("[FOCUS] ⮐ From EPG – forcing focus back to sidebar")
+                focusGuide.preferredFocusEnvironments = [categoriesCollectionView]
+                categoriesCollectionView.setNeedsFocusUpdate()
+                categoriesCollectionView.updateFocusIfNeeded()
+                return
+            }
+        case .upArrow:
+            print("[FOCUS] REMOTE UP tap — current: \(FocusLogger.describe(currentFocused ?? UIView()))")
+        case .downArrow:
+            print("[FOCUS] REMOTE DOWN tap — current: \(FocusLogger.describe(currentFocused ?? UIView()))")
+        case .select:
+            print("[FOCUS] REMOTE SELECT tap — current: \(FocusLogger.describe(currentFocused ?? UIView()))")
+        default:
+            break
+        }
+        super.pressesEnded(presses, with: event)
     }
 }
