@@ -45,11 +45,6 @@
 			path = InfinityBugTests;
 			sourceTree = "<group>";
 		};
-		445CBFF72DED409A000CCA5C /* InfinityBugUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = InfinityBugUITests;
-			sourceTree = "<group>";
-		};
 		44B9F1E62DFBA34100511113 /* InfinityBugUITestsNew */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = InfinityBugUITestsNew;
@@ -88,7 +83,6 @@
 			children = (
 				445CBFD92DED4098000CCA5C /* InfinityBug */,
 				445CBFED2DED409A000CCA5C /* InfinityBugTests */,
-				445CBFF72DED409A000CCA5C /* InfinityBugUITests */,
 				44B9F1E62DFBA34100511113 /* InfinityBugUITestsNew */,
 				44B9F1DE2DFB9E4400511113 /* Frameworks */,
 				445CBFD82DED4098000CCA5C /* Products */,

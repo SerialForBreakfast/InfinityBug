@@ -334,9 +334,9 @@ final class ViewController: UIViewController {
     private let categoryColumnWidth: CGFloat = 250
     
     // MARK: - Async Request Control
-    static var spoofAsyncRequests: Bool = false
+    public static var spoofAsyncRequests: Bool = false
     
-    func setSpoofAsyncRequests(_ enabled: Bool) {
+    public func setSpoofAsyncRequests(_ enabled: Bool) {
         Self.spoofAsyncRequests = enabled
         print("[DEBUG] SpoofAsyncRequests set to: \(enabled)")
     }
@@ -433,7 +433,11 @@ final class ViewController: UIViewController {
 
         // Check for test mode launch argument
         if ProcessInfo.processInfo.arguments.contains("-DisableAsyncRequestSpoofing") {
-            setSpoofAsyncRequests(false)
+            ViewController.spoofAsyncRequests = false
+        }
+
+        if ProcessInfo.processInfo.arguments.contains("-EnableAsyncRequestSpoofing") {
+            ViewController.spoofAsyncRequests = true
         }
 
         configureGenresAndChannels()
@@ -464,8 +468,17 @@ final class ViewController: UIViewController {
         // Set accessibility identifiers for testing
         categoriesCollectionView.accessibilityIdentifier = "CategoriesCollectionView"
         epgHostingController.view.accessibilityIdentifier = "EPGView"
+    }
+
+    // MARK: - UIScene Lifecycle Support
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Ensure we're properly configured for the scene
+        if let windowScene = view.window?.windowScene {
+            windowScene.delegate = self
+        }
         
-        // Initial focus on first category cell
+        // Set initial focus on first category cell
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             if let firstCell = self.categoriesCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) {
@@ -478,12 +491,19 @@ final class ViewController: UIViewController {
         }
     }
 
-    // MARK: - UIScene Lifecycle Support
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // Ensure we're properly configured for the scene
-        if let windowScene = view.window?.windowScene {
-            windowScene.delegate = self
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Ensure initial focus is set after view appears
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            if let firstCell = self.categoriesCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) {
+                firstCell.setNeedsFocusUpdate()
+                firstCell.updateFocusIfNeeded()
+                // Force focus system to update
+                self.setNeedsFocusUpdate()
+                self.updateFocusIfNeeded()
+            }
         }
     }
 
@@ -1062,9 +1082,23 @@ extension ViewController: UISceneDelegate {
     
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Ensure focus is properly set when scene becomes active
-        if let firstCell = categoriesCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) {
-            firstCell.setNeedsFocusUpdate()
-            firstCell.updateFocusIfNeeded()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            if let firstCell = self.categoriesCollectionView.cellForItem(at: IndexPath(item: 0, section: 0)) {
+                firstCell.setNeedsFocusUpdate()
+                firstCell.updateFocusIfNeeded()
+                // Force focus system to update
+                self.setNeedsFocusUpdate()
+                self.updateFocusIfNeeded()
+            }
         }
+    }
+    
+    func sceneWillResignActive(_ scene: UIScene) {
+        // Clean up if needed
+    }
+    
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        // Clean up if needed
     }
 }
