@@ -468,15 +468,6 @@ final class ViewController: UIViewController {
         // Set accessibility identifiers for testing
         categoriesCollectionView.accessibilityIdentifier = "CategoriesCollectionView"
         epgHostingController.view.accessibilityIdentifier = "EPGView"
-    }
-
-    // MARK: - UIScene Lifecycle Support
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // Ensure we're properly configured for the scene
-        if let windowScene = view.window?.windowScene {
-            windowScene.delegate = self
-        }
         
         // Set initial focus on first category cell
         DispatchQueue.main.async { [weak self] in
@@ -488,6 +479,15 @@ final class ViewController: UIViewController {
                 self.setNeedsFocusUpdate()
                 self.updateFocusIfNeeded()
             }
+        }
+    }
+
+    // MARK: - UIScene Lifecycle Support
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Ensure we're properly configured for the scene
+        if let windowScene = view.window?.windowScene {
+            windowScene.delegate = self
         }
     }
 
