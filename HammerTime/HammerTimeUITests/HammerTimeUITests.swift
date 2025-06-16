@@ -1407,6 +1407,45 @@ extension DebugCollectionViewUITests {
         let uniqueFocuses = Set(focusHistory.filter { !$0.isEmpty })
         NSLog("INFINITY BUG TEST: Unique focus states traversed: \(uniqueFocuses.count)")
     }
+    
+    func testInfinityBugReplicationBrute() throws {
+        NSLog("INFINITY BUG TEST: Starting InfinityBug replication test brute forcing 300 inputs .001 duration 5ms between presses...")
+        let directions: [XCUIRemote.Button] = [.up, .down, .left, .right]
+        let maxConsecutiveStuck = 10
+        var consecutiveStuck = 0
+        var lastFocus = ""
+        var totalMoves = 0
+        var focusHistory: [String] = []
+
+        // Rapidly simulate navigation inputs
+        for move in 0..<300 {
+            let direction = directions.randomElement()!
+            let beforeFocus = focusID
+            remote.press(direction, forDuration: 0.001)
+            usleep(5000) // 5ms between presses
+            let afterFocus = focusID
+            focusHistory.append(afterFocus)
+            totalMoves += 1
+            NSLog("INFINITY BUG [\(move)]: \(direction) '\(beforeFocus)' -> '\(afterFocus)'")
+           
+        }
+        NSLog("INFINITY BUG Brute TEST: Completed \(totalMoves) moves. Max consecutive stuck: \(consecutiveStuck)")
+        // Assert that the focus never got stuck for more than threshold
+        XCTAssertLessThan(consecutiveStuck, maxConsecutiveStuck, "Focus should not be stuck for \(maxConsecutiveStuck) or more consecutive moves (potential InfinityBug)")
+    }
+    
+    func testRandomTimeIntervalMultipleButtonPress() throws {
+        let directions: [XCUIRemote.Button] = [.up, .down, .left, .right]
+        for wait in 0..<1000 {
+            let randomTime = UInt32(Double.random(in: 0...3.0) * 1000)
+            usleep(randomTime)
+            for x in 0 ..< wait {
+                let direction = directions.randomElement()!
+                remote.press(direction, forDuration: 0.001)
+//                NSLog("Random Time Interval Multiple Button Press: \(x)")
+            }
+        }
+    }
 }
 
 

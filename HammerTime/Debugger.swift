@@ -35,6 +35,8 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
     private override init() {}
     private var enabled = false
     private var cancellables: Set<Combine.AnyCancellable> = []
+    /// Last time a focus hop was observed
+    private var lastFocusTimestamp = CACurrentMediaTime()
 
     private let poiLog  = OSLog(subsystem: Bundle.main.bundleIdentifier ?? "com.infinitybug",
                                 category: "FocusPOI")
@@ -72,13 +74,21 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         // 2) Micro‑gamepad (Siri Remote) --------------------------------------
         //----------------------------------------------------------------------
         if let mg = c.microGamepad {
-
+            mg.reportsAbsoluteDpadValues = true   // ensures crisp ±1.0 values
             // D‑pad (Up/Down/Left/Right)
+            // Explicit discrete D‑pad buttons (works on all Siri Remote variants)
+            wire(mg.dpad.up,    id: "Up Arrow")
+            wire(mg.dpad.down,  id: "Down Arrow")
+            wire(mg.dpad.left,  id: "Left Arrow")
+            wire(mg.dpad.right, id: "Right Arrow")
             mg.dpad.valueChangedHandler = { _, x, y in
+                // X‑axis is unchanged
                 if x < -0.5 { HardwarePressCache.markDown("Left Arrow")  }
                 if x >  0.5 { HardwarePressCache.markDown("Right Arrow") }
-                if y < -0.5 { HardwarePressCache.markDown("Down Arrow")  }
-                if y >  0.5 { HardwarePressCache.markDown("Up Arrow")    }
+
+                // Y‑axis on tvOS:  Up = negative –1,  Down = positive +1
+                if y < -0.5 { HardwarePressCache.markDown("Up Arrow")    }
+                if y >  0.5 { HardwarePressCache.markDown("Down Arrow")  }
             }
 
             // A‑button = Select/Play (on some remotes)
@@ -157,6 +167,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         NotificationCenter.default.publisher(for: UIAccessibility.elementFocusedNotification)
             .sink { [weak self] note in
                 guard let self else { return }
+                self.lastFocusTimestamp = CACurrentMediaTime()
                 let from = note.userInfo?[AXNotificationKeys.focusedElement] as? NSObject
                 let to = note.userInfo?[AXNotificationKeys.nextFocusedElement] as? NSObject
                 let desc = "\(Self.describe(from)) → \(Self.describe(to))"
@@ -171,6 +182,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                         .first { $0.isKeyWindow }
                     self.checkDuplicateAccessibilityIDs(in: window)
                     self.checkDuplicateAccessibilityLabels(in: window)
+                    self.checkConflictingPressRecognizers(in: window)
                 }
             }
             .store(in: &cancellables)
@@ -219,10 +231,14 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
 
                 let id = press.type.readable           // e.g. "Up Arrow", "Select" …
 
-                // 👉  If NO matching hardware press was seen in the last 200 ms,
-                //     treat this as a phantom (InfinityBug) event.
-                if !HardwarePressCache.recentlyPressed(id) {
+                // 👉  Treat as phantom only when
+                //     a) no recent hardware press  **and**
+                //     b) no focus hop in the last 120 ms
+                let noHW  = !HardwarePressCache.recentlyPressed(id)
+                let stale = CACurrentMediaTime() - self.lastFocusTimestamp > 0.12
+                if noHW && stale {
                     self.log("[A11Y] ⚠️ Phantom UIPress \(id) → InfinityBug?")
+                    self.log("(debug)  noHW=\(noHW)  stale=\(stale)  dt=\(CACurrentMediaTime() - self.lastFocusTimestamp)s")
                     os_signpost(.event, log: self.poiLog,
                                 name: "InfinityBugPhantomPress",
                                 "%{public}s", id)
@@ -330,7 +346,43 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             }
         }
     }
+    
+    // MARK: – Conflicting UIGestureRecognizer / Press handlers ---------------
+    private func checkConflictingPressRecognizers(in root: UIView?) {
+        guard let root else { return }
 
+        for view in root.recursiveSubviews {
+            guard let grs = view.gestureRecognizers, grs.count > 1 else { continue }
+
+            // Keep only recognizers that look at remote-control presses
+            let pressGRs = grs.filter { recognizer in
+                // UITap/Swipe/Pan on tvOS expose allowedPressTypes (private ivar but KVC works)
+                if let nums = (recognizer as? NSObject)?
+                        .value(forKey: "allowedPressTypes") as? [NSNumber],
+                   !nums.isEmpty {
+                    return true
+                }
+                // UILongPressGestureRecognizer has a 'pressType' property
+                if (recognizer as? UILongPressGestureRecognizer)?
+                        .value(forKey: "pressType") != nil {
+                    return true
+                }
+                return false
+            }
+
+            guard pressGRs.count > 1 else { continue }
+
+            let list = pressGRs
+                .map { String(describing: type(of: $0)) }
+                .joined(separator: ", ")
+
+            log("⚠️ Multiple press-gesture recognizers on \(type(of: view)): [\(list)]")
+            os_signpost(.event,
+                        log: poiLog,
+                        name: "ConflictingPressGR",
+                        "%{public}s", list)
+        }
+    }
     // MARK: – preferredFocusEnvironments spy (#4) -----------------------------
 
     private func swizzlePreferredFocusEnvironments() {
@@ -382,7 +434,18 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         return String(describing: v)
     }
 
-    private func log(_ msg: String) { NSLog("[AXDBG] %@", msg) }
+    /// ISO‑timestamped logger so you can see when each event occurs
+    private static let tsFmt: ISO8601DateFormatter = {
+        let f = ISO8601DateFormatter()
+//        f.formatOptions = [.withFullDate, .withTime, .withFractionalSeconds]
+        f.formatOptions = [.withTime, .withFractionalSeconds]
+        return f
+    }()
+
+    private func log(_ msg: String) {
+        let stamp = Self.tsFmt.string(from: Date())
+        NSLog("[AXDBG] \(stamp) %@", msg)
+    }
 }
 
 // MARK: – UIViewController swizzle (preferredFocus) ---------------------------

@@ -411,6 +411,7 @@ public final class DebugCollectionView: UICollectionView {
         if CommandLine.arguments.contains("--enable-voiceover") {
             DebugCollectionView.enableVoiceOverForTesting()
         }
+//        AXFocusDebugger.shared.start()
     }
     
     private func setupDebugLabel() {
