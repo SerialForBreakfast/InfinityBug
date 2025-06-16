@@ -42,42 +42,89 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                                 category: "FocusPerf")
     
     
+    // Register every possible input from any kind of tvOS controller / remote.
+    // The approach is:  ❶ reflect over all ButtonInput properties,
+    //                   ❷ give each one a readable ID,
+    //                   ❸ hook its `pressedChangedHandler` so every *down* event
+    //                      feeds HardwarePressCache.markDown(_:)
     private func registerGameController(_ c: GCController) {
 
-        // 1️⃣ Siri Remote / micro-gamepad
+        //----------------------------------------------------------------------
+        // 1) Helper that wires a single GCControllerButtonInput  --------------
+        //----------------------------------------------------------------------
+        func wire(_ btn: GCControllerButtonInput?,
+                  id name: String,
+                  alias fallback: String? = nil) {
+
+            guard let b = btn else { return }
+
+            // Avoid duplicate handlers if the same controller reconnects
+            b.pressedChangedHandler = nil
+
+            let label = name.isEmpty ? (fallback ?? "Button") : name
+
+            b.pressedChangedHandler = { _, _, pressed in
+                if pressed { HardwarePressCache.markDown(label) }
+            }
+        }
+
+        //----------------------------------------------------------------------
+        // 2) Micro‑gamepad (Siri Remote) --------------------------------------
+        //----------------------------------------------------------------------
         if let mg = c.microGamepad {
+
+            // D‑pad (Up/Down/Left/Right)
             mg.dpad.valueChangedHandler = { _, x, y in
-                if x != 0 { HardwarePressCache.markDown(x < 0 ? "Left"  : "Right") }
-                if y != 0 { HardwarePressCache.markDown(y < 0 ? "Down"  : "Up")    }
+                if x < -0.5 { HardwarePressCache.markDown("Left Arrow")  }
+                if x >  0.5 { HardwarePressCache.markDown("Right Arrow") }
+                if y < -0.5 { HardwarePressCache.markDown("Down Arrow")  }
+                if y >  0.5 { HardwarePressCache.markDown("Up Arrow")    }
             }
-            mg.buttonA.pressedChangedHandler = { _, _, pressed in
-                if pressed { HardwarePressCache.markDown("Select") }
-            }
-            mg.buttonMenu.pressedChangedHandler = { _, _, pressed in
-                if pressed { HardwarePressCache.markDown("Menu")   }
-            }
-            // Try to fetch Play/Pause on newer Siri Remote (buttonX on micro‑gamepad)
-            if let sel = NSSelectorFromString("buttonX"),
-               mg.responds(to: sel),
+
+            // A‑button = Select/Play (on some remotes)
+            wire(mg.buttonA, id: "Select", alias: "A")
+
+            // Menu (top‑left button on Siri Remote)
+            wire(mg.buttonMenu, id: "Menu")
+
+            // Newer remotes expose Play/Pause as buttonX
+            let sel = NSSelectorFromString("buttonX")
+            if mg.responds(to: sel),
                let unmanaged = mg.perform(sel),
                let playPause = unmanaged.takeUnretainedValue() as? GCControllerButtonInput {
-                playPause.pressedChangedHandler = { _, _, pressed in
-                    if pressed { HardwarePressCache.markDown("Play/Pause") }
-                }
+                wire(playPause, id: "Play/Pause", alias: "X")
             }
         }
 
-        // 2️⃣ Full-size gamepads (optional)
+        //----------------------------------------------------------------------
+        // 3) Extended gamepads / Dual‑Sense / Nimbus --------------------------
+        //----------------------------------------------------------------------
         if let gp = c.extendedGamepad {
-            gp.buttonA.pressedChangedHandler = { _, _, pressed in
-                if pressed { HardwarePressCache.markDown("Select") }
+
+            // Reflect over every property that is GCControllerButtonInput
+            Mirror(reflecting: gp)
+                .children
+                .forEach { child in
+                    if let btn = child.value as? GCControllerButtonInput {
+                        let name = child.label ?? "Btn"
+                        wire(btn, id: name.capitalized)         // e.g. "buttonA" → "Buttona"
+                    }
+                }
+
+            // D‑pad
+            gp.dpad.valueChangedHandler = { _, x, y in
+                if x < -0.5 { HardwarePressCache.markDown("Left Arrow")  }
+                if x >  0.5 { HardwarePressCache.markDown("Right Arrow") }
+                if y < -0.5 { HardwarePressCache.markDown("Down Arrow")  }
+                if y >  0.5 { HardwarePressCache.markDown("Up Arrow")    }
             }
-            // map other buttons as needed…
         }
 
-        // 3️⃣ tvOS 17+ keyboards
+        //----------------------------------------------------------------------
+        // 4) Keyboards (tvOS 17+) ---------------------------------------------
+        //----------------------------------------------------------------------
         if #available(tvOS 17.0, *) {
-            GCKeyboard.coalesced?.keyboardInput?.keyChangedHandler = { _, key, keyCode, pressed in
+            GCKeyboard.coalesced?.keyboardInput?.keyChangedHandler = { _, _, keyCode, pressed in
                 if pressed { HardwarePressCache.markDown("Key\(keyCode.rawValue)") }
             }
         }

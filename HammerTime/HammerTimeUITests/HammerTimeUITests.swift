@@ -945,6 +945,223 @@ extension DebugCollectionViewUITests {
         XCTAssertFalse(voTestFocus.isEmpty, "VoiceOver should work after app state transition")
     }
     
+    /// Forces VoiceOver narration focus to diverge from user focus to reproduce InfinityBug
+    /// This test specifically creates the conflict scenario where VoiceOver focus differs from user focus
+    func testVoiceOverUserFocusDivergence() throws {
+        NSLog("🚨 TEST: Starting VoiceOver/User Focus Divergence InfinityBug Test...")
+        
+        // Critical test setup - ensure we're at a known starting position
+        NSLog("SETUP: Establishing baseline focus state...")
+        
+        // Navigate to a specific starting position (top-left area)
+        for _ in 0..<8 {
+            remote.press(.up, forDuration: 0.05)
+            usleep(50_000)
+        }
+        for _ in 0..<8 {
+            remote.press(.left, forDuration: 0.05)
+            usleep(50_000)
+        }
+        
+        let baselineFocus = focusID
+        NSLog("BASELINE: Starting focus established at '\(baselineFocus)'")
+        XCTAssertFalse(baselineFocus.isEmpty, "Must have valid baseline focus")
+        
+        // Phase 1: Initiate VoiceOver Read-All (creates VoiceOver focus path)
+        NSLog("PHASE 1: Initiating VoiceOver Read-All to establish VO focus traversal...")
+        
+        // Trigger VoiceOver's "Read Screen After Delay" (2-finger swipe up equivalent)
+        remote.press(.menu)          // Menu button
+        usleep(100_000)              // 100ms pause
+        remote.press(.up, forDuration: 0.15)  // Up swipe motion
+        
+        NSLog("VOICEOVER: Read-All initiated - VoiceOver should start traversing elements")
+        
+        // Let VoiceOver establish its traversal pattern for a short time
+        usleep(800_000) // 800ms to let VO get into rhythm
+        
+        let voInitialFocus = focusID
+        NSLog("VO-INITIAL: VoiceOver focus established at '\(voInitialFocus)'")
+        
+        // Phase 2: Monitor VoiceOver traversal and detect its pattern
+        NSLog("PHASE 2: Monitoring VoiceOver traversal pattern...")
+        
+        var voFocusHistory: [(time: TimeInterval, focus: String)] = []
+        let voMonitorStart = Date()
+        
+        // Monitor VoiceOver's autonomous movement for 2 seconds
+        for sample in 0..<40 { // 40 samples over 2 seconds
+            let currentTime = Date().timeIntervalSince(voMonitorStart)
+            let currentFocus = focusID
+            
+            if !currentFocus.isEmpty {
+                voFocusHistory.append((time: currentTime, focus: currentFocus))
+            }
+            
+            NSLog("VO-MONITOR[\(sample)]: \(String(format: "%.2f", currentTime))s - '\(currentFocus)'")
+            usleep(50_000) // 50ms sampling
+        }
+        
+        // Analyze VoiceOver's movement pattern
+        let uniqueVOFocuses = Set(voFocusHistory.map { $0.focus })
+        NSLog("VO-PATTERN: VoiceOver traversed \(uniqueVOFocuses.count) unique elements")
+        
+        XCTAssertGreaterThan(uniqueVOFocuses.count, 3, "VoiceOver should traverse multiple elements")
+        
+        // Phase 3: Create divergence by interrupting with opposing user navigation
+        NSLog("PHASE 3: 🚨 CREATING FOCUS DIVERGENCE - Interrupting VO with user navigation...")
+        
+        let divergenceStart = Date()
+        var userFocusHistory: [(time: TimeInterval, userFocus: String, voExpectedFocus: String)] = []
+        var infinityBugDetected = false
+        var consecutiveStuckInputs = 0
+        let maxStuckInputs = 15
+        
+        // Predict VoiceOver's likely next positions based on observed pattern
+        let voLastFocus = voFocusHistory.last?.focus ?? ""
+        NSLog("VO-LAST: VoiceOver was last at '\(voLastFocus)'")
+        
+        // Interrupt VoiceOver with rapid user navigation in OPPOSING direction
+        // If VO is going right/down, user goes left/up to create maximum conflict
+        let opposingDirections: [XCUIRemote.Button] = [.left, .up, .left, .up] // Counter-clockwise
+        
+        for conflictRound in 0..<60 { // 60 rapid conflict interactions
+            let conflictTime = Date().timeIntervalSince(divergenceStart)
+            let beforeUserInput = focusID
+            
+            // User input that opposes VoiceOver's likely path
+            let userDirection = opposingDirections[conflictRound % opposingDirections.count]
+            
+            NSLog("CONFLICT[\(conflictRound)]: User pressing \(userDirection) while VO at '\(beforeUserInput)'")
+            
+            // Ultra-rapid user input to create maximum conflict
+            remote.press(userDirection, forDuration: 0.01)
+            usleep(25_000) // Only 25ms between inputs
+            
+            let afterUserInput = focusID
+            
+            // Record the divergence
+            userFocusHistory.append((
+                time: conflictTime,
+                userFocus: afterUserInput,
+                voExpectedFocus: beforeUserInput // What VO was trying to do
+            ))
+            
+            // Critical: Detect InfinityBug symptoms
+            if beforeUserInput == afterUserInput && !afterUserInput.isEmpty {
+                consecutiveStuckInputs += 1
+                NSLog("🚨 STUCK INPUT[\(consecutiveStuckInputs)]: User input stuck - focus remained at '\(afterUserInput)'")
+                
+                if consecutiveStuckInputs >= maxStuckInputs {
+                    infinityBugDetected = true
+                    NSLog("🚨🚨🚨 INFINITY BUG DETECTED: \(consecutiveStuckInputs) consecutive stuck inputs!")
+                    NSLog("🚨 Focus permanently stuck at: '\(afterUserInput)'")
+                    NSLog("🚨 This is the InfinityBug - VoiceOver/User focus conflict caused stuck input")
+                    break
+                }
+            } else {
+                consecutiveStuckInputs = 0
+            }
+            
+            // Also detect if focus becomes completely lost
+            if afterUserInput.isEmpty {
+                NSLog("⚠️ FOCUS LOST: User input caused complete focus loss at round \(conflictRound)")
+            }
+            
+            // Log significant divergence events
+            if beforeUserInput != afterUserInput {
+                NSLog("DIVERGENCE[\(conflictRound)]: '\(beforeUserInput)' → '\(afterUserInput)' via \(userDirection)")
+            }
+        }
+        
+        // Phase 4: Post-conflict analysis and recovery testing
+        NSLog("PHASE 4: Post-conflict analysis...")
+        
+        let finalFocus = focusID
+        let uniqueUserFocuses = Set(userFocusHistory.map { $0.userFocus }.filter { !$0.isEmpty })
+        
+        NSLog("DIVERGENCE RESULTS:")
+        NSLog("  - Final focus: '\(finalFocus)'")
+        NSLog("  - User traversed \(uniqueUserFocuses.count) unique elements during conflict")
+        NSLog("  - VoiceOver traversed \(uniqueVOFocuses.count) elements before conflict")
+        NSLog("  - Max consecutive stuck inputs: \(consecutiveStuckInputs)")
+        NSLog("  - InfinityBug detected: \(infinityBugDetected)")
+        
+        // Phase 5: Recovery testing - can we break out of any stuck state?
+        NSLog("PHASE 5: Testing recovery from potential stuck state...")
+        
+        var recoverySuccess = false
+        let recoveryStartFocus = focusID
+        
+        // Try different recovery strategies
+        let recoveryStrategies: [(name: String, action: () -> Void)] = [
+            ("Normal Navigation", {
+                self.remote.press(.right, forDuration: 0.1)
+                usleep(300_000)
+            }),
+            ("Menu Press", {
+                self.remote.press(.menu)
+                usleep(200_000)
+            }),
+            ("Select Press", {
+                self.remote.press(.select, forDuration: 0.05)
+                usleep(200_000)
+            }),
+            ("Multiple Direction", {
+                self.remote.press(.down, forDuration: 0.05)
+                usleep(100_000)
+                self.remote.press(.right, forDuration: 0.05)
+                usleep(100_000)
+            })
+        ]
+        
+        for (strategyName, action) in recoveryStrategies {
+            let beforeRecovery = focusID
+            NSLog("RECOVERY: Trying '\(strategyName)' from '\(beforeRecovery)'")
+            
+            action()
+            
+            let afterRecovery = focusID
+            NSLog("RECOVERY: '\(strategyName)' result: '\(beforeRecovery)' → '\(afterRecovery)'")
+            
+            if beforeRecovery != afterRecovery && !afterRecovery.isEmpty {
+                recoverySuccess = true
+                NSLog("✅ RECOVERY SUCCESS: '\(strategyName)' broke out of stuck state")
+                break
+            }
+        }
+        
+        // Final assertions
+        if infinityBugDetected {
+            XCTFail("🚨 INFINITY BUG REPRODUCED: VoiceOver/User focus divergence caused stuck input state")
+        } else {
+            NSLog("✅ No InfinityBug detected in this test run")
+        }
+        
+        XCTAssertLessThan(consecutiveStuckInputs, maxStuckInputs, 
+                         "Consecutive stuck inputs should not exceed \(maxStuckInputs)")
+        
+        if consecutiveStuckInputs > 5 {
+            XCTAssertTrue(recoverySuccess, "If focus gets stuck, recovery should be possible")
+        }
+        
+        XCTAssertFalse(finalFocus.isEmpty, "Focus should not be completely lost after divergence test")
+        
+        // Log detailed timeline for debugging
+        NSLog("📊 DETAILED TIMELINE:")
+        NSLog("📊 VoiceOver Phase (first 5 elements):")
+        for (index, vo) in voFocusHistory.prefix(5).enumerated() {
+            NSLog("📊   \(index + 1). \(String(format: "%.2f", vo.time))s: '\(vo.focus)'")
+        }
+        
+        NSLog("📊 Conflict Phase (first 10 conflicts):")
+        for (index, conflict) in userFocusHistory.prefix(10).enumerated() {
+            NSLog("📊   \(index + 1). \(String(format: "%.2f", conflict.time))s: User-'\(conflict.userFocus)' vs VO-'\(conflict.voExpectedFocus)'")
+        }
+        
+        NSLog("✅ VoiceOver/User Focus Divergence Test Completed")
+    }
+    
     /// Ultimate InfinityBug reproduction test - combines all failure modes
     func testInfinityBugReproduction() throws {
         NSLog("TEST: ⚠️ ULTIMATE INFINITY BUG REPRODUCTION TEST STARTING ⚠️")
@@ -1148,6 +1365,47 @@ extension DebugCollectionViewUITests {
         XCTAssertLessThan(focusLostCount, 5, "Focus should not be lost frequently under memory pressure")
         
         NSLog("MEMORY PRESSURE RESULTS: \(focusLostCount) focus losses out of 50 rounds")
+    }
+
+    /// Replicates and detects the InfinityBug by rapidly sending navigation inputs and monitoring for stuck focus.
+    func testInfinityBugReplication() throws {
+        NSLog("INFINITY BUG TEST: Starting InfinityBug replication test...")
+        let directions: [XCUIRemote.Button] = [.up, .down, .left, .right]
+        let maxConsecutiveStuck = 10
+        var consecutiveStuck = 0
+        var lastFocus = ""
+        var totalMoves = 0
+        var focusHistory: [String] = []
+
+        // Rapidly simulate navigation inputs
+        for move in 0..<300 {
+            let direction = directions.randomElement()!
+            let beforeFocus = focusID
+            remote.press(direction, forDuration: 0.015)
+            usleep(20000) // 20ms between presses
+            let afterFocus = focusID
+            focusHistory.append(afterFocus)
+            totalMoves += 1
+            NSLog("INFINITY BUG [\(move)]: \(direction) '\(beforeFocus)' -> '\(afterFocus)'")
+            if afterFocus == lastFocus && !afterFocus.isEmpty {
+                consecutiveStuck += 1
+                NSLog("INFINITY BUG: Focus stuck on '\(afterFocus)' for \(consecutiveStuck) consecutive moves")
+                if consecutiveStuck >= maxConsecutiveStuck {
+                    NSLog("🚨 INFINITY BUG DETECTED: Focus stuck on '\(afterFocus)' for \(consecutiveStuck) consecutive navigation inputs")
+                    XCTFail("🚨 InfinityBug: Focus stuck on \(afterFocus) for \(consecutiveStuck) consecutive moves")
+                    break
+                }
+            } else {
+                consecutiveStuck = 1
+                lastFocus = afterFocus
+            }
+        }
+        NSLog("INFINITY BUG TEST: Completed \(totalMoves) moves. Max consecutive stuck: \(consecutiveStuck)")
+        // Assert that the focus never got stuck for more than threshold
+        XCTAssertLessThan(consecutiveStuck, maxConsecutiveStuck, "Focus should not be stuck for \(maxConsecutiveStuck) or more consecutive moves (potential InfinityBug)")
+        // Optionally, log unique focus count for diagnostics
+        let uniqueFocuses = Set(focusHistory.filter { !$0.isEmpty })
+        NSLog("INFINITY BUG TEST: Unique focus states traversed: \(uniqueFocuses.count)")
     }
 }
 

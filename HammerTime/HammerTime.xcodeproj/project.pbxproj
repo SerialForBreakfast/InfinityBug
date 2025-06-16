@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4409808F2E00B71A00BF3FC0 /* Debugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4409808E2E00B71A00BF3FC0 /* Debugger.swift */; };
 		44F183F02DFD0ECC00B6B23E /* NewTestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 44F183EF2DFD0ECC00B6B23E /* NewTestPlan.xctestplan */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4409808E2E00B71A00BF3FC0 /* Debugger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debugger.swift; sourceTree = "<group>"; };
 		44B9F2722DFCE8B700511113 /* HammerTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HammerTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B9F2852DFCE8B900511113 /* HammerTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HammerTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B9F28F2DFCE8B900511113 /* HammerTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HammerTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 		44B9F2692DFCE8B700511113 = {
 			isa = PBXGroup;
 			children = (
+				4409808E2E00B71A00BF3FC0 /* Debugger.swift */,
 				44F183EF2DFD0ECC00B6B23E /* NewTestPlan.xctestplan */,
 				44B9F2B62DFD0E8600511113 /* HammerTime.xctestplan */,
 				44B9F2742DFCE8B700511113 /* HammerTime */,
@@ -245,6 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4409808F2E00B71A00BF3FC0 /* Debugger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
