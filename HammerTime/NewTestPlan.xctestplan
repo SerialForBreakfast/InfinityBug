@@ -1,0 +1,18 @@
+{
+  "configurations" : [
+    {
+      "id" : "CAB1ECEC-ECE1-4BF8-B9CC-57FF3BA3E98A",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+
+  ],
+  "version" : 1
+}

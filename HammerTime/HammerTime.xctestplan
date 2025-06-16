@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "20FCA64B-C151-49F2-8AB3-89FA6836DCBF",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:HammerTime.xcodeproj",
+      "identifier" : "44B9F2712DFCE8B700511113",
+      "name" : "HammerTime"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:HammerTime.xcodeproj",
+        "identifier" : "44B9F2842DFCE8B900511113",
+        "name" : "HammerTimeTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:HammerTime.xcodeproj",
+        "identifier" : "44B9F28E2DFCE8B900511113",
+        "name" : "HammerTimeUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

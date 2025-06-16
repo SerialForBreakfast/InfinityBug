@@ -28,17 +28,32 @@ class ViewController: UIViewController {
             sampleVC.view.topAnchor.constraint(equalTo: view.topAnchor),
             sampleVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        print("svnjksdvnjk")
+        NSLog("APP: ViewController loaded")
         
-        // Enable VoiceOver if launch argument is present
-        if CommandLine.arguments.contains("--enable-voiceover") {
+        // Enhanced VoiceOver enablement for testing
+        if CommandLine.arguments.contains("--enable-voiceover") || 
+           ProcessInfo.processInfo.environment["VOICEOVER_ENABLED"] == "1" {
+            NSLog("APP: Enabling VoiceOver for testing...")
             DebugCollectionView.enableVoiceOverForTesting()
+            
+            // Post initial announcement
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DebugCollectionView.testVoiceOverAnnouncement()
+            }
         }
         
         // Enable VoiceOver test mode if in testing environment
         if ProcessInfo.processInfo.environment["ACCESSIBILITY_TESTING"] == "1" {
+            NSLog("APP: Setting up VoiceOver test mode...")
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.sampleViewController?.debugCollectionView.enableVoiceOverTestMode()
+                
+                // Post test announcement after setup
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    let testMsg = "VoiceOver test mode is now active. You should hear this announcement."
+                    UIAccessibility.post(notification: .announcement, argument: testMsg)
+                    NSLog("APP: Posted VoiceOver test mode announcement")
+                }
             }
         }
     }
@@ -148,7 +163,10 @@ final class DebugCell: UICollectionViewCell {
         label.text = "\(index)"
         accessibilityIdentifier = "Cell-\(index)"
         isAccessibilityElement  = true
-        accessibilityLabel      = "Item \(index)"
+        accessibilityLabel      = "Item number \(index)"
+        accessibilityValue     = "Collection cell"
+        accessibilityHint      = "Navigatable item in collection"
+        accessibilityTraits   = [.button, .updatesFrequently]
     }
     
     // MARK: - Focus Handling
@@ -161,6 +179,13 @@ final class DebugCell: UICollectionViewCell {
                 // Cell is now focused - change to green
                 self.contentView.backgroundColor = .systemGreen
                 self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1) // Optional: slight scale up
+                
+                // Announce focus change for VoiceOver testing
+                if ProcessInfo.processInfo.environment["ACCESSIBILITY_TESTING"] == "1" {
+                    let announcement = "Focused on \(self.accessibilityLabel ?? "item")"
+                    UIAccessibility.post(notification: .announcement, argument: announcement)
+                    NSLog("CELL: Posted focus announcement: '\(announcement)'")
+                }
             } else {
                 // Cell is no longer focused - change back to blue
                 self.contentView.backgroundColor = .systemBlue
@@ -622,7 +647,7 @@ public final class DebugCollectionView: UICollectionView {
         
         if isLoggingEnabled {
             let dateString: String = ISO8601DateFormatter().string(from: entry.timestamp)
-            print("[\(entry.category.rawValue)] \(dateString) – \(entry.details)")
+            NSLog("[\(entry.category.rawValue)] \(dateString) – \(entry.details)")
         }
         
         // Feed VO read-sweep detector with focus samples
@@ -672,7 +697,7 @@ public final class DebugCollectionView: UICollectionView {
     public static func testVoiceOverAnnouncement() {
         let testMessage = "VoiceOver test announcement - if you hear this, VoiceOver is working"
         UIAccessibility.post(notification: .announcement, argument: testMessage)
-        print("VOICEOVER: Posted test announcement: '\(testMessage)'")
+        NSLog("VOICEOVER: Posted test announcement: '\(testMessage)'")
     }
     
     /// Enable enhanced VoiceOver logging for testing

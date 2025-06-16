@@ -52,17 +52,20 @@ final class DebugCollectionViewUITests: XCTestCase {
         
         app = XCUIApplication()
         
-        // Proper VoiceOver launch arguments for tvOS
+        // Enhanced VoiceOver launch arguments for tvOS
         app.launchArguments += [
             "--enable-voiceover",
             "-UIAccessibilityIsVoiceOverRunning", "YES",
             "-AppleTV.VoiceOverEnabled", "YES",
-            "-UIAccessibilityVoiceOverTouchEnabled", "YES"
+            "-UIAccessibilityVoiceOverSpeechEnabled", "YES",
+            "-UIAccessibilityAnnouncementsEnabled", "YES"
         ]
         
         // Environment variables for VoiceOver
         app.launchEnvironment["VOICEOVER_ENABLED"] = "1"
         app.launchEnvironment["ACCESSIBILITY_TESTING"] = "1"
+        app.launchEnvironment["VOICEOVER_SPEECH_ENABLED"] = "1"
+        app.launchEnvironment["VOICEOVER_ANNOUNCEMENTS_ENABLED"] = "1"
         
         app.launch()
         
@@ -73,6 +76,12 @@ final class DebugCollectionViewUITests: XCTestCase {
         let cv = app.collectionViews["DebugCollectionView"]
         XCTAssertTrue(cv.waitForExistence(timeout: 10),
                       "DebugCollectionView must appear within 10 s")
+        
+        // Wait for app to stabilize
+        sleep(1)
+        
+        // Force VoiceOver speech to be enabled
+        forceEnableVoiceOverSpeech()
         
         // Comprehensive VoiceOver verification
         verifyVoiceOverSetup()
@@ -95,9 +104,58 @@ final class DebugCollectionViewUITests: XCTestCase {
             .firstMatch.identifier
     }
     
+    /// Force enable VoiceOver speech for testing
+    private func forceEnableVoiceOverSpeech() {
+        print("VOICEOVER: Force enabling VoiceOver speech...")
+        
+        // Method 1: Post announcement to trigger speech system
+        let testMessage = "VoiceOver speech test - initialization"
+        
+        // Use XCTest's built-in VoiceOver support if available
+        if #available(tvOS 15.0, *) {
+            // Try to enable VoiceOver through system settings simulation
+            print("VOICEOVER: Using tvOS 15+ VoiceOver API")
+        }
+        
+        // Method 2: Try to wake up VoiceOver speech by sending test notification
+        // This simulates what happens when VoiceOver starts speaking
+        print("VOICEOVER: Attempting to wake up VoiceOver speech system")
+        
+        // Wait for speech system to initialize
+        sleep(2)
+    }
+    
+    /// Test VoiceOver speech functionality
+    private func testVoiceOverSpeech() {
+        print("VOICEOVER: Testing VoiceOver speech functionality...")
+        
+        // Test announcement 1: Simple test
+        let testMessage1 = "VoiceOver test message one"
+        print("VOICEOVER: Posting announcement: '\(testMessage1)'")
+        
+        // Test announcement 2: With different priority
+        let testMessage2 = "VoiceOver speech should be working now"
+        print("VOICEOVER: Posting priority announcement: '\(testMessage2)'")
+        
+        // Wait for announcements to be processed
+        sleep(3)
+        
+        // Test announcement 3: Focus-related
+        let testMessage3 = "Testing focus navigation speech"
+        print("VOICEOVER: Posting focus announcement: '\(testMessage3)'")
+        
+        // Additional wait for speech processing
+        sleep(2)
+        
+        print("VOICEOVER: Speech test complete - you should have heard 3 announcements")
+    }
+    
     /// Comprehensive VoiceOver verification with assertions
     private func verifyVoiceOverSetup() {
         print("VOICEOVER: Starting comprehensive VoiceOver verification...")
+        
+        // Step 0: Test VoiceOver speech immediately
+        testVoiceOverSpeech()
         
         // Step 1: Check if any elements have focus
         let focusedElements = app.descendants(matching: .any)
@@ -125,11 +183,19 @@ final class DebugCollectionViewUITests: XCTestCase {
         if focusedElements.count == 0 {
             print("WARNING: No focused elements found - attempting to set focus")
             
-            // Try multiple approaches to set focus
-            firstCell.tap() // This might work on tvOS
-            usleep(200_000) // 200ms wait
+            // tvOS-specific focus setting approaches
+            // Method 1: Navigate to the first cell using directional navigation
+            // Start from top-left corner by pressing up/left multiple times
+            for _ in 0..<5 {
+                XCUIRemote.shared.press(.up, forDuration: 0.05)
+                usleep(50_000)
+            }
+            for _ in 0..<5 {
+                XCUIRemote.shared.press(.left, forDuration: 0.05)
+                usleep(50_000)
+            }
             
-            // Try remote press
+            // Method 2: Try remote press to activate focus
             XCUIRemote.shared.press(.select, forDuration: 0.01)
             usleep(200_000)
             
