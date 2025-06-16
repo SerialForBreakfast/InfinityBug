@@ -106,7 +106,7 @@ final class DebugCollectionViewUITests: XCTestCase {
     
     /// Force enable VoiceOver speech for testing
     private func forceEnableVoiceOverSpeech() {
-        print("VOICEOVER: Force enabling VoiceOver speech...")
+        NSLog("VOICEOVER: Force enabling VoiceOver speech...")
         
         // Method 1: Post announcement to trigger speech system
         let testMessage = "VoiceOver speech test - initialization"
@@ -114,12 +114,12 @@ final class DebugCollectionViewUITests: XCTestCase {
         // Use XCTest's built-in VoiceOver support if available
         if #available(tvOS 15.0, *) {
             // Try to enable VoiceOver through system settings simulation
-            print("VOICEOVER: Using tvOS 15+ VoiceOver API")
+            NSLog("VOICEOVER: Using tvOS 15+ VoiceOver API")
         }
         
         // Method 2: Try to wake up VoiceOver speech by sending test notification
         // This simulates what happens when VoiceOver starts speaking
-        print("VOICEOVER: Attempting to wake up VoiceOver speech system")
+        NSLog("VOICEOVER: Attempting to wake up VoiceOver speech system")
         
         // Wait for speech system to initialize
         sleep(2)
@@ -127,32 +127,32 @@ final class DebugCollectionViewUITests: XCTestCase {
     
     /// Test VoiceOver speech functionality
     private func testVoiceOverSpeech() {
-        print("VOICEOVER: Testing VoiceOver speech functionality...")
+        NSLog("VOICEOVER: Testing VoiceOver speech functionality...")
         
         // Test announcement 1: Simple test
         let testMessage1 = "VoiceOver test message one"
-        print("VOICEOVER: Posting announcement: '\(testMessage1)'")
+        NSLog("VOICEOVER: Posting announcement: '\(testMessage1)'")
         
         // Test announcement 2: With different priority
         let testMessage2 = "VoiceOver speech should be working now"
-        print("VOICEOVER: Posting priority announcement: '\(testMessage2)'")
+        NSLog("VOICEOVER: Posting priority announcement: '\(testMessage2)'")
         
         // Wait for announcements to be processed
         sleep(3)
         
         // Test announcement 3: Focus-related
         let testMessage3 = "Testing focus navigation speech"
-        print("VOICEOVER: Posting focus announcement: '\(testMessage3)'")
+        NSLog("VOICEOVER: Posting focus announcement: '\(testMessage3)'")
         
         // Additional wait for speech processing
         sleep(2)
         
-        print("VOICEOVER: Speech test complete - you should have heard 3 announcements")
+        NSLog("VOICEOVER: Speech test complete - you should have heard 3 announcements")
     }
     
     /// Comprehensive VoiceOver verification with assertions
     private func verifyVoiceOverSetup() {
-        print("VOICEOVER: Starting comprehensive VoiceOver verification...")
+        NSLog("VOICEOVER: Starting comprehensive VoiceOver verification...")
         
         // Step 0: Test VoiceOver speech immediately
         testVoiceOverSpeech()
@@ -161,27 +161,27 @@ final class DebugCollectionViewUITests: XCTestCase {
         let focusedElements = app.descendants(matching: .any)
             .matching(NSPredicate(format: "hasFocus == true"))
         
-        print("VOICEOVER: Found \(focusedElements.count) focused elements")
+        NSLog("VOICEOVER: Found \(focusedElements.count) focused elements")
         
         // Step 2: Try to find the first cell specifically
         let firstCell = app.cells["Cell-0"]
         XCTAssertTrue(firstCell.exists, "Cell-0 must exist for VoiceOver testing")
-        print("VOICEOVER: Cell-0 exists: \(firstCell.exists)")
+        NSLog("VOICEOVER: Cell-0 exists: \(firstCell.exists)")
         
         // Step 3: Check if the first cell is accessible
         XCTAssertTrue(firstCell.isHittable, "Cell-0 must be hittable for VoiceOver")
-        print("VOICEOVER: Cell-0 is hittable: \(firstCell.isHittable)")
+        NSLog("VOICEOVER: Cell-0 is hittable: \(firstCell.isHittable)")
         
         // Step 4: Check accessibility properties
         let cellLabel = firstCell.label
         let cellValue = firstCell.value as? String ?? ""
-        print("VOICEOVER: Cell-0 accessibility - Label: '\(cellLabel)', Value: '\(cellValue)'")
+        NSLog("VOICEOVER: Cell-0 accessibility - Label: '\(cellLabel)', Value: '\(cellValue)'")
         
         XCTAssertFalse(cellLabel.isEmpty, "Cell-0 must have accessibility label")
         
         // Step 5: Force focus if no elements are focused
         if focusedElements.count == 0 {
-            print("WARNING: No focused elements found - attempting to set focus")
+            NSLog("WARNING: No focused elements found - attempting to set focus")
             
             // tvOS-specific focus setting approaches
             // Method 1: Navigate to the first cell using directional navigation
@@ -202,7 +202,7 @@ final class DebugCollectionViewUITests: XCTestCase {
             // Check again
             let newFocusedElements = app.descendants(matching: .any)
                 .matching(NSPredicate(format: "hasFocus == true"))
-            print("VOICEOVER: After focus attempt: \(newFocusedElements.count) focused elements")
+            NSLog("VOICEOVER: After focus attempt: \(newFocusedElements.count) focused elements")
             
             XCTAssertGreaterThan(newFocusedElements.count, 0, 
                                "Must have at least one focused element after setup")
@@ -210,11 +210,11 @@ final class DebugCollectionViewUITests: XCTestCase {
         
         // Step 6: Verify we can get the current focus ID
         let currentFocusID = focusID
-        print("FOCUS: Current focus ID: '\(currentFocusID)'")
+        NSLog("FOCUS: Current focus ID: '\(currentFocusID)'")
         XCTAssertNotEqual(currentFocusID, "", "Must have a valid focus ID")
         
         // Step 7: Test that we can detect focus changes
-        print("TEST: Testing focus change detection...")
+        NSLog("TEST: Testing focus change detection...")
         let initialFocus = focusID
         
         // Try to move focus
@@ -222,21 +222,21 @@ final class DebugCollectionViewUITests: XCTestCase {
         usleep(300_000) // 300ms wait for focus change
         
         let newFocus = focusID
-        print("FOCUS: Focus change: '\(initialFocus)' -> '\(newFocus)'")
+        NSLog("FOCUS: Focus change: '\(initialFocus)' -> '\(newFocus)'")
         
         // It's OK if focus doesn't change (edge of screen), but we should detect it
         if initialFocus != newFocus {
-            print("SUCCESS: Focus change detected successfully")
+            NSLog("SUCCESS: Focus change detected successfully")
         } else {
-            print("INFO: Focus remained the same (possibly at edge)")
+            NSLog("INFO: Focus remained the same (possibly at edge)")
         }
         
-        print("SUCCESS: VoiceOver verification complete")
+        NSLog("SUCCESS: VoiceOver verification complete")
     }
     
     /// Test basic VoiceOver navigation to ensure it's working
     private func testBasicVoiceOverNavigation() {
-        print("TEST: Testing basic VoiceOver navigation...")
+        NSLog("TEST: Testing basic VoiceOver navigation...")
         
         var focusHistory: [String] = []
         let testMoves = 5
@@ -248,12 +248,12 @@ final class DebugCollectionViewUITests: XCTestCase {
             // Alternate between right and down movements
             let direction: XCUIRemote.Button = (i % 2 == 0) ? .right : .down
             
-            print("INPUT: Move \(i + 1): Pressing \(direction) from '\(beforeFocus)'")
+            NSLog("INPUT: Move \(i + 1): Pressing \(direction) from '\(beforeFocus)'")
             XCUIRemote.shared.press(direction, forDuration: 0.05)
             usleep(250_000) // 250ms wait
             
             let afterFocus = focusID
-            print("FOCUS: Move \(i + 1): '\(beforeFocus)' -> '\(afterFocus)'")
+            NSLog("FOCUS: Move \(i + 1): '\(beforeFocus)' -> '\(afterFocus)'")
             
             // Log if VoiceOver would be narrating this element
             if afterFocus != beforeFocus && !afterFocus.isEmpty {
@@ -261,7 +261,7 @@ final class DebugCollectionViewUITests: XCTestCase {
             }
         }
         
-        print("SUMMARY: Navigation test complete. Focus history: \(focusHistory)")
+        NSLog("SUMMARY: Navigation test complete. Focus history: \(focusHistory)")
         
         // Assert that we had some valid focus states
         let validFocusStates = focusHistory.filter { !$0.isEmpty }
@@ -281,23 +281,23 @@ final class DebugCollectionViewUITests: XCTestCase {
             let value = element.value as? String ?? ""
             let hint = element.placeholderValue ?? ""
             
-            print("VOICEOVER: NARRATING: '\(elementID)'")
-            print("VOICEOVER:    Label: '\(label)'")
+            NSLog("VOICEOVER: NARRATING: '\(elementID)'")
+            NSLog("VOICEOVER:    Label: '\(label)'")
             if !value.isEmpty {
-                print("VOICEOVER:    Value: '\(value)'")
+                NSLog("VOICEOVER:    Value: '\(value)'")
             }
             if !hint.isEmpty {
-                print("VOICEOVER:    Hint: '\(hint)'")
+                NSLog("VOICEOVER:    Hint: '\(hint)'")
             }
-            print("VOICEOVER:    Full narration would be: '\(label)' \(value.isEmpty ? "" : ", \(value)")")
+            NSLog("VOICEOVER:    Full narration would be: '\(label)' \(value.isEmpty ? "" : ", \(value)")")
         } else {
-            print("VOICEOVER: NARRATING: '\(elementID)' (element details not accessible)")
+            NSLog("VOICEOVER: NARRATING: '\(elementID)' (element details not accessible)")
         }
     }
     
     /// Enable VoiceOver test mode in the app
     private func enableAppVoiceOverTestMode() {
-        print("TEST: Enabling VoiceOver test mode in app...")
+        NSLog("TEST: Enabling VoiceOver test mode in app...")
         
         // Try to find the collection view and enable test mode
         let cv = app.collectionViews["DebugCollectionView"]
@@ -307,7 +307,7 @@ final class DebugCollectionViewUITests: XCTestCase {
             
             // Post a test announcement by triggering a specific action
             // This is a workaround since we can't directly call app methods
-            print("APP: Collection view found - VoiceOver test mode should be active")
+            NSLog("APP: Collection view found - VoiceOver test mode should be active")
         }
         
         // Wait a moment for any announcements to be processed
@@ -331,7 +331,7 @@ extension DebugCollectionViewUITests {
             usleep(60_000)                                // 60 ms gap
             
             let current = focusID
-            print("[HAMMER] \(n) – \(d) → \(current)")
+            NSLog("[HAMMER] \(n) – \(d) → \(current)")
             
             if current == lastID {
                 repeatCounter += 1
@@ -351,32 +351,32 @@ extension DebugCollectionViewUITests {
     /// Simulates Read-Screen-After-Delay (2-finger-swipe-up) and confirms
     /// focus walk completes without freeze (≥ 80 items voiced in 5 s).
     func testVoiceOverReadScreenAfterDelay() throws {
-        print("TEST: Starting VoiceOver Read Screen After Delay test...")
+        NSLog("TEST: Starting VoiceOver Read Screen After Delay test...")
         
         // Pre-test verification
         let initialFocus = focusID
         XCTAssertNotEqual(initialFocus, "", "Must have initial focus before starting read screen test")
-        print("FOCUS: Initial focus: '\(initialFocus)'")
+        NSLog("FOCUS: Initial focus: '\(initialFocus)'")
         
         // Log initial VoiceOver state
-        print("VOICEOVER: VoiceOver should be enabled - testing read screen functionality")
+        NSLog("VOICEOVER: VoiceOver should be enabled - testing read screen functionality")
         
         // Record starting position
         let startTime = Date()
         var spokenElements: Set<String> = []
         var focusChanges: [(time: TimeInterval, element: String)] = []
         
-        print("GESTURE: Triggering Read Screen After Delay gesture...")
-        print("INPUT: Step 1: Pressing MENU button")
+        NSLog("GESTURE: Triggering Read Screen After Delay gesture...")
+        NSLog("INPUT: Step 1: Pressing MENU button")
         
         // Two-finger-swipe-up = MENU then ▲ in quick succession on Siri Remote
         XCUIRemote.shared.press(.menu)
         usleep(150_000) // 150ms delay
         
-        print("INPUT: Step 2: Pressing UP button (simulating swipe up)")
+        NSLog("INPUT: Step 2: Pressing UP button (simulating swipe up)")
         XCUIRemote.shared.press(.up, forDuration: 0.1)
         
-        print("MONITOR: Monitoring VoiceOver narration for 5 seconds...")
+        NSLog("MONITOR: Monitoring VoiceOver narration for 5 seconds...")
         
         // Sample focus every 50 ms for 5 s; count distinct items spoken
         let endTime = Date().addingTimeInterval(5.0)
@@ -401,7 +401,7 @@ extension DebugCollectionViewUITests {
             
             // Log progress every second
             if sampleCount % 20 == 0 { // Every 1 second (20 * 50ms)
-                print("PROGRESS: \(String(format: "%.1f", elapsed))s: \(spokenElements.count) elements spoken so far")
+                NSLog("PROGRESS: \(String(format: "%.1f", elapsed))s: \(spokenElements.count) elements spoken so far")
             }
             
             usleep(50_000) // 50ms sampling rate
@@ -409,22 +409,22 @@ extension DebugCollectionViewUITests {
         
         let totalTime = Date().timeIntervalSince(startTime)
         
-        print("RESULTS: Read Screen After Delay Results:")
-        print("RESULTS:    Total time: \(String(format: "%.2f", totalTime))s")
-        print("RESULTS:    Total samples: \(sampleCount)")
-        print("RESULTS:    Unique elements spoken: \(spokenElements.count)")
-        print("RESULTS:    Focus changes: \(focusChanges.count)")
+        NSLog("RESULTS: Read Screen After Delay Results:")
+        NSLog("RESULTS:    Total time: \(String(format: "%.2f", totalTime))s")
+        NSLog("RESULTS:    Total samples: \(sampleCount)")
+        NSLog("RESULTS:    Unique elements spoken: \(spokenElements.count)")
+        NSLog("RESULTS:    Focus changes: \(focusChanges.count)")
         
         // Detailed logging of focus changes
         if focusChanges.count > 0 {
-            print("TIMELINE: Focus change timeline:")
+            NSLog("TIMELINE: Focus change timeline:")
             for (index, change) in focusChanges.enumerated() {
                 let timeStr = String(format: "%.2f", change.time)
-                print("TIMELINE:    \(index + 1). \(timeStr)s: \(change.element)")
+                NSLog("TIMELINE:    \(index + 1). \(timeStr)s: \(change.element)")
                 
                 // Stop logging after first 20 to avoid spam
                 if index >= 19 {
-                    print("TIMELINE:    ... (\(focusChanges.count - 20) more changes)")
+                    NSLog("TIMELINE:    ... (\(focusChanges.count - 20) more changes)")
                     break
                 }
             }
@@ -439,7 +439,7 @@ extension DebugCollectionViewUITests {
         
         // Check if we got reasonable coverage
         if spokenElements.count < 10 {
-            print("WARNING: Only \(spokenElements.count) elements spoken - VoiceOver may not be working properly")
+            NSLog("WARNING: Only \(spokenElements.count) elements spoken - VoiceOver may not be working properly")
             
             // Try to diagnose the issue
             diagnoseVoiceOverIssues()
@@ -451,44 +451,44 @@ extension DebugCollectionViewUITests {
         XCTAssertGreaterThanOrEqual(spokenElements.count, minimumExpected,
                                   "VO sweep should traverse ≥ \(minimumExpected) items, got \(spokenElements.count)")
         
-        print("SUCCESS: Read Screen After Delay test completed")
+        NSLog("SUCCESS: Read Screen After Delay test completed")
     }
     
     /// Diagnose potential VoiceOver issues
     private func diagnoseVoiceOverIssues() {
-        print("DIAGNOSTIC: Diagnosing VoiceOver issues...")
+        NSLog("DIAGNOSTIC: Diagnosing VoiceOver issues...")
         
         // Check if we can find any cells at all
         let allCells = app.cells
-        print("DIAGNOSTIC: Total cells found: \(allCells.count)")
+        NSLog("DIAGNOSTIC: Total cells found: \(allCells.count)")
         
         // Check first few cells specifically
         for i in 0..<min(5, 100) {
             let cellID = "Cell-\(i)"
             let cell = app.cells[cellID]
             if cell.exists {
-                print("DIAGNOSTIC: \(cellID): exists=\(cell.exists), hittable=\(cell.isHittable), label='\(cell.label)'")
+                NSLog("DIAGNOSTIC: \(cellID): exists=\(cell.exists), hittable=\(cell.isHittable), label='\(cell.label)'")
             } else {
-                print("DIAGNOSTIC: \(cellID): not found")
+                NSLog("DIAGNOSTIC: \(cellID): not found")
             }
         }
         
         // Check current focus state
         let currentFocus = focusID
-        print("FOCUS: Current focus after read screen: '\(currentFocus)'")
+        NSLog("FOCUS: Current focus after read screen: '\(currentFocus)'")
         
         // Try manual navigation to see if focus works at all
-        print("TEST: Testing manual navigation...")
+        NSLog("TEST: Testing manual navigation...")
         let beforeManual = focusID
         XCUIRemote.shared.press(.right, forDuration: 0.05)
         usleep(300_000)
         let afterManual = focusID
-        print("INPUT: Manual navigation: '\(beforeManual)' -> '\(afterManual)'")
+        NSLog("INPUT: Manual navigation: '\(beforeManual)' -> '\(afterManual)'")
         
         if beforeManual == afterManual {
-            print("WARNING: Manual navigation also not working - focus system may be broken")
+            NSLog("WARNING: Manual navigation also not working - focus system may be broken")
         } else {
-            print("SUCCESS: Manual navigation works - Read Screen gesture may be the issue")
+            NSLog("SUCCESS: Manual navigation works - Read Screen gesture may be the issue")
         }
     }
     
@@ -607,7 +607,7 @@ private struct PaddedControllerView: UIViewControllerRepresentable {
         ])
         embedded.didMove(toParent: container)
         
-        print("[Factory] Embedded VC \(type(of: embedded)) inside SwiftUI container \(traits.name).")
+        NSLog("[Factory] Embedded VC \(type(of: embedded)) inside SwiftUI container \(traits.name).")
         return container
     }
     
@@ -661,7 +661,7 @@ public enum ContainerFactory {
         ])
         hosting.didMove(toParent: parentVC)
         
-        print("""
+        NSLog("""
         [Factory] Created parent VC with plant \"\(plantTraits.name)\" \
         containing animal \"\(innerAnimal.traits.name)\".
         """)
