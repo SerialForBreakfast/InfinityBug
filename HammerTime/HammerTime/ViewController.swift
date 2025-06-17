@@ -43,7 +43,8 @@ class ViewController: UIViewController {
             sampleVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             sampleVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             sampleVC.view.topAnchor.constraint(equalTo: navVC.view.bottomAnchor),
-            sampleVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            sampleVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            navVC.view.heightAnchor.constraint(equalToConstant: 121), //break
         ])
         // Ensure nav bar is above sample grid & any debug overlays
         view.bringSubviewToFront(navVC.view)
