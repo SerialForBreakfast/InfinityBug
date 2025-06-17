@@ -10,11 +10,21 @@ import UIKit
 class ViewController: UIViewController {
 
     private var sampleViewController: SampleViewController?
+    /// Top navigation bar controller (6‑item horizontal menu)
+    private var navBarViewController: NavBarViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .gray
         // Do any additional setup after loading the view.
+        // ─── Setup top navigation bar ──────────────────────────────────────────────
+        let navVC: NavBarViewController = NavBarViewController()
+        navBarViewController = navVC            // Store reference
+        addChild(navVC)
+        view.addSubview(navVC.view)
+        navVC.didMove(toParent: self)
+        navVC.view.translatesAutoresizingMaskIntoConstraints = false
+
         let sampleVC = SampleViewController()
         sampleViewController = sampleVC // Store reference
         addChild(sampleVC)
@@ -23,15 +33,25 @@ class ViewController: UIViewController {
         
         sampleVC.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            // Nav bar (edge‑to‑edge across top)
+            navVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navVC.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navVC.view.heightAnchor.constraint(equalToConstant: 120),
+
+            // Sample grid below nav bar
             sampleVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             sampleVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            sampleVC.view.topAnchor.constraint(equalTo: view.topAnchor),
+            sampleVC.view.topAnchor.constraint(equalTo: navVC.view.bottomAnchor),
             sampleVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        // Ensure nav bar is above sample grid & any debug overlays
+        view.bringSubviewToFront(navVC.view)
+        NSLog("APP DEBUG: NavBar brought to front (z = \(navVC.view.layer.zPosition))")
         NSLog("APP: ViewController loaded")
         
         // Enhanced VoiceOver enablement for testing
-        if CommandLine.arguments.contains("--enable-voiceover") || 
+        if CommandLine.arguments.contains("--enable-voiceover") ||
            ProcessInfo.processInfo.environment["VOICEOVER_ENABLED"] == "1" {
             NSLog("APP: Enabling VoiceOver for testing...")
             DebugCollectionView.enableVoiceOverForTesting()
@@ -96,7 +116,7 @@ final class SampleViewController: UIViewController {
     
     override func viewDidLoad() {
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .green
+        view.backgroundColor = .black   // match root background
         super.viewDidLoad()
         view.addSubview(cv)
         NSLayoutConstraint.activate([
@@ -734,11 +754,11 @@ private extension UIPress.PressType {
         case .playPause:          return "PLAY_PAUSE"
         case .pageUp:             return "PAGE_UP"
         case .pageDown:           return "PAGE_DOWN"
-        @unknown default:         
+        @unknown default:
             // Enhanced debugging for unknown press types
             switch rawValue {
             case 2080:               return "VOLUME_UP" // Volume Up (likely)
-            case 2081:               return "VOLUME_DOWN" // Volume Down (likely)  
+            case 2081:               return "VOLUME_DOWN" // Volume Down (likely)
             case 2230:               return "MUTE"  // Mute (likely)
             case 2240:               return "PREV_TRACK"  // Previous Track
             case 2241:               return "NEXT_TRACK"  // Next Track
@@ -763,5 +783,132 @@ private extension UIPress.PressType {
         case .pageDown:           return "pageDown"
         @unknown default:         return "unknown(\(rawValue))"
         }
+    }
+}
+
+// ============================================================================
+// MARK: - NavBarCell
+// ============================================================================
+
+final class NavBarCell: UICollectionViewCell {
+    static let reuseID: String = "NavBarCell"
+
+    private let titleLabel: UILabel = {
+        let l: UILabel = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.font = .monospacedSystemFont(ofSize: 34, weight: .semibold)
+        l.textColor = .white
+        l.textAlignment = .center
+        return l
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        contentView.addSubview(titleLabel)
+        contentView.backgroundColor = .systemGray
+        contentView.layer.cornerRadius = 8
+
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+    }
+
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    func configure(with title: String) {
+        titleLabel.text = title
+        accessibilityIdentifier = "Nav-\(title)"
+        isAccessibilityElement = true
+        accessibilityLabel = title
+        accessibilityTraits = [.button]
+    }
+
+    // Focus feedback
+    override func didUpdateFocus(in context: UIFocusUpdateContext,
+                                 with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
+        coordinator.addCoordinatedAnimations {
+            self.contentView.backgroundColor = self.isFocused ? .systemGreen : .systemGray
+            self.transform = self.isFocused ? CGAffineTransform(scaleX: 1.1, y: 1.1) : .identity
+        }
+    }
+}
+
+// ============================================================================
+// MARK: - NavBarViewController
+// ============================================================================
+
+final class NavBarViewController: UIViewController {
+
+    private let titles: [String] = ["Header1", "Header2", "Header3",
+                                    "Header4", "Header5", "Header6"]
+
+    private lazy var collectionView: UICollectionView = {
+        let layout: UICollectionViewFlowLayout = {
+            let l: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+            l.scrollDirection = .horizontal
+            l.itemSize = .init(width: 260, height: 80)
+            l.minimumInteritemSpacing = 30
+            l.minimumLineSpacing = 30
+            return l
+        }()
+        let cv: UICollectionView = UICollectionView(frame: .zero,
+                                                    collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = .clear
+        cv.dataSource = self
+        cv.delegate = self
+        cv.remembersLastFocusedIndexPath = true
+        cv.register(NavBarCell.self, forCellWithReuseIdentifier: NavBarCell.reuseID)
+        return cv
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .darkGray
+        view.addSubview(collectionView)
+
+        // Constrain collection view with insets for aesthetics
+        NSLayoutConstraint.activate([
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
+        ])
+
+        NSLog("NAVBAR: NavBarViewController loaded with \(titles.count) items")
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NSLog("NAVBAR DEBUG: bar frame = \(view.frame)")
+        NSLog("NAVBAR DEBUG: collection frame = \(collectionView.frame)")
+        let cellFrames = collectionView.visibleCells.map { $0.frame }
+        NSLog("NAVBAR DEBUG: visible cell frames = \(cellFrames)")
+    }
+}
+
+// MARK: - UICollectionViewDataSource & Delegate
+extension NavBarViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        titles.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: NavBarCell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: NavBarCell.reuseID,
+            for: indexPath) as! NavBarCell
+        let title: String = titles[indexPath.item]
+        cell.configure(with: title)
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        NSLog("NAVBAR: Selected \(titles[indexPath.item])")
     }
 }
