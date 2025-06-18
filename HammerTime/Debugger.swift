@@ -37,11 +37,22 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
     private var cancellables: Set<Combine.AnyCancellable> = []
     /// Last time a focus hop was observed
     private var lastFocusTimestamp = CACurrentMediaTime()
+    
+    /// tvOS-specific low-level input monitoring dispatch queue
+    private let inputQueue = DispatchQueue(label: "com.infinitybug.input-monitor", qos: .userInteractive)
+    
+    /// Private API function pointers for ultra-low-level monitoring
+    private var systemEventTap: UnsafeMutableRawPointer?
+    
+    /// High-frequency controller state monitoring
+    private var controllerPollingTimer: Timer?
 
     private let poiLog  = OSLog(subsystem: Bundle.main.bundleIdentifier ?? "com.infinitybug",
                                 category: "FocusPOI")
     private let perfLog = OSLog(subsystem: Bundle.main.bundleIdentifier ?? "com.infinitybug",
                                 category: "FocusPerf")
+    internal let inputLog = OSLog(subsystem: Bundle.main.bundleIdentifier ?? "com.infinitybug",
+                                  category: "LowLevelInput")
     
     
     // Register every possible input from any kind of tvOS controller / remote.
@@ -86,7 +97,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                 if x < -0.5 { HardwarePressCache.markDown("Left Arrow")  }
                 if x >  0.5 { HardwarePressCache.markDown("Right Arrow") }
 
-                // Y‑axis on tvOS:  Up = negative –1,  Down = positive +1
+                // Y‑axis on tvOS:  Up = negative –1,  Down = positive +1
                 if y < -0.5 { HardwarePressCache.markDown("Up Arrow")    }
                 if y >  0.5 { HardwarePressCache.markDown("Down Arrow")  }
             }
@@ -131,7 +142,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         }
 
         //----------------------------------------------------------------------
-        // 4) Keyboards (tvOS 17+) ---------------------------------------------
+        // 4) Keyboards (tvOS 17+) ---------------------------------------------
         //----------------------------------------------------------------------
         if #available(tvOS 17.0, *) {
             GCKeyboard.coalesced?.keyboardInput?.keyChangedHandler = { _, _, keyCode, pressed in
@@ -195,7 +206,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                     let ok = note.userInfo?[AXNotificationKeys.announcementSuccess] as? Bool,
                     let msg = note.userInfo?[AXNotificationKeys.announcementMessage] as? String
                 else { return }
-                let txt = String(format: "🔊 VoiceOver announcement completed (%@) – “%@”", ok.description, msg)
+                let txt = String(format: "🔊 VoiceOver announcement completed (%@) – \"%@\"", ok.description, msg)
                 self.log(txt)
                 os_signpost(.event, log: self.poiLog, name: "AXAnnounceDone", "%{public}s", txt)
             }
@@ -206,7 +217,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             .compactMap { $0.userInfo?[AXNotificationKeys.announcementMessage] as? String }
             .sink { [weak self] msg in
                 guard let self else { return }
-                let txt = "🔈 VoiceOver announcement starting – “\(msg)”"
+                let txt = "🔈 VoiceOver announcement starting – \"\(msg)\""
                 self.log(txt)
                 os_signpost(.event, log: self.poiLog, name: "AXAnnounceStart", "%{public}s", txt)
             }
@@ -233,7 +244,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
 
                 // 👉  Treat as phantom only when
                 //     a) no recent hardware press  **and**
-                //     b) no focus hop in the last 120 ms
+                //     b) no focus hop in the last 120 ms
                 let noHW  = !HardwarePressCache.recentlyPressed(id)
                 let stale = CACurrentMediaTime() - self.lastFocusTimestamp > 0.12
                 if noHW && stale {
@@ -270,6 +281,15 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
 
         //-------------------------- 9. preferredFocusEnvironments bloat (#4) -----
         swizzlePreferredFocusEnvironments()
+
+        //-------------------------- 10. Low-level tvOS input monitoring -----------
+        setupTVOSInputMonitoring()
+        
+        //-------------------------- 11. Private API event monitoring --------------
+        setupPrivateAPIMonitoring()
+        
+        //-------------------------- 12. Enhanced hardware polling ----------------
+        setupHardwarePolling()
 
         UIWindow.performSwizzling()
     }
@@ -333,7 +353,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             guard let self else {
                 return
             }
-            // 2️⃣ Check each guide’s size in global coordinates
+            // 2️⃣ Check each guide's size in global coordinates
             for guide in guides {
                 guard let host = guide.owningView else { continue }
                 let global = host.convert(guide.layoutFrame, to: nil)   // layoutFrame is correct API
@@ -357,7 +377,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             // Keep only recognizers that look at remote-control presses
             let pressGRs = grs.filter { recognizer in
                 // UITap/Swipe/Pan on tvOS expose allowedPressTypes (private ivar but KVC works)
-                if let nums = (recognizer as? NSObject)?
+                if let nums = (recognizer as NSObject)
                         .value(forKey: "allowedPressTypes") as? [NSNumber],
                    !nums.isEmpty {
                     return true
@@ -407,7 +427,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             }
         }
         for (id, count) in dict where count > 1 {
-            log("⚠️ Duplicate accessibilityIdentifier “\(id)” ×\(count)")
+            log("⚠️ Duplicate accessibilityIdentifier \"\(id)\" ×\(count)")
         }
     }
 
@@ -420,7 +440,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             }
         }
         for (label, count) in dict where count > 5 { // >5 identical labels usually smells
-            log("⚠️ Potential duplicate label “\(label)” ×\(count)")
+            log("⚠️ Potential duplicate label \"\(label)\" ×\(count)")
         }
     }
 
@@ -442,9 +462,284 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         return f
     }()
 
-    private func log(_ msg: String) {
+    internal func log(_ msg: String) {
         let stamp = Self.tsFmt.string(from: Date())
         NSLog("[AXDBG] \(stamp) %@", msg)
+    }
+    
+    // MARK: – tvOS Low-Level Input Monitoring ----------------------------------
+    
+    /// Sets up tvOS-specific low-level input monitoring using GameController framework
+    private func setupTVOSInputMonitoring() {
+        #if DEBUG
+        log("✅ Starting tvOS low-level input monitoring")
+        os_signpost(.event, log: inputLog, name: "TVOSInputMonitoringStarted")
+        
+        // Enhanced GameController monitoring with state tracking
+        setupEnhancedGameControllerMonitoring()
+        
+        // High-frequency controller polling to catch missed events
+        setupControllerPolling()
+        
+        // Monitor controller connections/disconnections more precisely
+        setupControllerConnectionMonitoring()
+        #endif
+    }
+    
+    /// Enhanced GameController monitoring with detailed state tracking
+    private func setupEnhancedGameControllerMonitoring() {
+        // Monitor all existing controllers
+        for controller in GCController.controllers() {
+            setupControllerStateMonitoring(controller)
+        }
+        
+        // Monitor future controller connections
+        NotificationCenter.default.publisher(for: .GCControllerDidConnect)
+            .sink { [weak self] notification in
+                if let controller = notification.object as? GCController {
+                    self?.setupControllerStateMonitoring(controller)
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    /// Sets up detailed state monitoring for a specific controller
+    private func setupControllerStateMonitoring(_ controller: GCController) {
+        let productName = controller.productCategory
+        
+        log("🎮 Enhanced monitoring for controller: \(productName)")
+        os_signpost(.event, log: inputLog, name: "ControllerMonitoringSetup", "%{public}s", productName)
+        
+        // Track previous state for differential monitoring
+        var previousDPadState: (x: Float, y: Float) = (0, 0)
+        var previousButtonStates: [String: Bool] = [:]
+        
+        if let microGamepad = controller.microGamepad {
+            // Enhanced D-pad monitoring with precise state tracking
+            microGamepad.dpad.valueChangedHandler = { [weak self] (dpad, x, y) in
+                let currentTime = CACurrentMediaTime()
+                
+                // Detect actual state changes (not just value updates)
+                if abs(x - previousDPadState.x) > 0.1 || abs(y - previousDPadState.y) > 0.1 {
+                    let direction = self?.mapDPadToDirection(x: x, y: y) ?? "Unknown"
+                    
+                    self?.log("🕹️ DPAD STATE: \(direction) (x:\(String(format: "%.3f", x)), y:\(String(format: "%.3f", y)), ts:\(String(format: "%.6f", currentTime)))")
+                    
+                    os_signpost(.event, log: self?.inputLog ?? OSLog.disabled,
+                               name: "DPadStateChange",
+                               "%{public}s x:%.3f y:%.3f",
+                               direction, x, y)
+                    
+                    // Update hardware press cache with precise timing
+                    HardwarePressCache.markDownPrecise("DPad \(direction)", timestamp: currentTime)
+                    
+                    previousDPadState = (x, y)
+                }
+            }
+            
+            // Individual button monitoring
+            let buttons: [(button: GCControllerButtonInput?, name: String)] = [
+                (microGamepad.buttonA, "Select"),
+                (microGamepad.buttonMenu, "Menu"),
+                (microGamepad.buttonX, "Play/Pause")
+            ]
+            
+            for (button, name) in buttons {
+                button?.pressedChangedHandler = { [weak self] (btn, value, pressed) in
+                    let currentTime = CACurrentMediaTime()
+                    
+                    // Only log actual state changes
+                    if previousButtonStates[name] != pressed {
+                        self?.log("🔘 BUTTON: \(name) \(pressed ? "PRESSED" : "RELEASED") (value:\(String(format: "%.3f", value)), ts:\(String(format: "%.6f", currentTime)))")
+                        
+                        os_signpost(.event, log: self?.inputLog ?? OSLog.disabled,
+                                   name: "ButtonStateChange",
+                                   "%{public}s %{public}s value:%.3f",
+                                   name, pressed ? "PRESSED" : "RELEASED", value)
+                        
+                        if pressed {
+                            HardwarePressCache.markDownPrecise(name, timestamp: currentTime)
+                        }
+                        
+                        previousButtonStates[name] = pressed
+                    }
+                }
+            }
+        }
+    }
+    
+    /// Maps D-pad coordinates to directional names
+    private func mapDPadToDirection(x: Float, y: Float) -> String {
+        let threshold: Float = 0.5
+        
+        if abs(x) > abs(y) {
+            return x > threshold ? "Right" : x < -threshold ? "Left" : "Center"
+        } else {
+            return y > threshold ? "Down" : y < -threshold ? "Up" : "Center"
+        }
+    }
+    
+    /// High-frequency controller polling to catch missed events
+    private func setupControllerPolling() {
+        controllerPollingTimer = Timer.scheduledTimer(withTimeInterval: 0.008, repeats: true) { [weak self] _ in
+            self?.pollControllerStates()
+        }
+        
+        cancellables.insert(AnyCancellable { [weak self] in
+            self?.controllerPollingTimer?.invalidate()
+        })
+    }
+    
+    /// Polls all controller states at high frequency
+    private func pollControllerStates() {
+        for controller in GCController.controllers() {
+            if let microGamepad = controller.microGamepad {
+                let x = microGamepad.dpad.xAxis.value
+                let y = microGamepad.dpad.yAxis.value
+                
+                // Check for significant analog values that might indicate missed events
+                if abs(x) > 0.8 || abs(y) > 0.8 {
+                    let direction = mapDPadToDirection(x: x, y: y)
+                    
+                    // Only log if this is a new state
+                    let stateKey = "Polled\(direction)"
+                    if !HardwarePressCache.recentlyPressed(stateKey, within: 0.1) {
+                        log("📊 POLL: \(direction) detected via polling (x:\(String(format: "%.3f", x)), y:\(String(format: "%.3f", y)))")
+                        HardwarePressCache.markDown(stateKey)
+                    }
+                }
+            }
+        }
+    }
+    
+    /// Enhanced controller connection monitoring
+    private func setupControllerConnectionMonitoring() {
+        NotificationCenter.default.publisher(for: .GCControllerDidConnect)
+            .sink { [weak self] notification in
+                if let controller = notification.object as? GCController {
+                    let name = controller.productCategory
+                    self?.log("🔌 Controller connected: \(name)")
+                    os_signpost(.event, log: self?.inputLog ?? OSLog.disabled,
+                               name: "ControllerConnected", "%{public}s", name)
+                }
+            }
+            .store(in: &cancellables)
+        
+        NotificationCenter.default.publisher(for: .GCControllerDidDisconnect)
+            .sink { [weak self] notification in
+                if let controller = notification.object as? GCController {
+                    let name = controller.productCategory
+                    self?.log("🔌 Controller disconnected: \(name)")
+                    os_signpost(.event, log: self?.inputLog ?? OSLog.disabled,
+                               name: "ControllerDisconnected", "%{public}s", name)
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    // MARK: – Private API Event Monitoring -----------------------------------
+    
+    /// Sets up private API monitoring for system-level events
+    private func setupPrivateAPIMonitoring() {
+        #if DEBUG
+        // Method 1: Hook into private UIApplication event handling
+        setupUIApplicationEventHook()
+        
+        // Method 2: Monitor GSEvent (GraphicsServices) if available
+        setupGSEventMonitoring()
+        
+        // Method 3: Low-level event tap using private APIs
+        setupSystemEventTap()
+        #endif
+    }
+    
+    /// Hooks UIApplication's private event handling methods
+    private func setupUIApplicationEventHook() {
+        guard let appClass = NSClassFromString("UIApplication") else { return }
+        
+        // Hook _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:
+        let eventHandlingSelectors = [
+            "_handlePhysicalButtonEvent:",
+            "_handleRemoteControlEvent:",
+            "_handleKeyUIEvent:",
+            "sendEvent:"
+        ]
+        
+        for selectorName in eventHandlingSelectors {
+            guard let originalMethod = class_getInstanceMethod(appClass, NSSelectorFromString(selectorName)) else {
+                continue
+            }
+            
+            let originalImplementation = method_getImplementation(originalMethod)
+            let newImplementation: IMP = imp_implementationWithBlock({ (app: UIApplication, event: Any) in
+                // Log the private event (using AXFocusDebugger.shared to avoid capture issues)
+                AXFocusDebugger.shared.log("🔐 Private API Event: \(selectorName) - \(type(of: event))")
+                os_signpost(.event, log: AXFocusDebugger.shared.inputLog, name: "PrivateAPIEvent", "%{public}s", selectorName)
+                
+                // Call original implementation
+                typealias OriginalFunction = @convention(c) (UIApplication, Selector, Any) -> Void
+                let originalFunc = unsafeBitCast(originalImplementation, to: OriginalFunction.self)
+                originalFunc(app, NSSelectorFromString(selectorName), event)
+            } as @convention(block) (UIApplication, Any) -> Void)
+            
+            method_setImplementation(originalMethod, newImplementation)
+        }
+    }
+    
+    /// Monitors GSEvent (GraphicsServices) if accessible
+    private func setupGSEventMonitoring() {
+        // GraphicsServices is private but sometimes accessible
+        guard NSClassFromString("GSEvent") != nil else {
+            log("⚠️ GSEvent class not accessible")
+            return
+        }
+        
+        log("✅ GSEvent monitoring enabled")
+        
+        // This would require more complex reflection to access GSEvent methods
+        // Implementation would be highly version-dependent and fragile
+    }
+    
+    /// Sets up system-level event tap using private APIs
+    private func setupSystemEventTap() {
+        // This would use private CoreGraphics/IOKit APIs similar to macOS CGEventTap
+        // Implementation is complex and version-dependent
+        // Would require reverse engineering of tvOS private frameworks
+        
+        log("⚠️ System event tap not implemented (requires private API research)")
+    }
+    
+    // MARK: – Enhanced Hardware Polling -------------------------------------
+    
+    /// Adds continuous polling for hardware state changes
+    private func setupHardwarePolling() {
+        // Create a high-frequency timer to poll for hardware state changes
+        let pollingTimer = Timer.scheduledTimer(withTimeInterval: 0.008, repeats: true) { [weak self] _ in
+            self?.pollHardwareState()
+        }
+        
+        // Store timer for cleanup
+        cancellables.insert(AnyCancellable {
+            pollingTimer.invalidate()
+        })
+    }
+    
+    /// Polls hardware state at high frequency to catch missed events
+    private func pollHardwareState() {
+        // Poll GameController state directly
+        for controller in GCController.controllers() {
+            if let micro = controller.microGamepad {
+                // Check D-pad state
+                let x = micro.dpad.xAxis.value
+                let y = micro.dpad.yAxis.value
+                
+                // Detect state changes that might have been missed
+                if abs(x) > 0.8 || abs(y) > 0.8 {
+                    let direction = x > 0.8 ? "Right" : x < -0.8 ? "Left" : y > 0.8 ? "Down" : "Up"
+                    HardwarePressCache.markDown("Polled \(direction)")
+                }
+            }
+        }
     }
 }
 
@@ -474,6 +769,7 @@ private extension UIPressesEvent {
 private extension UIWindow {
     static func performSwizzling() {
         _ = swizzleSendEvent
+        _ = swizzlePressHandlers
     }
 
     private static let swizzleSendEvent: Void = {
@@ -487,6 +783,26 @@ private extension UIWindow {
         method_exchangeImplementations(o, s)
     }()
 
+    private static let swizzlePressHandlers: Void = {
+        let cls = UIWindow.self
+        let pairs: [(Selector, Selector)] = [
+            (#selector(UIResponder.pressesBegan(_:with:)),
+             #selector(UIWindow.axdbg_pressesBegan(_:with:))),
+            (#selector(UIResponder.pressesChanged(_:with:)),
+             #selector(UIWindow.axdbg_pressesChanged(_:with:))),
+            (#selector(UIResponder.pressesEnded(_:with:)),
+             #selector(UIWindow.axdbg_pressesEnded(_:with:))),
+            (#selector(UIResponder.pressesCancelled(_:with:)),
+             #selector(UIWindow.axdbg_pressesCancelled(_:with:)))
+        ]
+        for (orig, repl) in pairs {
+            if let o = class_getInstanceMethod(cls, orig),
+               let s = class_getInstanceMethod(cls, repl) {
+                method_exchangeImplementations(o, s)
+            }
+        }
+    }()
+
     @objc func axdbg_sendEvent(_ ev: UIEvent) {
         if let pe = ev as? UIPressesEvent {
             for press in pe.allPresses {
@@ -495,6 +811,43 @@ private extension UIWindow {
             }
         }
         axdbg_sendEvent(ev) // original impl
+    }
+
+    // MARK: - Press life‑cycle logging ---------------------------------
+
+    @objc func axdbg_pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        axdbg_logPresses("began", presses, in: self)
+        axdbg_pressesBegan(presses, with: event) // original impl
+    }
+
+    @objc func axdbg_pressesChanged(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        axdbg_logPresses("changed", presses, in: self)
+        axdbg_pressesChanged(presses, with: event)
+    }
+
+    @objc func axdbg_pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        axdbg_logPresses("ended", presses, in: self)
+        axdbg_pressesEnded(presses, with: event)
+    }
+
+    @objc func axdbg_pressesCancelled(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        axdbg_logPresses("cancelled", presses, in: self)
+        axdbg_pressesCancelled(presses, with: event)
+    }
+
+    // Helper that prints window address, press type/phase, and first responder
+    private func axdbg_logPresses(_ phase: String,
+                                  _ presses: Set<UIPress>,
+                                  in window: UIWindow) {
+        let winPtr = Unmanaged.passUnretained(window).toOpaque()
+        for press in presses {
+            let type = press.type.readable
+            let responderPtr = press.responder
+                .map { Unmanaged.passUnretained($0).toOpaque() }
+                .map { String(format: "%p", UInt(bitPattern: $0)) } ?? "nil"
+            NSLog("[HWDBG_CHAIN] 0x%0llx  %@  phase=%@  responder=%@",
+                  UInt(bitPattern: winPtr), type, phase, responderPtr)
+        }
     }
 }
 #endif
@@ -537,6 +890,8 @@ private extension UIPress.PressType {
         case .playPause:   return "Play/Pause"
         case .pageUp:      return "Page Up"
         case .pageDown:    return "Page Down"
+        case .tvRemoteOneTwoThree: return "TV Remote 123"
+        case .tvRemoteFourColors: return "TV Remote Colors"
         @unknown default:  return "Unknown(\(rawValue))"
         }
     }
@@ -554,21 +909,49 @@ private extension UIPress.Phase {
         }
     }
 }
-
 /// Hardware events we care about (Siri Remote, Bluetooth gamepad, keyboard)
 private struct HardwarePressCache {
     /// last timestamp for each GC button that went down
     static var lastDown: [String : TimeInterval] = [:]
+    
+    /// Ultra-precise timestamps from HID layer
+    static var preciseTimestamps: [String : Double] = [:]
     
     /// write helper
     static func markDown(_ id: String) {
         lastDown[id] = CACurrentMediaTime()
     }
     
+    /// write helper with precise HID timestamp
+    static func markDownPrecise(_ id: String, timestamp: Double) {
+        preciseTimestamps[id] = timestamp
+        lastDown[id] = CACurrentMediaTime() // Also update the regular cache
+    }
+    
     /// was there a hardware press in the last 200 ms?
     static func recentlyPressed(_ id: String, within s: Double = 0.20) -> Bool {
-        guard let t = lastDown[id] else { return false }
-        return CACurrentMediaTime() - t < s
+        // Check both regular and precise timestamps
+        let currentTime = CACurrentMediaTime()
+        
+        // Check regular timestamp
+        if let t = lastDown[id], currentTime - t < s {
+            return true
+        }
+        
+        // Check precise HID timestamp (convert to current time base)
+        if let preciseTime = preciseTimestamps[id] {
+            let hidTime = preciseTime * Double(NSEC_PER_SEC) / 1_000_000_000.0 // Convert to seconds
+            if currentTime - hidTime < s {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    /// Get the most precise timestamp available for a button
+    static func getPreciseTimestamp(_ id: String) -> Double? {
+        return preciseTimestamps[id]
     }
 }
 
