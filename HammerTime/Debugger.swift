@@ -374,19 +374,31 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         for view in root.recursiveSubviews {
             guard let grs = view.gestureRecognizers, grs.count > 1 else { continue }
 
-            // Keep only recognizers that look at remote-control presses
+            // Keep only recognizers that look at remote‑control presses
             let pressGRs = grs.filter { recognizer in
-                // UITap/Swipe/Pan on tvOS expose allowedPressTypes (private ivar but KVC works)
-                if let nums = (recognizer as NSObject)
-                        .value(forKey: "allowedPressTypes") as? [NSNumber],
-                   !nums.isEmpty {
+                // -------------------------------------------------------------
+                // 1) UILongPressGestureRecognizer has a 'pressType' selector
+                // -------------------------------------------------------------
+                if recognizer is UILongPressGestureRecognizer {
                     return true
                 }
-                // UILongPressGestureRecognizer has a 'pressType' property
-                if (recognizer as? UILongPressGestureRecognizer)?
-                        .value(forKey: "pressType") != nil {
-                    return true
+
+                // -------------------------------------------------------------
+                // 2) For UITap/Swipe/Pan on tvOS, check the private ivar
+                //    '_allowedPressTypes' *without* KVC – this avoids the
+                //    NSMapGet(NULL) console spew that happens when UIKit’s
+                //    getter touches an un‑initialised map table.
+                // -------------------------------------------------------------
+                guard
+                    let ivar = class_getInstanceVariable(type(of: recognizer),
+                                                         "_allowedPressTypes")
+                else { return false }
+
+                if let arr = object_getIvar(recognizer, ivar) as? NSArray,
+                   arr.count > 0 {
+                    return true        // it specifically handles remote presses
                 }
+
                 return false
             }
 
@@ -845,7 +857,7 @@ private extension UIWindow {
             let responderPtr = press.responder
                 .map { Unmanaged.passUnretained($0).toOpaque() }
                 .map { String(format: "%p", UInt(bitPattern: $0)) } ?? "nil"
-            NSLog("[HWDBG_CHAIN] 0x%0llx  %@  phase=%@  responder=%@",
+            NSLog("[HWDBG_CHAIN] window=0x%0llx  press=%@  phase=%@  firstResponder=%@",
                   UInt(bitPattern: winPtr), type, phase, responderPtr)
         }
     }
