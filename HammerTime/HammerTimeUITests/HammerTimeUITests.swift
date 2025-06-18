@@ -497,71 +497,6 @@ final class DebugCollectionViewUITests: XCTestCase {
     }
     
     
-//    This test has another false assumption: that you can reliably detect "edges" in a scrollable collection view by pressing a direction 15 times. In reality:
-//    True edges: Navigation bar (can't go up), actual last cell (can't go down)
-//    Scrollable areas: Collection view interior (DOWN should scroll, not stick)
-//    /// Test edge-of-screen focus behavior
-//    func testEdgeOfScreenFocusBehavior() throws {
-//        NSLog("TEST: Starting edge-of-screen focus behavior test...")
-//        
-//        // Navigate to top-left corner first
-//        NSLog("STEP 1: Navigating to top-left corner")
-//        for _ in 0..<10 {
-//            remote.press(.up, forDuration: 0.05)
-//            usleep(50_000)
-//        }
-//        for _ in 0..<10 {
-//            remote.press(.left, forDuration: 0.05)
-//            usleep(50_000)
-//        }
-//        
-//        let topLeftFocus = focusID
-//        NSLog("TOP-LEFT: Focus at '\(topLeftFocus)'")
-//        
-//        // Test edge behavior: repeated presses at edges
-//        let edgeTests: [(direction: XCUIRemote.Button, edgeName: String)] = [
-//            (.up, "TOP"),
-//            (.left, "LEFT"),
-//            (.down, "BOTTOM"),
-//            (.right, "RIGHT")
-//        ]
-//        
-//        for edgeTest in edgeTests {
-//            NSLog("TESTING EDGE: \(edgeTest.edgeName)")
-//            
-//            // Navigate to this edge first
-//            for _ in 0..<15 {
-//                remote.press(edgeTest.direction, forDuration: 0.04)
-//                usleep(40_000)
-//            }
-//            
-//            let edgeFocus = focusID
-//            NSLog("EDGE \(edgeTest.edgeName): Reached '\(edgeFocus)'")
-//            
-//            // Test edge with rapid presses
-//            let initialEdgeFocus = focusID
-//            var edgeStuckCount = 0
-//            
-//            for attempt in 0..<25 {
-//                remote.press(edgeTest.direction, forDuration: 0.02)
-//                usleep(30_000)
-//                
-//                let currentFocus = focusID
-//                
-//                if currentFocus == initialEdgeFocus {
-//                    edgeStuckCount += 1
-//                } else {
-//                    NSLog("EDGE ESCAPE[\(attempt)]: Focus moved from '\(initialEdgeFocus)' to '\(currentFocus)'")
-//                }
-//            }
-//            
-//            NSLog("EDGE \(edgeTest.edgeName): Stuck \(edgeStuckCount)/25 times")
-//            
-//            // At a true edge, some presses should be "stuck" (no movement)
-//            XCTAssertGreaterThan(edgeStuckCount, 0, "At edge \(edgeTest.edgeName), some presses should have no effect")
-//        }
-//    }
-    
     /// Test focus recovery after stress
     func testFocusRecoveryAfterStress() throws {
         NSLog("TEST: Starting focus recovery after stress test...")
@@ -783,3 +718,72 @@ final class DebugCollectionViewUITests: XCTestCase {
                            "Most input burst configurations should maintain focus persistence")
     }
 }
+
+//extension DebugCollectionViewUITests {
+    
+//    This test has another false assumption: that you can reliably detect "edges" in a scrollable collection view by pressing a direction 15 times. In reality:
+//    True edges: Navigation bar (can't go up), actual last cell (can't go down)
+//    Scrollable areas: Collection view interior (DOWN should scroll, not stick)
+//    /// Test edge-of-screen focus behavior
+//    func testEdgeOfScreenFocusBehavior() throws {
+//        NSLog("TEST: Starting edge-of-screen focus behavior test...")
+//
+//        // Navigate to top-left corner first
+//        NSLog("STEP 1: Navigating to top-left corner")
+//        for _ in 0..<10 {
+//            remote.press(.up, forDuration: 0.05)
+//            usleep(50_000)
+//        }
+//        for _ in 0..<10 {
+//            remote.press(.left, forDuration: 0.05)
+//            usleep(50_000)
+//        }
+//
+//        let topLeftFocus = focusID
+//        NSLog("TOP-LEFT: Focus at '\(topLeftFocus)'")
+//
+//        // Test edge behavior: repeated presses at edges
+//        let edgeTests: [(direction: XCUIRemote.Button, edgeName: String)] = [
+//            (.up, "TOP"),
+//            (.left, "LEFT"),
+//            (.down, "BOTTOM"),
+//            (.right, "RIGHT")
+//        ]
+//
+//        for edgeTest in edgeTests {
+//            NSLog("TESTING EDGE: \(edgeTest.edgeName)")
+//
+//            // Navigate to this edge first
+//            for _ in 0..<15 {
+//                remote.press(edgeTest.direction, forDuration: 0.04)
+//                usleep(40_000)
+//            }
+//
+//            let edgeFocus = focusID
+//            NSLog("EDGE \(edgeTest.edgeName): Reached '\(edgeFocus)'")
+//
+//            // Test edge with rapid presses
+//            let initialEdgeFocus = focusID
+//            var edgeStuckCount = 0
+//
+//            for attempt in 0..<25 {
+//                remote.press(edgeTest.direction, forDuration: 0.02)
+//                usleep(30_000)
+//
+//                let currentFocus = focusID
+//
+//                if currentFocus == initialEdgeFocus {
+//                    edgeStuckCount += 1
+//                } else {
+//                    NSLog("EDGE ESCAPE[\(attempt)]: Focus moved from '\(initialEdgeFocus)' to '\(currentFocus)'")
+//                }
+//            }
+//
+//            NSLog("EDGE \(edgeTest.edgeName): Stuck \(edgeStuckCount)/25 times")
+//
+//            // At a true edge, some presses should be "stuck" (no movement)
+//            XCTAssertGreaterThan(edgeStuckCount, 0, "At edge \(edgeTest.edgeName), some presses should have no effect")
+//        }
+//    }
+    
+//}
