@@ -386,7 +386,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                 // -------------------------------------------------------------
                 // 2) For UITap/Swipe/Pan on tvOS, check the private ivar
                 //    '_allowedPressTypes' *without* KVC – this avoids the
-                //    NSMapGet(NULL) console spew that happens when UIKit’s
+                //    NSMapGet(NULL) console spew that happens when UIKit's
                 //    getter touches an un‑initialised map table.
                 // -------------------------------------------------------------
                 guard
@@ -652,41 +652,39 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
     // MARK: – Private API Event Monitoring -----------------------------------
     
     /// Sets up private API monitoring for system-level events
+    /// WARNING: These methods may not work reliably and are for research only
     private func setupPrivateAPIMonitoring() {
         #if DEBUG
-        // Method 1: Hook into private UIApplication event handling
+        log("⚠️ Private API monitoring is experimental and may not work")
+        
+        // Method 1: Hook into UIApplication event handling (may not work)
         setupUIApplicationEventHook()
         
-        // Method 2: Monitor GSEvent (GraphicsServices) if available
-        setupGSEventMonitoring()
-        
-        // Method 3: Low-level event tap using private APIs
-        setupSystemEventTap()
+        // Note: GSEvent and system event tap monitoring removed as they don't work on tvOS
         #endif
     }
     
-    /// Hooks UIApplication's private event handling methods
+    /// Hooks UIApplication's event handling methods (experimental)
+    /// WARNING: These private methods may not exist or work as expected
     private func setupUIApplicationEventHook() {
         guard let appClass = NSClassFromString("UIApplication") else { return }
         
-        // Hook _handleNonLaunchSpecificActions:forScene:withTransitionContext:completion:
-        let eventHandlingSelectors = [
-            "_handlePhysicalButtonEvent:",
-            "_handleRemoteControlEvent:",
-            "_handleKeyUIEvent:",
-            "sendEvent:"
+        // These selectors may not exist or may not work as expected
+        let experimentalSelectors = [
+            "sendEvent:"  // This is the only one that might actually exist
         ]
         
-        for selectorName in eventHandlingSelectors {
+        for selectorName in experimentalSelectors {
             guard let originalMethod = class_getInstanceMethod(appClass, NSSelectorFromString(selectorName)) else {
+                log("⚠️ Selector \(selectorName) not found - skipping")
                 continue
             }
             
             let originalImplementation = method_getImplementation(originalMethod)
             let newImplementation: IMP = imp_implementationWithBlock({ (app: UIApplication, event: Any) in
-                // Log the private event (using AXFocusDebugger.shared to avoid capture issues)
-                AXFocusDebugger.shared.log("🔐 Private API Event: \(selectorName) - \(type(of: event))")
-                os_signpost(.event, log: AXFocusDebugger.shared.inputLog, name: "PrivateAPIEvent", "%{public}s", selectorName)
+                // Log the event (using AXFocusDebugger.shared to avoid capture issues)
+                AXFocusDebugger.shared.log("📱 UIApplication Event: \(selectorName) - \(type(of: event))")
+                os_signpost(.event, log: AXFocusDebugger.shared.inputLog, name: "UIApplicationEvent", "%{public}s", selectorName)
                 
                 // Call original implementation
                 typealias OriginalFunction = @convention(c) (UIApplication, Selector, Any) -> Void
@@ -698,27 +696,14 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         }
     }
     
-    /// Monitors GSEvent (GraphicsServices) if accessible
+    /// GSEvent monitoring is not available on tvOS
     private func setupGSEventMonitoring() {
-        // GraphicsServices is private but sometimes accessible
-        guard NSClassFromString("GSEvent") != nil else {
-            log("⚠️ GSEvent class not accessible")
-            return
-        }
-        
-        log("✅ GSEvent monitoring enabled")
-        
-        // This would require more complex reflection to access GSEvent methods
-        // Implementation would be highly version-dependent and fragile
+        log("⚠️ GSEvent is not available on tvOS - skipping")
     }
     
-    /// Sets up system-level event tap using private APIs
+    /// System event tap is not available on tvOS
     private func setupSystemEventTap() {
-        // This would use private CoreGraphics/IOKit APIs similar to macOS CGEventTap
-        // Implementation is complex and version-dependent
-        // Would require reverse engineering of tvOS private frameworks
-        
-        log("⚠️ System event tap not implemented (requires private API research)")
+        log("⚠️ System event tap is not available on tvOS - skipping")
     }
     
     // MARK: – Enhanced Hardware Polling -------------------------------------

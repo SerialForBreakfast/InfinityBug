@@ -50,33 +50,6 @@ class ViewController: UIViewController {
         view.bringSubviewToFront(navVC.view)
         NSLog("APP DEBUG: NavBar brought to front (z = \(navVC.view.layer.zPosition))")
         NSLog("APP: ViewController loaded")
-        
-        // Enhanced VoiceOver enablement for testing
-        if CommandLine.arguments.contains("--enable-voiceover") ||
-           ProcessInfo.processInfo.environment["VOICEOVER_ENABLED"] == "1" {
-            NSLog("APP: Enabling VoiceOver for testing...")
-            DebugCollectionView.enableVoiceOverForTesting()
-            
-            // Post initial announcement
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                DebugCollectionView.testVoiceOverAnnouncement()
-            }
-        }
-        
-        // Enable VoiceOver test mode if in testing environment
-        if ProcessInfo.processInfo.environment["ACCESSIBILITY_TESTING"] == "1" {
-            NSLog("APP: Setting up VoiceOver test mode...")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.sampleViewController?.debugCollectionView.enableVoiceOverTestMode()
-                
-                // Post test announcement after setup
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    let testMsg = "VoiceOver test mode is now active. You should hear this announcement."
-                    UIAccessibility.post(notification: .announcement, argument: testMsg)
-                    NSLog("APP: Posted VoiceOver test mode announcement")
-                }
-            }
-        }
     }
 }
 
@@ -428,10 +401,6 @@ public final class DebugCollectionView: UICollectionView {
         // Add debug label for UI testing
         setupDebugLabel()
         
-        // Enable VoiceOver if launch argument is present
-        if CommandLine.arguments.contains("--enable-voiceover") {
-            DebugCollectionView.enableVoiceOverForTesting()
-        }
 //        AXFocusDebugger.shared.start()
     }
     
@@ -684,38 +653,8 @@ public final class DebugCollectionView: UICollectionView {
     /// Clears the in-memory event log (useful between XCTest methods).
     public func resetLog() { eventLog.removeAll() }
     
-    /// Enable VoiceOver programmatically for UI testing
-    /// Call this from your UI test setup or app launch arguments
-    public static func enableVoiceOverForTesting() {
-        // Method 1: Using private API (works but may be rejected by App Store)
-        // Only use this in test builds
-        #if DEBUG || TESTING
-        if let voiceOverClass = NSClassFromString("UIAccessibilityVoiceOverController") {
-            if let enableMethod = class_getClassMethod(voiceOverClass, NSSelectorFromString("enableVoiceOver")) {
-                let implementation = method_getImplementation(enableMethod)
-                typealias EnableVoiceOverFunction = @convention(c) (AnyClass, Selector) -> Void
-                let enableVoiceOver = unsafeBitCast(implementation, to: EnableVoiceOverFunction.self)
-                enableVoiceOver(voiceOverClass, NSSelectorFromString("enableVoiceOver"))
-            }
-        }
-        #endif
-    }
-    
-    /// Disable VoiceOver programmatically for UI testing
-    public static func disableVoiceOverForTesting() {
-        #if DEBUG || TESTING
-        if let voiceOverClass = NSClassFromString("UIAccessibilityVoiceOverController") {
-            if let disableMethod = class_getClassMethod(voiceOverClass, NSSelectorFromString("disableVoiceOver")) {
-                let implementation = method_getImplementation(disableMethod)
-                typealias DisableVoiceOverFunction = @convention(c) (AnyClass, Selector) -> Void
-                let disableVoiceOver = unsafeBitCast(implementation, to: DisableVoiceOverFunction.self)
-                disableVoiceOver(voiceOverClass, NSSelectorFromString("disableVoiceOver"))
-            }
-        }
-        #endif
-    }
-    
     /// Post a test announcement to verify VoiceOver is working
+    /// NOTE: This only works if VoiceOver is already enabled in Settings
     public static func testVoiceOverAnnouncement() {
         let testMessage = "VoiceOver test announcement - if you hear this, VoiceOver is working"
         UIAccessibility.post(notification: .announcement, argument: testMessage)
@@ -723,10 +662,11 @@ public final class DebugCollectionView: UICollectionView {
     }
     
     /// Enable enhanced VoiceOver logging for testing
+    /// NOTE: This assumes VoiceOver is already enabled in Settings
     public func enableVoiceOverTestMode() {
         log(category: .accessibility, "TEST: VoiceOver test mode enabled")
         
-        // Post a test announcement
+        // Post a test announcement (only works if VoiceOver is already on)
         DebugCollectionView.testVoiceOverAnnouncement()
         
         // Log current VoiceOver state
@@ -736,7 +676,7 @@ public final class DebugCollectionView: UICollectionView {
         if voiceOverRunning {
             log(category: .accessibility, "SUCCESS: VoiceOver is active and should be narrating elements")
         } else {
-            log(category: .accessibility, "WARNING: VoiceOver not detected - audio narration may not work")
+            log(category: .accessibility, "INFO: VoiceOver not detected - enable it in Settings for audio narration")
         }
     }
 }
