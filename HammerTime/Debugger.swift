@@ -248,7 +248,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                 let noHW  = !HardwarePressCache.recentlyPressed(id)
                 let stale = CACurrentMediaTime() - self.lastFocusTimestamp > 0.12
                 if noHW && stale {
-                    self.log("[A11Y] ⚠️ Phantom UIPress \(id) → InfinityBug?")
+                    self.log("[A11Y] WARNING: Phantom UIPress \(id) → InfinityBug?")
                     self.log("(debug)  noHW=\(noHW)  stale=\(stale)  dt=\(CACurrentMediaTime() - self.lastFocusTimestamp)s")
                     os_signpost(.event, log: self.poiLog,
                                 name: "InfinityBugPhantomPress",
@@ -265,7 +265,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         NotificationCenter.default.publisher(for: UIApplication.didReceiveMemoryWarningNotification)
             .sink { [weak self] _ in
                 guard let self else { return }
-                self.log("⚠️ Memory warning")
+                self.log("WARNING: Memory warning")
                 os_signpost(.event, log: self.perfLog, name: "MemWarn")
             }
             .store(in: &cancellables)
@@ -305,7 +305,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             let diff = now - lastTime
             if diff > 1 {
                 let ms = Int(diff * 1_000)
-                self.log("⚠️ RunLoop stall \(ms) ms")
+                self.log("WARNING: RunLoop stall \(ms) ms")
                 os_signpost(.event, log: self.perfLog, name: "RunLoopStall", "%d", ms)
             }
             lastTime = now
@@ -326,7 +326,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         let dur = link.targetTimestamp - link.timestamp
         if dur > (2.0 / 60.0) { // > 2 frames drop
             let ms = Int(dur * 1_000)
-            log("⚠️ Frame hitch \(ms) ms")
+            log("WARNING: Frame hitch \(ms) ms")
             os_signpost(.event, log: perfLog, name: "FrameHitch", "%d", ms)
         }
     }
@@ -360,7 +360,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
 
                 if global.width < 6 || global.height < 6 {
                     let rectStr = NSCoder.string(for: global)
-                    self.log("[A11Y] ⚠️ FocusGuide tiny frame \(rectStr)")
+                    self.log("[A11Y] WARNING: FocusGuide tiny frame \(rectStr)")
                     os_signpost(.event, log: self.poiLog, name: "TinyFocusGuide", "%{public}s", rectStr)
                 }
             }
@@ -408,7 +408,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                 .map { String(describing: type(of: $0)) }
                 .joined(separator: ", ")
 
-            log("⚠️ Multiple press-gesture recognizers on \(type(of: view)): [\(list)]")
+            log("WARNING: Multiple press-gesture recognizers on \(type(of: view)): [\(list)]")
             os_signpost(.event,
                         log: poiLog,
                         name: "ConflictingPressGR",
@@ -439,7 +439,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             }
         }
         for (id, count) in dict where count > 1 {
-            log("⚠️ Duplicate accessibilityIdentifier \"\(id)\" ×\(count)")
+            log("WARNING: Duplicate accessibilityIdentifier \"\(id)\" ×\(count)")
         }
     }
 
@@ -452,7 +452,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             }
         }
         for (label, count) in dict where count > 5 { // >5 identical labels usually smells
-            log("⚠️ Potential duplicate label \"\(label)\" ×\(count)")
+            log("WARNING: Potential duplicate label \"\(label)\" ×\(count)")
         }
     }
 
@@ -484,7 +484,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
     /// Sets up tvOS-specific low-level input monitoring using GameController framework
     private func setupTVOSInputMonitoring() {
         #if DEBUG
-        log("✅ Starting tvOS low-level input monitoring")
+        log("SUCCESS: Starting tvOS low-level input monitoring")
         os_signpost(.event, log: inputLog, name: "TVOSInputMonitoringStarted")
         
         // Enhanced GameController monitoring with state tracking
@@ -519,7 +519,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
     private func setupControllerStateMonitoring(_ controller: GCController) {
         let productName = controller.productCategory
         
-        log("🎮 Enhanced monitoring for controller: \(productName)")
+                    log("CONTROLLER: Enhanced monitoring for controller: \(productName)")
         os_signpost(.event, log: inputLog, name: "ControllerMonitoringSetup", "%{public}s", productName)
         
         // Track previous state for differential monitoring
@@ -616,7 +616,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                     // Only log if this is a new state
                     let stateKey = "Polled\(direction)"
                     if !HardwarePressCache.recentlyPressed(stateKey, within: 0.1) {
-                        log("📊 POLL: \(direction) detected via polling (x:\(String(format: "%.3f", x)), y:\(String(format: "%.3f", y)))")
+                        log("POLL: \(direction) detected via polling (x:\(String(format: "%.3f", x)), y:\(String(format: "%.3f", y)))")
                         HardwarePressCache.markDown(stateKey)
                     }
                 }
@@ -655,7 +655,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
     /// WARNING: These methods may not work reliably and are for research only
     private func setupPrivateAPIMonitoring() {
         #if DEBUG
-        log("⚠️ Private API monitoring is experimental and may not work")
+                  log("WARNING: Private API monitoring is experimental and may not work")
         
         // Method 1: Hook into UIApplication event handling (may not work)
         setupUIApplicationEventHook()
@@ -676,14 +676,14 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         
         for selectorName in experimentalSelectors {
             guard let originalMethod = class_getInstanceMethod(appClass, NSSelectorFromString(selectorName)) else {
-                log("⚠️ Selector \(selectorName) not found - skipping")
+                                  log("WARNING: Selector \(selectorName) not found - skipping")
                 continue
             }
             
             let originalImplementation = method_getImplementation(originalMethod)
             let newImplementation: IMP = imp_implementationWithBlock({ (app: UIApplication, event: Any) in
                 // Log the event (using AXFocusDebugger.shared to avoid capture issues)
-                AXFocusDebugger.shared.log("📱 UIApplication Event: \(selectorName) - \(type(of: event))")
+                AXFocusDebugger.shared.log("APP_EVENT: UIApplication Event: \(selectorName) - \(type(of: event))")
                 os_signpost(.event, log: AXFocusDebugger.shared.inputLog, name: "UIApplicationEvent", "%{public}s", selectorName)
                 
                 // Call original implementation
@@ -698,12 +698,12 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
     
     /// GSEvent monitoring is not available on tvOS
     private func setupGSEventMonitoring() {
-        log("⚠️ GSEvent is not available on tvOS - skipping")
+                  log("WARNING: GSEvent is not available on tvOS - skipping")
     }
     
     /// System event tap is not available on tvOS
     private func setupSystemEventTap() {
-        log("⚠️ System event tap is not available on tvOS - skipping")
+                  log("WARNING: System event tap is not available on tvOS - skipping")
     }
     
     // MARK: – Enhanced Hardware Polling -------------------------------------
@@ -749,7 +749,7 @@ extension UIViewController {
     @objc func axdbg_preferredFocusEnvironments() -> [UIFocusEnvironment] {
         let envs = axdbg_preferredFocusEnvironments() // calls original
         if envs.count > 1 {
-            NSLog("[AXDBG] ⚠️ preferredFocusEnvironments count = \(envs.count) in \(type(of: self))")
+                            NSLog("[AXDBG] WARNING: preferredFocusEnvironments count = \(envs.count) in \(type(of: self))")
         }
         return envs
     }

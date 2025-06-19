@@ -333,7 +333,7 @@ final class DebugCollectionViewUITests: XCTestCase {
             if current == lastID && isValidFocus(current) {
                 repeatCounter += 1
                 if repeatCounter > 50 {
-                    XCTFail("⚠️ Potential InfinityBug: focus stuck on \(current)")
+                    XCTFail("WARNING: Potential InfinityBug: focus stuck on \(current)")
                     break
                 }
             } else {
@@ -437,7 +437,7 @@ final class DebugCollectionViewUITests: XCTestCase {
                 stuckCount += 1
                 if stuckCount > maxStuckAllowed {
                     NSLog("ERROR: Focus stuck on '\(afterFocus)' for \(stuckCount) consecutive moves")
-                    XCTFail("⚠️ INFINITY BUG DETECTED: Focus stuck on \(afterFocus) for \(stuckCount) moves")
+                    XCTFail("CRITICAL: INFINITY BUG DETECTED: Focus stuck on \(afterFocus) for \(stuckCount) moves")
                     break
                 }
             } else {
@@ -614,8 +614,8 @@ final class DebugCollectionViewUITests: XCTestCase {
                 consecutiveStuck += 1
                 NSLog("INFINITY BUG: Focus stuck on '\(afterFocus)' for \(consecutiveStuck) consecutive moves")
                 if consecutiveStuck >= maxConsecutiveStuck {
-                    NSLog("🚨 INFINITY BUG DETECTED: Focus stuck on '\(afterFocus)' for \(consecutiveStuck) consecutive navigation inputs")
-                    XCTFail("🚨 InfinityBug: Focus stuck on \(afterFocus) for \(consecutiveStuck) consecutive moves")
+                                NSLog("CRITICAL: INFINITY BUG DETECTED: Focus stuck on '\(afterFocus)' for \(consecutiveStuck) consecutive navigation inputs")
+            XCTFail("CRITICAL: InfinityBug: Focus stuck on \(afterFocus) for \(consecutiveStuck) consecutive moves")
                     break
                 }
             } else {
@@ -658,8 +658,8 @@ final class DebugCollectionViewUITests: XCTestCase {
             if afterFocus == lastFocus && !afterFocus.isEmpty {
                 consecutiveStuck += 1
                 if consecutiveStuck >= maxConsecutiveStuck {
-                    NSLog("🚨 INFINITY BUG DETECTED: Focus stuck on '\(afterFocus)' for \(consecutiveStuck) consecutive moves")
-                    XCTFail("🚨 InfinityBug: Focus stuck on \(afterFocus) for \(consecutiveStuck) consecutive moves")
+                                    NSLog("CRITICAL: INFINITY BUG DETECTED: Focus stuck on '\(afterFocus)' for \(consecutiveStuck) consecutive moves")
+                XCTFail("CRITICAL: InfinityBug: Focus stuck on \(afterFocus) for \(consecutiveStuck) consecutive moves")
                     break
                 }
             } else {
@@ -1121,8 +1121,8 @@ final class DebugCollectionViewUITests: XCTestCase {
             if beforeFocus == afterFocus && !afterFocus.isEmpty {
                 focusStuckCount += 1
                 if focusStuckCount >= maxStuckThreshold {
-                    NSLog("🚨 INFINITY BUG DETECTED: Focus stuck on '\(afterFocus)' for \(focusStuckCount) moves in conflicted environment")
-                    XCTFail("🚨 InfinityBug reproduced via accessibility conflicts: Focus stuck on \(afterFocus)")
+                                NSLog("CRITICAL: INFINITY BUG DETECTED: Focus stuck on '\(afterFocus)' for \(focusStuckCount) moves in conflicted environment")
+            XCTFail("CRITICAL: InfinityBug reproduced via accessibility conflicts: Focus stuck on \(afterFocus)")
                     break
                 }
             } else {
@@ -1175,7 +1175,7 @@ final class DebugCollectionViewUITests: XCTestCase {
         // In a properly working system, content should dominate even with conflicts
         // If containers trap focus, that could indicate InfinityBug conditions
         if containerFocuses.count > contentFocuses.count {
-            NSLog("⚠️ WARNING: Focus trapped in container layers more than content - potential InfinityBug condition")
+            NSLog("WARNING: Focus trapped in container layers more than content - potential InfinityBug condition")
         }
         
         // Don't fail the test - we want to observe the conflict behavior
@@ -1227,7 +1227,7 @@ final class DebugCollectionViewUITests: XCTestCase {
                     stuckCount += 1
                     if stuckCount >= 8 {
                         infinityBugDetected = true
-                        NSLog("🚨 INFINITY BUG DETECTED: Focus infinitely stuck on '\(afterFocus)' after directional switch")
+                        NSLog("CRITICAL: INFINITY BUG DETECTED: Focus infinitely stuck on '\(afterFocus)' after directional switch")
                         break
                     }
                 } else {
@@ -1273,7 +1273,7 @@ final class DebugCollectionViewUITests: XCTestCase {
             NSLog("POST-RELAUNCH[\(i)]: UP '\(beforeFocus)' → '\(afterFocus)'")
             
             if beforeFocus == afterFocus && beforeFocus == stuckElement {
-                NSLog("🚨 INFINITY BUG PERSISTED: System focus still corrupted after relaunch!")
+                NSLog("CRITICAL: INFINITY BUG PERSISTED: System focus still corrupted after relaunch!")
                 break
             }
         }

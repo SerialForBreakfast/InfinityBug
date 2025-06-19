@@ -159,7 +159,7 @@ class ViewController: UIViewController {
         let traversalTime = CACurrentMediaTime() - startTime
         
         if traversalTime > 0.1 { // >100ms indicates stress
-            NSLog("🚨 INFINITY BUG CONDITION: Accessibility traversal taking \(traversalTime)s - InfinityBug likely")
+            NSLog("CRITICAL: INFINITY BUG CONDITION: Accessibility traversal taking \(traversalTime)s - InfinityBug likely")
         }
     }
     
