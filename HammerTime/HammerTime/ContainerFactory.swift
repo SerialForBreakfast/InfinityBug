@@ -59,18 +59,29 @@ private struct PaddedControllerView: UIViewControllerRepresentable {
     let padding: CGFloat
     let background: Color
     let animal: Animal
+    var toggleAccessibilityElementTransparencySetting: Bool = false
     
     func makeUIViewController(context: Context) -> UIViewController {
         let container = UIViewController()
         container.view.backgroundColor = UIColor(background)
-        container.view.isAccessibilityElement = true
         
         // Accessibility (Animal)
         let traits = animal.traits
-        container.view.accessibilityLabel  = traits.name
-        container.view.accessibilityValue  = traits.sound
-        container.view.accessibilityHint   = "Habitat: \(traits.habitat)"
-        container.view.accessibilityIdentifier = "Animal-\(traits.name)"
+        
+        if toggleAccessibilityElementTransparencySetting {
+            // Make container transparent to accessibility
+            container.view.isAccessibilityElement = false
+            container.view.accessibilityElementsHidden = false
+        } else {
+            // Original behavior with accessibility properties
+            container.view.isAccessibilityElement = true
+            container.view.accessibilityElementsHidden = true
+            
+            container.view.accessibilityLabel  = traits.name
+            container.view.accessibilityValue  = traits.sound
+            container.view.accessibilityHint   = "Habitat: \(traits.habitat)"
+            container.view.accessibilityIdentifier = "Animal-\(traits.name)"
+        }
         
         // Child VC embedding
         container.addChild(embedded)
@@ -111,12 +122,13 @@ public enum ContainerFactory {
                 embedded: childVC,
                 padding: 10,
                 background: Color(randomUIColor()),
-                animal: innerAnimal
+                animal: innerAnimal,
+                toggleAccessibilityElementTransparencySetting: false
             )
         )
         hosting.view.translatesAutoresizingMaskIntoConstraints = false
         
-        // 2️⃣  Outer UIKit parent with plant-themed accessibility
+        // 2️⃣  Outer UIKit parent - KEEP accessibility conflicts
         let parentVC = UIViewController()
         parentVC.view.backgroundColor = randomUIColor()
         parentVC.view.isAccessibilityElement = true
@@ -139,9 +151,20 @@ public enum ContainerFactory {
         hosting.didMove(toParent: parentVC)
         
         NSLog("""
-        [Factory] Created parent VC with plant \"\(plantTraits.name)\" \
-        containing animal \"\(innerAnimal.traits.name)\".
+        [Factory] Created CONFLICTED parent VC with plant \"\(plantTraits.name)\" \
+        containing animal \"\(innerAnimal.traits.name)\" - INTENTIONAL ACCESSIBILITY CONFLICTS
         """)
+        
+        // KEEP the accessibility override that strips identifiers - this creates conflicts!
+        DispatchQueue.main.async {
+            if let sampleVC = childVC as? SampleViewController {
+                let collectionView = sampleVC.debugCollectionView
+                
+                // This creates accessibility conflicts by overriding the collection view's properties
+                parentVC.view.accessibilityElements = [collectionView]
+                hosting.view.accessibilityElements = [collectionView]
+            }
+        }
         
         return parentVC
     }

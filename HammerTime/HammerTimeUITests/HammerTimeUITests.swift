@@ -34,20 +34,31 @@ final class DebugCollectionViewUITests: XCTestCase {
         
         app.launch()
         
-        // Wait for app to fully load
+        // Wait longer for complex container hierarchy to settle
+        sleep(5)
+        
+        // The ContainerFactory creates accessibility conflicts, so the collection view
+        // may not have its proper identifier. Find it by type instead.
+        let allCollectionViews = app.descendants(matching: .collectionView)
+        NSLog("SETUP: Found \(allCollectionViews.count) collection views")
+        
+        var foundCollectionView = false
+        for i in 0..<allCollectionViews.count {
+            let cv = allCollectionViews.element(boundBy: i)
+            NSLog("SETUP: Collection view \(i): identifier='\(cv.identifier)', exists=\(cv.exists)")
+            if cv.exists {
+                foundCollectionView = true
+                break
+            }
+        }
+        
+        XCTAssertTrue(foundCollectionView, "Must find at least one collection view (accessibility conflicts expected)")
+        
+        // Wait for container hierarchy to stabilize
         sleep(2)
         
-        // Wait for CV root - this is the only essential check
-        let cv = app.collectionViews["DebugCollectionView"]
-        XCTAssertTrue(cv.waitForExistence(timeout: 10),
-                      "DebugCollectionView must appear within 10 s")
-        
-        // Wait for app to stabilize
-        sleep(1)
-        
-        // Just verify we have a basic focus state - don't navigate
         let initialFocus = focusID
-        NSLog("SETUP: Initial focus state: '\(initialFocus)'")
+        NSLog("SETUP: Initial focus state with accessibility conflicts: '\(initialFocus)'")
     }
     
     override func tearDownWithError() throws { app = nil }
@@ -716,6 +727,455 @@ final class DebugCollectionViewUITests: XCTestCase {
         
         XCTAssertGreaterThan(persistentCount, totalTests * 3 / 4, 
                            "Most input burst configurations should maintain focus persistence")
+    }
+    
+    /// Test accessibility conflicts in multi-layered container hierarchy
+    func testContainerFactoryAccessibilityConflicts() throws {
+        NSLog("TEST: Starting ContainerFactory accessibility conflicts test...")
+        
+        // The ContainerFactory creates a 3-layer hierarchy:
+        // 1. Outer UIViewController (Plant-themed: Oak, Rose, etc.)
+        // 2. UIHostingController (SwiftUI wrapper)  
+        // 3. Inner UIViewController (Animal-themed: Cat, Dog, etc.)
+        // 4. SampleViewController (our actual content)
+        // 5. DebugCollectionView (the collection view)
+        
+        let collectionView = app.collectionViews["DebugCollectionView"]
+        XCTAssertTrue(collectionView.waitForExistence(timeout: 10), "DebugCollectionView should exist")
+        
+        // Test 1: Check for accessibility element conflicts
+        NSLog("STEP 1: Checking for accessibility element conflicts...")
+        
+        // Find all accessibility elements in the hierarchy
+        let allElements = app.descendants(matching: .any)
+        var accessibilityConflicts: [String: Int] = [:]
+        var containerElements: [(identifier: String, label: String, type: String)] = []
+        
+        for elementIndex in 0..<min(allElements.count, 100) {
+            let element = allElements.element(boundBy: elementIndex)
+            if element.exists {
+                let identifier = element.identifier
+                let label = element.label
+                let elementType = element.elementType.rawValue
+                
+                // Track container-related elements
+                if identifier.contains("Plant-") || identifier.contains("Animal-") {
+                    containerElements.append((identifier: identifier, label: label, type: String(elementType)))
+                    NSLog("CONTAINER ELEMENT: ID='\(identifier)', Label='\(label)', Type=\(elementType)")
+                }
+                
+                // Track potential conflicts
+                if !identifier.isEmpty {
+                    accessibilityConflicts[identifier, default: 0] += 1
+                }
+            }
+        }
+        
+        // Report conflicts
+        let conflicts = accessibilityConflicts.filter { $0.value > 1 }
+        for (identifier, count) in conflicts {
+            NSLog("CONFLICT: Identifier '\(identifier)' appears \(count) times")
+        }
+        
+        NSLog("CONTAINERS: Found \(containerElements.count) container elements")
+        NSLog("CONFLICTS: Found \(conflicts.count) duplicate identifiers")
+        
+        // Test 2: Focus navigation through container layers
+        NSLog("STEP 2: Testing focus navigation through container layers...")
+        
+        var focusPath: [String] = []
+        let initialFocus = focusID
+        focusPath.append(initialFocus)
+        
+        // Navigate and track which layer we're focusing on
+        for move in 0..<20 {
+            let beforeFocus = focusID
+            
+            // Alternate navigation directions
+            let direction: XCUIRemote.Button = (move % 2 == 0) ? .down : .right
+            remote.press(direction, forDuration: 0.05)
+            usleep(200_000)
+            
+            let afterFocus = focusID
+            focusPath.append(afterFocus)
+            
+            // Categorize the focused element
+            let focusCategory = categorizeFocusedElement(afterFocus)
+            NSLog("FOCUS[\(move)]: '\(beforeFocus)' → '\(afterFocus)' (\(focusCategory))")
+            
+            // Check if we're stuck on container elements
+            if focusCategory == "Container" && move > 5 {
+                NSLog("WARNING: Focus stuck on container element after \(move) moves")
+            }
+        }
+        
+        // Analyze focus distribution
+        let containerFocuses = focusPath.filter { categorizeFocusedElement($0) == "Container" }
+        let contentFocuses = focusPath.filter { categorizeFocusedElement($0) == "Content" }
+        let navFocuses = focusPath.filter { categorizeFocusedElement($0) == "Navigation" }
+        
+        NSLog("FOCUS DISTRIBUTION: Container=\(containerFocuses.count), Content=\(contentFocuses.count), Nav=\(navFocuses.count)")
+        
+        // Test 3: Accessibility announcements in layered hierarchy
+        NSLog("STEP 3: Testing accessibility announcements in layered hierarchy...")
+        
+        // Try to focus on different layer types and verify announcements
+        let testElements = [
+            ("Cell-0", "Content layer"),
+            ("Nav-Header1", "Navigation layer")
+        ]
+        
+        for (elementID, layerType) in testElements {
+            let element = app.descendants(matching: .any).matching(identifier: elementID).firstMatch
+            if element.exists && element.isHittable {
+                NSLog("ANNOUNCEMENT TEST: Focusing on \(elementID) (\(layerType))")
+                
+                // Navigate to element (simplified approach)
+                for _ in 0..<10 {
+                    if focusID == elementID { break }
+                    remote.press(.down, forDuration: 0.05)
+                    usleep(100_000)
+                }
+                
+                let finalFocus = focusID
+                let focusMatches = (finalFocus == elementID)
+                NSLog("ANNOUNCEMENT RESULT: Target='\(elementID)', Actual='\(finalFocus)', Match=\(focusMatches)")
+            }
+        }
+        
+        XCTAssertGreaterThan(containerElements.count, 0, "Should find container elements from ContainerFactory")
+        XCTAssertLessThan(conflicts.count, 5, "Should have minimal accessibility identifier conflicts")
+    }
+    
+    /// Test focus behavior when containers have conflicting accessibility properties
+    func testContainerAccessibilityPropertyConflicts() throws {
+        NSLog("TEST: Starting container accessibility property conflicts test...")
+        
+        // Test how focus behaves when multiple containers have accessibility properties
+        let collectionView = app.collectionViews["DebugCollectionView"]
+        XCTAssertTrue(collectionView.exists, "DebugCollectionView should exist")
+        
+        // Step 1: Try to identify container layers by their accessibility properties
+        NSLog("STEP 1: Identifying container layers...")
+        
+        var plantContainers: [String] = []
+        var animalContainers: [String] = []
+        
+        let allElements = app.descendants(matching: .any)
+        for elementIndex in 0..<min(allElements.count, 50) {
+            let element = allElements.element(boundBy: elementIndex)
+            if element.exists {
+                let identifier = element.identifier
+                let label = element.label
+                let value = element.value as? String ?? ""
+                
+                // Identify plant containers (outer layer)
+                if identifier.hasPrefix("Plant-") {
+                    plantContainers.append(identifier)
+                    NSLog("PLANT CONTAINER: ID='\(identifier)', Label='\(label)', Value='\(value)'")
+                }
+                
+                // Identify animal containers (inner layer)  
+                if identifier.hasPrefix("Animal-") {
+                    animalContainers.append(identifier)
+                    NSLog("ANIMAL CONTAINER: ID='\(identifier)', Label='\(label)', Value='\(value)'")
+                }
+            }
+        }
+        
+        NSLog("CONTAINERS: Found \(plantContainers.count) plant containers, \(animalContainers.count) animal containers")
+        
+        // Step 2: Test focus precedence between container layers
+        NSLog("STEP 2: Testing focus precedence between container layers...")
+        
+        var focusHierarchyTest: [(focus: String, layer: String)] = []
+        
+        // Navigate through the app and categorize each focus
+        for move in 0..<15 {
+            let currentFocus = focusID
+            let layer = determineAccessibilityLayer(currentFocus)
+            focusHierarchyTest.append((focus: currentFocus, layer: layer))
+            
+            NSLog("HIERARCHY[\(move)]: Focus='\(currentFocus)' Layer='\(layer)'")
+            
+            // Move focus
+            remote.press(.right, forDuration: 0.05)
+            usleep(150_000)
+        }
+        
+        // Analyze which layers actually receive focus
+        let layerCounts = Dictionary(grouping: focusHierarchyTest, by: { $0.layer })
+            .mapValues { $0.count }
+        
+        for (layer, count) in layerCounts {
+            NSLog("LAYER FOCUS COUNT: \(layer) = \(count)")
+        }
+        
+        // Step 3: Test accessibility trait conflicts
+        NSLog("STEP 3: Testing accessibility trait conflicts...")
+        
+        // Check if container elements interfere with content element traits
+        let firstCell = app.cells["Cell-0"]
+        if firstCell.exists {
+            let cellTraits = firstCell.accessibilityTraits
+            NSLog("CELL TRAITS: Cell-0 has traits: \(cellTraits)")
+            
+            // Try to interact with the cell and see if container layers interfere
+            let beforeInteraction = focusID
+            remote.press(.select, forDuration: 0.1)
+            usleep(200_000)
+            let afterInteraction = focusID
+            
+            NSLog("INTERACTION: Before='\(beforeInteraction)', After='\(afterInteraction)'")
+        }
+        
+        // Assertions
+        XCTAssertTrue(plantContainers.count > 0 || animalContainers.count > 0, 
+                     "Should find at least one container layer")
+        
+        // Most focus should be on content, not containers
+        let contentFocusCount = layerCounts["Content"] ?? 0
+        let containerFocusCount = (layerCounts["Plant"] ?? 0) + (layerCounts["Animal"] ?? 0)
+        
+        XCTAssertGreaterThan(contentFocusCount, containerFocusCount, 
+                           "Content should receive more focus than containers")
+    }
+    
+    /// Test VoiceOver behavior with nested container accessibility elements
+    func testVoiceOverNestedContainerBehavior() throws {
+        NSLog("TEST: Starting VoiceOver nested container behavior test...")
+        
+        // This test examines how VoiceOver handles the nested accessibility hierarchy
+        // created by ContainerFactory: Plant > Animal > SampleVC > CollectionView > Cells
+        
+        let collectionView = app.collectionViews["DebugCollectionView"]
+        XCTAssertTrue(collectionView.exists, "DebugCollectionView should exist")
+        
+        // Step 1: Map the complete accessibility hierarchy
+        NSLog("STEP 1: Mapping accessibility hierarchy...")
+        
+        var hierarchyMap: [String: (parent: String?, children: [String], level: Int)] = [:]
+        
+        // This is a simplified hierarchy mapping since we can't easily traverse parent-child
+        // relationships in XCTest, but we can categorize by naming patterns
+        let allElements = app.descendants(matching: .any)
+        var elementsByType: [String: [String]] = [:]
+        
+        for elementIndex in 0..<min(allElements.count, 30) {
+            let element = allElements.element(boundBy: elementIndex)
+            if element.exists {
+                let identifier = element.identifier
+                if !identifier.isEmpty {
+                    let category = categorizeElementByIdentifier(identifier)
+                    elementsByType[category, default: []].append(identifier)
+                }
+            }
+        }
+        
+        for (category, identifiers) in elementsByType {
+            NSLog("HIERARCHY: \(category) = \(identifiers)")
+        }
+        
+        // Step 2: Test focus flow through hierarchy levels
+        NSLog("STEP 2: Testing focus flow through hierarchy levels...")
+        
+        var hierarchyFocusFlow: [(element: String, category: String, order: Int)] = []
+        
+        for step in 0..<25 {
+            let currentFocus = focusID
+            let category = categorizeElementByIdentifier(currentFocus)
+            hierarchyFocusFlow.append((element: currentFocus, category: category, order: step))
+            
+            NSLog("FLOW[\(step)]: '\(currentFocus)' (\(category))")
+            
+            // Navigate with varying patterns to test hierarchy traversal
+            let direction: XCUIRemote.Button
+            switch step % 4 {
+            case 0: direction = .right
+            case 1: direction = .down  
+            case 2: direction = .left
+            case 3: direction = .up
+            default: direction = .right
+            }
+            
+            remote.press(direction, forDuration: 0.04)
+            usleep(120_000)
+        }
+        
+        // Analyze hierarchy traversal patterns
+        let categoryTransitions = zip(hierarchyFocusFlow, hierarchyFocusFlow.dropFirst())
+            .map { (from: $0.category, to: $1.category) }
+        
+        var transitionCounts: [String: Int] = [:]
+        for transition in categoryTransitions {
+            let key = "\(transition.from) → \(transition.to)"
+            transitionCounts[key, default: 0] += 1
+        }
+        
+        NSLog("HIERARCHY TRANSITIONS:")
+        for (transition, count) in transitionCounts.sorted(by: { $0.value > $1.value }) {
+            NSLog("  \(transition): \(count) times")
+        }
+        
+        // Step 3: Test accessibility element visibility at each level
+        NSLog("STEP 3: Testing accessibility element visibility...")
+        
+        // Check if nested containers are properly exposed to accessibility
+        let plantElements = elementsByType["Plant"] ?? []
+        let animalElements = elementsByType["Animal"] ?? []
+        let contentElements = elementsByType["Content"] ?? []
+        let navElements = elementsByType["Navigation"] ?? []
+        
+        NSLog("VISIBILITY: Plant=\(plantElements.count), Animal=\(animalElements.count), Content=\(contentElements.count), Nav=\(navElements.count)")
+        
+        // Verify that content elements are still accessible despite container wrapping
+        XCTAssertGreaterThan(contentElements.count, 5, "Content elements should be accessible despite container wrapping")
+        
+        // Most transitions should be within content, not between container layers
+        let contentTransitions = transitionCounts.filter { $0.key.contains("Content") }.values.reduce(0, +)
+        let containerTransitions = transitionCounts.filter { $0.key.contains("Plant") || $0.key.contains("Animal") }.values.reduce(0, +)
+        
+        NSLog("TRANSITION ANALYSIS: Content=\(contentTransitions), Container=\(containerTransitions)")
+        
+        // Content should dominate navigation
+        XCTAssertGreaterThan(contentTransitions, containerTransitions, 
+                           "Focus should primarily navigate content, not containers")
+    }
+    
+    // MARK: - Helper Methods for Container Testing
+    
+    /// Categorizes a focused element by its identifier pattern
+    private func categorizeFocusedElement(_ identifier: String) -> String {
+        if identifier.hasPrefix("Plant-") { return "Container" }
+        if identifier.hasPrefix("Animal-") { return "Container" }
+        if identifier.hasPrefix("Cell-") { return "Content" }
+        if identifier.hasPrefix("Nav-") { return "Navigation" }
+        if identifier == "DebugCollectionView" { return "Content" }
+        if identifier.isEmpty || identifier == "NONE" { return "Unknown" }
+        return "Other"
+    }
+    
+    /// Determines which accessibility layer an element belongs to
+    private func determineAccessibilityLayer(_ identifier: String) -> String {
+        if identifier.hasPrefix("Plant-") { return "Plant" }
+        if identifier.hasPrefix("Animal-") { return "Animal" }
+        if identifier.hasPrefix("Cell-") { return "Content" }
+        if identifier.hasPrefix("Nav-") { return "Navigation" }
+        if identifier == "DebugCollectionView" { return "Content" }
+        return "Unknown"
+    }
+    
+    /// Categorizes elements by their identifier patterns for hierarchy analysis
+    private func categorizeElementByIdentifier(_ identifier: String) -> String {
+        if identifier.hasPrefix("Plant-") { return "Plant" }
+        if identifier.hasPrefix("Animal-") { return "Animal" }
+        if identifier.hasPrefix("Cell-") { return "Content" }
+        if identifier.hasPrefix("Nav-") { return "Navigation" }
+        if identifier == "DebugCollectionView" { return "CollectionView" }
+        if identifier.isEmpty { return "Empty" }
+        return "Other"
+    }
+    
+    /// Test InfinityBug reproduction through accessibility conflicts
+    func testInfinityBugViaAccessibilityConflicts() throws {
+        NSLog("TEST: Starting InfinityBug reproduction via accessibility conflicts...")
+        
+        // The ContainerFactory should have created multiple competing accessibility elements
+        let allElements = app.descendants(matching: .any)
+        var conflictingElements: [String] = []
+        
+        for elementIndex in 0..<min(allElements.count, 50) {
+            let element = allElements.element(boundBy: elementIndex)
+            if element.exists {
+                let identifier = element.identifier
+                if identifier.hasPrefix("Plant-") || identifier.hasPrefix("Animal-") {
+                    conflictingElements.append(identifier)
+                    NSLog("CONFLICT ELEMENT: '\(identifier)' - Label: '\(element.label)'")
+                }
+            }
+        }
+        
+        NSLog("CONFLICTS: Found \(conflictingElements.count) conflicting accessibility elements")
+        XCTAssertGreaterThan(conflictingElements.count, 0, "Should have accessibility conflicts for InfinityBug testing")
+        
+        // Now stress test focus navigation in this conflicted environment
+        var focusStuckCount = 0
+        var lastFocus = ""
+        let maxStuckThreshold = 15
+        
+        NSLog("STRESS: Starting navigation in conflicted accessibility environment...")
+        
+        for move in 0..<200 {
+            let direction: XCUIRemote.Button = [.up, .down, .left, .right].randomElement()!
+            let beforeFocus = focusID
+            
+            remote.press(direction, forDuration: 0.02) // Very fast presses
+            usleep(30_000) // 30ms between presses
+            
+            let afterFocus = focusID
+            
+            if beforeFocus == afterFocus && !afterFocus.isEmpty {
+                focusStuckCount += 1
+                if focusStuckCount >= maxStuckThreshold {
+                    NSLog("🚨 INFINITY BUG DETECTED: Focus stuck on '\(afterFocus)' for \(focusStuckCount) moves in conflicted environment")
+                    XCTFail("🚨 InfinityBug reproduced via accessibility conflicts: Focus stuck on \(afterFocus)")
+                    break
+                }
+            } else {
+                focusStuckCount = 0
+            }
+            
+            // Log every 25th move to track progress
+            if move % 25 == 0 {
+                NSLog("CONFLICT STRESS[\(move)]: \(direction) '\(beforeFocus)' → '\(afterFocus)' (stuck: \(focusStuckCount))")
+            }
+            
+            lastFocus = afterFocus
+        }
+        
+        NSLog("CONFLICT STRESS COMPLETE: Max stuck count: \(focusStuckCount)")
+        XCTAssertLessThan(focusStuckCount, maxStuckThreshold, "Focus should not get infinitely stuck due to accessibility conflicts")
+    }
+    
+    /// Test how VoiceOver handles the intentional accessibility conflicts
+    func testVoiceOverAccessibilityConflictHandling() throws {
+        NSLog("TEST: Testing VoiceOver handling of intentional accessibility conflicts...")
+        
+        // Navigate and track how VoiceOver resolves conflicts between:
+        // - Plant container accessibility 
+        // - Animal container accessibility
+        // - Collection view accessibility
+        // - Cell accessibility
+        
+        var conflictResolutionLog: [(move: Int, focus: String, category: String)] = []
+        
+        for move in 0..<50 {
+            let currentFocus = focusID
+            let category = categorizeElementByIdentifier(currentFocus)
+            conflictResolutionLog.append((move: move, focus: currentFocus, category: category))
+            
+            NSLog("CONFLICT RESOLUTION[\(move)]: Focus='\(currentFocus)' Category='\(category)'")
+            
+            // Navigate through the conflicted hierarchy
+            let direction: XCUIRemote.Button = (move % 2 == 0) ? .right : .down
+            remote.press(direction, forDuration: 0.05)
+            usleep(150_000)
+        }
+        
+        // Analyze how often focus gets trapped in container layers vs content
+        let containerFocuses = conflictResolutionLog.filter { $0.category == "Plant" || $0.category == "Animal" }
+        let contentFocuses = conflictResolutionLog.filter { $0.category == "Content" || $0.category == "CollectionView" }
+        
+        NSLog("CONFLICT ANALYSIS: Container focuses=\(containerFocuses.count), Content focuses=\(contentFocuses.count)")
+        
+        // In a properly working system, content should dominate even with conflicts
+        // If containers trap focus, that could indicate InfinityBug conditions
+        if containerFocuses.count > contentFocuses.count {
+            NSLog("⚠️ WARNING: Focus trapped in container layers more than content - potential InfinityBug condition")
+        }
+        
+        // Don't fail the test - we want to observe the conflict behavior
+        NSLog("CONFLICT RESOLUTION TEST COMPLETE")
     }
 }
 

@@ -4,6 +4,9 @@
 //
 //  Created by Joseph McCraw on 6/13/25.
 //
+//  This is designed with a complex heirarchy and conflicts indended to reproduce the InfinityBug
+
+
 
 import UIKit
 
