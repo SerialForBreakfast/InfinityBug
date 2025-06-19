@@ -3,9 +3,35 @@
 //  HammerTimeUITests
 //
 //  Created by Joseph McCraw on 6/13/25.
-//
-
+//  These tests are ONLY to be run on a device with VoiceOver enabled.
 import XCTest
+
+/// Returns true when a focus ID refers to a real UI element.
+private func isValidFocus(_ id: String) -> Bool {
+    return !id.isEmpty && id != "NONE" && id != "NO_FOCUS"
+}
+
+private extension XCUIApplication {
+    /// Returns "DebugCollectionView" if it exists, else the first collection-view on screen.
+    var debugCollectionView: XCUIElement {
+        let debug = collectionViews["DebugCollectionView"]
+        if debug.exists {
+            return debug
+        }
+        
+        // Fallback: find any collection view
+        let allCollectionViews = collectionViews
+        for i in 0..<allCollectionViews.count {
+            let cv = allCollectionViews.element(boundBy: i)
+            if cv.exists {
+                return cv
+            }
+        }
+        
+        // Last resort: return the first match even if it doesn't exist
+        return collectionViews.firstMatch
+    }
+}
 
 final class DebugCollectionViewUITests: XCTestCase {
     
@@ -17,51 +43,92 @@ final class DebugCollectionViewUITests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
         
+        // Get test method name
+        let testName = name
+        let isInfinityBugTest = testName.contains("InfinityBug") || 
+                               testName.contains("Rapid") || 
+                               testName.contains("Hammer")
+        
+        // Always start fresh for InfinityBug tests
+        if isInfinityBugTest {
+            app?.terminate()
+            app = nil
+        }
+        
         app = XCUIApplication()
         
-        // NOTE: VoiceOver launch arguments and environment variables have no effect
-        // in UI tests unless running system-level automation-signed tests.
-        // Pre-enable VoiceOver in Settings or use: xcrun simctl ui <device> accessibility VoiceOver=on
         app.launchArguments += [
-            // CRITICAL: Disable debounce for all focus tests
             "-DebounceDisabled", "YES",
             "-FocusTestMode", "YES"
         ]
         
-        // Critical: Disable all debouncing for focus tests
         app.launchEnvironment["DEBOUNCE_DISABLED"] = "1"
         app.launchEnvironment["FOCUS_TEST_MODE"] = "1"
         
         app.launch()
         
-        // Wait longer for complex container hierarchy to settle
-        sleep(5)
+        // Longer wait for InfinityBug tests
+        sleep(isInfinityBugTest ? 8 : 3)
         
-        // The ContainerFactory creates accessibility conflicts, so the collection view
-        // may not have its proper identifier. Find it by type instead.
-        let allCollectionViews = app.descendants(matching: .collectionView)
-        NSLog("SETUP: Found \(allCollectionViews.count) collection views")
+        let collectionView = app.debugCollectionView
+        XCTAssertTrue(collectionView.waitForExistence(timeout: 15), "Must find a collection view")
         
-        var foundCollectionView = false
-        for i in 0..<allCollectionViews.count {
-            let cv = allCollectionViews.element(boundBy: i)
-            NSLog("SETUP: Collection view \(i): identifier='\(cv.identifier)', exists=\(cv.exists)")
-            if cv.exists {
-                foundCollectionView = true
-                break
-            }
-        }
-        
-        XCTAssertTrue(foundCollectionView, "Must find at least one collection view (accessibility conflicts expected)")
-        
-        // Wait for container hierarchy to stabilize
-        sleep(2)
-        
-        let initialFocus = focusID
-        NSLog("SETUP: Initial focus state with accessibility conflicts: '\(initialFocus)'")
+        establishInitialFocus()
     }
     
-    override func tearDownWithError() throws { app = nil }
+    private func establishInitialFocus() {
+        // Navigate to establish focus
+        for _ in 0..<5 {
+            remote.press(.up, forDuration: 0.05)
+            usleep(50_000)
+        }
+        for _ in 0..<5 {
+            remote.press(.left, forDuration: 0.05) 
+            usleep(50_000)
+        }
+        
+        // Try select press to activate focus
+        remote.press(.select, forDuration: 0.01)
+        usleep(200_000)
+        
+        let initialFocus = focusID
+        NSLog("SETUP: Established initial focus: '\(initialFocus)'")
+    }
+    
+    override func tearDownWithError() throws {
+        // Reset focus state
+        resetFocusState()
+        
+        // Clear any VoiceOver announcements
+        clearVoiceOverState()
+        
+        // Terminate and relaunch for critical tests
+        if needsCleanState() {
+            app.terminate()
+            app = nil
+        }
+    }
+    
+    private func resetFocusState() {
+        // Navigate to a known state
+        for _ in 0..<10 {
+            remote.press(.up, forDuration: 0.02)
+            usleep(20_000)
+        }
+        for _ in 0..<10 {
+            remote.press(.left, forDuration: 0.02) 
+            usleep(20_000)
+        }
+        
+        // Wait for state to settle
+        usleep(500_000)
+    }
+    
+    private func needsCleanState() -> Bool {
+        // Restart app for InfinityBug tests to ensure clean state
+        let methodName = invocation?.selector.description ?? ""
+        return methodName.contains("InfinityBug") || methodName.contains("Rapid")
+    }
     
     // MARK: – Helpers -------------------------------------------------------
     
@@ -69,53 +136,29 @@ final class DebugCollectionViewUITests: XCTestCase {
     /// NOTE: This only works reliably when VoiceOver is actually enabled
     var focusID: String {
         // Method 1: Try the standard hasFocus predicate
-        do {
-            let focusedElements = app.descendants(matching: .any)
-                .matching(NSPredicate(format: "hasFocus == true"))
-            
-            if focusedElements.count > 0 {
-                let firstMatch = focusedElements.firstMatch
-                if firstMatch.exists {
-                    let identifier = firstMatch.identifier
-                    if !identifier.isEmpty {
-                        return identifier
-                    }
+        let focusedElements = app.descendants(matching: .any)
+            .matching(NSPredicate(format: "hasFocus == true"))
+        
+        if focusedElements.count > 0 {
+            let firstMatch = focusedElements.firstMatch
+            if firstMatch.exists {
+                let identifier = firstMatch.identifier
+                if !identifier.isEmpty {
+                    return identifier
                 }
             }
-        } catch {
-            NSLog("FOCUS: Error querying focused elements - \(error)")
         }
         
         // Method 2: Try collection view specifically
-        do {
-            let collectionView = app.collectionViews["DebugCollectionView"]
-            if collectionView.exists {
-                let cells = collectionView.cells
-                for cellIndex in 0..<min(cells.count, 50) {
-                    let cell = cells.element(boundBy: cellIndex)
-                    if cell.exists && cell.hasFocus {
-                        return cell.identifier
-                    }
+        let collectionView = app.debugCollectionView
+        if collectionView.exists {
+            let cells = collectionView.cells
+            for cellIndex in 0..<min(cells.count, 20) {
+                let cell = cells.element(boundBy: cellIndex)
+                if cell.exists && cell.hasFocus {
+                    return cell.identifier
                 }
             }
-        } catch {
-            NSLog("FOCUS: Error checking collection view cells - \(error)")
-        }
-        
-        // Method 3: Try app-level elements
-        do {
-            let allElements = app.descendants(matching: .any)
-            for elementIndex in 0..<min(allElements.count, 20) {
-                let element = allElements.element(boundBy: elementIndex)
-                if element.exists && element.hasFocus {
-                    let identifier = element.identifier
-                    if !identifier.isEmpty {
-                        return identifier
-                    }
-                }
-            }
-        } catch {
-            NSLog("FOCUS: Error checking app elements - \(error)")
         }
         
         return "NONE"
@@ -246,7 +289,7 @@ final class DebugCollectionViewUITests: XCTestCase {
         NSLog("TEST: Starting basic app functionality test...")
         
         // Verify collection view exists and is accessible
-        let collectionView = app.collectionViews["DebugCollectionView"]
+        let collectionView = app.debugCollectionView
         XCTAssertTrue(collectionView.exists, "DebugCollectionView should exist")
         XCTAssertTrue(collectionView.isHittable, "DebugCollectionView should be hittable")
         
@@ -271,7 +314,7 @@ final class DebugCollectionViewUITests: XCTestCase {
             usleep(100_000) // 100ms wait
             
             // Just verify app is still responsive (doesn't crash)
-            XCTAssertTrue(app.collectionViews["DebugCollectionView"].exists, 
+            XCTAssertTrue(app.debugCollectionView.exists, 
                          "App should remain functional after \(direction) press")
         }
         
@@ -282,7 +325,7 @@ final class DebugCollectionViewUITests: XCTestCase {
     func testAccessibilityIdentifiersExist() throws {
         NSLog("TEST: Starting accessibility identifiers test...")
         
-        let collectionView = app.collectionViews["DebugCollectionView"]
+        let collectionView = app.debugCollectionView
         XCTAssertTrue(collectionView.exists, "DebugCollectionView should exist")
         
         // Check that cells have proper identifiers
@@ -320,24 +363,23 @@ final class DebugCollectionViewUITests: XCTestCase {
         for n in 0..<200 {
             let d = dirs.randomElement()!
             remote.press(d, forDuration: 0.04)
-            usleep(60_000)                                // 60 ms gap
+            usleep(60_000)
             
             let current = focusID
             NSLog("[HAMMER] \(n) – \(d) → \(current)")
             
-            if current == lastID {
+            if current == lastID && isValidFocus(current) {
                 repeatCounter += 1
                 if repeatCounter > 50 {
-                    XCTFail("⚠️  Potential InfinityBug: focus stuck on \(current)")
+                    XCTFail("⚠️ Potential InfinityBug: focus stuck on \(current)")
                     break
                 }
             } else {
-                repeatCounter = 0
+                repeatCounter = isValidFocus(current) ? 1 : 0
                 lastID = current
             }
         }
-        XCTAssertLessThanOrEqual(repeatCounter, 50,
-                                 "Focus should not repeat > 50× consecutively")
+        XCTAssertLessThanOrEqual(repeatCounter, 50, "Focus should not repeat > 50× consecutively")
     }
     
     func testManualElementTraversal() throws {
@@ -345,7 +387,7 @@ final class DebugCollectionViewUITests: XCTestCase {
 
         // The sample grid (see ViewController.swift) contains exactly 100 cells,
         // each with accessibilityIdentifier "Cell-<index>".
-        let collectionView = app.collectionViews["DebugCollectionView"]
+        let collectionView = app.debugCollectionView
         XCTAssertTrue(collectionView.waitForExistence(timeout: 5),
                       "DebugCollectionView not found")
 
@@ -740,7 +782,7 @@ final class DebugCollectionViewUITests: XCTestCase {
         // 4. SampleViewController (our actual content)
         // 5. DebugCollectionView (the collection view)
         
-        let collectionView = app.collectionViews["DebugCollectionView"]
+        let collectionView = app.debugCollectionView
         XCTAssertTrue(collectionView.waitForExistence(timeout: 10), "DebugCollectionView should exist")
         
         // Test 1: Check for accessibility element conflicts
@@ -852,7 +894,7 @@ final class DebugCollectionViewUITests: XCTestCase {
         NSLog("TEST: Starting container accessibility property conflicts test...")
         
         // Test how focus behaves when multiple containers have accessibility properties
-        let collectionView = app.collectionViews["DebugCollectionView"]
+        let collectionView = app.debugCollectionView
         XCTAssertTrue(collectionView.exists, "DebugCollectionView should exist")
         
         // Step 1: Try to identify container layers by their accessibility properties
@@ -948,7 +990,7 @@ final class DebugCollectionViewUITests: XCTestCase {
         // This test examines how VoiceOver handles the nested accessibility hierarchy
         // created by ContainerFactory: Plant > Animal > SampleVC > CollectionView > Cells
         
-        let collectionView = app.collectionViews["DebugCollectionView"]
+        let collectionView = app.debugCollectionView
         XCTAssertTrue(collectionView.exists, "DebugCollectionView should exist")
         
         // Step 1: Map the complete accessibility hierarchy

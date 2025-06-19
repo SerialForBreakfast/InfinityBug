@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+I'm having a re-occuring problem with tvOS called InfinityBug.  
+For Context, When there is a large collectionView or compositional navigation, and i'm trying to navigate quickly between items, the performance slows.  When performance suffers, user interactions with the remote become slow. 
+There is a terrible bug which occurs when the accessibility tool "VoiceOver Focus"(with the white border) begins to traverse elements on the screen as that focus reads the elements aloud, when you try to change focus with the remote, it gets stuck repeating the button press infinitely and even when the application is closed, the system continues to try to move the focus in the stuck direction.  We'll refer to this as the InfinityBug.
+I need a Comprehensive strategy to diagnose the issue, create UI testing to replicate the issue in an isolated context, recommend/propose solutions, and apply it to a massive codebase.  The codebase uses a mix of UIKit and SwiftUI, complex large Compositional Layouts, UI constraint issues.  It has common issues in a large codebase like unclear focus, inconsistent applications of accessibility elements(accessibilityLabels that contradict between parents and children, conflicts between application of UIKit and SwiftUI).  Consider all possible factors which can cause this bug.
+Using Swift, lets come up with a unified solution for diagnosing and fixing this with a strategy to mitigate future bugs.  First lets come up with multiple strategies to weigh the pros and cons before we write any code.

@@ -279,18 +279,18 @@ public final class DebugCollectionView: UICollectionView {
     
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
+        self.accessibilityIdentifier = "DebugCollectionView"
         commonInit()
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.accessibilityIdentifier = "DebugCollectionView"
         commonInit()
     }
     
     private func commonInit() {
         // Observe all available UIAccessibility notifications
-        
-        // VoiceOver state changes
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(handleVoiceOverStatusChanged),
