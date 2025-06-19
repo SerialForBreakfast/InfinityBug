@@ -33,6 +33,7 @@ AI agents like you have a hard time detecting the InfinityBug, so as long as the
   - When making any updates to a protocol, you must search for all existing implementations, and update those with the new protocol requirements.
   - When adding a file, make sure that target membership is configured in the Xcode projects properly.- Never open or interact with the xcode GUI.  Only use command line interface.  - Always question when are you changing the protocol to match the implementation, or if the implementation should be changed.
  - Use grep, sed and regex heavily to search, understand and change operations on multiple files instead of going one by one.
+ - in the memlog folder, maintain a learnings.md If you learn something about limitations of UITesting environments, or Simultor vs a real AppleTV, or that UItesting with accessibility features need examination for validity.
  - When you've read this, section output "RULES ARE READ AND RESPECTED JOE, NO GREEN M&Ms" and summarize these 11. Swift Specific requirements, to prove you've read and understand these rules.
 
 Dont recommend building scripts or using swiftlint.  
