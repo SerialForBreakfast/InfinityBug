@@ -26,12 +26,16 @@ class ViewController: UIViewController {
         navVC.view.translatesAutoresizingMaskIntoConstraints = false
 
         let sampleVC = SampleViewController()
-        sampleViewController = sampleVC // Store reference
-        addChild(sampleVC)
-        view.addSubview(sampleVC.view)
-        sampleVC.didMove(toParent: self)
         
-        sampleVC.view.translatesAutoresizingMaskIntoConstraints = false
+        // Use ContainerFactory to wrap the sample view controller
+        let wrappedSampleVC = ContainerFactory.wrap(sampleVC)
+        sampleViewController = sampleVC // Store reference to original for access
+        
+        addChild(wrappedSampleVC)
+        view.addSubview(wrappedSampleVC.view)
+        wrappedSampleVC.didMove(toParent: self)
+        
+        wrappedSampleVC.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             // Nav bar (edge‑to‑edge across top)
             navVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -39,17 +43,16 @@ class ViewController: UIViewController {
             navVC.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             navVC.view.heightAnchor.constraint(equalToConstant: 120),
 
-            // Sample grid below nav bar
-            sampleVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            sampleVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            sampleVC.view.topAnchor.constraint(equalTo: navVC.view.bottomAnchor),
-            sampleVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            navVC.view.heightAnchor.constraint(equalToConstant: 121), //break
+            // Wrapped sample grid below nav bar
+            wrappedSampleVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            wrappedSampleVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            wrappedSampleVC.view.topAnchor.constraint(equalTo: navVC.view.bottomAnchor),
+            wrappedSampleVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         // Ensure nav bar is above sample grid & any debug overlays
         view.bringSubviewToFront(navVC.view)
         NSLog("APP DEBUG: NavBar brought to front (z = \(navVC.view.layer.zPosition))")
-        NSLog("APP: ViewController loaded")
+        NSLog("APP: ViewController loaded with ContainerFactory wrapping")
     }
 }
 
