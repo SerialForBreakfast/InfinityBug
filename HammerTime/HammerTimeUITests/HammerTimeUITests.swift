@@ -43,36 +43,31 @@ final class DebugCollectionViewUITests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
         
-        // Get test method name
-        let testName = name
-        let isInfinityBugTest = testName.contains("InfinityBug") || 
-                               testName.contains("Rapid") || 
-                               testName.contains("Hammer")
-        
-        // Always start fresh for InfinityBug tests
-        if isInfinityBugTest {
-            app?.terminate()
-            app = nil
-        }
-        
         app = XCUIApplication()
         
+        // NOTE: VoiceOver launch arguments and environment variables have no effect
+        // in UI tests unless running system-level automation-signed tests.
+        // Pre-enable VoiceOver in Settings or use: xcrun simctl ui <device> accessibility VoiceOver=on
         app.launchArguments += [
+            // CRITICAL: Disable debounce for all focus tests
             "-DebounceDisabled", "YES",
             "-FocusTestMode", "YES"
         ]
         
+        // Critical: Disable all debouncing for focus tests
         app.launchEnvironment["DEBOUNCE_DISABLED"] = "1"
         app.launchEnvironment["FOCUS_TEST_MODE"] = "1"
         
         app.launch()
         
-        // Longer wait for InfinityBug tests
-        sleep(isInfinityBugTest ? 8 : 3)
+        // Wait longer for complex container hierarchy to settle
+        sleep(5)
         
+        // Verify collection view exists
         let collectionView = app.debugCollectionView
-        XCTAssertTrue(collectionView.waitForExistence(timeout: 15), "Must find a collection view")
+        XCTAssertTrue(collectionView.waitForExistence(timeout: 10), "Must find a collection view")
         
+        // Establish initial focus by navigating
         establishInitialFocus()
     }
     
@@ -95,40 +90,7 @@ final class DebugCollectionViewUITests: XCTestCase {
         NSLog("SETUP: Established initial focus: '\(initialFocus)'")
     }
     
-    override func tearDownWithError() throws {
-        // Reset focus state
-        resetFocusState()
-        
-        // Clear any VoiceOver announcements
-        clearVoiceOverState()
-        
-        // Terminate and relaunch for critical tests
-        if needsCleanState() {
-            app.terminate()
-            app = nil
-        }
-    }
-    
-    private func resetFocusState() {
-        // Navigate to a known state
-        for _ in 0..<10 {
-            remote.press(.up, forDuration: 0.02)
-            usleep(20_000)
-        }
-        for _ in 0..<10 {
-            remote.press(.left, forDuration: 0.02) 
-            usleep(20_000)
-        }
-        
-        // Wait for state to settle
-        usleep(500_000)
-    }
-    
-    private func needsCleanState() -> Bool {
-        // Restart app for InfinityBug tests to ensure clean state
-        let methodName = invocation?.selector.description ?? ""
-        return methodName.contains("InfinityBug") || methodName.contains("Rapid")
-    }
+    override func tearDownWithError() throws { app = nil }
     
     // MARK: – Helpers -------------------------------------------------------
     
@@ -1218,6 +1180,125 @@ final class DebugCollectionViewUITests: XCTestCase {
         
         // Don't fail the test - we want to observe the conflict behavior
         NSLog("CONFLICT RESOLUTION TEST COMPLETE")
+    }
+    
+    /// Specific test to reproduce InfinityBug through hang + directional switch pattern
+    func testInfinityBugDirectionalSwitchAfterHang() throws {
+        NSLog("INFINITY BUG: Testing hang + directional switch pattern...")
+        
+        // Step 1: Create artificial hang/performance stress
+        artificiallyInducePerformanceHang()
+        
+        // Step 2: Rapid presses in ONE direction during hang
+        let primaryDirection: XCUIRemote.Button = .right
+        NSLog("INFINITY BUG: Sending rapid presses in \(primaryDirection) direction during hang...")
+        
+        for i in 0..<15 {
+            let beforeFocus = focusID
+            remote.press(primaryDirection, forDuration: 0.01) // Very fast
+            usleep(10_000) // Only 10ms between presses - creates pressure
+            
+            let afterFocus = focusID
+            NSLog("HANG_PRESS[\(i)]: \(primaryDirection) '\(beforeFocus)' → '\(afterFocus)'")
+        }
+        
+        // Step 3: CRITICAL - Switch direction immediately after hang
+        usleep(50_000) // Brief pause to let hang "set in"
+        
+        let switchDirection: XCUIRemote.Button = .down
+        NSLog("INFINITY BUG: SWITCHING to \(switchDirection) after hang...")
+        
+        var infinityBugDetected = false
+        var stuckFocus = ""
+        var stuckCount = 0
+        
+        // Step 4: Detect infinite repetition after direction switch
+        for i in 0..<25 {
+            let beforeFocus = focusID
+            remote.press(switchDirection, forDuration: 0.02)
+            usleep(30_000)
+            
+            let afterFocus = focusID
+            NSLog("SWITCH_PRESS[\(i)]: \(switchDirection) '\(beforeFocus)' → '\(afterFocus)'")
+            
+            // Check for InfinityBug signature
+            if beforeFocus == afterFocus && isValidFocus(afterFocus) {
+                if stuckFocus == afterFocus {
+                    stuckCount += 1
+                    if stuckCount >= 8 {
+                        infinityBugDetected = true
+                        NSLog("🚨 INFINITY BUG DETECTED: Focus infinitely stuck on '\(afterFocus)' after directional switch")
+                        break
+                    }
+                } else {
+                    stuckFocus = afterFocus
+                    stuckCount = 1
+                }
+            } else {
+                stuckCount = 0
+            }
+        }
+        
+        // Step 5: Test if bug persists across app lifecycle
+        if infinityBugDetected {
+            testInfinityBugPersistence(stuckElement: stuckFocus)
+        }
+        
+        XCTAssertTrue(infinityBugDetected, "Should reproduce InfinityBug with hang + directional switch pattern")
+    }
+    
+    /// Test if InfinityBug persists even after app termination
+    private func testInfinityBugPersistence(stuckElement: String) {
+        NSLog("INFINITY BUG: Testing persistence across app lifecycle...")
+        
+        // Terminate app
+        app.terminate()
+        usleep(2_000_000) // 2 second pause
+        
+        // Relaunch
+        app.launch()
+        sleep(3)
+        
+        // Check if system focus is still corrupted
+        let postRelaunchFocus = focusID
+        NSLog("POST-RELAUNCH: Focus state: '\(postRelaunchFocus)'")
+        
+        // Try navigation to see if system input is still corrupted
+        for i in 0..<10 {
+            let beforeFocus = focusID
+            remote.press(.up, forDuration: 0.05)
+            usleep(100_000)
+            let afterFocus = focusID
+            
+            NSLog("POST-RELAUNCH[\(i)]: UP '\(beforeFocus)' → '\(afterFocus)'")
+            
+            if beforeFocus == afterFocus && beforeFocus == stuckElement {
+                NSLog("🚨 INFINITY BUG PERSISTED: System focus still corrupted after relaunch!")
+                break
+            }
+        }
+    }
+    
+    /// Create artificial performance hang to stress the system
+    private func artificiallyInducePerformanceHang() {
+        NSLog("INFINITY BUG: Inducing artificial performance hang...")
+        
+        // Method 1: Trigger heavy accessibility tree traversal
+        let allElements = app.descendants(matching: .any)
+        for i in 0..<min(allElements.count, 100) {
+            let element = allElements.element(boundBy: i)
+            _ = element.label // Force accessibility query
+            _ = element.value
+            _ = element.identifier
+        }
+        
+        // Method 2: Rapid element queries to stress accessibility system
+        for _ in 0..<50 {
+            _ = app.debugCollectionView.cells.count
+            usleep(5_000)
+        }
+        
+        NSLog("INFINITY BUG: Performance hang induced")
     }
 }
 

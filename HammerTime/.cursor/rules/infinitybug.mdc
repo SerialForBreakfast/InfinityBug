@@ -8,3 +8,36 @@ For Context, When there is a large collectionView or compositional navigation, a
 There is a terrible bug which occurs when the accessibility tool "VoiceOver Focus"(with the white border) begins to traverse elements on the screen as that focus reads the elements aloud, when you try to change focus with the remote, it gets stuck repeating the button press infinitely and even when the application is closed, the system continues to try to move the focus in the stuck direction.  We'll refer to this as the InfinityBug.
 I need a Comprehensive strategy to diagnose the issue, create UI testing to replicate the issue in an isolated context, recommend/propose solutions, and apply it to a massive codebase.  The codebase uses a mix of UIKit and SwiftUI, complex large Compositional Layouts, UI constraint issues.  It has common issues in a large codebase like unclear focus, inconsistent applications of accessibility elements(accessibilityLabels that contradict between parents and children, conflicts between application of UIKit and SwiftUI).  Consider all possible factors which can cause this bug.
 Using Swift, lets come up with a unified solution for diagnosing and fixing this with a strategy to mitigate future bugs.  First lets come up with multiple strategies to weigh the pros and cons before we write any code.
+We will induce conflicts in accessibility to test this.  We will create strange inefficient view heirarchies.  We may break constraints.  These are all necessary to debug properly.
+This HammerTime project is where we will perform this diagnostics.
+AI agents like you have a hard time detecting the InfinityBug, so as long as there is a test which induces it, when I run this manually I will know and be able to find the test causing it.  If you have a 100% solution for detecting the bug then explain and implement, otherwise the goals of the UI tests are to find and replicate the bug repeatedly
+
+11. Swift Specific
+  - Maintain a memlog folder(include a changelog, directory_tree, and tasks.md)
+  - only update the memlog when changes are accepted, not before.
+  - All files/functions should have up-to-date comments which describe the intentions(and leverage Xcode quickhelp formatting)
+  - If you make a change to a type, change the access level, change the async property, you must search for all uses of it and update their implementation across the entire repo.
+  - If you make a change to anything async, you must provide a comment explaining its concurrency requirements and how its used.  You must examine how that change will affect its interactions with other components and make sure that the update doesn't break the current implementation in other areas of the code.
+  - Use optionality when needed
+  - Be intentional with access levels
+  - Consider mutablilty for let vs var, etc
+  - Use descriptive class and variable names
+  - Don't add new emojis to the codebase. It is annoying and unprofessional.
+  - Maintain useful Unit tests, don't test basic math or array counting, just test the business logic of our code
+  - Never skip/disable Unit tests to try to get the tests to pass.
+  - Use Constructor Injection for DI, Determine if a protocol abstraction would help.
+  - Use SFSymbols where appropriate
+  - Find and offer to use already existing(and recently maintained) git repos that solve problems we are currently working on.
+  - Make sure that components work together with expected ins/outs
+  - Before creating a protocol, class, enum, or a file, perform a search on the codebase for existing implementations, and check the memlog/directory_tree.  Never create unnecessary duplicates.
+  - When making any updates to a protocol, you must search for all existing implementations, and update those with the new protocol requirements.
+  - When adding a file, make sure that target membership is configured in the Xcode projects properly.- Never open or interact with the xcode GUI.  Only use command line interface.  - Always question when are you changing the protocol to match the implementation, or if the implementation should be changed.
+ - Use grep, sed and regex heavily to search, understand and change operations on multiple files instead of going one by one.
+ - When you've read this, section output "RULES ARE READ AND RESPECTED JOE, NO GREEN M&Ms" and summarize these 11. Swift Specific requirements, to prove you've read and understand these rules.
+
+Dont recommend building scripts or using swiftlint.  
+Update the Quickhelp always.  
+Rotors dont work in UITesting info.  Add a UItestingFacts.md to the memlog folder and record our finding that UItests cant change accessibilty options.  Simulators don't accurately represent Physical device executation.  The real device Accessibility must be configures before test execution.
+
+DO NOT RUN TESTS.  DO NOT CHANGE ANY PROJECT SETTINGS WITHOUT PRIOR APPROVAL.  DO NOT TOUCH TEST SETTINGS.  DO NOT USE GIT except diffing.  
+

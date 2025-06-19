@@ -6,8 +6,6 @@
 //
 //  This is designed with a complex heirarchy and conflicts indended to reproduce the InfinityBug
 
-
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -15,6 +13,10 @@ class ViewController: UIViewController {
     private var sampleViewController: SampleViewController?
     /// Top navigation bar controller (6‑item horizontal menu)
     private var navBarViewController: NavBarViewController?
+    
+    // INFINITY BUG ENHANCEMENT: Add performance stress elements
+    private var heavyAnimationTimer: Timer?
+    private var accessibilityStressViews: [UIView] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +58,114 @@ class ViewController: UIViewController {
         view.bringSubviewToFront(navVC.view)
         NSLog("APP DEBUG: NavBar brought to front (z = \(navVC.view.layer.zPosition))")
         NSLog("APP: ViewController loaded with ContainerFactory wrapping")
+        
+        // INFINITY BUG ENHANCEMENTS:
+        addAccessibilityStressElements()
+        startPerformanceStressors()
+        addFocusConflictElements()
+        setupAccessibilityObservers()
+    }
+    
+    /// Add elements that create accessibility tree traversal stress
+    private func addAccessibilityStressElements() {
+        NSLog("INFINITY BUG: Adding accessibility stress elements...")
+        
+        // Create 100 invisible but accessible elements
+        for i in 0..<100 {
+            let stressView = UIView()
+            stressView.isHidden = true
+            stressView.isAccessibilityElement = true
+            stressView.accessibilityIdentifier = "Stress-\(i)"
+            stressView.accessibilityLabel = "Stress element \(i) with very long description that forces VoiceOver to work harder during tree traversal and focus calculations"
+            
+            view.addSubview(stressView)
+            accessibilityStressViews.append(stressView)
+        }
+        
+        // Create competing accessibility containers
+        for i in 0..<10 {
+            let container = UIView()
+            container.isAccessibilityElement = false
+            container.accessibilityIdentifier = "StressContainer-\(i)"
+            
+            // Point to same collection view - creates conflicts
+            if let collectionView = sampleViewController?.debugCollectionView {
+                container.accessibilityElements = [collectionView]
+            }
+            
+            view.addSubview(container)
+        }
+    }
+    
+    /// Start continuous performance stressors
+    private func startPerformanceStressors() {
+        NSLog("INFINITY BUG: Starting performance stressors...")
+        
+        // Heavy animation that interferes with focus calculations
+        heavyAnimationTimer = Timer.scheduledTimer(withTimeInterval: 0.016, repeats: true) { _ in
+            // Continuous layout changes during navigation
+            for stressView in self.accessibilityStressViews {
+                stressView.transform = CGAffineTransform(rotationAngle: CGFloat.random(in: 0...2*Double.pi))
+            }
+            
+            // Force accessibility notifications
+            if Int.random(in: 0...100) < 5 { // 5% chance
+                UIAccessibility.post(notification: .layoutChanged, argument: nil)
+            }
+        }
+    }
+    
+    /// Add elements that create focus conflicts
+    private func addFocusConflictElements() {
+        NSLog("INFINITY BUG: Adding focus conflict elements...")
+        
+        // Create focus guides that compete with natural focus flow
+        for i in 0..<20 {
+            let conflictGuide = UIFocusGuide()
+            conflictGuide.preferredFocusEnvironments = [view] // Circular reference
+            view.addLayoutGuide(conflictGuide)
+            
+            // Tiny frame that's hard to escape
+            conflictGuide.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(i * 10)).isActive = true
+            conflictGuide.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(i * 5)).isActive = true
+            conflictGuide.widthAnchor.constraint(equalToConstant: 1).isActive = true
+            conflictGuide.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        }
+    }
+    
+    /// Monitor for InfinityBug conditions
+    private func setupAccessibilityObservers() {
+        NotificationCenter.default.addObserver(
+            forName: UIAccessibility.elementFocusedNotification,
+            object: nil,
+            queue: .main
+        ) { notification in
+            // Log when VoiceOver focus moves
+            let focusInfo = notification.userInfo
+            NSLog("INFINITY BUG MONITOR: VoiceOver focus changed: \(String(describing: focusInfo))")
+            
+            // Detect focus/performance divergence
+            self.detectFocusPerformanceDivergence()
+        }
+    }
+    
+    /// Detect when VoiceOver focus diverges from expected performance
+    private func detectFocusPerformanceDivergence() {
+        // Measure accessibility tree traversal time
+        let startTime = CACurrentMediaTime()
+        
+        let _ = view.accessibilityElements // Force traversal
+        
+        let traversalTime = CACurrentMediaTime() - startTime
+        
+        if traversalTime > 0.1 { // >100ms indicates stress
+            NSLog("🚨 INFINITY BUG CONDITION: Accessibility traversal taking \(traversalTime)s - InfinityBug likely")
+        }
+    }
+    
+    deinit {
+        heavyAnimationTimer?.invalidate()
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -253,8 +363,7 @@ public final class DebugCollectionView: UICollectionView {
         label.textColor = .white
         label.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         label.textAlignment = .center
-        label.layer.cornerRadius =
-         4
+        label.layer.cornerRadius = 4
         label.clipsToBounds = true
         label.isHidden = !isDebugMode
         return label
