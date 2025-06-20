@@ -43,9 +43,22 @@
 		44F183EF2DFD0ECC00B6B23E /* NewTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = NewTestPlan.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		440980A42E05BCE100BF3FC0 /* Exceptions for "HammerTime" folder in "HammerTimeUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				InfinityBugDetector.swift,
+			);
+			target = 44B9F28E2DFCE8B900511113 /* HammerTimeUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		44B9F2742DFCE8B700511113 /* HammerTime */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				440980A42E05BCE100BF3FC0 /* Exceptions for "HammerTime" folder in "HammerTimeUITests" target */,
+			);
 			path = HammerTime;
 			sourceTree = "<group>";
 		};

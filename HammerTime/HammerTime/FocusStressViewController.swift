@@ -1,6 +1,6 @@
 #if DEBUG
 //
-//  TortureRackViewController.swift
+//  FocusStressViewController.swift
 //  HammerTime
 //
 //  Purpose: Reproduce the "InfinityBug" by combining multiple worst‑case
@@ -27,7 +27,7 @@ struct StressFlags {
         let args = ProcessInfo.processInfo.arguments
 
         // Light mode reduces stress
-        if args.contains("-TortureMode") && args.contains("light") {
+        if args.contains("-FocusStressMode") && args.contains("light") {
             f.jiggleTimer          = false
             f.circularFocusGuides  = false
             f.duplicateIdentifiers = false
@@ -44,10 +44,10 @@ struct StressFlags {
     }
 }
 
-// MARK: - TortureRackViewController
+// MARK: - FocusStressViewController
 
-/// DEBUG‑only VC that intentionally degrades focus performance.
-final class TortureRackViewController: UIViewController {
+/// DEBUG‑only VC that intentionally degrades focus performance for diagnostics.
+final class FocusStressViewController: UIViewController {
 
     // MARK: Properties
     private let flags = StressFlags.parse()
@@ -62,8 +62,8 @@ final class TortureRackViewController: UIViewController {
         cv.dataSource = self
         cv.delegate   = self
         cv.isPrefetchingEnabled = false
-        cv.accessibilityIdentifier = "TortureRackOuterCV"
-        cv.register(Cell.self, forCellWithReuseIdentifier: Cell.reuseID)
+        cv.accessibilityIdentifier = "FocusStressCollectionView"
+        cv.register(StressCell.self, forCellWithReuseIdentifier: StressCell.reuseID)
         return cv
     }()
 
@@ -148,20 +148,20 @@ final class TortureRackViewController: UIViewController {
 }
 
 // MARK: - Datasource / Delegate
-extension TortureRackViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension FocusStressViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func numberOfSections(in _: UICollectionView) -> Int { 12 }
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int { 20 }
 
     func collectionView(_ cv: UICollectionView, cellForItemAt idx: IndexPath) -> UICollectionViewCell {
-        let cell = cv.dequeueReusableCell(withReuseIdentifier: Cell.reuseID, for: idx) as! Cell
+        let cell = cv.dequeueReusableCell(withReuseIdentifier: StressCell.reuseID, for: idx) as! StressCell
         cell.configure(indexPath: idx, flags: flags)
         return cell
     }
 }
 
 // MARK: - Cell
-private final class Cell: UICollectionViewCell {
-    static let reuseID = "TortureCell"
+private final class StressCell: UICollectionViewCell {
+    static let reuseID = "StressCell"
     private var host: UIHostingController<SwiftUIView>?
 
     func configure(indexPath: IndexPath, flags: StressFlags) {

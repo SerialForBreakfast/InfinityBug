@@ -10,7 +10,7 @@ I need a Comprehensive strategy to diagnose the issue, create UI testing to repl
 Using Swift, lets come up with a unified solution for diagnosing and fixing this with a strategy to mitigate future bugs.  First lets come up with multiple strategies to weigh the pros and cons before we write any code.
 We will induce conflicts in accessibility to test this.  We will create strange inefficient view heirarchies.  We may break constraints.  These are all necessary to debug properly.
 This HammerTime project is where we will perform this diagnostics.
-AI agents like you have a hard time detecting the InfinityBug, so as long as there is a test which induces it, when I run this manually I will know and be able to find the test causing it.  If you have a 100% solution for detecting the bug then explain and implement, otherwise the goals of the UI tests are to find and replicate the bug repeatedly
+AI agents like you have a hard time detecting the InfinityBug, so as long as there is a test which induces it, when I run this manually I will know and be able to find the test causing it.  If you have a 100% solution for detecting the bug then explain and implement, otherwise the goals of the UI tests are to find and replicate the bug repeatedly.
 
 11. Swift Specific
   - Maintain a memlog folder(include a changelog, directory_tree, and tasks.md)
@@ -26,14 +26,14 @@ AI agents like you have a hard time detecting the InfinityBug, so as long as the
   - Maintain useful Unit tests, don't test basic math or array counting, just test the business logic of our code
   - Never skip/disable Unit tests to try to get the tests to pass.
   - Use Constructor Injection for DI, Determine if a protocol abstraction would help.
-  - Use SFSymbols where appropriate
-  - Find and offer to use already existing(and recently maintained) git repos that solve problems we are currently working on.
   - Make sure that components work together with expected ins/outs
   - Before creating a protocol, class, enum, or a file, perform a search on the codebase for existing implementations, and check the memlog/directory_tree.  Never create unnecessary duplicates.
   - When making any updates to a protocol, you must search for all existing implementations, and update those with the new protocol requirements.
   - When adding a file, make sure that target membership is configured in the Xcode projects properly.- Never open or interact with the xcode GUI.  Only use command line interface.  - Always question when are you changing the protocol to match the implementation, or if the implementation should be changed.
+- Never mark anything as complete unless I verify it.
  - Use grep, sed and regex heavily to search, understand and change operations on multiple files instead of going one by one.
  - in the memlog folder, maintain a learnings.md If you learn something about limitations of UITesting environments, or Simultor vs a real AppleTV, or that UItesting with accessibility features need examination for validity.
+ You may not use git to make any changes to the repo.  This can only be done by me.
  - When you've read this, section output "RULES ARE READ AND RESPECTED JOE, NO GREEN M&Ms" and summarize these 11. Swift Specific requirements, to prove you've read and understand these rules.
 
 Dont recommend building scripts or using swiftlint.  

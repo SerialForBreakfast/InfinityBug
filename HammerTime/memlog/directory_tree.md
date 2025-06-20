@@ -72,5 +72,25 @@ UI Tests (HammerTimeUITests.swift):
     └── testVoiceOverNestedContainerBehavior()
 ```
 
+## File-by-File Breakdown
+
+| Path                                        | LoC | Purpose                                                      |
+| ------------------------------------------- | --- | ------------------------------------------------------------ |
+| **App Logic & UI**                          |     |                                                              |
+| `HammerTime/AppDelegate.swift`              | 80  | App entry point, lifecycle management, test harness routing.   |
+| `HammerTime/ViewController.swift`           | 971 | Root view controller for the main application.                 |
+| `HammerTime/ContainerFactory.swift`         | 108 | Creates complex, nested view controller hierarchies for stress.|
+| `HammerTime/FocusStressViewController.swift`| 212 | **NEW**: `DEBUG`-only view controller with multiple focus stressors.|
+| **Debugging & Diagnostics**                 |     |                                                              |
+| `Debugger.swift`                            | 956 | Low-level event monitoring and logging framework.            |
+| `HammerTime/InfinityBugDetector.swift`      | 202 | **NEW**: Actor-based system for high-confidence bug detection.|
+| **UI Testing**                              |     |                                                              |
+| `HammerTimeUITests/HammerTimeUITests.swift` | 1373| Original UI test suite for the main `ViewController`.          |
+| `HammerTimeUITests/FocusStressUITests.swift`| 335 | **NEW**: UI tests for the `FocusStressViewController`.         |
+| **Project & Memlog**                        |     |                                                              |
+| `memlog/changelog.md`                       | 66  | Project history and status.                                  |
+| `memlog/tasks.md`                           | 128 | Task management and progress tracking.                       |
+| `memlog/directory_tree.md`                  | 76  | This file.                                                   |
+
 ---
 *This directory structure supports the InfinityBug detection strategy through systematic accessibility conflict generation and comprehensive testing.* 
