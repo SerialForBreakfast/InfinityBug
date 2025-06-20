@@ -766,7 +766,8 @@ private extension UIPressesEvent {
 private extension UIWindow {
     static func performSwizzling() {
         _ = swizzleSendEvent
-        _ = swizzlePressHandlers
+        // TEMP DISABLED: This swizzling causes crashes because it affects all UIResponder subclasses
+        // _ = swizzlePressHandlers
     }
 
     private static let swizzleSendEvent: Void = {

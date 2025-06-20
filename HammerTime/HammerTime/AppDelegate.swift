@@ -16,6 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Programmatically set up the window to allow for navigation selection.
+        window = UIWindow(frame: UIScreen.main.bounds)
+
+        if ProcessInfo.processInfo.arguments.contains("-FocusStressMode") {
+            let stressVC = FocusStressViewController()
+            window?.rootViewController = stressVC
+        } else {
+            let menuVC = MainMenuViewController(style: .grouped)
+            let nav = UINavigationController(rootViewController: menuVC)
+            window?.rootViewController = nav
+        }
+        
+        window?.makeKeyAndVisible()
+        
         // Enable VoiceOver for UI testing if launch argument is present
         if CommandLine.arguments.contains("--enable-voiceover") {
             enableVoiceOverForTesting()

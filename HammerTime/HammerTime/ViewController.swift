@@ -344,6 +344,9 @@ public final class DebugCollectionView: UICollectionView {
     /// Enable / disable console printing without recompiling
     public var isLoggingEnabled: Bool = true
     
+    /// The shared detector instance for analyzing InfinityBug conditions.
+    public let bugDetector = InfinityBugDetector()
+    
     /// Enable / disable debounce strategy for VoiceOver
     public var debouncePressesEnabled: Bool = true
     
@@ -516,6 +519,14 @@ public final class DebugCollectionView: UICollectionView {
         // Add debug label for UI testing
         setupDebugLabel()
         
+        // Reset the detector if requested by a launch argument from the UI test.
+        if ProcessInfo.processInfo.arguments.contains("-ResetBugDetector") {
+            Task {
+                await bugDetector.reset()
+                log(category: .system, "InfinityBugDetector has been reset for new test run.")
+            }
+        }
+        
 //        AXFocusDebugger.shared.start()
     }
     
@@ -564,6 +575,9 @@ public final class DebugCollectionView: UICollectionView {
             identifier = "<Unnamed>"
         }
         
+        // Feed the detector with the focus event
+        Task { await bugDetector.processEvent(type: .focus, identifier: identifier) }
+        
         log(category: .focus,
             "Focus moved from \(String(describing: context.previouslyFocusedItem)) " +
             "→ \(identifier)")
@@ -585,6 +599,11 @@ public final class DebugCollectionView: UICollectionView {
     // MARK: -- Remote-button Logging & Debounce ----------------------------
     
     public override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        // Feed the detector with the press event
+        for press in presses {
+            Task { await bugDetector.processEvent(type: .press(press.type), identifier: self.lastFocusedIdentifier) }
+        }
+        
         let now: TimeInterval = CACurrentMediaTime()
         
         if debouncePressesEnabled,
