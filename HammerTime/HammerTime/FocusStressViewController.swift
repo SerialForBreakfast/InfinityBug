@@ -1,4 +1,3 @@
-#if DEBUG
 //
 //  FocusStressViewController.swift
 //  HammerTime
@@ -26,8 +25,15 @@ struct StressFlags {
         var f = StressFlags()
         let args = ProcessInfo.processInfo.arguments
 
-        // Light mode reduces stress
+        // Light mode via launch arguments
         if args.contains("-FocusStressMode") && args.contains("light") {
+            f.jiggleTimer          = false
+            f.circularFocusGuides  = false
+            f.duplicateIdentifiers = false
+        }
+
+        // Light mode via user defaults (from menu navigation)
+        if let stored = UserDefaults.standard.string(forKey: "FocusStressMode"), stored == "light" {
             f.jiggleTimer          = false
             f.circularFocusGuides  = false
             f.duplicateIdentifiers = false
@@ -208,4 +214,3 @@ private struct SwiftUIView: View {
         ZStack { Color.clear; Text("Item \(number)").foregroundColor(.white) }
     }
 }
-#endif

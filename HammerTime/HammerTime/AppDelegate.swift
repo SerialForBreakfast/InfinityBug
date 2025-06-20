@@ -16,29 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // Programmatically set up the window to allow for launch argument-based routing.
+        // Programmatically set up the window to allow for navigation selection.
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        // Check for the -FocusStressMode launch argument.
-        // If present, launch directly into the FocusStressViewController for stress testing.
-        #if DEBUG
         if ProcessInfo.processInfo.arguments.contains("-FocusStressMode") {
-            NSLog("APP_DELEGATE: -FocusStressMode detected. Launching FocusStressViewController.")
             let stressVC = FocusStressViewController()
             window?.rootViewController = stressVC
         } else {
-            // Otherwise, load the default ViewController from the Main storyboard.
-            NSLog("APP_DELEGATE: No torture mode. Launching default ViewController.")
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialVC = storyboard.instantiateInitialViewController()
-            window?.rootViewController = initialVC
+            let menuVC = MainMenuViewController(style: .grouped)
+            let nav = UINavigationController(rootViewController: menuVC)
+            window?.rootViewController = nav
         }
-        #else
-        // In RELEASE builds, always load the default ViewController.
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialVC = storyboard.instantiateInitialViewController()
-        window?.rootViewController = initialVC
-        #endif
         
         window?.makeKeyAndVisible()
         

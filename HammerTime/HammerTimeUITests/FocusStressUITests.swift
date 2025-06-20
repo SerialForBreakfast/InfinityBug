@@ -7,7 +7,6 @@
 //  These tests validate InfinityBug detection under extreme focus stressor conditions.
 
 import XCTest
-@testable import HammerTime
 
 /// Returns true when a focus ID refers to a real UI element (not empty/placeholder).
 private func isValidFocus(_ id: String) -> Bool {
@@ -185,7 +184,7 @@ final class FocusStressUITests: XCTestCase {
         
         // Set up an expectation to wait for our high-confidence bug notification.
         // The test will FAIL if this notification is posted.
-        let bugExpectation = XCTNSNotificationExpectation(name: Notification.Name.bugDetectedNotification)
+        let bugExpectation = XCTNSNotificationExpectation(name: Notification.Name("com.infinitybug.highConfidenceDetection"))
         bugExpectation.isInverted = true // Inverting means the test PASSES if the notification is NOT posted.
         
         let startTime = Date()
