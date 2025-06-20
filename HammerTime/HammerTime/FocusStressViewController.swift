@@ -5,6 +5,18 @@
 //  Purpose: Reproduce the "InfinityBug" by combining multiple worst‑case
 //  focus and accessibility stressors.  Excluded from RELEASE builds.
 //
+//  Enhanced stress patterns:
+//  1. Nested layout structures (triple-nested groups)
+//  2. Hidden/visible focusable traps scattered throughout cells
+//  3. Jiggle timer (constant layout changes)
+//  4. Circular focus guides (conflicting preferred environments)
+//  5. Duplicate accessibility identifiers
+//  6. Dynamic focus guides (rapidly changing preferred environments)
+//  7. Rapid layout invalidation cycles
+//  8. Overlapping invisible focusable elements
+//  
+//  Visual feedback: Focused cells turn blue with 1.05x scale
+//
 
 import UIKit
 import SwiftUI
@@ -19,6 +31,9 @@ struct StressFlags {
     var jiggleTimer             = true   // 3
     var circularFocusGuides     = true   // 4
     var duplicateIdentifiers    = true   // 5
+    var dynamicFocusGuides      = true   // 6
+    var rapidLayoutChanges      = true   // 7
+    var overlappingElements     = true   // 8
 
     /// Build flags from ProcessInfo.
     static func parse() -> StressFlags {
@@ -30,6 +45,9 @@ struct StressFlags {
             f.jiggleTimer          = false
             f.circularFocusGuides  = false
             f.duplicateIdentifiers = false
+            f.dynamicFocusGuides   = false
+            f.rapidLayoutChanges   = false
+            f.overlappingElements  = false
         }
 
         // Light mode via user defaults (from menu navigation)
@@ -37,6 +55,9 @@ struct StressFlags {
             f.jiggleTimer          = false
             f.circularFocusGuides  = false
             f.duplicateIdentifiers = false
+            f.dynamicFocusGuides   = false
+            f.rapidLayoutChanges   = false
+            f.overlappingElements  = false
         }
 
         // EnableStress<n> YES overrides for targeted runs
@@ -46,6 +67,9 @@ struct StressFlags {
         if on(3) { f.jiggleTimer          = true  }
         if on(4) { f.circularFocusGuides  = true  }
         if on(5) { f.duplicateIdentifiers = true  }
+        if on(6) { f.dynamicFocusGuides   = true  }
+        if on(7) { f.rapidLayoutChanges   = true  }
+        if on(8) { f.overlappingElements  = true  }
         return f
     }
 }
@@ -58,6 +82,9 @@ final class FocusStressViewController: UIViewController {
     // MARK: Properties
     private let flags = StressFlags.parse()
     private var jiggleTimer: Timer?
+    private var dynamicGuideTimer: Timer?
+    private var layoutChangeTimer: Timer?
+    private var focusGuides: [UIFocusGuide] = []
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewCompositionalLayout { _, _ in
@@ -79,9 +106,17 @@ final class FocusStressViewController: UIViewController {
         view.backgroundColor = .black
         setupCollectionView()
         if flags.circularFocusGuides { addCircularGuides() }
+        if flags.dynamicFocusGuides { startDynamicFocusGuides() }
+        if flags.rapidLayoutChanges { startRapidLayoutChanges() }
+        if flags.overlappingElements { addOverlappingElements() }
+        AXFocusDebugger.shared.start()
     }
 
-    deinit { jiggleTimer?.invalidate() }
+    deinit { 
+        jiggleTimer?.invalidate()
+        dynamicGuideTimer?.invalidate()
+        layoutChangeTimer?.invalidate()
+    }
 
     // MARK: Setup helpers
     private func setupCollectionView() {
@@ -123,6 +158,58 @@ final class FocusStressViewController: UIViewController {
         guideB.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(12)).isActive = true
     }
 
+    /// Stress 6: Constantly changing focus guide configurations
+    private func startDynamicFocusGuides() {
+        // Create multiple guides that change their preferred environments rapidly
+        for i in 0..<5 {
+            let guide = UIFocusGuide()
+            view.addLayoutGuide(guide)
+            guide.widthAnchor.constraint(equalToConstant: 1).isActive = true
+            guide.heightAnchor.constraint(equalToConstant: 1).isActive = true
+            guide.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(20 + i * 5)).isActive = true
+            guide.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(20 + i * 5)).isActive = true
+            focusGuides.append(guide)
+        }
+
+        dynamicGuideTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            self.focusGuides.forEach { guide in
+                // Randomly change preferred focus environments
+                let environments: [UIFocusEnvironment] = [self.collectionView, self.view, self]
+                guide.preferredFocusEnvironments = [environments.randomElement()!]
+            }
+        }
+    }
+
+    /// Stress 7: Rapid layout invalidation cycles
+    private func startRapidLayoutChanges() {
+        layoutChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) { _ in
+            // Force layout invalidation at high frequency
+            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.collectionView.setNeedsLayout()
+            self.view.setNeedsLayout()
+        }
+    }
+
+    /// Stress 8: Add overlapping invisible focusable elements
+    private func addOverlappingElements() {
+        for i in 0..<10 {
+            let overlayView = UIView()
+            overlayView.isAccessibilityElement = true
+            overlayView.accessibilityLabel = "Overlay\(i)"
+            overlayView.backgroundColor = .clear
+            overlayView.alpha = 0.01 // Nearly invisible but still focusable
+            view.addSubview(overlayView)
+            
+            overlayView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                overlayView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: CGFloat(i * 20 - 100)),
+                overlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: CGFloat(i * 15 - 75)),
+                overlayView.widthAnchor.constraint(equalToConstant: 200),
+                overlayView.heightAnchor.constraint(equalToConstant: 150)
+            ])
+        }
+    }
+
     // MARK: Layouts
     private func makeSimpleSection() -> NSCollectionLayoutSection {
         let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -135,28 +222,46 @@ final class FocusStressViewController: UIViewController {
     }
 
     private func makeNestedSection() -> NSCollectionLayoutSection {
-        // Cell inside horizontal group inside vertical group
+        // Triple nested: Cell -> Horizontal Group -> Vertical Group -> Section
+        // This creates maximum layout complexity that can trigger focus calculation bugs
+        
         let innerItem = NSCollectionLayoutItem(layoutSize:
-            .init(widthDimension: .absolute(300), heightDimension: .absolute(240)))
+            .init(widthDimension: .absolute(280), heightDimension: .absolute(220)))
+        innerItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        
         let innerGroup = NSCollectionLayoutGroup.horizontal(layoutSize:
-            .init(widthDimension: .absolute(300 * 3), heightDimension: .absolute(240)),
-            subitems: [innerItem, innerItem, innerItem])
+            .init(widthDimension: .absolute(300 * 4), heightDimension: .absolute(240)),
+            subitems: [innerItem, innerItem, innerItem, innerItem])
+        innerGroup.interItemSpacing = .fixed(10)
 
-        let outerGroup = NSCollectionLayoutGroup.vertical(layoutSize:
-            .init(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(260)),
+        // Add a middle layer group for extra nesting chaos
+        let middleGroup = NSCollectionLayoutGroup.vertical(layoutSize:
+            .init(widthDimension: .absolute(300 * 4), heightDimension: .absolute(260)),
             subitems: [innerGroup])
+
+        let outerGroup = NSCollectionLayoutGroup.horizontal(layoutSize:
+            .init(widthDimension: .fractionalWidth(1.2), heightDimension: .absolute(280)),
+            subitems: [middleGroup])
 
         let section = NSCollectionLayoutSection(group: outerGroup)
         section.orthogonalScrollingBehavior = .groupPaging
-        section.interGroupSpacing = 20
+        section.interGroupSpacing = 15
+        
+        // Add supplementary views that can interfere with focus
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(1))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "header", alignment: .top)
+        section.boundarySupplementaryItems = [header]
+        
         return section
     }
 }
 
+
+
 // MARK: - Datasource / Delegate
 extension FocusStressViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func numberOfSections(in _: UICollectionView) -> Int { 12 }
-    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int { 20 }
+    func numberOfSections(in _: UICollectionView) -> Int { 25 }
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int { 35 }
 
     func collectionView(_ cv: UICollectionView, cellForItemAt idx: IndexPath) -> UICollectionViewCell {
         let cell = cv.dequeueReusableCell(withReuseIdentifier: StressCell.reuseID, for: idx) as! StressCell
@@ -170,8 +275,22 @@ private final class StressCell: UICollectionViewCell {
     static let reuseID = "StressCell"
     private var host: UIHostingController<SwiftUIView>?
 
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
+        
+        coordinator.addCoordinatedAnimations({
+            if self.isFocused {
+                self.backgroundColor = .systemBlue
+                self.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+            } else {
+                self.backgroundColor = .darkGray
+                self.transform = .identity
+            }
+        }, completion: nil)
+    }
+
     func configure(indexPath: IndexPath, flags: StressFlags) {
-        backgroundColor = .darkGray
+        backgroundColor = isFocused ? .systemBlue : .darkGray
 
         // Stress 5: duplicate IDs
         accessibilityIdentifier = flags.duplicateIdentifiers && indexPath.item % 3 == 0
@@ -193,15 +312,24 @@ private final class StressCell: UICollectionViewCell {
             host = hosting
         }
 
-        // Stress 2: hidden focusable traps
+        // Stress 2: hidden focusable traps - more aggressive version
         if flags.hiddenFocusableTraps && contentView.subviews.filter({ $0.isHidden }).isEmpty {
-            for _ in 0..<3 {
+            for i in 0..<8 {
                 let trap = UIView()
                 trap.isAccessibilityElement = true
-                trap.accessibilityLabel = "HiddenTrap"
-                trap.isHidden = true
-                trap.frame = .zero
+                trap.accessibilityLabel = "HiddenTrap\(i)"
+                trap.isHidden = Bool.random() // Some visible, some hidden
+                trap.alpha = trap.isHidden ? 0 : 0.05
+                trap.backgroundColor = .red
                 contentView.addSubview(trap)
+                
+                trap.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    trap.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: CGFloat(i * 10 - 40)),
+                    trap.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: CGFloat(i * 8 - 32)),
+                    trap.widthAnchor.constraint(equalToConstant: 20),
+                    trap.heightAnchor.constraint(equalToConstant: 15)
+                ])
             }
         }
     }
