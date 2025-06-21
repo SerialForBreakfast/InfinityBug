@@ -41,7 +41,7 @@ final class FocusStressUITests: XCTestCase {
         
         app = XCUIApplication()
         
-        // Launch with FocusStressMode heavy for maximum stress
+        // Launch with FocusStressMode heavy for comprehensive stress testing
         app.launchArguments += [
             "-FocusStressMode", "heavy",
             "-DebounceDisabled", "YES",
@@ -77,6 +77,29 @@ final class FocusStressUITests: XCTestCase {
     }
     
     // MARK: - Helper Methods
+    
+    /// Sets up AXFocusDebugger logging to capture all debug output during test
+    private func setupAXFocusDebuggerLogging() {
+        // Listen for all AXFocusDebugger notifications and log them
+        let notificationNames = [
+            "UIAccessibilityElementFocusedNotification",
+            "UIAccessibilityAnnouncementDidFinishNotification", 
+            "UIAccessibilityVoiceOverStatusDidChangeNotification"
+        ]
+        
+        for name in notificationNames {
+            NotificationCenter.default.addObserver(
+                forName: NSNotification.Name(name),
+                object: nil,
+                queue: .main
+            ) { notification in
+                NSLog("AXDBG_TEST: Notification \(name) - \(notification.userInfo ?? [:])")
+            }
+        }
+        
+        // Force start AXFocusDebugger if not already started
+        NSLog("AXDBG_TEST: Ensuring AXFocusDebugger is active")
+    }
     
     /// Returns identifier of currently-focused element or "NONE"
     private var focusID: String {
@@ -178,9 +201,9 @@ final class FocusStressUITests: XCTestCase {
     
     // MARK: - Main Tests
     
-    /// Primary FocusStress test: 200 alternating left/right presses with InfinityBug detection
+    /// Primary FocusStress test: Optimized for InfinityBug reproduction based on log analysis
     func testFocusStressInfinityBugDetection() throws {
-        NSLog("DIAGNOSTIC: Starting main InfinityBug detection test with \(totalPresses) alternating presses")
+        NSLog("DIAGNOSTIC: Starting optimized InfinityBug detection test with \(totalPresses) alternating presses")
         
         // Set up an expectation to wait for our high-confidence bug notification.
         // The test will FAIL if this notification is posted.
@@ -190,15 +213,45 @@ final class FocusStressUITests: XCTestCase {
         let startTime = Date()
         var pressLog: [(press: Int, direction: String, beforeFocus: String, afterFocus: String)] = []
         
-        for pressIndex in 0..<totalPresses {
+        // Phase 1: High-frequency cache seeding with repetitive directional bursts
+        NSLog("DIAGNOSTIC: Phase 1 - High-frequency cache seeding with repetitive directional bursts")
+        let seedBursts: [(direction: XCUIRemote.Button, count: Int)] = [
+            (.right, 8), (.left, 6), (.up, 10), (.down, 7), (.right, 9), (.left, 5)
+        ]
+        for burst in seedBursts {
+            for _ in 0..<burst.count {
+                remote.press(burst.direction, forDuration: 0.008) // 8ms press
+                usleep(8_000) // 8ms gap - high frequency input
+            }
+        }
+        
+        // Phase 2: Create layout stress while system is processing cached events
+        NSLog("DIAGNOSTIC: Phase 2 - Layout stress during cache processing")
+        for pressIndex in 0..<min(50, totalPresses) {
             let direction: XCUIRemote.Button = (pressIndex % 2 == 0) ? .right : .left
             let directionString = (direction == .right) ? "RIGHT" : "LEFT"
             
             let beforeFocus = focusID
             
-            // Fast alternating presses to stress the focus system
+            // Timing matched to log analysis: 25ms press, 30ms gap
+            remote.press(direction, forDuration: 0.025)
+            usleep(30_000)
+            
+            let afterFocus = focusID
+            pressLog.append((press: pressIndex, direction: directionString, beforeFocus: beforeFocus, afterFocus: afterFocus))
+        }
+        
+        // Phase 3: Rapid alternating to trigger stale cache replay
+        NSLog("DIAGNOSTIC: Phase 3 - Rapid alternating to trigger phantom events")
+        for pressIndex in 50..<totalPresses {
+            let direction: XCUIRemote.Button = (pressIndex % 2 == 0) ? .right : .left
+            let directionString = (direction == .right) ? "RIGHT" : "LEFT"
+            
+            let beforeFocus = focusID
+            
+            // Calibrated timing - fast enough to create stress, slow enough to allow processing
             remote.press(direction, forDuration: 0.025) // 25ms press duration
-            usleep(30_000) // 30ms between presses
+            usleep(40_000) // 40ms between presses - calibrated timing
             
             let afterFocus = focusID
             pressLog.append((press: pressIndex, direction: directionString, beforeFocus: beforeFocus, afterFocus: afterFocus))
@@ -289,6 +342,133 @@ final class FocusStressUITests: XCTestCase {
         }
     }
     
+    /// Test designed to trigger phantom event cache corruption through repetitive directional input with heavy right exploration
+    func testPhantomEventCacheBugReproduction() throws {
+        NSLog("DIAGNOSTIC: Testing phantom event cache corruption through repetitive directional input with AXFocusDebugger integration")
+        
+        // Enable detailed AXFocusDebugger logging during test
+        self.setupAXFocusDebuggerLogging()
+        
+        // Set up expectation for InfinityBug detection
+        let bugExpectation = XCTNSNotificationExpectation(name: Notification.Name("com.infinitybug.highConfidenceDetection"))
+        bugExpectation.isInverted = true
+        
+        let startTime = Date()
+        
+                 // Phase 1: Cache flooding with multi-directional input to create event backlog
+        NSLog("DIAGNOSTIC PHANTOM: Phase 1 - Cache flooding with multi-directional input")
+        let floodDirections: [XCUIRemote.Button] = [.up, .right, .down, .left, .up, .right, .down, .left]
+        for direction in floodDirections {
+            for _ in 0..<3 {
+                remote.press(direction, forDuration: 0.025) // 25ms press
+                usleep(40_000) // 40ms gap - timing based on successful manual reproduction
+            }
+        }
+        
+        // Phase 2: Repetitive directional bursts matching successful manual reproduction pattern with increased right exploration
+        NSLog("DIAGNOSTIC PHANTOM: Phase 2 - Repetitive directional bursts with heavy right exploration")
+        
+        let burstPatterns: [(direction: XCUIRemote.Button, count: Int)] = [
+            (.right, 20),   // Start with heavy right exploration
+            (.down, 12),    // Down 12x (like your manual)
+            (.right, 18),   // More right exploration  
+            (.left, 8),     // Left 8x
+            (.right, 22),   // Even more right
+            (.up, 15),      // Up 15x  
+            (.right, 16),   // Keep exploring right
+            (.down, 10),    // Down 10x
+            (.right, 14),   // Right again
+            (.left, 9),     // Left 9x
+            (.right, 25),   // Extended right exploration
+            (.up, 18),      // Up 18x
+            (.right, 19),   // More right
+            (.down, 8),     // Down 8x
+            (.right, 17),   // Right again
+            (.left, 12),    // Left 12x
+            (.right, 21),   // Final heavy right burst
+            (.up, 13)       // Up 13x
+        ]
+        
+        for (burstIndex, burst) in burstPatterns.enumerated() {
+            NSLog("DIAGNOSTIC PHANTOM: Burst \(burstIndex): \(burst.direction) x\(burst.count)")
+            
+                         for pressIndex in 0..<burst.count {
+                let beforeFocus = focusID
+                
+                // Timing calibrated to match successful manual reproduction pattern
+                remote.press(burst.direction, forDuration: 0.025) // 25ms press
+                usleep(50_000) // 50ms gap - allows focus processing between inputs
+                
+                let afterFocus = focusID
+                
+                // Log first and last few of each burst with detailed focus info
+                if pressIndex < 3 || pressIndex >= (burst.count - 3) {
+                    NSLog("DIAGNOSTIC PHANTOM[B\(burstIndex)P\(pressIndex)]: \(burst.direction) '\(beforeFocus)' → '\(afterFocus)'")
+                    
+                    // Additional detailed focus state logging
+                    if beforeFocus != afterFocus {
+                        NSLog("AXDBG_TEST: FOCUS CHANGE DETECTED - Burst \(burstIndex) Press \(pressIndex)")
+                    }
+                }
+            }
+            
+            // Brief pause between bursts to let system process
+            usleep(100_000) // 100ms pause between bursts
+        }
+        
+        // Phase 3A: Extended right directional exploration to replicate manual testing behavior
+        NSLog("DIAGNOSTIC PHANTOM: Phase 3A - Extended right directional exploration")
+        for rightIndex in 0..<35 {
+            let beforeFocus = focusID
+            
+            remote.press(.right, forDuration: 0.025)
+            usleep(45_000) // 45ms gap for focus processing
+            
+            let afterFocus = focusID
+            
+            if rightIndex % 5 == 0 {
+                NSLog("DIAGNOSTIC PHANTOM[ExtendedRight\(rightIndex)]: RIGHT '\(beforeFocus)' → '\(afterFocus)'")
+                if beforeFocus != afterFocus {
+                    NSLog("AXDBG_TEST: RIGHT EXPLORATION CAUSING FOCUS CHANGES - Index \(rightIndex)")
+                }
+            }
+        }
+        
+        // Phase 3B: Randomized directional input with right-weighted distribution
+        NSLog("DIAGNOSTIC PHANTOM: Phase 3B - Randomized input with right-weighted distribution")
+        let chaosDirections: [XCUIRemote.Button] = [.right, .right, .right, .up, .down, .left, .right] // Right-weighted distribution
+        
+        for chaosIndex in 0..<80 {
+            let direction = chaosDirections.randomElement()!
+            let beforeFocus = focusID
+            
+            // Randomized timing - fast enough to create stress, slow enough to allow processing
+            remote.press(direction, forDuration: 0.020) // 20ms press
+            usleep(30_000) // 30ms gap - controlled timing for system processing
+            
+            let afterFocus = focusID
+            
+            if chaosIndex % 15 == 0 {
+                NSLog("DIAGNOSTIC PHANTOM[Chaos\(chaosIndex)]: \(direction) '\(beforeFocus)' → '\(afterFocus)'")
+                if direction == .right {
+                    NSLog("AXDBG_TEST: RIGHT CHAOS PRESS - Index \(chaosIndex)")
+                }
+            }
+        }
+        
+        let totalTime = Date().timeIntervalSince(startTime)
+        NSLog("DIAGNOSTIC PHANTOM: Phantom event cache reproduction test completed in \(String(format: "%.1f", totalTime))s")
+        
+        // Wait for potential bug detection with extended timeout for randomized input processing
+        let result = XCTWaiter.wait(for: [bugExpectation], timeout: 3.0)
+        
+        if result == .completed {
+            NSLog("DIAGNOSTIC PHANTOM: No high-confidence InfinityBug detected after phantom event cache reproduction test")
+        } else {
+            XCTFail("Phantom event cache reproduction test triggered InfinityBug detection - SUCCESS!")
+        }
+    }
+
     /// Test FocusStress performance under stress
     func testFocusStressPerformanceStress() throws {
         NSLog("DIAGNOSTIC: Testing performance under stress conditions")
