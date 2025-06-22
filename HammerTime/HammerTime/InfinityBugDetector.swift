@@ -36,7 +36,7 @@ public actor InfinityBugDetector {
     
     private var eventHistory: [Event] = []
     private let maxHistory = 100 // Store the last 100 events
-    private let criticalThreshold = 0.90
+    private let criticalThreshold = 0.70
     private var hasFiredNotification = false
 
     /// Represents a single event (press or focus) with a timestamp.
@@ -146,9 +146,23 @@ public actor InfinityBugDetector {
             }
         }
         
-        // If there are many directional presses but zero focus changes, score is high.
-        if directionalPresses > 10 && focusChanges == 0 {
-            return 1.0
+        // If there are many directional presses with very few focus changes, score is high.
+        if directionalPresses > 10 {
+            if focusChanges == 0 {
+                return 1.0  // Perfect black hole
+            } else if focusChanges <= 2 {
+                return 0.8  // Near black hole - very limited focus movement
+            } else if focusChanges <= 5 {
+                return 0.6  // Moderate divergence - some focus movement but still problematic
+            } else {
+                // Calculate ratio-based score for cases with more changes
+                let changeRatio = Double(focusChanges) / Double(directionalPresses)
+                if changeRatio < 0.1 {  // Less than 10% change rate
+                    return 0.4
+                } else if changeRatio < 0.2 {  // Less than 20% change rate
+                    return 0.2
+                }
+            }
         }
         
         return 0.0

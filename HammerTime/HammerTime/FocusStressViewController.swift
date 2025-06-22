@@ -84,6 +84,8 @@ final class FocusStressViewController: UIViewController {
     private var jiggleTimer: Timer?
     private var dynamicGuideTimer: Timer?
     private var layoutChangeTimer: Timer?
+    /// Timer for posting random VoiceOver announcements to further stress the accessibility system.
+    private var voAnnouncementTimer: Timer?
     private var focusGuides: [UIFocusGuide] = []
 
     private lazy var collectionView: UICollectionView = {
@@ -110,12 +112,23 @@ final class FocusStressViewController: UIViewController {
         if flags.rapidLayoutChanges { startRapidLayoutChanges() }
         if flags.overlappingElements { addOverlappingElements() }
         AXFocusDebugger.shared.start()
+
+        // Accessibility Stress: Random VoiceOver announcements (~10% chance every 0.3 s)
+        voAnnouncementTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { _ in
+            // Only run if VoiceOver is on to avoid unnecessary traffic
+            guard UIAccessibility.isVoiceOverRunning else { return }
+            if Int.random(in: 0...99) < 10 { // 10 % chance
+                let value = Int.random(in: 0...999)
+                UIAccessibility.post(notification: .announcement, argument: "Debug announcement \(value)")
+            }
+        }
     }
 
     deinit { 
         jiggleTimer?.invalidate()
         dynamicGuideTimer?.invalidate()
         layoutChangeTimer?.invalidate()
+        voAnnouncementTimer?.invalidate()
     }
 
     // MARK: Setup helpers
