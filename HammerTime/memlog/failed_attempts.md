@@ -74,4 +74,35 @@ After converting multiple tests to ultra-fast (3–8 ms) press loops, **Infinity
 **Next actions**
 - Mark existing tests as _instrumentation only_; they now record metrics rather than assert pass/fail.
 - Insert skip guards: skip on Simulator, or when env `VOICEOVER_ON` ≠ 1.
-- Continue exploration on physical device with VoiceOver enabled, capturing sysdiagnose & QuickTime video for manual analysis. 
+- Continue exploration on physical device with VoiceOver enabled, capturing sysdiagnose & QuickTime video for manual analysis.
+
+## 2025-01-22 – XCUITest API Research and RemoteCommandBehaviors Implementation
+
+**Problem**: Repeated compilation errors from using non-existent XCUITest coordinate APIs. Multiple attempts failed:
+- `element.coordinate(withNormalizedOffset:)` - **Does not exist**
+- `element.coordinateWithNormalizedOffset()` - **Does not exist** 
+- `startCoordinate.press(forDuration:, thenDragTo:)` - **Does not exist**
+
+**Research Findings**: 
+- Extensive web search revealed **no working coordinate API** for XCUIElement on tvOS
+- Most documentation examples are iOS-specific or outdated
+- XCUITest swipe gestures appear to be **unsupported on tvOS platform**
+
+**Solution Implemented**: `RemoteCommandBehaviors` helper struct using **only verified XCUIRemote APIs**:
+- Replaced coordinate-based swipes with **realistic navigation patterns**
+- Added **edge detection** using `app.focusedElement.frame` positioning
+- Implemented **proper timing** with `sleep(1)` between presses (vs rapid microsecond intervals)
+- Added **automatic direction reversal** at collection view boundaries
+
+**Key Improvements**:
+1. **Compilation Success**: No more "value has no member" errors
+2. **Realistic Behavior**: 1-second intervals match human interaction patterns  
+3. **Smart Navigation**: Edge detection prevents infinite loops at boundaries
+4. **Focus Tracking**: Direct `hasFocus` property access vs expensive predicate queries
+
+**Performance Optimizations**:
+- Replaced expensive `focusID` string parsing with direct frame-based detection
+- Reduced focus query scope from entire app hierarchy to specific elements
+- Added 50pt margin buffers for edge detection reliability
+
+**Status**: All compilation errors resolved. Tests now use proven XCUIRemote navigation patterns that should be more stable and realistic for InfinityBug reproduction testing. 

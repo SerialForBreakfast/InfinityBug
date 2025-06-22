@@ -139,4 +139,51 @@ This documentation framework provides a solid foundation for systematic Infinity
 3. Capture sysdiagnose + screen recording when bug appears.
 4. Iterate on stress parameters inside `FocusStressViewController` rather than UITest code.
 
-This addendum supersedes earlier sections that assumed automated detection would succeed. 
+This addendum supersedes earlier sections that assumed automated detection would succeed.
+
+## 2025-01-22 Update – XCUITest Compilation Fixes and New Experimental Tests
+
+### Compilation Issues Resolved
+**Problem**: Multiple compilation errors from non-existent XCUITest APIs:
+- `element.coordinate(withNormalizedOffset:)` - Does not exist on tvOS
+- `coordinateWithNormalizedOffset()` - Does not exist  
+- `pressForDuration(_:thenDragToCoordinate:)` - Does not exist
+
+**Solution**: Created `RemoteCommandBehaviors` helper using only verified APIs:
+- `XCUIRemote.shared.press(.direction)` ✅
+- `XCUIElement.hasFocus` property ✅
+- `XCUIApplication.focusedElement` extension ✅
+- Frame-based edge detection ✅
+
+### New Experimental Test Suite
+Replaced deprecated detector-based tests with 5 new experimental approaches:
+
+1. **`testManualInfinityBugStress()`** - Heavy manual stress (1200 presses, right-biased pattern)
+2. **`testPressIntervalSweep()`** - Timing analysis (50ms → 30ms → 15ms intervals)  
+3. **`testHiddenTrapDensityComparison()`** - Accessibility complexity scaling (8 vs 40 traps/cell)
+4. **`testExponentialPressureScaling()`** - Exponential interval reduction (100ms → 3ms)
+5. **`testEdgeFocusedNavigation()`** - Boundary-aware navigation with direction switching
+6. **`testMixedGestureNavigation()`** - Combination of button presses and swipe patterns
+
+### Key Technical Improvements
+- **Realistic Timing**: 1-second delays between presses (not microseconds)
+- **Edge Detection**: Frame-based detection with automatic direction reversal  
+- **Proper Focus Tracking**: Direct `hasFocus` property access
+- **Performance Optimization**: Limited focus queries to first 10 collection view cells
+- **Stable Navigation**: Prevents infinite edge loops and focus system overload
+
+### Current Test Philosophy
+**Instrumentation over Assertion**: Tests now focus on:
+- Collecting metrics and behavioral data
+- Creating realistic stress conditions
+- Recording console output for manual analysis
+- Never failing due to InfinityBug absence
+- Providing comprehensive logging for human observation
+
+**Manual Validation**: Success measured by human observation of:
+- Focus becoming stuck/unresponsive
+- Phantom button repeats after test completion  
+- System-wide remote input failure
+- Erratic focus jumping or element trapping
+
+This represents a fundamental shift from automated pass/fail testing to comprehensive instrumentation and manual validation on real hardware with VoiceOver enabled.

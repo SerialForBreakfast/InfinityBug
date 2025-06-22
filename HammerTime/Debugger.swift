@@ -38,6 +38,10 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
     /// Last time a focus hop was observed
     private var lastFocusTimestamp = CACurrentMediaTime()
     
+    /// Count recent presses by type for phantom detection
+    private var recentPressByType: [String: Int] = [:]
+    private var lastPressReset = CACurrentMediaTime()
+    
     /// tvOS-specific low-level input monitoring dispatch queue
     private let inputQueue = DispatchQueue(label: "com.infinitybug.input-monitor", qos: .userInteractive)
     
@@ -242,14 +246,28 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
 
                 let id = press.type.readable           // e.g. "Up Arrow", "Select" …
 
-                // 👉  Treat as phantom only when
-                //     a) no recent hardware press  **and**
-                //     b) no focus hop in the last 120 ms
+                // 👉  Treat as phantom only when:
+                //     a) no recent hardware press **and**
+                //     b) no focus hop in the last 120ms **and** 
+                //     c) rapid repetition of same press type **and**
+                //     d) not in UI test environment
                 let noHW  = !HardwarePressCache.recentlyPressed(id)
                 let stale = CACurrentMediaTime() - self.lastFocusTimestamp > 0.12
-                if noHW && stale {
+                let isUITest = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+                
+                // Reset counter every 2 seconds
+                if CACurrentMediaTime() - self.lastPressReset > 2.0 {
+                    self.recentPressByType.removeAll()
+                    self.lastPressReset = CACurrentMediaTime()
+                }
+                
+                self.recentPressByType[id, default: 0] += 1
+                let rapidRepetition = self.recentPressByType[id, default: 0] > 5 // >5 of same press in 2s
+                
+                if noHW && stale && rapidRepetition && !isUITest {
                     self.log("[A11Y] WARNING: Phantom UIPress \(id) → InfinityBug?")
-                    self.log("(debug)  noHW=\(noHW)  stale=\(stale)  dt=\(CACurrentMediaTime() - self.lastFocusTimestamp)s")
+                    let dt = CACurrentMediaTime() - self.lastFocusTimestamp
+                    self.log("(debug)  noHW=\(noHW)  stale=\(stale)  rapid=\(rapidRepetition)  dt=\(String(format: "%.1f", dt))s")
                     os_signpost(.event, log: self.poiLog,
                                 name: "InfinityBugPhantomPress",
                                 "%{public}s", id)

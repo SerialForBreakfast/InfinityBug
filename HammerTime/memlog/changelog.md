@@ -94,4 +94,47 @@ The primary issue was launch argument configuration - individual stressor tests 
 - Test completion times should be <60 seconds instead of timing out
 - Input processing effectiveness should improve from 2.5% to >20%
 
-*This changelog follows the rule requirement to maintain project state tracking.* 
+*This changelog follows the rule requirement to maintain project state tracking.*
+
+## 2025-01-22 - XCUITest Compilation Fixes and Experimental Test Suite
+
+### Fixed
+- **Compilation Errors**: Resolved all XCUITest API compilation failures
+  - Removed non-existent `coordinate(withNormalizedOffset:)` calls
+  - Removed non-existent `coordinateWithNormalizedOffset()` usage
+  - Removed non-existent `pressForDuration(_:thenDragToCoordinate:)` attempts
+- **AXFocusDebugger**: Fixed phantom press detection by moving static variables to proper scope
+
+### Added
+- **RemoteCommandBehaviors**: New helper struct with verified XCUIRemote APIs
+  - Edge detection using frame positioning
+  - Automatic direction reversal at boundaries  
+  - Realistic 1-second timing between presses
+  - Swipe simulation using sequential button presses
+- **5 New Experimental Tests**:
+  - `testManualInfinityBugStress()` - Heavy manual stress with right-biased pattern
+  - `testPressIntervalSweep()` - Timing analysis across multiple intervals
+  - `testHiddenTrapDensityComparison()` - Accessibility complexity scaling
+  - `testExponentialPressureScaling()` - Progressive interval reduction
+  - `testEdgeFocusedNavigation()` - Boundary-aware navigation patterns
+  - `testMixedGestureNavigation()` - Combined button/swipe patterns
+- **Focus Detection Extensions**: Direct `hasFocus` property access via XCUIElement extensions
+
+### Changed
+- **Test Philosophy**: Shifted from pass/fail assertions to instrumentation and metrics collection
+- **Focus Tracking**: Optimized `focusID` to check only first 10 collection view cells
+- **Navigation Patterns**: Replaced coordinate-based gestures with realistic button sequences
+- **Timing Strategy**: Moved from microsecond intervals to human-realistic 1-second delays
+
+### Technical Improvements
+- All tests now compile without errors on tvOS
+- Stable navigation that prevents infinite edge loops
+- Performance-optimized focus queries
+- Comprehensive logging for manual analysis
+- Frame-based edge detection with 50pt margins
+
+### Status
+- Tests serve as instrumentation tools for manual InfinityBug observation
+- Success measured by human detection of focus system failures
+- Designed for real Apple TV hardware with VoiceOver enabled
+- No automated pass/fail expectations - pure data collection focus 

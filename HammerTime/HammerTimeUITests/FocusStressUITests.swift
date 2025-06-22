@@ -75,6 +75,112 @@ private func isValidFocus(_ id: String) -> Bool {
     return !id.isEmpty && id != "NONE" && id != "NO_FOCUS"
 }
 
+/// Helper struct for realistic tvOS navigation patterns
+/// Based on proven approach that uses only verified XCUIRemote APIs
+/// with proper timing and edge detection for stable test execution
+struct RemoteCommandBehaviors {
+    let remote = XCUIRemote.shared
+    let app: XCUIApplication
+    
+    init(app: XCUIApplication) {
+        self.app = app
+    }
+    
+    /// Navigate with automatic edge detection and direction reversal
+    func navigateWithEdgeDetection(direction: XCUIRemote.Button, steps: Int = 5) {
+        for _ in 0..<steps {
+            remote.press(direction)
+            sleep(1) // Allow focus system to settle
+            
+            // Check if we hit an edge and need to reverse
+            if isAtEdge(for: direction) {
+                let reverseDirection = reverseDirection(direction)
+                remote.press(reverseDirection)
+                sleep(1)
+                break
+            }
+        }
+    }
+    
+    /// Simulates swipe-like behavior with proper pacing
+    func swipeLeft(steps: Int = 3) {
+        for _ in 0..<steps {
+            remote.press(.left)
+            sleep(1)
+        }
+    }
+    
+    func swipeRight(steps: Int = 3) {
+        for _ in 0..<steps {
+            remote.press(.right)
+            sleep(1)
+        }
+    }
+    
+    func swipeUp(steps: Int = 3) {
+        for _ in 0..<steps {
+            remote.press(.up)
+            sleep(1)
+        }
+    }
+    
+    func swipeDown(steps: Int = 3) {
+        for _ in 0..<steps {
+            remote.press(.down)
+            sleep(1)
+        }
+    }
+    
+    /// Select current focused element
+    func tap() {
+        remote.press(.select)
+        sleep(1)
+    }
+    
+    /// Long press current focused element
+    func longPress(duration: TimeInterval = 1.0) {
+        remote.press(.select, forDuration: duration)
+        sleep(1)
+    }
+    
+    // MARK: - Edge Detection Helpers
+    
+    private func isAtEdge(for direction: XCUIRemote.Button) -> Bool {
+        switch direction {
+        case .left, .right:
+            return isAtHorizontalEdge()
+        case .up, .down:
+            return isAtVerticalEdge()
+        default:
+            return false
+        }
+    }
+    
+    private func isAtHorizontalEdge() -> Bool {
+        guard let focused = app.focusedElement else { return false }
+        let frame = focused.frame
+        let screenWidth = UIScreen.main.bounds.width
+        return frame.minX <= 50 || frame.maxX >= screenWidth - 50 // 50pt margin
+    }
+    
+    private func isAtVerticalEdge() -> Bool {
+        guard let focused = app.focusedElement else { return false }
+        let frame = focused.frame
+        let screenHeight = UIScreen.main.bounds.height
+        return frame.minY <= 50 || frame.maxY >= screenHeight - 50 // 50pt margin
+    }
+    
+    private func reverseDirection(_ direction: XCUIRemote.Button) -> XCUIRemote.Button {
+        switch direction {
+        case .left: return .right
+        case .right: return .left
+        case .up: return .down
+        case .down: return .up
+        default: return direction
+        }
+    }
+}
+
 /// FocusStress-specific UI test suite for InfinityBug detection under stress.
 /// Tests the FocusStressViewController with various stressor combinations.
 final class FocusStressUITests: XCTestCase {
@@ -206,45 +312,29 @@ final class FocusStressUITests: XCTestCase {
         NSLog("AXDBG_TEST: Ensuring AXFocusDebugger is active")
     }
     
-    /// FOCUS TRACKING SYSTEM
+    /// FAST FOCUS TRACKING SYSTEM - Optimized for rapid polling
     ///
     /// **PURPOSE:**
-    /// Provides reliable focus tracking for InfinityBug detection by querying the current focused element
-    /// across multiple fallback strategies. Critical for identifying when focus becomes "stuck" on an element.
+    /// Provides fast focus tracking by targeting specific known elements rather than
+    /// querying the entire app hierarchy. Prioritizes speed over comprehensive detection.
     ///
-    /// **METHODOLOGY:**
-    /// 1. Primary: Uses XCUITest's hasFocus predicate to find focused elements
-    /// 2. Fallback: Specifically queries the FocusStressCollectionView for focused cells
-    /// 3. Returns "NONE" if no focused element can be identified
-    ///
-    /// **RELIABILITY CONSIDERATIONS:**
-    /// - hasFocus predicate only works reliably when VoiceOver is enabled
-    /// - Collection view-specific fallback handles cases where general focus queries fail
-    /// - Limited to first 20 cells to avoid performance issues during high-frequency polling
-    /// - Essential for detecting the "Black Hole" condition where focus stops changing
+    /// **OPTIMIZATION:**
+    /// - Only checks collection view cells (main navigation targets)
+    /// - Limits to first 10 cells for speed
+    /// - Skips expensive app-wide hasFocus queries
+    /// - Returns immediately when focus found or after quick scan
     private var focusID: String {
-        // Try the standard hasFocus predicate
-        let focusedElements = app.descendants(matching: .any)
-            .matching(NSPredicate(format: "hasFocus == true"))
-        
-        if focusedElements.count > 0 {
-            let firstMatch = focusedElements.firstMatch
-            if firstMatch.exists {
-                let identifier = firstMatch.identifier
-                if !identifier.isEmpty {
-                    return identifier
-                }
-            }
-        }
-        
-        // Try collection view specifically
+        // Fast path: Check only the collection view cells (primary focus targets)
         let stressCollectionView = app.collectionViews["FocusStressCollectionView"]
         if stressCollectionView.exists {
             let cells = stressCollectionView.cells
-            for cellIndex in 0..<min(cells.count, 20) {
+            let cellCount = min(cells.count, 10) // Limit to 10 for speed
+            
+            for cellIndex in 0..<cellCount {
                 let cell = cells.element(boundBy: cellIndex)
-                if cell.exists && cell.hasFocus {
-                    return cell.identifier
+                if cell.hasFocus { // Skip .exists check for speed
+                    let identifier = cell.identifier
+                    return identifier.isEmpty ? "Cell-\(cellIndex)" : identifier
                 }
             }
         }
@@ -423,4 +513,201 @@ final class FocusStressUITests: XCTestCase {
             NSLog("TRAP-DENSITY: \(d) traps → \(focusChanges) focus changes / 200 presses")
         }
     }
-} 
+
+    /// EXPERIMENT 3 – Exponential pressure scaling. Instead of linear count
+    /// increases, exponentially reduce intervals to find the critical threshold
+    /// faster. Tests: 100ms → 50ms → 25ms → 12ms → 6ms → 3ms intervals.
+    func testExponentialPressureScaling() throws {
+        NSLog("EXPONENTIAL-SCALING: Testing exponential pressure ramp-up")
+        
+        let intervals: [useconds_t] = [100_000, 50_000, 25_000, 12_000, 6_000, 3_000] // 100ms down to 3ms
+        let pressesPerPhase = 50 // Much smaller batches for faster iteration
+        
+        for (phaseIndex, interval) in intervals.enumerated() {
+            NSLog("EXPONENTIAL-SCALING: Phase \(phaseIndex) - interval \(Double(interval)/1000.0)ms")
+            
+            let startTime = CACurrentMediaTime()
+            var focusChanges = 0
+            var lastFocus = focusID
+            var consecutiveStuck = 0
+            let maxStuck = 8
+            
+            for pressIndex in 0..<pressesPerPhase {
+                remote.press(.right, forDuration: 0.02)
+                usleep(interval)
+                
+                let currentFocus = focusID
+                if currentFocus != lastFocus {
+                    focusChanges += 1
+                    consecutiveStuck = 0
+                    lastFocus = currentFocus
+                } else if isValidFocus(currentFocus) {
+                    consecutiveStuck += 1
+                    if consecutiveStuck >= maxStuck {
+                        NSLog("EXPONENTIAL-SCALING: EARLY DETECTION at phase \(phaseIndex), press \(pressIndex)")
+                        NSLog("EXPONENTIAL-SCALING: Focus stuck on '\(currentFocus)' - may indicate bug reproduction")
+                        return
+                    }
+                }
+            }
+            
+            let phaseTime = CACurrentMediaTime() - startTime
+            let focusRatio = Double(focusChanges) / Double(pressesPerPhase)
+            
+            NSLog("EXPONENTIAL-SCALING: Phase \(phaseIndex) complete - \(focusChanges) changes in \(String(format: "%.2f", phaseTime))s (ratio: \(String(format: "%.3f", focusRatio)))")
+            
+            // Early exit if focus becomes completely unresponsive
+            if focusRatio < 0.1 {
+                NSLog("EXPONENTIAL-SCALING: Focus responsiveness critically low (\(String(format: "%.3f", focusRatio))) - stopping escalation")
+                break
+            }
+        }
+    }
+    
+    /// EXPERIMENT 4 – Edge-focused navigation with direction switching.
+    /// Navigates to collection view edges, then switches direction when
+    /// attempting to go past boundaries more than 5 times.
+    func testEdgeFocusedNavigation() throws {
+        NSLog("EDGE-FOCUSED: Testing boundary-aware navigation patterns")
+        
+        var currentDirection: XCUIRemote.Button = .right
+        var boundaryHitCount = 0
+        var unchangedCount = 0
+        let maxBoundaryHits = 5
+        let maxPresses = 400
+        
+        for pressIndex in 0..<maxPresses {
+            let beforeFocus = focusID
+            
+            remote.press(currentDirection, forDuration: 0.04)
+            usleep(60_000) // 60ms - aggressive but not unrealistic
+            
+            let afterFocus = focusID
+            
+            // Detect when we're stuck at an edge (focus not changing)
+            if beforeFocus == afterFocus && isValidFocus(afterFocus) {
+                unchangedCount += 1
+                
+                // If we hit the same boundary multiple times, switch direction
+                if unchangedCount >= maxBoundaryHits {
+                    boundaryHitCount += 1
+                    
+                    // Switch direction based on current direction
+                    let newDirection: XCUIRemote.Button
+                    switch currentDirection {
+                    case .right: newDirection = .left
+                    case .left: newDirection = .down  
+                    case .down: newDirection = .up
+                    case .up: newDirection = .right
+                    default: newDirection = .right
+                    }
+                    
+                    NSLog("EDGE-FOCUSED[\(pressIndex)]: Boundary hit \(boundaryHitCount) - switching from \(currentDirection) to \(newDirection)")
+                    currentDirection = newDirection
+                    unchangedCount = 0
+                    
+                    // Brief pause before direction change
+                    usleep(100_000) // 100ms pause
+                }
+            } else {
+                unchangedCount = 0
+            }
+            
+            // Log navigation progress periodically
+            if pressIndex % 50 == 0 {
+                NSLog("EDGE-FOCUSED[\(pressIndex)]: \(currentDirection) '\(beforeFocus)' → '\(afterFocus)' (boundary hits: \(boundaryHitCount))")
+            }
+        }
+        
+        NSLog("EDGE-FOCUSED: Complete - \(boundaryHitCount) boundary interactions across \(maxPresses) presses")
+    }
+    
+    /// EXPERIMENT 5 – Mixed gesture navigation combining button presses
+    /// with swipe gestures to create more complex input patterns that stress
+    /// the focus system with different types of navigation events.
+    func testMixedGestureNavigation() throws {
+        NSLog("MIXED-GESTURE: Testing combination of button presses and swipe gestures")
+        
+        let stressCollectionView = app.collectionViews["FocusStressCollectionView"]
+        guard stressCollectionView.exists else {
+            NSLog("MIXED-GESTURE: Collection view not found - skipping")
+            return
+        }
+        
+        // Create remote command helper for proper tvOS gestures
+        let remoteCommands = RemoteCommandBehaviors(app: app)
+        
+        // Mixed input patterns combining remote button presses and swipe gestures
+        let patterns: [(String, () -> Void)] = [
+            ("button-right", { self.remote.press(.right, forDuration: 0.03) }),
+            ("swipe-left", { remoteCommands.swipeLeft() }),
+            ("button-down", { self.remote.press(.down, forDuration: 0.03) }),
+            ("swipe-up", { remoteCommands.swipeUp() }),
+            ("double-right", { 
+                self.remote.press(.right, forDuration: 0.02)
+                usleep(20_000) // 20ms between rapid presses
+                self.remote.press(.right, forDuration: 0.02)
+            }),
+            ("swipe-right", { remoteCommands.swipeRight() }),
+            ("button-left", { self.remote.press(.left, forDuration: 0.03) }),
+            ("swipe-down", { remoteCommands.swipeDown() }),
+            ("rapid-left-right", { 
+                self.remote.press(.left, forDuration: 0.02)
+                usleep(15_000) // 15ms rapid alternation
+                self.remote.press(.right, forDuration: 0.02)
+            }),
+            ("button-up", { self.remote.press(.up, forDuration: 0.03) })
+        ]
+        
+        var focusChanges = 0
+        var consecutiveStuck = 0
+        let maxIterations = 200
+        
+        for iteration in 0..<maxIterations {
+            let pattern = patterns[iteration % patterns.count]
+            let beforeFocus = focusID
+            
+            // Execute the gesture or button pattern
+            pattern.1()
+            usleep(80_000) // 80ms between mixed gestures for processing
+            
+            let afterFocus = focusID
+            
+            if afterFocus != beforeFocus {
+                focusChanges += 1
+                consecutiveStuck = 0
+            } else if isValidFocus(afterFocus) {
+                consecutiveStuck += 1
+                if consecutiveStuck >= 10 {
+                    NSLog("MIXED-GESTURE[\(iteration)]: Focus stuck on '\(afterFocus)' for \(consecutiveStuck) gestures")
+                    NSLog("MIXED-GESTURE: Potential focus lock detected with mixed input patterns")
+                    break
+                }
+            }
+            
+            // Log progress with gesture/button type
+            if iteration % 25 == 0 {
+                NSLog("MIXED-GESTURE[\(iteration)]: \(pattern.0) '\(beforeFocus)' → '\(afterFocus)' (changes: \(focusChanges), stuck: \(consecutiveStuck))")
+            }
+        }
+        
+        let focusRatio = Double(focusChanges) / Double(min(maxIterations, 200))
+        NSLog("MIXED-GESTURE: Complete - \(focusChanges) focus changes in \(maxIterations) mixed gestures (ratio: \(String(format: "%.3f", focusRatio)))")
+    }
+}
+
+// MARK: - Focus Detection Extensions
+
+private extension XCUIApplication {
+    /// The currently focused element in the UI hierarchy.
+    var focusedElement: XCUIElement? {
+        return descendants(matching: .any).allElementsBoundByAccessibilityElement.first(where: { $0.hasFocus })
+    }
+}
+
+private extension XCUIElement {
+    /// Returns true if the element is currently focused.
+    var hasFocus: Bool {
+        return value(forKey: "hasFocus") as? Bool ?? false
+    }
+}
