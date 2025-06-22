@@ -108,4 +108,35 @@ With comprehensive documentation in place:
 4. **Refine timing parameters** based on actual device performance
 5. **Validate multi-factor hypothesis** through individual stressor results
 
-This documentation framework provides a solid foundation for systematic InfinityBug analysis and reproduction validation. 
+This documentation framework provides a solid foundation for systematic InfinityBug analysis and reproduction validation.
+
+## 2025-06-22 Pivot – Auto-detector tests retired
+
+### Root-cause recap
+1. `XCUIRemote` events never hit HID ⇒ no phantom/hardware divergence.
+2. UITest runner throttles inputs ≈15 Hz ⇒ can't create backlog with 3-8 ms storms.
+3. VoiceOver must be pre-enabled; UITest cannot toggle it.
+
+### Action
+* All detector-driven or isolation tests **commented out** in `FocusStressUITests.swift`.
+* **Only active test:** `testMaximumStressForManualReproduction()` – 3 600 presses across 5 phases, relies on human observation on a real Apple TV with VO ON.
+* Comment banners embedded in source explain why each test was disabled.
+
+### Deprecated Tests (kept for reference)
+| Test | Status | Why disabled |
+|------|--------|--------------|
+| `testFocusStressInfinityBugDetection` | commented | Needs InfinityBugDetector; never fires with synthetic events |
+| `testIndividualStressors` | commented | Single stressors insufficient for bug |
+| `testPhantomEventCacheBugReproduction` | commented | Same detector limitation |
+| `testInfinityBugDetectorFeedingReproduction` | commented | Detector deprecated |
+| `testFocusStressPerformanceStress` | commented | Metrics secondary to reproduction |
+| `testFocusStressAccessibilitySetup` | commented | Smoke test redundant |
+| `testBasicNavigationValidation` | commented | Baseline no longer needed |
+
+### Current Strategy
+1. Run **only** the manual stress test on hardware.
+2. Observe for focus lock-up / infinite presses.
+3. Capture sysdiagnose + screen recording when bug appears.
+4. Iterate on stress parameters inside `FocusStressViewController` rather than UITest code.
+
+This addendum supersedes earlier sections that assumed automated detection would succeed. 
