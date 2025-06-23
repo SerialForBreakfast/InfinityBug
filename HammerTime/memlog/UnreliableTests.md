@@ -1,4 +1,3 @@
-
 //
 //  HammerTimeUITestsLaunchTests.swift
 //  HammerTimeUITests

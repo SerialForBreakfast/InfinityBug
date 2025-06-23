@@ -1,3 +1,35 @@
+# Failed Attempts Log
+
+## 2025-01-22 – CRITICAL DISCOVERY: Focus Queries Cause 5x Speed Degradation
+
+**Problem Identified**: V2.0 NavigationStrategy tests were **5x slower than human input**:
+- **Human speed**: 100+ actions/minute = 1.67 actions/second  
+- **Test speed**: 0.36 actions/second (each button press took 2.8 seconds)
+- **Root cause**: Focus queries after every button press
+
+**Evidence from logs**:
+```
+t = 70.67s Pressing and holding Left button for 0.0s
+t = 71.50s Get number of matches for: Elements matching predicate 'hasFocus == 1'  
+t = 73.28s Find the Any (First Match)
+t = 73.49s Find the "FocusStressCollectionView" CollectionView
+```
+**Each press + focus check = 2.8 seconds!**
+
+**Additional Issues**:
+1. **Edge detection causing infinite loops**: 20+ consecutive left presses at collection edge
+2. **Expensive cell existence checks**: 15+ seconds wasted during setup checking 10 cells
+3. **No actual focus movement**: Tests got stuck at edges instead of moving through collection
+
+**V3.0 RADICAL SOLUTION**: 
+- **Eliminated ALL focus queries** during execution
+- **Eliminated ALL edge detection** - pure button pattern mashing
+- **Eliminated expensive cell caching** - only cache collection view
+- **Ultra-fast timing**: 8ms-200ms intervals (vs 8ms-1000ms before)
+- **Pattern-based navigation**: Predictable movement patterns without focus state dependency
+
+**Target Performance**: Match human mashing at 100+ actions/minute with maximum focus changes for InfinityBug reproduction.
+
 ## 2025-06-21 – PhantomEvent test tweak unsuccessful
 
 Attempted modifications to `testPhantomEventCacheBugReproduction`:
