@@ -80,74 +80,74 @@ final class FocusStressUITests: XCTestCase {
     
     // MARK: - V8.2 DEVTICKET IMPLEMENTATION TESTS
     
-    /// **DevTicket Test 1: Methodical Right-Down Pattern**
+    /// **DevTicket Test 1: Edge-Avoidance Navigation Pattern**
     /// 
-    /// Implements the core DevTicket requirement for sustained directional inputs
-    /// using the specific Right/Down pattern identified in successful reproductions.
+    /// Implements navigation that avoids getting trapped at edges, creating larger
+    /// focus traversals and more system stress leading to RunLoop stalls.
     ///
-    /// **Implementation Based on DevTicket Requirements:**
-    /// 1. Multiple Right arrow presses with short pauses
-    /// 2. Multiple Down arrow presses with short pauses  
-    /// 3. Human-like timing delays between inputs
-    /// 4. Monitor for RunLoop stalls >5179ms
+    /// **Implementation Based on DevTicket Requirements & Edge Analysis:**
+    /// 1. Navigate toward center from edges (larger focus traversals)
+    /// 2. Up movements from bottom areas (high stress pattern from SuccessfulRepro3.txt)
+    /// 3. Left movements from right areas (avoid right-edge trap)
+    /// 4. Monitor for RunLoop stalls >5179ms from sustained large traversals
     ///
     /// **Expected Duration:** 4-5 minutes
-    /// **Target Outcome:** RunLoop stall warnings indicating InfinityBug reproduction
-    func testDevTicket_MethodicalRightDownPattern() throws {
-        NSLog("🎫 DEVTICKET-1: Starting methodical Right-Down pattern reproduction")
-        NSLog("🎫 TARGET: Sustained directional inputs with RunLoop stall >5179ms detection")
+    /// **Target Outcome:** RunLoop stall warnings from large focus traversals
+    func testDevTicket_EdgeAvoidanceNavigationPattern() throws {
+        NSLog("🎫 DEVTICKET-1: Starting edge-avoidance navigation pattern")
+        NSLog("🎫 TARGET: Large focus traversals avoiding edge traps, RunLoop stall >5179ms")
         
         let startTime = Date()
         
-        // Phase 1: Sustained Right Arrow Sequence (2 minutes)
-        executeSustainedRightSequence(duration: 120.0)
+        // Phase 1: Right exploration followed by Left return (2 minutes)
+        executeRightThenLeftTraversal(duration: 120.0)
         
-        // Phase 2: Sustained Down Arrow Sequence (2 minutes)  
-        executeSustainedDownSequence(duration: 120.0)
+        // Phase 2: Down exploration followed by Up return (2 minutes)  
+        executeDownThenUpTraversal(duration: 120.0)
         
-        // Phase 3: Combined Right-Down Pattern (1 minute)
-        executeCombinedRightDownPattern(duration: 60.0)
+        // Phase 3: Center-seeking navigation pattern (1 minute)
+        executeCenterSeekingPattern(duration: 60.0)
         
         let totalDuration = Date().timeIntervalSince(startTime)
-        NSLog("🎫 DEVTICKET-1: Completed methodical pattern in \(String(format: "%.1f", totalDuration))s")
-        NSLog("🎫 MONITOR: Check console for RunLoop stall warnings >5179ms")
+        NSLog("🎫 DEVTICKET-1: Completed edge-avoidance pattern in \(String(format: "%.1f", totalDuration))s")
+        NSLog("🎫 MONITOR: Check console for RunLoop stall warnings >5179ms from large traversals")
         
-        XCTAssertTrue(true, "DevTicket methodical pattern completed - monitor for RunLoop stalls")
+        XCTAssertTrue(true, "DevTicket edge-avoidance pattern completed - monitor for RunLoop stalls")
     }
     
-    /// **DevTicket Test 2: Sustained Pressure with Clear Pauses**
+    /// **DevTicket Test 2: Up-Burst Pattern from Successful Reproduction**
     /// 
-    /// Implements the DevTicket requirement for clear pauses between input events
-    /// while maintaining sustained pressure to trigger RunLoop stalls.
+    /// Implements the specific Up-burst pattern (22-45 presses) identified in
+    /// SuccessfulRepro3.txt that led to the critical 5179ms RunLoop stall.
     ///
-    /// **Implementation Based on DevTicket Requirements:**
-    /// 1. Specific, methodical input patterns vs erratic sequences
-    /// 2. Clear pauses between input events (100-300ms human timing)
-    /// 3. Sustained directional pressure without overwhelming system
-    /// 4. Progressive intensity to build toward RunLoop stall threshold
+    /// **Implementation Based on SuccessfulRepro3.txt Analysis:**
+    /// 1. Navigate to bottom area first (Right+Down setup)
+    /// 2. Execute sustained Up bursts (22-45 presses matching successful pattern)
+    /// 3. Clear pauses between bursts for system pressure accumulation
+    /// 4. Progressive Up burst intensity matching successful reproduction timing
     ///
     /// **Expected Duration:** 5-6 minutes
     /// **Target Outcome:** Progressive RunLoop degradation leading to >5179ms stalls
-    func testDevTicket_SustainedPressureWithClearPauses() throws {
-        NSLog("🎫 DEVTICKET-2: Starting sustained pressure with clear pauses")
-        NSLog("🎫 TARGET: Progressive RunLoop degradation through methodical input")
+    func testDevTicket_UpBurstFromSuccessfulReproduction() throws {
+        NSLog("🎫 DEVTICKET-2: Starting Up-burst pattern from SuccessfulRepro3.txt")
+        NSLog("🎫 TARGET: 22-45 Up press bursts creating large upward focus traversals")
         
         let startTime = Date()
         
-        // Phase 1: Methodical Right Exploration (2 minutes)
-        executeMethodicalRightExploration(duration: 120.0)
+        // Phase 1: Navigate to bottom area (setup phase - 1 minute)
+        executeBottomAreaSetup(duration: 60.0)
         
-        // Phase 2: Sustained Down Pressure (2 minutes)
-        executeSustainedDownPressure(duration: 120.0)
+        // Phase 2: Progressive Up bursts (4 minutes - core pattern)
+        executeProgressiveUpBurstsFromBottom(duration: 240.0)
         
-        // Phase 3: Progressive Intensity Increase (2 minutes)
-        executeProgressiveIntensityIncrease(duration: 120.0)
+        // Phase 3: Sustained Up pressure (1 minute - stall trigger)
+        executeSustainedUpwardPressure(duration: 60.0)
         
         let totalDuration = Date().timeIntervalSince(startTime)
-        NSLog("🎫 DEVTICKET-2: Completed sustained pressure in \(String(format: "%.1f", totalDuration))s")
-        NSLog("🎫 STALL-DETECTION: Monitor for progressive RunLoop stall warnings")
+        NSLog("🎫 DEVTICKET-2: Completed Up-burst pattern in \(String(format: "%.1f", totalDuration))s")
+        NSLog("🎫 STALL-DETECTION: Monitor for progressive Up-traversal RunLoop stalls")
         
-        XCTAssertTrue(true, "DevTicket sustained pressure completed - monitor for progressive stalls")
+        XCTAssertTrue(true, "DevTicket Up-burst pattern completed - monitor for SuccessfulRepro3.txt stalls")
     }
     
     // MARK: - V8.0 LEGACY TESTS (Retained for Comparison)
@@ -227,246 +227,343 @@ final class FocusStressUITests: XCTestCase {
 
 extension FocusStressUITests {
     
-    /// Execute sustained Right arrow sequence with clear pauses
+    /// Execute Right-then-Left traversal avoiding right-edge trap
     ///
-    /// **DevTicket Implementation:**
-    /// - Multiple Right arrow presses as specified in requirements
-    /// - Short pauses between each press (100-200ms human timing)
-    /// - Sustained pressure without overwhelming system
-    /// - Monitor for progressive RunLoop degradation
+    /// **Edge-Avoidance Strategy:**
+    /// - Navigate Right to explore rightward elements
+    /// - Return Left to create large reverse traversals (away from right edge)
+    /// - Larger focus system stress vs getting trapped at right boundary
+    /// - Clear pauses between direction changes for system pressure accumulation
     ///
-    /// **Based on Successful Manual Reproduction Analysis:**
-    /// Right-heavy bias (~60%) was key factor in successful reproductions
-    private func executeSustainedRightSequence(duration: TimeInterval) {
-        NSLog("➡️ SUSTAINED-RIGHT: Multiple Right presses with clear pauses")
-        
-        let endTime = Date().addingTimeInterval(duration)
-        var pressCount = 0
-        
-        while Date() < endTime {
-            remote.press(.right, forDuration: 0.05)
-            
-            // Clear pause between inputs (DevTicket requirement)
-            let pauseDuration = 100_000 + arc4random_uniform(100_000) // 100-200ms
-            usleep(pauseDuration)
-            
-            pressCount += 1
-            
-            // Log progress every 25 presses
-            if pressCount % 25 == 0 {
-                NSLog("➡️ Sustained Right progress: \(pressCount) presses")
-            }
-        }
-        
-        NSLog("➡️ SUSTAINED-RIGHT complete: \(pressCount) total Right presses")
-    }
-    
-    /// Execute sustained Down arrow sequence with clear pauses
-    ///
-    /// **DevTicket Implementation:**
-    /// - Multiple Down arrow presses as specified in requirements
-    /// - Short pauses between each press (100-200ms human timing)
-    /// - Focus on vertical navigation stress
-    /// - Progressive system pressure accumulation
-    ///
-    /// **Based on Successful Manual Reproduction Analysis:**
-    /// Down sequences were prominent in successful reproduction logs
-    private func executeSustainedDownSequence(duration: TimeInterval) {
-        NSLog("⬇️ SUSTAINED-DOWN: Multiple Down presses with clear pauses")
-        
-        let endTime = Date().addingTimeInterval(duration)
-        var pressCount = 0
-        
-        while Date() < endTime {
-            remote.press(.down, forDuration: 0.05)
-            
-            // Clear pause between inputs (DevTicket requirement)
-            let pauseDuration = 100_000 + arc4random_uniform(100_000) // 100-200ms
-            usleep(pauseDuration)
-            
-            pressCount += 1
-            
-            // Log progress every 25 presses
-            if pressCount % 25 == 0 {
-                NSLog("⬇️ Sustained Down progress: \(pressCount) presses")
-            }
-        }
-        
-        NSLog("⬇️ SUSTAINED-DOWN complete: \(pressCount) total Down presses")
-    }
-    
-    /// Execute combined Right-Down pattern matching successful reproduction
-    ///
-    /// **DevTicket Implementation:**
-    /// - Combine Right and Down sequences as specified
-    /// - Maintain clear pauses between direction changes
-    /// - Build toward RunLoop stall threshold
-    /// - Mirror successful manual reproduction patterns
-    ///
-    /// **Pattern:** 10 Right → pause → 10 Down → pause → repeat
-    private func executeCombinedRightDownPattern(duration: TimeInterval) {
-        NSLog("↘️ COMBINED-PATTERN: Right-Down sequences with clear pauses")
+    /// **Based on Manual Reproduction Analysis:**
+    /// Movement away from edges creates larger element traversals = more system stress
+    private func executeRightThenLeftTraversal(duration: TimeInterval) {
+        NSLog("↔️ RIGHT-LEFT-TRAVERSAL: Large horizontal focus traversals avoiding edge trap")
         
         let endTime = Date().addingTimeInterval(duration)
         var cycleCount = 0
         
         while Date() < endTime {
-            // 10 Right presses
-            for _ in 0..<10 {
+            // Right exploration phase (10-15 presses)
+            let rightCount = 10 + Int(arc4random_uniform(6)) // 10-15 Right presses
+            NSLog("➡️ Right exploration: \(rightCount) presses")
+            
+            for _ in 0..<rightCount {
                 remote.press(.right, forDuration: 0.05)
-                usleep(150_000) // 150ms clear pause
+                usleep(120_000 + arc4random_uniform(80_000)) // 120-200ms clear pauses
             }
             
-            // Pause between direction sequences
-            usleep(300_000) // 300ms clear pause between directions
+            // Pause before direction change
+            usleep(300_000) // 300ms pause for system pressure accumulation
             
-            // 10 Down presses
-            for _ in 0..<10 {
-                remote.press(.down, forDuration: 0.05)
-                usleep(150_000) // 150ms clear pause
+            // Left return phase (12-18 presses - slightly more to move away from right edge)
+            let leftCount = 12 + Int(arc4random_uniform(7)) // 12-18 Left presses
+            NSLog("⬅️ Left return traversal: \(leftCount) presses (away from right edge)")
+            
+            for _ in 0..<leftCount {
+                remote.press(.left, forDuration: 0.05)
+                usleep(100_000 + arc4random_uniform(100_000)) // 100-200ms clear pauses
             }
             
-            // Pause between cycles
-            usleep(300_000) // 300ms clear pause between cycles
+            // Cycle completion pause
+            usleep(400_000) // 400ms cycle pause
             
             cycleCount += 1
-            NSLog("↘️ Combined pattern cycle \(cycleCount) complete")
+            
+            if cycleCount % 5 == 0 {
+                NSLog("↔️ Right-Left traversal: \(cycleCount) cycles completed")
+            }
         }
         
-        NSLog("↘️ COMBINED-PATTERN complete: \(cycleCount) Right-Down cycles")
+        NSLog("↔️ RIGHT-LEFT-TRAVERSAL complete: \(cycleCount) large horizontal traversals")
     }
     
-    /// Execute methodical Right exploration with human-like timing
+    /// Execute Down-then-Up traversal avoiding bottom-edge trap
     ///
-    /// **DevTicket Implementation:**
-    /// - Specific, methodical input patterns (not erratic)
-    /// - Clear pauses mimicking human timing
-    /// - Sustained directional input focus
-    /// - Progressive pressure building
+    /// **Edge-Avoidance Strategy:**
+    /// - Navigate Down to explore downward elements  
+    /// - Return Up to create large reverse traversals (away from bottom edge)
+    /// - Up movements from bottom = largest focus traversals (SuccessfulRepro3.txt pattern)
+    /// - Progressive intensity matching successful reproduction timing
     ///
-    /// **Timing Rationale:** Based on successful manual reproduction analysis
-    /// showing 40-250ms natural human variation vs uniform automation
-    private func executeMethodicalRightExploration(duration: TimeInterval) {
-        NSLog("🔍 METHODICAL-RIGHT: Specific pattern with human timing")
+    /// **Critical Pattern:** Up movements from bottom areas create maximum system stress
+    private func executeDownThenUpTraversal(duration: TimeInterval) {
+        NSLog("↕️ DOWN-UP-TRAVERSAL: Large vertical focus traversals, Up from bottom stress")
         
         let endTime = Date().addingTimeInterval(duration)
-        var pressCount = 0
+        var cycleCount = 0
         
         while Date() < endTime {
-            remote.press(.right, forDuration: 0.05)
+            // Down exploration phase (8-12 presses)
+            let downCount = 8 + Int(arc4random_uniform(5)) // 8-12 Down presses
+            NSLog("⬇️ Down exploration: \(downCount) presses")
             
-            // Human-like timing variation (DevTicket: clear pauses)
-            let humanTiming = generateHumanLikePause(pressIndex: pressCount)
-            usleep(humanTiming)
+            for _ in 0..<downCount {
+                remote.press(.down, forDuration: 0.05)
+                usleep(150_000 + arc4random_uniform(100_000)) // 150-250ms clear pauses
+            }
             
-            pressCount += 1
+            // Pause before Up traversal (critical for system pressure)
+            usleep(400_000) // 400ms pause for system pressure accumulation
             
-            // Occasional exploration correction (10% chance)
-            if pressCount % 10 == 0 {
-                // Brief Up correction to simulate human navigation
+            // Up return phase (15-25 presses - MORE to create large upward traversals)
+            let upCount = 15 + Int(arc4random_uniform(11)) // 15-25 Up presses
+            NSLog("⬆️ Up traversal from bottom: \(upCount) presses (LARGE TRAVERSAL)")
+            
+            for _ in 0..<upCount {
                 remote.press(.up, forDuration: 0.05)
-                usleep(200_000) // 200ms pause after correction
+                usleep(120_000 + arc4random_uniform(80_000)) // 120-200ms clear pauses
+            }
+            
+            // Extended cycle pause for Up-traversal pressure accumulation
+            usleep(500_000) // 500ms extended pause
+            
+            cycleCount += 1
+            
+            if cycleCount % 3 == 0 {
+                NSLog("↕️ Down-Up traversal: \(cycleCount) cycles, focusing on Up-from-bottom stress")
             }
         }
         
-        NSLog("🔍 METHODICAL-RIGHT complete: \(pressCount) methodical presses")
+        NSLog("↕️ DOWN-UP-TRAVERSAL complete: \(cycleCount) large vertical traversals")
     }
     
-    /// Execute sustained Down pressure with progressive intensity
+    /// Execute center-seeking navigation pattern avoiding all edge traps
     ///
-    /// **DevTicket Implementation:**
-    /// - Sustained directional inputs (Down focus)
-    /// - Clear pauses between events
-    /// - Progressive system pressure
-    /// - Monitor for RunLoop degradation signs
+    /// **Edge-Avoidance Strategy:**
+    /// - Mixed directional inputs that avoid prolonged edge contact
+    /// - Center-seeking bias to maintain large traversal options
+    /// - Variable timing to create natural navigation pressure
+    /// - Avoid Right-Down corner trap and other edge accumulations
     ///
-    /// **Intensity Progression:** Start 200ms pauses → reduce to 120ms over time
-    private func executeSustainedDownPressure(duration: TimeInterval) {
-        NSLog("⬇️ SUSTAINED-PRESSURE: Down focus with progressive intensity")
+    /// **Pattern:** Dynamic navigation maintaining central focus position
+    private func executeCenterSeekingPattern(duration: TimeInterval) {
+        NSLog("🎯 CENTER-SEEKING: Dynamic navigation avoiding edge traps")
         
         let endTime = Date().addingTimeInterval(duration)
         var pressCount = 0
-        let startTime = Date()
+        
+        // Center-seeking direction weights (avoid edge accumulation)
+        let centerSeekingDirections: [(XCUIRemote.Button, Int)] = [
+            (.left, 30),   // Pull away from right edge
+            (.up, 35),     // Pull away from bottom edge (high stress)
+            (.right, 20),  // Limited rightward (avoid right edge trap)
+            (.down, 15)    // Limited downward (avoid bottom edge trap)
+        ]
         
         while Date() < endTime {
-            remote.press(.down, forDuration: 0.05)
+            // Select center-seeking direction based on weights
+            let direction = selectWeightedDirection(centerSeekingDirections)
             
-            // Progressive intensity: 200ms → 120ms over duration
-            let progress = Date().timeIntervalSince(startTime) / duration
-            let basePause = 200_000 - UInt32(80_000 * progress) // 200ms → 120ms
-            let pauseVariation = arc4random_uniform(50_000) // ±50ms variation
-            usleep(basePause + pauseVariation)
-            
-            pressCount += 1
-            
-            if pressCount % 30 == 0 {
-                NSLog("⬇️ Sustained pressure: \(pressCount) presses, intensity increasing")
-            }
-        }
-        
-        NSLog("⬇️ SUSTAINED-PRESSURE complete: \(pressCount) progressive presses")
-    }
-    
-    /// Execute progressive intensity increase toward RunLoop stall threshold
-    ///
-    /// **DevTicket Implementation:**
-    /// - Build toward severe RunLoop stalls (>5179ms target)
-    /// - Maintain clear pauses but increase frequency
-    /// - Combine Right/Down as needed based on successful patterns
-    /// - Monitor for InfinityBug symptoms
-    ///
-    /// **Progression:** 150ms → 80ms pauses, alternating Right/Down
-    private func executeProgressiveIntensityIncrease(duration: TimeInterval) {
-        NSLog("📈 PROGRESSIVE-INTENSITY: Building toward RunLoop stall threshold")
-        
-        let endTime = Date().addingTimeInterval(duration)
-        var pressCount = 0
-        let startTime = Date()
-        
-        while Date() < endTime {
-            // Alternate Right/Down based on successful pattern analysis
-            let direction: XCUIRemote.Button = (pressCount % 2 == 0) ? .right : .down
             remote.press(direction, forDuration: 0.05)
             
-            // Progressive intensity: 150ms → 80ms over duration
-            let progress = Date().timeIntervalSince(startTime) / duration
-            let basePause = 150_000 - UInt32(70_000 * progress) // 150ms → 80ms
-            usleep(basePause)
+            // Variable timing for natural navigation pressure
+            let centerSeekingTiming = generateCenterSeekingTiming(pressIndex: pressCount)
+            usleep(centerSeekingTiming)
             
             pressCount += 1
             
-            if pressCount % 40 == 0 {
-                NSLog("📈 Progressive intensity: \(pressCount) presses, approaching threshold")
+            // Occasional center-correction burst (every 20-30 presses)
+            if pressCount % (20 + Int(arc4random_uniform(11))) == 0 {
+                NSLog("🎯 Center correction: Up+Left burst (away from bottom-right)")
+                
+                // Up+Left burst to pull away from bottom-right area
+                for _ in 0..<3 {
+                    remote.press(.up, forDuration: 0.05)
+                    usleep(100_000)
+                }
+                for _ in 0..<2 {
+                    remote.press(.left, forDuration: 0.05)
+                    usleep(100_000)
+                }
+                
+                usleep(300_000) // 300ms correction pause
+            }
+            
+            if pressCount % 50 == 0 {
+                NSLog("🎯 Center-seeking progress: \(pressCount) edge-avoiding presses")
             }
         }
         
-        NSLog("📈 PROGRESSIVE-INTENSITY complete: \(pressCount) threshold-building presses")
+        NSLog("🎯 CENTER-SEEKING complete: \(pressCount) edge-avoidance navigations")
     }
     
-    /// Generate human-like pause duration mimicking natural timing
+    /// Execute bottom area setup for Up-burst testing
     ///
-    /// **DevTicket Implementation:**
-    /// - Clear pauses between input events (requirement)
-    /// - Mimic human timing vs automated precision
-    /// - Based on successful manual reproduction analysis
+    /// **Setup Strategy:**
+    /// - Navigate to bottom area to enable large upward traversals
+    /// - Controlled Right+Down movement (not trapped at corner)
+    /// - Position for maximum Up-traversal stress impact
+    /// - Based on SuccessfulRepro3.txt setup pattern
     ///
-    /// **Timing Analysis:** Successful reproductions showed 40-250ms variation
-    /// vs failed automated attempts with uniform 30ms gaps
-    ///
-    /// - Parameter pressIndex: Current press for variation calculation
-    /// - Returns: Microseconds pause duration for human-like timing
-    private func generateHumanLikePause(pressIndex: Int) -> UInt32 {
-        // Base human reaction time: 100-180ms (DevTicket: clear pauses)
-        let baseReaction = 100_000 + arc4random_uniform(80_000)
+    /// **Goal:** Position at bottom area for effective Up-burst stress testing
+    private func executeBottomAreaSetup(duration: TimeInterval) {
+        NSLog("⬇️ BOTTOM-SETUP: Positioning for Up-burst stress testing")
         
-        // Occasional "thinking pause" (5% chance): 250-350ms
-        if pressIndex % 20 == 0 {
-            return 250_000 + arc4random_uniform(100_000)
+        let endTime = Date().addingTimeInterval(duration)
+        var setupPhase = 0
+        
+        while Date() < endTime && setupPhase < 3 {
+            switch setupPhase {
+            case 0:
+                // Phase 1: Moderate Right movement (avoid right edge trap)
+                NSLog("➡️ Setup Phase 1: Moderate rightward positioning")
+                for _ in 0..<8 {
+                    remote.press(.right, forDuration: 0.05)
+                    usleep(200_000) // 200ms setup pauses
+                }
+                
+            case 1:
+                // Phase 2: Down movement to bottom area
+                NSLog("⬇️ Setup Phase 2: Moving to bottom area")
+                for _ in 0..<12 {
+                    remote.press(.down, forDuration: 0.05)
+                    usleep(180_000) // 180ms setup pauses
+                }
+                
+            case 2:
+                // Phase 3: Final positioning adjustments
+                NSLog("🎯 Setup Phase 3: Final positioning for Up-burst")
+                for _ in 0..<3 {
+                    remote.press(.right, forDuration: 0.05)
+                    usleep(150_000)
+                }
+                for _ in 0..<2 {
+                    remote.press(.down, forDuration: 0.05)
+                    usleep(150_000)
+                }
+                
+            default:
+                break
+            }
+            
+            setupPhase += 1
+            usleep(500_000) // 500ms phase transition pause
+        }
+        
+        NSLog("⬇️ BOTTOM-SETUP complete: Positioned for Up-burst stress testing")
+    }
+    
+    /// Execute progressive Up bursts from bottom matching SuccessfulRepro3.txt
+    ///
+    /// **SuccessfulRepro3.txt Pattern Implementation:**
+    /// - 22-45 Up press bursts (exact pattern from successful reproduction)
+    /// - Progressive burst intensity and duration
+    /// - Clear pauses between bursts for system pressure accumulation
+    /// - Target: Recreate the exact conditions that led to 5179ms RunLoop stall
+    ///
+    /// **Critical Success Factor:** Up movements from bottom = maximum focus traversals
+    private func executeProgressiveUpBurstsFromBottom(duration: TimeInterval) {
+        NSLog("⬆️ UP-BURSTS: SuccessfulRepro3.txt pattern (22-45 presses per burst)")
+        
+        let endTime = Date().addingTimeInterval(duration)
+        var burstNumber = 0
+        
+        while Date() < endTime {
+            // Up burst size: 22-45 presses (matching SuccessfulRepro3.txt)
+            let upCount = 22 + (burstNumber % 24) // 22-45 Up presses (exact successful pattern)
+            NSLog("⬆️ Up burst \(burstNumber + 1): \(upCount) presses (SuccessfulRepro3.txt pattern)")
+            
+            // Execute Up burst with progressive timing
+            for pressIndex in 0..<upCount {
+                remote.press(.up, forDuration: 0.05)
+                
+                // Progressive timing: Start 150ms → reduce to 100ms (building pressure)
+                let progressFactor = Double(pressIndex) / Double(upCount)
+                let burstTiming = 150_000 - UInt32(50_000 * progressFactor) // 150ms → 100ms
+                usleep(burstTiming)
+            }
+            
+            burstNumber += 1
+            
+            // Progressive burst pause: Shorter pauses as bursts increase (building pressure)
+            let burstPause = max(200_000, 400_000 - UInt32(burstNumber * 10_000)) // 400ms → 200ms
+            usleep(burstPause)
+            
+            if burstNumber % 5 == 0 {
+                NSLog("⬆️ Up-burst progress: \(burstNumber) bursts completed (building toward 5179ms stall)")
+            }
+        }
+        
+        NSLog("⬆️ UP-BURSTS complete: \(burstNumber) SuccessfulRepro3.txt pattern bursts")
+    }
+    
+    /// Execute sustained upward pressure for RunLoop stall trigger
+    ///
+    /// **Stall Trigger Strategy:**
+    /// - Sustained Up pressure without pauses
+    /// - Maximum upward focus traversal stress
+    /// - Target: Trigger the critical >5179ms RunLoop stall
+    /// - Based on final phase of SuccessfulRepro3.txt before stall
+    ///
+    /// **Critical Phase:** Final sustained pressure to trigger InfinityBug
+    private func executeSustainedUpwardPressure(duration: TimeInterval) {
+        NSLog("⬆️ SUSTAINED-UP: Final pressure phase targeting >5179ms RunLoop stall")
+        
+        let endTime = Date().addingTimeInterval(duration)
+        var sustainedPressCount = 0
+        
+        while Date() < endTime {
+            remote.press(.up, forDuration: 0.05)
+            
+            // Sustained pressure timing: 80ms consistent (no acceleration)
+            usleep(80_000) // 80ms sustained pressure
+            
+            sustainedPressCount += 1
+            
+            if sustainedPressCount % 50 == 0 {
+                NSLog("⬆️ Sustained Up pressure: \(sustainedPressCount) presses (targeting stall threshold)")
+            }
+        }
+        
+        NSLog("⬆️ SUSTAINED-UP complete: \(sustainedPressCount) sustained upward pressure presses")
+    }
+    
+    /// Select weighted direction for center-seeking navigation
+    ///
+    /// **Edge-Avoidance Logic:**
+    /// - Weighted selection favoring movement away from edges
+    /// - Up and Left weighted higher (pull away from bottom-right trap)
+    /// - Dynamic direction selection avoiding edge accumulation
+    ///
+    /// - Parameter directions: Array of (direction, weight) tuples
+    /// - Returns: Selected direction based on weights
+    private func selectWeightedDirection(_ directions: [(XCUIRemote.Button, Int)]) -> XCUIRemote.Button {
+        let totalWeight = directions.reduce(0) { $0 + $1.1 }
+        let randomValue = Int(arc4random_uniform(UInt32(totalWeight)))
+        
+        var currentWeight = 0
+        for (direction, weight) in directions {
+            currentWeight += weight
+            if randomValue < currentWeight {
+                return direction
+            }
+        }
+        
+        return directions.first?.0 ?? .up // Default to Up (away from bottom edge)
+    }
+    
+    /// Generate center-seeking timing for natural navigation
+    ///
+    /// **Edge-Avoidance Timing:**
+    /// - Variable timing for natural navigation feel
+    /// - Occasional longer pauses for system pressure accumulation
+    /// - Based on successful manual reproduction timing analysis
+    ///
+    /// - Parameter pressIndex: Current press for timing variation
+    /// - Returns: Microseconds pause duration for center-seeking navigation
+    private func generateCenterSeekingTiming(pressIndex: Int) -> UInt32 {
+        // Base center-seeking timing: 120-200ms
+        let baseTiming = 120_000 + arc4random_uniform(80_000)
+        
+        // Occasional "navigation pause" (8% chance): 300-450ms
+        if pressIndex % 12 == 0 {
+            return 300_000 + arc4random_uniform(150_000)
         }
         
         // Natural variation around base timing
         let variation = arc4random_uniform(40_000) // ±40ms variation
-        return baseReaction + variation
+        return baseTiming + variation
     }
 }
 
