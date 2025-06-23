@@ -50,6 +50,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				InfinityBugDetector.swift,
+				TestRunLogger.swift,
 			);
 			target = 44B9F28E2DFCE8B900511113 /* HammerTimeUITests */;
 		};

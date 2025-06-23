@@ -1,6 +1,7 @@
 # UI Testing Facts and Limitations
 
 *Created: 2025-01-22*
+*Updated: 2025-01-22 - Logging Analysis*
 
 ## Key Findings from InfinityBug Testing
 
@@ -33,6 +34,20 @@ From failed tests:
 - Performance tests taking 262ms instead of expected <30ms
 - Collection view not found when individual stressors enabled
 
+## 6. Test Logging Requirements ⚠️ CRITICAL FOR FUTURE LEARNING
+- **Manual test execution logging**: Every manual reproduction attempt must be logged with timestamp
+- **UI test execution logging**: Every UI test run must call TestRunLogger.shared.startUITest()
+- **Test without logging are not learning opportunities**: Tests like testHybridProvenPatternReproduction were missing logging calls
+- **Timestamped naming convention**: Format should be `YYYYMMDD_HHMMSS_[Manual|UITest]_[TestName].log`
+- **Log file location**: Must write to `logs/testRunLogs/` directory for proper organization
+- **Navigation strategy documentation**: Each test using NavigationStrategy must log which patterns were executed
+
+### Critical Test Audit Findings (2025-01-22)
+- ❌ `testHybridProvenPatternReproduction` in FocusStressUITests.swift was NOT logging (fixed)
+- ✅ V6 tests in FocusStressUITests_V6.swift properly call TestRunLogger
+- ❌ Empty `logs/testRunLogs` directory indicates missing log generation  
+- ❌ Path resolution may need adjustment for UI test execution context
+
 ## Implications for InfinityBug Testing
 
 ### Current Test Approach Issues
@@ -40,6 +55,7 @@ From failed tests:
 2. **Too aggressive input timing**: May be overwhelming the UI test framework
 3. **Incorrect launch configuration**: Individual stressor tests not launching properly
 4. **Simulator vs. real device**: Tests may behave differently on actual Apple TV
+5. **⚠️ Missing logging integration**: Many tests not capturing data for learning
 
 ### Recommendations
 1. **Reduce focus detection frequency**: Only check focus state occasionally, not after every input
@@ -47,6 +63,8 @@ From failed tests:
 3. **Fix launch argument processing**: Ensure individual stressor tests launch correctly
 4. **Add UI state validation**: Verify collection view and cells exist before testing
 5. **Manual testing priority**: Focus on creating conditions for manual observation rather than automated detection
+6. **🔧 Mandatory logging integration**: Every test MUST call TestRunLogger before execution
+7. **📊 Performance metrics logging**: Log timing, actions, and system state for analysis
 
 ## Test Strategy Revisions Needed
 - Simplify automated detection logic
@@ -54,6 +72,7 @@ From failed tests:
 - Reduce reliance on precise timing
 - Improve test environment validation
 - Separate simulator testing from real device testing 
+- **🎯 Ensure comprehensive logging for all test executions**
 
 ## 2025-06-22 Additional Confirmed Limitations
 
@@ -68,3 +87,9 @@ From failed tests:
 - UITest press loops and the main-thread layout timers often do **not overlap** because both use the main run-loop; this reduces stale-context likelihood.
 
 These findings explain why automated UITest reproduction continues to fail and motivate hardware-only, manual-observation strategies. 
+
+## 9. Logging System Integration Requirements
+- **TestRunLogger must be called by ALL tests**: Missing logging = missed learning opportunities
+- **Path resolution critical**: Logs must reach `logs/testRunLogs/` directory successfully
+- **NavigationStrategy documentation**: Must log which patterns executed for future optimization
+- **Manual vs UI test distinction**: Clear naming convention essential for analysis 

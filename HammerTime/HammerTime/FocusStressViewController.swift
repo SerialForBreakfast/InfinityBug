@@ -79,22 +79,59 @@ final class FocusStressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        
+        // Start comprehensive logging for manual execution
+        let isManualExecution = ProcessInfo.processInfo.environment["FOCUS_TEST_MODE"] != "1"
+        if isManualExecution {
+            // Determine preset from launch arguments
+            let args = ProcessInfo.processInfo.arguments
+            var presetName = "heavyReproduction" // default
+            if let presetIndex = args.firstIndex(of: "-FocusStressPreset"), args.count > presetIndex + 1 {
+                presetName = args[presetIndex + 1].trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+            
+            TestRunLogger.shared.startManualTest("Manual_FocusStress_\(presetName)")
+            TestRunLogger.shared.log("📱 FocusStressViewController: Starting manual execution")
+            TestRunLogger.shared.log("📱 Configuration: \(presetName)")
+            TestRunLogger.shared.logSystemInfo()
+        }
+        
         setupCollectionView()
         
         // Apply stressors based on the configuration
         let stressors = configuration.stress.stressors
-        if stressors.contains(.circularFocusGuides) { addCircularGuides() }
-        if stressors.contains(.dynamicFocusGuides) { startDynamicFocusGuides() }
-        if stressors.contains(.rapidLayoutChanges) { startRapidLayoutChanges() }
-        if stressors.contains(.overlappingElements) { addOverlappingElements() }
-        if stressors.contains(.voAnnouncements) { startVOAnnouncements() }
+        if stressors.contains(.circularFocusGuides) { 
+            addCircularGuides()
+            TestRunLogger.shared.log("🔄 FocusStressViewController: Circular focus guides activated")
+        }
+        if stressors.contains(.dynamicFocusGuides) { 
+            startDynamicFocusGuides()
+            TestRunLogger.shared.log("🔀 FocusStressViewController: Dynamic focus guides activated")
+        }
+        if stressors.contains(.rapidLayoutChanges) { 
+            startRapidLayoutChanges()
+            TestRunLogger.shared.log("⚡ FocusStressViewController: Rapid layout changes activated")
+        }
+        if stressors.contains(.overlappingElements) { 
+            addOverlappingElements()
+            TestRunLogger.shared.log("🎯 FocusStressViewController: Overlapping elements activated")
+        }
+        if stressors.contains(.voAnnouncements) { 
+            startVOAnnouncements()
+            TestRunLogger.shared.log("📢 FocusStressViewController: VoiceOver announcements activated")
+        }
         
         // V6.0 memory stress features for guaranteed reproduction
         if ProcessInfo.processInfo.environment["MEMORY_STRESS_ENABLED"] == "1" {
             startMemoryStress()
+            TestRunLogger.shared.log("💾 FocusStressViewController: Memory stress enabled for V6.0 reproduction")
         }
         
+        // Activate continuous memory stress for extreme presets (guaranteedInfinityBug)
+        activateMemoryStress()
+        
         AXFocusDebugger.shared.start()
+        TestRunLogger.shared.log("🔍 FocusStressViewController: AXFocusDebugger started")
     }
 
     deinit { 
@@ -322,6 +359,50 @@ final class FocusStressViewController: UIViewController {
         section.boundarySupplementaryItems = [header]
         
         return section
+    }
+
+    // MARK: - Memory Stress Implementation
+    
+    /// Continuous memory allocation stress for InfinityBug reproduction
+    /// **Concurrency Requirements:** Runs on background queue with main queue updates
+    /// **Usage:** Activated automatically with guaranteedInfinityBug preset
+    private func activateMemoryStress() {
+        guard configuration.layout.numberOfSections >= 150 else { return } // Only for extreme presets
+        
+        TestRunLogger.shared.log("💾 MEMORY-STRESS: Activating continuous allocation pressure")
+        
+        // Continuous memory allocation background task for system pressure
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            var allocationCycle = 0
+            while self != nil {
+                allocationCycle += 1
+                
+                // Large array allocation every cycle
+                let memoryBurst = Array(0..<50000).map { _ in 
+                    UUID().uuidString + String(repeating: "stress", count: allocationCycle % 10)
+                }
+                
+                DispatchQueue.main.async { [weak self] in
+                    // Force main thread memory pressure with layout calculations
+                    _ = memoryBurst.joined(separator: ",").count
+                    
+                    // Additional UI stress through accessibility tree queries
+                    if let strongSelf = self {
+                        _ = strongSelf.view.subviews.count
+                        _ = strongSelf.collectionView.visibleCells.count
+                    }
+                    
+                    // Log memory pressure progress
+                    if allocationCycle % 20 == 0 {
+                        TestRunLogger.shared.log("💾 MEMORY-STRESS: Cycle \(allocationCycle) - \(memoryBurst.count) elements allocated")
+                    }
+                }
+                
+                // Progressive allocation frequency - starts at 100ms, reduces to 25ms
+                let sleepMicros = max(25_000, 100_000 - (allocationCycle * 2_000))
+                usleep(UInt32(sleepMicros))
+            }
+        }
     }
 }
 

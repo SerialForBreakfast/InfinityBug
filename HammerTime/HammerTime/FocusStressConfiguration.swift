@@ -78,7 +78,7 @@ public enum FocusStressPreset: CaseIterable {
             )
         case .guaranteedInfinityBug:
             return FocusStressConfiguration(
-                layout: .init(numberOfSections: 100, itemsPerSection: 100, nestingLevel: .tripleNested),
+                layout: .init(numberOfSections: 150, itemsPerSection: 150, nestingLevel: .tripleNested),
                 stress: .init(stressors: [
                     .jiggleTimer,
                     .hiddenFocusableTraps,
@@ -89,11 +89,11 @@ public enum FocusStressPreset: CaseIterable {
                     .overlappingElements,
                     .voAnnouncements
                 ], 
-                jiggleInterval: 0.02,           // Faster jiggle for maximum stress
-                layoutChangeInterval: 0.01,     // Rapid layout changes
-                voAnnouncementInterval: 0.15,   // More frequent VO announcements
-                dynamicGuideInterval: 0.05),    // Rapid guide changes
-                navigation: .init(strategy: .randomWalk, pauseBetweenCommands: 0.035),
+                jiggleInterval: 0.015,
+                layoutChangeInterval: 0.008,
+                voAnnouncementInterval: 0.12,
+                dynamicGuideInterval: 0.03),
+                navigation: .init(strategy: .randomWalk, pauseBetweenCommands: 0.025),
                 performance: .init(prefetchingEnabled: false)
             )
         }
