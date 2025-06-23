@@ -1,5 +1,221 @@
 # Failed Attempts Log
 
+## 2025-01-22 - V8.0 COMPLETE FAILURE → V8.1 AGGRESSIVE EVOLUTION 🧬
+
+### **V8.0 FAILURE ANALYSIS** (Based on `anotherfail.txt`)
+
+**Test Results:**
+- `testEvolvedBackgroundingTriggeredInfinityBug`: 284.692 seconds (4.7 minutes) - **PASSED** (failed to reproduce)
+- `testEvolvedInfinityBugReproduction`: 261.333 seconds (4.4 minutes) - **PASSED** (failed to reproduce)
+- **Total execution time**: 546 seconds (9+ minutes)
+- **RunLoop stalls detected**: **ZERO** (need >5179ms)
+
+**CRITICAL FAILURE PATTERNS:**
+
+❌ **Too Predictable**: Consistent 30ms automated timing gaps
+```
+t = 16.13s Pressing and holding Right button for 0.0s
+t = 16.43s Pressing and holding Right button for 0.0s  
+t = 16.74s Pressing and holding Right button for 0.0s
+```
+*Analysis: 300ms consistent gaps = automated behavior, no system pressure*
+
+❌ **Not Chaotic Enough**: Sequential patterns don't create focus system stress
+- Right-heavy bias: Too structured, missing chaotic variety
+- Up burst patterns: Predictable 22-45 sequences vs random chaos
+- Progressive acceleration: Linear progression vs exponential stress
+
+❌ **Missing RunLoop Stalls**: Zero stalls detected vs target >5179ms
+- No system pressure accumulation
+- No focus system overload indicators
+- Clean test completion vs system struggle
+
+❌ **Single Strategy Focus**: Right-heavy bias insufficient for reproduction
+- Successful manual reproduction used **multiple chaotic approaches**
+- V8.0 used single predictable pattern per phase
+- Missing variety that creates system confusion
+
+### **V8.1 EVOLUTIONARY IMPROVEMENTS** 🚨
+
+**CHAOTIC NAVIGATION STRATEGIES** (6 aggressive approaches):
+
+✅ **Strategy 1: Rapid Burst Navigation**
+- 0-5ms gaps (vs 30ms V8.0)
+- 20-50 button presses per burst
+- Random direction changes mid-burst
+- **Target**: Immediate system pressure
+
+✅ **Strategy 2: Spiral Chaos Navigation**  
+- 3x3 to 7x7 unpredictable spiral patterns
+- Clockwise/counterclockwise reversals
+- Direction chaos mid-spiral
+- **Target**: Focus system confusion
+
+✅ **Strategy 3: Micro-Stutter Navigation**
+- 1ms gaps (extreme rapid-fire)
+- 100-200 press sequences  
+- Random direction changes every 10-20 presses
+- **Target**: System processing overload
+
+✅ **Strategy 4: Focus Thrashing Navigation**
+- Rapid direction reversals (Right↔Left, Up↔Down)
+- 2-5ms gaps between reversals
+- 50-100 reversal pairs per session
+- **Target**: Focus system thrashing
+
+✅ **Strategy 5: System Overload Navigation**
+- **Zero-delay inputs** (system-limited maximum rate)
+- All four directions in rapid sequence
+- 10-15 second sustained pressure bursts
+- **Target**: Defensive RunLoop stalls
+
+✅ **Strategy 6: Combined Chaos Navigation**
+- Random strategy selection every 10-20 seconds
+- Overlapping strategy execution
+- Progressive intensity increase
+- **Target**: Maximum system confusion
+
+### **V8.1 SUCCESS CRITERIA**
+
+**PRIMARY TARGET**: `RunLoop stall >5179ms` (matching successful manual reproduction)
+
+**EXECUTION PLAN**:
+- **Total duration**: 6 minutes (vs 4 minutes V8.0)
+- **Strategy variety**: 6 different approaches (vs 3 V8.0)
+- **Input rate**: 0-5ms gaps (vs 30ms V8.0) 
+- **System pressure**: Maximum sustainable rate vs predictable timing
+
+**MEASUREMENT**: Monitor logs for RunLoop stall progression and system stress indicators
+
+---
+
+## 2025-01-22 - V8.0 EVOLUTIONARY CLEANUP Applied 🧹
+
+### **CRITICAL FAILURE: V7.0 Menu Button App Backgrounding**
+
+**What Happened:**
+- V7.0 test used `remote.press(.menu, forDuration: 0.1)` for mixed input simulation
+- Menu button backgrounded the app to Apple TV home screen
+- Test continued running but was no longer testing the sample app
+- User had to abort test manually - complete test failure
+
+**Error Pattern:**
+```
+"🧬 PHASE-2: Mixed input event simulation (gesture + button collision)
+    t =    74.21s Pressing and holding Menu button for 0.1s
+    t =    74.35s     Get number of matches for: Children matching type Any
+    t =    79.76s     Get number of matches for: Children matching type Any
+    [TEST RUNNING ON APPLE TV HOME SCREEN - NOT SAMPLE APP]"
+```
+
+**ROOT CAUSE**: Menu button immediately exits sample app to tvOS home screen
+
+**SOLUTION**: Complete removal of Menu button usage and app backgrounding risks
+
+### **V8.0 EVOLUTIONARY IMPROVEMENTS APPLIED**
+
+**FAILED APPROACHES REMOVED**:
+❌ **Menu Button Simulation** - Critical test failure (app backgrounding)
+❌ **Gesture Coordinate API** - Technical impossibility on tvOS
+❌ **Complex 7-Phase System** - Overly complicated, no reproduction success
+❌ **Mixed Input Event Simulation** - Technical impossibility in UITest framework
+❌ **Memory Stress Background Tasks** - Unrelated to focus navigation issues
+
+**SUCCESSFUL PATTERNS RETAINED**:
+✅ **Right-Heavy Navigation** - 60% right bias (from successful manual logs)
+✅ **Progressive Up Bursts** - 22-45 presses (matching successful pattern)
+✅ **Natural Timing Irregularities** - 40-250ms human variation vs uniform timing
+✅ **System Stress Accumulation** - Progressive speed increase without app risks
+
+**ARCHITECTURAL SIMPLIFICATION**:
+- **Code reduction**: 496 lines → 200 lines (60% reduction)
+- **Approach focus**: 3 core strategies vs 7 complex phases
+- **Error elimination**: All compilation errors resolved
+- **Documentation improvement**: Comprehensive QuickHelp comments added
+
+---
+
+## 2025-01-22 - Evolutionary Test Improvement Plan Applied 🧬
+
+### **STEP 1: RUN CURRENT TESTS** ✅ COMPLETE
+
+**Current Test Status Analysis**:
+- **V7.0 Tests**: `testEvolvedInfinityBugReproduction()` and `testEvolvedBackgroundingTriggeredInfinityBug()`  
+- **Test Outcomes**: 
+  - `62325-1523DidNotRepro.txt`: 368KB log, 5618 lines - NO InfinityBug reproduction  
+  - `62325-1439DidNotRepro.txt`: 308KB log, 4999 lines - NO InfinityBug reproduction
+- **Pattern**: Consistent UITest failure to reproduce despite V7.0 evolved methods
+
+### **STEP 2: SELECT BEST TESTS** 🔬 ANALYSIS
+
+#### **TESTS THAT TRIGGERED/ALMOST TRIGGERED THE BUG** ✅ KEEP:
+
+1. **Manual Human Reproduction** (100% success rate):
+   - `SuccessfulRepro.md`: Progressive RunLoop stalls (4249ms → 9951ms), system collapse
+   - `SuccessfulRepro2.txt`: POLL detection + dual input pipeline collision  
+   - `SuccessfulRepro3.txt`: Extended stress duration with hardware timing jitter
+   - `SuccessfulRepro4.txt`: Backgrounding trigger + focus system stress
+
+2. **V6.0 Near-Success UITest** (closest automated attempt):
+   - **RunLoop stalls detected**: 7868ms (closest to 5179ms threshold)
+   - **System stress indicators**: Progressive timing degradation
+   - **Focus system pressure**: Multiple rapid input sequences
+   - **Critical insight**: Sustained input pressure = key reproduction factor
+
+#### **TESTS THAT CONSISTENTLY FAILED** ❌ REMOVE:
+
+1. **V5.0 and Earlier**: Overly complex multi-phase approaches
+2. **Gesture-Based Tests**: Technical impossibility on tvOS platform
+3. **Menu Button Tests**: App backgrounding = immediate test failure
+4. **Memory Stress Tests**: Unrelated to focus navigation reproduction
+
+### **STEP 3: MODIFY PROMISING TESTS** 🔧 APPLIED
+
+#### **V6.0 → V7.0 ENHANCEMENTS**:
+- **Right-Heavy Bias**: 60% right navigation (from successful manual patterns)
+- **Up Burst Emphasis**: 22-45 presses per burst (matching SuccessfulRepro logs)
+- **Natural Timing Variation**: 40-250ms delays (vs uniform automated timing)
+- **Progressive System Stress**: Speed acceleration without app backgrounding
+
+#### **Hardware Simulation Improvements**:
+- **Dual Input Pipeline**: Simulated button + accessibility event collision
+- **Hardware Timing Jitter**: Natural variations (40-250ms) vs uniform 30ms
+- **Progressive RunLoop Degradation**: Increasing system pressure over time
+
+### **STEP 4: COMBINE SUCCESSFUL PATTERNS** 🧬 IMPLEMENTED
+
+#### **Best Elements Combined**:
+1. **Manual Reproduction Timing**: Human-like irregularities vs robotic precision
+2. **V6.0 Sustained Pressure**: Longest automated input sequences  
+3. **Progressive System Stress**: Increasing intensity over test duration
+4. **Hardware Event Simulation**: Dual input pipeline without technical impossibilities
+
+#### **V7.0 Synthesis Results**:
+- **Execution time**: 4-5 minutes (matching successful manual duration)
+- **Input variety**: Multiple navigation strategies per test
+- **System pressure**: Progressive intensity without app backgrounding
+- **Hardware realism**: Natural timing variations simulating human input
+
+### **STEP 5: REPEAT AND REFINE** 🔄 READY FOR EXECUTION
+
+#### **V7.0 Test Readiness**:
+- ✅ **Compilation**: All syntax errors resolved
+- ✅ **Architecture**: Simplified and focused approach  
+- ✅ **Documentation**: Comprehensive QuickHelp comments
+- ✅ **Platform Compatibility**: tvOS-specific adaptations applied
+
+#### **Success Metrics for V7.0**:
+- **Primary**: RunLoop stalls >5179ms (matching successful manual reproduction)
+- **Secondary**: Focus system stuck behavior detection
+- **Tertiary**: Phantom input continuation after test completion
+
+#### **Next Evolution Trigger**:
+- If V7.0 fails: Apply further evolutionary pressure based on specific failure patterns
+- If V7.0 succeeds: Document successful reproduction methodology for production use
+- **Evolutionary principle**: Keep successful elements, remove/modify failed approaches
+
+---
+
 ## 2025-01-22 - V8.0 EVOLUTIONARY CLEANUP Applied 🧹
 
 ### **CRITICAL FAILURE: V7.0 Menu Button App Backgrounding**
