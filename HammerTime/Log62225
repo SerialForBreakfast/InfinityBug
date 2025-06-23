@@ -1,0 +1,2892 @@
+
+Showing Recent Messages
+2025-06-22 21:49:51.742368-0700 HammerTimeUITests-Runner[18910:707573] [Scene] CLIENT OF UIKIT REQUIRES UPDATE: This process does not adopt UIScene lifecycle. This will become an assert in a future version.
+
+2025-06-22 21:49:51.753175-0700 HammerTimeUITests-Runner[18910:707573] [Default] Running tests...
+
+Test Suite 'Selected tests' started at 2025-06-22 21:49:54.754.
+Test Suite 'HammerTimeUITests.xctest' started at 2025-06-22 21:49:54.757.
+Test Suite 'FocusStressUITests' started at 2025-06-22 21:49:54.759.
+Test Case '-[HammerTimeUITests.FocusStressUITests testEdgeBoundaryStress]' started.
+    t =     0.00s Start Test at 2025-06-22 21:49:54.762
+    t =     0.05s Set Up
+    t =     0.23s     Open com.showblender.HammerTime
+    t =     0.24s         Launch com.showblender.HammerTime
+    t =     5.46s             Setting up automation session
+    t =    11.01s             Wait for com.showblender.HammerTime to idle
+    t =    13.37s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    14.42s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    14.43s             Checking existence of `"FocusStressCollectionView" CollectionView`
+2025-06-22 21:50:10.836105-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Collection view cached - NO cell queries for maximum speed
+
+2025-06-22 21:50:10.836234-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Minimal caching complete - ready for rapid button mashing
+
+2025-06-22 21:50:10.838284-0700 HammerTimeUITests-Runner[18910:707573] TIME-ESTIMATE: Test estimated to take 2.5 minutes
+
+2025-06-22 21:50:10.838407-0700 HammerTimeUITests-Runner[18910:707573] EDGE-BOUNDARY: Testing edge conditions and boundary behavior
+
+2025-06-22 21:50:10.838478-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 100 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:50:10.839019-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 100 steps, edge: all
+
+    t =    16.08s Pressing and holding Up button for 0.0s
+    t =    16.53s Pressing and holding Right button for 0.0s
+    t =    16.84s Pressing and holding Down button for 0.0s
+    t =    17.15s Pressing and holding Left button for 0.0s
+    t =    17.49s Pressing and holding Up button for 0.0s
+    t =    17.88s Pressing and holding Left button for 0.0s
+    t =    18.33s Pressing and holding Down button for 0.0s
+    t =    18.73s Pressing and holding Right button for 0.0s
+    t =    19.11s Pressing and holding Up button for 0.0s
+    t =    19.44s Pressing and holding Right button for 0.0s
+    t =    19.84s Pressing and holding Down button for 0.0s
+    t =    20.18s Pressing and holding Left button for 0.0s
+    t =    20.58s Pressing and holding Up button for 0.0s
+    t =    21.00s Pressing and holding Left button for 0.0s
+    t =    21.30s Pressing and holding Down button for 0.0s
+    t =    21.64s Pressing and holding Right button for 0.0s
+    t =    21.98s Pressing and holding Up button for 0.0s
+    t =    22.42s Pressing and holding Right button for 0.0s
+    t =    22.84s Pressing and holding Down button for 0.0s
+    t =    23.69s Pressing and holding Left button for 0.0s
+    t =    24.51s Pressing and holding Up button for 0.0s
+    t =    25.24s Pressing and holding Left button for 0.0s
+    t =    25.68s Pressing and holding Down button for 0.0s
+    t =    26.11s Pressing and holding Right button for 0.0s
+    t =    26.43s Pressing and holding Up button for 0.0s
+    t =    26.87s Pressing and holding Right button for 0.0s
+    t =    27.46s Pressing and holding Down button for 0.0s
+    t =    27.91s Pressing and holding Left button for 0.0s
+    t =    28.36s Pressing and holding Up button for 0.0s
+    t =    29.15s Pressing and holding Left button for 0.0s
+    t =    29.60s Pressing and holding Down button for 0.0s
+    t =    30.20s Pressing and holding Right button for 0.0s
+    t =    30.86s Pressing and holding Up button for 0.0s
+    t =    31.40s Pressing and holding Right button for 0.0s
+    t =    31.69s Pressing and holding Down button for 0.0s
+    t =    32.11s Pressing and holding Left button for 0.0s
+    t =    32.48s Pressing and holding Up button for 0.0s
+    t =    32.82s Pressing and holding Left button for 0.0s
+    t =    33.26s Pressing and holding Down button for 0.0s
+    t =    33.68s Pressing and holding Right button for 0.0s
+    t =    34.32s Pressing and holding Up button for 0.0s
+    t =    34.85s Pressing and holding Right button for 0.0s
+    t =    35.23s Pressing and holding Down button for 0.0s
+    t =    35.72s Pressing and holding Left button for 0.0s
+    t =    36.29s Pressing and holding Up button for 0.0s
+    t =    36.77s Pressing and holding Left button for 0.0s
+    t =    37.23s Pressing and holding Down button for 0.0s
+    t =    38.07s Pressing and holding Right button for 0.0s
+    t =    38.50s Pressing and holding Up button for 0.0s
+    t =    39.07s Pressing and holding Right button for 0.0s
+    t =    39.46s Pressing and holding Down button for 0.0s
+    t =    39.83s Pressing and holding Left button for 0.0s
+    t =    40.48s Pressing and holding Up button for 0.0s
+    t =    40.78s Pressing and holding Left button for 0.0s
+    t =    41.30s Pressing and holding Down button for 0.0s
+    t =    42.12s Pressing and holding Right button for 0.0s
+    t =    42.55s Pressing and holding Up button for 0.0s
+    t =    42.97s Pressing and holding Right button for 0.0s
+    t =    43.41s Pressing and holding Down button for 0.0s
+    t =    44.01s Pressing and holding Left button for 0.0s
+    t =    44.51s Pressing and holding Up button for 0.0s
+    t =    45.17s Pressing and holding Left button for 0.0s
+    t =    45.61s Pressing and holding Down button for 0.0s
+    t =    46.14s Pressing and holding Right button for 0.0s
+    t =    46.66s Pressing and holding Up button for 0.0s
+    t =    47.20s Pressing and holding Right button for 0.0s
+    t =    47.89s Pressing and holding Down button for 0.0s
+    t =    48.56s Pressing and holding Left button for 0.0s
+    t =    49.04s Pressing and holding Up button for 0.0s
+    t =    49.45s Pressing and holding Left button for 0.0s
+    t =    49.79s Pressing and holding Down button for 0.0s
+    t =    50.13s Pressing and holding Right button for 0.0s
+    t =    50.47s Pressing and holding Up button for 0.0s
+    t =    51.18s Pressing and holding Right button for 0.0s
+    t =    51.57s Pressing and holding Down button for 0.0s
+    t =    52.07s Pressing and holding Left button for 0.0s
+    t =    52.65s Pressing and holding Up button for 0.0s
+    t =    52.97s Pressing and holding Left button for 0.0s
+    t =    53.79s Pressing and holding Down button for 0.0s
+    t =    54.82s Pressing and holding Right button for 0.0s
+    t =    55.50s Pressing and holding Up button for 0.0s
+    t =    55.97s Pressing and holding Right button for 0.0s
+    t =    56.32s Pressing and holding Down button for 0.0s
+    t =    56.83s Pressing and holding Left button for 0.0s
+    t =    57.37s Pressing and holding Up button for 0.0s
+    t =    57.99s Pressing and holding Left button for 0.0s
+    t =    58.59s Pressing and holding Down button for 0.0s
+    t =    58.97s Pressing and holding Right button for 0.0s
+    t =    59.37s Pressing and holding Up button for 0.0s
+    t =    60.00s Pressing and holding Right button for 0.0s
+    t =    60.68s Pressing and holding Down button for 0.0s
+    t =    61.13s Pressing and holding Left button for 0.0s
+    t =    61.44s Pressing and holding Up button for 0.0s
+    t =    61.79s Pressing and holding Left button for 0.0s
+    t =    62.19s Pressing and holding Down button for 0.0s
+    t =    62.59s Pressing and holding Right button for 0.0s
+    t =    62.94s Pressing and holding Up button for 0.0s
+    t =    63.26s Pressing and holding Right button for 0.0s
+    t =    64.09s Pressing and holding Down button for 0.0s
+    t =    64.45s Pressing and holding Left button for 0.0s
+2025-06-22 21:50:59.652256-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 100 rapid button presses
+
+2025-06-22 21:50:59.652584-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:50:59.653000-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: top
+
+    t =    64.89s Pressing and holding Up button for 0.0s
+    t =    65.52s Pressing and holding Up button for 0.0s
+    t =    65.95s Pressing and holding Up button for 0.0s
+    t =    66.35s Pressing and holding Right button for 0.0s
+    t =    66.95s Pressing and holding Left button for 0.0s
+    t =    67.59s Pressing and holding Up button for 0.0s
+    t =    67.89s Pressing and holding Up button for 0.0s
+    t =    68.16s Pressing and holding Up button for 0.0s
+    t =    68.52s Pressing and holding Right button for 0.0s
+    t =    68.82s Pressing and holding Left button for 0.0s
+    t =    69.29s Pressing and holding Up button for 0.0s
+    t =    69.98s Pressing and holding Up button for 0.0s
+    t =    70.35s Pressing and holding Up button for 0.0s
+    t =    70.73s Pressing and holding Right button for 0.0s
+    t =    71.14s Pressing and holding Left button for 0.0s
+    t =    71.60s Pressing and holding Up button for 0.0s
+    t =    72.02s Pressing and holding Up button for 0.0s
+    t =    72.42s Pressing and holding Up button for 0.0s
+    t =    72.88s Pressing and holding Right button for 0.0s
+    t =    73.34s Pressing and holding Left button for 0.0s
+    t =    74.16s Pressing and holding Up button for 0.0s
+    t =    74.82s Pressing and holding Up button for 0.0s
+    t =    75.15s Pressing and holding Up button for 0.0s
+    t =    75.42s Pressing and holding Right button for 0.0s
+    t =    75.84s Pressing and holding Left button for 0.0s
+2025-06-22 21:51:10.901747-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:10.901906-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:10.902010-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: bottom
+
+    t =    76.14s Pressing and holding Down button for 0.0s
+    t =    77.09s Pressing and holding Down button for 0.0s
+    t =    77.60s Pressing and holding Down button for 0.0s
+    t =    78.05s Pressing and holding Right button for 0.0s
+    t =    78.49s Pressing and holding Left button for 0.0s
+    t =    78.98s Pressing and holding Down button for 0.0s
+    t =    79.72s Pressing and holding Down button for 0.0s
+    t =    80.38s Pressing and holding Down button for 0.0s
+    t =    81.34s Pressing and holding Right button for 0.0s
+    t =    81.93s Pressing and holding Left button for 0.0s
+    t =    82.53s Pressing and holding Down button for 0.0s
+    t =    82.83s Pressing and holding Down button for 0.0s
+    t =    83.17s Pressing and holding Down button for 0.0s
+    t =    84.13s Pressing and holding Right button for 0.0s
+    t =    84.55s Pressing and holding Left button for 0.0s
+    t =    84.99s Pressing and holding Down button for 0.0s
+    t =    85.59s Pressing and holding Down button for 0.0s
+    t =    86.07s Pressing and holding Down button for 0.0s
+    t =    86.83s Pressing and holding Right button for 0.0s
+    t =    87.17s Pressing and holding Left button for 0.0s
+    t =    87.65s Pressing and holding Down button for 0.0s
+    t =    88.37s Pressing and holding Down button for 0.0s
+    t =    88.72s Pressing and holding Down button for 0.0s
+    t =    89.42s Pressing and holding Right button for 0.0s
+    t =    90.36s Pressing and holding Left button for 0.0s
+2025-06-22 21:51:25.463176-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:25.463313-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:25.463407-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: left
+
+    t =    90.70s Pressing and holding Left button for 0.0s
+    t =    91.37s Pressing and holding Left button for 0.0s
+    t =    91.86s Pressing and holding Left button for 0.0s
+    t =    92.28s Pressing and holding Up button for 0.0s
+    t =    92.72s Pressing and holding Down button for 0.0s
+    t =    93.14s Pressing and holding Left button for 0.0s
+    t =    93.80s Pressing and holding Left button for 0.0s
+    t =    94.15s Pressing and holding Left button for 0.0s
+    t =    94.66s Pressing and holding Up button for 0.0s
+    t =    94.96s Pressing and holding Down button for 0.0s
+    t =    95.42s Pressing and holding Left button for 0.0s
+    t =    95.94s Pressing and holding Left button for 0.0s
+    t =    96.28s Pressing and holding Left button for 0.0s
+    t =    96.74s Pressing and holding Up button for 0.0s
+    t =    97.14s Pressing and holding Down button for 0.0s
+    t =    97.54s Pressing and holding Left button for 0.0s
+    t =    97.96s Pressing and holding Left button for 0.0s
+    t =    98.36s Pressing and holding Left button for 0.0s
+    t =    98.66s Pressing and holding Up button for 0.0s
+    t =    99.58s Pressing and holding Down button for 0.0s
+    t =   100.59s Pressing and holding Left button for 0.0s
+    t =   100.92s Pressing and holding Left button for 0.0s
+    t =   101.22s Pressing and holding Left button for 0.0s
+    t =   101.54s Pressing and holding Up button for 0.0s
+    t =   101.90s Pressing and holding Down button for 0.0s
+2025-06-22 21:51:37.051516-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:37.051676-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:37.051775-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: right
+
+    t =   102.29s Pressing and holding Right button for 0.0s
+    t =   103.10s Pressing and holding Right button for 0.0s
+    t =   103.62s Pressing and holding Right button for 0.0s
+    t =   103.92s Pressing and holding Up button for 0.0s
+    t =   104.27s Pressing and holding Down button for 0.0s
+    t =   104.66s Pressing and holding Right button for 0.0s
+    t =   105.06s Pressing and holding Right button for 0.0s
+    t =   106.17s Pressing and holding Right button for 0.0s
+    t =   106.62s Pressing and holding Up button for 0.0s
+    t =   107.09s Pressing and holding Down button for 0.0s
+    t =   107.53s Pressing and holding Right button for 0.0s
+    t =   107.89s Pressing and holding Right button for 0.0s
+    t =   108.61s Pressing and holding Right button for 0.0s
+    t =   109.55s Pressing and holding Up button for 0.0s
+    t =   109.98s Pressing and holding Down button for 0.0s
+    t =   110.49s Pressing and holding Right button for 0.0s
+    t =   110.83s Pressing and holding Right button for 0.0s
+    t =   111.15s Pressing and holding Right button for 0.0s
+    t =   111.53s Pressing and holding Up button for 0.0s
+    t =   111.98s Pressing and holding Down button for 0.0s
+    t =   112.36s Pressing and holding Right button for 0.0s
+    t =   113.03s Pressing and holding Right button for 0.0s
+    t =   113.53s Pressing and holding Right button for 0.0s
+    t =   113.91s Pressing and holding Up button for 0.0s
+    t =   114.25s Pressing and holding Down button for 0.0s
+2025-06-22 21:51:49.368963-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:49.369086-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 50 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:49.369256-0700 HammerTimeUITests-Runner[18910:707573] DIAGONAL: Rapid mashing for 50 steps, direction: primary
+
+    t =   114.61s Pressing and holding Right button for 0.0s
+    t =   115.03s Pressing and holding Down button for 0.0s
+    t =   115.50s Pressing and holding Right button for 0.0s
+    t =   115.83s Pressing and holding Down button for 0.0s
+    t =   116.33s Pressing and holding Right button for 0.0s
+    t =   116.73s Pressing and holding Down button for 0.0s
+    t =   117.22s Pressing and holding Right button for 0.0s
+    t =   117.57s Pressing and holding Down button for 0.0s
+    t =   117.98s Pressing and holding Right button for 0.0s
+    t =   118.44s Pressing and holding Down button for 0.0s
+    t =   118.91s Pressing and holding Right button for 0.0s
+    t =   119.73s Pressing and holding Down button for 0.0s
+    t =   120.06s Pressing and holding Right button for 0.0s
+    t =   120.52s Pressing and holding Down button for 0.0s
+    t =   120.93s Pressing and holding Right button for 0.0s
+    t =   121.29s Pressing and holding Down button for 0.0s
+    t =   121.63s Pressing and holding Right button for 0.0s
+    t =   121.92s Pressing and holding Down button for 0.0s
+    t =   122.22s Pressing and holding Right button for 0.0s
+    t =   122.62s Pressing and holding Down button for 0.0s
+    t =   123.16s Pressing and holding Right button for 0.0s
+    t =   123.77s Pressing and holding Down button for 0.0s
+    t =   124.17s Pressing and holding Right button for 0.0s
+    t =   124.50s Pressing and holding Down button for 0.0s
+    t =   124.98s Pressing and holding Right button for 0.0s
+    t =   125.69s Pressing and holding Down button for 0.0s
+    t =   126.01s Pressing and holding Right button for 0.0s
+    t =   126.41s Pressing and holding Down button for 0.0s
+    t =   126.94s Pressing and holding Right button for 0.0s
+    t =   127.54s Pressing and holding Down button for 0.0s
+    t =   127.91s Pressing and holding Right button for 0.0s
+    t =   128.27s Pressing and holding Down button for 0.0s
+    t =   128.71s Pressing and holding Right button for 0.0s
+    t =   129.12s Pressing and holding Down button for 0.0s
+    t =   129.93s Pressing and holding Right button for 0.0s
+    t =   130.23s Pressing and holding Down button for 0.0s
+    t =   130.81s Pressing and holding Right button for 0.0s
+    t =   131.47s Pressing and holding Down button for 0.0s
+    t =   131.97s Pressing and holding Right button for 0.0s
+    t =   132.60s Pressing and holding Down button for 0.0s
+    t =   133.06s Pressing and holding Right button for 0.0s
+    t =   133.56s Pressing and holding Down button for 0.0s
+    t =   134.37s Pressing and holding Right button for 0.0s
+    t =   134.78s Pressing and holding Down button for 0.0s
+    t =   135.12s Pressing and holding Right button for 0.0s
+    t =   135.48s Pressing and holding Down button for 0.0s
+    t =   135.86s Pressing and holding Right button for 0.0s
+    t =   136.18s Pressing and holding Down button for 0.0s
+    t =   136.89s Pressing and holding Right button for 0.0s
+    t =   137.68s Pressing and holding Down button for 0.0s
+2025-06-22 21:52:13.247631-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 50 rapid button presses
+
+2025-06-22 21:52:13.247785-0700 HammerTimeUITests-Runner[18910:707573] EDGE-BOUNDARY: Final focus state: 'FOCUS_TRACKING_DISABLED_FOR_SPEED'
+
+    t =   138.49s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testEdgeBoundaryStress]' passed (138.916 seconds).
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialBurstPatterns]' started.
+    t =     0.00s Start Test at 2025-06-22 21:52:13.680
+    t =     0.05s Set Up
+    t =     0.26s     Open com.showblender.HammerTime
+    t =     0.27s         Launch com.showblender.HammerTime
+    t =     0.27s             Terminate com.showblender.HammerTime:18913
+    t =     5.36s             Setting up automation session
+    t =     9.85s             Wait for com.showblender.HammerTime to idle
+    t =    12.14s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    13.21s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    13.21s             Checking existence of `"FocusStressCollectionView" CollectionView`
+2025-06-22 21:52:28.544595-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Collection view cached - NO cell queries for maximum speed
+
+2025-06-22 21:52:28.544722-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Minimal caching complete - ready for rapid button mashing
+
+2025-06-22 21:52:28.547369-0700 HammerTimeUITests-Runner[18910:707573] TIME-ESTIMATE: Test estimated to take 1.5 minutes
+
+2025-06-22 21:52:28.547497-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-BURSTS: Testing exponential burst patterns with spiral navigation
+
+2025-06-22 21:52:28.547557-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 100 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:52:28.547727-0700 HammerTimeUITests-Runner[18910:707573] SPIRAL: Rapid mashing for 100 steps, direction: outward
+
+    t =    14.87s Pressing and holding Right button for 0.0s
+    t =    15.58s Pressing and holding Right button for 0.0s
+    t =    16.12s Pressing and holding Down button for 0.0s
+    t =    16.53s Pressing and holding Down button for 0.0s
+    t =    17.23s Pressing and holding Left button for 0.0s
+    t =    17.58s Pressing and holding Left button for 0.0s
+    t =    17.97s Pressing and holding Up button for 0.0s
+    t =    18.68s Pressing and holding Up button for 0.0s
+    t =    19.16s Pressing and holding Right button for 0.0s
+    t =    19.76s Pressing and holding Right button for 0.0s
+    t =    20.22s Pressing and holding Down button for 0.0s
+    t =    20.94s Pressing and holding Down button for 0.0s
+    t =    21.40s Pressing and holding Left button for 0.0s
+    t =    21.78s Pressing and holding Left button for 0.0s
+    t =    22.61s Pressing and holding Up button for 0.0s
+    t =    23.08s Pressing and holding Up button for 0.0s
+    t =    23.54s Pressing and holding Right button for 0.0s
+    t =    23.86s Pressing and holding Down button for 0.0s
+    t =    24.36s Pressing and holding Left button for 0.0s
+    t =    24.95s Pressing and holding Left button for 0.0s
+    t =    25.30s Pressing and holding Left button for 0.0s
+    t =    25.79s Pressing and holding Up button for 0.0s
+    t =    26.21s Pressing and holding Up button for 0.0s
+    t =    26.81s Pressing and holding Up button for 0.0s
+    t =    27.18s Pressing and holding Right button for 0.0s
+    t =    27.58s Pressing and holding Right button for 0.0s
+    t =    28.18s Pressing and holding Right button for 0.0s
+    t =    29.11s Pressing and holding Down button for 0.0s
+    t =    29.48s Pressing and holding Down button for 0.0s
+    t =    29.94s Pressing and holding Down button for 0.0s
+    t =    30.30s Pressing and holding Left button for 0.0s
+    t =    30.84s Pressing and holding Left button for 0.0s
+    t =    31.20s Pressing and holding Left button for 0.0s
+    t =    31.87s Pressing and holding Right button for 0.0s
+    t =    32.42s Pressing and holding Right button for 0.0s
+    t =    32.99s Pressing and holding Right button for 0.0s
+    t =    33.50s Pressing and holding Down button for 0.0s
+    t =    34.27s Pressing and holding Down button for 0.0s
+    t =    34.84s Pressing and holding Down button for 0.0s
+    t =    35.31s Pressing and holding Down button for 0.0s
+    t =    35.64s Pressing and holding Left button for 0.0s
+    t =    36.31s Pressing and holding Left button for 0.0s
+    t =    36.65s Pressing and holding Left button for 0.0s
+    t =    36.99s Pressing and holding Left button for 0.0s
+    t =    37.46s Pressing and holding Up button for 0.0s
+    t =    37.98s Pressing and holding Up button for 0.0s
+    t =    38.34s Pressing and holding Up button for 0.0s
+    t =    38.91s Pressing and holding Up button for 0.0s
+    t =    39.57s Pressing and holding Right button for 0.0s
+    t =    39.99s Pressing and holding Right button for 0.0s
+    t =    40.69s Pressing and holding Right button for 0.0s
+    t =    41.13s Pressing and holding Right button for 0.0s
+    t =    41.71s Pressing and holding Down button for 0.0s
+    t =    42.11s Pressing and holding Down button for 0.0s
+    t =    42.81s Pressing and holding Down button for 0.0s
+    t =    43.51s Pressing and holding Down button for 0.0s
+    t =    44.35s Pressing and holding Left button for 0.0s
+    t =    44.95s Pressing and holding Left button for 0.0s
+    t =    45.35s Pressing and holding Left button for 0.0s
+    t =    45.89s Pressing and holding Left button for 0.0s
+    t =    46.19s Pressing and holding Up button for 0.0s
+    t =    46.58s Pressing and holding Up button for 0.0s
+    t =    47.36s Pressing and holding Up button for 0.0s
+    t =    48.02s Pressing and holding Up button for 0.0s
+    t =    48.38s Pressing and holding Right button for 0.0s
+    t =    48.76s Pressing and holding Right button for 0.0s
+    t =    49.37s Pressing and holding Right button for 0.0s
+    t =    49.75s Pressing and holding Right button for 0.0s
+    t =    50.47s Pressing and holding Down button for 0.0s
+    t =    51.07s Pressing and holding Down button for 0.0s
+    t =    51.64s Pressing and holding Down button for 0.0s
+    t =    52.49s Pressing and holding Down button for 0.0s
+    t =    52.82s Pressing and holding Left button for 0.0s
+    t =    53.33s Pressing and holding Left button for 0.0s
+    t =    53.77s Pressing and holding Left button for 0.0s
+    t =    54.14s Pressing and holding Left button for 0.0s
+    t =    54.52s Pressing and holding Up button for 0.0s
+    t =    54.84s Pressing and holding Up button for 0.0s
+    t =    55.65s Pressing and holding Up button for 0.0s
+    t =    56.10s Pressing and holding Up button for 0.0s
+    t =    56.75s Pressing and holding Right button for 0.0s
+    t =    57.57s Pressing and holding Right button for 0.0s
+    t =    58.08s Pressing and holding Right button for 0.0s
+    t =    58.53s Pressing and holding Right button for 0.0s
+    t =    58.94s Pressing and holding Down button for 0.0s
+    t =    59.82s Pressing and holding Down button for 0.0s
+    t =    60.18s Pressing and holding Down button for 0.0s
+    t =    60.56s Pressing and holding Down button for 0.0s
+    t =    61.14s Pressing and holding Left button for 0.0s
+    t =    61.81s Pressing and holding Left button for 0.0s
+    t =    62.15s Pressing and holding Left button for 0.0s
+    t =    62.63s Pressing and holding Left button for 0.0s
+    t =    62.90s Pressing and holding Up button for 0.0s
+    t =    63.35s Pressing and holding Up button for 0.0s
+    t =    64.07s Pressing and holding Up button for 0.0s
+    t =    64.45s Pressing and holding Up button for 0.0s
+    t =    64.95s Pressing and holding Right button for 0.0s
+    t =    65.53s Pressing and holding Right button for 0.0s
+    t =    66.03s Pressing and holding Right button for 0.0s
+    t =    66.68s Pressing and holding Right button for 0.0s
+2025-06-22 21:53:20.963495-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 100 rapid button presses
+
+2025-06-22 21:53:20.963634-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-BURSTS: Final focus state: 'FOCUS_TRACKING_DISABLED_FOR_SPEED'
+
+    t =    67.29s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialBurstPatterns]' passed (68.222 seconds).
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialPressIntervals]' started.
+    t =     0.01s Start Test at 2025-06-22 21:53:21.910
+    t =     0.05s Set Up
+    t =     0.08s     Open com.showblender.HammerTime
+    t =     0.09s         Launch com.showblender.HammerTime
+    t =     0.09s             Terminate com.showblender.HammerTime:18928
+    t =     4.10s             Setting up automation session
+    t =     8.00s             Wait for com.showblender.HammerTime to idle
+    t =    10.20s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    11.21s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    11.21s             Checking existence of `"FocusStressCollectionView" CollectionView`
+2025-06-22 21:53:35.315340-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Collection view cached - NO cell queries for maximum speed
+
+2025-06-22 21:53:35.315459-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Minimal caching complete - ready for rapid button mashing
+
+2025-06-22 21:53:35.320696-0700 HammerTimeUITests-Runner[18910:707573] TIME-ESTIMATE: Test estimated to take 2.5 minutes
+
+2025-06-22 21:53:35.321738-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-INTERVALS: Testing exponential press intervals with NavigationStrategy
+
+2025-06-22 21:53:35.321866-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 250 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:53:35.323411-0700 HammerTimeUITests-Runner[18910:707573] SNAKE: Rapid mashing for 250 steps, direction: bidirectional
+
+    t =    13.42s Pressing and holding Right button for 0.0s
+    t =    13.95s Pressing and holding Down button for 0.0s
+    t =    14.46s Pressing and holding Left button for 0.0s
+    t =    15.13s Pressing and holding Up button for 0.0s
+    t =    15.57s Pressing and holding Right button for 0.0s
+    t =    16.05s Pressing and holding Down button for 0.0s
+    t =    16.77s Pressing and holding Left button for 0.0s
+    t =    17.28s Pressing and holding Up button for 0.0s
+    t =    17.71s Pressing and holding Right button for 0.0s
+    t =    18.18s Pressing and holding Down button for 0.0s
+    t =    18.88s Pressing and holding Left button for 0.0s
+    t =    19.43s Pressing and holding Up button for 0.0s
+    t =    19.81s Pressing and holding Right button for 0.0s
+    t =    20.28s Pressing and holding Down button for 0.0s
+    t =    20.78s Pressing and holding Left button for 0.0s
+    t =    21.22s Pressing and holding Up button for 0.0s
+    t =    21.57s Pressing and holding Right button for 0.0s
+    t =    22.24s Pressing and holding Down button for 0.0s
+    t =    22.65s Pressing and holding Left button for 0.0s
+    t =    23.15s Pressing and holding Up button for 0.0s
+    t =    24.16s Pressing and holding Right button for 0.0s
+    t =    24.55s Pressing and holding Down button for 0.0s
+    t =    24.95s Pressing and holding Left button for 0.0s
+    t =    25.50s Pressing and holding Up button for 0.0s
+    t =    25.88s Pressing and holding Right button for 0.0s
+    t =    26.23s Pressing and holding Down button for 0.0s
+    t =    26.63s Pressing and holding Left button for 0.0s
+    t =    27.43s Pressing and holding Up button for 0.0s
+    t =    27.79s Pressing and holding Right button for 0.0s
+    t =    28.16s Pressing and holding Down button for 0.0s
+    t =    28.93s Pressing and holding Left button for 0.0s
+    t =    29.43s Pressing and holding Up button for 0.0s
+    t =    29.83s Pressing and holding Right button for 0.0s
+    t =    30.69s Pressing and holding Down button for 0.0s
+    t =    31.31s Pressing and holding Left button for 0.0s
+    t =    32.09s Pressing and holding Up button for 0.0s
+    t =    32.64s Pressing and holding Right button for 0.0s
+    t =    33.11s Pressing and holding Down button for 0.0s
+    t =    33.48s Pressing and holding Left button for 0.0s
+    t =    34.00s Pressing and holding Up button for 0.0s
+    t =    34.69s Pressing and holding Right button for 0.0s
+    t =    34.98s Pressing and holding Down button for 0.0s
+    t =    35.33s Pressing and holding Left button for 0.0s
+    t =    36.06s Pressing and holding Up button for 0.0s
+    t =    36.45s Pressing and holding Right button for 0.0s
+    t =    36.83s Pressing and holding Down button for 0.0s
+    t =    37.31s Pressing and holding Left button for 0.0s
+    t =    37.97s Pressing and holding Up button for 0.0s
+    t =    38.57s Pressing and holding Right button for 0.0s
+    t =    39.02s Pressing and holding Down button for 0.0s
+    t =    39.72s Pressing and holding Left button for 0.0s
+    t =    40.16s Pressing and holding Up button for 0.0s
+    t =    40.47s Pressing and holding Right button for 0.0s
+    t =    40.90s Pressing and holding Down button for 0.0s
+    t =    41.26s Pressing and holding Left button for 0.0s
+    t =    41.70s Pressing and holding Up button for 0.0s
+    t =    42.22s Pressing and holding Right button for 0.0s
+    t =    42.58s Pressing and holding Down button for 0.0s
+    t =    43.07s Pressing and holding Left button for 0.0s
+    t =    43.64s Pressing and holding Up button for 0.0s
+    t =    44.01s Pressing and holding Right button for 0.0s
+    t =    44.38s Pressing and holding Down button for 0.0s
+    t =    44.69s Pressing and holding Left button for 0.0s
+    t =    45.07s Pressing and holding Up button for 0.0s
+    t =    45.66s Pressing and holding Right button for 0.0s
+    t =    46.42s Pressing and holding Down button for 0.0s
+    t =    46.84s Pressing and holding Left button for 0.0s
+    t =    47.64s Pressing and holding Up button for 0.0s
+    t =    48.65s Pressing and holding Right button for 0.0s
+    t =    49.49s Pressing and holding Down button for 0.0s
+    t =    49.79s Pressing and holding Left button for 0.0s
+    t =    50.19s Pressing and holding Up button for 0.0s
+    t =    50.63s Pressing and holding Right button for 0.0s
+    t =    51.04s Pressing and holding Down button for 0.0s
+    t =    51.47s Pressing and holding Left button for 0.0s
+    t =    52.28s Pressing and holding Up button for 0.0s
+    t =    53.10s Pressing and holding Right button for 0.0s
+    t =    53.53s Pressing and holding Down button for 0.0s
+    t =    53.98s Pressing and holding Left button for 0.0s
+    t =    54.36s Pressing and holding Up button for 0.0s
+    t =    54.77s Pressing and holding Right button for 0.0s
+    t =    55.05s Pressing and holding Down button for 0.0s
+    t =    55.49s Pressing and holding Left button for 0.0s
+    t =    55.82s Pressing and holding Up button for 0.0s
+    t =    56.26s Pressing and holding Right button for 0.0s
+    t =    56.62s Pressing and holding Down button for 0.0s
+    t =    56.99s Pressing and holding Left button for 0.0s
+    t =    57.37s Pressing and holding Up button for 0.0s
+    t =    57.76s Pressing and holding Right button for 0.0s
+    t =    58.04s Pressing and holding Down button for 0.0s
+    t =    58.50s Pressing and holding Left button for 0.0s
+    t =    59.20s Pressing and holding Up button for 0.0s
+    t =    59.64s Pressing and holding Right button for 0.0s
+    t =    60.48s Pressing and holding Down button for 0.0s
+    t =    60.89s Pressing and holding Left button for 0.0s
+    t =    61.64s Pressing and holding Up button for 0.0s
+    t =    62.03s Pressing and holding Right button for 0.0s
+    t =    62.49s Pressing and holding Down button for 0.0s
+    t =    62.89s Pressing and holding Left button for 0.0s
+    t =    63.19s Pressing and holding Up button for 0.0s
+    t =    63.50s Pressing and holding Right button for 0.0s
+    t =    63.89s Pressing and holding Down button for 0.0s
+    t =    64.34s Pressing and holding Left button for 0.0s
+    t =    64.67s Pressing and holding Up button for 0.0s
+    t =    65.08s Pressing and holding Right button for 0.0s
+    t =    65.63s Pressing and holding Down button for 0.0s
+    t =    66.33s Pressing and holding Left button for 0.0s
+    t =    66.77s Pressing and holding Up button for 0.0s
+    t =    67.18s Pressing and holding Right button for 0.0s
+    t =    67.87s Pressing and holding Down button for 0.0s
+    t =    68.41s Pressing and holding Left button for 0.0s
+    t =    68.85s Pressing and holding Up button for 0.0s
+    t =    69.27s Pressing and holding Right button for 0.0s
+    t =    69.62s Pressing and holding Down button for 0.0s
+    t =    69.98s Pressing and holding Left button for 0.0s
+    t =    70.49s Pressing and holding Up button for 0.0s
+    t =    71.03s Pressing and holding Right button for 0.0s
+    t =    71.38s Pressing and holding Down button for 0.0s
+    t =    71.78s Pressing and holding Left button for 0.0s
+    t =    72.50s Pressing and holding Up button for 0.0s
+    t =    73.23s Pressing and holding Right button for 0.0s
+    t =    73.84s Pressing and holding Down button for 0.0s
+    t =    74.37s Pressing and holding Left button for 0.0s
+    t =    74.87s Pressing and holding Up button for 0.0s
+    t =    75.15s Pressing and holding Right button for 0.0s
+    t =    75.59s Pressing and holding Down button for 0.0s
+    t =    76.02s Pressing and holding Left button for 0.0s
+    t =    76.54s Pressing and holding Up button for 0.0s
+    t =    77.22s Pressing and holding Right button for 0.0s
+    t =    77.69s Pressing and holding Down button for 0.0s
+    t =    78.29s Pressing and holding Left button for 0.0s
+    t =    78.94s Pressing and holding Up button for 0.0s
+    t =    79.46s Pressing and holding Right button for 0.0s
+    t =    80.01s Pressing and holding Down button for 0.0s
+    t =    80.47s Pressing and holding Left button for 0.0s
+    t =    81.00s Pressing and holding Up button for 0.0s
+    t =    81.56s Pressing and holding Right button for 0.0s
+    t =    82.13s Pressing and holding Down button for 0.0s
+    t =    82.73s Pressing and holding Left button for 0.0s
+    t =    83.18s Pressing and holding Up button for 0.0s
+    t =    83.75s Pressing and holding Right button for 0.0s
+    t =    84.42s Pressing and holding Down button for 0.0s
+    t =    84.84s Pressing and holding Left button for 0.0s
+    t =    85.28s Pressing and holding Up button for 0.0s
+    t =    85.65s Pressing and holding Right button for 0.0s
+    t =    86.40s Pressing and holding Down button for 0.0s
+    t =    87.29s Pressing and holding Left button for 0.0s
+    t =    87.57s Pressing and holding Up button for 0.0s
+    t =    88.00s Pressing and holding Right button for 0.0s
+    t =    89.10s Pressing and holding Down button for 0.0s
+    t =    89.44s Pressing and holding Left button for 0.0s
+    t =    89.78s Pressing and holding Up button for 0.0s
+    t =    90.35s Pressing and holding Right button for 0.0s
+    t =    91.11s Pressing and holding Down button for 0.0s
+    t =    91.45s Pressing and holding Left button for 0.0s
+    t =    91.87s Pressing and holding Up button for 0.0s
+    t =    92.27s Pressing and holding Right button for 0.0s
+    t =    92.81s Pressing and holding Down button for 0.0s
+    t =    93.61s Pressing and holding Left button for 0.0s
+    t =    94.07s Pressing and holding Up button for 0.0s
+    t =    94.42s Pressing and holding Right button for 0.0s
+    t =    94.85s Pressing and holding Down button for 0.0s
+    t =    95.34s Pressing and holding Left button for 0.0s
+    t =    95.89s Pressing and holding Up button for 0.0s
+    t =    96.69s Pressing and holding Right button for 0.0s
+    t =    97.82s Pressing and holding Down button for 0.0s
+    t =    98.26s Pressing and holding Left button for 0.0s
+    t =    98.59s Pressing and holding Up button for 0.0s
+    t =    99.06s Pressing and holding Right button for 0.0s
+    t =    99.89s Pressing and holding Down button for 0.0s
+    t =   101.02s Pressing and holding Left button for 0.0s
+    t =   101.80s Pressing and holding Up button for 0.0s
+    t =   102.25s Pressing and holding Right button for 0.0s
+    t =   102.67s Pressing and holding Down button for 0.0s
+    t =   103.29s Pressing and holding Left button for 0.0s
+    t =   103.65s Pressing and holding Up button for 0.0s
+    t =   104.19s Pressing and holding Right button for 0.0s
+    t =   104.85s Pressing and holding Down button for 0.0s
+    t =   105.15s Pressing and holding Left button for 0.0s
+    t =   105.94s Pressing and holding Up button for 0.0s
+    t =   106.64s Pressing and holding Right button for 0.0s
+    t =   107.26s Pressing and holding Down button for 0.0s
+    t =   107.72s Pressing and holding Left button for 0.0s
+    t =   108.18s Pressing and holding Up button for 0.0s
+    t =   108.58s Pressing and holding Right button for 0.0s
+    t =   109.07s Pressing and holding Down button for 0.0s
+    t =   109.84s Pressing and holding Left button for 0.0s
+    t =   110.37s Pressing and holding Up button for 0.0s
+    t =   111.17s Pressing and holding Right button for 0.0s
+    t =   111.80s Pressing and holding Down button for 0.0s
+    t =   112.24s Pressing and holding Left button for 0.0s
+    t =   112.68s Pressing and holding Up button for 0.0s
+    t =   113.11s Pressing and holding Right button for 0.0s
+    t =   113.46s Pressing and holding Down button for 0.0s
+    t =   113.89s Pressing and holding Left button for 0.0s
+    t =   114.53s Pressing and holding Up button for 0.0s
+    t =   114.88s Pressing and holding Right button for 0.0s
+    t =   115.21s Pressing and holding Down button for 0.0s
+    t =   115.93s Pressing and holding Left button for 0.0s
+    t =   116.45s Pressing and holding Up button for 0.0s
+    t =   117.24s Pressing and holding Right button for 0.0s
+    t =   117.66s Pressing and holding Down button for 0.0s
+    t =   118.61s Pressing and holding Left button for 0.0s
+    t =   118.94s Pressing and holding Up button for 0.0s
+    t =   119.30s Pressing and holding Right button for 0.0s
+    t =   119.65s Pressing and holding Down button for 0.0s
+    t =   120.08s Pressing and holding Left button for 0.0s
+    t =   120.67s Pressing and holding Up button for 0.0s
+    t =   121.17s Pressing and holding Right button for 0.0s
+    t =   121.52s Pressing and holding Down button for 0.0s
+    t =   121.93s Pressing and holding Left button for 0.0s
+    t =   122.88s Pressing and holding Up button for 0.0s
+    t =   123.43s Pressing and holding Right button for 0.0s
+    t =   124.22s Pressing and holding Down button for 0.0s
+    t =   124.48s Pressing and holding Left button for 0.0s
+    t =   124.78s Pressing and holding Up button for 0.0s
+    t =   125.67s Pressing and holding Right button for 0.0s
+    t =   126.04s Pressing and holding Down button for 0.0s
+    t =   126.79s Pressing and holding Left button for 0.0s
+    t =   127.08s Pressing and holding Up button for 0.0s
+    t =   127.42s Pressing and holding Right button for 0.0s
+    t =   128.21s Pressing and holding Down button for 0.0s
+    t =   128.68s Pressing and holding Left button for 0.0s
+    t =   129.50s Pressing and holding Up button for 0.0s
+    t =   129.92s Pressing and holding Right button for 0.0s
+    t =   130.39s Pressing and holding Down button for 0.0s
+    t =   130.78s Pressing and holding Left button for 0.0s
+    t =   131.36s Pressing and holding Up button for 0.0s
+    t =   132.34s Pressing and holding Right button for 0.0s
+    t =   132.76s Pressing and holding Down button for 0.0s
+    t =   133.16s Pressing and holding Left button for 0.0s
+    t =   133.54s Pressing and holding Up button for 0.0s
+    t =   134.08s Pressing and holding Right button for 0.0s
+    t =   134.68s Pressing and holding Down button for 0.0s
+    t =   135.11s Pressing and holding Left button for 0.0s
+    t =   135.70s Pressing and holding Up button for 0.0s
+    t =   136.11s Pressing and holding Right button for 0.0s
+    t =   136.52s Pressing and holding Down button for 0.0s
+    t =   137.26s Pressing and holding Left button for 0.0s
+    t =   137.63s Pressing and holding Up button for 0.0s
+    t =   138.26s Pressing and holding Right button for 0.0s
+    t =   138.73s Pressing and holding Down button for 0.0s
+    t =   139.30s Pressing and holding Left button for 0.0s
+    t =   139.87s Pressing and holding Up button for 0.0s
+    t =   140.34s Pressing and holding Right button for 0.0s
+    t =   140.64s Pressing and holding Down button for 0.0s
+    t =   141.07s Pressing and holding Left button for 0.0s
+    t =   142.18s Pressing and holding Up button for 0.0s
+    t =   142.64s Pressing and holding Right button for 0.0s
+    t =   143.07s Pressing and holding Down button for 0.0s
+2025-06-22 21:55:45.300707-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 250 rapid button presses
+
+2025-06-22 21:55:45.300863-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-INTERVALS: Final focus state: 'FOCUS_TRACKING_DISABLED_FOR_SPEED'
+
+    t =   143.40s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialPressIntervals]' passed (143.881 seconds).
+Test Case '-[HammerTimeUITests.FocusStressUITests testMixedExponentialPatterns]' started.
+Run test suite FocusStressUITests encountered an error (Test operation was canceled.)testMixedExponentialPatterns() encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Test Suite 'HammerTimeUITests.xctest' started at 2025-06-22 21:49:54.757.
+Test Suite 'FocusStressUITests' started at 2025-06-22 21:49:54.759.
+Test Case '-[HammerTimeUITests.FocusStressUITests testEdgeBoundaryStress]' started.
+    t =     0.00s Start Test at 2025-06-22 21:49:54.762
+    t =     0.05s Set Up
+    t =     0.23s     Open com.showblender.HammerTime
+    t =     0.24s         Launch com.showblender.HammerTime
+    t =     5.46s             Setting up automation session
+    t =    11.01s             Wait for com.showblender.HammerTime to idle
+    t =    13.37s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    14.42s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    14.43s             Checking existence of `"FocusStressCollectionView" CollectionView`
+2025-06-22 21:50:10.836105-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Collection view cached - NO cell queries for maximum speed
+
+2025-06-22 21:50:10.836234-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Minimal caching complete - ready for rapid button mashing
+
+2025-06-22 21:50:10.838284-0700 HammerTimeUITests-Runner[18910:707573] TIME-ESTIMATE: Test estimated to take 2.5 minutes
+
+2025-06-22 21:50:10.838407-0700 HammerTimeUITests-Runner[18910:707573] EDGE-BOUNDARY: Testing edge conditions and boundary behavior
+
+2025-06-22 21:50:10.838478-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 100 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:50:10.839019-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 100 steps, edge: all
+
+    t =    16.08s Pressing and holding Up button for 0.0s
+    t =    16.53s Pressing and holding Right button for 0.0s
+    t =    16.84s Pressing and holding Down button for 0.0s
+    t =    17.15s Pressing and holding Left button for 0.0s
+    t =    17.49s Pressing and holding Up button for 0.0s
+    t =    17.88s Pressing and holding Left button for 0.0s
+    t =    18.33s Pressing and holding Down button for 0.0s
+    t =    18.73s Pressing and holding Right button for 0.0s
+    t =    19.11s Pressing and holding Up button for 0.0s
+    t =    19.44s Pressing and holding Right button for 0.0s
+    t =    19.84s Pressing and holding Down button for 0.0s
+    t =    20.18s Pressing and holding Left button for 0.0s
+    t =    20.58s Pressing and holding Up button for 0.0s
+    t =    21.00s Pressing and holding Left button for 0.0s
+    t =    21.30s Pressing and holding Down button for 0.0s
+    t =    21.64s Pressing and holding Right button for 0.0s
+    t =    21.98s Pressing and holding Up button for 0.0s
+    t =    22.42s Pressing and holding Right button for 0.0s
+    t =    22.84s Pressing and holding Down button for 0.0s
+    t =    23.69s Pressing and holding Left button for 0.0s
+    t =    24.51s Pressing and holding Up button for 0.0s
+    t =    25.24s Pressing and holding Left button for 0.0s
+    t =    25.68s Pressing and holding Down button for 0.0s
+    t =    26.11s Pressing and holding Right button for 0.0s
+    t =    26.43s Pressing and holding Up button for 0.0s
+    t =    26.87s Pressing and holding Right button for 0.0s
+    t =    27.46s Pressing and holding Down button for 0.0s
+    t =    27.91s Pressing and holding Left button for 0.0s
+    t =    28.36s Pressing and holding Up button for 0.0s
+    t =    29.15s Pressing and holding Left button for 0.0s
+    t =    29.60s Pressing and holding Down button for 0.0s
+    t =    30.20s Pressing and holding Right button for 0.0s
+    t =    30.86s Pressing and holding Up button for 0.0s
+    t =    31.40s Pressing and holding Right button for 0.0s
+    t =    31.69s Pressing and holding Down button for 0.0s
+    t =    32.11s Pressing and holding Left button for 0.0s
+    t =    32.48s Pressing and holding Up button for 0.0s
+    t =    32.82s Pressing and holding Left button for 0.0s
+    t =    33.26s Pressing and holding Down button for 0.0s
+    t =    33.68s Pressing and holding Right button for 0.0s
+    t =    34.32s Pressing and holding Up button for 0.0s
+    t =    34.85s Pressing and holding Right button for 0.0s
+    t =    35.23s Pressing and holding Down button for 0.0s
+    t =    35.72s Pressing and holding Left button for 0.0s
+    t =    36.29s Pressing and holding Up button for 0.0s
+    t =    36.77s Pressing and holding Left button for 0.0s
+    t =    37.23s Pressing and holding Down button for 0.0s
+    t =    38.07s Pressing and holding Right button for 0.0s
+    t =    38.50s Pressing and holding Up button for 0.0s
+    t =    39.07s Pressing and holding Right button for 0.0s
+    t =    39.46s Pressing and holding Down button for 0.0s
+    t =    39.83s Pressing and holding Left button for 0.0s
+    t =    40.48s Pressing and holding Up button for 0.0s
+    t =    40.78s Pressing and holding Left button for 0.0s
+    t =    41.30s Pressing and holding Down button for 0.0s
+    t =    42.12s Pressing and holding Right button for 0.0s
+    t =    42.55s Pressing and holding Up button for 0.0s
+    t =    42.97s Pressing and holding Right button for 0.0s
+    t =    43.41s Pressing and holding Down button for 0.0s
+    t =    44.01s Pressing and holding Left button for 0.0s
+    t =    44.51s Pressing and holding Up button for 0.0s
+    t =    45.17s Pressing and holding Left button for 0.0s
+    t =    45.61s Pressing and holding Down button for 0.0s
+    t =    46.14s Pressing and holding Right button for 0.0s
+    t =    46.66s Pressing and holding Up button for 0.0s
+    t =    47.20s Pressing and holding Right button for 0.0s
+    t =    47.89s Pressing and holding Down button for 0.0s
+    t =    48.56s Pressing and holding Left button for 0.0s
+    t =    49.04s Pressing and holding Up button for 0.0s
+    t =    49.45s Pressing and holding Left button for 0.0s
+    t =    49.79s Pressing and holding Down button for 0.0s
+    t =    50.13s Pressing and holding Right button for 0.0s
+    t =    50.47s Pressing and holding Up button for 0.0s
+    t =    51.18s Pressing and holding Right button for 0.0s
+    t =    51.57s Pressing and holding Down button for 0.0s
+    t =    52.07s Pressing and holding Left button for 0.0s
+    t =    52.65s Pressing and holding Up button for 0.0s
+    t =    52.97s Pressing and holding Left button for 0.0s
+    t =    53.79s Pressing and holding Down button for 0.0s
+    t =    54.82s Pressing and holding Right button for 0.0s
+    t =    55.50s Pressing and holding Up button for 0.0s
+    t =    55.97s Pressing and holding Right button for 0.0s
+    t =    56.32s Pressing and holding Down button for 0.0s
+    t =    56.83s Pressing and holding Left button for 0.0s
+    t =    57.37s Pressing and holding Up button for 0.0s
+    t =    57.99s Pressing and holding Left button for 0.0s
+    t =    58.59s Pressing and holding Down button for 0.0s
+    t =    58.97s Pressing and holding Right button for 0.0s
+    t =    59.37s Pressing and holding Up button for 0.0s
+    t =    60.00s Pressing and holding Right button for 0.0s
+    t =    60.68s Pressing and holding Down button for 0.0s
+    t =    61.13s Pressing and holding Left button for 0.0s
+    t =    61.44s Pressing and holding Up button for 0.0s
+    t =    61.79s Pressing and holding Left button for 0.0s
+    t =    62.19s Pressing and holding Down button for 0.0s
+    t =    62.59s Pressing and holding Right button for 0.0s
+    t =    62.94s Pressing and holding Up button for 0.0s
+    t =    63.26s Pressing and holding Right button for 0.0s
+    t =    64.09s Pressing and holding Down button for 0.0s
+    t =    64.45s Pressing and holding Left button for 0.0s
+2025-06-22 21:50:59.652256-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 100 rapid button presses
+
+2025-06-22 21:50:59.652584-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:50:59.653000-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: top
+
+    t =    64.89s Pressing and holding Up button for 0.0s
+    t =    65.52s Pressing and holding Up button for 0.0s
+    t =    65.95s Pressing and holding Up button for 0.0s
+    t =    66.35s Pressing and holding Right button for 0.0s
+    t =    66.95s Pressing and holding Left button for 0.0s
+    t =    67.59s Pressing and holding Up button for 0.0s
+    t =    67.89s Pressing and holding Up button for 0.0s
+    t =    68.16s Pressing and holding Up button for 0.0s
+    t =    68.52s Pressing and holding Right button for 0.0s
+    t =    68.82s Pressing and holding Left button for 0.0s
+    t =    69.29s Pressing and holding Up button for 0.0s
+    t =    69.98s Pressing and holding Up button for 0.0s
+    t =    70.35s Pressing and holding Up button for 0.0s
+    t =    70.73s Pressing and holding Right button for 0.0s
+    t =    71.14s Pressing and holding Left button for 0.0s
+    t =    71.60s Pressing and holding Up button for 0.0s
+    t =    72.02s Pressing and holding Up button for 0.0s
+    t =    72.42s Pressing and holding Up button for 0.0s
+    t =    72.88s Pressing and holding Right button for 0.0s
+    t =    73.34s Pressing and holding Left button for 0.0s
+    t =    74.16s Pressing and holding Up button for 0.0s
+    t =    74.82s Pressing and holding Up button for 0.0s
+    t =    75.15s Pressing and holding Up button for 0.0s
+    t =    75.42s Pressing and holding Right button for 0.0s
+    t =    75.84s Pressing and holding Left button for 0.0s
+2025-06-22 21:51:10.901747-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:10.901906-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:10.902010-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: bottom
+
+    t =    76.14s Pressing and holding Down button for 0.0s
+    t =    77.09s Pressing and holding Down button for 0.0s
+    t =    77.60s Pressing and holding Down button for 0.0s
+    t =    78.05s Pressing and holding Right button for 0.0s
+    t =    78.49s Pressing and holding Left button for 0.0s
+    t =    78.98s Pressing and holding Down button for 0.0s
+    t =    79.72s Pressing and holding Down button for 0.0s
+    t =    80.38s Pressing and holding Down button for 0.0s
+    t =    81.34s Pressing and holding Right button for 0.0s
+    t =    81.93s Pressing and holding Left button for 0.0s
+    t =    82.53s Pressing and holding Down button for 0.0s
+    t =    82.83s Pressing and holding Down button for 0.0s
+    t =    83.17s Pressing and holding Down button for 0.0s
+    t =    84.13s Pressing and holding Right button for 0.0s
+    t =    84.55s Pressing and holding Left button for 0.0s
+    t =    84.99s Pressing and holding Down button for 0.0s
+    t =    85.59s Pressing and holding Down button for 0.0s
+    t =    86.07s Pressing and holding Down button for 0.0s
+    t =    86.83s Pressing and holding Right button for 0.0s
+    t =    87.17s Pressing and holding Left button for 0.0s
+    t =    87.65s Pressing and holding Down button for 0.0s
+    t =    88.37s Pressing and holding Down button for 0.0s
+    t =    88.72s Pressing and holding Down button for 0.0s
+    t =    89.42s Pressing and holding Right button for 0.0s
+    t =    90.36s Pressing and holding Left button for 0.0s
+2025-06-22 21:51:25.463176-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:25.463313-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:25.463407-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: left
+
+    t =    90.70s Pressing and holding Left button for 0.0s
+    t =    91.37s Pressing and holding Left button for 0.0s
+    t =    91.86s Pressing and holding Left button for 0.0s
+    t =    92.28s Pressing and holding Up button for 0.0s
+    t =    92.72s Pressing and holding Down button for 0.0s
+    t =    93.14s Pressing and holding Left button for 0.0s
+    t =    93.80s Pressing and holding Left button for 0.0s
+    t =    94.15s Pressing and holding Left button for 0.0s
+    t =    94.66s Pressing and holding Up button for 0.0s
+    t =    94.96s Pressing and holding Down button for 0.0s
+    t =    95.42s Pressing and holding Left button for 0.0s
+    t =    95.94s Pressing and holding Left button for 0.0s
+    t =    96.28s Pressing and holding Left button for 0.0s
+    t =    96.74s Pressing and holding Up button for 0.0s
+    t =    97.14s Pressing and holding Down button for 0.0s
+    t =    97.54s Pressing and holding Left button for 0.0s
+    t =    97.96s Pressing and holding Left button for 0.0s
+    t =    98.36s Pressing and holding Left button for 0.0s
+    t =    98.66s Pressing and holding Up button for 0.0s
+    t =    99.58s Pressing and holding Down button for 0.0s
+    t =   100.59s Pressing and holding Left button for 0.0s
+    t =   100.92s Pressing and holding Left button for 0.0s
+    t =   101.22s Pressing and holding Left button for 0.0s
+    t =   101.54s Pressing and holding Up button for 0.0s
+    t =   101.90s Pressing and holding Down button for 0.0s
+2025-06-22 21:51:37.051516-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:37.051676-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:37.051775-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: right
+
+    t =   102.29s Pressing and holding Right button for 0.0s
+    t =   103.10s Pressing and holding Right button for 0.0s
+    t =   103.62s Pressing and holding Right button for 0.0s
+    t =   103.92s Pressing and holding Up button for 0.0s
+    t =   104.27s Pressing and holding Down button for 0.0s
+    t =   104.66s Pressing and holding Right button for 0.0s
+    t =   105.06s Pressing and holding Right button for 0.0s
+    t =   106.17s Pressing and holding Right button for 0.0s
+    t =   106.62s Pressing and holding Up button for 0.0s
+    t =   107.09s Pressing and holding Down button for 0.0s
+    t =   107.53s Pressing and holding Right button for 0.0s
+    t =   107.89s Pressing and holding Right button for 0.0s
+    t =   108.61s Pressing and holding Right button for 0.0s
+    t =   109.55s Pressing and holding Up button for 0.0s
+    t =   109.98s Pressing and holding Down button for 0.0s
+    t =   110.49s Pressing and holding Right button for 0.0s
+    t =   110.83s Pressing and holding Right button for 0.0s
+    t =   111.15s Pressing and holding Right button for 0.0s
+    t =   111.53s Pressing and holding Up button for 0.0s
+    t =   111.98s Pressing and holding Down button for 0.0s
+    t =   112.36s Pressing and holding Right button for 0.0s
+    t =   113.03s Pressing and holding Right button for 0.0s
+    t =   113.53s Pressing and holding Right button for 0.0s
+    t =   113.91s Pressing and holding Up button for 0.0s
+    t =   114.25s Pressing and holding Down button for 0.0s
+2025-06-22 21:51:49.368963-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:49.369086-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 50 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:49.369256-0700 HammerTimeUITests-Runner[18910:707573] DIAGONAL: Rapid mashing for 50 steps, direction: primary
+
+    t =   114.61s Pressing and holding Right button for 0.0s
+    t =   115.03s Pressing and holding Down button for 0.0s
+    t =   115.50s Pressing and holding Right button for 0.0s
+    t =   115.83s Pressing and holding Down button for 0.0s
+    t =   116.33s Pressing and holding Right button for 0.0s
+    t =   116.73s Pressing and holding Down button for 0.0s
+    t =   117.22s Pressing and holding Right button for 0.0s
+    t =   117.57s Pressing and holding Down button for 0.0s
+    t =   117.98s Pressing and holding Right button for 0.0s
+    t =   118.44s Pressing and holding Down button for 0.0s
+    t =   118.91s Pressing and holding Right button for 0.0s
+    t =   119.73s Pressing and holding Down button for 0.0s
+    t =   120.06s Pressing and holding Right button for 0.0s
+    t =   120.52s Pressing and holding Down button for 0.0s
+    t =   120.93s Pressing and holding Right button for 0.0s
+    t =   121.29s Pressing and holding Down button for 0.0s
+    t =   121.63s Pressing and holding Right button for 0.0s
+    t =   121.92s Pressing and holding Down button for 0.0s
+    t =   122.22s Pressing and holding Right button for 0.0s
+    t =   122.62s Pressing and holding Down button for 0.0s
+    t =   123.16s Pressing and holding Right button for 0.0s
+    t =   123.77s Pressing and holding Down button for 0.0s
+    t =   124.17s Pressing and holding Right button for 0.0s
+    t =   124.50s Pressing and holding Down button for 0.0s
+    t =   124.98s Pressing and holding Right button for 0.0s
+    t =   125.69s Pressing and holding Down button for 0.0s
+    t =   126.01s Pressing and holding Right button for 0.0s
+    t =   126.41s Pressing and holding Down button for 0.0s
+    t =   126.94s Pressing and holding Right button for 0.0s
+    t =   127.54s Pressing and holding Down button for 0.0s
+    t =   127.91s Pressing and holding Right button for 0.0s
+    t =   128.27s Pressing and holding Down button for 0.0s
+    t =   128.71s Pressing and holding Right button for 0.0s
+    t =   129.12s Pressing and holding Down button for 0.0s
+    t =   129.93s Pressing and holding Right button for 0.0s
+    t =   130.23s Pressing and holding Down button for 0.0s
+    t =   130.81s Pressing and holding Right button for 0.0s
+    t =   131.47s Pressing and holding Down button for 0.0s
+    t =   131.97s Pressing and holding Right button for 0.0s
+    t =   132.60s Pressing and holding Down button for 0.0s
+    t =   133.06s Pressing and holding Right button for 0.0s
+    t =   133.56s Pressing and holding Down button for 0.0s
+    t =   134.37s Pressing and holding Right button for 0.0s
+    t =   134.78s Pressing and holding Down button for 0.0s
+    t =   135.12s Pressing and holding Right button for 0.0s
+    t =   135.48s Pressing and holding Down button for 0.0s
+    t =   135.86s Pressing and holding Right button for 0.0s
+    t =   136.18s Pressing and holding Down button for 0.0s
+    t =   136.89s Pressing and holding Right button for 0.0s
+    t =   137.68s Pressing and holding Down button for 0.0s
+2025-06-22 21:52:13.247631-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 50 rapid button presses
+
+2025-06-22 21:52:13.247785-0700 HammerTimeUITests-Runner[18910:707573] EDGE-BOUNDARY: Final focus state: 'FOCUS_TRACKING_DISABLED_FOR_SPEED'
+
+    t =   138.49s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testEdgeBoundaryStress]' passed (138.916 seconds).
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialBurstPatterns]' started.
+    t =     0.00s Start Test at 2025-06-22 21:52:13.680
+    t =     0.05s Set Up
+    t =     0.26s     Open com.showblender.HammerTime
+    t =     0.27s         Launch com.showblender.HammerTime
+    t =     0.27s             Terminate com.showblender.HammerTime:18913
+    t =     5.36s             Setting up automation session
+    t =     9.85s             Wait for com.showblender.HammerTime to idle
+    t =    12.14s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    13.21s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    13.21s             Checking existence of `"FocusStressCollectionView" CollectionView`
+2025-06-22 21:52:28.544595-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Collection view cached - NO cell queries for maximum speed
+
+2025-06-22 21:52:28.544722-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Minimal caching complete - ready for rapid button mashing
+
+2025-06-22 21:52:28.547369-0700 HammerTimeUITests-Runner[18910:707573] TIME-ESTIMATE: Test estimated to take 1.5 minutes
+
+2025-06-22 21:52:28.547497-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-BURSTS: Testing exponential burst patterns with spiral navigation
+
+2025-06-22 21:52:28.547557-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 100 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:52:28.547727-0700 HammerTimeUITests-Runner[18910:707573] SPIRAL: Rapid mashing for 100 steps, direction: outward
+
+    t =    14.87s Pressing and holding Right button for 0.0s
+    t =    15.58s Pressing and holding Right button for 0.0s
+    t =    16.12s Pressing and holding Down button for 0.0s
+    t =    16.53s Pressing and holding Down button for 0.0s
+    t =    17.23s Pressing and holding Left button for 0.0s
+    t =    17.58s Pressing and holding Left button for 0.0s
+    t =    17.97s Pressing and holding Up button for 0.0s
+    t =    18.68s Pressing and holding Up button for 0.0s
+    t =    19.16s Pressing and holding Right button for 0.0s
+    t =    19.76s Pressing and holding Right button for 0.0s
+    t =    20.22s Pressing and holding Down button for 0.0s
+    t =    20.94s Pressing and holding Down button for 0.0s
+    t =    21.40s Pressing and holding Left button for 0.0s
+    t =    21.78s Pressing and holding Left button for 0.0s
+    t =    22.61s Pressing and holding Up button for 0.0s
+    t =    23.08s Pressing and holding Up button for 0.0s
+    t =    23.54s Pressing and holding Right button for 0.0s
+    t =    23.86s Pressing and holding Down button for 0.0s
+    t =    24.36s Pressing and holding Left button for 0.0s
+    t =    24.95s Pressing and holding Left button for 0.0s
+    t =    25.30s Pressing and holding Left button for 0.0s
+    t =    25.79s Pressing and holding Up button for 0.0s
+    t =    26.21s Pressing and holding Up button for 0.0s
+    t =    26.81s Pressing and holding Up button for 0.0s
+    t =    27.18s Pressing and holding Right button for 0.0s
+    t =    27.58s Pressing and holding Right button for 0.0s
+    t =    28.18s Pressing and holding Right button for 0.0s
+    t =    29.11s Pressing and holding Down button for 0.0s
+    t =    29.48s Pressing and holding Down button for 0.0s
+    t =    29.94s Pressing and holding Down button for 0.0s
+    t =    30.30s Pressing and holding Left button for 0.0s
+    t =    30.84s Pressing and holding Left button for 0.0s
+    t =    31.20s Pressing and holding Left button for 0.0s
+    t =    31.87s Pressing and holding Right button for 0.0s
+    t =    32.42s Pressing and holding Right button for 0.0s
+    t =    32.99s Pressing and holding Right button for 0.0s
+    t =    33.50s Pressing and holding Down button for 0.0s
+    t =    34.27s Pressing and holding Down button for 0.0s
+    t =    34.84s Pressing and holding Down button for 0.0s
+    t =    35.31s Pressing and holding Down button for 0.0s
+    t =    35.64s Pressing and holding Left button for 0.0s
+    t =    36.31s Pressing and holding Left button for 0.0s
+    t =    36.65s Pressing and holding Left button for 0.0s
+    t =    36.99s Pressing and holding Left button for 0.0s
+    t =    37.46s Pressing and holding Up button for 0.0s
+    t =    37.98s Pressing and holding Up button for 0.0s
+    t =    38.34s Pressing and holding Up button for 0.0s
+    t =    38.91s Pressing and holding Up button for 0.0s
+    t =    39.57s Pressing and holding Right button for 0.0s
+    t =    39.99s Pressing and holding Right button for 0.0s
+    t =    40.69s Pressing and holding Right button for 0.0s
+    t =    41.13s Pressing and holding Right button for 0.0s
+    t =    41.71s Pressing and holding Down button for 0.0s
+    t =    42.11s Pressing and holding Down button for 0.0s
+    t =    42.81s Pressing and holding Down button for 0.0s
+    t =    43.51s Pressing and holding Down button for 0.0s
+    t =    44.35s Pressing and holding Left button for 0.0s
+    t =    44.95s Pressing and holding Left button for 0.0s
+    t =    45.35s Pressing and holding Left button for 0.0s
+    t =    45.89s Pressing and holding Left button for 0.0s
+    t =    46.19s Pressing and holding Up button for 0.0s
+    t =    46.58s Pressing and holding Up button for 0.0s
+    t =    47.36s Pressing and holding Up button for 0.0s
+    t =    48.02s Pressing and holding Up button for 0.0s
+    t =    48.38s Pressing and holding Right button for 0.0s
+    t =    48.76s Pressing and holding Right button for 0.0s
+    t =    49.37s Pressing and holding Right button for 0.0s
+    t =    49.75s Pressing and holding Right button for 0.0s
+    t =    50.47s Pressing and holding Down button for 0.0s
+    t =    51.07s Pressing and holding Down button for 0.0s
+    t =    51.64s Pressing and holding Down button for 0.0s
+    t =    52.49s Pressing and holding Down button for 0.0s
+    t =    52.82s Pressing and holding Left button for 0.0s
+    t =    53.33s Pressing and holding Left button for 0.0s
+    t =    53.77s Pressing and holding Left button for 0.0s
+    t =    54.14s Pressing and holding Left button for 0.0s
+    t =    54.52s Pressing and holding Up button for 0.0s
+    t =    54.84s Pressing and holding Up button for 0.0s
+    t =    55.65s Pressing and holding Up button for 0.0s
+    t =    56.10s Pressing and holding Up button for 0.0s
+    t =    56.75s Pressing and holding Right button for 0.0s
+    t =    57.57s Pressing and holding Right button for 0.0s
+    t =    58.08s Pressing and holding Right button for 0.0s
+    t =    58.53s Pressing and holding Right button for 0.0s
+    t =    58.94s Pressing and holding Down button for 0.0s
+    t =    59.82s Pressing and holding Down button for 0.0s
+    t =    60.18s Pressing and holding Down button for 0.0s
+    t =    60.56s Pressing and holding Down button for 0.0s
+    t =    61.14s Pressing and holding Left button for 0.0s
+    t =    61.81s Pressing and holding Left button for 0.0s
+    t =    62.15s Pressing and holding Left button for 0.0s
+    t =    62.63s Pressing and holding Left button for 0.0s
+    t =    62.90s Pressing and holding Up button for 0.0s
+    t =    63.35s Pressing and holding Up button for 0.0s
+    t =    64.07s Pressing and holding Up button for 0.0s
+    t =    64.45s Pressing and holding Up button for 0.0s
+    t =    64.95s Pressing and holding Right button for 0.0s
+    t =    65.53s Pressing and holding Right button for 0.0s
+    t =    66.03s Pressing and holding Right button for 0.0s
+    t =    66.68s Pressing and holding Right button for 0.0s
+2025-06-22 21:53:20.963495-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 100 rapid button presses
+
+2025-06-22 21:53:20.963634-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-BURSTS: Final focus state: 'FOCUS_TRACKING_DISABLED_FOR_SPEED'
+
+    t =    67.29s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialBurstPatterns]' passed (68.222 seconds).
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialPressIntervals]' started.
+    t =     0.01s Start Test at 2025-06-22 21:53:21.910
+    t =     0.05s Set Up
+    t =     0.08s     Open com.showblender.HammerTime
+    t =     0.09s         Launch com.showblender.HammerTime
+    t =     0.09s             Terminate com.showblender.HammerTime:18928
+    t =     4.10s             Setting up automation session
+    t =     8.00s             Wait for com.showblender.HammerTime to idle
+    t =    10.20s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    11.21s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    11.21s             Checking existence of `"FocusStressCollectionView" CollectionView`
+2025-06-22 21:53:35.315340-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Collection view cached - NO cell queries for maximum speed
+
+2025-06-22 21:53:35.315459-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Minimal caching complete - ready for rapid button mashing
+
+2025-06-22 21:53:35.320696-0700 HammerTimeUITests-Runner[18910:707573] TIME-ESTIMATE: Test estimated to take 2.5 minutes
+
+2025-06-22 21:53:35.321738-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-INTERVALS: Testing exponential press intervals with NavigationStrategy
+
+2025-06-22 21:53:35.321866-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 250 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:53:35.323411-0700 HammerTimeUITests-Runner[18910:707573] SNAKE: Rapid mashing for 250 steps, direction: bidirectional
+
+    t =    13.42s Pressing and holding Right button for 0.0s
+    t =    13.95s Pressing and holding Down button for 0.0s
+    t =    14.46s Pressing and holding Left button for 0.0s
+    t =    15.13s Pressing and holding Up button for 0.0s
+    t =    15.57s Pressing and holding Right button for 0.0s
+    t =    16.05s Pressing and holding Down button for 0.0s
+    t =    16.77s Pressing and holding Left button for 0.0s
+    t =    17.28s Pressing and holding Up button for 0.0s
+    t =    17.71s Pressing and holding Right button for 0.0s
+    t =    18.18s Pressing and holding Down button for 0.0s
+    t =    18.88s Pressing and holding Left button for 0.0s
+    t =    19.43s Pressing and holding Up button for 0.0s
+    t =    19.81s Pressing and holding Right button for 0.0s
+    t =    20.28s Pressing and holding Down button for 0.0s
+    t =    20.78s Pressing and holding Left button for 0.0s
+    t =    21.22s Pressing and holding Up button for 0.0s
+    t =    21.57s Pressing and holding Right button for 0.0s
+    t =    22.24s Pressing and holding Down button for 0.0s
+    t =    22.65s Pressing and holding Left button for 0.0s
+    t =    23.15s Pressing and holding Up button for 0.0s
+    t =    24.16s Pressing and holding Right button for 0.0s
+    t =    24.55s Pressing and holding Down button for 0.0s
+    t =    24.95s Pressing and holding Left button for 0.0s
+    t =    25.50s Pressing and holding Up button for 0.0s
+    t =    25.88s Pressing and holding Right button for 0.0s
+    t =    26.23s Pressing and holding Down button for 0.0s
+    t =    26.63s Pressing and holding Left button for 0.0s
+    t =    27.43s Pressing and holding Up button for 0.0s
+    t =    27.79s Pressing and holding Right button for 0.0s
+    t =    28.16s Pressing and holding Down button for 0.0s
+    t =    28.93s Pressing and holding Left button for 0.0s
+    t =    29.43s Pressing and holding Up button for 0.0s
+    t =    29.83s Pressing and holding Right button for 0.0s
+    t =    30.69s Pressing and holding Down button for 0.0s
+    t =    31.31s Pressing and holding Left button for 0.0s
+    t =    32.09s Pressing and holding Up button for 0.0s
+    t =    32.64s Pressing and holding Right button for 0.0s
+    t =    33.11s Pressing and holding Down button for 0.0s
+    t =    33.48s Pressing and holding Left button for 0.0s
+    t =    34.00s Pressing and holding Up button for 0.0s
+    t =    34.69s Pressing and holding Right button for 0.0s
+    t =    34.98s Pressing and holding Down button for 0.0s
+    t =    35.33s Pressing and holding Left button for 0.0s
+    t =    36.06s Pressing and holding Up button for 0.0s
+    t =    36.45s Pressing and holding Right button for 0.0s
+    t =    36.83s Pressing and holding Down button for 0.0s
+    t =    37.31s Pressing and holding Left button for 0.0s
+    t =    37.97s Pressing and holding Up button for 0.0s
+    t =    38.57s Pressing and holding Right button for 0.0s
+    t =    39.02s Pressing and holding Down button for 0.0s
+    t =    39.72s Pressing and holding Left button for 0.0s
+    t =    40.16s Pressing and holding Up button for 0.0s
+    t =    40.47s Pressing and holding Right button for 0.0s
+    t =    40.90s Pressing and holding Down button for 0.0s
+    t =    41.26s Pressing and holding Left button for 0.0s
+    t =    41.70s Pressing and holding Up button for 0.0s
+    t =    42.22s Pressing and holding Right button for 0.0s
+    t =    42.58s Pressing and holding Down button for 0.0s
+    t =    43.07s Pressing and holding Left button for 0.0s
+    t =    43.64s Pressing and holding Up button for 0.0s
+    t =    44.01s Pressing and holding Right button for 0.0s
+    t =    44.38s Pressing and holding Down button for 0.0s
+    t =    44.69s Pressing and holding Left button for 0.0s
+    t =    45.07s Pressing and holding Up button for 0.0s
+    t =    45.66s Pressing and holding Right button for 0.0s
+    t =    46.42s Pressing and holding Down button for 0.0s
+    t =    46.84s Pressing and holding Left button for 0.0s
+    t =    47.64s Pressing and holding Up button for 0.0s
+    t =    48.65s Pressing and holding Right button for 0.0s
+    t =    49.49s Pressing and holding Down button for 0.0s
+    t =    49.79s Pressing and holding Left button for 0.0s
+    t =    50.19s Pressing and holding Up button for 0.0s
+    t =    50.63s Pressing and holding Right button for 0.0s
+    t =    51.04s Pressing and holding Down button for 0.0s
+    t =    51.47s Pressing and holding Left button for 0.0s
+    t =    52.28s Pressing and holding Up button for 0.0s
+    t =    53.10s Pressing and holding Right button for 0.0s
+    t =    53.53s Pressing and holding Down button for 0.0s
+    t =    53.98s Pressing and holding Left button for 0.0s
+    t =    54.36s Pressing and holding Up button for 0.0s
+    t =    54.77s Pressing and holding Right button for 0.0s
+    t =    55.05s Pressing and holding Down button for 0.0s
+    t =    55.49s Pressing and holding Left button for 0.0s
+    t =    55.82s Pressing and holding Up button for 0.0s
+    t =    56.26s Pressing and holding Right button for 0.0s
+    t =    56.62s Pressing and holding Down button for 0.0s
+    t =    56.99s Pressing and holding Left button for 0.0s
+    t =    57.37s Pressing and holding Up button for 0.0s
+    t =    57.76s Pressing and holding Right button for 0.0s
+    t =    58.04s Pressing and holding Down button for 0.0s
+    t =    58.50s Pressing and holding Left button for 0.0s
+    t =    59.20s Pressing and holding Up button for 0.0s
+    t =    59.64s Pressing and holding Right button for 0.0s
+    t =    60.48s Pressing and holding Down button for 0.0s
+    t =    60.89s Pressing and holding Left button for 0.0s
+    t =    61.64s Pressing and holding Up button for 0.0s
+    t =    62.03s Pressing and holding Right button for 0.0s
+    t =    62.49s Pressing and holding Down button for 0.0s
+    t =    62.89s Pressing and holding Left button for 0.0s
+    t =    63.19s Pressing and holding Up button for 0.0s
+    t =    63.50s Pressing and holding Right button for 0.0s
+    t =    63.89s Pressing and holding Down button for 0.0s
+    t =    64.34s Pressing and holding Left button for 0.0s
+    t =    64.67s Pressing and holding Up button for 0.0s
+    t =    65.08s Pressing and holding Right button for 0.0s
+    t =    65.63s Pressing and holding Down button for 0.0s
+    t =    66.33s Pressing and holding Left button for 0.0s
+    t =    66.77s Pressing and holding Up button for 0.0s
+    t =    67.18s Pressing and holding Right button for 0.0s
+    t =    67.87s Pressing and holding Down button for 0.0s
+    t =    68.41s Pressing and holding Left button for 0.0s
+    t =    68.85s Pressing and holding Up button for 0.0s
+    t =    69.27s Pressing and holding Right button for 0.0s
+    t =    69.62s Pressing and holding Down button for 0.0s
+    t =    69.98s Pressing and holding Left button for 0.0s
+    t =    70.49s Pressing and holding Up button for 0.0s
+    t =    71.03s Pressing and holding Right button for 0.0s
+    t =    71.38s Pressing and holding Down button for 0.0s
+    t =    71.78s Pressing and holding Left button for 0.0s
+    t =    72.50s Pressing and holding Up button for 0.0s
+    t =    73.23s Pressing and holding Right button for 0.0s
+    t =    73.84s Pressing and holding Down button for 0.0s
+    t =    74.37s Pressing and holding Left button for 0.0s
+    t =    74.87s Pressing and holding Up button for 0.0s
+    t =    75.15s Pressing and holding Right button for 0.0s
+    t =    75.59s Pressing and holding Down button for 0.0s
+    t =    76.02s Pressing and holding Left button for 0.0s
+    t =    76.54s Pressing and holding Up button for 0.0s
+    t =    77.22s Pressing and holding Right button for 0.0s
+    t =    77.69s Pressing and holding Down button for 0.0s
+    t =    78.29s Pressing and holding Left button for 0.0s
+    t =    78.94s Pressing and holding Up button for 0.0s
+    t =    79.46s Pressing and holding Right button for 0.0s
+    t =    80.01s Pressing and holding Down button for 0.0s
+    t =    80.47s Pressing and holding Left button for 0.0s
+    t =    81.00s Pressing and holding Up button for 0.0s
+    t =    81.56s Pressing and holding Right button for 0.0s
+    t =    82.13s Pressing and holding Down button for 0.0s
+    t =    82.73s Pressing and holding Left button for 0.0s
+    t =    83.18s Pressing and holding Up button for 0.0s
+    t =    83.75s Pressing and holding Right button for 0.0s
+    t =    84.42s Pressing and holding Down button for 0.0s
+    t =    84.84s Pressing and holding Left button for 0.0s
+    t =    85.28s Pressing and holding Up button for 0.0s
+    t =    85.65s Pressing and holding Right button for 0.0s
+    t =    86.40s Pressing and holding Down button for 0.0s
+    t =    87.29s Pressing and holding Left button for 0.0s
+    t =    87.57s Pressing and holding Up button for 0.0s
+    t =    88.00s Pressing and holding Right button for 0.0s
+    t =    89.10s Pressing and holding Down button for 0.0s
+    t =    89.44s Pressing and holding Left button for 0.0s
+    t =    89.78s Pressing and holding Up button for 0.0s
+    t =    90.35s Pressing and holding Right button for 0.0s
+    t =    91.11s Pressing and holding Down button for 0.0s
+    t =    91.45s Pressing and holding Left button for 0.0s
+    t =    91.87s Pressing and holding Up button for 0.0s
+    t =    92.27s Pressing and holding Right button for 0.0s
+    t =    92.81s Pressing and holding Down button for 0.0s
+    t =    93.61s Pressing and holding Left button for 0.0s
+    t =    94.07s Pressing and holding Up button for 0.0s
+    t =    94.42s Pressing and holding Right button for 0.0s
+    t =    94.85s Pressing and holding Down button for 0.0s
+    t =    95.34s Pressing and holding Left button for 0.0s
+    t =    95.89s Pressing and holding Up button for 0.0s
+    t =    96.69s Pressing and holding Right button for 0.0s
+    t =    97.82s Pressing and holding Down button for 0.0s
+    t =    98.26s Pressing and holding Left button for 0.0s
+    t =    98.59s Pressing and holding Up button for 0.0s
+    t =    99.06s Pressing and holding Right button for 0.0s
+    t =    99.89s Pressing and holding Down button for 0.0s
+    t =   101.02s Pressing and holding Left button for 0.0s
+    t =   101.80s Pressing and holding Up button for 0.0s
+    t =   102.25s Pressing and holding Right button for 0.0s
+    t =   102.67s Pressing and holding Down button for 0.0s
+    t =   103.29s Pressing and holding Left button for 0.0s
+    t =   103.65s Pressing and holding Up button for 0.0s
+    t =   104.19s Pressing and holding Right button for 0.0s
+    t =   104.85s Pressing and holding Down button for 0.0s
+    t =   105.15s Pressing and holding Left button for 0.0s
+    t =   105.94s Pressing and holding Up button for 0.0s
+    t =   106.64s Pressing and holding Right button for 0.0s
+    t =   107.26s Pressing and holding Down button for 0.0s
+    t =   107.72s Pressing and holding Left button for 0.0s
+    t =   108.18s Pressing and holding Up button for 0.0s
+    t =   108.58s Pressing and holding Right button for 0.0s
+    t =   109.07s Pressing and holding Down button for 0.0s
+    t =   109.84s Pressing and holding Left button for 0.0s
+    t =   110.37s Pressing and holding Up button for 0.0s
+    t =   111.17s Pressing and holding Right button for 0.0s
+    t =   111.80s Pressing and holding Down button for 0.0s
+    t =   112.24s Pressing and holding Left button for 0.0s
+    t =   112.68s Pressing and holding Up button for 0.0s
+    t =   113.11s Pressing and holding Right button for 0.0s
+    t =   113.46s Pressing and holding Down button for 0.0s
+    t =   113.89s Pressing and holding Left button for 0.0s
+    t =   114.53s Pressing and holding Up button for 0.0s
+    t =   114.88s Pressing and holding Right button for 0.0s
+    t =   115.21s Pressing and holding Down button for 0.0s
+    t =   115.93s Pressing and holding Left button for 0.0s
+    t =   116.45s Pressing and holding Up button for 0.0s
+    t =   117.24s Pressing and holding Right button for 0.0s
+    t =   117.66s Pressing and holding Down button for 0.0s
+    t =   118.61s Pressing and holding Left button for 0.0s
+    t =   118.94s Pressing and holding Up button for 0.0s
+    t =   119.30s Pressing and holding Right button for 0.0s
+    t =   119.65s Pressing and holding Down button for 0.0s
+    t =   120.08s Pressing and holding Left button for 0.0s
+    t =   120.67s Pressing and holding Up button for 0.0s
+    t =   121.17s Pressing and holding Right button for 0.0s
+    t =   121.52s Pressing and holding Down button for 0.0s
+    t =   121.93s Pressing and holding Left button for 0.0s
+    t =   122.88s Pressing and holding Up button for 0.0s
+    t =   123.43s Pressing and holding Right button for 0.0s
+    t =   124.22s Pressing and holding Down button for 0.0s
+    t =   124.48s Pressing and holding Left button for 0.0s
+    t =   124.78s Pressing and holding Up button for 0.0s
+    t =   125.67s Pressing and holding Right button for 0.0s
+    t =   126.04s Pressing and holding Down button for 0.0s
+    t =   126.79s Pressing and holding Left button for 0.0s
+    t =   127.08s Pressing and holding Up button for 0.0s
+    t =   127.42s Pressing and holding Right button for 0.0s
+    t =   128.21s Pressing and holding Down button for 0.0s
+    t =   128.68s Pressing and holding Left button for 0.0s
+    t =   129.50s Pressing and holding Up button for 0.0s
+    t =   129.92s Pressing and holding Right button for 0.0s
+    t =   130.39s Pressing and holding Down button for 0.0s
+    t =   130.78s Pressing and holding Left button for 0.0s
+    t =   131.36s Pressing and holding Up button for 0.0s
+    t =   132.34s Pressing and holding Right button for 0.0s
+    t =   132.76s Pressing and holding Down button for 0.0s
+    t =   133.16s Pressing and holding Left button for 0.0s
+    t =   133.54s Pressing and holding Up button for 0.0s
+    t =   134.08s Pressing and holding Right button for 0.0s
+    t =   134.68s Pressing and holding Down button for 0.0s
+    t =   135.11s Pressing and holding Left button for 0.0s
+    t =   135.70s Pressing and holding Up button for 0.0s
+    t =   136.11s Pressing and holding Right button for 0.0s
+    t =   136.52s Pressing and holding Down button for 0.0s
+    t =   137.26s Pressing and holding Left button for 0.0s
+    t =   137.63s Pressing and holding Up button for 0.0s
+    t =   138.26s Pressing and holding Right button for 0.0s
+    t =   138.73s Pressing and holding Down button for 0.0s
+    t =   139.30s Pressing and holding Left button for 0.0s
+    t =   139.87s Pressing and holding Up button for 0.0s
+    t =   140.34s Pressing and holding Right button for 0.0s
+    t =   140.64s Pressing and holding Down button for 0.0s
+    t =   141.07s Pressing and holding Left button for 0.0s
+    t =   142.18s Pressing and holding Up button for 0.0s
+    t =   142.64s Pressing and holding Right button for 0.0s
+    t =   143.07s Pressing and holding Down button for 0.0s
+2025-06-22 21:55:45.300707-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 250 rapid button presses
+
+2025-06-22 21:55:45.300863-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-INTERVALS: Final focus state: 'FOCUS_TRACKING_DISABLED_FOR_SPEED'
+
+    t =   143.40s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialPressIntervals]' passed (143.881 seconds).
+Test Case '-[HammerTimeUITests.FocusStressUITests testMixedExponentialPatterns]' started.
+Run test suite FocusStressUITests encountered an error (Test operation was canceled.)testMixedExponentialPatterns() encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Test Suite 'FocusStressUITests' started at 2025-06-22 21:49:54.759.
+Test Case '-[HammerTimeUITests.FocusStressUITests testEdgeBoundaryStress]' started.
+Test Case '-[HammerTimeUITests.FocusStressUITests testEdgeBoundaryStress]' started.
+    t =     0.00s Start Test at 2025-06-22 21:49:54.762
+    t =     0.05s Set Up
+    t =     0.23s     Open com.showblender.HammerTime
+    t =     0.24s         Launch com.showblender.HammerTime
+    t =     5.46s             Setting up automation session
+    t =    11.01s             Wait for com.showblender.HammerTime to idle
+    t =    13.37s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    14.42s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    14.43s             Checking existence of `"FocusStressCollectionView" CollectionView`
+2025-06-22 21:50:10.836105-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Collection view cached - NO cell queries for maximum speed
+
+2025-06-22 21:50:10.836234-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Minimal caching complete - ready for rapid button mashing
+
+2025-06-22 21:50:10.838284-0700 HammerTimeUITests-Runner[18910:707573] TIME-ESTIMATE: Test estimated to take 2.5 minutes
+
+2025-06-22 21:50:10.838407-0700 HammerTimeUITests-Runner[18910:707573] EDGE-BOUNDARY: Testing edge conditions and boundary behavior
+
+2025-06-22 21:50:10.838478-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 100 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:50:10.839019-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 100 steps, edge: all
+
+    t =    16.08s Pressing and holding Up button for 0.0s
+    t =    16.53s Pressing and holding Right button for 0.0s
+    t =    16.84s Pressing and holding Down button for 0.0s
+    t =    17.15s Pressing and holding Left button for 0.0s
+    t =    17.49s Pressing and holding Up button for 0.0s
+    t =    17.88s Pressing and holding Left button for 0.0s
+    t =    18.33s Pressing and holding Down button for 0.0s
+    t =    18.73s Pressing and holding Right button for 0.0s
+    t =    19.11s Pressing and holding Up button for 0.0s
+    t =    19.44s Pressing and holding Right button for 0.0s
+    t =    19.84s Pressing and holding Down button for 0.0s
+    t =    20.18s Pressing and holding Left button for 0.0s
+    t =    20.58s Pressing and holding Up button for 0.0s
+    t =    21.00s Pressing and holding Left button for 0.0s
+    t =    21.30s Pressing and holding Down button for 0.0s
+    t =    21.64s Pressing and holding Right button for 0.0s
+    t =    21.98s Pressing and holding Up button for 0.0s
+    t =    22.42s Pressing and holding Right button for 0.0s
+    t =    22.84s Pressing and holding Down button for 0.0s
+    t =    23.69s Pressing and holding Left button for 0.0s
+    t =    24.51s Pressing and holding Up button for 0.0s
+    t =    25.24s Pressing and holding Left button for 0.0s
+    t =    25.68s Pressing and holding Down button for 0.0s
+    t =    26.11s Pressing and holding Right button for 0.0s
+    t =    26.43s Pressing and holding Up button for 0.0s
+    t =    26.87s Pressing and holding Right button for 0.0s
+    t =    27.46s Pressing and holding Down button for 0.0s
+    t =    27.91s Pressing and holding Left button for 0.0s
+    t =    28.36s Pressing and holding Up button for 0.0s
+    t =    29.15s Pressing and holding Left button for 0.0s
+    t =    29.60s Pressing and holding Down button for 0.0s
+    t =    30.20s Pressing and holding Right button for 0.0s
+    t =    30.86s Pressing and holding Up button for 0.0s
+    t =    31.40s Pressing and holding Right button for 0.0s
+    t =    31.69s Pressing and holding Down button for 0.0s
+    t =    32.11s Pressing and holding Left button for 0.0s
+    t =    32.48s Pressing and holding Up button for 0.0s
+    t =    32.82s Pressing and holding Left button for 0.0s
+    t =    33.26s Pressing and holding Down button for 0.0s
+    t =    33.68s Pressing and holding Right button for 0.0s
+    t =    34.32s Pressing and holding Up button for 0.0s
+    t =    34.85s Pressing and holding Right button for 0.0s
+    t =    35.23s Pressing and holding Down button for 0.0s
+    t =    35.72s Pressing and holding Left button for 0.0s
+    t =    36.29s Pressing and holding Up button for 0.0s
+    t =    36.77s Pressing and holding Left button for 0.0s
+    t =    37.23s Pressing and holding Down button for 0.0s
+    t =    38.07s Pressing and holding Right button for 0.0s
+    t =    38.50s Pressing and holding Up button for 0.0s
+    t =    39.07s Pressing and holding Right button for 0.0s
+    t =    39.46s Pressing and holding Down button for 0.0s
+    t =    39.83s Pressing and holding Left button for 0.0s
+    t =    40.48s Pressing and holding Up button for 0.0s
+    t =    40.78s Pressing and holding Left button for 0.0s
+    t =    41.30s Pressing and holding Down button for 0.0s
+    t =    42.12s Pressing and holding Right button for 0.0s
+    t =    42.55s Pressing and holding Up button for 0.0s
+    t =    42.97s Pressing and holding Right button for 0.0s
+    t =    43.41s Pressing and holding Down button for 0.0s
+    t =    44.01s Pressing and holding Left button for 0.0s
+    t =    44.51s Pressing and holding Up button for 0.0s
+    t =    45.17s Pressing and holding Left button for 0.0s
+    t =    45.61s Pressing and holding Down button for 0.0s
+    t =    46.14s Pressing and holding Right button for 0.0s
+    t =    46.66s Pressing and holding Up button for 0.0s
+    t =    47.20s Pressing and holding Right button for 0.0s
+    t =    47.89s Pressing and holding Down button for 0.0s
+    t =    48.56s Pressing and holding Left button for 0.0s
+    t =    49.04s Pressing and holding Up button for 0.0s
+    t =    49.45s Pressing and holding Left button for 0.0s
+    t =    49.79s Pressing and holding Down button for 0.0s
+    t =    50.13s Pressing and holding Right button for 0.0s
+    t =    50.47s Pressing and holding Up button for 0.0s
+    t =    51.18s Pressing and holding Right button for 0.0s
+    t =    51.57s Pressing and holding Down button for 0.0s
+    t =    52.07s Pressing and holding Left button for 0.0s
+    t =    52.65s Pressing and holding Up button for 0.0s
+    t =    52.97s Pressing and holding Left button for 0.0s
+    t =    53.79s Pressing and holding Down button for 0.0s
+    t =    54.82s Pressing and holding Right button for 0.0s
+    t =    55.50s Pressing and holding Up button for 0.0s
+    t =    55.97s Pressing and holding Right button for 0.0s
+    t =    56.32s Pressing and holding Down button for 0.0s
+    t =    56.83s Pressing and holding Left button for 0.0s
+    t =    57.37s Pressing and holding Up button for 0.0s
+    t =    57.99s Pressing and holding Left button for 0.0s
+    t =    58.59s Pressing and holding Down button for 0.0s
+    t =    58.97s Pressing and holding Right button for 0.0s
+    t =    59.37s Pressing and holding Up button for 0.0s
+    t =    60.00s Pressing and holding Right button for 0.0s
+    t =    60.68s Pressing and holding Down button for 0.0s
+    t =    61.13s Pressing and holding Left button for 0.0s
+    t =    61.44s Pressing and holding Up button for 0.0s
+    t =    61.79s Pressing and holding Left button for 0.0s
+    t =    62.19s Pressing and holding Down button for 0.0s
+    t =    62.59s Pressing and holding Right button for 0.0s
+    t =    62.94s Pressing and holding Up button for 0.0s
+    t =    63.26s Pressing and holding Right button for 0.0s
+    t =    64.09s Pressing and holding Down button for 0.0s
+    t =    64.45s Pressing and holding Left button for 0.0s
+2025-06-22 21:50:59.652256-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 100 rapid button presses
+
+2025-06-22 21:50:59.652584-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:50:59.653000-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: top
+
+    t =    64.89s Pressing and holding Up button for 0.0s
+    t =    65.52s Pressing and holding Up button for 0.0s
+    t =    65.95s Pressing and holding Up button for 0.0s
+    t =    66.35s Pressing and holding Right button for 0.0s
+    t =    66.95s Pressing and holding Left button for 0.0s
+    t =    67.59s Pressing and holding Up button for 0.0s
+    t =    67.89s Pressing and holding Up button for 0.0s
+    t =    68.16s Pressing and holding Up button for 0.0s
+    t =    68.52s Pressing and holding Right button for 0.0s
+    t =    68.82s Pressing and holding Left button for 0.0s
+    t =    69.29s Pressing and holding Up button for 0.0s
+    t =    69.98s Pressing and holding Up button for 0.0s
+    t =    70.35s Pressing and holding Up button for 0.0s
+    t =    70.73s Pressing and holding Right button for 0.0s
+    t =    71.14s Pressing and holding Left button for 0.0s
+    t =    71.60s Pressing and holding Up button for 0.0s
+    t =    72.02s Pressing and holding Up button for 0.0s
+    t =    72.42s Pressing and holding Up button for 0.0s
+    t =    72.88s Pressing and holding Right button for 0.0s
+    t =    73.34s Pressing and holding Left button for 0.0s
+    t =    74.16s Pressing and holding Up button for 0.0s
+    t =    74.82s Pressing and holding Up button for 0.0s
+    t =    75.15s Pressing and holding Up button for 0.0s
+    t =    75.42s Pressing and holding Right button for 0.0s
+    t =    75.84s Pressing and holding Left button for 0.0s
+2025-06-22 21:51:10.901747-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:10.901906-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:10.902010-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: bottom
+
+    t =    76.14s Pressing and holding Down button for 0.0s
+    t =    77.09s Pressing and holding Down button for 0.0s
+    t =    77.60s Pressing and holding Down button for 0.0s
+    t =    78.05s Pressing and holding Right button for 0.0s
+    t =    78.49s Pressing and holding Left button for 0.0s
+    t =    78.98s Pressing and holding Down button for 0.0s
+    t =    79.72s Pressing and holding Down button for 0.0s
+    t =    80.38s Pressing and holding Down button for 0.0s
+    t =    81.34s Pressing and holding Right button for 0.0s
+    t =    81.93s Pressing and holding Left button for 0.0s
+    t =    82.53s Pressing and holding Down button for 0.0s
+    t =    82.83s Pressing and holding Down button for 0.0s
+    t =    83.17s Pressing and holding Down button for 0.0s
+    t =    84.13s Pressing and holding Right button for 0.0s
+    t =    84.55s Pressing and holding Left button for 0.0s
+    t =    84.99s Pressing and holding Down button for 0.0s
+    t =    85.59s Pressing and holding Down button for 0.0s
+    t =    86.07s Pressing and holding Down button for 0.0s
+    t =    86.83s Pressing and holding Right button for 0.0s
+    t =    87.17s Pressing and holding Left button for 0.0s
+    t =    87.65s Pressing and holding Down button for 0.0s
+    t =    88.37s Pressing and holding Down button for 0.0s
+    t =    88.72s Pressing and holding Down button for 0.0s
+    t =    89.42s Pressing and holding Right button for 0.0s
+    t =    90.36s Pressing and holding Left button for 0.0s
+2025-06-22 21:51:25.463176-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:25.463313-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:25.463407-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: left
+
+    t =    90.70s Pressing and holding Left button for 0.0s
+    t =    91.37s Pressing and holding Left button for 0.0s
+    t =    91.86s Pressing and holding Left button for 0.0s
+    t =    92.28s Pressing and holding Up button for 0.0s
+    t =    92.72s Pressing and holding Down button for 0.0s
+    t =    93.14s Pressing and holding Left button for 0.0s
+    t =    93.80s Pressing and holding Left button for 0.0s
+    t =    94.15s Pressing and holding Left button for 0.0s
+    t =    94.66s Pressing and holding Up button for 0.0s
+    t =    94.96s Pressing and holding Down button for 0.0s
+    t =    95.42s Pressing and holding Left button for 0.0s
+    t =    95.94s Pressing and holding Left button for 0.0s
+    t =    96.28s Pressing and holding Left button for 0.0s
+    t =    96.74s Pressing and holding Up button for 0.0s
+    t =    97.14s Pressing and holding Down button for 0.0s
+    t =    97.54s Pressing and holding Left button for 0.0s
+    t =    97.96s Pressing and holding Left button for 0.0s
+    t =    98.36s Pressing and holding Left button for 0.0s
+    t =    98.66s Pressing and holding Up button for 0.0s
+    t =    99.58s Pressing and holding Down button for 0.0s
+    t =   100.59s Pressing and holding Left button for 0.0s
+    t =   100.92s Pressing and holding Left button for 0.0s
+    t =   101.22s Pressing and holding Left button for 0.0s
+    t =   101.54s Pressing and holding Up button for 0.0s
+    t =   101.90s Pressing and holding Down button for 0.0s
+2025-06-22 21:51:37.051516-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:37.051676-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:37.051775-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: right
+
+    t =   102.29s Pressing and holding Right button for 0.0s
+    t =   103.10s Pressing and holding Right button for 0.0s
+    t =   103.62s Pressing and holding Right button for 0.0s
+    t =   103.92s Pressing and holding Up button for 0.0s
+    t =   104.27s Pressing and holding Down button for 0.0s
+    t =   104.66s Pressing and holding Right button for 0.0s
+    t =   105.06s Pressing and holding Right button for 0.0s
+    t =   106.17s Pressing and holding Right button for 0.0s
+    t =   106.62s Pressing and holding Up button for 0.0s
+    t =   107.09s Pressing and holding Down button for 0.0s
+    t =   107.53s Pressing and holding Right button for 0.0s
+    t =   107.89s Pressing and holding Right button for 0.0s
+    t =   108.61s Pressing and holding Right button for 0.0s
+    t =   109.55s Pressing and holding Up button for 0.0s
+    t =   109.98s Pressing and holding Down button for 0.0s
+    t =   110.49s Pressing and holding Right button for 0.0s
+    t =   110.83s Pressing and holding Right button for 0.0s
+    t =   111.15s Pressing and holding Right button for 0.0s
+    t =   111.53s Pressing and holding Up button for 0.0s
+    t =   111.98s Pressing and holding Down button for 0.0s
+    t =   112.36s Pressing and holding Right button for 0.0s
+    t =   113.03s Pressing and holding Right button for 0.0s
+    t =   113.53s Pressing and holding Right button for 0.0s
+    t =   113.91s Pressing and holding Up button for 0.0s
+    t =   114.25s Pressing and holding Down button for 0.0s
+2025-06-22 21:51:49.368963-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:49.369086-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 50 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:49.369256-0700 HammerTimeUITests-Runner[18910:707573] DIAGONAL: Rapid mashing for 50 steps, direction: primary
+
+    t =   114.61s Pressing and holding Right button for 0.0s
+    t =   115.03s Pressing and holding Down button for 0.0s
+    t =   115.50s Pressing and holding Right button for 0.0s
+    t =   115.83s Pressing and holding Down button for 0.0s
+    t =   116.33s Pressing and holding Right button for 0.0s
+    t =   116.73s Pressing and holding Down button for 0.0s
+    t =   117.22s Pressing and holding Right button for 0.0s
+    t =   117.57s Pressing and holding Down button for 0.0s
+    t =   117.98s Pressing and holding Right button for 0.0s
+    t =   118.44s Pressing and holding Down button for 0.0s
+    t =   118.91s Pressing and holding Right button for 0.0s
+    t =   119.73s Pressing and holding Down button for 0.0s
+    t =   120.06s Pressing and holding Right button for 0.0s
+    t =   120.52s Pressing and holding Down button for 0.0s
+    t =   120.93s Pressing and holding Right button for 0.0s
+    t =   121.29s Pressing and holding Down button for 0.0s
+    t =   121.63s Pressing and holding Right button for 0.0s
+    t =   121.92s Pressing and holding Down button for 0.0s
+    t =   122.22s Pressing and holding Right button for 0.0s
+    t =   122.62s Pressing and holding Down button for 0.0s
+    t =   123.16s Pressing and holding Right button for 0.0s
+    t =   123.77s Pressing and holding Down button for 0.0s
+    t =   124.17s Pressing and holding Right button for 0.0s
+    t =   124.50s Pressing and holding Down button for 0.0s
+    t =   124.98s Pressing and holding Right button for 0.0s
+    t =   125.69s Pressing and holding Down button for 0.0s
+    t =   126.01s Pressing and holding Right button for 0.0s
+    t =   126.41s Pressing and holding Down button for 0.0s
+    t =   126.94s Pressing and holding Right button for 0.0s
+    t =   127.54s Pressing and holding Down button for 0.0s
+    t =   127.91s Pressing and holding Right button for 0.0s
+    t =   128.27s Pressing and holding Down button for 0.0s
+    t =   128.71s Pressing and holding Right button for 0.0s
+    t =   129.12s Pressing and holding Down button for 0.0s
+    t =   129.93s Pressing and holding Right button for 0.0s
+    t =   130.23s Pressing and holding Down button for 0.0s
+    t =   130.81s Pressing and holding Right button for 0.0s
+    t =   131.47s Pressing and holding Down button for 0.0s
+    t =   131.97s Pressing and holding Right button for 0.0s
+    t =   132.60s Pressing and holding Down button for 0.0s
+    t =   133.06s Pressing and holding Right button for 0.0s
+    t =   133.56s Pressing and holding Down button for 0.0s
+    t =   134.37s Pressing and holding Right button for 0.0s
+    t =   134.78s Pressing and holding Down button for 0.0s
+    t =   135.12s Pressing and holding Right button for 0.0s
+    t =   135.48s Pressing and holding Down button for 0.0s
+    t =   135.86s Pressing and holding Right button for 0.0s
+    t =   136.18s Pressing and holding Down button for 0.0s
+    t =   136.89s Pressing and holding Right button for 0.0s
+    t =   137.68s Pressing and holding Down button for 0.0s
+2025-06-22 21:52:13.247631-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 50 rapid button presses
+
+2025-06-22 21:52:13.247785-0700 HammerTimeUITests-Runner[18910:707573] EDGE-BOUNDARY: Final focus state: 'FOCUS_TRACKING_DISABLED_FOR_SPEED'
+
+    t =   138.49s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testEdgeBoundaryStress]' passed (138.916 seconds).
+    t =     0.00s Start Test at 2025-06-22 21:49:54.762
+    t =     0.05s Set Up
+    t =     0.23s     Open com.showblender.HammerTime
+    t =     0.24s         Launch com.showblender.HammerTime
+    t =     5.46s             Setting up automation session
+    t =    11.01s             Wait for com.showblender.HammerTime to idle
+    t =    13.37s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    14.42s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    14.43s             Checking existence of `"FocusStressCollectionView" CollectionView`
+2025-06-22 21:50:10.836105-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Collection view cached - NO cell queries for maximum speed
+
+2025-06-22 21:50:10.836234-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Minimal caching complete - ready for rapid button mashing
+
+2025-06-22 21:50:10.838284-0700 HammerTimeUITests-Runner[18910:707573] TIME-ESTIMATE: Test estimated to take 2.5 minutes
+
+2025-06-22 21:50:10.838407-0700 HammerTimeUITests-Runner[18910:707573] EDGE-BOUNDARY: Testing edge conditions and boundary behavior
+
+2025-06-22 21:50:10.838478-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 100 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:50:10.839019-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 100 steps, edge: all
+
+    t =    16.08s Pressing and holding Up button for 0.0s
+    t =    16.53s Pressing and holding Right button for 0.0s
+    t =    16.84s Pressing and holding Down button for 0.0s
+    t =    17.15s Pressing and holding Left button for 0.0s
+    t =    17.49s Pressing and holding Up button for 0.0s
+    t =    17.88s Pressing and holding Left button for 0.0s
+    t =    18.33s Pressing and holding Down button for 0.0s
+    t =    18.73s Pressing and holding Right button for 0.0s
+    t =    19.11s Pressing and holding Up button for 0.0s
+    t =    19.44s Pressing and holding Right button for 0.0s
+    t =    19.84s Pressing and holding Down button for 0.0s
+    t =    20.18s Pressing and holding Left button for 0.0s
+    t =    20.58s Pressing and holding Up button for 0.0s
+    t =    21.00s Pressing and holding Left button for 0.0s
+    t =    21.30s Pressing and holding Down button for 0.0s
+    t =    21.64s Pressing and holding Right button for 0.0s
+    t =    21.98s Pressing and holding Up button for 0.0s
+    t =    22.42s Pressing and holding Right button for 0.0s
+    t =    22.84s Pressing and holding Down button for 0.0s
+    t =    23.69s Pressing and holding Left button for 0.0s
+    t =    24.51s Pressing and holding Up button for 0.0s
+    t =    25.24s Pressing and holding Left button for 0.0s
+    t =    25.68s Pressing and holding Down button for 0.0s
+    t =    26.11s Pressing and holding Right button for 0.0s
+    t =    26.43s Pressing and holding Up button for 0.0s
+    t =    26.87s Pressing and holding Right button for 0.0s
+    t =    27.46s Pressing and holding Down button for 0.0s
+    t =    27.91s Pressing and holding Left button for 0.0s
+    t =    28.36s Pressing and holding Up button for 0.0s
+    t =    29.15s Pressing and holding Left button for 0.0s
+    t =    29.60s Pressing and holding Down button for 0.0s
+    t =    30.20s Pressing and holding Right button for 0.0s
+    t =    30.86s Pressing and holding Up button for 0.0s
+    t =    31.40s Pressing and holding Right button for 0.0s
+    t =    31.69s Pressing and holding Down button for 0.0s
+    t =    32.11s Pressing and holding Left button for 0.0s
+    t =    32.48s Pressing and holding Up button for 0.0s
+    t =    32.82s Pressing and holding Left button for 0.0s
+    t =    33.26s Pressing and holding Down button for 0.0s
+    t =    33.68s Pressing and holding Right button for 0.0s
+    t =    34.32s Pressing and holding Up button for 0.0s
+    t =    34.85s Pressing and holding Right button for 0.0s
+    t =    35.23s Pressing and holding Down button for 0.0s
+    t =    35.72s Pressing and holding Left button for 0.0s
+    t =    36.29s Pressing and holding Up button for 0.0s
+    t =    36.77s Pressing and holding Left button for 0.0s
+    t =    37.23s Pressing and holding Down button for 0.0s
+    t =    38.07s Pressing and holding Right button for 0.0s
+    t =    38.50s Pressing and holding Up button for 0.0s
+    t =    39.07s Pressing and holding Right button for 0.0s
+    t =    39.46s Pressing and holding Down button for 0.0s
+    t =    39.83s Pressing and holding Left button for 0.0s
+    t =    40.48s Pressing and holding Up button for 0.0s
+    t =    40.78s Pressing and holding Left button for 0.0s
+    t =    41.30s Pressing and holding Down button for 0.0s
+    t =    42.12s Pressing and holding Right button for 0.0s
+    t =    42.55s Pressing and holding Up button for 0.0s
+    t =    42.97s Pressing and holding Right button for 0.0s
+    t =    43.41s Pressing and holding Down button for 0.0s
+    t =    44.01s Pressing and holding Left button for 0.0s
+    t =    44.51s Pressing and holding Up button for 0.0s
+    t =    45.17s Pressing and holding Left button for 0.0s
+    t =    45.61s Pressing and holding Down button for 0.0s
+    t =    46.14s Pressing and holding Right button for 0.0s
+    t =    46.66s Pressing and holding Up button for 0.0s
+    t =    47.20s Pressing and holding Right button for 0.0s
+    t =    47.89s Pressing and holding Down button for 0.0s
+    t =    48.56s Pressing and holding Left button for 0.0s
+    t =    49.04s Pressing and holding Up button for 0.0s
+    t =    49.45s Pressing and holding Left button for 0.0s
+    t =    49.79s Pressing and holding Down button for 0.0s
+    t =    50.13s Pressing and holding Right button for 0.0s
+    t =    50.47s Pressing and holding Up button for 0.0s
+    t =    51.18s Pressing and holding Right button for 0.0s
+    t =    51.57s Pressing and holding Down button for 0.0s
+    t =    52.07s Pressing and holding Left button for 0.0s
+    t =    52.65s Pressing and holding Up button for 0.0s
+    t =    52.97s Pressing and holding Left button for 0.0s
+    t =    53.79s Pressing and holding Down button for 0.0s
+    t =    54.82s Pressing and holding Right button for 0.0s
+    t =    55.50s Pressing and holding Up button for 0.0s
+    t =    55.97s Pressing and holding Right button for 0.0s
+    t =    56.32s Pressing and holding Down button for 0.0s
+    t =    56.83s Pressing and holding Left button for 0.0s
+    t =    57.37s Pressing and holding Up button for 0.0s
+    t =    57.99s Pressing and holding Left button for 0.0s
+    t =    58.59s Pressing and holding Down button for 0.0s
+    t =    58.97s Pressing and holding Right button for 0.0s
+    t =    59.37s Pressing and holding Up button for 0.0s
+    t =    60.00s Pressing and holding Right button for 0.0s
+    t =    60.68s Pressing and holding Down button for 0.0s
+    t =    61.13s Pressing and holding Left button for 0.0s
+    t =    61.44s Pressing and holding Up button for 0.0s
+    t =    61.79s Pressing and holding Left button for 0.0s
+    t =    62.19s Pressing and holding Down button for 0.0s
+    t =    62.59s Pressing and holding Right button for 0.0s
+    t =    62.94s Pressing and holding Up button for 0.0s
+    t =    63.26s Pressing and holding Right button for 0.0s
+    t =    64.09s Pressing and holding Down button for 0.0s
+    t =    64.45s Pressing and holding Left button for 0.0s
+2025-06-22 21:50:59.652256-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 100 rapid button presses
+
+2025-06-22 21:50:59.652584-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:50:59.653000-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: top
+
+    t =    64.89s Pressing and holding Up button for 0.0s
+    t =    65.52s Pressing and holding Up button for 0.0s
+    t =    65.95s Pressing and holding Up button for 0.0s
+    t =    66.35s Pressing and holding Right button for 0.0s
+    t =    66.95s Pressing and holding Left button for 0.0s
+    t =    67.59s Pressing and holding Up button for 0.0s
+    t =    67.89s Pressing and holding Up button for 0.0s
+    t =    68.16s Pressing and holding Up button for 0.0s
+    t =    68.52s Pressing and holding Right button for 0.0s
+    t =    68.82s Pressing and holding Left button for 0.0s
+    t =    69.29s Pressing and holding Up button for 0.0s
+    t =    69.98s Pressing and holding Up button for 0.0s
+    t =    70.35s Pressing and holding Up button for 0.0s
+    t =    70.73s Pressing and holding Right button for 0.0s
+    t =    71.14s Pressing and holding Left button for 0.0s
+    t =    71.60s Pressing and holding Up button for 0.0s
+    t =    72.02s Pressing and holding Up button for 0.0s
+    t =    72.42s Pressing and holding Up button for 0.0s
+    t =    72.88s Pressing and holding Right button for 0.0s
+    t =    73.34s Pressing and holding Left button for 0.0s
+    t =    74.16s Pressing and holding Up button for 0.0s
+    t =    74.82s Pressing and holding Up button for 0.0s
+    t =    75.15s Pressing and holding Up button for 0.0s
+    t =    75.42s Pressing and holding Right button for 0.0s
+    t =    75.84s Pressing and holding Left button for 0.0s
+2025-06-22 21:51:10.901747-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:10.901906-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:10.902010-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: bottom
+
+    t =    76.14s Pressing and holding Down button for 0.0s
+    t =    77.09s Pressing and holding Down button for 0.0s
+    t =    77.60s Pressing and holding Down button for 0.0s
+    t =    78.05s Pressing and holding Right button for 0.0s
+    t =    78.49s Pressing and holding Left button for 0.0s
+    t =    78.98s Pressing and holding Down button for 0.0s
+    t =    79.72s Pressing and holding Down button for 0.0s
+    t =    80.38s Pressing and holding Down button for 0.0s
+    t =    81.34s Pressing and holding Right button for 0.0s
+    t =    81.93s Pressing and holding Left button for 0.0s
+    t =    82.53s Pressing and holding Down button for 0.0s
+    t =    82.83s Pressing and holding Down button for 0.0s
+    t =    83.17s Pressing and holding Down button for 0.0s
+    t =    84.13s Pressing and holding Right button for 0.0s
+    t =    84.55s Pressing and holding Left button for 0.0s
+    t =    84.99s Pressing and holding Down button for 0.0s
+    t =    85.59s Pressing and holding Down button for 0.0s
+    t =    86.07s Pressing and holding Down button for 0.0s
+    t =    86.83s Pressing and holding Right button for 0.0s
+    t =    87.17s Pressing and holding Left button for 0.0s
+    t =    87.65s Pressing and holding Down button for 0.0s
+    t =    88.37s Pressing and holding Down button for 0.0s
+    t =    88.72s Pressing and holding Down button for 0.0s
+    t =    89.42s Pressing and holding Right button for 0.0s
+    t =    90.36s Pressing and holding Left button for 0.0s
+2025-06-22 21:51:25.463176-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:25.463313-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:25.463407-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: left
+
+    t =    90.70s Pressing and holding Left button for 0.0s
+    t =    91.37s Pressing and holding Left button for 0.0s
+    t =    91.86s Pressing and holding Left button for 0.0s
+    t =    92.28s Pressing and holding Up button for 0.0s
+    t =    92.72s Pressing and holding Down button for 0.0s
+    t =    93.14s Pressing and holding Left button for 0.0s
+    t =    93.80s Pressing and holding Left button for 0.0s
+    t =    94.15s Pressing and holding Left button for 0.0s
+    t =    94.66s Pressing and holding Up button for 0.0s
+    t =    94.96s Pressing and holding Down button for 0.0s
+    t =    95.42s Pressing and holding Left button for 0.0s
+    t =    95.94s Pressing and holding Left button for 0.0s
+    t =    96.28s Pressing and holding Left button for 0.0s
+    t =    96.74s Pressing and holding Up button for 0.0s
+    t =    97.14s Pressing and holding Down button for 0.0s
+    t =    97.54s Pressing and holding Left button for 0.0s
+    t =    97.96s Pressing and holding Left button for 0.0s
+    t =    98.36s Pressing and holding Left button for 0.0s
+    t =    98.66s Pressing and holding Up button for 0.0s
+    t =    99.58s Pressing and holding Down button for 0.0s
+    t =   100.59s Pressing and holding Left button for 0.0s
+    t =   100.92s Pressing and holding Left button for 0.0s
+    t =   101.22s Pressing and holding Left button for 0.0s
+    t =   101.54s Pressing and holding Up button for 0.0s
+    t =   101.90s Pressing and holding Down button for 0.0s
+2025-06-22 21:51:37.051516-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:37.051676-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 25 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:37.051775-0700 HammerTimeUITests-Runner[18910:707573] EDGE-TEST: Rapid boundary mashing for 25 steps, edge: right
+
+    t =   102.29s Pressing and holding Right button for 0.0s
+    t =   103.10s Pressing and holding Right button for 0.0s
+    t =   103.62s Pressing and holding Right button for 0.0s
+    t =   103.92s Pressing and holding Up button for 0.0s
+    t =   104.27s Pressing and holding Down button for 0.0s
+    t =   104.66s Pressing and holding Right button for 0.0s
+    t =   105.06s Pressing and holding Right button for 0.0s
+    t =   106.17s Pressing and holding Right button for 0.0s
+    t =   106.62s Pressing and holding Up button for 0.0s
+    t =   107.09s Pressing and holding Down button for 0.0s
+    t =   107.53s Pressing and holding Right button for 0.0s
+    t =   107.89s Pressing and holding Right button for 0.0s
+    t =   108.61s Pressing and holding Right button for 0.0s
+    t =   109.55s Pressing and holding Up button for 0.0s
+    t =   109.98s Pressing and holding Down button for 0.0s
+    t =   110.49s Pressing and holding Right button for 0.0s
+    t =   110.83s Pressing and holding Right button for 0.0s
+    t =   111.15s Pressing and holding Right button for 0.0s
+    t =   111.53s Pressing and holding Up button for 0.0s
+    t =   111.98s Pressing and holding Down button for 0.0s
+    t =   112.36s Pressing and holding Right button for 0.0s
+    t =   113.03s Pressing and holding Right button for 0.0s
+    t =   113.53s Pressing and holding Right button for 0.0s
+    t =   113.91s Pressing and holding Up button for 0.0s
+    t =   114.25s Pressing and holding Down button for 0.0s
+2025-06-22 21:51:49.368963-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 25 rapid button presses
+
+2025-06-22 21:51:49.369086-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 50 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:51:49.369256-0700 HammerTimeUITests-Runner[18910:707573] DIAGONAL: Rapid mashing for 50 steps, direction: primary
+
+    t =   114.61s Pressing and holding Right button for 0.0s
+    t =   115.03s Pressing and holding Down button for 0.0s
+    t =   115.50s Pressing and holding Right button for 0.0s
+    t =   115.83s Pressing and holding Down button for 0.0s
+    t =   116.33s Pressing and holding Right button for 0.0s
+    t =   116.73s Pressing and holding Down button for 0.0s
+    t =   117.22s Pressing and holding Right button for 0.0s
+    t =   117.57s Pressing and holding Down button for 0.0s
+    t =   117.98s Pressing and holding Right button for 0.0s
+    t =   118.44s Pressing and holding Down button for 0.0s
+    t =   118.91s Pressing and holding Right button for 0.0s
+    t =   119.73s Pressing and holding Down button for 0.0s
+    t =   120.06s Pressing and holding Right button for 0.0s
+    t =   120.52s Pressing and holding Down button for 0.0s
+    t =   120.93s Pressing and holding Right button for 0.0s
+    t =   121.29s Pressing and holding Down button for 0.0s
+    t =   121.63s Pressing and holding Right button for 0.0s
+    t =   121.92s Pressing and holding Down button for 0.0s
+    t =   122.22s Pressing and holding Right button for 0.0s
+    t =   122.62s Pressing and holding Down button for 0.0s
+    t =   123.16s Pressing and holding Right button for 0.0s
+    t =   123.77s Pressing and holding Down button for 0.0s
+    t =   124.17s Pressing and holding Right button for 0.0s
+    t =   124.50s Pressing and holding Down button for 0.0s
+    t =   124.98s Pressing and holding Right button for 0.0s
+    t =   125.69s Pressing and holding Down button for 0.0s
+    t =   126.01s Pressing and holding Right button for 0.0s
+    t =   126.41s Pressing and holding Down button for 0.0s
+    t =   126.94s Pressing and holding Right button for 0.0s
+    t =   127.54s Pressing and holding Down button for 0.0s
+    t =   127.91s Pressing and holding Right button for 0.0s
+    t =   128.27s Pressing and holding Down button for 0.0s
+    t =   128.71s Pressing and holding Right button for 0.0s
+    t =   129.12s Pressing and holding Down button for 0.0s
+    t =   129.93s Pressing and holding Right button for 0.0s
+    t =   130.23s Pressing and holding Down button for 0.0s
+    t =   130.81s Pressing and holding Right button for 0.0s
+    t =   131.47s Pressing and holding Down button for 0.0s
+    t =   131.97s Pressing and holding Right button for 0.0s
+    t =   132.60s Pressing and holding Down button for 0.0s
+    t =   133.06s Pressing and holding Right button for 0.0s
+    t =   133.56s Pressing and holding Down button for 0.0s
+    t =   134.37s Pressing and holding Right button for 0.0s
+    t =   134.78s Pressing and holding Down button for 0.0s
+    t =   135.12s Pressing and holding Right button for 0.0s
+    t =   135.48s Pressing and holding Down button for 0.0s
+    t =   135.86s Pressing and holding Right button for 0.0s
+    t =   136.18s Pressing and holding Down button for 0.0s
+    t =   136.89s Pressing and holding Right button for 0.0s
+    t =   137.68s Pressing and holding Down button for 0.0s
+2025-06-22 21:52:13.247631-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 50 rapid button presses
+
+2025-06-22 21:52:13.247785-0700 HammerTimeUITests-Runner[18910:707573] EDGE-BOUNDARY: Final focus state: 'FOCUS_TRACKING_DISABLED_FOR_SPEED'
+
+    t =   138.49s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testEdgeBoundaryStress]' passed (138.916 seconds).
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialBurstPatterns]' started.
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialBurstPatterns]' started.
+    t =     0.00s Start Test at 2025-06-22 21:52:13.680
+    t =     0.05s Set Up
+    t =     0.26s     Open com.showblender.HammerTime
+    t =     0.27s         Launch com.showblender.HammerTime
+    t =     0.27s             Terminate com.showblender.HammerTime:18913
+    t =     5.36s             Setting up automation session
+    t =     9.85s             Wait for com.showblender.HammerTime to idle
+    t =    12.14s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    13.21s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    13.21s             Checking existence of `"FocusStressCollectionView" CollectionView`
+2025-06-22 21:52:28.544595-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Collection view cached - NO cell queries for maximum speed
+
+2025-06-22 21:52:28.544722-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Minimal caching complete - ready for rapid button mashing
+
+2025-06-22 21:52:28.547369-0700 HammerTimeUITests-Runner[18910:707573] TIME-ESTIMATE: Test estimated to take 1.5 minutes
+
+2025-06-22 21:52:28.547497-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-BURSTS: Testing exponential burst patterns with spiral navigation
+
+2025-06-22 21:52:28.547557-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 100 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:52:28.547727-0700 HammerTimeUITests-Runner[18910:707573] SPIRAL: Rapid mashing for 100 steps, direction: outward
+
+    t =    14.87s Pressing and holding Right button for 0.0s
+    t =    15.58s Pressing and holding Right button for 0.0s
+    t =    16.12s Pressing and holding Down button for 0.0s
+    t =    16.53s Pressing and holding Down button for 0.0s
+    t =    17.23s Pressing and holding Left button for 0.0s
+    t =    17.58s Pressing and holding Left button for 0.0s
+    t =    17.97s Pressing and holding Up button for 0.0s
+    t =    18.68s Pressing and holding Up button for 0.0s
+    t =    19.16s Pressing and holding Right button for 0.0s
+    t =    19.76s Pressing and holding Right button for 0.0s
+    t =    20.22s Pressing and holding Down button for 0.0s
+    t =    20.94s Pressing and holding Down button for 0.0s
+    t =    21.40s Pressing and holding Left button for 0.0s
+    t =    21.78s Pressing and holding Left button for 0.0s
+    t =    22.61s Pressing and holding Up button for 0.0s
+    t =    23.08s Pressing and holding Up button for 0.0s
+    t =    23.54s Pressing and holding Right button for 0.0s
+    t =    23.86s Pressing and holding Down button for 0.0s
+    t =    24.36s Pressing and holding Left button for 0.0s
+    t =    24.95s Pressing and holding Left button for 0.0s
+    t =    25.30s Pressing and holding Left button for 0.0s
+    t =    25.79s Pressing and holding Up button for 0.0s
+    t =    26.21s Pressing and holding Up button for 0.0s
+    t =    26.81s Pressing and holding Up button for 0.0s
+    t =    27.18s Pressing and holding Right button for 0.0s
+    t =    27.58s Pressing and holding Right button for 0.0s
+    t =    28.18s Pressing and holding Right button for 0.0s
+    t =    29.11s Pressing and holding Down button for 0.0s
+    t =    29.48s Pressing and holding Down button for 0.0s
+    t =    29.94s Pressing and holding Down button for 0.0s
+    t =    30.30s Pressing and holding Left button for 0.0s
+    t =    30.84s Pressing and holding Left button for 0.0s
+    t =    31.20s Pressing and holding Left button for 0.0s
+    t =    31.87s Pressing and holding Right button for 0.0s
+    t =    32.42s Pressing and holding Right button for 0.0s
+    t =    32.99s Pressing and holding Right button for 0.0s
+    t =    33.50s Pressing and holding Down button for 0.0s
+    t =    34.27s Pressing and holding Down button for 0.0s
+    t =    34.84s Pressing and holding Down button for 0.0s
+    t =    35.31s Pressing and holding Down button for 0.0s
+    t =    35.64s Pressing and holding Left button for 0.0s
+    t =    36.31s Pressing and holding Left button for 0.0s
+    t =    36.65s Pressing and holding Left button for 0.0s
+    t =    36.99s Pressing and holding Left button for 0.0s
+    t =    37.46s Pressing and holding Up button for 0.0s
+    t =    37.98s Pressing and holding Up button for 0.0s
+    t =    38.34s Pressing and holding Up button for 0.0s
+    t =    38.91s Pressing and holding Up button for 0.0s
+    t =    39.57s Pressing and holding Right button for 0.0s
+    t =    39.99s Pressing and holding Right button for 0.0s
+    t =    40.69s Pressing and holding Right button for 0.0s
+    t =    41.13s Pressing and holding Right button for 0.0s
+    t =    41.71s Pressing and holding Down button for 0.0s
+    t =    42.11s Pressing and holding Down button for 0.0s
+    t =    42.81s Pressing and holding Down button for 0.0s
+    t =    43.51s Pressing and holding Down button for 0.0s
+    t =    44.35s Pressing and holding Left button for 0.0s
+    t =    44.95s Pressing and holding Left button for 0.0s
+    t =    45.35s Pressing and holding Left button for 0.0s
+    t =    45.89s Pressing and holding Left button for 0.0s
+    t =    46.19s Pressing and holding Up button for 0.0s
+    t =    46.58s Pressing and holding Up button for 0.0s
+    t =    47.36s Pressing and holding Up button for 0.0s
+    t =    48.02s Pressing and holding Up button for 0.0s
+    t =    48.38s Pressing and holding Right button for 0.0s
+    t =    48.76s Pressing and holding Right button for 0.0s
+    t =    49.37s Pressing and holding Right button for 0.0s
+    t =    49.75s Pressing and holding Right button for 0.0s
+    t =    50.47s Pressing and holding Down button for 0.0s
+    t =    51.07s Pressing and holding Down button for 0.0s
+    t =    51.64s Pressing and holding Down button for 0.0s
+    t =    52.49s Pressing and holding Down button for 0.0s
+    t =    52.82s Pressing and holding Left button for 0.0s
+    t =    53.33s Pressing and holding Left button for 0.0s
+    t =    53.77s Pressing and holding Left button for 0.0s
+    t =    54.14s Pressing and holding Left button for 0.0s
+    t =    54.52s Pressing and holding Up button for 0.0s
+    t =    54.84s Pressing and holding Up button for 0.0s
+    t =    55.65s Pressing and holding Up button for 0.0s
+    t =    56.10s Pressing and holding Up button for 0.0s
+    t =    56.75s Pressing and holding Right button for 0.0s
+    t =    57.57s Pressing and holding Right button for 0.0s
+    t =    58.08s Pressing and holding Right button for 0.0s
+    t =    58.53s Pressing and holding Right button for 0.0s
+    t =    58.94s Pressing and holding Down button for 0.0s
+    t =    59.82s Pressing and holding Down button for 0.0s
+    t =    60.18s Pressing and holding Down button for 0.0s
+    t =    60.56s Pressing and holding Down button for 0.0s
+    t =    61.14s Pressing and holding Left button for 0.0s
+    t =    61.81s Pressing and holding Left button for 0.0s
+    t =    62.15s Pressing and holding Left button for 0.0s
+    t =    62.63s Pressing and holding Left button for 0.0s
+    t =    62.90s Pressing and holding Up button for 0.0s
+    t =    63.35s Pressing and holding Up button for 0.0s
+    t =    64.07s Pressing and holding Up button for 0.0s
+    t =    64.45s Pressing and holding Up button for 0.0s
+    t =    64.95s Pressing and holding Right button for 0.0s
+    t =    65.53s Pressing and holding Right button for 0.0s
+    t =    66.03s Pressing and holding Right button for 0.0s
+    t =    66.68s Pressing and holding Right button for 0.0s
+2025-06-22 21:53:20.963495-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 100 rapid button presses
+
+2025-06-22 21:53:20.963634-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-BURSTS: Final focus state: 'FOCUS_TRACKING_DISABLED_FOR_SPEED'
+
+    t =    67.29s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialBurstPatterns]' passed (68.222 seconds).
+    t =     0.00s Start Test at 2025-06-22 21:52:13.680
+    t =     0.05s Set Up
+    t =     0.26s     Open com.showblender.HammerTime
+    t =     0.27s         Launch com.showblender.HammerTime
+    t =     0.27s             Terminate com.showblender.HammerTime:18913
+    t =     5.36s             Setting up automation session
+    t =     9.85s             Wait for com.showblender.HammerTime to idle
+    t =    12.14s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    13.21s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    13.21s             Checking existence of `"FocusStressCollectionView" CollectionView`
+2025-06-22 21:52:28.544595-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Collection view cached - NO cell queries for maximum speed
+
+2025-06-22 21:52:28.544722-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Minimal caching complete - ready for rapid button mashing
+
+2025-06-22 21:52:28.547369-0700 HammerTimeUITests-Runner[18910:707573] TIME-ESTIMATE: Test estimated to take 1.5 minutes
+
+2025-06-22 21:52:28.547497-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-BURSTS: Testing exponential burst patterns with spiral navigation
+
+2025-06-22 21:52:28.547557-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 100 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:52:28.547727-0700 HammerTimeUITests-Runner[18910:707573] SPIRAL: Rapid mashing for 100 steps, direction: outward
+
+    t =    14.87s Pressing and holding Right button for 0.0s
+    t =    15.58s Pressing and holding Right button for 0.0s
+    t =    16.12s Pressing and holding Down button for 0.0s
+    t =    16.53s Pressing and holding Down button for 0.0s
+    t =    17.23s Pressing and holding Left button for 0.0s
+    t =    17.58s Pressing and holding Left button for 0.0s
+    t =    17.97s Pressing and holding Up button for 0.0s
+    t =    18.68s Pressing and holding Up button for 0.0s
+    t =    19.16s Pressing and holding Right button for 0.0s
+    t =    19.76s Pressing and holding Right button for 0.0s
+    t =    20.22s Pressing and holding Down button for 0.0s
+    t =    20.94s Pressing and holding Down button for 0.0s
+    t =    21.40s Pressing and holding Left button for 0.0s
+    t =    21.78s Pressing and holding Left button for 0.0s
+    t =    22.61s Pressing and holding Up button for 0.0s
+    t =    23.08s Pressing and holding Up button for 0.0s
+    t =    23.54s Pressing and holding Right button for 0.0s
+    t =    23.86s Pressing and holding Down button for 0.0s
+    t =    24.36s Pressing and holding Left button for 0.0s
+    t =    24.95s Pressing and holding Left button for 0.0s
+    t =    25.30s Pressing and holding Left button for 0.0s
+    t =    25.79s Pressing and holding Up button for 0.0s
+    t =    26.21s Pressing and holding Up button for 0.0s
+    t =    26.81s Pressing and holding Up button for 0.0s
+    t =    27.18s Pressing and holding Right button for 0.0s
+    t =    27.58s Pressing and holding Right button for 0.0s
+    t =    28.18s Pressing and holding Right button for 0.0s
+    t =    29.11s Pressing and holding Down button for 0.0s
+    t =    29.48s Pressing and holding Down button for 0.0s
+    t =    29.94s Pressing and holding Down button for 0.0s
+    t =    30.30s Pressing and holding Left button for 0.0s
+    t =    30.84s Pressing and holding Left button for 0.0s
+    t =    31.20s Pressing and holding Left button for 0.0s
+    t =    31.87s Pressing and holding Right button for 0.0s
+    t =    32.42s Pressing and holding Right button for 0.0s
+    t =    32.99s Pressing and holding Right button for 0.0s
+    t =    33.50s Pressing and holding Down button for 0.0s
+    t =    34.27s Pressing and holding Down button for 0.0s
+    t =    34.84s Pressing and holding Down button for 0.0s
+    t =    35.31s Pressing and holding Down button for 0.0s
+    t =    35.64s Pressing and holding Left button for 0.0s
+    t =    36.31s Pressing and holding Left button for 0.0s
+    t =    36.65s Pressing and holding Left button for 0.0s
+    t =    36.99s Pressing and holding Left button for 0.0s
+    t =    37.46s Pressing and holding Up button for 0.0s
+    t =    37.98s Pressing and holding Up button for 0.0s
+    t =    38.34s Pressing and holding Up button for 0.0s
+    t =    38.91s Pressing and holding Up button for 0.0s
+    t =    39.57s Pressing and holding Right button for 0.0s
+    t =    39.99s Pressing and holding Right button for 0.0s
+    t =    40.69s Pressing and holding Right button for 0.0s
+    t =    41.13s Pressing and holding Right button for 0.0s
+    t =    41.71s Pressing and holding Down button for 0.0s
+    t =    42.11s Pressing and holding Down button for 0.0s
+    t =    42.81s Pressing and holding Down button for 0.0s
+    t =    43.51s Pressing and holding Down button for 0.0s
+    t =    44.35s Pressing and holding Left button for 0.0s
+    t =    44.95s Pressing and holding Left button for 0.0s
+    t =    45.35s Pressing and holding Left button for 0.0s
+    t =    45.89s Pressing and holding Left button for 0.0s
+    t =    46.19s Pressing and holding Up button for 0.0s
+    t =    46.58s Pressing and holding Up button for 0.0s
+    t =    47.36s Pressing and holding Up button for 0.0s
+    t =    48.02s Pressing and holding Up button for 0.0s
+    t =    48.38s Pressing and holding Right button for 0.0s
+    t =    48.76s Pressing and holding Right button for 0.0s
+    t =    49.37s Pressing and holding Right button for 0.0s
+    t =    49.75s Pressing and holding Right button for 0.0s
+    t =    50.47s Pressing and holding Down button for 0.0s
+    t =    51.07s Pressing and holding Down button for 0.0s
+    t =    51.64s Pressing and holding Down button for 0.0s
+    t =    52.49s Pressing and holding Down button for 0.0s
+    t =    52.82s Pressing and holding Left button for 0.0s
+    t =    53.33s Pressing and holding Left button for 0.0s
+    t =    53.77s Pressing and holding Left button for 0.0s
+    t =    54.14s Pressing and holding Left button for 0.0s
+    t =    54.52s Pressing and holding Up button for 0.0s
+    t =    54.84s Pressing and holding Up button for 0.0s
+    t =    55.65s Pressing and holding Up button for 0.0s
+    t =    56.10s Pressing and holding Up button for 0.0s
+    t =    56.75s Pressing and holding Right button for 0.0s
+    t =    57.57s Pressing and holding Right button for 0.0s
+    t =    58.08s Pressing and holding Right button for 0.0s
+    t =    58.53s Pressing and holding Right button for 0.0s
+    t =    58.94s Pressing and holding Down button for 0.0s
+    t =    59.82s Pressing and holding Down button for 0.0s
+    t =    60.18s Pressing and holding Down button for 0.0s
+    t =    60.56s Pressing and holding Down button for 0.0s
+    t =    61.14s Pressing and holding Left button for 0.0s
+    t =    61.81s Pressing and holding Left button for 0.0s
+    t =    62.15s Pressing and holding Left button for 0.0s
+    t =    62.63s Pressing and holding Left button for 0.0s
+    t =    62.90s Pressing and holding Up button for 0.0s
+    t =    63.35s Pressing and holding Up button for 0.0s
+    t =    64.07s Pressing and holding Up button for 0.0s
+    t =    64.45s Pressing and holding Up button for 0.0s
+    t =    64.95s Pressing and holding Right button for 0.0s
+    t =    65.53s Pressing and holding Right button for 0.0s
+    t =    66.03s Pressing and holding Right button for 0.0s
+    t =    66.68s Pressing and holding Right button for 0.0s
+2025-06-22 21:53:20.963495-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 100 rapid button presses
+
+2025-06-22 21:53:20.963634-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-BURSTS: Final focus state: 'FOCUS_TRACKING_DISABLED_FOR_SPEED'
+
+    t =    67.29s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialBurstPatterns]' passed (68.222 seconds).
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialPressIntervals]' started.
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialPressIntervals]' started.
+    t =     0.01s Start Test at 2025-06-22 21:53:21.910
+    t =     0.05s Set Up
+    t =     0.08s     Open com.showblender.HammerTime
+    t =     0.09s         Launch com.showblender.HammerTime
+    t =     0.09s             Terminate com.showblender.HammerTime:18928
+    t =     4.10s             Setting up automation session
+    t =     8.00s             Wait for com.showblender.HammerTime to idle
+    t =    10.20s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    11.21s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    11.21s             Checking existence of `"FocusStressCollectionView" CollectionView`
+2025-06-22 21:53:35.315340-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Collection view cached - NO cell queries for maximum speed
+
+2025-06-22 21:53:35.315459-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Minimal caching complete - ready for rapid button mashing
+
+2025-06-22 21:53:35.320696-0700 HammerTimeUITests-Runner[18910:707573] TIME-ESTIMATE: Test estimated to take 2.5 minutes
+
+2025-06-22 21:53:35.321738-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-INTERVALS: Testing exponential press intervals with NavigationStrategy
+
+2025-06-22 21:53:35.321866-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 250 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:53:35.323411-0700 HammerTimeUITests-Runner[18910:707573] SNAKE: Rapid mashing for 250 steps, direction: bidirectional
+
+    t =    13.42s Pressing and holding Right button for 0.0s
+    t =    13.95s Pressing and holding Down button for 0.0s
+    t =    14.46s Pressing and holding Left button for 0.0s
+    t =    15.13s Pressing and holding Up button for 0.0s
+    t =    15.57s Pressing and holding Right button for 0.0s
+    t =    16.05s Pressing and holding Down button for 0.0s
+    t =    16.77s Pressing and holding Left button for 0.0s
+    t =    17.28s Pressing and holding Up button for 0.0s
+    t =    17.71s Pressing and holding Right button for 0.0s
+    t =    18.18s Pressing and holding Down button for 0.0s
+    t =    18.88s Pressing and holding Left button for 0.0s
+    t =    19.43s Pressing and holding Up button for 0.0s
+    t =    19.81s Pressing and holding Right button for 0.0s
+    t =    20.28s Pressing and holding Down button for 0.0s
+    t =    20.78s Pressing and holding Left button for 0.0s
+    t =    21.22s Pressing and holding Up button for 0.0s
+    t =    21.57s Pressing and holding Right button for 0.0s
+    t =    22.24s Pressing and holding Down button for 0.0s
+    t =    22.65s Pressing and holding Left button for 0.0s
+    t =    23.15s Pressing and holding Up button for 0.0s
+    t =    24.16s Pressing and holding Right button for 0.0s
+    t =    24.55s Pressing and holding Down button for 0.0s
+    t =    24.95s Pressing and holding Left button for 0.0s
+    t =    25.50s Pressing and holding Up button for 0.0s
+    t =    25.88s Pressing and holding Right button for 0.0s
+    t =    26.23s Pressing and holding Down button for 0.0s
+    t =    26.63s Pressing and holding Left button for 0.0s
+    t =    27.43s Pressing and holding Up button for 0.0s
+    t =    27.79s Pressing and holding Right button for 0.0s
+    t =    28.16s Pressing and holding Down button for 0.0s
+    t =    28.93s Pressing and holding Left button for 0.0s
+    t =    29.43s Pressing and holding Up button for 0.0s
+    t =    29.83s Pressing and holding Right button for 0.0s
+    t =    30.69s Pressing and holding Down button for 0.0s
+    t =    31.31s Pressing and holding Left button for 0.0s
+    t =    32.09s Pressing and holding Up button for 0.0s
+    t =    32.64s Pressing and holding Right button for 0.0s
+    t =    33.11s Pressing and holding Down button for 0.0s
+    t =    33.48s Pressing and holding Left button for 0.0s
+    t =    34.00s Pressing and holding Up button for 0.0s
+    t =    34.69s Pressing and holding Right button for 0.0s
+    t =    34.98s Pressing and holding Down button for 0.0s
+    t =    35.33s Pressing and holding Left button for 0.0s
+    t =    36.06s Pressing and holding Up button for 0.0s
+    t =    36.45s Pressing and holding Right button for 0.0s
+    t =    36.83s Pressing and holding Down button for 0.0s
+    t =    37.31s Pressing and holding Left button for 0.0s
+    t =    37.97s Pressing and holding Up button for 0.0s
+    t =    38.57s Pressing and holding Right button for 0.0s
+    t =    39.02s Pressing and holding Down button for 0.0s
+    t =    39.72s Pressing and holding Left button for 0.0s
+    t =    40.16s Pressing and holding Up button for 0.0s
+    t =    40.47s Pressing and holding Right button for 0.0s
+    t =    40.90s Pressing and holding Down button for 0.0s
+    t =    41.26s Pressing and holding Left button for 0.0s
+    t =    41.70s Pressing and holding Up button for 0.0s
+    t =    42.22s Pressing and holding Right button for 0.0s
+    t =    42.58s Pressing and holding Down button for 0.0s
+    t =    43.07s Pressing and holding Left button for 0.0s
+    t =    43.64s Pressing and holding Up button for 0.0s
+    t =    44.01s Pressing and holding Right button for 0.0s
+    t =    44.38s Pressing and holding Down button for 0.0s
+    t =    44.69s Pressing and holding Left button for 0.0s
+    t =    45.07s Pressing and holding Up button for 0.0s
+    t =    45.66s Pressing and holding Right button for 0.0s
+    t =    46.42s Pressing and holding Down button for 0.0s
+    t =    46.84s Pressing and holding Left button for 0.0s
+    t =    47.64s Pressing and holding Up button for 0.0s
+    t =    48.65s Pressing and holding Right button for 0.0s
+    t =    49.49s Pressing and holding Down button for 0.0s
+    t =    49.79s Pressing and holding Left button for 0.0s
+    t =    50.19s Pressing and holding Up button for 0.0s
+    t =    50.63s Pressing and holding Right button for 0.0s
+    t =    51.04s Pressing and holding Down button for 0.0s
+    t =    51.47s Pressing and holding Left button for 0.0s
+    t =    52.28s Pressing and holding Up button for 0.0s
+    t =    53.10s Pressing and holding Right button for 0.0s
+    t =    53.53s Pressing and holding Down button for 0.0s
+    t =    53.98s Pressing and holding Left button for 0.0s
+    t =    54.36s Pressing and holding Up button for 0.0s
+    t =    54.77s Pressing and holding Right button for 0.0s
+    t =    55.05s Pressing and holding Down button for 0.0s
+    t =    55.49s Pressing and holding Left button for 0.0s
+    t =    55.82s Pressing and holding Up button for 0.0s
+    t =    56.26s Pressing and holding Right button for 0.0s
+    t =    56.62s Pressing and holding Down button for 0.0s
+    t =    56.99s Pressing and holding Left button for 0.0s
+    t =    57.37s Pressing and holding Up button for 0.0s
+    t =    57.76s Pressing and holding Right button for 0.0s
+    t =    58.04s Pressing and holding Down button for 0.0s
+    t =    58.50s Pressing and holding Left button for 0.0s
+    t =    59.20s Pressing and holding Up button for 0.0s
+    t =    59.64s Pressing and holding Right button for 0.0s
+    t =    60.48s Pressing and holding Down button for 0.0s
+    t =    60.89s Pressing and holding Left button for 0.0s
+    t =    61.64s Pressing and holding Up button for 0.0s
+    t =    62.03s Pressing and holding Right button for 0.0s
+    t =    62.49s Pressing and holding Down button for 0.0s
+    t =    62.89s Pressing and holding Left button for 0.0s
+    t =    63.19s Pressing and holding Up button for 0.0s
+    t =    63.50s Pressing and holding Right button for 0.0s
+    t =    63.89s Pressing and holding Down button for 0.0s
+    t =    64.34s Pressing and holding Left button for 0.0s
+    t =    64.67s Pressing and holding Up button for 0.0s
+    t =    65.08s Pressing and holding Right button for 0.0s
+    t =    65.63s Pressing and holding Down button for 0.0s
+    t =    66.33s Pressing and holding Left button for 0.0s
+    t =    66.77s Pressing and holding Up button for 0.0s
+    t =    67.18s Pressing and holding Right button for 0.0s
+    t =    67.87s Pressing and holding Down button for 0.0s
+    t =    68.41s Pressing and holding Left button for 0.0s
+    t =    68.85s Pressing and holding Up button for 0.0s
+    t =    69.27s Pressing and holding Right button for 0.0s
+    t =    69.62s Pressing and holding Down button for 0.0s
+    t =    69.98s Pressing and holding Left button for 0.0s
+    t =    70.49s Pressing and holding Up button for 0.0s
+    t =    71.03s Pressing and holding Right button for 0.0s
+    t =    71.38s Pressing and holding Down button for 0.0s
+    t =    71.78s Pressing and holding Left button for 0.0s
+    t =    72.50s Pressing and holding Up button for 0.0s
+    t =    73.23s Pressing and holding Right button for 0.0s
+    t =    73.84s Pressing and holding Down button for 0.0s
+    t =    74.37s Pressing and holding Left button for 0.0s
+    t =    74.87s Pressing and holding Up button for 0.0s
+    t =    75.15s Pressing and holding Right button for 0.0s
+    t =    75.59s Pressing and holding Down button for 0.0s
+    t =    76.02s Pressing and holding Left button for 0.0s
+    t =    76.54s Pressing and holding Up button for 0.0s
+    t =    77.22s Pressing and holding Right button for 0.0s
+    t =    77.69s Pressing and holding Down button for 0.0s
+    t =    78.29s Pressing and holding Left button for 0.0s
+    t =    78.94s Pressing and holding Up button for 0.0s
+    t =    79.46s Pressing and holding Right button for 0.0s
+    t =    80.01s Pressing and holding Down button for 0.0s
+    t =    80.47s Pressing and holding Left button for 0.0s
+    t =    81.00s Pressing and holding Up button for 0.0s
+    t =    81.56s Pressing and holding Right button for 0.0s
+    t =    82.13s Pressing and holding Down button for 0.0s
+    t =    82.73s Pressing and holding Left button for 0.0s
+    t =    83.18s Pressing and holding Up button for 0.0s
+    t =    83.75s Pressing and holding Right button for 0.0s
+    t =    84.42s Pressing and holding Down button for 0.0s
+    t =    84.84s Pressing and holding Left button for 0.0s
+    t =    85.28s Pressing and holding Up button for 0.0s
+    t =    85.65s Pressing and holding Right button for 0.0s
+    t =    86.40s Pressing and holding Down button for 0.0s
+    t =    87.29s Pressing and holding Left button for 0.0s
+    t =    87.57s Pressing and holding Up button for 0.0s
+    t =    88.00s Pressing and holding Right button for 0.0s
+    t =    89.10s Pressing and holding Down button for 0.0s
+    t =    89.44s Pressing and holding Left button for 0.0s
+    t =    89.78s Pressing and holding Up button for 0.0s
+    t =    90.35s Pressing and holding Right button for 0.0s
+    t =    91.11s Pressing and holding Down button for 0.0s
+    t =    91.45s Pressing and holding Left button for 0.0s
+    t =    91.87s Pressing and holding Up button for 0.0s
+    t =    92.27s Pressing and holding Right button for 0.0s
+    t =    92.81s Pressing and holding Down button for 0.0s
+    t =    93.61s Pressing and holding Left button for 0.0s
+    t =    94.07s Pressing and holding Up button for 0.0s
+    t =    94.42s Pressing and holding Right button for 0.0s
+    t =    94.85s Pressing and holding Down button for 0.0s
+    t =    95.34s Pressing and holding Left button for 0.0s
+    t =    95.89s Pressing and holding Up button for 0.0s
+    t =    96.69s Pressing and holding Right button for 0.0s
+    t =    97.82s Pressing and holding Down button for 0.0s
+    t =    98.26s Pressing and holding Left button for 0.0s
+    t =    98.59s Pressing and holding Up button for 0.0s
+    t =    99.06s Pressing and holding Right button for 0.0s
+    t =    99.89s Pressing and holding Down button for 0.0s
+    t =   101.02s Pressing and holding Left button for 0.0s
+    t =   101.80s Pressing and holding Up button for 0.0s
+    t =   102.25s Pressing and holding Right button for 0.0s
+    t =   102.67s Pressing and holding Down button for 0.0s
+    t =   103.29s Pressing and holding Left button for 0.0s
+    t =   103.65s Pressing and holding Up button for 0.0s
+    t =   104.19s Pressing and holding Right button for 0.0s
+    t =   104.85s Pressing and holding Down button for 0.0s
+    t =   105.15s Pressing and holding Left button for 0.0s
+    t =   105.94s Pressing and holding Up button for 0.0s
+    t =   106.64s Pressing and holding Right button for 0.0s
+    t =   107.26s Pressing and holding Down button for 0.0s
+    t =   107.72s Pressing and holding Left button for 0.0s
+    t =   108.18s Pressing and holding Up button for 0.0s
+    t =   108.58s Pressing and holding Right button for 0.0s
+    t =   109.07s Pressing and holding Down button for 0.0s
+    t =   109.84s Pressing and holding Left button for 0.0s
+    t =   110.37s Pressing and holding Up button for 0.0s
+    t =   111.17s Pressing and holding Right button for 0.0s
+    t =   111.80s Pressing and holding Down button for 0.0s
+    t =   112.24s Pressing and holding Left button for 0.0s
+    t =   112.68s Pressing and holding Up button for 0.0s
+    t =   113.11s Pressing and holding Right button for 0.0s
+    t =   113.46s Pressing and holding Down button for 0.0s
+    t =   113.89s Pressing and holding Left button for 0.0s
+    t =   114.53s Pressing and holding Up button for 0.0s
+    t =   114.88s Pressing and holding Right button for 0.0s
+    t =   115.21s Pressing and holding Down button for 0.0s
+    t =   115.93s Pressing and holding Left button for 0.0s
+    t =   116.45s Pressing and holding Up button for 0.0s
+    t =   117.24s Pressing and holding Right button for 0.0s
+    t =   117.66s Pressing and holding Down button for 0.0s
+    t =   118.61s Pressing and holding Left button for 0.0s
+    t =   118.94s Pressing and holding Up button for 0.0s
+    t =   119.30s Pressing and holding Right button for 0.0s
+    t =   119.65s Pressing and holding Down button for 0.0s
+    t =   120.08s Pressing and holding Left button for 0.0s
+    t =   120.67s Pressing and holding Up button for 0.0s
+    t =   121.17s Pressing and holding Right button for 0.0s
+    t =   121.52s Pressing and holding Down button for 0.0s
+    t =   121.93s Pressing and holding Left button for 0.0s
+    t =   122.88s Pressing and holding Up button for 0.0s
+    t =   123.43s Pressing and holding Right button for 0.0s
+    t =   124.22s Pressing and holding Down button for 0.0s
+    t =   124.48s Pressing and holding Left button for 0.0s
+    t =   124.78s Pressing and holding Up button for 0.0s
+    t =   125.67s Pressing and holding Right button for 0.0s
+    t =   126.04s Pressing and holding Down button for 0.0s
+    t =   126.79s Pressing and holding Left button for 0.0s
+    t =   127.08s Pressing and holding Up button for 0.0s
+    t =   127.42s Pressing and holding Right button for 0.0s
+    t =   128.21s Pressing and holding Down button for 0.0s
+    t =   128.68s Pressing and holding Left button for 0.0s
+    t =   129.50s Pressing and holding Up button for 0.0s
+    t =   129.92s Pressing and holding Right button for 0.0s
+    t =   130.39s Pressing and holding Down button for 0.0s
+    t =   130.78s Pressing and holding Left button for 0.0s
+    t =   131.36s Pressing and holding Up button for 0.0s
+    t =   132.34s Pressing and holding Right button for 0.0s
+    t =   132.76s Pressing and holding Down button for 0.0s
+    t =   133.16s Pressing and holding Left button for 0.0s
+    t =   133.54s Pressing and holding Up button for 0.0s
+    t =   134.08s Pressing and holding Right button for 0.0s
+    t =   134.68s Pressing and holding Down button for 0.0s
+    t =   135.11s Pressing and holding Left button for 0.0s
+    t =   135.70s Pressing and holding Up button for 0.0s
+    t =   136.11s Pressing and holding Right button for 0.0s
+    t =   136.52s Pressing and holding Down button for 0.0s
+    t =   137.26s Pressing and holding Left button for 0.0s
+    t =   137.63s Pressing and holding Up button for 0.0s
+    t =   138.26s Pressing and holding Right button for 0.0s
+    t =   138.73s Pressing and holding Down button for 0.0s
+    t =   139.30s Pressing and holding Left button for 0.0s
+    t =   139.87s Pressing and holding Up button for 0.0s
+    t =   140.34s Pressing and holding Right button for 0.0s
+    t =   140.64s Pressing and holding Down button for 0.0s
+    t =   141.07s Pressing and holding Left button for 0.0s
+    t =   142.18s Pressing and holding Up button for 0.0s
+    t =   142.64s Pressing and holding Right button for 0.0s
+    t =   143.07s Pressing and holding Down button for 0.0s
+2025-06-22 21:55:45.300707-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 250 rapid button presses
+
+2025-06-22 21:55:45.300863-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-INTERVALS: Final focus state: 'FOCUS_TRACKING_DISABLED_FOR_SPEED'
+
+    t =   143.40s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialPressIntervals]' passed (143.881 seconds).
+    t =     0.01s Start Test at 2025-06-22 21:53:21.910
+    t =     0.05s Set Up
+    t =     0.08s     Open com.showblender.HammerTime
+    t =     0.09s         Launch com.showblender.HammerTime
+    t =     0.09s             Terminate com.showblender.HammerTime:18928
+    t =     4.10s             Setting up automation session
+    t =     8.00s             Wait for com.showblender.HammerTime to idle
+    t =    10.20s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    11.21s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    11.21s             Checking existence of `"FocusStressCollectionView" CollectionView`
+2025-06-22 21:53:35.315340-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Collection view cached - NO cell queries for maximum speed
+
+2025-06-22 21:53:35.315459-0700 HammerTimeUITests-Runner[18910:707573] SETUP: Minimal caching complete - ready for rapid button mashing
+
+2025-06-22 21:53:35.320696-0700 HammerTimeUITests-Runner[18910:707573] TIME-ESTIMATE: Test estimated to take 2.5 minutes
+
+2025-06-22 21:53:35.321738-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-INTERVALS: Testing exponential press intervals with NavigationStrategy
+
+2025-06-22 21:53:35.321866-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Starting 250 steps with ZERO focus queries for maximum speed
+
+2025-06-22 21:53:35.323411-0700 HammerTimeUITests-Runner[18910:707573] SNAKE: Rapid mashing for 250 steps, direction: bidirectional
+
+    t =    13.42s Pressing and holding Right button for 0.0s
+    t =    13.95s Pressing and holding Down button for 0.0s
+    t =    14.46s Pressing and holding Left button for 0.0s
+    t =    15.13s Pressing and holding Up button for 0.0s
+    t =    15.57s Pressing and holding Right button for 0.0s
+    t =    16.05s Pressing and holding Down button for 0.0s
+    t =    16.77s Pressing and holding Left button for 0.0s
+    t =    17.28s Pressing and holding Up button for 0.0s
+    t =    17.71s Pressing and holding Right button for 0.0s
+    t =    18.18s Pressing and holding Down button for 0.0s
+    t =    18.88s Pressing and holding Left button for 0.0s
+    t =    19.43s Pressing and holding Up button for 0.0s
+    t =    19.81s Pressing and holding Right button for 0.0s
+    t =    20.28s Pressing and holding Down button for 0.0s
+    t =    20.78s Pressing and holding Left button for 0.0s
+    t =    21.22s Pressing and holding Up button for 0.0s
+    t =    21.57s Pressing and holding Right button for 0.0s
+    t =    22.24s Pressing and holding Down button for 0.0s
+    t =    22.65s Pressing and holding Left button for 0.0s
+    t =    23.15s Pressing and holding Up button for 0.0s
+    t =    24.16s Pressing and holding Right button for 0.0s
+    t =    24.55s Pressing and holding Down button for 0.0s
+    t =    24.95s Pressing and holding Left button for 0.0s
+    t =    25.50s Pressing and holding Up button for 0.0s
+    t =    25.88s Pressing and holding Right button for 0.0s
+    t =    26.23s Pressing and holding Down button for 0.0s
+    t =    26.63s Pressing and holding Left button for 0.0s
+    t =    27.43s Pressing and holding Up button for 0.0s
+    t =    27.79s Pressing and holding Right button for 0.0s
+    t =    28.16s Pressing and holding Down button for 0.0s
+    t =    28.93s Pressing and holding Left button for 0.0s
+    t =    29.43s Pressing and holding Up button for 0.0s
+    t =    29.83s Pressing and holding Right button for 0.0s
+    t =    30.69s Pressing and holding Down button for 0.0s
+    t =    31.31s Pressing and holding Left button for 0.0s
+    t =    32.09s Pressing and holding Up button for 0.0s
+    t =    32.64s Pressing and holding Right button for 0.0s
+    t =    33.11s Pressing and holding Down button for 0.0s
+    t =    33.48s Pressing and holding Left button for 0.0s
+    t =    34.00s Pressing and holding Up button for 0.0s
+    t =    34.69s Pressing and holding Right button for 0.0s
+    t =    34.98s Pressing and holding Down button for 0.0s
+    t =    35.33s Pressing and holding Left button for 0.0s
+    t =    36.06s Pressing and holding Up button for 0.0s
+    t =    36.45s Pressing and holding Right button for 0.0s
+    t =    36.83s Pressing and holding Down button for 0.0s
+    t =    37.31s Pressing and holding Left button for 0.0s
+    t =    37.97s Pressing and holding Up button for 0.0s
+    t =    38.57s Pressing and holding Right button for 0.0s
+    t =    39.02s Pressing and holding Down button for 0.0s
+    t =    39.72s Pressing and holding Left button for 0.0s
+    t =    40.16s Pressing and holding Up button for 0.0s
+    t =    40.47s Pressing and holding Right button for 0.0s
+    t =    40.90s Pressing and holding Down button for 0.0s
+    t =    41.26s Pressing and holding Left button for 0.0s
+    t =    41.70s Pressing and holding Up button for 0.0s
+    t =    42.22s Pressing and holding Right button for 0.0s
+    t =    42.58s Pressing and holding Down button for 0.0s
+    t =    43.07s Pressing and holding Left button for 0.0s
+    t =    43.64s Pressing and holding Up button for 0.0s
+    t =    44.01s Pressing and holding Right button for 0.0s
+    t =    44.38s Pressing and holding Down button for 0.0s
+    t =    44.69s Pressing and holding Left button for 0.0s
+    t =    45.07s Pressing and holding Up button for 0.0s
+    t =    45.66s Pressing and holding Right button for 0.0s
+    t =    46.42s Pressing and holding Down button for 0.0s
+    t =    46.84s Pressing and holding Left button for 0.0s
+    t =    47.64s Pressing and holding Up button for 0.0s
+    t =    48.65s Pressing and holding Right button for 0.0s
+    t =    49.49s Pressing and holding Down button for 0.0s
+    t =    49.79s Pressing and holding Left button for 0.0s
+    t =    50.19s Pressing and holding Up button for 0.0s
+    t =    50.63s Pressing and holding Right button for 0.0s
+    t =    51.04s Pressing and holding Down button for 0.0s
+    t =    51.47s Pressing and holding Left button for 0.0s
+    t =    52.28s Pressing and holding Up button for 0.0s
+    t =    53.10s Pressing and holding Right button for 0.0s
+    t =    53.53s Pressing and holding Down button for 0.0s
+    t =    53.98s Pressing and holding Left button for 0.0s
+    t =    54.36s Pressing and holding Up button for 0.0s
+    t =    54.77s Pressing and holding Right button for 0.0s
+    t =    55.05s Pressing and holding Down button for 0.0s
+    t =    55.49s Pressing and holding Left button for 0.0s
+    t =    55.82s Pressing and holding Up button for 0.0s
+    t =    56.26s Pressing and holding Right button for 0.0s
+    t =    56.62s Pressing and holding Down button for 0.0s
+    t =    56.99s Pressing and holding Left button for 0.0s
+    t =    57.37s Pressing and holding Up button for 0.0s
+    t =    57.76s Pressing and holding Right button for 0.0s
+    t =    58.04s Pressing and holding Down button for 0.0s
+    t =    58.50s Pressing and holding Left button for 0.0s
+    t =    59.20s Pressing and holding Up button for 0.0s
+    t =    59.64s Pressing and holding Right button for 0.0s
+    t =    60.48s Pressing and holding Down button for 0.0s
+    t =    60.89s Pressing and holding Left button for 0.0s
+    t =    61.64s Pressing and holding Up button for 0.0s
+    t =    62.03s Pressing and holding Right button for 0.0s
+    t =    62.49s Pressing and holding Down button for 0.0s
+    t =    62.89s Pressing and holding Left button for 0.0s
+    t =    63.19s Pressing and holding Up button for 0.0s
+    t =    63.50s Pressing and holding Right button for 0.0s
+    t =    63.89s Pressing and holding Down button for 0.0s
+    t =    64.34s Pressing and holding Left button for 0.0s
+    t =    64.67s Pressing and holding Up button for 0.0s
+    t =    65.08s Pressing and holding Right button for 0.0s
+    t =    65.63s Pressing and holding Down button for 0.0s
+    t =    66.33s Pressing and holding Left button for 0.0s
+    t =    66.77s Pressing and holding Up button for 0.0s
+    t =    67.18s Pressing and holding Right button for 0.0s
+    t =    67.87s Pressing and holding Down button for 0.0s
+    t =    68.41s Pressing and holding Left button for 0.0s
+    t =    68.85s Pressing and holding Up button for 0.0s
+    t =    69.27s Pressing and holding Right button for 0.0s
+    t =    69.62s Pressing and holding Down button for 0.0s
+    t =    69.98s Pressing and holding Left button for 0.0s
+    t =    70.49s Pressing and holding Up button for 0.0s
+    t =    71.03s Pressing and holding Right button for 0.0s
+    t =    71.38s Pressing and holding Down button for 0.0s
+    t =    71.78s Pressing and holding Left button for 0.0s
+    t =    72.50s Pressing and holding Up button for 0.0s
+    t =    73.23s Pressing and holding Right button for 0.0s
+    t =    73.84s Pressing and holding Down button for 0.0s
+    t =    74.37s Pressing and holding Left button for 0.0s
+    t =    74.87s Pressing and holding Up button for 0.0s
+    t =    75.15s Pressing and holding Right button for 0.0s
+    t =    75.59s Pressing and holding Down button for 0.0s
+    t =    76.02s Pressing and holding Left button for 0.0s
+    t =    76.54s Pressing and holding Up button for 0.0s
+    t =    77.22s Pressing and holding Right button for 0.0s
+    t =    77.69s Pressing and holding Down button for 0.0s
+    t =    78.29s Pressing and holding Left button for 0.0s
+    t =    78.94s Pressing and holding Up button for 0.0s
+    t =    79.46s Pressing and holding Right button for 0.0s
+    t =    80.01s Pressing and holding Down button for 0.0s
+    t =    80.47s Pressing and holding Left button for 0.0s
+    t =    81.00s Pressing and holding Up button for 0.0s
+    t =    81.56s Pressing and holding Right button for 0.0s
+    t =    82.13s Pressing and holding Down button for 0.0s
+    t =    82.73s Pressing and holding Left button for 0.0s
+    t =    83.18s Pressing and holding Up button for 0.0s
+    t =    83.75s Pressing and holding Right button for 0.0s
+    t =    84.42s Pressing and holding Down button for 0.0s
+    t =    84.84s Pressing and holding Left button for 0.0s
+    t =    85.28s Pressing and holding Up button for 0.0s
+    t =    85.65s Pressing and holding Right button for 0.0s
+    t =    86.40s Pressing and holding Down button for 0.0s
+    t =    87.29s Pressing and holding Left button for 0.0s
+    t =    87.57s Pressing and holding Up button for 0.0s
+    t =    88.00s Pressing and holding Right button for 0.0s
+    t =    89.10s Pressing and holding Down button for 0.0s
+    t =    89.44s Pressing and holding Left button for 0.0s
+    t =    89.78s Pressing and holding Up button for 0.0s
+    t =    90.35s Pressing and holding Right button for 0.0s
+    t =    91.11s Pressing and holding Down button for 0.0s
+    t =    91.45s Pressing and holding Left button for 0.0s
+    t =    91.87s Pressing and holding Up button for 0.0s
+    t =    92.27s Pressing and holding Right button for 0.0s
+    t =    92.81s Pressing and holding Down button for 0.0s
+    t =    93.61s Pressing and holding Left button for 0.0s
+    t =    94.07s Pressing and holding Up button for 0.0s
+    t =    94.42s Pressing and holding Right button for 0.0s
+    t =    94.85s Pressing and holding Down button for 0.0s
+    t =    95.34s Pressing and holding Left button for 0.0s
+    t =    95.89s Pressing and holding Up button for 0.0s
+    t =    96.69s Pressing and holding Right button for 0.0s
+    t =    97.82s Pressing and holding Down button for 0.0s
+    t =    98.26s Pressing and holding Left button for 0.0s
+    t =    98.59s Pressing and holding Up button for 0.0s
+    t =    99.06s Pressing and holding Right button for 0.0s
+    t =    99.89s Pressing and holding Down button for 0.0s
+    t =   101.02s Pressing and holding Left button for 0.0s
+    t =   101.80s Pressing and holding Up button for 0.0s
+    t =   102.25s Pressing and holding Right button for 0.0s
+    t =   102.67s Pressing and holding Down button for 0.0s
+    t =   103.29s Pressing and holding Left button for 0.0s
+    t =   103.65s Pressing and holding Up button for 0.0s
+    t =   104.19s Pressing and holding Right button for 0.0s
+    t =   104.85s Pressing and holding Down button for 0.0s
+    t =   105.15s Pressing and holding Left button for 0.0s
+    t =   105.94s Pressing and holding Up button for 0.0s
+    t =   106.64s Pressing and holding Right button for 0.0s
+    t =   107.26s Pressing and holding Down button for 0.0s
+    t =   107.72s Pressing and holding Left button for 0.0s
+    t =   108.18s Pressing and holding Up button for 0.0s
+    t =   108.58s Pressing and holding Right button for 0.0s
+    t =   109.07s Pressing and holding Down button for 0.0s
+    t =   109.84s Pressing and holding Left button for 0.0s
+    t =   110.37s Pressing and holding Up button for 0.0s
+    t =   111.17s Pressing and holding Right button for 0.0s
+    t =   111.80s Pressing and holding Down button for 0.0s
+    t =   112.24s Pressing and holding Left button for 0.0s
+    t =   112.68s Pressing and holding Up button for 0.0s
+    t =   113.11s Pressing and holding Right button for 0.0s
+    t =   113.46s Pressing and holding Down button for 0.0s
+    t =   113.89s Pressing and holding Left button for 0.0s
+    t =   114.53s Pressing and holding Up button for 0.0s
+    t =   114.88s Pressing and holding Right button for 0.0s
+    t =   115.21s Pressing and holding Down button for 0.0s
+    t =   115.93s Pressing and holding Left button for 0.0s
+    t =   116.45s Pressing and holding Up button for 0.0s
+    t =   117.24s Pressing and holding Right button for 0.0s
+    t =   117.66s Pressing and holding Down button for 0.0s
+    t =   118.61s Pressing and holding Left button for 0.0s
+    t =   118.94s Pressing and holding Up button for 0.0s
+    t =   119.30s Pressing and holding Right button for 0.0s
+    t =   119.65s Pressing and holding Down button for 0.0s
+    t =   120.08s Pressing and holding Left button for 0.0s
+    t =   120.67s Pressing and holding Up button for 0.0s
+    t =   121.17s Pressing and holding Right button for 0.0s
+    t =   121.52s Pressing and holding Down button for 0.0s
+    t =   121.93s Pressing and holding Left button for 0.0s
+    t =   122.88s Pressing and holding Up button for 0.0s
+    t =   123.43s Pressing and holding Right button for 0.0s
+    t =   124.22s Pressing and holding Down button for 0.0s
+    t =   124.48s Pressing and holding Left button for 0.0s
+    t =   124.78s Pressing and holding Up button for 0.0s
+    t =   125.67s Pressing and holding Right button for 0.0s
+    t =   126.04s Pressing and holding Down button for 0.0s
+    t =   126.79s Pressing and holding Left button for 0.0s
+    t =   127.08s Pressing and holding Up button for 0.0s
+    t =   127.42s Pressing and holding Right button for 0.0s
+    t =   128.21s Pressing and holding Down button for 0.0s
+    t =   128.68s Pressing and holding Left button for 0.0s
+    t =   129.50s Pressing and holding Up button for 0.0s
+    t =   129.92s Pressing and holding Right button for 0.0s
+    t =   130.39s Pressing and holding Down button for 0.0s
+    t =   130.78s Pressing and holding Left button for 0.0s
+    t =   131.36s Pressing and holding Up button for 0.0s
+    t =   132.34s Pressing and holding Right button for 0.0s
+    t =   132.76s Pressing and holding Down button for 0.0s
+    t =   133.16s Pressing and holding Left button for 0.0s
+    t =   133.54s Pressing and holding Up button for 0.0s
+    t =   134.08s Pressing and holding Right button for 0.0s
+    t =   134.68s Pressing and holding Down button for 0.0s
+    t =   135.11s Pressing and holding Left button for 0.0s
+    t =   135.70s Pressing and holding Up button for 0.0s
+    t =   136.11s Pressing and holding Right button for 0.0s
+    t =   136.52s Pressing and holding Down button for 0.0s
+    t =   137.26s Pressing and holding Left button for 0.0s
+    t =   137.63s Pressing and holding Up button for 0.0s
+    t =   138.26s Pressing and holding Right button for 0.0s
+    t =   138.73s Pressing and holding Down button for 0.0s
+    t =   139.30s Pressing and holding Left button for 0.0s
+    t =   139.87s Pressing and holding Up button for 0.0s
+    t =   140.34s Pressing and holding Right button for 0.0s
+    t =   140.64s Pressing and holding Down button for 0.0s
+    t =   141.07s Pressing and holding Left button for 0.0s
+    t =   142.18s Pressing and holding Up button for 0.0s
+    t =   142.64s Pressing and holding Right button for 0.0s
+    t =   143.07s Pressing and holding Down button for 0.0s
+2025-06-22 21:55:45.300707-0700 HammerTimeUITests-Runner[18910:707573] EXECUTOR: Completed 250 rapid button presses
+
+2025-06-22 21:55:45.300863-0700 HammerTimeUITests-Runner[18910:707573] EXPONENTIAL-INTERVALS: Final focus state: 'FOCUS_TRACKING_DISABLED_FOR_SPEED'
+
+    t =   143.40s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialPressIntervals]' passed (143.881 seconds).
+Test Case '-[HammerTimeUITests.FocusStressUITests testMixedExponentialPatterns]' started.
+Test Case '-[HammerTimeUITests.FocusStressUITests testMixedExponentialPatterns]' started.
+Run test suite FocusStressUITests encountered an error (Test operation was canceled.)testMixedExponentialPatterns() encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)testMixedExponentialPatterns() encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)testMixedExponentialPatterns() encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)testMixedExponentialPatterns() encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)testMixedExponentialPatterns() encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)
+
+Run test suite FocusStressUITests encountered an error (Test operation was canceled.)
+
+Run test suite FocusStressUITests encountered an error (Test operation was canceled.)
+
+Test Case '-[HammerTimeUITests.FocusStressUITests testEdgeBoundaryStress]' started.
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialBurstPatterns]' started.
+Test Case '-[HammerTimeUITests.FocusStressUITests testExponentialPressIntervals]' started.
+Test Case '-[HammerTimeUITests.FocusStressUITests testMixedExponentialPatterns]' started.
+Run test suite FocusStressUITests encountered an error (Test operation was canceled.)testMixedExponentialPatterns() encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)Run test suite FocusStressUITests encountered an error (Test operation was canceled.)testMixedExponentialPatterns() encountered an error (Test operation was canceled.)
+

@@ -201,6 +201,7 @@ class NavigationStrategyExecutor {
 // MARK: - Seeded Random Number Generator
 
 /// Simple seeded random number generator for reproducible random walks
+/// Fixed: Safe integer conversion to prevent overflow crashes
 struct SeededRandomGenerator {
     private var state: UInt64
     
@@ -209,9 +210,10 @@ struct SeededRandomGenerator {
     }
     
     mutating func next() -> UInt64 {
-        // Linear congruential generator
+        // Linear congruential generator with safe bounds
         state = state &* 1103515245 &+ 12345
-        return state
+        // Return upper 32 bits to avoid overflow when converting to Int
+        return (state >> 32) & 0x7FFFFFFF
     }
 }
 
