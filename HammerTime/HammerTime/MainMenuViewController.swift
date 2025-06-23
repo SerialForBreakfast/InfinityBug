@@ -48,22 +48,15 @@ final class MainMenuViewController: UITableViewController {
             let vc = ViewController()
             navigationController?.pushViewController(vc, animated: true)
         case .focusStressHeavy:
-            launchFocusStress(mode: "heavy")
+            // Launch with the "heavy" preset configuration.
+            let config = FocusStressConfiguration.from(preset: .heavyReproduction)
+            let vc = FocusStressViewController(configuration: config)
+            navigationController?.pushViewController(vc, animated: true)
         case .focusStressLight:
-            launchFocusStress(mode: "light")
+            // Launch with the "light" preset configuration.
+            let config = FocusStressConfiguration.from(preset: .lightExploration)
+            let vc = FocusStressViewController(configuration: config)
+            navigationController?.pushViewController(vc, animated: true)
         }
-    }
-
-    private func launchFocusStress(mode: String) {
-        // Inject launch argument into ProcessInfo for the duration of this session.
-        // Note: We can't mutate ProcessInfo.arguments directly, so we configure the VC manually.
-        let vc = FocusStressViewController()
-        if mode == "light" {
-            // Write to UserDefaults so FocusStressViewController can read.
-            UserDefaults.standard.setValue("light", forKey: "FocusStressMode")
-        } else {
-            UserDefaults.standard.removeObject(forKey: "FocusStressMode")
-        }
-        navigationController?.pushViewController(vc, animated: true)
     }
 } 

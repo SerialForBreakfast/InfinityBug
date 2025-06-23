@@ -14,15 +14,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
-        // Programmatically set up the window to allow for navigation selection.
+        // --- Root View Controller Setup ---
         window = UIWindow(frame: UIScreen.main.bounds)
-
-        if ProcessInfo.processInfo.arguments.contains("-FocusStressMode") {
-            let stressVC = FocusStressViewController()
-            window?.rootViewController = stressVC
+        
+        // If a UI test is running and specifies a preset, launch directly into the
+        // FocusStressViewController to bypass the main menu. This is the primary
+        // entry point for all automated testing.
+        let arguments = ProcessInfo.processInfo.arguments
+        if arguments.contains("-FocusStressPreset") || arguments.contains("-FocusStressMode") {
+            // Instantiate with the configuration loaded from launch arguments.
+            // This ensures the test runs with the exact configuration it expects.
+            let config = FocusStressConfiguration.loadFromLaunchArguments()
+            let focusStressVC = FocusStressViewController(configuration: config)
+            window?.rootViewController = focusStressVC
         } else {
+            // For a normal app launch, set up the main menu inside a navigation
+            // controller to allow the user to select a test case.
             let menuVC = MainMenuViewController(style: .grouped)
             let nav = UINavigationController(rootViewController: menuVC)
             window?.rootViewController = nav

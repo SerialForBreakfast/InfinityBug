@@ -21,66 +21,13 @@
 import UIKit
 import SwiftUI
 
-// MARK: - StressFlags
-
-/// Individual stressors can be toggled via launch arguments.
-/// Heavy mode = all on, light = only 1 & 2 on.
-struct StressFlags {
-    var nestedLayout            = true   // 1
-    var hiddenFocusableTraps    = true   // 2
-    var jiggleTimer             = true   // 3
-    var circularFocusGuides     = true   // 4
-    var duplicateIdentifiers    = true   // 5
-    var dynamicFocusGuides      = true   // 6
-    var rapidLayoutChanges      = true   // 7
-    var overlappingElements     = true   // 8
-
-    /// Build flags from ProcessInfo.
-    static func parse() -> StressFlags {
-        var f = StressFlags()
-        let args = ProcessInfo.processInfo.arguments
-
-        // Light mode via launch arguments
-        if args.contains("-FocusStressMode") && args.contains("light") {
-            f.jiggleTimer          = false
-            f.circularFocusGuides  = false
-            f.duplicateIdentifiers = false
-            f.dynamicFocusGuides   = false
-            f.rapidLayoutChanges   = false
-            f.overlappingElements  = false
-        }
-
-        // Light mode via user defaults (from menu navigation)
-        if let stored = UserDefaults.standard.string(forKey: "FocusStressMode"), stored == "light" {
-            f.jiggleTimer          = false
-            f.circularFocusGuides  = false
-            f.duplicateIdentifiers = false
-            f.dynamicFocusGuides   = false
-            f.rapidLayoutChanges   = false
-            f.overlappingElements  = false
-        }
-
-        // EnableStress<n> YES overrides for targeted runs
-        func on(_ n: Int) -> Bool { args.contains("-EnableStress\(n)") }
-        if on(1) { f.nestedLayout         = true  }
-        if on(2) { f.hiddenFocusableTraps = true  }
-        if on(3) { f.jiggleTimer          = true  }
-        if on(4) { f.circularFocusGuides  = true  }
-        if on(5) { f.duplicateIdentifiers = true  }
-        if on(6) { f.dynamicFocusGuides   = true  }
-        if on(7) { f.rapidLayoutChanges   = true  }
-        if on(8) { f.overlappingElements  = true  }
-        return f
-    }
-}
-
 // MARK: - FocusStressViewController
 
 /// DEBUG‑only VC that intentionally degrades focus performance for diagnostics.
 final class FocusStressViewController: UIViewController {
 
     // MARK: Properties
-    private let flags = StressFlags.parse()
+    private var configuration: FocusStressConfiguration
     private var jiggleTimer: Timer?
     private var dynamicGuideTimer: Timer?
     private var layoutChangeTimer: Timer?
@@ -89,39 +36,56 @@ final class FocusStressViewController: UIViewController {
     private var focusGuides: [UIFocusGuide] = []
 
     private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewCompositionalLayout { _, _ in
-            self.flags.nestedLayout ? self.makeNestedSection() : self.makeSimpleSection()
+        let layout = UICollectionViewCompositionalLayout { [weak self] _, _ in
+            guard let self = self else { return self?.makeSimpleSection() }
+            switch self.configuration.layout.nestingLevel {
+            case .simple:
+                return self.makeSimpleSection()
+            case .nested:
+                return self.makeNestedSection()
+            case .tripleNested:
+                return self.makeTripleNestedSection()
+            }
         }
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.remembersLastFocusedIndexPath = true
         cv.dataSource = self
         cv.delegate   = self
-        cv.isPrefetchingEnabled = false
+        cv.isPrefetchingEnabled = configuration.performance.prefetchingEnabled
         cv.accessibilityIdentifier = "FocusStressCollectionView"
         cv.register(StressCell.self, forCellWithReuseIdentifier: StressCell.reuseID)
         return cv
     }()
+    
+    // MARK: Initializers
+    
+    init(configuration: FocusStressConfiguration) {
+        self.configuration = configuration
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        // Load a default configuration from launch args, or a fallback
+        self.configuration = FocusStressConfiguration.loadFromLaunchArguments()
+        super.init(coder: coder)
+    }
+
 
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         setupCollectionView()
-        if flags.circularFocusGuides { addCircularGuides() }
-        if flags.dynamicFocusGuides { startDynamicFocusGuides() }
-        if flags.rapidLayoutChanges { startRapidLayoutChanges() }
-        if flags.overlappingElements { addOverlappingElements() }
+        
+        // Apply stressors based on the configuration
+        let stressors = configuration.stress.stressors
+        if stressors.contains(.circularFocusGuides) { addCircularGuides() }
+        if stressors.contains(.dynamicFocusGuides) { startDynamicFocusGuides() }
+        if stressors.contains(.rapidLayoutChanges) { startRapidLayoutChanges() }
+        if stressors.contains(.overlappingElements) { addOverlappingElements() }
+        if stressors.contains(.voAnnouncements) { startVOAnnouncements() }
+        
         AXFocusDebugger.shared.start()
-
-        // Accessibility Stress: Random VoiceOver announcements (~10% chance every 0.3 s)
-        voAnnouncementTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { _ in
-            // Only run if VoiceOver is on to avoid unnecessary traffic
-            guard UIAccessibility.isVoiceOverRunning else { return }
-            if Int.random(in: 0...99) < 10 { // 10 % chance
-                let value = Int.random(in: 0...999)
-                UIAccessibility.post(notification: .announcement, argument: "Debug announcement \(value)")
-            }
-        }
     }
 
     deinit { 
@@ -143,11 +107,21 @@ final class FocusStressViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
-        // Stress 3: jiggle autolayout constantly
-        if flags.jiggleTimer {
-            jiggleTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
+        // Stress: jiggle autolayout constantly
+        if configuration.stress.stressors.contains(.jiggleTimer) {
+            jiggleTimer = Timer.scheduledTimer(withTimeInterval: configuration.stress.jiggleInterval, repeats: true) { _ in
                 topConstraint.constant = topConstraint.constant == 0 ? 8 : 0
                 UIView.performWithoutAnimation { self.view.layoutIfNeeded() }
+            }
+        }
+    }
+    
+    private func startVOAnnouncements() {
+        voAnnouncementTimer = Timer.scheduledTimer(withTimeInterval: configuration.stress.voAnnouncementInterval, repeats: true) { _ in
+            guard UIAccessibility.isVoiceOverRunning else { return }
+            if Int.random(in: 0...99) < 10 { // 10 % chance
+                let value = Int.random(in: 0...999)
+                UIAccessibility.post(notification: .announcement, argument: "Debug announcement \(value)")
             }
         }
     }
@@ -184,7 +158,7 @@ final class FocusStressViewController: UIViewController {
             focusGuides.append(guide)
         }
 
-        dynamicGuideTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+        dynamicGuideTimer = Timer.scheduledTimer(withTimeInterval: configuration.stress.dynamicGuideInterval, repeats: true) { _ in
             self.focusGuides.forEach { guide in
                 // Randomly change preferred focus environments
                 let environments: [UIFocusEnvironment] = [self.collectionView, self.view, self]
@@ -195,7 +169,7 @@ final class FocusStressViewController: UIViewController {
 
     /// Stress 7: Rapid layout invalidation cycles
     private func startRapidLayoutChanges() {
-        layoutChangeTimer = Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) { _ in
+        layoutChangeTimer = Timer.scheduledTimer(withTimeInterval: configuration.stress.layoutChangeInterval, repeats: true) { _ in
             // Force layout invalidation at high frequency
             self.collectionView.collectionViewLayout.invalidateLayout()
             self.collectionView.setNeedsLayout()
@@ -235,6 +209,25 @@ final class FocusStressViewController: UIViewController {
     }
 
     private func makeNestedSection() -> NSCollectionLayoutSection {
+        let innerItem = NSCollectionLayoutItem(layoutSize:
+            .init(widthDimension: .absolute(280), heightDimension: .absolute(220)))
+        innerItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+
+        let innerGroup = NSCollectionLayoutGroup.horizontal(layoutSize:
+            .init(widthDimension: .absolute(300 * 4), heightDimension: .absolute(240)),
+            subitems: [innerItem, innerItem, innerItem, innerItem])
+        
+        let outerGroup = NSCollectionLayoutGroup.vertical(layoutSize:
+            .init(widthDimension: .absolute(300 * 4), heightDimension: .absolute(260)),
+            subitems: [innerGroup])
+
+        let section = NSCollectionLayoutSection(group: outerGroup)
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.interGroupSpacing = 15
+        return section
+    }
+
+    private func makeTripleNestedSection() -> NSCollectionLayoutSection {
         // Triple nested: Cell -> Horizontal Group -> Vertical Group -> Section
         // This creates maximum layout complexity that can trigger focus calculation bugs
         
@@ -273,12 +266,12 @@ final class FocusStressViewController: UIViewController {
 
 // MARK: - Datasource / Delegate
 extension FocusStressViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func numberOfSections(in _: UICollectionView) -> Int { 25 }
-    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int { 35 }
+    func numberOfSections(in _: UICollectionView) -> Int { configuration.layout.numberOfSections }
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int { configuration.layout.itemsPerSection }
 
     func collectionView(_ cv: UICollectionView, cellForItemAt idx: IndexPath) -> UICollectionViewCell {
         let cell = cv.dequeueReusableCell(withReuseIdentifier: StressCell.reuseID, for: idx) as! StressCell
-        cell.configure(indexPath: idx, flags: flags)
+        cell.configure(indexPath: idx, stressConfig: configuration.stress)
         return cell
     }
 }
@@ -302,11 +295,11 @@ private final class StressCell: UICollectionViewCell {
         }, completion: nil)
     }
 
-    func configure(indexPath: IndexPath, flags: StressFlags) {
+    func configure(indexPath: IndexPath, stressConfig: StressorConfiguration) {
         backgroundColor = isFocused ? .systemBlue : .darkGray
 
         // Stress 5: duplicate IDs
-        accessibilityIdentifier = flags.duplicateIdentifiers && indexPath.item % 3 == 0
+        accessibilityIdentifier = stressConfig.stressors.contains(.duplicateIdentifiers) && indexPath.item % 3 == 0
             ? "dupCell"
             : "cell-\(indexPath.section)-\(indexPath.item)"
 
@@ -326,7 +319,7 @@ private final class StressCell: UICollectionViewCell {
         }
 
         // Stress 2: hidden focusable traps - more aggressive version
-        if flags.hiddenFocusableTraps && contentView.subviews.filter({ $0.isHidden }).isEmpty {
+        if stressConfig.stressors.contains(.hiddenFocusableTraps) && contentView.subviews.filter({ $0.isHidden }).isEmpty {
             for i in 0..<8 {
                 let trap = UIView()
                 trap.isAccessibilityElement = true
