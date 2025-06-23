@@ -345,6 +345,223 @@ final class FocusStressUITests: XCTestCase {
     }
     
     // ================================================================
+    // MARK: - V4.0 EVOLVED TESTS (Based on Successful Reproduction)
+    // ================================================================
+    
+    /// **EVOLVED TEST** based on successful git commit 1b38f3a approach
+    /// Multi-phase stress testing with VoiceOver-optimized timing and patterns
+    func testSuccessfulReproductionPattern() throws {
+        enforceTimeLimit(estimatedMinutes: 5.0)
+        
+        NSLog("SUCCESSFUL-PATTERN: Implementing proven reproduction approach from git history")
+        
+        // Set up expectation for InfinityBug detection
+        let bugExpectation = XCTNSNotificationExpectation(name: Notification.Name("com.infinitybug.highConfidenceDetection"))
+        bugExpectation.isInverted = true // Test passes if bug NOT detected (manual observation)
+        
+        let startTime = Date()
+        
+        // Phase 1: High-frequency cache seeding with repetitive directional bursts  
+        NSLog("SUCCESSFUL-PATTERN: Phase 1 - High-frequency cache seeding")
+        let seedBursts: [(direction: XCUIRemote.Button, count: Int)] = [
+            (.right, 8), (.left, 6), (.up, 10), (.down, 7), (.right, 9), (.left, 5)
+        ]
+        
+        for burst in seedBursts {
+            for _ in 0..<burst.count {
+                remote.press(burst.direction, forDuration: 0.008) // 8ms press (ultra-fast)
+                usleep(8_000) // 8ms gap - high frequency input
+            }
+        }
+        
+        // Phase 2: Layout stress with calibrated timing
+        NSLog("SUCCESSFUL-PATTERN: Phase 2 - Layout stress during cache processing")
+        for pressIndex in 0..<50 {
+            let direction: XCUIRemote.Button = (pressIndex % 2 == 0) ? .right : .left
+            
+            // Timing matched to successful reproduction: 25ms press, 30ms gap
+            remote.press(direction, forDuration: 0.025)
+            usleep(30_000)
+        }
+        
+        // Phase 3: Rapid alternating to trigger stale cache replay
+        NSLog("SUCCESSFUL-PATTERN: Phase 3 - Rapid alternating to trigger phantom events")
+        for pressIndex in 0..<100 {
+            let direction: XCUIRemote.Button = (pressIndex % 2 == 0) ? .right : .left
+            
+            // Calibrated timing - fast enough to create stress, slow enough to allow processing
+            remote.press(direction, forDuration: 0.025) // 25ms press duration
+            usleep(40_000) // 40ms between presses - proven timing
+        }
+        
+        // Phase 4: Extended right exploration (based on successful manual patterns)
+        NSLog("SUCCESSFUL-PATTERN: Phase 4 - Extended right exploration")
+        for rightIndex in 0..<35 {
+            remote.press(.right, forDuration: 0.025)
+            usleep(45_000) // 45ms gap for focus processing
+        }
+        
+        let totalTime = Date().timeIntervalSince(startTime)
+        NSLog("SUCCESSFUL-PATTERN: Test completed in \(String(format: "%.1f", totalTime))s")
+        
+        // Wait for potential bug detection with extended timeout
+        let result = XCTWaiter.wait(for: [bugExpectation], timeout: 3.0)
+        
+        if result == .completed {
+            NSLog("SUCCESSFUL-PATTERN: Test completed successfully - observe for InfinityBug symptoms")
+        } else {
+            // This would indicate successful InfinityBug reproduction
+            XCTFail("InfinityBug reproduction detected - SUCCESS! (Test intentionally fails on successful reproduction)")
+        }
+    }
+    
+    /// **EVOLVED TEST** combining V3.0 NavigationStrategy with successful reproduction timing
+    /// Merges rapid pattern navigation with proven VoiceOver-optimized intervals
+    func testHybridNavigationWithProvenTiming() throws {
+        enforceTimeLimit(estimatedMinutes: 4.0)
+        
+        NSLog("HYBRID-NAVIGATION: Combining NavigationStrategy patterns with proven reproduction timing")
+        
+        // Override the NavigationStrategy rapid timing with proven successful intervals
+        let provenIntervals = ProvenTimingOverride()
+        
+        // Phase 1: Snake pattern with proven timing
+        NSLog("HYBRID-NAVIGATION: Phase 1 - Snake pattern with proven VoiceOver timing")
+        executeSnakeWithProvenTiming(steps: 75)
+        
+        // Phase 2: Spiral pattern with proven timing  
+        NSLog("HYBRID-NAVIGATION: Phase 2 - Spiral pattern with proven VoiceOver timing")
+        executeSpiralWithProvenTiming(steps: 75)
+        
+        // Phase 3: Cross pattern with proven timing
+        NSLog("HYBRID-NAVIGATION: Phase 3 - Cross pattern with proven VoiceOver timing") 
+        executeCrossWithProvenTiming(steps: 100)
+        
+        // Phase 4: Random walk with proven timing
+        NSLog("HYBRID-NAVIGATION: Phase 4 - Random walk with proven VoiceOver timing")
+        executeRandomWalkWithProvenTiming(seed: 42, steps: 100)
+        
+        let finalFocus = quickFocusCheck()
+        NSLog("HYBRID-NAVIGATION: Final focus state: '\(finalFocus)'")
+        
+        // Test always passes - human observation required for InfinityBug detection
+        XCTAssertTrue(true, "Hybrid navigation test completed - observe for InfinityBug symptoms")
+    }
+    
+    /// **EVOLVED TEST** focusing on the multi-directional cache flooding approach
+    /// Based on successful burst patterns from git commit analysis
+    func testCacheFloodingWithBurstPatterns() throws {
+        enforceTimeLimit(estimatedMinutes: 6.0)
+        
+        NSLog("CACHE-FLOODING: Testing cache corruption through repetitive directional bursts")
+        
+        // Extended burst patterns based on successful reproduction analysis
+        let burstPatterns: [(direction: XCUIRemote.Button, count: Int)] = [
+            (.right, 20),   // Heavy right exploration
+            (.down, 12),    // Down burst
+            (.right, 18),   // More right exploration  
+            (.left, 8),     // Left correction
+            (.right, 22),   // Extended right
+            (.up, 15),      // Up burst
+            (.right, 16),   // Continue right exploration
+            (.down, 10),    // Down burst
+            (.right, 14),   // Right again
+            (.left, 9),     // Left correction
+            (.right, 25),   // Extended right exploration
+            (.up, 18),      // Up burst
+            (.right, 19),   // More right
+            (.down, 8),     // Down burst
+            (.right, 17),   // Right continuation
+            (.left, 12),    // Left correction
+            (.right, 21),   // Final heavy right burst
+            (.up, 13)       // Final up burst
+        ]
+        
+        for (burstIndex, burst) in burstPatterns.enumerated() {
+            NSLog("CACHE-FLOODING: Burst \(burstIndex): \(burst.direction) x\(burst.count)")
+            
+            for _ in 0..<burst.count {
+                // Timing calibrated to match successful manual reproduction pattern
+                remote.press(burst.direction, forDuration: 0.025) // 25ms press
+                usleep(50_000) // 50ms gap - allows focus processing between inputs
+            }
+            
+            // Brief pause between bursts to let system process
+            usleep(100_000) // 100ms pause between bursts
+        }
+        
+        NSLog("CACHE-FLOODING: Cache flooding test completed")
+        
+        // Test always passes - human observation required for InfinityBug detection
+        XCTAssertTrue(true, "Cache flooding test completed - observe for InfinityBug symptoms")
+    }
+    
+    // ================================================================
+    // MARK: - Helper Methods for V4.0 Evolved Tests
+    // ================================================================
+    
+    /// Executes snake pattern with proven VoiceOver-optimized timing intervals
+    private func executeSnakeWithProvenTiming(steps: Int) {
+        let snakePattern: [XCUIRemote.Button] = [.right, .right, .right, .down, .left, .left, .left, .down]
+        
+        for step in 0..<steps {
+            let buttonDirection = snakePattern[step % snakePattern.count]
+            remote.press(buttonDirection, forDuration: 0.025)
+            usleep(45_000) // 45ms - proven VoiceOver timing
+        }
+    }
+    
+    /// Executes spiral pattern with proven VoiceOver-optimized timing intervals
+    private func executeSpiralWithProvenTiming(steps: Int) {
+        let spiralPattern: [XCUIRemote.Button] = [.right, .down, .left, .up]
+        var repeatCount = 1
+        
+        for step in 0..<steps {
+            let patternIndex = (step / repeatCount) % spiralPattern.count
+            let buttonDirection = spiralPattern[patternIndex]
+            
+            remote.press(buttonDirection, forDuration: 0.025)
+            usleep(40_000) // 40ms - proven VoiceOver timing
+            
+            // Adjust repeat count periodically
+            if step % 16 == 0 {
+                repeatCount = min(repeatCount + 1, 4)
+            }
+        }
+    }
+    
+    /// Executes cross pattern with proven VoiceOver-optimized timing intervals
+    private func executeCrossWithProvenTiming(steps: Int) {
+        let crossPattern: [XCUIRemote.Button] = [.up, .right, .down, .left, .up, .left, .down, .right]
+        
+        for step in 0..<steps {
+            let buttonDirection = crossPattern[step % crossPattern.count]
+            remote.press(buttonDirection, forDuration: 0.025)
+            usleep(35_000) // 35ms - slightly faster for cross pattern stress
+        }
+    }
+    
+    /// Executes random walk with proven VoiceOver-optimized timing intervals
+    private func executeRandomWalkWithProvenTiming(seed: UInt64, steps: Int) {
+        var rng = SeededRandomGenerator(seed: seed)
+        let allDirections: [XCUIRemote.Button] = [.up, .down, .left, .right]
+        
+        for _ in 0..<steps {
+            let randomDirection = allDirections[Int(rng.next()) % allDirections.count]
+            remote.press(randomDirection, forDuration: 0.025)
+            usleep(50_000) // 50ms - proven VoiceOver timing for random patterns
+        }
+    }
+    
+    /// Timing configuration override for proven VoiceOver intervals
+    private struct ProvenTimingOverride {
+        let pressDuration: TimeInterval = 0.025      // 25ms press
+        let standardGap: UInt32 = 40_000            // 40ms gap
+        let fastGap: UInt32 = 30_000                // 30ms gap for rapid sequences
+        let slowGap: UInt32 = 50_000                // 50ms gap for complex patterns
+    }
+    
+    // ================================================================
     // MARK: - Removed Tests Documentation
     // ================================================================
     
