@@ -163,337 +163,159 @@ final class FocusStressUITests: XCTestCase {
     /// - Smart navigation patterns that don't get stuck at collection edges
     /// - Comprehensive stress testing across different movement strategies
     
-    // MARK: - Active Tests (V2.0)
+    // MARK: - Active Tests (V5.0 - Based on SuccessfulRepro2.txt Analysis)
     
-    /// **ESTIMATED EXECUTION TIME: 2.5 minutes**
-    /// Tests exponential press intervals for InfinityBug reproduction.
-    /// Uses NavigationStrategy patterns to avoid edge-sticking with random 8ms-1000ms intervals.
-    /// Calculation: Snake navigation through collection with exponential timing phases
-    func testExponentialPressIntervals() throws {
-        enforceTimeLimit(estimatedMinutes: 2.5)
+    /// **ESTIMATED EXECUTION TIME: 4.5 minutes**
+    /// Direct replication of SuccessfulRepro2.txt manual reproduction pattern.
+    /// Based on analysis of actual InfinityBug manifestation with POLL detection and progressive RunLoop stalls.
+    /// Key pattern: Right-heavy exploration → Up bursts → System collapse with "response-not-possible"
+    func testSuccessfulRepro2Pattern() throws {
+        enforceTimeLimit(estimatedMinutes: 4.5)
         
-        NSLog("EXPONENTIAL-INTERVALS: Testing exponential press intervals with NavigationStrategy")
+        NSLog("REPRO2-PATTERN: Implementing SuccessfulRepro2.txt reproduction pattern")
         
-        // Use snake pattern to avoid edge-sticking - most comprehensive coverage
-        navigator.execute(.snake(direction: .bidirectional), steps: 250)
-        
-        // Minimal validation at end
-        let finalFocus = quickFocusCheck()
-        NSLog("EXPONENTIAL-INTERVALS: Final focus state: '\(finalFocus)'")
-        
-        // Test always passes - human observation required for InfinityBug detection
-        XCTAssertTrue(true, "Test completed - observe for InfinityBug symptoms")
-    }
-    
-    /// **ESTIMATED EXECUTION TIME: 1.5 minutes**
-    /// Tests exponential burst patterns with spiral navigation.
-    /// Spiral pattern creates expanding stress conditions while avoiding edges.
-    func testExponentialBurstPatterns() throws {
-        enforceTimeLimit(estimatedMinutes: 1.5)
-        
-        NSLog("EXPONENTIAL-BURSTS: Testing exponential burst patterns with spiral navigation")
-        
-        // Use outward spiral for expanding stress pattern
-        navigator.execute(.spiral(direction: .outward), steps: 100)
-        
-        // Minimal validation at end
-        let finalFocus = quickFocusCheck()
-        NSLog("EXPONENTIAL-BURSTS: Final focus state: '\(finalFocus)'")
-        
-        // Test always passes - human observation required for InfinityBug detection
-        XCTAssertTrue(true, "Test completed - observe for InfinityBug symptoms")
-    }
-    
-    /// **ESTIMATED EXECUTION TIME: 4.0 minutes**
-    /// Tests ultra-fast press patterns with diagonal navigation targeting HID layer stress.
-    /// Diagonal movement creates complex focus engine stress patterns.
-    func testUltraFastHIDStress() throws {
-        enforceTimeLimit(estimatedMinutes: 4.0)
-        
-        NSLog("ULTRA-FAST: Testing ultra-fast press patterns with diagonal navigation")
-        
-        // Use cross diagonal pattern for maximum focus engine stress
-        navigator.execute(.diagonal(direction: .cross), steps: 300)
-        
-        // Follow up with random walk for additional chaos
-        navigator.execute(.randomWalk(seed: 42), steps: 200)
-        
-        // Minimal validation at end
-        let finalFocus = quickFocusCheck()
-        NSLog("ULTRA-FAST: Final focus state: '\(finalFocus)'")
-        
-        // Test always passes - human observation required for InfinityBug detection
-        XCTAssertTrue(true, "Test completed - observe for InfinityBug symptoms")
-    }
-    
-    /// **ESTIMATED EXECUTION TIME: 3.5 minutes**
-    /// Tests mixed exponential patterns combining multiple NavigationStrategy approaches.
-    /// Comprehensive test covering multiple reproduction strategies with edge avoidance.
-    func testMixedExponentialPatterns() throws {
-        enforceTimeLimit(estimatedMinutes: 3.5)
-        
-        NSLog("MIXED-EXPONENTIAL: Testing combined NavigationStrategy patterns")
-        
-        // Phase 1: Snake pattern for systematic coverage
-        navigator.execute(.snake(direction: .horizontal), steps: 100)
-        
-        // Phase 2: Spiral pattern for expanding stress
-        navigator.execute(.spiral(direction: .inward), steps: 75)
-        
-        // Phase 3: Cross pattern for focus center/edge stress
-        navigator.execute(.cross(direction: .full), steps: 75)
-        
-        // Phase 4: Random walk for unpredictable patterns
-        navigator.execute(.randomWalk(seed: 12345), steps: 100)
-        
-        // Minimal validation at end
-        let finalFocus = quickFocusCheck()
-        NSLog("MIXED-EXPONENTIAL: Final focus state: '\(finalFocus)'")
-        
-        // Test always passes - human observation required for InfinityBug detection
-        XCTAssertTrue(true, "Test completed - observe for InfinityBug symptoms")
-    }
-    
-    /// **ESTIMATED EXECUTION TIME: 2.0 minutes**
-    /// Tests rapid directional changes with cross navigation pattern.
-    /// Cross pattern creates rapid center-to-edge focus transitions for maximum stress.
-    func testRapidDirectionalStress() throws {
-        enforceTimeLimit(estimatedMinutes: 2.0)
-        
-        NSLog("RAPID-DIRECTIONAL: Testing rapid directional changes with cross navigation")
-        
-        // Phase 1: Vertical cross pattern (rapid up/down stress)
-        navigator.execute(.cross(direction: .vertical), steps: 100)
-        
-        // Phase 2: Horizontal cross pattern (rapid left/right stress)  
-        navigator.execute(.cross(direction: .horizontal), steps: 100)
-        
-        // Phase 3: Full cross pattern (all directions rapidly)
-        navigator.execute(.cross(direction: .full), steps: 100)
-        
-        // Minimal validation at end
-        let finalFocus = quickFocusCheck()
-        NSLog("RAPID-DIRECTIONAL: Final focus state: '\(finalFocus)'")
-        
-        // Test always passes - human observation required for InfinityBug detection
-        XCTAssertTrue(true, "Test completed - observe for InfinityBug symptoms")
-    }
-    
-    /// **ESTIMATED EXECUTION TIME: 2.5 minutes**
-    /// Tests edge conditions and boundary behavior for InfinityBug reproduction.
-    /// Deliberately tests edge cases that may trigger focus engine failures.
-    func testEdgeBoundaryStress() throws {
-        enforceTimeLimit(estimatedMinutes: 2.5)
-        
-        NSLog("EDGE-BOUNDARY: Testing edge conditions and boundary behavior")
-        
-        // Phase 1: Test all edges systematically
-        navigator.execute(.edgeTest(edge: .all), steps: 100)
-        
-        // Phase 2: Test individual edges with stress patterns
-        navigator.execute(.edgeTest(edge: .top), steps: 25)
-        navigator.execute(.edgeTest(edge: .bottom), steps: 25)
-        navigator.execute(.edgeTest(edge: .left), steps: 25)
-        navigator.execute(.edgeTest(edge: .right), steps: 25)
-        
-        // Phase 3: Return to center with diagonal navigation
-        navigator.execute(.diagonal(direction: .primary), steps: 50)
-        
-        // Minimal validation at end
-        let finalFocus = quickFocusCheck()
-        NSLog("EDGE-BOUNDARY: Final focus state: '\(finalFocus)'")
-        
-        // Test always passes - human observation required for InfinityBug detection
-        XCTAssertTrue(true, "Test completed - observe for InfinityBug symptoms")
-    }
-    
-    /// **ESTIMATED EXECUTION TIME: 1.0 minutes**
-    /// Quick validation test to ensure NavigationStrategy integration works correctly.
-    /// Tests cached element performance with actual navigation patterns.
-    func testOptimizedArchitectureValidation() throws {
-        enforceTimeLimit(estimatedMinutes: 1.0)
-        
-        NSLog("VALIDATION: Testing NavigationStrategy integration with optimized architecture")
-        
-        // Quick test of each navigation pattern to validate integration
-        let startTime = Date()
-        
-        navigator.execute(.snake(direction: .horizontal), steps: 10)
-        navigator.execute(.spiral(direction: .outward), steps: 10) 
-        navigator.execute(.diagonal(direction: .primary), steps: 10)
-        navigator.execute(.cross(direction: .vertical), steps: 10)
-        navigator.execute(.randomWalk(seed: 999), steps: 10)
-        
-        let elapsed = Date().timeIntervalSince(startTime)
-        NSLog("VALIDATION: 50 NavigationStrategy steps completed in \(String(format: "%.2f", elapsed))s")
-        
-        // Quick focus check should be fast
-        let focusCheckStart = Date()
-        let finalFocus = quickFocusCheck()
-        let focusCheckTime = Date().timeIntervalSince(focusCheckStart)
-        
-        NSLog("VALIDATION: Focus check completed in \(String(format: "%.3f", focusCheckTime))s - focus: '\(finalFocus)'")
-        
-        // Verify focus check is fast (should be <0.1s vs. 2-20s in V1.0)
-        XCTAssertLessThan(focusCheckTime, 0.5, "Focus check should be fast with cached elements")
-        
-        // Verify NavigationStrategy integration doesn't break performance
-        XCTAssertLessThan(elapsed, 30.0, "NavigationStrategy integration should not significantly impact performance")
-        
-        // Test always passes - validates architecture + navigation performance
-        XCTAssertTrue(true, "Architecture and NavigationStrategy validation completed successfully")
-    }
-    
-    // ================================================================
-    // MARK: - V4.0 EVOLVED TESTS (Based on Successful Reproduction)
-    // ================================================================
-    
-    /// **EVOLVED TEST** based on successful git commit 1b38f3a approach
-    /// Multi-phase stress testing with VoiceOver-optimized timing and patterns
-    func testSuccessfulReproductionPattern() throws {
-        enforceTimeLimit(estimatedMinutes: 5.0)
-        
-        NSLog("SUCCESSFUL-PATTERN: Implementing proven reproduction approach from git history")
-        
-        // Set up expectation for InfinityBug detection
-        let bugExpectation = XCTNSNotificationExpectation(name: Notification.Name("com.infinitybug.highConfidenceDetection"))
-        bugExpectation.isInverted = true // Test passes if bug NOT detected (manual observation)
-        
-        let startTime = Date()
-        
-        // Phase 1: High-frequency cache seeding with repetitive directional bursts  
-        NSLog("SUCCESSFUL-PATTERN: Phase 1 - High-frequency cache seeding")
-        let seedBursts: [(direction: XCUIRemote.Button, count: Int)] = [
-            (.right, 8), (.left, 6), (.up, 10), (.down, 7), (.right, 9), (.left, 5)
-        ]
-        
-        for burst in seedBursts {
-            for _ in 0..<burst.count {
-                remote.press(burst.direction, forDuration: 0.008) // 8ms press (ultra-fast)
-                usleep(8_000) // 8ms gap - high frequency input
-            }
-        }
-        
-        // Phase 2: Layout stress with calibrated timing
-        NSLog("SUCCESSFUL-PATTERN: Phase 2 - Layout stress during cache processing")
-        for pressIndex in 0..<50 {
-            let direction: XCUIRemote.Button = (pressIndex % 2 == 0) ? .right : .left
-            
-            // Timing matched to successful reproduction: 25ms press, 30ms gap
+        // Phase 1: Initial mixed directional setup (first ~30 seconds of log)
+        NSLog("REPRO2-PATTERN: Phase 1 - Initial directional setup")
+        let setupPattern: [XCUIRemote.Button] = [.down, .right, .right, .down, .right, .up, .down]
+        for (index, direction) in setupPattern.enumerated() {
             remote.press(direction, forDuration: 0.025)
-            usleep(30_000)
+            // Varied timing as seen in log: 50-200ms gaps
+            let gap = index % 2 == 0 ? 50_000 : 150_000
+            usleep(UInt32(gap))
         }
         
-        // Phase 3: Rapid alternating to trigger stale cache replay
-        NSLog("SUCCESSFUL-PATTERN: Phase 3 - Rapid alternating to trigger phantom events")
-        for pressIndex in 0..<100 {
-            let direction: XCUIRemote.Button = (pressIndex % 2 == 0) ? .right : .left
+        // Phase 2: Heavy Right exploration (core pattern from SuccessfulRepro2.txt)
+        NSLog("REPRO2-PATTERN: Phase 2 - Heavy Right exploration with corrections")
+        for burstIndex in 0..<8 {
+            // Right burst (12-25 presses based on log analysis)
+            let rightCount = 15 + (burstIndex * 2) // Escalating: 15, 17, 19, 21, 23, 25, 27, 29
+            for _ in 0..<rightCount {
+                remote.press(.right, forDuration: 0.025)
+                usleep(40_000) // 40ms - VoiceOver optimized timing
+            }
             
-            // Calibrated timing - fast enough to create stress, slow enough to allow processing
-            remote.press(direction, forDuration: 0.025) // 25ms press duration
-            usleep(40_000) // 40ms between presses - proven timing
+            // Direction correction (Down or Left)
+            let correctionDirection: XCUIRemote.Button = burstIndex % 2 == 0 ? .down : .left
+            let correctionCount = 3 + (burstIndex / 2) // 3, 3, 4, 4, 5, 5, 6, 6
+            for _ in 0..<correctionCount {
+                remote.press(correctionDirection, forDuration: 0.025)
+                usleep(60_000) // Slightly longer gaps for corrections
+            }
+            
+            // Brief pause between bursts (allows system stress to build)
+            usleep(100_000) // 100ms
         }
         
-        // Phase 4: Extended right exploration (based on successful manual patterns)
-        NSLog("SUCCESSFUL-PATTERN: Phase 4 - Extended right exploration")
-        for rightIndex in 0..<35 {
-            remote.press(.right, forDuration: 0.025)
-            usleep(45_000) // 45ms gap for focus processing
+        // Phase 3: Critical Up burst sequence (triggers POLL detection)
+        NSLog("REPRO2-PATTERN: Phase 3 - Critical Up burst sequence")
+        for upBurstIndex in 0..<6 {
+            let upCount = 20 + (upBurstIndex * 5) // Escalating: 20, 25, 30, 35, 40, 45
+            NSLog("REPRO2-PATTERN: Up burst \(upBurstIndex + 1): \(upCount) presses")
+            
+            for _ in 0..<upCount {
+                remote.press(.up, forDuration: 0.025)
+                usleep(35_000) // Slightly faster for Up bursts to create stress
+            }
+            
+            // Progressive pause increase (system stress builds)
+            let pauseMs = 200_000 + (upBurstIndex * 100_000) // 200ms → 700ms
+            usleep(UInt32(pauseMs))
         }
         
-        let totalTime = Date().timeIntervalSince(startTime)
-        NSLog("SUCCESSFUL-PATTERN: Test completed in \(String(format: "%.1f", totalTime))s")
-        
-        // Wait for potential bug detection with extended timeout
-        let result = XCTWaiter.wait(for: [bugExpectation], timeout: 3.0)
-        
-        if result == .completed {
-            NSLog("SUCCESSFUL-PATTERN: Test completed successfully - observe for InfinityBug symptoms")
-        } else {
-            // This would indicate successful InfinityBug reproduction
-            XCTFail("InfinityBug reproduction detected - SUCCESS! (Test intentionally fails on successful reproduction)")
+        // Phase 4: Final mixed sequence leading to system collapse
+        NSLog("REPRO2-PATTERN: Phase 4 - Final mixed sequence")
+        let finalPattern: [XCUIRemote.Button] = [.up, .right, .up, .down, .up, .right, .up, .left, .up]
+        for direction in finalPattern {
+            remote.press(direction, forDuration: 0.025)
+            usleep(30_000) // Fast final sequence to push system over edge
         }
-    }
-    
-    /// **EVOLVED TEST** combining V3.0 NavigationStrategy with successful reproduction timing
-    /// Merges rapid pattern navigation with proven VoiceOver-optimized intervals
-    func testHybridNavigationWithProvenTiming() throws {
-        enforceTimeLimit(estimatedMinutes: 4.0)
         
-        NSLog("HYBRID-NAVIGATION: Combining NavigationStrategy patterns with proven reproduction timing")
-        
-        // Override the NavigationStrategy rapid timing with proven successful intervals
-        let provenIntervals = ProvenTimingOverride()
-        
-        // Phase 1: Snake pattern with proven timing
-        NSLog("HYBRID-NAVIGATION: Phase 1 - Snake pattern with proven VoiceOver timing")
-        executeSnakeWithProvenTiming(steps: 75)
-        
-        // Phase 2: Spiral pattern with proven timing  
-        NSLog("HYBRID-NAVIGATION: Phase 2 - Spiral pattern with proven VoiceOver timing")
-        executeSpiralWithProvenTiming(steps: 75)
-        
-        // Phase 3: Cross pattern with proven timing
-        NSLog("HYBRID-NAVIGATION: Phase 3 - Cross pattern with proven VoiceOver timing") 
-        executeCrossWithProvenTiming(steps: 100)
-        
-        // Phase 4: Random walk with proven timing
-        NSLog("HYBRID-NAVIGATION: Phase 4 - Random walk with proven VoiceOver timing")
-        executeRandomWalkWithProvenTiming(seed: 42, steps: 100)
+        // Allow time for system collapse and snapshot errors
+        NSLog("REPRO2-PATTERN: Waiting for potential system collapse...")
+        usleep(2_000_000) // 2 second wait for InfinityBug manifestation
         
         let finalFocus = quickFocusCheck()
-        NSLog("HYBRID-NAVIGATION: Final focus state: '\(finalFocus)'")
+        NSLog("REPRO2-PATTERN: Final focus state: '\(finalFocus)' - Check for POLL detection and RunLoop stalls")
         
         // Test always passes - human observation required for InfinityBug detection
-        XCTAssertTrue(true, "Hybrid navigation test completed - observe for InfinityBug symptoms")
+        XCTAssertTrue(true, "SuccessfulRepro2 pattern completed - observe for InfinityBug symptoms")
     }
     
-    /// **EVOLVED TEST** focusing on the multi-directional cache flooding approach
-    /// Based on successful burst patterns from git commit analysis
-    func testCacheFloodingWithBurstPatterns() throws {
+    /// **ESTIMATED EXECUTION TIME: 6.0 minutes**  
+    /// Extended cache flooding based on both SuccessfulRepro.md and SuccessfulRepro2.txt patterns.
+    /// Implements the proven right-heavy exploration with progressive Up bursts.
+    func testCacheFloodingWithProvenPatterns() throws {
         enforceTimeLimit(estimatedMinutes: 6.0)
         
-        NSLog("CACHE-FLOODING: Testing cache corruption through repetitive directional bursts")
+        NSLog("CACHE-FLOODING-PROVEN: Testing cache corruption through proven burst patterns")
         
-        // Extended burst patterns based on successful reproduction analysis
+        // Extended burst patterns based on BOTH successful reproductions
         let burstPatterns: [(direction: XCUIRemote.Button, count: Int)] = [
-            (.right, 20),   // Heavy right exploration
-            (.down, 12),    // Down burst
-            (.right, 18),   // More right exploration  
-            (.left, 8),     // Left correction
-            (.right, 22),   // Extended right
-            (.up, 15),      // Up burst
-            (.right, 16),   // Continue right exploration
-            (.down, 10),    // Down burst
-            (.right, 14),   // Right again
-            (.left, 9),     // Left correction
-            (.right, 25),   // Extended right exploration
-            (.up, 18),      // Up burst
-            (.right, 19),   // More right
-            (.down, 8),     // Down burst
-            (.right, 17),   // Right continuation
-            (.left, 12),    // Left correction
-            (.right, 21),   // Final heavy right burst
-            (.up, 13)       // Final up burst
+            // SuccessfulRepro2.txt pattern influence
+            (.right, 22),   // Heavy right exploration  
+            (.down, 8),     // Short correction
+            (.right, 25),   // More heavy right
+            (.up, 20),      // Up burst (triggers POLL detection)
+            (.right, 28),   // Extended right exploration
+            (.left, 6),     // Brief left correction
+            (.right, 30),   // Maximum right stress
+            (.up, 25),      // Extended up burst
+            (.right, 18),   // Continue right exploration
+            (.down, 10),    // Down correction
+            (.right, 32),   // Peak right stress
+            (.up, 30),      // Peak up burst
+            (.right, 20),   // Final right exploration
+            (.up, 35),      // Maximum up burst (system collapse trigger)
+            (.left, 12),    // Recovery attempt
+            (.right, 15),   // Final right burst
+            (.up, 40),      // Final up burst (InfinityBug trigger)
         ]
         
         for (burstIndex, burst) in burstPatterns.enumerated() {
-            NSLog("CACHE-FLOODING: Burst \(burstIndex): \(burst.direction) x\(burst.count)")
+            NSLog("CACHE-FLOODING-PROVEN: Burst \(burstIndex + 1)/\(burstPatterns.count): \(burst.direction) x\(burst.count)")
             
-            for _ in 0..<burst.count {
-                // Timing calibrated to match successful manual reproduction pattern
+            for pressIndex in 0..<burst.count {
                 remote.press(burst.direction, forDuration: 0.025) // 25ms press
-                usleep(50_000) // 50ms gap - allows focus processing between inputs
+                
+                // Progressive timing stress - faster as burst progresses
+                let baseGap = 50_000 // 50ms base
+                let progressFactor = max(30_000, baseGap - (pressIndex * 1_000)) // Gets faster: 50ms → 30ms
+                usleep(UInt32(progressFactor))
             }
             
-            // Brief pause between bursts to let system process
-            usleep(100_000) // 100ms pause between bursts
+            // Progressive pause between bursts - gets shorter (building stress)
+            let burstPause = max(50_000, 200_000 - (burstIndex * 10_000)) // 200ms → 50ms
+            usleep(UInt32(burstPause))
         }
         
-        NSLog("CACHE-FLOODING: Cache flooding test completed")
+        NSLog("CACHE-FLOODING-PROVEN: Cache flooding with proven patterns completed")
+        
+        // Test always passes - human observation required for InfinityBug detection  
+        XCTAssertTrue(true, "Cache flooding with proven patterns completed - observe for InfinityBug symptoms")
+    }
+    
+    /// **ESTIMATED EXECUTION TIME: 3.5 minutes**
+    /// Hybrid approach combining NavigationStrategy patterns with SuccessfulRepro2.txt timing.
+    /// Uses snake pattern to avoid edge-sticking while applying proven reproduction timing.
+    func testHybridNavigationWithRepro2Timing() throws {
+        enforceTimeLimit(estimatedMinutes: 3.5)
+        
+        NSLog("HYBRID-REPRO2: Testing NavigationStrategy with SuccessfulRepro2.txt timing")
+        
+        // Phase 1: Snake pattern with right-bias (matches SuccessfulRepro2.txt)
+        navigator.execute(.snake(direction: .rightBiased), steps: 150)
+        
+        // Phase 2: Spiral pattern with proven timing intervals
+        executeSpiralWithRepro2Timing(steps: 100)
+        
+        // Phase 3: Cross pattern with Up-emphasis (triggers POLL detection)
+        executeCrossWithRepro2Timing(steps: 80)
+        
+        let finalFocus = quickFocusCheck()
+        NSLog("HYBRID-REPRO2: Final focus state: '\(finalFocus)'")
         
         // Test always passes - human observation required for InfinityBug detection
-        XCTAssertTrue(true, "Cache flooding test completed - observe for InfinityBug symptoms")
+        XCTAssertTrue(true, "Hybrid navigation with Repro2 timing completed - observe for InfinityBug symptoms")
     }
     
     // ================================================================
@@ -550,6 +372,40 @@ final class FocusStressUITests: XCTestCase {
             let randomDirection = allDirections[Int(rng.next()) % allDirections.count]
             remote.press(randomDirection, forDuration: 0.025)
             usleep(50_000) // 50ms - proven VoiceOver timing for random patterns
+        }
+    }
+    
+    /// Executes spiral pattern with SuccessfulRepro2.txt timing intervals
+    private func executeSpiralWithRepro2Timing(steps: Int) {
+        let spiralPattern: [XCUIRemote.Button] = [.right, .down, .left, .up]
+        var repeatCount = 1
+        
+        for step in 0..<steps {
+            let patternIndex = (step / repeatCount) % spiralPattern.count
+            let buttonDirection = spiralPattern[patternIndex]
+            
+            remote.press(buttonDirection, forDuration: 0.025)
+            // SuccessfulRepro2.txt showed 40-60ms gaps work best
+            usleep(45_000) // 45ms - Repro2 optimized timing
+            
+            // Adjust repeat count periodically for expanding spiral
+            if step % 12 == 0 {
+                repeatCount = min(repeatCount + 1, 5)
+            }
+        }
+    }
+    
+    /// Executes cross pattern with SuccessfulRepro2.txt timing intervals
+    private func executeCrossWithRepro2Timing(steps: Int) {
+        // Up-emphasized cross pattern based on POLL detection in SuccessfulRepro2.txt
+        let crossPattern: [XCUIRemote.Button] = [.up, .up, .right, .down, .left, .up, .up, .left, .down, .right]
+        
+        for step in 0..<steps {
+            let buttonDirection = crossPattern[step % crossPattern.count]
+            remote.press(buttonDirection, forDuration: 0.025)
+            // Faster timing for Up bursts to trigger POLL detection
+            let gap = buttonDirection == .up ? 35_000 : 50_000
+            usleep(UInt32(gap))
         }
     }
     
