@@ -743,3 +743,88 @@
 - **Physical device testing**: V6 tests execute on actual Apple TV hardware
 - **Hybrid protocol established**: Clear process for UITest stress + manual VoiceOver
 - **InfinityBug reproduction**: Successful trigger through combined approach
+
+# 🧬 EVOLUTIONARY TEST IMPROVEMENT PLAN - CURRENT PRIORITIES
+
+### **PHASE 1: SELECTION PRESSURE APPLIED** ✅ COMPLETE
+- [x] Analyzed successful manual reproduction logs (SuccessfulRepro.md, SuccessfulRepro2.txt, SuccessfulRepro3.txt)
+- [x] Analyzed failed UITest attempts (62325-1523DidNotRepro.txt, unsuccessfulUITestLog.txt) 
+- [x] Applied selection pressure to keep promising tests and remove failing approaches
+- [x] Implemented V7.0 evolutionary enhancements based on log analysis
+- [x] Updated changelog with evolutionary methodology and findings
+
+### **PHASE 2: V7.0 TEST EXECUTION** 🎯 IN PROGRESS
+- [ ] Execute `testEvolvedInfinityBugReproduction()` on physical Apple TV with VoiceOver enabled
+- [ ] Execute `testEvolvedBackgroundingTriggeredInfinityBug()` with enhanced stress patterns
+- [ ] Monitor for V7.0 success indicators:
+  - [ ] RunLoop stalls >4000ms (target: >10,000ms)
+  - [ ] POLL detection sequences ("POLL: Up detected via polling")
+  - [ ] Progressive system stress accumulation
+  - [ ] Mixed input event generation (gesture + button collision)
+
+### **PHASE 3: EVOLUTION ANALYSIS** 📊 PENDING V7.0 RESULTS
+- [ ] Compare V7.0 execution logs against V6.0 near-success patterns
+- [ ] Identify which V7.0 enhancements contribute to reproduction success
+- [ ] Measure evolution metrics: memory bursts, mixed events, Up burst density
+- [ ] Document V7.0 success/failure patterns for next iteration
+
+### **PHASE 4: NEXT EVOLUTIONARY CYCLE** 🔄 CONDITIONAL
+**IF V7.0 TESTS SUCCEED**: 
+- [ ] Optimize successful components for 100% reproduction rate
+- [ ] Create streamlined test focusing only on proven effective patterns
+- [ ] Document final InfinityBug reproduction methodology
+
+**IF V7.0 TESTS PARTIALLY SUCCEED**:
+- [ ] Apply selection pressure to V7.0 components
+- [ ] Keep: Elements that showed improvement (increased stalls, POLL detection)
+- [ ] Remove: Elements that showed no effect on reproduction
+- [ ] Modify: Promising elements need timing/intensity adjustment
+- [ ] Implement V8.0 with refined approach
+
+**IF V7.0 TESTS FAIL**:
+- [ ] Pivot to pure manual reproduction methodology
+- [ ] Focus UITests solely on stress condition setup
+- [ ] Document UITest limitations for future reference
+- [ ] Create manual reproduction protocol guide
+
+### **CRITICAL SUCCESS ANALYSIS** 🔬
+
+#### **V7.0 Enhanced Components to Monitor**:
+1. **Progressive Memory Stress**: Does increasing allocation size (15K→35K) correlate with RunLoop stalls?
+2. **Mixed Input Events**: Do gesture+button collisions appear in logs as dual pipeline events?
+3. **Up Burst POLL Targeting**: Do progressive Up sequences (15→24 presses) trigger polling fallback?
+4. **Natural Timing Variation**: Does hardware jitter (40-250ms) create more realistic stress than fixed timing?
+5. **System Collapse Acceleration**: Do accessibility conflicts accelerate system breakdown?
+
+#### **Key Log Patterns to Identify**:
+- `🕹️ DPAD STATE` entries (hardware pipeline active)
+- `[A11Y] REMOTE` entries (accessibility pipeline active)  
+- `WARNING: RunLoop stall` with escalating millisecond values
+- `POLL: Up detected via polling` (system overwhelmed)
+- `response-not-possible` (system collapse)
+
+### **DOCUMENTATION PRIORITIES** 📝
+- [ ] Update `InfinityBug_Test_Analysis.md` with V7.0 evolutionary methodology  
+- [ ] Create `V7_Evolution_Results.md` with execution analysis
+- [ ] Update `UITestingFacts.md` with evolutionary insights about UITest limitations
+- [ ] Maintain `EvolutionaryTestImprovementPlan.md` for future iterations
+
+### **TECHNICAL DEBT** 🛠️
+- [ ] Fix TestRunLogger sandbox path resolution for UITest context (non-blocking)
+- [ ] Optimize collection view query timeouts in stress conditions (if needed for V7.0)
+- [ ] Clean up disabled/commented test methods from previous failed iterations
+
+---
+
+## EVOLUTIONARY SUCCESS CRITERIA
+
+**MINIMUM SUCCESS**: V7.0 tests complete without timeout, show increased RunLoop stalls vs V6.0  
+**GOOD SUCCESS**: V7.0 achieves >4000ms RunLoop stalls, shows POLL detection patterns  
+**EXCELLENT SUCCESS**: V7.0 triggers InfinityBug reproduction observable manually  
+**BREAKTHROUGH SUCCESS**: V7.0 provides reliable 80%+ reproduction methodology
+
+---
+
+## Previous Task History
+
+[Previous entries retained for context...]
