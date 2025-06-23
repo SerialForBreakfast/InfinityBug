@@ -1,5 +1,103 @@
 # Failed Attempts Log
 
+## 2025-01-22 - V8.0 EVOLUTIONARY CLEANUP Applied 🧹
+
+### **CRITICAL FAILURE: V7.0 Menu Button App Backgrounding**
+
+**What Happened:**
+- V7.0 test used `remote.press(.menu, forDuration: 0.1)` for mixed input simulation
+- Menu button backgrounded the app to Apple TV home screen
+- Test continued running but was no longer testing the sample app
+- User had to abort test manually - complete test failure
+
+**Error Pattern:**
+```
+"🧬 PHASE-2: Mixed input event simulation (gesture + button collision)
+    t =    74.21s Pressing and holding Menu button for 0.1s
+    t =    74.35s     Get number of matches for: Children matching type Any
+    t =    79.76s     Get number of matches for: Children matching type Any
+    [TEST RUNNING ON APPLE TV HOME SCREEN - NOT SAMPLE APP]"
+```
+
+### **SELECTION PRESSURE APPLIED - V8.0 REMOVALS:**
+
+❌ **REMOVED: Menu Button Simulation**
+- **Reason:** Backgrounds app immediately, makes test invalid
+- **Impact:** Critical test failure requiring manual intervention
+
+❌ **REMOVED: Gesture Simulation via Coordinates**  
+- **Reason:** `coordinate` API unavailable on tvOS
+- **Impact:** Compilation errors, technical impossibility
+
+❌ **REMOVED: Complex 7-Phase System**
+- **Reason:** Overly complicated without reproduction success
+- **Impact:** Maintenance complexity with no InfinityBug reproduction
+
+❌ **REMOVED: Mixed Input Event Simulation**
+- **Reason:** Technical impossibility on tvOS UITest framework
+- **Impact:** Attempted workarounds cause app backgrounding
+
+❌ **REMOVED: Background Memory Stress Tasks**
+- **Reason:** Unrelated to input focus issues, no reproduction impact
+- **Impact:** Unnecessary complexity without targeting root cause
+
+❌ **REMOVED: Evolution Metrics Tracking**
+- **Reason:** Measurement overhead without reproduction success
+- **Impact:** Performance impact during critical reproduction window
+
+### **V8.0 FOCUSED RETENTION:**
+
+✅ **KEPT: Right-Heavy Exploration (60% right bias)**
+- **Reason:** Matches successful manual reproduction pattern
+- **Implementation:** `(pressCount % 10 < 6) ? .right : [.up, .down, .left].randomElement()!`
+
+✅ **KEPT: Progressive Up Bursts (22-45 presses)**
+- **Reason:** Direct match to successful SuccessfulRepro logs
+- **Implementation:** `22 + (burstNumber % 24)` Up press bursts
+
+✅ **KEPT: Natural Timing Irregularities (40-250ms)**
+- **Reason:** Successful reproduction had hardware timing variation
+- **Implementation:** `naturalHumanTiming()` vs uniform automated timing
+
+✅ **KEPT: System Stress Accumulation**
+- **Reason:** Progressive speed increase matches successful pattern
+- **Implementation:** `35ms → 15ms` progressive acceleration
+
+### **V8.0 ARCHITECTURE IMPROVEMENTS:**
+
+🎯 **SIMPLIFIED: 2 Focused Tests vs 7-Phase Complexity**
+- Primary: 4-minute focused reproduction (vs 6-minute complex phases)
+- Secondary: 3.5-minute backgrounding simulation (vs Menu button failure)
+
+🎯 **ELIMINATED: App Backgrounding Risk**
+- No Menu button presses that leave sample app
+- Backgrounding simulation via stress-pause cycles within app
+
+🎯 **FOCUSED: Proven Successful Patterns Only**
+- Right-heavy bias + Up bursts + Natural timing + System stress
+- Removed all speculative or technically impossible approaches
+
+### **SUCCESS TARGET CLARIFICATION:**
+
+**From Successful Manual Reproduction:**
+- `[AXDBG] 065648.123 WARNING: RunLoop stall 5179 ms`
+
+**V8.0 Goal:**
+- RunLoop stalls >5000ms 
+- Progressive system stress without app backgrounding
+- Human-like timing variations vs uniform automated timing
+- Focused 4-minute reproduction vs scattered 6-minute phases
+
+### **LESSONS LEARNED:**
+
+1. **Menu Button = Instant Test Failure** on tvOS
+2. **Coordinate API Unavailable** on tvOS UITest framework  
+3. **Complex Phase Management** doesn't improve reproduction rates
+4. **Focus on Proven Patterns** vs speculative approaches
+5. **Keep App in Foreground** throughout entire test duration
+
+---
+
 ## 2025-01-22 - Evolutionary Test Improvement Plan Applied 🧬
 
 ### **STEP 1: RUN CURRENT TESTS** ✅ COMPLETE

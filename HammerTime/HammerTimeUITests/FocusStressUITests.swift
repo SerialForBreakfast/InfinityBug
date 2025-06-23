@@ -3,49 +3,49 @@
 //  HammerTimeUITests
 //
 //  ========================================================================
-//  INFINITYBUG REPRODUCTION SUITE V7.0 - EVOLUTIONARY IMPROVEMENT
+//  INFINITYBUG REPRODUCTION SUITE V8.0 - EVOLUTIONARY IMPROVEMENT APPLIED
 //  ========================================================================
-//  >>> EVOLVED TO V7.0 – SELECTION PRESSURE APPLIED (2025-01-22)
+//  >>> EVOLVED TO V8.0 – FAILED APPROACHES REMOVED (2025-01-22)
 //  ========================================================================
 //
-//  **EVOLUTIONARY TEST IMPROVEMENT PLAN RESULTS:**
-//  Applied selection pressure based on comprehensive log analysis comparing:
-//  - SUCCESSFUL: SuccessfulRepro.md, SuccessfulRepro2.txt, SuccessfulRepro3.txt
-//  - FAILED: 62325-1523DidNotRepro.txt, unsuccessfulUITestLog.txt
+//  **EVOLUTIONARY TEST IMPROVEMENT PLAN APPLIED:**
+//  ❌ REMOVED: Menu button simulation (backgrounds app - test failure)
+//  ❌ REMOVED: Gesture simulation (coordinate API unavailable on tvOS)
+//  ❌ REMOVED: Complex 7-phase system (overly complicated, no reproduction)
+//  ❌ REMOVED: Mixed input event simulation (technical impossibility)
+//  ❌ REMOVED: Memory stress background tasks (unrelated to input focus)
+//  
+//  ✅ KEPT: Right-heavy exploration (60% right bias from successful logs)
+//  ✅ KEPT: Progressive Up bursts (22-45 presses from successful pattern)
+//  ✅ KEPT: Natural timing irregularities (40-250ms human variation)
+//  ✅ KEPT: System stress accumulation (progressive speed increase)
 //
-//  **KEY EVOLUTIONARY INSIGHTS:**
-//  1. Physical Hardware Events: Dual pipeline (DPAD + A11Y) creates collision
-//  2. Progressive RunLoop Stalls: 1.2s → 6.1s → 19.8s escalation pattern
-//  3. POLL Detection Signature: Up sequences trigger polling fallback
-//  4. Natural Timing Variation: Hardware jitter (40-250ms) vs synthetic (300-600ms)
-//  5. System Stress Accumulation: Memory + A11Y + Focus conflicts required
+//  **TARGET SUCCESS PATTERN:**
+//  - `[AXDBG] 065648.123 WARNING: RunLoop stall 5179 ms` (from successful repro)
+//  - Progressive system stress without app backgrounding
+//  - Human-like timing variations simulating human input patterns
+//  - Focused 4-minute reproduction pattern vs scattered approaches
 //
-//  **V7.0 EVOLVED ARCHITECTURE:**
-//  - ENHANCED: Physical hardware simulation via mixed input events
-//  - ENHANCED: Progressive system stress with memory allocation bursts
-//  - ENHANCED: Up burst emphasis for POLL detection targeting
-//  - ENHANCED: Natural timing variation mimicking hardware behavior
-//  - REMOVED: Fixed timing patterns that consistently failed
-//  - REMOVED: Single-pipeline tests without stress accumulation
+//  ========================================================================
 
 import XCTest
-import GameController
-@testable import HammerTime
 
-/// Current test-suite version tag used in all runtime logs
-private let suiteVersion = "V7.0"
-
-/// V7.0 Evolution: Enhanced InfinityBug reproduction with physical hardware simulation
+/// **V8.0 Focused InfinityBug Reproduction Suite**
+/// 
+/// Implements proven successful patterns from manual reproduction logs while
+/// removing all failed automated approaches identified through evolutionary analysis.
+///
+/// **Success Criteria:**
+/// - RunLoop stalls >5000ms (matching successful manual reproduction)
+/// - Progressive system stress accumulation
+/// - Natural timing variations simulating human input patterns
+/// - No app backgrounding or complex phase management
 final class FocusStressUITests: XCTestCase {
+    
+    // MARK: - Test Infrastructure
     
     var app: XCUIApplication!
     private let remote = XCUIRemote.shared
-    
-    // MARK: - Cached Elements (Performance Optimization)
-    private var cachedCollectionView: XCUIElement?
-    
-    // MARK: - V7.0 Evolution Tracking
-    private var evolutionMetrics = EvolutionMetrics()
     
     // MARK: - Setup & Teardown
     
@@ -54,439 +54,250 @@ final class FocusStressUITests: XCTestCase {
         
         app = XCUIApplication()
         
-        // Launch with evolved stress configuration
+        // Minimal launch configuration focused on reproduction
         app.launchArguments += [
-            "-FocusStressMode", "evolutionaryReproduction",
-            "-MemoryStressMode", "progressive",
-            "-HardwareSimulation", "enabled",
-            "-DebounceDisabled", "YES",
-            "-FocusTestMode", "YES",
-            "-ResetBugDetector"
+            "-FocusStressMode", "reproduction",
+            "-DebounceDisabled", "YES"
         ]
         
         app.launchEnvironment["DEBOUNCE_DISABLED"] = "1"
         app.launchEnvironment["FOCUS_TEST_MODE"] = "1"
-        app.launchEnvironment["MEMORY_STRESS_ENABLED"] = "1"
-        app.launchEnvironment["HARDWARE_SIMULATION_ENABLED"] = "1"
         
         app.launch()
         
-        // Minimal setup - only cache collection view for maximum speed
-        try minimalCacheSetup()
+        // Verify app launched correctly
+        let collectionView = app.collectionViews["FocusStressCollectionView"]
+        XCTAssertTrue(collectionView.waitForExistence(timeout: 10),
+                     "FocusStressCollectionView should exist")
         
-        NSLog("\(suiteVersion)-SETUP: Ready for evolutionary InfinityBug reproduction")
+        NSLog("🎯 V8.0-SETUP: Ready for focused InfinityBug reproduction")
     }
     
     override func tearDownWithError() throws {
-        // Log evolution metrics for analysis
-        logEvolutionResults()
-        
         app = nil
-        cachedCollectionView = nil
-        evolutionMetrics = EvolutionMetrics()
     }
     
-    // MARK: - Performance Optimization
+    // MARK: - V8.0 FOCUSED REPRODUCTION TESTS
     
-    /// Minimal caching setup - only collection view reference
-    private func minimalCacheSetup() throws {
-        let stressCollectionView = app.collectionViews["FocusStressCollectionView"]
-        XCTAssertTrue(stressCollectionView.waitForExistence(timeout: 10),
-                     "FocusStressCollectionView should exist - ensure app launched with evolutionaryReproduction mode")
-        
-        cachedCollectionView = stressCollectionView
-        NSLog("\(suiteVersion)-SETUP: Collection view cached - ready for evolved reproduction sequence")
-    }
-    
-    // MARK: - V7.0 EVOLVED REPRODUCTION TESTS
-    
-    /// **EVOLVED PRIMARY TEST - ESTIMATED EXECUTION TIME: 6.0 minutes**
-    /// Enhanced with physical hardware simulation and progressive system stress.
-    /// Implements dual input pipeline simulation and Up burst emphasis for POLL detection.
-    /// **TARGET: >80% InfinityBug reproduction rate via evolved patterns**
+    /// **V8.0 PRIMARY TEST - ESTIMATED EXECUTION TIME: 4.0 minutes**
+    /// 
+    /// Implements the exact successful manual reproduction pattern:
+    /// - Right-heavy exploration with natural timing irregularities
+    /// - Progressive Up burst sequences (matching successful 22-45 pattern)
+    /// - System stress accumulation without app backgrounding
+    /// - Human-like input variation vs uniform automated timing
+    ///
+    /// **Target Outcome:** 
+    /// `RunLoop stall >5000ms` matching successful manual reproduction
     func testEvolvedInfinityBugReproduction() throws {
-        NSLog("🧬 V7.0-EVOLVED: Starting evolutionary InfinityBug reproduction sequence")
-        NSLog("🧬 Enhanced: Physical hardware simulation + progressive system stress")
-        NSLog("🧬 Expected duration: 6.0 minutes - targeting >4000ms RunLoop stalls")
+        NSLog("🎯 V8.0-PRIMARY: Starting evolved InfinityBug reproduction")
+        NSLog("🎯 TARGET: RunLoop stall >5000ms (from successful manual reproduction)")
         
         let startTime = Date()
         
-        // Phase 1: Progressive memory stress with accessibility complexity (60 seconds)
-        NSLog("🧬 PHASE-1: Progressive memory stress with accessibility complexity")
-        executeProgressiveMemoryStress(duration: 60)
+        // Phase 1: Right-heavy exploration with natural timing (90 seconds)
+        executeNaturalRightHeavyExploration(duration: 90.0)
         
-        // Phase 2: Mixed input event simulation - hardware pipeline collision (90 seconds)
-        NSLog("🧬 PHASE-2: Mixed input event simulation (gesture + button collision)")
-        executeMixedInputEventSimulation(duration: 90)
+        // Phase 2: Progressive Up burst accumulation (90 seconds)  
+        executeProgressiveUpBurstAccumulation(duration: 90.0)
         
-        // Phase 3: Up burst sequences with POLL detection targeting (120 seconds)
-        NSLog("🧬 PHASE-3: Up burst sequences for POLL detection triggering")
-        executeUpBurstPOLLTargeting(duration: 120)
-        
-        // Phase 4: Natural timing variation with hardware jitter (90 seconds)
-        NSLog("🧬 PHASE-4: Natural timing variation mimicking hardware behavior")
-        executeNaturalTimingVariation(duration: 90)
-        
-        // Phase 5: System collapse acceleration with focus conflicts (60 seconds)
-        NSLog("🧬 PHASE-5: System collapse acceleration via focus conflicts")
-        executeSystemCollapseAcceleration(duration: 60)
+        // Phase 3: System stress acceleration (60 seconds)
+        executeSystemStressAcceleration(duration: 60.0)
         
         let totalDuration = Date().timeIntervalSince(startTime)
-        evolutionMetrics.totalTestDuration = totalDuration
+        NSLog("🎯 V8.0-PRIMARY: Completed focused reproduction in \(String(format: "%.1f", totalDuration))s")
+        NSLog("🎯 OBSERVE: Check for focus stuck behavior or phantom input continuation")
         
-        NSLog("🧬 V7.0-EVOLVED: Evolutionary reproduction sequence complete (\(String(format: "%.1f", totalDuration))s)")
-        NSLog("🧬 OBSERVE: Monitor for RunLoop stalls >4000ms and POLL detection")
-        
-        // Enhanced success validation
-        XCTAssertTrue(true, "Evolved reproduction pattern completed - observe for enhanced stress indicators")
+        XCTAssertTrue(true, "Focused reproduction pattern completed - observe manually for InfinityBug")
     }
     
-    /// **EVOLVED SECONDARY TEST - ESTIMATED EXECUTION TIME: 5.0 minutes**
-    /// Backgrounding-triggered pattern enhanced with progressive stress buildup.
-    /// Based on SuccessfulRepro4 analysis with evolved timing and hardware simulation.
+    /// **V8.0 SECONDARY TEST - ESTIMATED EXECUTION TIME: 3.5 minutes**
+    /// 
+    /// Alternative reproduction approach using backgrounding trigger pattern
+    /// from SuccessfulRepro4.txt but without Menu button (using app lifecycle instead).
+    ///
+    /// **Background Trigger Pattern:**
+    /// Simulates the successful backgrounding approach but keeps focus within the app
+    /// by using rapid stress bursts followed by brief pauses (simulating system interruption).
     func testEvolvedBackgroundingTriggeredInfinityBug() throws {
-        NSLog("🧬 V7.0-BACKGROUNDING: Starting evolved backgrounding-triggered reproduction")
-        NSLog("🧬 Enhanced: Progressive stress buildup + Menu button timing optimization")
+        NSLog("🎯 V8.0-SECONDARY: Starting evolved backgrounding-triggered reproduction")
+        NSLog("🎯 PATTERN: Stress → Pause → Stress (simulating backgrounding without leaving app)")
         
         let startTime = Date()
         
-        // Phase 1: Enhanced right-heavy stress with hardware timing jitter (180 seconds)
-        NSLog("🧬 PHASE-1: Enhanced right-heavy stress with natural timing variation")
-        executeEnhancedRightHeavyStress(duration: 180)
-        
-        // Phase 2: Progressive Up burst accumulation (120 seconds)
-        NSLog("🧬 PHASE-2: Progressive Up burst accumulation for system stress")
-        executeProgressiveUpBurstAccumulation(duration: 120)
-        
-        // Phase 3: Evolved backgrounding trigger with hardware simulation (60 seconds)
-        NSLog("🧬 PHASE-3: Evolved backgrounding trigger during peak stress")
-        executeEvolvedBackgroundingTrigger(duration: 60)
+        // 6 stress-pause cycles simulating backgrounding pressure
+        for cycle in 0..<6 {
+            NSLog("🎯 CYCLE \(cycle + 1)/6: Building stress for simulated interruption")
+            
+            // Build stress (30 seconds per cycle)
+            let stressDuration = 30.0 + (Double(cycle) * 5.0) // Progressive: 30s → 55s
+            executeFocusedStressBurst(duration: stressDuration)
+            
+            // Simulated interruption pause (2 seconds)
+            NSLog("🎯 SIMULATED-INTERRUPTION: Brief system pause")
+            usleep(2_000_000) // 2 second pause simulating backgrounding
+        }
         
         let totalDuration = Date().timeIntervalSince(startTime)
-        evolutionMetrics.totalTestDuration = totalDuration
+        NSLog("🎯 V8.0-SECONDARY: Completed backgrounding simulation in \(String(format: "%.1f", totalDuration))s")
         
-        NSLog("🧬 V7.0-BACKGROUNDING: Evolved backgrounding sequence complete (\(String(format: "%.1f", totalDuration))s)")
-        
-        XCTAssertTrue(true, "Evolved backgrounding pattern completed - observe for Menu button trigger effects")
-    }
-    
-    // MARK: - V7.0 EVOLVED IMPLEMENTATION METHODS
-    
-    /// Progressive memory stress with accessibility tree complexity
-    private func executeProgressiveMemoryStress(duration: TimeInterval) {
-        let endTime = Date().addingTimeInterval(duration)
-        var memoryBurstCount = 0
-        
-        while Date() < endTime {
-            // Progressive memory allocation with increasing complexity
-            let allocationSize = 15000 + (memoryBurstCount * 2000) // 15K → 35K progression
-            
-            DispatchQueue.global(qos: .userInitiated).async { [memoryBurstCount] in
-                let largeArray = Array(0..<allocationSize).map { index in
-                    "MemoryStress_\(memoryBurstCount)_\(index)_\(UUID().uuidString)"
-                }
-                
-                DispatchQueue.main.async {
-                    // Force accessibility tree traversal with memory pressure
-                    _ = largeArray.joined(separator: ",").count
-                    
-                    // Trigger layout calculations during memory stress
-                    _ = self.app.children(matching: .any).count
-                }
-            }
-            
-            memoryBurstCount += 1
-            evolutionMetrics.memoryBursts += 1
-            
-            usleep(500_000) // 500ms between progressive allocations
-        }
-        
-        NSLog("🧬 MEMORY-STRESS: Completed \(memoryBurstCount) progressive memory bursts")
-    }
-    
-    /// Mixed input event simulation - gestures + button presses for dual pipeline
-    private func executeMixedInputEventSimulation(duration: TimeInterval) {
-        let endTime = Date().addingTimeInterval(duration)
-        var mixedEventCount = 0
-        
-        while Date() < endTime {
-            // Simulate dual input pipeline collision
-            if mixedEventCount % 3 == 0 {
-                // Gesture simulation (TouchesEvent pathway)
-                executeGestureSimulation()
-                usleep(25_000) // 25ms gap
-                
-                // Button press (PressesEvent pathway) - collision timing
-                executeButtonPress(.right)
-                evolutionMetrics.mixedInputEvents += 1
-            } else {
-                // Regular button navigation with hardware timing variation
-                let direction: XCUIRemote.Button = [.right, .right, .up, .down].randomElement()!
-                executeButtonPress(direction)
-            }
-            
-            mixedEventCount += 1
-            
-            // Hardware timing jitter (40-250ms variation like successful logs)
-            let jitterMicros = UInt32(40_000 + Int(arc4random_uniform(210_000))) // 40-250ms
-            usleep(jitterMicros)
-        }
-        
-        NSLog("🧬 MIXED-INPUT: Completed \(mixedEventCount) mixed input events with hardware timing jitter")
-    }
-    
-    /// Up burst sequences targeting POLL detection like successful reproductions
-    private func executeUpBurstPOLLTargeting(duration: TimeInterval) {
-        let endTime = Date().addingTimeInterval(duration)
-        var upBurstPhase = 0
-        
-        while Date() < endTime {
-            let burstSize = 15 + (upBurstPhase * 3) // Progressive: 15, 18, 21, 24...
-            
-            NSLog("🧬 UP-BURST \(upBurstPhase + 1): \(burstSize) Up presses targeting POLL detection")
-            
-            // Execute Up burst with successful reproduction timing
-            for upPress in 0..<burstSize {
-                executeButtonPress(.up)
-                evolutionMetrics.upBurstPresses += 1
-                
-                // Progressive acceleration within burst (successful pattern)
-                let withinBurstGap = max(35_000, 50_000 - (upPress * 800)) // 50ms → 35ms
-                usleep(UInt32(withinBurstGap))
-            }
-            
-            upBurstPhase += 1
-            evolutionMetrics.upBurstSequences += 1
-            
-            // Directional correction after Up burst (from successful logs)
-            for _ in 0..<3 {
-                executeButtonPress([.right, .left, .down].randomElement()!)
-                usleep(80_000) // 80ms correction timing
-            }
-            
-            // Progressive pause reduction for stress accumulation
-            let pauseBetweenBursts = max(200_000, 800_000 - (upBurstPhase * 50_000)) // 800ms → 200ms
-            usleep(UInt32(pauseBetweenBursts))
-        }
-        
-        NSLog("🧬 UP-BURST: Completed \(upBurstPhase) Up burst sequences (\(evolutionMetrics.upBurstPresses) total Up presses)")
-    }
-    
-    /// Natural timing variation mimicking hardware behavior from successful logs
-    private func executeNaturalTimingVariation(duration: TimeInterval) {
-        let endTime = Date().addingTimeInterval(duration)
-        var naturalEventCount = 0
-        
-        // Successful reproduction pattern: 60% right, 25% up, 15% other
-        let weightedDirections: [XCUIRemote.Button] = 
-            Array(repeating: .right, count: 60) +
-            Array(repeating: .up, count: 25) +
-            Array(repeating: .down, count: 8) +
-            Array(repeating: .left, count: 7)
-        
-        while Date() < endTime {
-            let direction = weightedDirections.randomElement()!
-            executeButtonPress(direction)
-            
-            // Natural hardware timing from successful logs (40-250ms with clusters)
-            let timingPattern: UInt32
-            if naturalEventCount % 7 == 0 {
-                // Occasional rapid cluster (40-60ms) - hardware behavior
-                timingPattern = UInt32(40_000 + arc4random_uniform(20_000))
-            } else {
-                // Normal variation (80-250ms) - human timing
-                timingPattern = UInt32(80_000 + arc4random_uniform(170_000))
-            }
-            
-            usleep(timingPattern)
-            naturalEventCount += 1
-            evolutionMetrics.naturalTimingEvents += 1
-        }
-        
-        NSLog("🧬 NATURAL-TIMING: Completed \(naturalEventCount) events with hardware-like timing variation")
-    }
-    
-    /// System collapse acceleration via focus conflicts
-    private func executeSystemCollapseAcceleration(duration: TimeInterval) {
-        let endTime = Date().addingTimeInterval(duration)
-        var collapsePhase = 0
-        
-        while Date() < endTime {
-            // Create accessibility conflicts via rapid queries
-            DispatchQueue.global(qos: .background).async {
-                for _ in 0..<5 {
-                    DispatchQueue.main.async {
-                        _ = self.app.buttons.count
-                        _ = self.app.cells.count
-                        _ = self.app.staticTexts.count
-                    }
-                    usleep(20_000) // 20ms rapid accessibility queries
-                }
-            }
-            
-            // Accelerating button sequence for system overload
-            let accelerationFactor = 1.0 + (Double(collapsePhase) * 0.1) // 1.0x → 2.0x speed
-            let baseGap = 60_000 // 60ms base
-            let acceleratedGap = UInt32(Double(baseGap) / accelerationFactor)
-            
-            for _ in 0..<8 {
-                executeButtonPress([.right, .up, .right, .up].randomElement()!)
-                usleep(max(15_000, acceleratedGap)) // Minimum 15ms, progressive acceleration
-            }
-            
-            collapsePhase += 1
-            evolutionMetrics.collapseAccelerationPhases += 1
-            
-            usleep(300_000) // 300ms between collapse phases
-        }
-        
-        NSLog("🧬 COLLAPSE-ACCELERATION: Completed \(collapsePhase) acceleration phases")
-    }
-    
-    /// Enhanced right-heavy stress with natural timing variation
-    private func executeEnhancedRightHeavyStress(duration: TimeInterval) {
-        let endTime = Date().addingTimeInterval(duration)
-        var rightBurstCount = 0
-        
-        while Date() < endTime {
-            let burstSize = 20 + (rightBurstCount % 15) // 20-35 press bursts
-            
-            for _ in 0..<burstSize {
-                executeButtonPress(.right)
-                
-                // Hardware timing variation within bursts
-                let burstTiming = UInt32(45_000 + arc4random_uniform(25_000)) // 45-70ms variation
-                usleep(burstTiming)
-            }
-            
-            // Directional correction (from successful patterns)
-            let correctionCount = 2 + (rightBurstCount % 4) // 2-5 corrections
-            for _ in 0..<correctionCount {
-                executeButtonPress([.down, .up].randomElement()!)
-                usleep(70_000) // 70ms correction timing
-            }
-            
-            rightBurstCount += 1
-            evolutionMetrics.rightHeavyBursts += 1
-            
-            // Progressive pause reduction
-            let pauseMs = max(150_000, 400_000 - (rightBurstCount * 15_000)) // 400ms → 150ms
-            usleep(UInt32(pauseMs))
-        }
-        
-        NSLog("🧬 RIGHT-HEAVY: Completed \(rightBurstCount) enhanced right-heavy stress bursts")
-    }
-    
-    /// Progressive Up burst accumulation for system stress
-    private func executeProgressiveUpBurstAccumulation(duration: TimeInterval) {
-        let endTime = Date().addingTimeInterval(duration)
-        var accumulationPhase = 0
-        
-        while Date() < endTime {
-            let upCount = 12 + (accumulationPhase * 4) // Progressive: 12, 16, 20, 24...
-            
-            for _ in 0..<upCount {
-                executeButtonPress(.up)
-                
-                // Aggressive Up timing for system stress
-                let upTiming = max(25_000, 40_000 - (accumulationPhase * 2_000)) // 40ms → 25ms
-                usleep(UInt32(upTiming))
-            }
-            
-            accumulationPhase += 1
-            evolutionMetrics.upAccumulationPhases += 1
-            
-            // Brief recovery pause
-            usleep(250_000) // 250ms between accumulation phases
-        }
-        
-        NSLog("🧬 UP-ACCUMULATION: Completed \(accumulationPhase) progressive Up accumulation phases")
-    }
-    
-    /// Evolved backgrounding trigger with hardware simulation
-    private func executeEvolvedBackgroundingTrigger(duration: TimeInterval) {
-        let endTime = Date().addingTimeInterval(duration)
-        var backgroundTriggerCount = 0
-        
-        while Date() < endTime {
-            // Build stress before Menu button trigger
-            for _ in 0..<5 {
-                executeButtonPress(.right)
-                usleep(40_000) // 40ms rapid stress building
-            }
-            
-            // Menu button trigger during stress (SuccessfulRepro4 pattern)
-            remote.press(.menu, forDuration: 0.1)
-            usleep(200_000) // 200ms for backgrounding effect
-            
-            // Return to app with continued stress
-            app.activate()
-            usleep(100_000) // 100ms app reactivation
-            
-            backgroundTriggerCount += 1
-            evolutionMetrics.backgroundTriggers += 1
-            
-            usleep(2_000_000) // 2 second pause between background triggers
-        }
-        
-        NSLog("🧬 BACKGROUND-TRIGGER: Completed \(backgroundTriggerCount) evolved backgrounding triggers")
-    }
-    
-    // MARK: - V7.0 HELPER METHODS
-    
-    /// Execute button press with evolution metrics tracking
-    private func executeButtonPress(_ direction: XCUIRemote.Button) {
-        remote.press(direction, forDuration: 0.025) // 25ms press duration from successful logs
-        evolutionMetrics.totalButtonPresses += 1
-    }
-    
-    /// Execute gesture simulation for mixed input events
-    private func executeGestureSimulation() {
-        // NOTE: Coordinate-based gestures not available on tvOS
-        // Using Menu button press instead to generate mixed input events
-        remote.press(.menu, forDuration: 0.05)
-        usleep(50_000) // 50ms pause after Menu press
-        evolutionMetrics.gestureSimulations += 1
-    }
-    
-    /// Log evolution results for analysis
-    private func logEvolutionResults() {
-        NSLog("🧬 EVOLUTION-METRICS:")
-        NSLog("🧬   Total Button Presses: \(evolutionMetrics.totalButtonPresses)")
-        NSLog("🧬   Up Burst Sequences: \(evolutionMetrics.upBurstSequences)")
-        NSLog("🧬   Up Burst Presses: \(evolutionMetrics.upBurstPresses)")
-        NSLog("🧬   Mixed Input Events: \(evolutionMetrics.mixedInputEvents)")
-        NSLog("🧬   Natural Timing Events: \(evolutionMetrics.naturalTimingEvents)")
-        NSLog("🧬   Memory Bursts: \(evolutionMetrics.memoryBursts)")
-        NSLog("🧬   Right Heavy Bursts: \(evolutionMetrics.rightHeavyBursts)")
-        NSLog("🧬   Background Triggers: \(evolutionMetrics.backgroundTriggers)")
-        NSLog("🧬   Test Duration: \(String(format: "%.1f", evolutionMetrics.totalTestDuration))s")
-        
-        // Success indicators analysis
-        let upBurstDensity = Double(evolutionMetrics.upBurstPresses) / evolutionMetrics.totalTestDuration
-        let mixedEventRatio = Double(evolutionMetrics.mixedInputEvents) / Double(evolutionMetrics.totalButtonPresses)
-        
-        NSLog("🧬 SUCCESS-INDICATORS:")
-        NSLog("🧬   Up Burst Density: \(String(format: "%.2f", upBurstDensity)) Up presses/second")
-        NSLog("🧬   Mixed Event Ratio: \(String(format: "%.2f", mixedEventRatio * 100))% mixed events")
-        NSLog("🧬   Memory Stress: \(evolutionMetrics.memoryBursts) progressive bursts")
+        XCTAssertTrue(true, "Backgrounding simulation completed - observe manually for InfinityBug")
     }
 }
 
-// MARK: - V7.0 Evolution Metrics Structure
+// MARK: - V8.0 Implementation Extensions
 
-/// Evolution metrics tracking for V7.0 test analysis
-private struct EvolutionMetrics {
-    var totalButtonPresses = 0
-    var upBurstSequences = 0
-    var upBurstPresses = 0
-    var mixedInputEvents = 0
-    var naturalTimingEvents = 0
-    var memoryBursts = 0
-    var rightHeavyBursts = 0
-    var backgroundTriggers = 0
-    var gestureSimulations = 0
-    var collapseAccelerationPhases = 0
-    var upAccumulationPhases = 0
-    var totalTestDuration: TimeInterval = 0
+extension FocusStressUITests {
+    
+    /// Execute natural right-heavy exploration with human-like timing irregularities
+    ///
+    /// **Implementation Notes:**
+    /// - 60% right bias (matching successful manual reproduction)
+    /// - Natural timing variation 40-250ms (vs uniform automated timing)
+    /// - Progressive acceleration simulating increasing user frustration
+    private func executeNaturalRightHeavyExploration(duration: TimeInterval) {
+        NSLog("→ Natural right-heavy exploration: Human-like timing irregularities")
+        
+        let endTime = Date().addingTimeInterval(duration)
+        var pressCount = 0
+        
+        while Date() < endTime {
+            // 60% right bias from successful reproduction
+            let direction: XCUIRemote.Button = (pressCount % 10 < 6) ? .right : [.up, .down, .left].randomElement()!
+            
+            // Human-like timing variation (vs uniform automated timing)
+            let timingVariation = naturalHumanTiming(pressIndex: pressCount)
+            
+            remote.press(direction, forDuration: 0.025)
+            usleep(timingVariation)
+            
+            pressCount += 1
+            
+            // Log progress every 50 presses
+            if pressCount % 50 == 0 {
+                NSLog("→ Right-heavy progress: \(pressCount) presses (60% right bias)")
+            }
+        }
+        
+        NSLog("→ Natural right-heavy exploration completed: \(pressCount) total presses")
+    }
+    
+    /// Execute progressive Up burst accumulation matching successful reproduction pattern
+    ///
+    /// **Implementation Notes:**
+    /// - 22-45 Up presses per burst (matching successful SuccessfulRepro logs)
+    /// - Progressive acceleration: 40ms → 25ms (simulating system stress)
+    /// - Brief recovery pauses between bursts
+    private func executeProgressiveUpBurstAccumulation(duration: TimeInterval) {
+        NSLog("↑ Progressive Up burst accumulation: Matching successful 22-45 pattern")
+        
+        let endTime = Date().addingTimeInterval(duration)
+        var burstNumber = 0
+        
+        while Date() < endTime {
+            let upCount = 22 + (burstNumber % 24) // 22-45 Up presses (matching successful pattern)
+            NSLog("↑ Up burst \(burstNumber + 1): \(upCount) presses")
+            
+            // Execute Up burst with progressive acceleration
+            for pressIndex in 0..<upCount {
+                remote.press(.up, forDuration: 0.025)
+                
+                // Progressive acceleration: 40ms → 25ms (simulating system stress)
+                let progressFactor = Double(pressIndex) / Double(upCount)
+                let gapMicros = UInt32(40_000 - (15_000 * progressFactor)) // 40ms → 25ms
+                usleep(gapMicros)
+            }
+            
+            burstNumber += 1
+            
+            // Brief recovery pause between bursts
+            usleep(200_000) // 200ms recovery
+        }
+        
+        NSLog("↑ Progressive Up burst accumulation completed: \(burstNumber) bursts")
+    }
+    
+    /// Execute system stress acceleration without app backgrounding
+    ///
+    /// **Implementation Notes:**
+    /// - Rapid alternating directions for focus system pressure
+    /// - Progressive speed increase: 35ms → 15ms
+    /// - No Menu button or app lifecycle interference
+    private func executeSystemStressAcceleration(duration: TimeInterval) {
+        NSLog("💥 System stress acceleration: Progressive speed increase")
+        
+        let endTime = Date().addingTimeInterval(duration)
+        var accelerationPhase = 0
+        
+        while Date() < endTime {
+            // Rapid alternating sequence for focus system pressure
+            let directions: [XCUIRemote.Button] = [.right, .up, .left, .up, .right, .down, .left, .down]
+            
+            for direction in directions {
+                remote.press(direction, forDuration: 0.025)
+                
+                // Progressive speed increase: 35ms → 15ms
+                let progressFactor = Double(accelerationPhase) / 20.0 // 20 phases over 60 seconds
+                let gapMicros = UInt32(35_000 - (20_000 * min(1.0, progressFactor))) // 35ms → 15ms
+                usleep(gapMicros)
+            }
+            
+            accelerationPhase += 1
+            
+            if accelerationPhase % 5 == 0 {
+                NSLog("💥 Acceleration phase \(accelerationPhase): Speed increased")
+            }
+        }
+        
+        NSLog("💥 System stress acceleration completed: \(accelerationPhase) phases")
+    }
+    
+    /// Execute focused stress burst for backgrounding simulation
+    ///
+    /// **Implementation Notes:**
+    /// - Concentrated stress periods simulating user frustration
+    /// - Right-heavy bias maintained
+    /// - Progressive intensity increase per cycle
+    private func executeFocusedStressBurst(duration: TimeInterval) {
+        let endTime = Date().addingTimeInterval(duration)
+        var burstPressCount = 0
+        
+        while Date() < endTime {
+            // Maintain right-heavy bias during stress bursts
+            let direction: XCUIRemote.Button = (burstPressCount % 10 < 7) ? .right : [.up, .down, .left].randomElement()!
+            
+            remote.press(direction, forDuration: 0.025)
+            
+            // Stress burst timing: 30ms gaps for sustained pressure
+            usleep(30_000)
+            burstPressCount += 1
+        }
+        
+        NSLog("💥 Focused stress burst: \(burstPressCount) presses")
+    }
+    
+    /// Generate natural human timing variation vs uniform automated timing
+    ///
+    /// **Implementation Notes:**
+    /// - Simulates human reaction time variation (40-250ms)
+    /// - Occasional "thinking pauses" (longer delays)
+    /// - Progressive fatigue acceleration (shorter delays over time)
+    ///
+    /// - Parameter pressIndex: Current press index for fatigue simulation
+    /// - Returns: Microseconds delay for natural human timing
+    private func naturalHumanTiming(pressIndex: Int) -> UInt32 {
+        // Base human reaction time: 40-120ms
+        let baseReaction = 40_000 + arc4random_uniform(80_000)
+        
+        // Occasional "thinking pause" (10% chance): 150-250ms
+        if pressIndex % 10 == 0 {
+            return 150_000 + arc4random_uniform(100_000)
+        }
+        
+        // Progressive fatigue acceleration (faster over time)
+        let fatigueReduction = min(20_000, UInt32(pressIndex / 10) * 1_000) // Up to 20ms faster
+        let finalTiming = max(40_000, baseReaction - fatigueReduction)
+        
+        return finalTiming
+    }
 }
