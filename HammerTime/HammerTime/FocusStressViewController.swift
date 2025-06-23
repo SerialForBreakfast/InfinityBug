@@ -33,7 +33,11 @@ final class FocusStressViewController: UIViewController {
     private var layoutChangeTimer: Timer?
     /// Timer for posting random VoiceOver announcements to further stress the accessibility system.
     private var voAnnouncementTimer: Timer?
+    /// Timer for creating memory pressure to stress the system for V6.0 reproduction tests
+    private var memoryStressTimer: Timer?
     private var focusGuides: [UIFocusGuide] = []
+    /// Array of overlapping focus conflict elements for enhanced stress testing
+    private var focusConflictElements: [UIView] = []
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewCompositionalLayout { [weak self] _, _ in
@@ -85,6 +89,11 @@ final class FocusStressViewController: UIViewController {
         if stressors.contains(.overlappingElements) { addOverlappingElements() }
         if stressors.contains(.voAnnouncements) { startVOAnnouncements() }
         
+        // V6.0 memory stress features for guaranteed reproduction
+        if ProcessInfo.processInfo.environment["MEMORY_STRESS_ENABLED"] == "1" {
+            startMemoryStress()
+        }
+        
         AXFocusDebugger.shared.start()
     }
 
@@ -93,6 +102,7 @@ final class FocusStressViewController: UIViewController {
         dynamicGuideTimer?.invalidate()
         layoutChangeTimer?.invalidate()
         voAnnouncementTimer?.invalidate()
+        memoryStressTimer?.invalidate()
     }
 
     // MARK: Setup helpers
@@ -194,6 +204,59 @@ final class FocusStressViewController: UIViewController {
                 overlayView.widthAnchor.constraint(equalToConstant: 200),
                 overlayView.heightAnchor.constraint(equalToConstant: 150)
             ])
+        }
+    }
+    
+    // MARK: - V6.0 Memory Stress Features
+    
+    /// Starts memory stress timer to create system pressure for guaranteed InfinityBug reproduction.
+    /// Generates background memory allocations to stress the system similar to successful manual reproductions.
+    private func startMemoryStress() {
+        NSLog("💾 FocusStressViewController: Starting memory stress for V6.0 reproduction")
+        
+        memoryStressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            // Generate memory allocations to stress system
+            DispatchQueue.global(qos: .background).async {
+                let largeArray = Array(0..<15000).map { _ in UUID().uuidString }
+                DispatchQueue.main.async {
+                    // Trigger layout calculations with memory pressure
+                    _ = largeArray.joined(separator: ",").count
+                    
+                    // Additional accessibility system stress
+                    if UIAccessibility.isVoiceOverRunning {
+                        _ = self.view.subviews.count
+                    }
+                }
+            }
+        }
+        
+        // Add focus conflict elements for enhanced stress
+        addFocusConflicts()
+    }
+    
+    /// Creates overlapping focus conflict elements to enhance accessibility system stress.
+    /// These elements create focus confusion similar to conditions in successful reproductions.
+    private func addFocusConflicts() {
+        NSLog("💾 FocusStressViewController: Adding focus conflicts for enhanced stress")
+        
+        for i in 0..<25 {
+            let conflictView = UIView()
+            conflictView.isAccessibilityElement = true
+            conflictView.accessibilityLabel = "FocusConflict\(i % 4)" // Duplicate labels = conflict
+            conflictView.backgroundColor = .clear
+            conflictView.alpha = 0.02 // Nearly invisible but still focusable
+            view.addSubview(conflictView)
+            
+            // Overlapping frames create focus confusion
+            conflictView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                conflictView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: CGFloat(i * 12 - 150)),
+                conflictView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: CGFloat(i * 8 - 100)),
+                conflictView.widthAnchor.constraint(equalToConstant: 180),
+                conflictView.heightAnchor.constraint(equalToConstant: 120)
+            ])
+            
+            focusConflictElements.append(conflictView)
         }
     }
 

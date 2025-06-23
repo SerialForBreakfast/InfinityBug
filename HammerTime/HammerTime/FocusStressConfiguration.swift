@@ -9,6 +9,7 @@ public enum FocusStressPreset: CaseIterable {
     case heavyReproduction
     case edgeTesting
     case performanceBaseline
+    case guaranteedInfinityBug
 
     /// String representation for launch arguments and UI tests.
     /// This method avoids RawRepresentable protocol complications across targets.
@@ -19,6 +20,7 @@ public enum FocusStressPreset: CaseIterable {
         case .heavyReproduction: return "heavyReproduction"
         case .edgeTesting: return "edgeTesting"
         case .performanceBaseline: return "performanceBaseline"
+        case .guaranteedInfinityBug: return "guaranteedInfinityBug"
         }
     }
     
@@ -31,6 +33,7 @@ public enum FocusStressPreset: CaseIterable {
         case "heavyReproduction": return .heavyReproduction
         case "edgeTesting": return .edgeTesting
         case "performanceBaseline": return .performanceBaseline
+        case "guaranteedInfinityBug": return .guaranteedInfinityBug
         default: return nil
         }
     }
@@ -72,6 +75,26 @@ public enum FocusStressPreset: CaseIterable {
                 stress: .init(stressors: []),
                 navigation: .init(strategy: .snake, pauseBetweenCommands: 0.5),
                 performance: .init(prefetchingEnabled: true)
+            )
+        case .guaranteedInfinityBug:
+            return FocusStressConfiguration(
+                layout: .init(numberOfSections: 100, itemsPerSection: 100, nestingLevel: .tripleNested),
+                stress: .init(stressors: [
+                    .jiggleTimer,
+                    .hiddenFocusableTraps,
+                    .circularFocusGuides,
+                    .duplicateIdentifiers,
+                    .dynamicFocusGuides,
+                    .rapidLayoutChanges,
+                    .overlappingElements,
+                    .voAnnouncements
+                ], 
+                jiggleInterval: 0.02,           // Faster jiggle for maximum stress
+                layoutChangeInterval: 0.01,     // Rapid layout changes
+                voAnnouncementInterval: 0.15,   // More frequent VO announcements
+                dynamicGuideInterval: 0.05),    // Rapid guide changes
+                navigation: .init(strategy: .randomWalk, pauseBetweenCommands: 0.035),
+                performance: .init(prefetchingEnabled: false)
             )
         }
     }

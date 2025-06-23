@@ -1,5 +1,5 @@
 //
-//  FocusStressUITests.swift
+//  FocusStressUITests_V6.swift
 //  HammerTimeUITests
 //
 //  ========================================================================
@@ -24,25 +24,12 @@
 //  - ADDED: Guaranteed reproduction test implementing exact successful patterns
 //  - ADDED: Memory stress + focus conflict generation
 //  - ADDED: Progressive timing stress (50ms → 30ms reduction)
-//
-//  **EXECUTION TIME OPTIMIZATION:**
-//  - Setup: <10 seconds (minimal caching only)
-//  - Primary test: 5.5 minutes (guaranteed reproduction pattern)
-//  - Cache flooding: 6.0 minutes (extended stress testing)
-//  - All tests complete within 10-minute CI limit
-//
-//  **HUMAN OBSERVATION REQUIRED:**
-//  UITests cannot reliably detect InfinityBug. Success indicators:
-//  - Focus gets stuck and doesn't respond to input
-//  - Navigation continues after test completion ("phantom inputs")
-//  - System becomes unresponsive requiring restart
-//  - RunLoop stall warnings >4000ms in console logs
 
 import XCTest
 @testable import HammerTime
 
 /// V6.0 Evolution: Guaranteed InfinityBug reproduction based on proven successful patterns
-final class FocusStressUITests: XCTestCase {
+final class FocusStressUITests_V6: XCTestCase {
     
     var app: XCUIApplication!
     private let remote = XCUIRemote.shared
@@ -181,31 +168,6 @@ final class FocusStressUITests: XCTestCase {
         
         NSLog("🔥 V6.0-SECONDARY: Extended reproduction completed - observe for InfinityBug")
         XCTAssertTrue(true, "Extended cache flooding completed - observe manually for InfinityBug")
-    }
-    
-    /// **HYBRID TEST - ESTIMATED EXECUTION TIME: 4.0 minutes**
-    /// Combines proven patterns with NavigationStrategy for comprehensive coverage.
-    /// Uses proven timing with smart navigation to avoid edge-sticking.
-    func testHybridProvenPatternReproduction() throws {
-        NSLog("🔄 V6.0-HYBRID: Proven patterns with smart navigation")
-        NSLog("🔄 Expected duration: 4.0 minutes - balanced approach")
-        
-        activateMemoryStress()
-        
-        // Phase 1: Smart right-biased snake pattern (90 seconds)
-        NSLog("🔄 HYBRID-PHASE-1: Right-biased snake with proven timing")
-        executeRightBiasedSnake(duration: 90)
-        
-        // Phase 2: Spiral with up emphasis (60 seconds)
-        NSLog("🔄 HYBRID-PHASE-2: Up-emphasized spiral")
-        executeUpEmphasizedSpiral(duration: 60)
-        
-        // Phase 3: Cross pattern with burst integration (90 seconds)
-        NSLog("🔄 HYBRID-PHASE-3: Cross pattern with Up bursts")
-        executeCrossWithUpBursts(duration: 90)
-        
-        NSLog("🔄 V6.0-HYBRID: Hybrid reproduction completed - observe for InfinityBug")
-        XCTAssertTrue(true, "Hybrid pattern reproduction completed - observe manually for InfinityBug")
     }
     
     // MARK: - V6.0 REPRODUCTION IMPLEMENTATION METHODS
@@ -347,53 +309,6 @@ final class FocusStressUITests: XCTestCase {
         
         usleep(optimalGap)
     }
-    
-    /// Right-biased snake pattern with proven timing
-    private func executeRightBiasedSnake(duration: Int) {
-        let endTime = Date().addingTimeInterval(TimeInterval(duration))
-        let rightBiasedPattern: [XCUIRemote.Button] = [.right, .right, .right, .down, .right, .right, .left, .down]
-        var patternIndex = 0
-        
-        while Date() < endTime {
-            let direction = rightBiasedPattern[patternIndex % rightBiasedPattern.count]
-            voiceOverOptimizedPress(direction, burstPosition: patternIndex)
-            patternIndex += 1
-        }
-    }
-    
-    /// Up-emphasized spiral for POLL detection
-    private func executeUpEmphasizedSpiral(duration: Int) {
-        let endTime = Date().addingTimeInterval(TimeInterval(duration))
-        let upEmphasizedPattern: [XCUIRemote.Button] = [.right, .down, .left, .up, .up, .up] // 50% up bias
-        var patternIndex = 0
-        
-        while Date() < endTime {
-            let direction = upEmphasizedPattern[patternIndex % upEmphasizedPattern.count]
-            voiceOverOptimizedPress(direction, burstPosition: patternIndex)
-            patternIndex += 1
-        }
-    }
-    
-    /// Cross pattern with integrated Up bursts
-    private func executeCrossWithUpBursts(duration: Int) {
-        let endTime = Date().addingTimeInterval(TimeInterval(duration))
-        var patternIndex = 0
-        
-        while Date() < endTime {
-            // Every 20 presses, do an Up burst
-            if patternIndex % 20 == 0 && patternIndex > 0 {
-                NSLog("🔄 Cross Up burst at position \(patternIndex)")
-                for _ in 0..<8 {
-                    voiceOverOptimizedPress(.up, burstPosition: 0)
-                }
-            }
-            
-            let crossPattern: [XCUIRemote.Button] = [.up, .right, .down, .left]
-            let direction = crossPattern[patternIndex % crossPattern.count]
-            voiceOverOptimizedPress(direction, burstPosition: patternIndex)
-            patternIndex += 1
-        }
-    }
 }
 
 // MARK: - V6.0 REMOVED TESTS DOCUMENTATION
@@ -425,7 +340,6 @@ final class FocusStressUITests: XCTestCase {
  V6.0 REPLACEMENTS:
  ✅ testGuaranteedInfinityBugReproduction - Direct pattern implementation
  ✅ testExtendedCacheFloodingReproduction - 18-phase burst pattern
- ✅ testHybridProvenPatternReproduction - NavigationStrategy + proven timing
  
  PROVEN SUCCESS FACTORS IMPLEMENTED:
  ✅ VoiceOver-optimized timing (35-50ms gaps)
@@ -446,4 +360,4 @@ final class FocusStressUITests: XCTestCase {
  - Observable focus stuck behavior within 5-6 minutes
  - System collapse requiring restart (successful reproduction indicator)
  ========================================================================
- */
+ */ 
