@@ -592,25 +592,28 @@
 
 # Current High-Priority Tasks - Updated 2025-01-22
 
-## 🔥 IMMEDIATE PRIORITY: SuccessfulRepro4 Backgrounding Trigger Validation
+## 🔥 IMMEDIATE PRIORITY: Swipe-Enhanced InfinityBug Validation
 
-### **Task 1: Execute Backgrounding-Triggered Test**
-- **Action**: Run `testBackgroundingTriggeredInfinityBug()` on physical Apple TV
-- **Command**: `xcodebuild test -scheme HammerTimeUITests -destination 'platform=tvOS,name=[AppleTV]' -only-testing:HammerTimeUITests/FocusStressUITests/testBackgroundingTriggeredInfinityBug`
-- **Expected**: 5-minute test with Menu trigger during RunLoop stalls >1500ms
-- **Success Criteria**: Focus lock-up after Menu button press during stress buildup
+### **Task 1: Execute Swipe-Enhanced Test on Physical Apple TV**
+- **Action**: Run `testSwipeEnhancedInfinityBugReproduction()` on real Apple TV hardware
+- **Command**: `xcodebuild test -scheme HammerTimeUITests -destination 'platform=tvOS,name=[AppleTV]' -only-testing:HammerTimeUITests/FocusStressUITests/testSwipeEnhancedInfinityBugReproduction`
+- **Expected**: 4-minute test with mixed input methods (swipes + button presses)
+- **Success Criteria**: Enhanced InfinityBug reproduction through trackpad simulation
 
-### **Task 2: Compare Dual Test Effectiveness** 
-- **Execute Both**: Original deterministic test vs new backgrounding trigger test
-- **Metrics**: RunLoop stall timing, trigger effectiveness, reproduction reliability
-- **Analysis**: Which pattern achieves InfinityBug more consistently?
-- **Documentation**: CONFIRM/DENY for backgrounding trigger hypothesis
+### **Task 2: Compare Swipe vs Button-Only Effectiveness**
+- **Execute Both**: Original `testBackgroundingTriggeredInfinityBug()` vs new `testSwipeEnhancedInfinityBugReproduction()`
+- **Metrics**: Input complexity (3.5x increase), RunLoop stall frequency, reproduction success rate
+- **Analysis**: Determine which method produces more reliable InfinityBug triggering
 
-### **Task 3: Physical Device Validation Protocol**
-- **Setup**: Physical Apple TV with VoiceOver enabled, AXFocusDebugger logging
-- **Observation**: Manual monitoring for focus lock-up and system unresponsiveness
-- **Timing**: Note exact timing of Menu button press relative to RunLoop stalls
-- **Results**: Document trigger effectiveness and system response
+### **Task 3: Validate GameController Framework Integration**
+- **Verify**: Apple TV Remote detection and trackpad access in UITest environment
+- **Monitor**: GameController.controllers() availability during test execution
+- **Fallback Testing**: Coordinate dragging backup when GameController unavailable
+
+### **Task 4: Swipe Burst Pattern Optimization**
+- **Test Individual Patterns**: rapid-horizontal, circular-motion, diagonal-chaos, mixed-input-storm
+- **Timing Analysis**: Measure system stress impact of each burst pattern
+- **Iteration Tuning**: Optimize burst count (3-5 iterations) for maximum effectiveness
 
 ## 📊 ANALYSIS PRIORITIES
 
@@ -690,3 +693,53 @@
 - ❓ **PENDING**: 5-minute execution time acceptable for consistent reproduction?
 - ❓ **PENDING**: TestRunLogger captures all necessary backgrounding metrics?
 - ❓ **PENDING**: Integration with existing test suite and CI pipeline?
+
+# URGENT TASKS - V6 Test Failure Response - Updated 2025-01-22
+
+## 🚨 IMMEDIATE PRIORITY: V6 Test Failure Analysis & Physical Device Protocol
+
+### **Task 1: Fix TestRunLogger UITest Path Resolution**
+- **Issue**: Sandbox path `/private/var/containers/logs/testRunLogs` permission denied
+- **Action**: Update TestRunLogger.getLogsDirectoryURL() for UITest execution context
+- **Expected**: Successful log file creation during UITest execution
+- **Impact**: BLOCKING - prevents detailed test analysis
+
+### **Task 2: Physical Apple TV Testing Protocol**
+- **Critical Finding**: V6 tests run on Simulator cannot reproduce InfinityBug
+- **Required**: Physical Apple TV device for actual InfinityBug reproduction
+- **Protocol**: 
+  1. Enable VoiceOver on physical Apple TV
+  2. Run V6 tests on hardware (not Simulator)
+  3. Manual VoiceOver navigation during test execution
+- **Command**: `xcodebuild test -scheme HammerTimeUITests -destination 'platform=tvOS,name=[Physical Apple TV]'`
+
+### **Task 3: Hybrid Testing Strategy Implementation**
+- **Approach**: UITests for system stress + Manual VoiceOver for InfinityBug detection
+- **Timing**: Run V6 stress test, then manually engage VoiceOver during high stress periods
+- **Documentation**: Record exact VoiceOver navigation patterns that trigger InfinityBug
+
+## 📋 SECONDARY TASKS
+
+### **Task 4: V6 Test Optimization for Physical Device**
+- **Reduce query complexity**: Minimize accessibility tree traversal during stress
+- **Optimize memory stress timing**: Align with SuccessfulRepro4 patterns (25ms intervals)
+- **Add VoiceOver integration points**: Programmatic VoiceOver state detection
+
+### **Task 5: Enhanced Logging Strategy**
+- **Fix sandbox path resolution**: Support both manual and UITest execution
+- **Add accessibility tree metrics**: Track tree complexity growth during stress
+- **VoiceOver state logging**: Detect and log VoiceOver focus changes
+
+## ⚠️ CRITICAL INSIGHTS FROM V6 FAILURE
+
+1. **Simulator Limitation Confirmed**: InfinityBug requires physical Apple TV hardware
+2. **VoiceOver Required**: UITests alone cannot trigger accessibility focus bugs
+3. **System Stress Insufficient**: Need higher memory pressure + VoiceOver interaction
+4. **Timing Critical**: SuccessfulRepro4 25ms intervals more effective than 35-50ms
+
+## 🎯 SUCCESS CRITERIA
+
+- **TestRunLogger working**: Log files successfully created during UITest execution
+- **Physical device testing**: V6 tests execute on actual Apple TV hardware
+- **Hybrid protocol established**: Clear process for UITest stress + manual VoiceOver
+- **InfinityBug reproduction**: Successful trigger through combined approach

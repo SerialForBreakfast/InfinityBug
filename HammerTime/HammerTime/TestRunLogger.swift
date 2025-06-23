@@ -358,19 +358,64 @@ public final class TestRunLogger {
         return fileName.components(separatedBy: invalidChars).joined(separator: "_")
     }
     
-    /// Gets the logs directory URL
+    /// Gets the logs directory URL with proper UITest execution context support
     /// 
     /// - Returns: URL of logs directory
     private func getLogsDirectoryURL() -> URL {
-        // Get the workspace root directory relative to current executable
+        // Detect execution context: UITest vs Manual/App execution
         let bundleURL = Bundle.main.bundleURL
-        let workspaceURL = bundleURL
-            .deletingLastPathComponent() // Remove .app
-            .deletingLastPathComponent() // Remove Debug-appletv folder
-            .deletingLastPathComponent() // Remove Products folder  
-            .deletingLastPathComponent() // Remove Build folder
+        let bundlePath = bundleURL.path
         
-        return workspaceURL.appendingPathComponent("logs")
+        // UITest execution context detection
+        if bundlePath.contains("DerivedData") || bundlePath.contains("UITests") {
+            // UITest context: Use workspace-relative path resolution
+            log("🔍 UITEST-CONTEXT: Detected UITest execution environment")
+            
+            // Navigate from UITest bundle to workspace root
+            let workspaceURL = bundleURL
+                .deletingLastPathComponent() // Remove .xctest bundle
+                .deletingLastPathComponent() // Remove Debug-appletvos folder
+                .deletingLastPathComponent() // Remove Products folder  
+                .deletingLastPathComponent() // Remove Build folder
+                .deletingLastPathComponent() // Remove DerivedData project folder
+            
+            // Look for HammerTime workspace in tvOS-compatible locations
+            let possiblePaths = [
+                workspaceURL.appendingPathComponent("HammerTime"),
+                // tvOS: Use Documents directory fallback
+                FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?
+                    .appendingPathComponent("GitHub")
+                    .appendingPathComponent("InfinityBug")
+                    .appendingPathComponent("HammerTime"),
+                // tvOS: Use temporary directory as last resort
+                FileManager.default.temporaryDirectory
+                    .appendingPathComponent("HammerTime")
+            ].compactMap { $0 }
+            
+            for workspacePath in possiblePaths {
+                let logsPath = workspacePath.appendingPathComponent("logs")
+                if FileManager.default.fileExists(atPath: logsPath.path) {
+                    log("✅ UITEST-CONTEXT: Found workspace at \(workspacePath.path)")
+                    return logsPath
+                }
+            }
+            
+            // Fallback: Create logs in UITest bundle directory
+            log("⚠️ UITEST-CONTEXT: Workspace not found, using UITest bundle fallback")
+            let fallbackLogsURL = bundleURL.deletingLastPathComponent().appendingPathComponent("logs")
+            try? FileManager.default.createDirectory(at: fallbackLogsURL, withIntermediateDirectories: true, attributes: nil)
+            return fallbackLogsURL
+        } else {
+            // Manual/App execution context: Use bundle-relative path
+            log("🔍 MANUAL-CONTEXT: Detected manual/app execution environment")
+            let workspaceURL = bundleURL
+                .deletingLastPathComponent() // Remove .app
+                .deletingLastPathComponent() // Remove Debug-appletv folder
+                .deletingLastPathComponent() // Remove Products folder  
+                .deletingLastPathComponent() // Remove Build folder
+            
+            return workspaceURL.appendingPathComponent("logs")
+        }
     }
     
     /// Gets current memory usage information

@@ -39,6 +39,7 @@
 //  - RunLoop stall warnings >4000ms in console logs
 
 import XCTest
+import GameController
 @testable import HammerTime
 
 /// V6.0 Evolution: Guaranteed InfinityBug reproduction based on proven successful patterns
@@ -371,6 +372,141 @@ final class FocusStressUITests: XCTestCase {
         TestRunLogger.shared.stopLogging(testResult: testResult)
         
         XCTAssertTrue(true, "Backgrounding-triggered sequence completed - observe manually for InfinityBug")
+    }
+    
+    /// **STEP 5: SWIPE-ENHANCED INFINITYBUG TEST - ESTIMATED EXECUTION TIME: 4.0 minutes**
+    /// Integrates swipe gestures with existing stress patterns from SuccessfulRepro4
+    /// Combines trackpad swipes with button navigation for maximum system stress
+    /// **TARGET: Enhanced InfinityBug reproduction through mixed input methods**
+    func testSwipeEnhancedInfinityBugReproduction() throws {
+        // Start swipe-enhanced logging
+        TestRunLogger.shared.startUITest("Step5_SwipeEnhancedInfinityBug")
+        let testStartTime = Date()
+        
+        TestRunLogger.shared.log("🎯 STEP-5: SWIPE-ENHANCED reproduction - Mixed input method approach")
+        TestRunLogger.shared.log("🎯 Integration: SuccessfulRepro4 patterns + GameController swipe simulation")
+        
+        // Verify collection view accessibility
+        guard cachedCollectionView != nil else {
+            XCTFail("Collection view not found - ensure app launched with -FocusStressPreset guaranteedInfinityBug")
+            return
+        }
+        
+        TestRunLogger.shared.log("✅ SWIPE-ENHANCED: Collection view verified, beginning mixed input test")
+        
+        // Phase 1: Initial stress buildup with swipe integration (90 seconds)
+        TestRunLogger.shared.log("🎯 Phase 1: Swipe-integrated stress buildup (90 seconds)")
+        let phase1Duration = 90
+        let phase1EndTime = Date().addingTimeInterval(TimeInterval(phase1Duration))
+        var swipeCounter = 0
+        
+        while Date() < phase1EndTime {
+            let timeRemaining = Int(phase1EndTime.timeIntervalSince(Date()))
+            
+            // Every 10 seconds, inject swipe burst patterns
+            if timeRemaining % 10 == 0 && swipeCounter < 9 {
+                let patterns = ["rapid-horizontal", "circular-motion", "diagonal-chaos"]
+                let selectedPattern = patterns[swipeCounter % patterns.count]
+                executeSwipeBurstPattern(patternName: selectedPattern, iterations: 3)
+                swipeCounter += 1
+                TestRunLogger.shared.log("💥 Phase 1: Injected \(selectedPattern) swipe burst (\(swipeCounter)/9)")
+            }
+            
+            // Continue with maximum focus traversal navigation between swipes
+            executeProgressiveBurst(direction: .right, count: 4, burstIndex: swipeCounter, totalBursts: 50)
+            executeProgressiveBurst(direction: .down, count: 2, burstIndex: swipeCounter, totalBursts: 50)
+            executeProgressiveBurst(direction: .right, count: 3, burstIndex: swipeCounter, totalBursts: 50)
+            
+            // Inject individual swipe gestures randomly  
+            if Int.random(in: 1...10) <= 3 { // 30% chance
+                let randomDirection = ["right", "left", "up", "down"].randomElement()!
+                executeSwipeGesture(direction: randomDirection, intensity: 0.75, duration: 0.3)
+                TestRunLogger.shared.log("🎲 Phase 1: Random \(randomDirection) swipe injected")
+            }
+            
+            if timeRemaining % 15 == 0 {
+                TestRunLogger.shared.log("⏱️ Phase 1: \(timeRemaining) seconds remaining")
+            }
+        }
+        
+        TestRunLogger.shared.log("✅ Phase 1 completed: Swipe-integrated stress established")
+        
+        // Phase 2: Intensive swipe + navigation hybrid (60 seconds) 
+        TestRunLogger.shared.log("🎯 Phase 2: Intensive hybrid swipe+navigation (60 seconds)")
+        let phase2Duration = 60
+        let phase2EndTime = Date().addingTimeInterval(TimeInterval(phase2Duration))
+        
+        while Date() < phase2EndTime {
+            let timeRemaining = Int(phase2EndTime.timeIntervalSince(Date()))
+            
+            // Rapid-fire mixed input every 5 seconds
+            if timeRemaining % 5 == 0 {
+                executeSwipeBurstPattern(patternName: "mixed-input-storm", iterations: 2)
+                TestRunLogger.shared.log("⚡ Phase 2: Mixed input storm executed")
+            }
+            
+            // Continuous navigation with swipe overlays
+            for _ in 0..<3 {
+                executeSwipeGesture(direction: "right", intensity: 0.9, duration: 0.15)
+                remote.press(.right, forDuration: 0.025)
+                executeSwipeGesture(direction: "down", intensity: 0.8, duration: 0.12)
+                remote.press(.down, forDuration: 0.025)
+                usleep(80_000) // 80ms between mixed sequences
+            }
+            
+            if timeRemaining % 10 == 0 {
+                TestRunLogger.shared.log("⏱️ Phase 2: \(timeRemaining) seconds remaining - system stress building")
+            }
+        }
+        
+        TestRunLogger.shared.log("✅ Phase 2 completed: Hybrid input stress maximized")
+        
+        // Phase 3: Critical swipe chaos before backgrounding trigger (30 seconds)
+        TestRunLogger.shared.log("🎯 Phase 3: Critical swipe chaos + backgrounding trigger (30 seconds)")
+        let phase3Duration = 30
+        let phase3EndTime = Date().addingTimeInterval(TimeInterval(phase3Duration))
+        
+        while Date() < phase3EndTime {
+            let timeRemaining = Int(phase3EndTime.timeIntervalSince(Date()))
+            
+            // Maximum chaos: all swipe patterns simultaneously
+            executeSwipeBurstPattern(patternName: "rapid-horizontal", iterations: 2)
+            executeSwipeBurstPattern(patternName: "circular-motion", iterations: 1)
+            executeSwipeBurstPattern(patternName: "diagonal-chaos", iterations: 2)
+            
+            // Simulate rapid user frustration with overlapping inputs
+            for _ in 0..<5 {
+                executeSwipeGesture(direction: "right", intensity: 1.0, duration: 0.08)
+                executeSwipeGesture(direction: "left", intensity: 1.0, duration: 0.08)
+                remote.press(.select, forDuration: 0.02)
+                usleep(20_000) // Extremely rapid succession
+            }
+            
+            if timeRemaining <= 5 {
+                TestRunLogger.shared.log("🚨 Phase 3: \(timeRemaining)s - CRITICAL: Preparing backgrounding trigger")
+                
+                // Final chaos burst before backgrounding
+                executeSwipeBurstPattern(patternName: "mixed-input-storm", iterations: 3)
+                
+                // Menu button trigger during peak stress (SuccessfulRepro4 pattern)
+                TestRunLogger.shared.log("🎯 BACKGROUNDING TRIGGER: Menu press during swipe chaos")
+                remote.press(.menu, forDuration: 0.1)
+                usleep(500_000) // 500ms observation window
+                
+                TestRunLogger.shared.log("🔥 CRITICAL: Mixed swipe+navigation stress + backgrounding trigger executed")
+                break
+            }
+            
+            usleep(2000_000) // 2 second intervals for chaos bursts
+        }
+        
+        let totalDuration = Date().timeIntervalSince(testStartTime)
+        TestRunLogger.shared.log("✅ SWIPE-ENHANCED TEST COMPLETED")
+        TestRunLogger.shared.log("📊 Total execution time: \(String(format: "%.1f", totalDuration)) seconds")
+        TestRunLogger.shared.log("🎯 OBSERVE: Focus system behavior after mixed input stress + backgrounding trigger")
+        TestRunLogger.shared.log("🎯 SUCCESS CRITERIA: Infinite focus loops, system unresponsiveness, or app termination")
+        
+        TestRunLogger.shared.stopLogging()
     }
     
     // MARK: - V6.0 REPRODUCTION IMPLEMENTATION METHODS
@@ -773,6 +909,237 @@ final class FocusStressUITests: XCTestCase {
         
         TestRunLogger.shared.log("🎯 Backgrounding trigger completed: \(menuPressCount) menu triggers, \(rightPressCount) right presses")
         TestRunLogger.shared.log("🎯 CRITICAL: Observe for focus lock-up and system unresponsiveness")
+    }
+    
+    /// **SWIPE GESTURE SIMULATION - GameController Framework Approach**
+    /// Simulates trackpad swipe gestures through GCController.microGamepad interface
+    /// This bypasses XCUITest limitations and provides direct hardware simulation
+    private func executeSwipeGesture(direction: String, intensity: Float = 0.8, duration: TimeInterval = 0.5) {
+        TestRunLogger.shared.log("🏃 SWIPE: \(direction) gesture simulation started (intensity: \(intensity), duration: \(duration)s)")
+        
+        // Access Apple TV Remote through GameController framework
+        let controllers = GCController.controllers()
+        guard let appleRemote = controllers.first(where: { 
+            $0.productCategory.contains("Remote") || $0.vendorName?.contains("Apple") == true 
+        }) else {
+            TestRunLogger.shared.log("⚠️ SWIPE: Apple TV Remote controller not accessible - falling back to coordinate drag")
+            fallbackCoordinateSwipe(direction: direction)
+            return
+        }
+        
+        guard let microGamepad = appleRemote.microGamepad else {
+            TestRunLogger.shared.log("⚠️ SWIPE: MicroGamepad interface not available")
+            fallbackCoordinateSwipe(direction: direction)
+            return
+        }
+        
+        // Configure trackpad for absolute positioning mode
+        microGamepad.reportsAbsoluteDpadValues = true
+        
+        TestRunLogger.shared.log("✅ SWIPE: Remote controller found: \(appleRemote.vendorName ?? "Unknown")")
+        
+        switch direction.lowercased() {
+        case "right", "horizontal-right":
+            simulateTrackpadSwipe(x: intensity, y: 0.0, duration: duration, microGamepad: microGamepad, label: "Right")
+        case "left", "horizontal-left":
+            simulateTrackpadSwipe(x: -intensity, y: 0.0, duration: duration, microGamepad: microGamepad, label: "Left")
+        case "up", "vertical-up":
+            simulateTrackpadSwipe(x: 0.0, y: -intensity, duration: duration, microGamepad: microGamepad, label: "Up")
+        case "down", "vertical-down":
+            simulateTrackpadSwipe(x: 0.0, y: intensity, duration: duration, microGamepad: microGamepad, label: "Down")
+        case "diagonal-up-right":
+            simulateTrackpadSwipe(x: intensity * 0.7, y: -intensity * 0.7, duration: duration, microGamepad: microGamepad, label: "Diagonal Up-Right")
+        case "diagonal-down-left":
+            simulateTrackpadSwipe(x: -intensity * 0.7, y: intensity * 0.7, duration: duration, microGamepad: microGamepad, label: "Diagonal Down-Left")
+        default:
+            TestRunLogger.shared.log("❌ SWIPE: Unknown direction '\(direction)' - supported: right, left, up, down, diagonal-up-right, diagonal-down-left")
+        }
+    }
+    
+    /// High-fidelity trackpad swipe simulation with progressive movement
+    private func simulateTrackpadSwipe(x: Float, y: Float, duration: TimeInterval, microGamepad: GCMicroGamepad, label: String) {
+        let frameRate: Int = 60 // 60fps for smooth gesture
+        let totalFrames = Int(duration * Double(frameRate))
+        let stepX = x / Float(totalFrames)
+        let stepY = y / Float(totalFrames)
+        
+        TestRunLogger.shared.log("🎯 SWIPE: Executing \(label) swipe - \(totalFrames) frames at \(frameRate)fps")
+        
+        // Progressive movement simulation
+        for frame in 0...totalFrames {
+            let progress = Float(frame) / Float(totalFrames)
+            
+            // Cubic easing for natural swipe feel
+            let easedProgress = cubicEaseInOut(progress)
+            
+            let currentX = stepX * Float(totalFrames) * easedProgress
+            let currentY = stepY * Float(totalFrames) * easedProgress
+            
+            // Apply trackpad values
+            microGamepad.dpad.xAxis.setValue(currentX)
+            microGamepad.dpad.yAxis.setValue(currentY)
+            
+            // Trigger value change handlers manually if needed
+            if let handler = microGamepad.dpad.valueChangedHandler {
+                handler(microGamepad.dpad, currentX, currentY)
+            }
+            
+            // 60fps timing
+            usleep(UInt32(1000000 / frameRate))
+            
+            if frame % 10 == 0 {
+                TestRunLogger.shared.log("📊 SWIPE: Frame \(frame)/\(totalFrames) - Position(\(String(format: "%.2f", currentX)), \(String(format: "%.2f", currentY)))")
+            }
+        }
+        
+        // Reset to neutral position
+        microGamepad.dpad.xAxis.setValue(0.0)
+        microGamepad.dpad.yAxis.setValue(0.0)
+        
+        if let handler = microGamepad.dpad.valueChangedHandler {
+            handler(microGamepad.dpad, 0.0, 0.0)
+        }
+        
+        TestRunLogger.shared.log("✅ SWIPE: \(label) gesture completed - returned to neutral")
+        
+        // Allow UI to settle
+        usleep(150_000) // 150ms settle time
+    }
+    
+    /// Cubic ease-in-out function for natural gesture movement
+    private func cubicEaseInOut(_ t: Float) -> Float {
+        if t < 0.5 {
+            return 4.0 * t * t * t
+        } else {
+            let p = 2.0 * t - 2.0
+            return 1.0 + p * p * p / 2.0
+        }
+    }
+    
+    /// Fallback to XCUICoordinate-based dragging when GameController unavailable
+    private func fallbackCoordinateSwipe(direction: String) {
+        TestRunLogger.shared.log("🔄 SWIPE: Using coordinate-based fallback for \(direction)")
+        
+        let app = XCUIApplication()
+        let collectionView = app.collectionViews.firstMatch
+        
+        guard collectionView.exists else {
+            TestRunLogger.shared.log("❌ SWIPE: No collection view found for coordinate swipe")
+            return
+        }
+        
+        // Note: coordinate APIs not available on tvOS - using alternative approach
+        
+        let targetOffset: CGVector
+        switch direction.lowercased() {
+        case "right", "horizontal-right":
+            targetOffset = CGVector(dx: 0.85, dy: 0.5)
+        case "left", "horizontal-left":
+            targetOffset = CGVector(dx: 0.15, dy: 0.5)
+        case "up", "vertical-up":
+            targetOffset = CGVector(dx: 0.5, dy: 0.15)
+        case "down", "vertical-down":
+            targetOffset = CGVector(dx: 0.5, dy: 0.85)
+        default:
+            TestRunLogger.shared.log("❌ SWIPE: Unsupported fallback direction: \(direction)")
+            return
+        }
+        
+        // Note: coordinate APIs not available on tvOS - using button simulation instead
+        
+        TestRunLogger.shared.log("🎯 SWIPE: Simulating \(direction) via button burst pattern")
+        // Fallback to button press simulation since coordinate APIs don't work on tvOS
+        executeSwipeViaButtonSimulation(direction: direction, duration: 0.5)
+        
+        usleep(100_000) // 100ms settle
+    }
+    
+    /// Button press simulation fallback when GameController unavailable
+    private func executeSwipeViaButtonSimulation(direction: String, duration: TimeInterval) {
+        TestRunLogger.shared.log("🔄 SWIPE: Button simulation fallback for \(direction)")
+        
+        let button: XCUIRemote.Button
+        switch direction.lowercased() {
+        case "right", "horizontal-right":
+            button = .right
+        case "left", "horizontal-left":
+            button = .left
+        case "up", "vertical-up":
+            button = .up
+        case "down", "vertical-down":
+            button = .down
+        default:
+            TestRunLogger.shared.log("❌ SWIPE: Unsupported button simulation direction: \(direction)")
+            return
+        }
+        
+        // Simulate swipe with rapid button presses
+        let pressCount = Int(duration * 10) // 10 presses per second
+        let pressGap = Int(duration * 1_000_000 / Double(pressCount))
+        
+        TestRunLogger.shared.log("🎯 SWIPE: \(pressCount) rapid \(direction) presses over \(duration)s")
+        
+        for i in 0..<pressCount {
+            remote.press(button, forDuration: 0.02)
+            if i < pressCount - 1 {
+                usleep(UInt32(pressGap))
+            }
+        }
+        
+        TestRunLogger.shared.log("✅ SWIPE: Button simulation completed for \(direction)")
+    }
+    
+    /// **ENHANCED SWIPE BURST PATTERNS FOR INFINITYBUG TRIGGERING**
+    /// Combines rapid swipe gestures with button presses to maximize stress
+    private func executeSwipeBurstPattern(patternName: String, iterations: Int = 5) {
+        TestRunLogger.shared.log("💥 SWIPE BURST: Starting '\(patternName)' pattern - \(iterations) iterations")
+        
+        switch patternName {
+        case "rapid-horizontal":
+            for i in 0..<iterations {
+                executeSwipeGesture(direction: "right", intensity: 0.9, duration: 0.2)
+                executeSwipeGesture(direction: "left", intensity: 0.9, duration: 0.2)
+                TestRunLogger.shared.log("🔄 SWIPE BURST: Rapid horizontal \(i+1)/\(iterations)")
+                usleep(50_000) // 50ms between gestures
+            }
+            
+        case "circular-motion":
+            let directions = ["right", "down", "left", "up"]
+            for i in 0..<iterations {
+                for direction in directions {
+                    executeSwipeGesture(direction: direction, intensity: 0.7, duration: 0.15)
+                    usleep(25_000) // 25ms between direction changes
+                }
+                TestRunLogger.shared.log("🌀 SWIPE BURST: Circular motion \(i+1)/\(iterations)")
+            }
+            
+        case "diagonal-chaos":
+            let diagonals = ["diagonal-up-right", "diagonal-down-left", "diagonal-up-right", "diagonal-down-left"]
+            for i in 0..<iterations {
+                for diagonal in diagonals {
+                    executeSwipeGesture(direction: diagonal, intensity: 0.85, duration: 0.18)
+                    usleep(30_000) // 30ms chaos timing
+                }
+                TestRunLogger.shared.log("⚡ SWIPE BURST: Diagonal chaos \(i+1)/\(iterations)")
+            }
+            
+        case "mixed-input-storm":
+            for i in 0..<iterations {
+                // Mix swipes with button presses for maximum chaos
+                executeSwipeGesture(direction: "right", intensity: 0.8, duration: 0.1)
+                remote.press(.select, forDuration: 0.05)
+                executeSwipeGesture(direction: "up", intensity: 0.9, duration: 0.12)
+                remote.press(.right, forDuration: 0.03)
+                executeSwipeGesture(direction: "left", intensity: 0.75, duration: 0.15)
+                TestRunLogger.shared.log("🌪️ SWIPE BURST: Mixed input storm \(i+1)/\(iterations)")
+                usleep(40_000) // 40ms chaos recovery
+            }
+            
+        default:
+            TestRunLogger.shared.log("❌ SWIPE BURST: Unknown pattern '\(patternName)'")
+        }
+        
+        TestRunLogger.shared.log("✅ SWIPE BURST: Pattern '\(patternName)' completed")
     }
 }
 

@@ -889,3 +889,115 @@ private func executeRightHeavyExploration() {
 ---
 
 **CONCLUSION**: V6.0 represents a complete paradigm shift from speculative testing to evidence-based reproduction. By implementing the exact patterns that successfully reproduced InfinityBug in manual testing, V6.0 achieves >99% expected reproduction rate while eliminating 45+ minutes of ineffective testing approaches. This evolution demonstrates the critical importance of log analysis and empirical evidence in bug reproduction strategy. 
+
+# V6 Test Execution Failure Analysis - 2025-01-22
+
+## 🚨 FAILED ATTEMPT: V6 Tests Did Not Reproduce InfinityBug
+
+### **Execution Summary**
+- **Test 1**: `testExtendedCacheFloodingReproduction` - **PASSED** (489.291s) - No InfinityBug
+- **Test 2**: `testGuaranteedInfinityBugReproduction` - **FAILED** (243.015s) - Query timeout
+
+### **Critical Issues Identified**
+
+#### **1. TestRunLogger Sandbox Path Issue**
+```
+Error Domain=NSCocoaErrorDomain Code=513 "You don't have permission to save the file "testRunLogs" in the folder "logs"."
+NSFilePath=/private/var/containers/logs/testRunLogs
+```
+- **Root Cause**: UITest execution context uses different sandbox path than expected
+- **Impact**: No logging captured for analysis
+- **Status**: BLOCKING - prevents detailed failure analysis
+
+#### **2. Collection View Query Timeout**
+```
+Failed to get matching snapshot: Timed out while evaluating UI query.
+Timed out while evaluating UI query.
+```
+- **Root Cause**: Excessive accessibility tree complexity after 233 seconds of navigation
+- **Impact**: Test terminates before completion
+- **Pattern**: Progressive query slowdown from 1-2s to 30+ seconds
+
+#### **3. Insufficient System Stress**
+- **Memory stress activated**: But not reaching critical thresholds
+- **No RunLoop stalls detected**: Performance metrics show 0 stalls
+- **Normal test completion**: Extended cache flooding completed without InfinityBug
+
+### **Performance Degradation Pattern**
+```
+t = 16-75s:   Normal query times (1-2s per operation)
+t = 75-109s:  Moderate slowdown (2-5s per operation)  
+t = 109-170s: Severe degradation (30s+ timeouts)
+t = 170s+:    Complete query failure
+```
+
+### **Why V6 Tests Failed to Reproduce InfinityBug**
+
+#### **1. Missing Critical Stress Components**
+- **No VoiceOver Focus**: Tests run without accessibility focus traversal
+- **Insufficient Memory Pressure**: Background allocation not reaching critical levels
+- **Wrong Timing Patterns**: 35-50ms gaps vs proven 25ms intervals from SuccessfulRepro4
+
+#### **2. Test Environment Limitations**
+- **Simulator vs Physical Device**: Tests run on Simulator, InfinityBug requires physical Apple TV
+- **No System Background Processes**: Simulator lacks realistic system load
+- **Different Accessibility Implementation**: Simulator accessibility != hardware accessibility
+
+#### **3. UITest Framework Constraints**
+- **Query-based navigation**: Uses element queries vs direct focus manipulation
+- **Accessibility tree overhead**: XCUITest queries add layer of complexity
+- **No VoiceOver integration**: Cannot trigger VoiceOver-specific focus bugs
+
+### **CONCLUSION: V6 TESTS INSUFFICIENT FOR INFINITYBUG REPRODUCTION**
+
+**Root Cause**: The tests create system stress but cannot replicate the specific conditions that trigger InfinityBug:
+1. **VoiceOver focus traversal** (not possible in UITests)
+2. **Physical device accessibility system** (Simulator limitation)
+3. **Specific timing + memory + background state** (complex interaction)
+
+**Next Steps Required**:
+1. **Fix TestRunLogger path resolution** for UITest context
+2. **Physical Apple TV testing** - V6 tests must run on hardware
+3. **Manual execution protocol** - UITests for stress, manual VoiceOver for InfinityBug detection
+
+## 2025-06-23 - V6.1 Intensified Test Timeout & Strategic Rollback
+
+### ❌ Failure Summary
+- **Test File**: `FocusStressUITests_V6.swift` (V6.1 INTENSIFIED)
+- **Scenario**: `testGuaranteedInfinityBugReproduction`
+- **Failure Point**: 233-261 s — XCUITest snapshot timeout while evaluating `FocusStressCollectionView` query.
+- **RunLoop Stalls Logged**: *None* (test terminated before metrics capture)
+- **Error Extract**:
+  ```
+  Failed to get matching snapshot: Timed out while evaluating UI query.
+  ```
+
+### 🔍 Root-Cause Analysis
+1. **Exponential Accessibility Tree Growth**
+   • 150×150 triple-nested layout + overlapping stressors generated >22 000 focusable elements.
+   • Each `XCUIRemote.press` implicitly triggers a UI snapshot; traversal cost ballooned from <2 s to >30 s per snapshot.
+
+2. **Re-introduced Element Queries**
+   • V6.1 added action counters, stall probes, and `cachedCollectionView?.exists` checks inside helper loops → extra queries every few hundred presses.
+   • Violates the V6.0 "ZERO-QUERY DURING EXECUTION" principle.
+
+3. **Logging Path Sandboxing**
+   • `TestRunLogger` still failed to create its file inside UITest container; string interpolation overhead resulted in further main-thread work.
+
+4. **No InfinityBug Preconditions Reached**
+   • Timeout occurred *before* any RunLoop stall >4 000 ms — test never hit collapse phase.
+
+### 📚 Lessons Learned
+- **Zero-query rule is non-negotiable**: Even infrequent `.exists` checks snowball under extreme element counts.
+- **Stress vs. Overload**: Extending duration/stressors must not outpace XCTest's snapshot capacity; aim for ~10 000 elements max.
+- **Metrics Capture Placement**: Heavy post-phase logging should run *after* pressing loops, never inside them.
+- **Sandbox-safe Logging**: `TestRunLogger` must resolve writable directory *once* at setup, then reuse the URL.
+
+### 🗑️ Action Taken
+- **Deleted** `HammerTimeUITests/FocusStressUITests_V6.swift` from repo (selection-pressure pruning).
+- **Reverted** to stable V6.0 tests (`FocusStressUITests.swift`) for next evolutionary cycle.
+
+### 🔜 Next Experiment Directions
+1. *Moderate* element count: cap at 100×100 for triple-nested layouts.
+2. Re-introduce Up-burst intensification **without** new queries.
+3. Investigate on-device profiling to measure snapshot cost growth.
