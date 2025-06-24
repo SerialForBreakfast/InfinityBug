@@ -180,6 +180,35 @@ public final class TestRunLogger {
         }
     }
     
+    /// Prints the actual log file location for manual retrieval
+    /// 
+    /// Use this method to find where the TestRunLogger is actually writing files
+    /// since tvOS/iOS sandboxing may put them in unexpected locations.
+    public func printLogFileLocation() {
+        if let logFile = currentLogFile {
+            NSLog("📁 CURRENT-LOG-LOCATION: \(logFile.path)")
+            NSLog("📁 PARENT-DIRECTORY: \(logFile.deletingLastPathComponent().path)")
+        } else {
+            NSLog("📁 NO-ACTIVE-LOG: TestRunLogger not currently logging")
+        }
+        
+        let logsURL = getLogsDirectoryURL()
+        NSLog("📁 LOGS-DIRECTORY: \(logsURL.path)")
+        
+        // List existing log files
+        do {
+            let testRunLogsURL = logsURL.appendingPathComponent("UITestRunLogs")
+            let files = try FileManager.default.contentsOfDirectory(at: testRunLogsURL, 
+                                                                   includingPropertiesForKeys: nil)
+            NSLog("📁 EXISTING-LOGS: \(files.count) files")
+            for file in files.prefix(5) {
+                NSLog("📁   - \(file.lastPathComponent)")
+            }
+        } catch {
+            NSLog("📁 LOG-DIRECTORY-ERROR: \(error)")
+        }
+    }
+    
     // MARK: - Test Result Types
     
     /// Test result structure for comprehensive reporting
@@ -223,7 +252,9 @@ public final class TestRunLogger {
             try FileManager.default.createDirectory(at: testRunLogsURL, 
                                                   withIntermediateDirectories: true, 
                                                   attributes: nil)
+            log("✅ DIRECTORY-CREATED: \(testRunLogsURL.path)")
         } catch {
+            log("❌ DIRECTORY-FAILED: \(error)")
             NSLog("TestRunLogger: Failed to create UITestRunLogs directory: \(error)")
         }
     }
@@ -238,16 +269,37 @@ public final class TestRunLogger {
         let logFileURL = testRunLogsURL.appendingPathComponent(fileName)
         
         do {
+            // Ensure parent directory exists
+            try FileManager.default.createDirectory(at: testRunLogsURL, 
+                                                  withIntermediateDirectories: true, 
+                                                  attributes: nil)
+            
             // Create empty file
-            FileManager.default.createFile(atPath: logFileURL.path, contents: nil, attributes: nil)
+            let success = FileManager.default.createFile(atPath: logFileURL.path, contents: nil, attributes: nil)
+            if !success {
+                throw NSError(domain: "TestRunLogger", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to create file"])
+            }
             
             // Open file handle for writing
             logFileHandle = try FileHandle(forWritingTo: logFileURL)
             
+            log("✅ LOG-FILE-CREATED: \(logFileURL.path)")
             return logFileURL
         } catch {
+            log("❌ LOG-FILE-FAILED: \(error)")
             NSLog("TestRunLogger: Failed to create log file: \(error)")
-            return nil
+            
+            // Try fallback in temporary directory
+            let tempLogURL = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
+            do {
+                FileManager.default.createFile(atPath: tempLogURL.path, contents: nil, attributes: nil)
+                logFileHandle = try FileHandle(forWritingTo: tempLogURL)
+                log("✅ FALLBACK-LOG: \(tempLogURL.path)")
+                return tempLogURL
+            } catch {
+                log("❌ FALLBACK-FAILED: \(error)")
+                return nil
+            }
         }
     }
     
@@ -354,68 +406,25 @@ public final class TestRunLogger {
     /// - Parameter fileName: Original filename
     /// - Returns: Sanitized filename safe for filesystem
     private func sanitizeFileName(_ fileName: String) -> String {
-        let invalidChars = CharacterSet(charactersIn: "/<>:\"|?*")
+        let invalidChars = CharacterSet(charactersIn: "/<>:\"|?*()")
         return fileName.components(separatedBy: invalidChars).joined(separator: "_")
     }
     
-    /// Gets the logs directory URL with proper UITest execution context support
+    /// Gets the logs directory URL with tvOS/iOS sandboxing support
     /// 
-    /// - Returns: URL of logs directory
+    /// - Returns: URL of logs directory that's guaranteed to be writable
     private func getLogsDirectoryURL() -> URL {
-        // Detect execution context: UITest vs Manual/App execution
-        let bundleURL = Bundle.main.bundleURL
-        let bundlePath = bundleURL.path
-        
-        // UITest execution context detection
-        if bundlePath.contains("DerivedData") || bundlePath.contains("UITests") {
-            // UITest context: Use workspace-relative path resolution
-            log("🔍 UITEST-CONTEXT: Detected UITest execution environment")
-            
-            // Navigate from UITest bundle to workspace root
-            let workspaceURL = bundleURL
-                .deletingLastPathComponent() // Remove .xctest bundle
-                .deletingLastPathComponent() // Remove Debug-appletvos folder
-                .deletingLastPathComponent() // Remove Products folder  
-                .deletingLastPathComponent() // Remove Build folder
-                .deletingLastPathComponent() // Remove DerivedData project folder
-            
-            // Look for HammerTime workspace in tvOS-compatible locations
-            let possiblePaths = [
-                workspaceURL.appendingPathComponent("HammerTime"),
-                // tvOS: Use Documents directory fallback
-                FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?
-                    .appendingPathComponent("GitHub")
-                    .appendingPathComponent("InfinityBug")
-                    .appendingPathComponent("HammerTime"),
-                // tvOS: Use temporary directory as last resort
-                FileManager.default.temporaryDirectory
-                    .appendingPathComponent("HammerTime")
-            ].compactMap { $0 }
-            
-            for workspacePath in possiblePaths {
-                let logsPath = workspacePath.appendingPathComponent("logs")
-                if FileManager.default.fileExists(atPath: logsPath.path) {
-                    log("✅ UITEST-CONTEXT: Found workspace at \(workspacePath.path)")
-                    return logsPath
-                }
-            }
-            
-            // Fallback: Create logs in UITest bundle directory
-            log("⚠️ UITEST-CONTEXT: Workspace not found, using UITest bundle fallback")
-            let fallbackLogsURL = bundleURL.deletingLastPathComponent().appendingPathComponent("logs")
-            try? FileManager.default.createDirectory(at: fallbackLogsURL, withIntermediateDirectories: true, attributes: nil)
-            return fallbackLogsURL
-        } else {
-            // Manual/App execution context: Use bundle-relative path
-            log("🔍 MANUAL-CONTEXT: Detected manual/app execution environment")
-            let workspaceURL = bundleURL
-                .deletingLastPathComponent() // Remove .app
-                .deletingLastPathComponent() // Remove Debug-appletv folder
-                .deletingLastPathComponent() // Remove Products folder  
-                .deletingLastPathComponent() // Remove Build folder
-            
-            return workspaceURL.appendingPathComponent("logs")
+        // Always use app's Documents directory for guaranteed write access
+        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            // Ultimate fallback: temporary directory
+            log("⚠️ FALLBACK: Using temporary directory for logs")
+            return FileManager.default.temporaryDirectory.appendingPathComponent("HammerTimeLogs")
         }
+        
+        let logsURL = documentsURL.appendingPathComponent("HammerTimeLogs")
+        log("📁 LOGS-PATH: Using Documents/HammerTimeLogs at \(logsURL.path)")
+        
+        return logsURL
     }
     
     /// Gets current memory usage information

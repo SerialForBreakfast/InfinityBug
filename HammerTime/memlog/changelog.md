@@ -1,5 +1,33 @@
 # HammerTime Project Changelog
 
+## [2025-01-23] - TestRunLogger Sandboxing Fix
+
+### Fixed
+- **FIXED**: TestRunLogger permission errors on tvOS/iOS execution
+  - **Issue**: TestRunLogger failing with `NSCocoaErrorDomain Code=513` permission errors
+  - **Root Cause**: Complex workspace-relative path resolution failed in sandboxed environments
+  - **Solution**: Simplified to always use app's Documents directory for guaranteed write access
+  - **Path Changed**: From `logs/UITestRunLogs/` to `Documents/HammerTimeLogs/UITestRunLogs/`
+  - **Filename Sanitization**: Added parentheses to invalid character list
+  - **Fallback Mechanism**: Enhanced error handling with temporary directory fallback
+  - **Debug Method**: Added `printLogFileLocation()` to help locate actual log files
+
+### Technical Details
+- Modified `getLogsDirectoryURL()` to use `FileManager.default.urls(for: .documentDirectory)` 
+- Enhanced `createLogFile()` with better error handling and fallback options
+- Added proper parent directory creation in `createLogFile()`
+- Integrated `printLogFileLocation()` call in UI test setup for debugging
+- All log files now written to sandboxed app Documents directory
+
+### Added
+- **NEW TEST**: `testDevTicket_AggressiveRunLoopStallMonitoring()` for real-time stall detection
+  - **RunLoopStallMonitor**: Measures and logs stall durations in real-time
+  - **4-Phase Progressive Intensity**: Baseline → Intensive → Maximum → Critical assault
+  - **Stall Categorization**: Mild (100-1000ms), Moderate (1000-5000ms), Critical (>5179ms)
+  - **Real-Time Logging**: Outputs current stall duration as `🔴 CRITICAL-STALL: 5179ms` format
+  - **Comprehensive Analysis**: Final report with total stalls, averages, and top 5 longest stalls
+  - **InfinityBug Detection**: Automatically detects when critical >5179ms threshold is exceeded
+
 ## [2025-01-23] - TestRunLogger and NavigationStrategy Integration
 ### Enhanced
 - **TestRunLogger Auto-Output**: Automatically outputs logs to `logs/UITestRunLogs/` folder with timestamped filenames

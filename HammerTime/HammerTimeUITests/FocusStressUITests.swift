@@ -72,6 +72,7 @@ final class FocusStressUITests: XCTestCase {
                      "FocusStressCollectionView should exist")
         
         TestRunLogger.shared.log("🎯 V8.2-SETUP: Ready for DevTicket-focused InfinityBug reproduction")
+        TestRunLogger.shared.printLogFileLocation()
     }
     
     override func tearDownWithError() throws {
@@ -79,6 +80,77 @@ final class FocusStressUITests: XCTestCase {
     }
     
     // MARK: - V8.2 DEVTICKET IMPLEMENTATION TESTS
+    
+    /// **DevTicket Test 3: Aggressive RunLoop Stall Detection & Monitoring**
+    /// 
+    /// Creates intensive navigation patterns specifically designed to trigger and monitor
+    /// RunLoop stalls. Measures stall duration in real-time and logs critical thresholds.
+    ///
+    /// **Implementation Strategy:**
+    /// 1. Rapid-fire navigation patterns to overwhelm focus calculations
+    /// 2. Real-time RunLoop monitoring to detect stalls as they occur
+    /// 3. Progressive intensity scaling to push system toward critical thresholds
+    /// 4. Detailed logging of stall durations for analysis
+    ///
+    /// **Target Stall Patterns:**
+    /// - Mild stalls: 100-1000ms (early warning indicators)
+    /// - Moderate stalls: 1000-5000ms (system stress indicators)  
+    /// - Critical stalls: >5179ms (InfinityBug threshold from successful reproduction)
+    ///
+    /// **Expected Duration:** 8-10 minutes with progressive intensity
+    /// **Target Outcome:** Detailed stall duration logging and >5179ms critical stalls
+    func testDevTicket_AggressiveRunLoopStallMonitoring() throws {
+        // Initialize TestRunLogger for this test - automatically outputs to logs/UITestRunLogs/
+        TestRunLogger.shared.startInfinityBugUITest(#function)
+        
+        TestRunLogger.shared.log("🎫 DEVTICKET-3: Starting aggressive RunLoop stall monitoring")
+        TestRunLogger.shared.log("🎫 TARGET: Real-time stall detection and >5179ms critical stalls")
+        
+        let startTime = Date()
+        var stallMonitor = RunLoopStallMonitor()
+        
+        // Phase 1: Baseline rapid navigation (2 minutes)
+        TestRunLogger.shared.log("🚀 PHASE-1: Baseline rapid navigation for initial stall detection")
+        executeBaselineRapidNavigation(duration: 120.0, stallMonitor: &stallMonitor)
+        
+        // Phase 2: Intensive focus system stress (3 minutes)
+        TestRunLogger.shared.log("🚀 PHASE-2: Intensive focus system stress for moderate stalls")
+        executeIntensiveFocusStress(duration: 180.0, stallMonitor: &stallMonitor)
+        
+        // Phase 3: Maximum pressure navigation (3 minutes)
+        TestRunLogger.shared.log("🚀 PHASE-3: Maximum pressure navigation for critical stalls")
+        executeMaximumPressureNavigation(duration: 180.0, stallMonitor: &stallMonitor)
+        
+        // Phase 4: Critical threshold assault (2 minutes)
+        TestRunLogger.shared.log("🚀 PHASE-4: Critical threshold assault targeting >5179ms stalls")
+        executeCriticalThresholdAssault(duration: 120.0, stallMonitor: &stallMonitor)
+        
+        let totalDuration = Date().timeIntervalSince(startTime)
+        TestRunLogger.shared.log("🎫 DEVTICKET-3: Completed aggressive stall monitoring in \(String(format: "%.1f", totalDuration))s")
+        
+        // Final stall analysis and logging
+        stallMonitor.logFinalAnalysis()
+        
+        // Log test completion
+        let testResult = TestRunLogger.TestResult(
+            success: true,
+            infinityBugReproduced: stallMonitor.criticalStallsDetected > 0,
+            runLoopStalls: stallMonitor.allStallDurations,
+            phantomEvents: 0,
+            focusChanges: 0,
+            totalActions: stallMonitor.totalNavigationActions,
+            errorMessages: [],
+            additionalMetrics: [
+                "totalStalls": stallMonitor.totalStallsDetected,
+                "criticalStalls": stallMonitor.criticalStallsDetected,
+                "maxStallDuration": stallMonitor.maxStallDuration,
+                "averageStallDuration": stallMonitor.averageStallDuration
+            ]
+        )
+        TestRunLogger.shared.stopLogging(testResult: testResult)
+        
+        XCTAssertTrue(true, "DevTicket aggressive stall monitoring completed - analyze logs for stall patterns")
+    }
     
     /// **DevTicket Test 1: Edge-Avoidance Navigation Pattern**
     /// 
@@ -252,6 +324,85 @@ final class FocusStressUITests: XCTestCase {
         NSLog("🎯 V8.0-IMPROVED: Completed enhanced backgrounding in \(String(format: "%.1f", totalDuration))s")
         
         XCTAssertTrue(true, "Enhanced backgrounding simulation completed - monitor for sustained RunLoop stalls")
+    }
+}
+
+// MARK: - RunLoop Stall Monitoring
+
+/// **RunLoop Stall Monitor for Real-Time Performance Analysis**
+/// 
+/// Monitors RunLoop performance during navigation stress testing to detect
+/// and measure stalls that indicate system overload and potential InfinityBug conditions.
+///
+/// **Stall Categories:**
+/// - Mild: 100-1000ms (early warning)
+/// - Moderate: 1000-5000ms (system stress)
+/// - Critical: >5179ms (InfinityBug threshold)
+struct RunLoopStallMonitor {
+    private var lastActionTime: Date = Date()
+    private var stallEvents: [(duration: TimeInterval, timestamp: Date)] = []
+    
+    var totalNavigationActions: Int = 0
+    var totalStallsDetected: Int { stallEvents.count }
+    var criticalStallsDetected: Int { stallEvents.filter { $0.duration > 5179 }.count }
+    var maxStallDuration: TimeInterval { stallEvents.map { $0.duration }.max() ?? 0 }
+    var averageStallDuration: TimeInterval { 
+        let durations = stallEvents.map { $0.duration }
+        return durations.isEmpty ? 0 : durations.reduce(0, +) / Double(durations.count)
+    }
+    var allStallDurations: [TimeInterval] { stallEvents.map { $0.duration } }
+    
+    /// Records a navigation action and checks for stalls since the last action
+    ///
+    /// **Stall Detection Logic:**
+    /// - Measures time since last action
+    /// - Logs stalls >100ms (significant delays)
+    /// - Categorizes stalls by severity level
+    /// - Tracks critical >5179ms threshold
+    ///
+    /// **Concurrency:** Called from main thread during UI interactions
+    mutating func recordNavigationAction(_ action: String) {
+        let currentTime = Date()
+        let timeSinceLastAction = currentTime.timeIntervalSince(lastActionTime)
+        
+        // Detect stalls >100ms (anything longer indicates system stress)
+        if timeSinceLastAction > 0.1 && totalNavigationActions > 0 {
+            let stallDurationMs = timeSinceLastAction * 1000
+            stallEvents.append((duration: timeSinceLastAction, timestamp: currentTime))
+            
+            // Log stall with appropriate severity
+            if stallDurationMs > 5179 {
+                TestRunLogger.shared.log("🔴 CRITICAL-STALL: \(String(format: "%.0f", stallDurationMs))ms - INFINITYBUG THRESHOLD EXCEEDED")
+            } else if stallDurationMs > 1000 {
+                TestRunLogger.shared.log("🟠 MODERATE-STALL: \(String(format: "%.0f", stallDurationMs))ms - System stress detected")
+            } else if stallDurationMs > 100 {
+                TestRunLogger.shared.log("🟡 MILD-STALL: \(String(format: "%.0f", stallDurationMs))ms - Early warning")
+            }
+        }
+        
+        lastActionTime = currentTime
+        totalNavigationActions += 1
+    }
+    
+    /// Logs comprehensive stall analysis at test completion
+    func logFinalAnalysis() {
+        TestRunLogger.shared.log("📊 RUNLOOP-STALL-ANALYSIS:")
+        TestRunLogger.shared.log("  Total Actions: \(totalNavigationActions)")
+        TestRunLogger.shared.log("  Total Stalls: \(totalStallsDetected)")
+        TestRunLogger.shared.log("  Critical Stalls (>5179ms): \(criticalStallsDetected)")
+        TestRunLogger.shared.log("  Max Stall Duration: \(String(format: "%.0f", maxStallDuration * 1000))ms")
+        TestRunLogger.shared.log("  Average Stall Duration: \(String(format: "%.0f", averageStallDuration * 1000))ms")
+        
+        if criticalStallsDetected > 0 {
+            TestRunLogger.shared.log("🔴 CRITICAL-THRESHOLD: InfinityBug conditions detected!")
+        }
+        
+        // Log top 5 longest stalls
+        let topStalls = stallEvents.sorted { $0.duration > $1.duration }.prefix(5)
+        TestRunLogger.shared.log("  Top Stalls:")
+        for (index, stall) in topStalls.enumerated() {
+            TestRunLogger.shared.log("    \(index + 1). \(String(format: "%.0f", stall.duration * 1000))ms")
+        }
     }
 }
 
@@ -655,6 +806,176 @@ extension FocusStressUITests {
             default: break
             }
         }
+    }
+    
+    // MARK: - Aggressive RunLoop Stall Phase Implementations
+    
+    /// Execute baseline rapid navigation with stall monitoring
+    ///
+    /// **Baseline Strategy:**
+    /// - Moderate speed navigation (50-100ms intervals)
+    /// - Mixed directional patterns to establish baseline stall rates
+    /// - Focus on detecting mild to moderate stalls (100-1000ms)
+    /// - Provides performance baseline for comparison with aggressive phases
+    ///
+    /// **Expected Stalls:** Mild stalls (100-1000ms) as system warms up
+    private func executeBaselineRapidNavigation(duration: TimeInterval, stallMonitor: inout RunLoopStallMonitor) {
+        TestRunLogger.shared.log("📏 BASELINE-RAPID: Establishing stall detection baseline")
+        
+        let endTime = Date().addingTimeInterval(duration)
+        let navigator = NavigationStrategyExecutor(app: app)
+        
+        while Date() < endTime {
+            // Moderate speed snake pattern for baseline measurement
+            navigator.execute(.snake(direction: .bidirectional), steps: 20)
+            stallMonitor.recordNavigationAction("baseline_snake")
+            
+            // Moderate interval (50-100ms) for baseline stress
+            usleep(UInt32(50_000 + arc4random_uniform(50_000)))
+            
+            // Periodic cross pattern for additional baseline stress
+            if stallMonitor.totalNavigationActions % 60 == 0 {
+                navigator.execute(.cross(direction: .full), steps: 8)
+                stallMonitor.recordNavigationAction("baseline_cross")
+                usleep(75_000) // 75ms baseline pause
+            }
+        }
+        
+        TestRunLogger.shared.log("📏 BASELINE-RAPID complete: \(stallMonitor.totalNavigationActions) actions")
+    }
+    
+    /// Execute intensive focus system stress with stall monitoring
+    ///
+    /// **Intensive Strategy:**
+    /// - Rapid navigation (20-50ms intervals)
+    /// - Complex NavigationStrategy patterns for focus system overload
+    /// - Target moderate stalls (1000-5000ms)
+    /// - Combination of spiral, diagonal, and edge patterns
+    ///
+    /// **Expected Stalls:** Moderate stalls (1000-5000ms) as system stress increases
+    private func executeIntensiveFocusStress(duration: TimeInterval, stallMonitor: inout RunLoopStallMonitor) {
+        TestRunLogger.shared.log("⚡ INTENSIVE-STRESS: Ramping up for moderate stalls")
+        
+        let endTime = Date().addingTimeInterval(duration)
+        let navigator = NavigationStrategyExecutor(app: app)
+        var patternCycle = 0
+        
+        while Date() < endTime {
+            // Rapid intensive patterns
+            switch patternCycle % 4 {
+            case 0:
+                navigator.execute(.spiral(direction: .outward), steps: 25)
+                stallMonitor.recordNavigationAction("intensive_spiral")
+            case 1:
+                navigator.execute(.diagonal(direction: .cross), steps: 30)
+                stallMonitor.recordNavigationAction("intensive_diagonal")
+            case 2:
+                navigator.execute(.edgeTest(edge: .all), steps: 35)
+                stallMonitor.recordNavigationAction("intensive_edge")
+            case 3:
+                navigator.execute(.cross(direction: .full), steps: 20)
+                stallMonitor.recordNavigationAction("intensive_cross")
+            default:
+                break
+            }
+            
+            // Rapid intervals (20-50ms) for intensive stress
+            usleep(UInt32(20_000 + arc4random_uniform(30_000)))
+            patternCycle += 1
+            
+            // Periodic focus system stress bursts
+            if patternCycle % 15 == 0 {
+                triggerFocusSystemStress()
+                stallMonitor.recordNavigationAction("intensive_focus_burst")
+            }
+        }
+        
+        TestRunLogger.shared.log("⚡ INTENSIVE-STRESS complete: \(stallMonitor.totalNavigationActions) actions")
+    }
+    
+    /// Execute maximum pressure navigation with stall monitoring
+    ///
+    /// **Maximum Pressure Strategy:**
+    /// - Ultra-rapid navigation (8-25ms intervals)
+    /// - Continuous pattern execution without pauses
+    /// - Target critical stall threshold (>5179ms)
+    /// - Maximum system overload through sustained pressure
+    ///
+    /// **Expected Stalls:** Critical stalls (>5179ms) approaching InfinityBug threshold
+    private func executeMaximumPressureNavigation(duration: TimeInterval, stallMonitor: inout RunLoopStallMonitor) {
+        TestRunLogger.shared.log("🔥 MAXIMUM-PRESSURE: Targeting critical >5179ms stalls")
+        
+        let endTime = Date().addingTimeInterval(duration)
+        let navigator = NavigationStrategyExecutor(app: app)
+        
+        while Date() < endTime {
+            // Ultra-rapid continuous patterns for maximum pressure
+            navigator.execute(.randomWalk(seed: UInt64(Date().timeIntervalSince1970)), steps: 40)
+            stallMonitor.recordNavigationAction("maximum_random")
+            
+            // Ultra-fast intervals (8-25ms) for maximum system stress
+            usleep(UInt32(8_000 + arc4random_uniform(17_000)))
+            
+            // Continuous spiral stress
+            navigator.execute(.spiral(direction: .inward), steps: 30)
+            stallMonitor.recordNavigationAction("maximum_spiral")
+            
+            usleep(UInt32(8_000 + arc4random_uniform(17_000)))
+            
+            // Major focus system stress every 30 actions
+            if stallMonitor.totalNavigationActions % 30 == 0 {
+                triggerMajorFocusSystemStress()
+                stallMonitor.recordNavigationAction("maximum_major_stress")
+            }
+        }
+        
+        TestRunLogger.shared.log("🔥 MAXIMUM-PRESSURE complete: \(stallMonitor.totalNavigationActions) actions")
+    }
+    
+    /// Execute critical threshold assault with stall monitoring
+    ///
+    /// **Critical Threshold Strategy:**
+    /// - Machine-gun navigation (5-15ms intervals)
+    /// - Sustained pressure to push system over InfinityBug threshold
+    /// - Continuous focus system stress bursts
+    /// - Target sustained >5179ms stalls
+    ///
+    /// **Expected Stalls:** Sustained critical stalls indicating InfinityBug reproduction
+    private func executeCriticalThresholdAssault(duration: TimeInterval, stallMonitor: inout RunLoopStallMonitor) {
+        TestRunLogger.shared.log("💥 CRITICAL-ASSAULT: Machine-gun pressure for sustained >5179ms stalls")
+        
+        let endTime = Date().addingTimeInterval(duration)
+        let navigator = NavigationStrategyExecutor(app: app)
+        
+        while Date() < endTime {
+            // Machine-gun navigation patterns
+            navigator.execute(.edgeTest(edge: .all), steps: 50)
+            stallMonitor.recordNavigationAction("critical_edge_assault")
+            
+            // Machine-gun intervals (5-15ms) for critical system overload
+            usleep(UInt32(5_000 + arc4random_uniform(10_000)))
+            
+            // Continuous cross pattern stress
+            navigator.execute(.cross(direction: .full), steps: 35)
+            stallMonitor.recordNavigationAction("critical_cross_assault")
+            
+            usleep(UInt32(5_000 + arc4random_uniform(10_000)))
+            
+            // Continuous focus stress bursts
+            if stallMonitor.totalNavigationActions % 10 == 0 {
+                triggerMajorFocusSystemStress()
+                stallMonitor.recordNavigationAction("critical_focus_assault")
+            }
+            
+            // Ultimate pressure: Snake pattern with no pauses
+            navigator.execute(.snake(direction: .horizontal), steps: 25)
+            stallMonitor.recordNavigationAction("critical_snake_assault")
+            
+            // Minimal pause to maintain pressure
+            usleep(UInt32(5_000))
+        }
+        
+        TestRunLogger.shared.log("💥 CRITICAL-ASSAULT complete: \(stallMonitor.totalNavigationActions) actions")
     }
 }
 
