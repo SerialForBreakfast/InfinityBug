@@ -131,11 +131,12 @@ Until Apple addresses the duplicate-event design, developers can only *mitigate*
 ## 11 Apple Documentation References
 
 * [CFRunLoop Reference](https://developer.apple.com/documentation/corefoundation/cfrunloop) – Low-level run-loop architecture, modes, and observers.
-* [Handling User Input](https://developer.apple.com/library/archive/documentation/General/Conceptual/Devpedia-CocoaApp/EventHandling.html) – High-level event delivery path in Cocoa Touch (applies to tvOS).
+* [Handling User Input](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/EventArchitecture/EventArchitecture.html) – High-level event-delivery architecture in Cocoa/tvOS.
 * [UIAccessibility – Adding Accessibility to Your App](https://developer.apple.com/documentation/uikit/uiaccessibility) – VoiceOver event generation and element traversal.
-* [Focus-Based Navigation](https://developer.apple.com/documentation/uikit/focus-based_navigation) – How tvOS resolves focus after each directional press.
+* [Focus-Based Navigation](https://developer.apple.com/library/archive/documentation/General/Conceptual/AppleTV_PG/WorkingwiththeAppleTVRemote.html) – How tvOS and the focus engine process directional input and focus movement.
 * [HID Manager Programming Guide](https://developer.apple.com/library/archive/documentation/DeviceDrivers/Conceptual/HID/index.html) – Kernel pipeline for Human-Interface-Device events.
 * [Responding to App Lifecycle Events](https://developer.apple.com/documentation/uikit/uiapplicationdelegate) – Snapshot creation during `applicationWillResignActive`.
-* [Instruments Time Profiler](https://developer.apple.com/documentation/xcode/instruments/time_profiler) – Measuring RunLoop stalls and CPU utilisation.
+* [Instruments Time Profiler](https://developer.apple.com/documentation/xcode/instruments/time_profiler) – (legacy reference; see the updated Help link below).
+* [Time Profiler instrument – Instruments Help](https://developer.apple.com/library/archive/documentation/AnalysisTools/Conceptual/instruments_help-collection/TrackCPUcoreThread.html) – How to measure CPU usage and diagnose RunLoop stalls with Instruments.
 
 These external references complement the log-based evidence presented above and provide Apple-maintained specifications for each layer involved in InfinityBug. 
