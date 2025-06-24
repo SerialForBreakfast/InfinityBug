@@ -71,7 +71,7 @@ final class FocusStressUITests: XCTestCase {
         XCTAssertTrue(collectionView.waitForExistence(timeout: 10),
                      "FocusStressCollectionView should exist")
         
-        NSLog("🎯 V8.2-SETUP: Ready for DevTicket-focused InfinityBug reproduction")
+        TestRunLogger.shared.log("🎯 V8.2-SETUP: Ready for DevTicket-focused InfinityBug reproduction")
     }
     
     override func tearDownWithError() throws {
@@ -94,8 +94,11 @@ final class FocusStressUITests: XCTestCase {
     /// **Expected Duration:** 4-5 minutes
     /// **Target Outcome:** RunLoop stall warnings from large focus traversals
     func testDevTicket_EdgeAvoidanceNavigationPattern() throws {
-        NSLog("🎫 DEVTICKET-1: Starting edge-avoidance navigation pattern")
-        NSLog("🎫 TARGET: Large focus traversals avoiding edge traps, RunLoop stall >5179ms")
+        // Initialize TestRunLogger for this test - automatically outputs to logs/UITestRunLogs/
+        TestRunLogger.shared.startInfinityBugUITest(#function)
+        
+        TestRunLogger.shared.log("🎫 DEVTICKET-1: Starting edge-avoidance navigation pattern")
+        TestRunLogger.shared.log("🎫 TARGET: Large focus traversals avoiding edge traps, RunLoop stall >5179ms")
         
         let startTime = Date()
         
@@ -109,8 +112,21 @@ final class FocusStressUITests: XCTestCase {
         executeCenterSeekingPattern(duration: 60.0)
         
         let totalDuration = Date().timeIntervalSince(startTime)
-        NSLog("🎫 DEVTICKET-1: Completed edge-avoidance pattern in \(String(format: "%.1f", totalDuration))s")
-        NSLog("🎫 MONITOR: Check console for RunLoop stall warnings >5179ms from large traversals")
+        TestRunLogger.shared.log("🎫 DEVTICKET-1: Completed edge-avoidance pattern in \(String(format: "%.1f", totalDuration))s")
+        TestRunLogger.shared.log("🎫 MONITOR: Check console for RunLoop stall warnings >5179ms from large traversals")
+        
+        // Log test completion
+        let testResult = TestRunLogger.TestResult(
+            success: true,
+            infinityBugReproduced: false, // Will be determined by log analysis
+            runLoopStalls: [],
+            phantomEvents: 0,
+            focusChanges: 0,
+            totalActions: 0,
+            errorMessages: [],
+            additionalMetrics: ["duration": totalDuration]
+        )
+        TestRunLogger.shared.stopLogging(testResult: testResult)
         
         XCTAssertTrue(true, "DevTicket edge-avoidance pattern completed - monitor for RunLoop stalls")
     }
@@ -129,8 +145,11 @@ final class FocusStressUITests: XCTestCase {
     /// **Expected Duration:** 5-6 minutes
     /// **Target Outcome:** Progressive RunLoop degradation leading to >5179ms stalls
     func testDevTicket_UpBurstFromSuccessfulReproduction() throws {
-        NSLog("🎫 DEVTICKET-2: Starting Up-burst pattern from SuccessfulRepro3.txt")
-        NSLog("🎫 TARGET: 22-45 Up press bursts creating large upward focus traversals")
+        // Initialize TestRunLogger for this test - automatically outputs to logs/UITestRunLogs/
+        TestRunLogger.shared.startInfinityBugUITest(#function)
+        
+        TestRunLogger.shared.log("🎫 DEVTICKET-2: Starting Up-burst pattern from SuccessfulRepro3.txt")
+        TestRunLogger.shared.log("🎫 TARGET: 22-45 Up press bursts creating large upward focus traversals")
         
         let startTime = Date()
         
@@ -144,8 +163,21 @@ final class FocusStressUITests: XCTestCase {
         executeSustainedUpwardPressure(duration: 60.0)
         
         let totalDuration = Date().timeIntervalSince(startTime)
-        NSLog("🎫 DEVTICKET-2: Completed Up-burst pattern in \(String(format: "%.1f", totalDuration))s")
-        NSLog("🎫 STALL-DETECTION: Monitor for progressive Up-traversal RunLoop stalls")
+        TestRunLogger.shared.log("🎫 DEVTICKET-2: Completed Up-burst pattern in \(String(format: "%.1f", totalDuration))s")
+        TestRunLogger.shared.log("🎫 STALL-DETECTION: Monitor for progressive Up-traversal RunLoop stalls")
+        
+        // Log test completion
+        let testResult = TestRunLogger.TestResult(
+            success: true,
+            infinityBugReproduced: false, // Will be determined by log analysis
+            runLoopStalls: [],
+            phantomEvents: 0,
+            focusChanges: 0,
+            totalActions: 0,
+            errorMessages: [],
+            additionalMetrics: ["duration": totalDuration]
+        )
+        TestRunLogger.shared.stopLogging(testResult: testResult)
         
         XCTAssertTrue(true, "DevTicket Up-burst pattern completed - monitor for SuccessfulRepro3.txt stalls")
     }
@@ -230,52 +262,35 @@ extension FocusStressUITests {
     /// Execute Right-then-Left traversal avoiding right-edge trap
     ///
     /// **Edge-Avoidance Strategy:**
-    /// - Navigate Right to explore rightward elements
-    /// - Return Left to create large reverse traversals (away from right edge)
-    /// - Larger focus system stress vs getting trapped at right boundary
-    /// - Clear pauses between direction changes for system pressure accumulation
+    /// - Use NavigationStrategy for intelligent edge-avoiding navigation
+    /// - Snake horizontal pattern alternates Right-Left automatically
+    /// - Built-in edge avoidance prevents boundary traps
+    /// - Larger focus system stress vs getting trapped at boundaries
     ///
     /// **Based on Manual Reproduction Analysis:**
     /// Movement away from edges creates larger element traversals = more system stress
     private func executeRightThenLeftTraversal(duration: TimeInterval) {
-        NSLog("↔️ RIGHT-LEFT-TRAVERSAL: Large horizontal focus traversals avoiding edge trap")
+        TestRunLogger.shared.log("↔️ RIGHT-LEFT-TRAVERSAL: Using NavigationStrategy for edge-avoiding navigation")
         
         let endTime = Date().addingTimeInterval(duration)
-        var cycleCount = 0
+        let navigator = NavigationStrategyExecutor(app: app)
+        var totalSteps = 0
         
         while Date() < endTime {
-            // Right exploration phase (10-15 presses)
-            let rightCount = 10 + Int(arc4random_uniform(6)) // 10-15 Right presses
-            NSLog("➡️ Right exploration: \(rightCount) presses")
+            // Use snake horizontal pattern for automatic Right-Left alternation
+            let stepsThisCycle = 30 + Int(arc4random_uniform(20)) // 30-50 steps per cycle
+            navigator.execute(.snake(direction: .horizontal), steps: stepsThisCycle)
+            totalSteps += stepsThisCycle
             
-            for _ in 0..<rightCount {
-                remote.press(.right, forDuration: 0.05)
-                usleep(120_000 + arc4random_uniform(80_000)) // 120-200ms clear pauses
-            }
+            // Brief pause between cycles for system pressure accumulation
+            usleep(200_000) // 200ms cycle pause
             
-            // Pause before direction change
-            usleep(300_000) // 300ms pause for system pressure accumulation
-            
-            // Left return phase (12-18 presses - slightly more to move away from right edge)
-            let leftCount = 12 + Int(arc4random_uniform(7)) // 12-18 Left presses
-            NSLog("⬅️ Left return traversal: \(leftCount) presses (away from right edge)")
-            
-            for _ in 0..<leftCount {
-                remote.press(.left, forDuration: 0.05)
-                usleep(100_000 + arc4random_uniform(100_000)) // 100-200ms clear pauses
-            }
-            
-            // Cycle completion pause
-            usleep(400_000) // 400ms cycle pause
-            
-            cycleCount += 1
-            
-            if cycleCount % 5 == 0 {
-                NSLog("↔️ Right-Left traversal: \(cycleCount) cycles completed")
+            if totalSteps % 100 == 0 {
+                TestRunLogger.shared.log("↔️ Right-Left progress: \(totalSteps) intelligent edge-avoiding steps")
             }
         }
         
-        NSLog("↔️ RIGHT-LEFT-TRAVERSAL complete: \(cycleCount) large horizontal traversals")
+        TestRunLogger.shared.log("↔️ RIGHT-LEFT-TRAVERSAL complete: \(totalSteps) NavigationStrategy steps")
     }
     
     /// Execute Down-then-Up traversal avoiding bottom-edge trap
@@ -448,30 +463,56 @@ extension FocusStressUITests {
     ///
     /// **SuccessfulRepro3.txt Pattern Implementation:**
     /// - 22-45 Up press bursts (exact pattern from successful reproduction)
+    /// - SMART EDGE DETECTION: Changes direction when at top edge
     /// - Progressive burst intensity and duration
     /// - Clear pauses between bursts for system pressure accumulation
+    /// - RUNLOOP STALL TRIGGERS: Intensive focus system stress during bursts
     /// - Target: Recreate the exact conditions that led to 5179ms RunLoop stall
     ///
     /// **Critical Success Factor:** Up movements from bottom = maximum focus traversals
     private func executeProgressiveUpBurstsFromBottom(duration: TimeInterval) {
-        NSLog("⬆️ UP-BURSTS: SuccessfulRepro3.txt pattern (22-45 presses per burst)")
+        NSLog("⬆️ UP-BURSTS: SuccessfulRepro3.txt pattern with smart edge detection")
         
         let endTime = Date().addingTimeInterval(duration)
         var burstNumber = 0
+        var tracker = NavigationTracker()
         
         while Date() < endTime {
             // Up burst size: 22-45 presses (matching SuccessfulRepro3.txt)
             let upCount = 22 + (burstNumber % 24) // 22-45 Up presses (exact successful pattern)
-            NSLog("⬆️ Up burst \(burstNumber + 1): \(upCount) presses (SuccessfulRepro3.txt pattern)")
+            NSLog("⬆️ Up burst \(burstNumber + 1): \(upCount) presses (with edge detection)")
             
-            // Execute Up burst with progressive timing
+            // Execute Up burst with smart edge detection
             for pressIndex in 0..<upCount {
+                // Check if we're at top edge and need to change direction
+                if tracker.isLikelyAtTopEdge && pressIndex > 5 {
+                    NSLog("🔄 EDGE-DETECTED: At top edge, switching to Down for large traversal")
+                    
+                    // Switch to Down movement for large traversal back toward bottom
+                    let downCount = 8 + Int(arc4random_uniform(7)) // 8-14 Down presses
+                    for _ in 0..<downCount {
+                        remote.press(.down, forDuration: 0.05)
+                        tracker.recordPress(.down)
+                        usleep(120_000) // 120ms for large traversal timing
+                    }
+                    
+                    // Brief pause before continuing Up burst
+                    usleep(200_000) // 200ms direction change pause
+                    continue
+                }
+                
                 remote.press(.up, forDuration: 0.05)
+                tracker.recordPress(.up)
                 
                 // Progressive timing: Start 150ms → reduce to 100ms (building pressure)
                 let progressFactor = Double(pressIndex) / Double(upCount)
                 let burstTiming = 150_000 - UInt32(50_000 * progressFactor) // 150ms → 100ms
                 usleep(burstTiming)
+                
+                // RUNLOOP STALL TRIGGER: Intensive focus system stress every 10 presses
+                if pressIndex % 10 == 0 && pressIndex > 0 {
+                    triggerFocusSystemStress()
+                }
             }
             
             burstNumber += 1
@@ -480,12 +521,18 @@ extension FocusStressUITests {
             let burstPause = max(200_000, 400_000 - UInt32(burstNumber * 10_000)) // 400ms → 200ms
             usleep(burstPause)
             
+            // MAJOR RUNLOOP STALL TRIGGER: Intensive stress every 5 bursts
             if burstNumber % 5 == 0 {
-                NSLog("⬆️ Up-burst progress: \(burstNumber) bursts completed (building toward 5179ms stall)")
+                NSLog("💥 RUNLOOP-STALL-TRIGGER: Intensive focus stress (burst \(burstNumber))")
+                triggerMajorFocusSystemStress()
+            }
+            
+            if burstNumber % 5 == 0 {
+                NSLog("⬆️ Up-burst progress: \(burstNumber) bursts, pos: h=\(String(format: "%.2f", tracker.estimatedHorizontalPosition)), v=\(String(format: "%.2f", tracker.estimatedVerticalPosition))")
             }
         }
         
-        NSLog("⬆️ UP-BURSTS complete: \(burstNumber) SuccessfulRepro3.txt pattern bursts")
+        NSLog("⬆️ UP-BURSTS complete: \(burstNumber) smart edge-avoiding bursts")
     }
     
     /// Execute sustained upward pressure for RunLoop stall trigger
@@ -565,11 +612,89 @@ extension FocusStressUITests {
         let variation = arc4random_uniform(40_000) // ±40ms variation
         return baseTiming + variation
     }
+    
+    // MARK: - Edge Detection & Smart Navigation
+    
+    /// Simple edge detection based on navigation history
+    private struct NavigationTracker {
+        var rightPresses = 0
+        var leftPresses = 0  
+        var upPresses = 0
+        var downPresses = 0
+        
+        /// Estimated horizontal position (-1 = left edge, 0 = center, 1 = right edge)
+        var estimatedHorizontalPosition: Double {
+            let netRight = rightPresses - leftPresses
+            return max(-1.0, min(1.0, Double(netRight) / 20.0)) // Normalize to -1...1
+        }
+        
+        /// Estimated vertical position (-1 = top edge, 0 = center, 1 = bottom edge)  
+        var estimatedVerticalPosition: Double {
+            let netDown = downPresses - upPresses
+            return max(-1.0, min(1.0, Double(netDown) / 15.0)) // Normalize to -1...1
+        }
+        
+        /// Check if we're likely at right edge (>0.7 position)
+        var isLikelyAtRightEdge: Bool { estimatedHorizontalPosition > 0.7 }
+        
+        /// Check if we're likely at left edge (<-0.7 position)
+        var isLikelyAtLeftEdge: Bool { estimatedHorizontalPosition < -0.7 }
+        
+        /// Check if we're likely at bottom edge (>0.7 position)
+        var isLikelyAtBottomEdge: Bool { estimatedVerticalPosition > 0.7 }
+        
+        /// Check if we're likely at top edge (<-0.7 position)
+        var isLikelyAtTopEdge: Bool { estimatedVerticalPosition < -0.7 }
+        
+        mutating func recordPress(_ direction: XCUIRemote.Button) {
+            switch direction {
+            case .right: rightPresses += 1
+            case .left: leftPresses += 1
+            case .up: upPresses += 1
+            case .down: downPresses += 1
+            default: break
+            }
+        }
+    }
 }
 
 // MARK: - V8.0 Implementation Extensions (Legacy)
 
 extension FocusStressUITests {
+    
+    // MARK: - RunLoop Stall Triggers
+    
+    /// Trigger focus system stress to induce RunLoop stalls
+    ///
+    /// **RunLoop Stall Strategy:**
+    /// - Use NavigationStrategy for intelligent edge-avoiding rapid inputs
+    /// - NO expensive accessibility queries (they slow down reproduction)
+    /// - Target: Sustained input pressure leading to >5179ms RunLoop stalls
+    private func triggerFocusSystemStress() {
+        TestRunLogger.shared.log("💥 FOCUS-STRESS: Triggering rapid edge-avoiding navigation")
+        
+        // Use NavigationStrategy for intelligent rapid input burst
+        let navigator = NavigationStrategyExecutor(app: app)
+        navigator.execute(.cross(direction: .full), steps: 5)
+        
+        TestRunLogger.shared.log("💥 FOCUS-STRESS: Completed rapid navigation burst")
+    }
+    
+    /// Trigger major focus system stress for RunLoop stall induction
+    ///
+    /// **Major Stress Strategy:**
+    /// - Use NavigationStrategy for sustained intelligent rapid inputs
+    /// - Focus on button press frequency to overwhelm focus calculations
+    /// - Target: Maximum input pressure for >5179ms RunLoop stalls
+    private func triggerMajorFocusSystemStress() {
+        TestRunLogger.shared.log("💥 MAJOR-STRESS: Starting intensive edge-avoiding navigation")
+        
+        // Major stress via NavigationStrategy - rapid spiral pattern for maximum focus stress
+        let navigator = NavigationStrategyExecutor(app: app)
+        navigator.execute(.spiral(direction: .outward), steps: 12)
+        
+        TestRunLogger.shared.log("💥 MAJOR-STRESS: Completed intensive navigation burst")
+    }
     
     // MARK: - V8.2 Improved V8.0 Methods
     

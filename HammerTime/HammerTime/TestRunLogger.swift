@@ -81,7 +81,7 @@ public final class TestRunLogger {
         
         let timestamp = generateTimestamp()
         let sanitizedTestName = sanitizeFileName(config.testName)
-        let fileName = "\(timestamp)_\(config.executionContext.rawValue)_\(sanitizedTestName).log"
+        let fileName = "\(timestamp)-\(sanitizedTestName).txt"  // Match existing format like "62325-1439DidNotRepro.txt"
         
         guard let logFile = createLogFile(named: fileName) else {
             NSLog("TestRunLogger: Failed to create log file: \(fileName)")
@@ -217,14 +217,14 @@ public final class TestRunLogger {
     /// Creates logs directory structure if it doesn't exist
     private func createLogsDirectoryIfNeeded() {
         let logsURL = getLogsDirectoryURL()
-        let testRunLogsURL = logsURL.appendingPathComponent("testRunLogs")
+        let testRunLogsURL = logsURL.appendingPathComponent("UITestRunLogs")
         
         do {
             try FileManager.default.createDirectory(at: testRunLogsURL, 
                                                   withIntermediateDirectories: true, 
                                                   attributes: nil)
         } catch {
-            NSLog("TestRunLogger: Failed to create testRunLogs directory: \(error)")
+            NSLog("TestRunLogger: Failed to create UITestRunLogs directory: \(error)")
         }
     }
     
@@ -234,7 +234,7 @@ public final class TestRunLogger {
     /// - Returns: URL of created log file, or nil if creation failed
     private func createLogFile(named fileName: String) -> URL? {
         let logsURL = getLogsDirectoryURL()
-        let testRunLogsURL = logsURL.appendingPathComponent("testRunLogs")
+        let testRunLogsURL = logsURL.appendingPathComponent("UITestRunLogs")
         let logFileURL = testRunLogsURL.appendingPathComponent(fileName)
         
         do {
@@ -342,10 +342,10 @@ public final class TestRunLogger {
     
     /// Generates timestamp string for file naming
     /// 
-    /// - Returns: Formatted timestamp string
+    /// - Returns: Formatted timestamp string matching existing log format
     private func generateTimestamp() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd_HHmmss"
+        formatter.dateFormat = "MMddyy-HHmm"  // Match existing format like "62325-1439"
         return formatter.string(from: Date())
     }
     
@@ -464,6 +464,28 @@ extension TestRunLogger {
     @discardableResult
     public func startUITest(_ testName: String) -> Bool {
         let config = LoggerConfig(testName: testName, executionContext: .uiTest)
+        return startLogging(config: config)
+    }
+    
+    /// Quick start for UI test execution with automatic InfinityBug focus
+    /// 
+    /// - Parameter testMethodName: XCTest method name (e.g., "testDevTicket_EdgeAvoidanceNavigationPattern")
+    /// - Returns: Success status
+    @discardableResult
+    public func startInfinityBugUITest(_ testMethodName: String) -> Bool {
+        // Extract meaningful name from test method
+        let cleanName = testMethodName
+            .replacingOccurrences(of: "test", with: "")
+            .replacingOccurrences(of: "DevTicket_", with: "")
+            .replacingOccurrences(of: "Evolved", with: "")
+            .replacingOccurrences(of: "InfinityBug", with: "IBug")
+        
+        let config = LoggerConfig(
+            testName: cleanName,
+            executionContext: .uiTest,
+            captureConsole: true,
+            includeSystemInfo: true
+        )
         return startLogging(config: config)
     }
 } 

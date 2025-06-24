@@ -39,7 +39,9 @@ final class FocusStressViewController: UIViewController {
     /// Array of overlapping focus conflict elements for enhanced stress testing
     private var focusConflictElements: [UIView] = []
 
-    private lazy var collectionView: UICollectionView = {
+    private var collectionView: UICollectionView!
+    
+    private func createCollectionView() -> UICollectionView {
         let layout = UICollectionViewCompositionalLayout { [weak self] _, _ in
             guard let self = self else { return self?.makeSimpleSection() }
             switch self.configuration.layout.nestingLevel {
@@ -59,7 +61,7 @@ final class FocusStressViewController: UIViewController {
         cv.accessibilityIdentifier = "FocusStressCollectionView"
         cv.register(StressCell.self, forCellWithReuseIdentifier: StressCell.reuseID)
         return cv
-    }()
+    }
     
     // MARK: Initializers
     
@@ -69,8 +71,14 @@ final class FocusStressViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        // Load a default configuration from launch args, or a fallback
-        self.configuration = FocusStressConfiguration.loadFromLaunchArguments()
+        // Load a default configuration from launch args, or a fallback with TRIPLE cells
+        var config = FocusStressConfiguration.loadFromLaunchArguments()
+        
+        // Triple the navigation content for better edge-avoidance testing
+        config.layout.numberOfSections = max(config.layout.numberOfSections * 3, 300) // Minimum 300 sections
+        config.layout.itemsPerSection = max(config.layout.itemsPerSection * 3, 60)    // Minimum 60 items per section
+        
+        self.configuration = config
         super.init(coder: coder)
     }
 
@@ -144,6 +152,7 @@ final class FocusStressViewController: UIViewController {
 
     // MARK: Setup helpers
     private func setupCollectionView() {
+        collectionView = createCollectionView()
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         let topConstraint = collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
@@ -166,7 +175,38 @@ final class FocusStressViewController: UIViewController {
     private func startVOAnnouncements() {
         voAnnouncementTimer = Timer.scheduledTimer(withTimeInterval: configuration.stress.voAnnouncementInterval, repeats: true) { _ in
             guard UIAccessibility.isVoiceOverRunning else { return }
-            if Int.random(in: 0...99) < 10 { // 10 % chance
+            
+            // Enhanced announcements for InfinityBug reproduction
+            let randomValue = Int.random(in: 0...99)
+            
+            if randomValue < 15 { // 15% chance for layout announcements (was 10% for debug)
+                // Layout change announcements to stress accessibility system
+                let layoutAnnouncements = [
+                    "Layout updated with new content",
+                    "Collection view structure changed", 
+                    "Focus environment refreshed",
+                    "Navigation layout modified",
+                    "Content arrangement updated",
+                    "Display structure reorganized"
+                ]
+                
+                let announcement = layoutAnnouncements.randomElement() ?? "Layout changed"
+                
+                // Force layout invalidation to create real layout stress
+                self.collectionView.collectionViewLayout.invalidateLayout()
+                
+                // Post layout change notification to stress accessibility system
+                UIAccessibility.post(notification: .layoutChanged, argument: announcement)
+                
+                TestRunLogger.shared.log("📢 LAYOUT-ANNOUNCEMENT: \(announcement)")
+                
+                // Additional system stress: Force focus system recalculation
+                DispatchQueue.main.async {
+                    self.view.setNeedsFocusUpdate()
+                    self.view.updateFocusIfNeeded()
+                }
+                
+            } else if randomValue < 25 { // 10% chance for regular debug announcements
                 let value = Int.random(in: 0...999)
                 UIAccessibility.post(notification: .announcement, argument: "Debug announcement \(value)")
             }
@@ -223,23 +263,83 @@ final class FocusStressViewController: UIViewController {
             self.view.setNeedsLayout()
         }
     }
+    
+    /// Creates background accessibility stress elements during navigation.
+    /// These elements stress the accessibility system similar to conditions in successful reproductions.
+    private func addFocusConflicts() {
+        NSLog("💾 FocusStressViewController: Adding accessibility stress elements")
+        
+        // 75+ accessibility elements for system stress during large navigation traversals
+        for i in 0..<75 {
+            let conflictView = UIView()
+            conflictView.isAccessibilityElement = true
+            conflictView.accessibilityLabel = "AccessibilityStress\(i % 3)" // Duplicate labels for system confusion
+            conflictView.backgroundColor = .clear
+            conflictView.alpha = 0.02 // Nearly invisible but still in accessibility tree
+            
+            // Multiple accessibility traits for system stress
+            if i % 5 == 0 {
+                conflictView.accessibilityTraits = [.button, .header, .selected] // Multiple conflicting traits
+            }
+            
+            // Dynamic accessibility properties that change during navigation
+            conflictView.accessibilityHint = "Background stress element \(i) - navigation pressure"
+            
+            view.addSubview(conflictView)
+            
+            // Distributed overlapping frames for accessibility system stress
+            conflictView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                conflictView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: CGFloat(i * 8 - 300)),
+                conflictView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: CGFloat(i * 6 - 225)),
+                conflictView.widthAnchor.constraint(equalToConstant: 180), // Moderate overlap
+                conflictView.heightAnchor.constraint(equalToConstant: 120)
+            ])
+            
+            focusConflictElements.append(conflictView)
+        }
+        
+        // Dynamic accessibility property changes during navigation to stress the system
+        Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            
+            // Change accessibility properties periodically during navigation
+            for (index, element) in self.focusConflictElements.enumerated() {
+                if index % 15 == 0 { // Change 1/15 elements each cycle for moderate stress
+                    element.accessibilityLabel = "DynamicStress\(Int.random(in: 0...8))"
+                    
+                    // Trigger accessibility system recalculation
+                    UIAccessibility.post(notification: .layoutChanged, argument: nil)
+                }
+            }
+        }
+    }
 
-    /// Stress 8: Add overlapping invisible focusable elements
+    /// Stress 8: Add overlapping elements for accessibility system stress
     private func addOverlappingElements() {
-        for i in 0..<10 {
+        // 50+ overlapping elements for accessibility system stress during navigation
+        for i in 0..<50 {
             let overlayView = UIView()
             overlayView.isAccessibilityElement = true
-            overlayView.accessibilityLabel = "Overlay\(i)"
+            overlayView.accessibilityLabel = "Overlay\(i % 5)" // Duplicate labels for accessibility confusion
             overlayView.backgroundColor = .clear
-            overlayView.alpha = 0.01 // Nearly invisible but still focusable
+            overlayView.alpha = 0.01 // Nearly invisible but still in accessibility tree
+            
+            // Dynamic accessibility properties that change during navigation
+            overlayView.accessibilityHint = "Dynamic overlay \(i) - stress element"
+            if i % 5 == 0 {
+                overlayView.accessibilityTraits = [.button, .header] // Multiple traits for system stress
+            }
+            
             view.addSubview(overlayView)
             
             overlayView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                overlayView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: CGFloat(i * 20 - 100)),
-                overlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: CGFloat(i * 15 - 75)),
-                overlayView.widthAnchor.constraint(equalToConstant: 200),
-                overlayView.heightAnchor.constraint(equalToConstant: 150)
+                // Aggressive overlapping for accessibility system stress
+                overlayView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: CGFloat(i * 15 - 375)),
+                overlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: CGFloat(i * 12 - 300)),
+                overlayView.widthAnchor.constraint(equalToConstant: 300), // Large overlap area
+                overlayView.heightAnchor.constraint(equalToConstant: 200)
             ])
         }
     }
@@ -269,32 +369,6 @@ final class FocusStressViewController: UIViewController {
         
         // Add focus conflict elements for enhanced stress
         addFocusConflicts()
-    }
-    
-    /// Creates overlapping focus conflict elements to enhance accessibility system stress.
-    /// These elements create focus confusion similar to conditions in successful reproductions.
-    private func addFocusConflicts() {
-        NSLog("💾 FocusStressViewController: Adding focus conflicts for enhanced stress")
-        
-        for i in 0..<25 {
-            let conflictView = UIView()
-            conflictView.isAccessibilityElement = true
-            conflictView.accessibilityLabel = "FocusConflict\(i % 4)" // Duplicate labels = conflict
-            conflictView.backgroundColor = .clear
-            conflictView.alpha = 0.02 // Nearly invisible but still focusable
-            view.addSubview(conflictView)
-            
-            // Overlapping frames create focus confusion
-            conflictView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                conflictView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: CGFloat(i * 12 - 150)),
-                conflictView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: CGFloat(i * 8 - 100)),
-                conflictView.widthAnchor.constraint(equalToConstant: 180),
-                conflictView.heightAnchor.constraint(equalToConstant: 120)
-            ])
-            
-            focusConflictElements.append(conflictView)
-        }
     }
 
     // MARK: Layouts
@@ -406,8 +480,6 @@ final class FocusStressViewController: UIViewController {
     }
 }
 
-
-
 // MARK: - Datasource / Delegate
 extension FocusStressViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func numberOfSections(in _: UICollectionView) -> Int { configuration.layout.numberOfSections }
@@ -447,6 +519,22 @@ private final class StressCell: UICollectionViewCell {
             ? "dupCell"
             : "cell-\(indexPath.section)-\(indexPath.item)"
 
+        // ENHANCED INFINITY BUG STRESS: Rapid accessibility changes during configuration
+        if stressConfig.stressors.contains(.voAnnouncements) {
+            // Change accessibility properties rapidly to stress the system
+            accessibilityLabel = "Cell \(indexPath.section)-\(indexPath.item) Dynamic \(Int.random(in: 0...999))"
+            accessibilityHint = "Changes every configuration - stress element \(indexPath.item % 10)"
+            
+            // Conflicting accessibility traits to confuse the system
+            if indexPath.item % 7 == 0 {
+                accessibilityTraits = [.button, .header, .adjustable] // Multiple conflicting traits
+            }
+            
+            // Force rapid focus calculations by querying focus state
+            _ = canBecomeFocused
+            _ = isFocused
+        }
+
         if host == nil {
             let view = SwiftUIView(number: indexPath.item)
             let hosting = UIHostingController(rootView: view)
@@ -462,25 +550,45 @@ private final class StressCell: UICollectionViewCell {
             host = hosting
         }
 
-        // Stress 2: hidden focusable traps - more aggressive version
+        // Stress 2: hidden focusable traps - MORE AGGRESSIVE version
         if stressConfig.stressors.contains(.hiddenFocusableTraps) && contentView.subviews.filter({ $0.isHidden }).isEmpty {
-            for i in 0..<8 {
+            // INCREASED from 8 to 15 traps per cell for maximum confusion
+            for i in 0..<15 {
                 let trap = UIView()
                 trap.isAccessibilityElement = true
-                trap.accessibilityLabel = "HiddenTrap\(i)"
+                trap.accessibilityLabel = "HiddenTrap\(i % 4)" // More duplicate labels
                 trap.isHidden = Bool.random() // Some visible, some hidden
                 trap.alpha = trap.isHidden ? 0 : 0.05
                 trap.backgroundColor = .red
+                
+                // Additional accessibility stress during cell configuration
+                trap.accessibilityHint = "Hidden stress trap \(i)"
+                
+                // CONFLICTING TRAITS for more system confusion
+                if i % 5 == 0 {
+                    trap.accessibilityTraits = [.button, .image, .selected]
+                }
+                
                 contentView.addSubview(trap)
                 
                 trap.translatesAutoresizingMaskIntoConstraints = false
                 NSLayoutConstraint.activate([
-                    trap.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: CGFloat(i * 10 - 40)),
-                    trap.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: CGFloat(i * 8 - 32)),
-                    trap.widthAnchor.constraint(equalToConstant: 20),
-                    trap.heightAnchor.constraint(equalToConstant: 15)
+                    // SMALLER spacing for more aggressive overlap
+                    trap.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: CGFloat(i * 8 - 56)),
+                    trap.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: CGFloat(i * 6 - 42)),
+                    trap.widthAnchor.constraint(equalToConstant: 25), // Larger traps
+                    trap.heightAnchor.constraint(equalToConstant: 20)
                 ])
             }
+        }
+        
+        // NEW STRESS: Force layout calculations during configuration to stress the system
+        contentView.setNeedsLayout()
+        contentView.layoutIfNeeded()
+        
+        // Force accessibility tree recalculation
+        if UIAccessibility.isVoiceOverRunning {
+            _ = contentView.subviews.count // Force accessibility query
         }
     }
 }
