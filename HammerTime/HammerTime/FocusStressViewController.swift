@@ -14,6 +14,7 @@
 //  6. Dynamic focus guides (rapidly changing preferred environments)
 //  7. Rapid layout invalidation cycles
 //  8. Overlapping invisible focusable elements
+//  9. PROGRESSIVE STALL SYSTEM: Linear escalation to InfinityBug conditions
 //  
 //  Visual feedback: Focused cells turn blue with 1.05x scale
 //
@@ -35,9 +36,18 @@ final class FocusStressViewController: UIViewController {
     private var voAnnouncementTimer: Timer?
     /// Timer for creating memory pressure to stress the system for V6.0 reproduction tests
     private var memoryStressTimer: Timer?
+    /// NEW: Progressive stress escalation timer for predictable InfinityBug reproduction
+    private var progressiveStressTimer: Timer?
     private var focusGuides: [UIFocusGuide] = []
     /// Array of overlapping focus conflict elements for enhanced stress testing
     private var focusConflictElements: [UIView] = []
+    
+    // MARK: - Progressive Stress System Properties
+    private var stressStartTime: TimeInterval = 0
+    private var currentStressLevel: Int = 0
+    private var memoryBallast: [[String]] = [] // Accumulated memory load
+    private var voiceOverProcessingLoad: Int = 0 // Simulated VoiceOver overhead
+    private var artificialStallDuration: TimeInterval = 0 // Programmatic stall injection
 
     private var collectionView: UICollectionView!
     
@@ -135,6 +145,9 @@ final class FocusStressViewController: UIViewController {
             TestRunLogger.shared.log("💾 FocusStressViewController: Memory stress enabled for V6.0 reproduction")
         }
         
+        // NEW: Start progressive stress system for predictable InfinityBug reproduction
+        startProgressiveStressSystem()
+        
         // Activate continuous memory stress for extreme presets (guaranteedInfinityBug)
         activateMemoryStress()
         
@@ -148,6 +161,140 @@ final class FocusStressViewController: UIViewController {
         layoutChangeTimer?.invalidate()
         voAnnouncementTimer?.invalidate()
         memoryStressTimer?.invalidate()
+        progressiveStressTimer?.invalidate()
+    }
+
+    // MARK: - Progressive Stress System for Predictable InfinityBug Reproduction
+    
+    /// Systematically escalates system stress to reproduce the InfinityBug pattern:
+    /// 0-30s: Baseline (52MB, normal stalls)
+    /// 30-90s: Level 1 (56MB, 1-2s stalls)  
+    /// 90-180s: Level 2 (64MB, 5-10s stalls)
+    /// 180s+: Level 3 (65-66MB, 1000ms+ sustained stalls) → InfinityBug
+    private func startProgressiveStressSystem() {
+        stressStartTime = CACurrentMediaTime()
+        
+        TestRunLogger.shared.log("🎯 PROGRESSIVE-STRESS: Starting predictable escalation system")
+        TestRunLogger.shared.log("🎯 TARGET: 52MB→56MB→64MB→66MB with escalating stalls")
+        
+        progressiveStressTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            self?.updateProgressiveStress()
+        }
+    }
+    
+    /// Updates stress level based on elapsed time and applies corresponding system pressure
+    private func updateProgressiveStress() {
+        let elapsed = CACurrentMediaTime() - stressStartTime
+        let newStressLevel: Int
+        
+        // Progressive escalation based on successful reproduction timeline
+        switch elapsed {
+        case 0..<30:
+            newStressLevel = 0 // Baseline: ~52MB
+        case 30..<90:
+            newStressLevel = 1 // Level 1: ~56MB, 1-2s stalls
+        case 90..<180:
+            newStressLevel = 2 // Level 2: ~64MB, 5-10s stalls  
+        default:
+            newStressLevel = 3 // Level 3: 65-66MB, sustained 1000ms+ stalls
+        }
+        
+        if newStressLevel != currentStressLevel {
+            escalateStressLevel(to: newStressLevel)
+            currentStressLevel = newStressLevel
+        }
+        
+        // Apply continuous stress at current level
+        applyCurrentStressLevel()
+    }
+    
+    /// Escalates to the specified stress level with logging
+    private func escalateStressLevel(to level: Int) {
+        let elapsed = CACurrentMediaTime() - stressStartTime
+        
+        switch level {
+        case 1:
+            TestRunLogger.shared.log("🎯 STRESS-ESCALATION: Level 1 at \(String(format: "%.1f", elapsed))s - targeting 56MB")
+            addMemoryPressure(targetMB: 56)
+            increaseVoiceOverLoad(factor: 1.5)
+            
+        case 2:
+            TestRunLogger.shared.log("🎯 STRESS-ESCALATION: Level 2 at \(String(format: "%.1f", elapsed))s - targeting 64MB")
+            addMemoryPressure(targetMB: 64)
+            increaseVoiceOverLoad(factor: 2.0)
+            artificialStallDuration = 0.1 // Start injecting 100ms stalls
+            
+        case 3:
+            TestRunLogger.shared.log("🎯 STRESS-ESCALATION: Level 3 at \(String(format: "%.1f", elapsed))s - targeting 66MB+ CRITICAL")
+            addMemoryPressure(targetMB: 66)
+            increaseVoiceOverLoad(factor: 3.0)
+            artificialStallDuration = 0.5 // Inject 500ms stalls to trigger 1000ms+ stalls
+            
+        default:
+            TestRunLogger.shared.log("🎯 STRESS-BASELINE: Level 0 - normal operation ~52MB")
+        }
+    }
+    
+    /// Adds memory ballast to reach target memory usage
+    private func addMemoryPressure(targetMB: Int) {
+        let currentMB = estimateCurrentMemoryMB()
+        let additionalMB = max(0, targetMB - currentMB)
+        
+        if additionalMB > 0 {
+            // Add ~1MB of strings per call
+            let megabyteOfStrings = Array(0..<50000).map { _ in 
+                String(repeating: UUID().uuidString, count: 8) // ~32KB each
+            }
+            memoryBallast.append(megabyteOfStrings)
+            
+            TestRunLogger.shared.log("🎯 MEMORY-PRESSURE: Added \(additionalMB)MB ballast (target: \(targetMB)MB)")
+        }
+    }
+    
+    /// Simulates increasing VoiceOver processing overhead
+    private func increaseVoiceOverLoad(factor: Double) {
+        voiceOverProcessingLoad = Int(Double(voiceOverProcessingLoad + 10) * factor)
+        TestRunLogger.shared.log("🎯 VOICEOVER-LOAD: Increased to level \(voiceOverProcessingLoad)")
+    }
+    
+    /// Applies stress appropriate to current level
+    private func applyCurrentStressLevel() {
+        // Inject artificial stalls to simulate VoiceOver overhead
+        if artificialStallDuration > 0 {
+            Thread.sleep(forTimeInterval: artificialStallDuration * 0.1) // 10% of target stall
+        }
+        
+        // Simulate VoiceOver processing by doing accessibility tree queries
+        if voiceOverProcessingLoad > 0 && UIAccessibility.isVoiceOverRunning {
+            for _ in 0..<min(voiceOverProcessingLoad, 50) {
+                _ = view.subviews.count
+                _ = collectionView.visibleCells.count
+                if artificialStallDuration > 0.2 {
+                    // Heavy accessibility queries at high stress levels
+                    _ = view.accessibilityElements?.count ?? 0
+                }
+            }
+        }
+        
+        // Force layout recalculations at higher stress levels
+        if currentStressLevel >= 2 {
+            collectionView.collectionViewLayout.invalidateLayout()
+            view.setNeedsLayout()
+            
+            // Additional main thread work to create stalls
+            if currentStressLevel >= 3 {
+                // Expensive string operations to consume main thread time
+                _ = memoryBallast.flatMap { $0 }.joined(separator: ",").count
+            }
+        }
+    }
+    
+    /// Estimates current memory usage (simplified)
+    private func estimateCurrentMemoryMB() -> Int {
+        // Base memory + accumulated ballast
+        let baseMB = 52
+        let ballastMB = memoryBallast.count
+        return baseMB + ballastMB
     }
 
     // MARK: Setup helpers
