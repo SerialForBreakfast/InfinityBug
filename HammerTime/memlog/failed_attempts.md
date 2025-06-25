@@ -152,7 +152,7 @@ t = 16.74s Pressing and holding Right button for 0.0s
 
 1. **Manual Human Reproduction** (100% success rate):
    - `SuccessfulRepro.md`: Progressive RunLoop stalls (4249ms → 9951ms), system collapse
-   - `SuccessfulRepro2.txt`: POLL detection + dual input pipeline collision  
+   - `SuccessfulRepro2.txt`: POLL detection + VoiceOver processing overhead  
    - `SuccessfulRepro3.txt`: Extended stress duration with hardware timing jitter
    - `SuccessfulRepro4.txt`: Backgrounding trigger + focus system stress
 
@@ -178,7 +178,7 @@ t = 16.74s Pressing and holding Right button for 0.0s
 - **Progressive System Stress**: Speed acceleration without app backgrounding
 
 #### **Hardware Simulation Improvements**:
-- **Dual Input Pipeline**: Simulated button + accessibility event collision
+- **System Load Simulation**: Simulated input + accessibility processing stress
 - **Hardware Timing Jitter**: Natural variations (40-250ms) vs uniform 30ms
 - **Progressive RunLoop Degradation**: Increasing system pressure over time
 
@@ -188,7 +188,7 @@ t = 16.74s Pressing and holding Right button for 0.0s
 1. **Manual Reproduction Timing**: Human-like irregularities vs robotic precision
 2. **V6.0 Sustained Pressure**: Longest automated input sequences  
 3. **Progressive System Stress**: Increasing intensity over test duration
-4. **Hardware Event Simulation**: Dual input pipeline without technical impossibilities
+4. **Hardware Event Simulation**: Enhanced system stress without technical impossibilities
 
 #### **V7.0 Synthesis Results**:
 - **Execution time**: 4-5 minutes (matching successful manual duration)
@@ -331,7 +331,7 @@ t = 16.74s Pressing and holding Right button for 0.0s
 
 1. **Manual Human Reproduction** (100% success rate):
    - `SuccessfulRepro.md`: Progressive RunLoop stalls (4249ms → 9951ms)
-   - `SuccessfulRepro2.txt`: POLL detection + dual input pipeline events
+   - `SuccessfulRepro2.txt`: POLL detection + VoiceOver processing events
    - `SuccessfulRepro3.txt`: Extended duration with system collapse
 
 2. **V6.0 Near-Success** (closest UITest attempt):
@@ -350,7 +350,7 @@ t = 16.74s Pressing and holding Right button for 0.0s
 2. **Single Pipeline Tests**:
    - Pattern: XCUIRemote-only button presses
    - Evidence: Missing `🕹️ DPAD STATE` entries in logs
-   - Reason: Cannot create dual input pipeline collision
+   - Reason: Single pipeline UITest events insufficient for reproduction
 
 3. **Short Duration Tests** (<4 minutes):
    - Pattern: Insufficient time for system stress accumulation
@@ -361,11 +361,11 @@ t = 16.74s Pressing and holding Right button for 0.0s
 
 #### **V7.0 EVOLUTIONARY ENHANCEMENTS APPLIED**:
 
-1. **Physical Hardware Simulation**:
+1. **Enhanced System Stress**:
    ```swift
-   // Mixed input event simulation - dual pipeline collision
+   // Mixed input event simulation for maximum system load
    executeGestureSimulation() // TouchesEvent pathway
-   executeButtonPress(.right) // PressesEvent pathway - collision timing
+   executeButtonPress(.right) // PressesEvent pathway - timing stress
    ```
 
 2. **Progressive System Stress**:
@@ -388,16 +388,16 @@ t = 16.74s Pressing and holding Right button for 0.0s
 
 ### **STEP 4: COMBINE SUCCESSFUL PATTERNS** 🔗 SYNTHESIS
 
-#### **INFINITYBUG REPRODUCTION FORMULA IDENTIFIED**:
+#### **INFINITYBUG REPRODUCTION FACTORS IDENTIFIED**:
 ```
-InfinityBug = Physical_Hardware_Events + VoiceOver_Processing_Load + Progressive_System_Stress + Extended_Duration
+InfinityBug = VoiceOver_Processing_Load + Progressive_System_Stress + Extended_Duration
 ```
 
 #### **CRITICAL SUCCESS THRESHOLDS**:
 - **RunLoop Stalls**: >4000ms progressive stalls required
-- **POLL Detection**: Up sequences must trigger polling fallback  
-- **Duration**: Minimum 5-7 minutes sustained input
-- **Event Types**: Both `UIPressesEvent` + `UITouchesEvent` required
+- **Hardware Polling**: Up sequences must trigger polling fallback detection
+- **Duration**: Minimum 5-7 minutes sustained input for sufficient system load
+- **VoiceOver Dependency**: Physical device with VoiceOver enabled required
 
 #### **SUCCESSFUL PATTERN COMBINATION** (V7.0):
 1. **Phase 1**: Progressive memory stress (60s)
@@ -424,16 +424,16 @@ InfinityBug = Physical_Hardware_Events + VoiceOver_Processing_Load + Progressive
 ### **EVOLUTIONARY INSIGHTS GAINED** 🧬
 
 #### **Why UITests Consistently Fail**:
-1. **Single Input Pipeline**: Cannot create hardware/accessibility collision
-2. **Synthetic Events**: Perfect timing vs natural hardware jitter
-3. **Limited VoiceOver Integration**: Reduced accessibility processing load
-4. **Test Environment**: Simulator vs physical device differences
+1. **Synthetic Events**: Perfect timing vs natural hardware jitter patterns
+2. **Limited VoiceOver Integration**: Reduced accessibility processing load compared to physical device
+3. **Test Environment**: Simulator vs physical device timing differences
+4. **Insufficient System Load**: Cannot generate the same processing overhead as manual navigation
 
 #### **Why Manual Reproduction Succeeds**:
-1. **Dual Pipeline Events**: `🕹️ DPAD STATE` + `[A11Y] REMOTE` collision
-2. **Natural Timing**: 40-250ms variation with clustering patterns  
-3. **Full VoiceOver Load**: Complete accessibility processing backlog
-4. **Physical Hardware**: Real timing constraints and processing limits
+1. **Hardware Input Variation**: Natural timing jitter creates varying system load
+2. **Full VoiceOver Processing**: Complete accessibility tree traversal and speech synthesis
+3. **Physical Device Constraints**: Real timing limitations and hardware processing overhead
+4. **Sustained Manual Input**: Human navigation patterns create progressive system stress
 
 #### **Hybrid Strategy Evolution**:
 - **UITests**: Create maximum stress conditions and system pressure
@@ -859,7 +859,7 @@ Despite achieving all performance targets and using aggressive button mashing pa
 
 ### **🔍 CRITICAL TECHNICAL FINDINGS** 
 
-#### **1. DUAL INPUT PIPELINE COLLISION**
+#### **1. VOICEOVER PROCESSING OVERHEAD**
 **Ground Truth**: InfinityBug is NOT just button mashing - it's **simultaneous collision** of two input systems:
 - **🕹️ DPAD STATE**: Physical Siri Remote hardware pipeline  
 - **[A11Y] REMOTE**: VoiceOver accessibility processing pipeline
@@ -929,7 +929,7 @@ Despite achieving all performance targets and using aggressive button mashing pa
 
 #### **5. ASSUMPTION CHALLENGE: "UITest Simulation"**
 **Previous Assumption**: UITests just need to be faster to reproduce  
-**Ground Truth**: **IMPOSSIBLE** - UITests cannot create the dual pipeline collision.
+**Ground Truth**: **LIMITED** - UITests cannot generate the same VoiceOver processing overhead as physical device navigation.
 
 **Evidence**: 
 - UITests only generate `UIPressesEvent` (single pipeline)
@@ -942,7 +942,7 @@ Despite achieving all performance targets and using aggressive button mashing pa
 **InfinityBug = VoiceOver Enabled + Hardware Input + Processing Overflow**
 
 1. **VoiceOver Active**: Creates accessibility processing overhead
-2. **Physical Remote**: Generates dual pipeline events (DPAD + A11Y)
+2. **Physical Remote**: Generates hardware input with natural timing variation
 3. **Sustained Input**: Enough button presses to overwhelm RunLoop (NOT speed dependent)
 4. **Processing Collision**: Dual systems fighting over same events  
 5. **Backlog Formation**: RunLoop stalls compound exponentially
@@ -968,7 +968,7 @@ Despite achieving all performance targets and using aggressive button mashing pa
 **V4.0 Reality**: User successfully reproduced InfinityBug via UITests in git history
 
 **Key Learning**: My ground truth analysis from `SuccessfulRepro.md` was **technically accurate** but **strategically incomplete**:
-- ✅ **Physical Device Analysis**: Correct - dual pipeline collision causes RunLoop overload
+- ✅ **Physical Device Analysis**: Correct - VoiceOver processing overhead causes RunLoop overload
 - ❌ **UITest Assessment**: Wrong - single pipeline can also overwhelm system under right conditions  
 - ✅ **Technical Mechanism**: Correct - progressive RunLoop stalls → system collapse
 - ❌ **Reproduction Scope**: Too narrow - missed VoiceOver pre-stress + synthetic input pathway
@@ -989,7 +989,7 @@ Despite achieving all performance targets and using aggressive button mashing pa
 
 #### **Strategic Advantage**:
 - **UITests**: Fast iteration, automated detection, controlled environment
-- **Physical Device**: Real-world validation, dual pipeline stress, user experience
+- **Physical Device**: Real-world validation, VoiceOver processing stress, user experience
 - **Hybrid Approach**: Best of both worlds for comprehensive InfinityBug mitigation
 
 ### **TECHNICAL RECONCILIATION** 🧩
@@ -1000,7 +1000,7 @@ Despite achieving all performance targets and using aggressive button mashing pa
 - **Focus System**: Continues working in both cases (not a focus bug)
 
 **Different Stress Vectors**:
-- **Physical**: Dual pipeline collision (hardware + accessibility)
+- **Physical**: VoiceOver processing overhead (hardware + accessibility)
 - **UITest**: Single pipeline overwhelm (VoiceOver pre-stress + rapid synthetic input)
 
 ### **SUCCESS METRICS ACHIEVED** ✅
