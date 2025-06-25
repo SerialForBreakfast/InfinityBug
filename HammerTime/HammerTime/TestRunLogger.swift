@@ -19,12 +19,20 @@ import os.log
 /// - System information and environment capture
 /// - Both manual and UI test execution support
 /// - Structured log format for analysis tools
+/// - **NEW**: Unified logging for UITest console capture
 public final class TestRunLogger {
     
     // MARK: - Singleton Instance
     
     /// Shared logger instance for global access
     public static let shared = TestRunLogger()
+    
+    // MARK: - Unified Logging Support
+    
+    /// Unified logging subsystem for filtering UITest console output
+    private static let logger = Logger(subsystem: "com.showblender.HammerTime", category: "TestRunLogger")
+    private static let axLogger = Logger(subsystem: "com.showblender.HammerTime", category: "AXFocusDebugger")
+    private static let uiTestLogger = Logger(subsystem: "com.showblender.HammerTime", category: "UITestExecution")
     
     // MARK: - Properties
     
@@ -143,8 +151,25 @@ public final class TestRunLogger {
             logFileHandle?.write(data)
         }
         
-        // Also output to console for real-time monitoring
+        // Output to both NSLog (for UITest capture) and unified logging (for console filtering)
         NSLog("TestRunLogger: \(message)")
+        Self.logger.info("\(message, privacy: .public)")
+    }
+    
+    /// Logs a message specifically for UITest execution context
+    /// 
+    /// - Parameter message: Message to log during UITest
+    public func logUITest(_ message: String) {
+        log(message) // Use standard logging
+        Self.uiTestLogger.info("UITEST: \(message, privacy: .public)")
+    }
+    
+    /// Logs accessibility debugging information with separate category
+    /// 
+    /// - Parameter message: AX debugging message
+    public func logAXDebug(_ message: String) {
+        log(message) // Use standard logging
+        Self.axLogger.debug("AXDBG: \(message, privacy: .public)")
     }
     
     /// Logs system information for debugging and analysis

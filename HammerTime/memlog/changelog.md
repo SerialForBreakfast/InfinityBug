@@ -1,5 +1,47 @@
 # HammerTime Project Changelog
 
+## [2025-06-25] - Test Suite Evolution via Selection Pressure
+
+### Failed Reproduction Analysis & Test Elimination
+- **Failed Run Analysis**: Analyzed 62525-1257DidNotRepro showing why InfinityBug wasn't reproduced
+- **Root Cause**: Multiple sequential tests fragment memory pressure and create resource competition
+- **Peak Stall Comparison**: Failed run 26,242ms vs successful 40,124ms (13,882ms deficit)
+
+### Selection Pressure Applied
+- **DISABLED**: `testDevTicket_AggressiveRunLoopStallMonitoring` - Resource drain, 41 stalls but prevents reproduction
+- **DISABLED**: `testDevTicket_EdgeAvoidanceNavigationPattern` - Zero stalls, no system stress contribution  
+- **DISABLED**: `testDevTicket_UpBurstFromSuccessfulReproduction` - Outdated approach, never reproduced
+- **DISABLED**: `testEvolvedBackgroundingTriggeredInfinityBug` - Zero reproduction success, resource interference
+- **RETAINED**: `testEvolvedInfinityBugReproduction` - Only test with confirmed InfinityBug reproduction
+
+### Concentration Hypothesis
+Single focused test execution should increase reproduction probability by:
+1. Maintaining continuous system pressure
+2. Preventing memory pressure fragmentation  
+3. Eliminating test interference
+4. Focusing all resources on reproduction
+
+## [2025-06-25] - UITest vs Manual Reproduction Analysis
+
+### Major Analysis Update
+- **New Document**: Created `SuccessfulReproductionUITestingVsManual.md` - comprehensive comparison of automated vs manual InfinityBug reproduction methods
+- **Document Refactor**: Updated `Confluence2.md` to v4.0 - significantly more succinct and focused, incorporating key insights from dual-method validation
+- **Performance Analysis**: Documented critical differences between UITest (40,124ms peak stalls in <130s) vs Manual (4,387ms progressive stalls in ~190s)
+- **Timeline Validation**: UITest achieves faster reproduction through aggressive input pressure, Manual provides comprehensive diagnostic coverage
+- **Memory Correlation**: Validated Manual reproduction's 52MB→79MB escalation pattern with queue overflow indicators (-44 to -76)
+
+### Key Technical Insights
+- **Input Rate vs Memory Pressure**: UITest demonstrates input rate pressure as primary accelerator, Manual shows memory pressure correlation
+- **Stall Characteristics**: UITest produces massive queue backlogs (40,000ms stalls), Manual shows progressive degradation with observable thresholds
+- **Complementary Benefits**: UITest suitable for CI/regression testing, Manual optimal for research and mitigation development
+- **Mitigation Updates**: Enhanced recommendations based on dual-method findings (0.2s input limiting, 65MB memory thresholds)
+
+### Documentation Structure
+- **Removed Redundancy**: Eliminated repetitive sections from Confluence2.md while preserving essential technical content
+- **Enhanced Focus**: Streamlined architecture and failure mechanism sections for clarity
+- **Integrated Findings**: Incorporated UITest insights into mitigation strategies and validation approaches
+- **Professional Format**: Maintained technical accuracy while improving readability and actionability
+
 ## [2025-01-25] - Enhanced UIKit API Logging
 
 ### Enhanced

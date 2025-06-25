@@ -1461,3 +1461,77 @@ t = 170s+:    Complete query failure
 1. *Moderate* element count: cap at 100×100 for triple-nested layouts.
 2. Re-introduce Up-burst intensification **without** new queries.
 3. Investigate on-device profiling to measure snapshot cost growth.
+
+# Failed InfinityBug Reproduction Attempts
+
+## 62525-1257DidNotRepro Analysis
+
+**Date**: 2025-06-25 12:20-12:56  
+**Duration**: 2191 seconds (5 tests)  
+**Result**: FAILED - InfinityBug not reproduced  
+
+### Critical Stall Analysis
+- **Peak Stall**: 26,242ms (insufficient for InfinityBug)
+- **Total Critical Stalls**: 41 stalls >5000ms threshold
+- **Missing**: No stalls >30,000ms (required for InfinityBug)
+
+### Comparison with Successful Reproduction (62525-1046DIDREPRODUCE)
+| Metric | Failed Run | Successful Run | Delta |
+|--------|------------|----------------|-------|
+| Peak Stall | 26,242ms | 40,124ms | -13,882ms |
+| Test Count | 5 tests | 5 tests | Same |
+| Duration | 2191s | 2255s | -64s |
+| Critical Stalls | 41 | 30+ | +11 |
+
+### Root Cause Analysis
+
+**1. System Fatigue Hypothesis**
+- Multiple sequential stress tests may prevent InfinityBug reproduction
+- Each test allows partial system recovery
+- Memory pressure and event queue buildup gets fragmented
+
+**2. Resource Competition**
+- DevTicket tests consume system resources before main reproduction test
+- Critical stalls spread across multiple tests instead of concentrating in target test
+
+**3. Test Interference Pattern**
+```
+testDevTicket_AggressiveRunLoopStallMonitoring → 41 critical stalls
+testDevTicket_EdgeAvoidanceNavigationPattern  → System partially recovers
+testDevTicket_UpBurstFromSuccessfulReproduction → More fragmentation
+testEvolvedBackgroundingTriggeredInfinityBug   → Further interference
+testEvolvedInfinityBugReproduction             → Insufficient system stress
+```
+
+### Selection Pressure Decision
+
+**Tests Marked for Elimination:**
+1. `testDevTicket_AggressiveRunLoopStallMonitoring` - Resource drain, no reproduction
+2. `testDevTicket_EdgeAvoidanceNavigationPattern` - Exploratory only, no value
+3. `testDevTicket_UpBurstFromSuccessfulReproduction` - Failed to reproduce
+4. `testEvolvedBackgroundingTriggeredInfinityBug` - Never reproduced, interference risk
+
+**Test Retained:**
+- `testEvolvedInfinityBugReproduction` - Only test that achieved InfinityBug reproduction
+
+### Evolution Strategy
+
+**Hypothesis**: Single concentrated test execution will increase reproduction probability by:
+1. Maintaining continuous system pressure
+2. Preventing memory pressure fragmentation
+3. Eliminating test interference
+4. Focusing all resources on single reproduction attempt
+
+**Next Test Run**: Execute only `testEvolvedInfinityBugReproduction` to validate hypothesis
+
+### Failed Patterns Documented
+- **Multi-test execution**: Reduces reproduction probability
+- **Sequential stress tests**: Allows system recovery between attempts
+- **DevTicket exploratory tests**: Consume resources without benefit
+- **Background trigger tests**: No evidence of successful reproduction
+
+### Lessons Learned
+1. **Selection Pressure Works**: Tests that don't reproduce InfinityBug should be eliminated
+2. **System Resources Are Finite**: Multiple tests compete for limited stress capacity
+3. **Concentration Principle**: Single focused test may outperform multiple scattered attempts
+4. **Test Evolution Required**: Failed reproduction indicates need for test suite refinement

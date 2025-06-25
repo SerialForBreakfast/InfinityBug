@@ -38,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.makeKeyAndVisible()
         
+        // Check for UITest execution and configure logging accordingly
+        setupUITestLoggingIfNeeded()
+        
         // Enable VoiceOver for UI testing if launch argument is present
         if CommandLine.arguments.contains("--enable-voiceover") {
             enableVoiceOverForTesting()
@@ -49,6 +52,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+    
+    /// Configures enhanced logging when launched from UITests
+    private func setupUITestLoggingIfNeeded() {
+        // Check if launched from UITest environment
+        let isUITestExecution = ProcessInfo.processInfo.environment["UITEST_EXECUTION"] == "TRUE"
+        let autoStartLogger = ProcessInfo.processInfo.environment["AUTO_START_TEST_LOGGER"] == "TRUE"
+        let testName = ProcessInfo.processInfo.environment["UITEST_NAME"]
+        
+        if isUITestExecution {
+            print("🧪 AppDelegate: UITest execution detected - configuring enhanced logging")
+            
+            // Configure verbose console logging
+            if ProcessInfo.processInfo.environment["CONSOLE_LOGGING_ENABLED"] == "TRUE" {
+                // Enable all NSLog output
+                setenv("OS_ACTIVITY_MODE", "disable", 1) // Disable activity tracing for cleaner logs
+                print("🧪 AppDelegate: Console logging enabled for UITest")
+            }
+            
+            // Auto-start TestRunLogger if requested
+            if autoStartLogger, let testName = testName {
+                DispatchQueue.main.async {
+                    let success = TestRunLogger.shared.startUITest(testName)
+                    print("🧪 AppDelegate: Auto-started TestRunLogger for '\(testName)': \(success ? "SUCCESS" : "FAILED")")
+                    
+                    // Log the current log file location for reference
+                    TestRunLogger.shared.printLogFileLocation()
+                }
+            }
+            
+            // Enable verbose AXFocusDebugger if requested
+            if ProcessInfo.processInfo.environment["AXFOCUS_DEBUGGER_VERBOSE"] == "TRUE" {
+                DispatchQueue.main.async {
+                    AXFocusDebugger.shared.start()
+                    print("🧪 AppDelegate: AXFocusDebugger started for UITest")
+                }
+            }
+        }
     }
 
     /// Enable VoiceOver programmatically for UI testing

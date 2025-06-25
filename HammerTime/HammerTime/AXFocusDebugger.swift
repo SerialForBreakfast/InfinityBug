@@ -1119,9 +1119,13 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         return f
     }()
 
+    /// Unified logging support for better UITest console capture
+    private static let axLogger = Logger(subsystem: "com.showblender.HammerTime", category: "AXFocusDebugger")
+    
     internal func log(_ msg: String) {
         let stamp = Self.tsFmt.string(from: Date())
         NSLog("[AXDBG] \(stamp) %@", msg)
+        Self.axLogger.info("AXDBG: \(stamp) \(msg, privacy: .public)")
     }
     
     // MARK: – tvOS Low-Level Input Monitoring ----------------------------------

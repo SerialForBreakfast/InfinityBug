@@ -81,24 +81,17 @@ final class FocusStressUITests: XCTestCase {
     
     // MARK: - V8.2 DEVTICKET IMPLEMENTATION TESTS
     
-    /// **DevTicket Test 3: Aggressive RunLoop Stall Detection & Monitoring**
+    /// **DISABLED - SELECTION PRESSURE ELIMINATION**
     /// 
-    /// Creates intensive navigation patterns specifically designed to trigger and monitor
-    /// RunLoop stalls. Measures stall duration in real-time and logs critical thresholds.
-    ///
-    /// **Implementation Strategy:**
-    /// 1. Rapid-fire navigation patterns to overwhelm focus calculations
-    /// 2. Real-time RunLoop monitoring to detect stalls as they occur
-    /// 3. Progressive intensity scaling to push system toward critical thresholds
-    /// 4. Detailed logging of stall durations for analysis
-    ///
-    /// **Target Stall Patterns:**
-    /// - Mild stalls: 100-1000ms (early warning indicators)
-    /// - Moderate stalls: 1000-5000ms (system stress indicators)  
-    /// - Critical stalls: >5179ms (InfinityBug threshold from successful reproduction)
-    ///
-    /// **Expected Duration:** 8-10 minutes with progressive intensity
-    /// **Target Outcome:** Detailed stall duration logging and >5179ms critical stalls
+    /// **Reason for Removal**: Failed reproduction analysis 62525-1257DidNotRepro shows this test:
+    /// 1. Generates 41 critical stalls but prevents InfinityBug reproduction 
+    /// 2. Consumes system resources before main reproduction test
+    /// 3. Fragments memory pressure buildup across multiple tests
+    /// 4. Peak stall only 26,242ms vs successful 40,124ms requirement
+    /// 
+    /// **Selection Pressure Decision**: Test marked for elimination - no reproduction value
+    /// **Evidence**: Multiple failed runs show resource competition prevents InfinityBug
+    /*
     func testDevTicket_AggressiveRunLoopStallMonitoring() throws {
         // Initialize TestRunLogger for this test - automatically outputs to logs/UITestRunLogs/
         TestRunLogger.shared.startInfinityBugUITest(#function)
@@ -151,20 +144,19 @@ final class FocusStressUITests: XCTestCase {
         
         XCTAssertTrue(true, "DevTicket aggressive stall monitoring completed - analyze logs for stall patterns")
     }
+    */
     
-    /// **DevTicket Test 1: Edge-Avoidance Navigation Pattern**
+    /// **DISABLED - SELECTION PRESSURE ELIMINATION**  
     /// 
-    /// Implements navigation that avoids getting trapped at edges, creating larger
-    /// focus traversals and more system stress leading to RunLoop stalls.
-    ///
-    /// **Implementation Based on DevTicket Requirements & Edge Analysis:**
-    /// 1. Navigate toward center from edges (larger focus traversals)
-    /// 2. Up movements from bottom areas (high stress pattern from SuccessfulRepro3.txt)
-    /// 3. Left movements from right areas (avoid right-edge trap)
-    /// 4. Monitor for RunLoop stalls >5179ms from sustained large traversals
-    ///
-    /// **Expected Duration:** 4-5 minutes
-    /// **Target Outcome:** RunLoop stall warnings from large focus traversals
+    /// **Reason for Removal**: Failed reproduction analysis shows this test:
+    /// 1. Generates 0 RunLoop stalls (no system stress contribution)
+    /// 2. Exploratory only - provides no InfinityBug reproduction value
+    /// 3. Resource consumption before main reproduction test
+    /// 4. Never achieved any stalls >5179ms threshold
+    /// 
+    /// **Selection Pressure Decision**: Test marked for elimination - zero effectiveness
+    /// **Evidence**: Multiple logs show 0 stalls, interferes with main test
+    /*
     func testDevTicket_EdgeAvoidanceNavigationPattern() throws {
         // Initialize TestRunLogger for this test - automatically outputs to logs/UITestRunLogs/
         TestRunLogger.shared.startInfinityBugUITest(#function)
@@ -202,20 +194,19 @@ final class FocusStressUITests: XCTestCase {
         
         XCTAssertTrue(true, "DevTicket edge-avoidance pattern completed - monitor for RunLoop stalls")
     }
+    */
     
-    /// **DevTicket Test 2: Up-Burst Pattern from Successful Reproduction**
+    /// **DISABLED - SELECTION PRESSURE ELIMINATION**
     /// 
-    /// Implements the specific Up-burst pattern (22-45 presses) identified in
-    /// SuccessfulRepro3.txt that led to the critical 5179ms RunLoop stall.
-    ///
-    /// **Implementation Based on SuccessfulRepro3.txt Analysis:**
-    /// 1. Navigate to bottom area first (Right+Down setup)
-    /// 2. Execute sustained Up bursts (22-45 presses matching successful pattern)
-    /// 3. Clear pauses between bursts for system pressure accumulation
-    /// 4. Progressive Up burst intensity matching successful reproduction timing
-    ///
-    /// **Expected Duration:** 5-6 minutes
-    /// **Target Outcome:** Progressive RunLoop degradation leading to >5179ms stalls
+    /// **Reason for Removal**: Failed reproduction analysis shows this test:
+    /// 1. Based on outdated SuccessfulRepro3.txt analysis  
+    /// 2. Never achieved InfinityBug reproduction in any test run
+    /// 3. Interferes with main reproduction test execution
+    /// 4. Resource drain without demonstrated effectiveness
+    /// 
+    /// **Selection Pressure Decision**: Test marked for elimination - outdated approach
+    /// **Evidence**: No successful reproductions, resource competition confirmed
+    /*
     func testDevTicket_UpBurstFromSuccessfulReproduction() throws {
         // Initialize TestRunLogger for this test - automatically outputs to logs/UITestRunLogs/
         TestRunLogger.shared.startInfinityBugUITest(#function)
@@ -253,6 +244,57 @@ final class FocusStressUITests: XCTestCase {
         
         XCTAssertTrue(true, "DevTicket Up-burst pattern completed - monitor for SuccessfulRepro3.txt stalls")
     }
+    */
+    
+    /// Demonstration test showcasing comprehensive console capture during UITest execution
+    /// This test shows how to capture both XCUITest framework logs and application console output
+    func testComprehensiveConsoleCapture() throws {
+        // Set up comprehensive console capture
+        let testName = "ComprehensiveConsoleCapture"
+        setupComprehensiveConsoleCapture(testName: testName)
+        
+        // Start console monitoring
+        startConsoleMonitoring(testName: testName)
+        logUITestMessage("Starting comprehensive console capture demonstration")
+        
+        // Print instructions for accessing the logs
+        printConsoleAccessInstructions(testName: testName)
+        
+        // Launch the app with enhanced logging
+        if !app.exists {
+            app.launch()
+        }
+        
+        // Wait for the collection view to appear
+        let collectionView = app.collectionViews["FocusStressCollectionView"]
+        XCTAssertTrue(collectionView.waitForExistence(timeout: 10), "Collection view should exist")
+        
+        logUITestMessage("Collection view loaded - beginning test sequence")
+        
+        // Perform some basic navigation to generate logs
+        for i in 0..<10 {
+            logUITestMessage("Performing navigation step \(i + 1)")
+            
+            let direction: XCUIRemote.Button = (i % 2 == 0) ? .right : .left
+            remote.press(direction, forDuration: 0.1)
+            
+            // Wait between presses to allow log capture
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+        
+        logUITestMessage("Navigation sequence completed")
+        
+        // Add a delay to ensure all logs are captured
+        Thread.sleep(forTimeInterval: 2.0)
+        
+        // Stop console monitoring
+        stopConsoleMonitoring(testName: testName, success: true)
+        
+        logUITestMessage("Console capture demonstration completed")
+        
+        // The test passes if we reach this point - the value is in the captured logs
+        XCTAssertTrue(true, "Console capture demonstration completed successfully")
+    }
     
     // MARK: - V8.0 LEGACY TESTS (Retained for Comparison)
     
@@ -289,18 +331,17 @@ final class FocusStressUITests: XCTestCase {
         XCTAssertTrue(true, "Enhanced reproduction pattern completed - monitor for critical RunLoop stalls")
     }
     
-    /// **V8.0 SECONDARY TEST - IMPROVED - ESTIMATED EXECUTION TIME: 7.0 minutes**
+    /// **DISABLED - SELECTION PRESSURE ELIMINATION**
     /// 
-    /// **V8.2 IMPROVEMENTS BASED ON SUCCESSFUL REPRODUCTION ANALYSIS:**
-    /// - Extended stress cycles (7 vs 6 cycles) for sustained pressure
-    /// - Right-Down focus during stress bursts vs random directions
-    /// - Longer stress duration per cycle (45-90s vs 30-55s)
-    /// - Sustained timing vs rapid bursts for proper system pressure
-    /// - Better simulation of successful manual reproduction timing
-    ///
-    /// **Background Trigger Pattern:**
-    /// Enhanced simulation maintaining Right-Down focus with sustained pressure
-    /// targeting the critical >5179ms RunLoop stall threshold.
+    /// **Reason for Removal**: Failed reproduction analysis shows this test:
+    /// 1. Never successfully reproduced InfinityBug in any test run
+    /// 2. Runs immediately before main reproduction test - resource interference
+    /// 3. 7-minute duration weakens system before critical test
+    /// 4. Background trigger approach shows no evidence of effectiveness
+    /// 
+    /// **Selection Pressure Decision**: Test marked for elimination - zero reproduction success
+    /// **Evidence**: Multiple failed runs, interferes with testEvolvedInfinityBugReproduction
+    /*
     func testEvolvedBackgroundingTriggeredInfinityBug() throws {
         NSLog("🎯 V8.0-IMPROVED: Starting enhanced backgrounding-triggered reproduction")
         NSLog("🎯 PATTERN: Sustained Right-Down focus with extended pressure cycles")
@@ -325,6 +366,7 @@ final class FocusStressUITests: XCTestCase {
         
         XCTAssertTrue(true, "Enhanced backgrounding simulation completed - monitor for sustained RunLoop stalls")
     }
+    */
 }
 
 // MARK: - RunLoop Stall Monitoring

@@ -3,6 +3,7 @@
 //  HammerTimeUITests
 
 import XCTest
+import os.log
 
 extension FocusStressUITests {
     
@@ -446,5 +447,154 @@ extension FocusStressUITests {
         let finalTiming = max(40_000, baseReaction - fatigueReduction)
         
         return finalTiming
+    }
+}
+
+// MARK: - Console Log Capture for UITest Execution
+
+extension FocusStressUITests {
+    
+    /// Sets up comprehensive console log capture for UITest execution
+    /// Captures both XCUITest framework logs and application console output
+    func setupComprehensiveConsoleCapture(testName: String) {
+        // 1. Enable unified logging subsystem for filtering
+        setupUnifiedLoggingSubsystem()
+        
+        // 2. Configure XCUIApplication to capture console output
+        setupApplicationConsoleCapture()
+        
+        // 3. Set up log file capture in the application
+        setupApplicationLogFileCapture(testName: testName)
+        
+        // 4. Configure verbose logging launch arguments
+        setupVerboseLoggingArguments()
+    }
+    
+    /// Configures unified logging subsystem for HammerTime app logs
+    private func setupUnifiedLoggingSubsystem() {
+        // Enable unified logging for our subsystem during test execution
+        // These logs will appear in console and can be filtered by subsystem
+        let logger = Logger(subsystem: "com.showblender.HammerTime", category: "UITestSetup")
+        logger.info("UITest: Starting comprehensive console capture setup")
+    }
+    
+    /// Configures XCUIApplication to capture application console output
+    private func setupApplicationConsoleCapture() {
+        // Launch arguments to enable verbose logging in the target app
+        app.launchArguments.append("--enable-console-logging")
+        app.launchArguments.append("--verbose-accessibility-logging")
+        app.launchArguments.append("--capture-uitest-logs")
+        
+        // Environment variables for enhanced logging
+        app.launchEnvironment["UITEST_EXECUTION"] = "TRUE"
+        app.launchEnvironment["CONSOLE_LOGGING_ENABLED"] = "TRUE"
+        app.launchEnvironment["AXFOCUS_DEBUGGER_VERBOSE"] = "TRUE"
+    }
+    
+    /// Sets up log file capture in the target application
+    private func setupApplicationLogFileCapture(testName: String) {
+        // Pass the test name to the app so it can create appropriately named log files
+        app.launchEnvironment["UITEST_NAME"] = testName
+        app.launchEnvironment["UITEST_START_TIME"] = ISO8601DateFormatter().string(from: Date())
+        
+        // Enable TestRunLogger auto-start
+        app.launchEnvironment["AUTO_START_TEST_LOGGER"] = "TRUE"
+    }
+    
+    /// Configures verbose logging launch arguments
+    private func setupVerboseLoggingArguments() {
+        // Enable all debugging output
+        app.launchArguments.append("--log-level=debug")
+        app.launchArguments.append("--ax-debug-enabled")
+        app.launchArguments.append("--infinity-bug-detection-enabled")
+        
+        // Ensure NSLog output is captured
+        app.launchEnvironment["NS_LOGGING_ENABLED"] = "TRUE"
+    }
+}
+
+// MARK: - Console Output Monitoring
+
+extension FocusStressUITests {
+    
+    /// Monitors console output during test execution using unified logging
+    func startConsoleMonitoring(testName: String) {
+        let logger = Logger(subsystem: "com.showblender.HammerTime", category: "UITestMonitoring")
+        logger.info("UITest: Starting console monitoring for test: \(testName, privacy: .public)")
+        
+        // Log test execution metadata
+        logger.info("UITest: Device: \(UIDevice.current.name, privacy: .public)")
+        logger.info("UITest: OS: \(UIDevice.current.systemName, privacy: .public) \(UIDevice.current.systemVersion, privacy: .public)")
+        logger.info("UITest: Test Bundle: \(Bundle(for: type(of: self)).bundleIdentifier ?? "unknown", privacy: .public)")
+    }
+    
+    /// Logs a message specifically for UITest execution context
+    func logUITestMessage(_ message: String) {
+        let logger = Logger(subsystem: "com.showblender.HammerTime", category: "UITestExecution")
+        logger.info("UITEST: \(message, privacy: .public)")
+        
+        // Also log to XCTest for test output
+        print("🧪 UITest: \(message)")
+    }
+    
+    /// Stops console monitoring and logs summary
+    func stopConsoleMonitoring(testName: String, success: Bool) {
+        let logger = Logger(subsystem: "com.showblender.HammerTime", category: "UITestMonitoring")
+        logger.info("UITest: Completed console monitoring for test: \(testName, privacy: .public)")
+        logger.info("UITest: Result: \(success ? "SUCCESS" : "FAILURE", privacy: .public)")
+        
+        // Signal the app to stop logging
+        if app.state == .runningForeground {
+            // Send notification to app to finalize logs
+            // The app should be listening for this environment variable change
+        }
+    }
+}
+
+// MARK: - Device Console Access
+
+extension FocusStressUITests {
+    
+    /// Instructions for accessing device console logs after test execution
+    func printConsoleAccessInstructions(testName: String) {
+        print("""
+        
+        📱 CONSOLE LOG ACCESS INSTRUCTIONS for test: \(testName)
+        
+        ## Method 1: Xcode Console (Real-time)
+        1. Open Xcode → Window → Devices and Simulators
+        2. Select your Apple TV device
+        3. Click "Open Console" 
+        4. Filter by subsystem: "com.showblender.HammerTime"
+        5. Run your test and view real-time logs
+        
+        ## Method 2: Console App (macOS)
+        1. Open Console.app on your Mac
+        2. Select your Apple TV device in sidebar
+        3. Search for "com.showblender.HammerTime" or "TestRunLogger"
+        4. View unified logs with timestamps
+        
+        ## Method 3: Device Log Files
+        1. App logs saved to: Documents/HammerTimeLogs/
+        2. Access via Xcode → Window → Devices and Simulators
+        3. Select device → Installed Apps → HammerTime → Download Container
+        4. Extract and navigate to Documents/HammerTimeLogs/
+        
+        ## Method 4: Terminal Log Streaming (Advanced)
+        ```bash
+        # Stream live logs from device
+        xcrun devicectl log stream --device [DEVICE-ID] --predicate 'subsystem == "com.showblender.HammerTime"'
+        
+        # Collect logs for specific time period
+        xcrun devicectl log collect --device [DEVICE-ID] --start "2025-06-25 10:00:00" --output uitest-logs.logarchive
+        ```
+        
+        ## Filtering Console Output
+        - TestRunLogger: category="TestRunLogger"
+        - AXFocusDebugger: category="AXFocusDebugger" 
+        - UITest Framework: category="UITestExecution"
+        - All HammerTime: subsystem="com.showblender.HammerTime"
+        
+        """)
     }
 }
