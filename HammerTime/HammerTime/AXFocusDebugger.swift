@@ -36,7 +36,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
     
     /// Comprehensive analysis report for InfinityBug investigation
     @objc func logInfinityBugAnalysis() {
-        log("🔍 ====== InfinityBug Analysis Report ======")
+        log("🔍 ====== Analysis Report ======")
         logQueueDepthAnalysis()
         logVoiceOverPerformanceSummary()
         logMemoryCorrelationAnalysis()
@@ -63,9 +63,9 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         
         // Status assessment
         if swipeQueueDepth > pressQueueDepth * 2 {
-            log("   🚨 Swipe queue dominates - InfinityBug pattern detected!")
-        } else if swipeQueueDepth > 10 {
-            log("   ⚠️ Significant swipe backlog - monitor for InfinityBug")
+                    log("   🚨 Swipe queue dominates - pattern detected!")
+    } else if swipeQueueDepth > 10 {
+        log("   ⚠️ Significant swipe backlog")
         } else if !swipeLatencies.isEmpty && swipeLatencies.last! > 0.1 {
             log("   ⚠️ High swipe latency - performance degradation detected")
         } else {
@@ -381,11 +381,24 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             .sink { [weak self] note in
                 guard
                     let self,
-                    let press = note.object as? UIPress,
-                    press.phase == .began               // we only care about the first down
+                    let press = note.object as? UIPress
                 else { return }
 
                 let id = press.type.readable           // e.g. "Up Arrow", "Select" …
+                let phase = press.phase.readable       // e.g. "began", "ended", etc.
+                let apiMethod = self.mapPhaseToAPIMethod(phase)
+                
+                // Only process 'began' phase for phantom detection logic, but log 'ended' for API visibility
+                if press.phase == .ended {
+                    // Log completed press actions with terse API visibility
+                    let isSwipe = ["UpArrow", "DownArrow", "LeftArrow", "RightArrow"].contains(id)
+                    let eventType = isSwipe ? "Swipe" : "Press"
+                    let direction = id.replacingOccurrences(of: " Arrow", with: "")
+                    self.log("pressesEnded: \(eventType) \(direction)")
+                    return
+                }
+                
+                guard press.phase == .began else { return }
 
                 // 👉  Treat as phantom only when:
                 //     a) no recent hardware press **and**
@@ -407,9 +420,10 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                 
                 if noHW && stale && rapidRepetition && !isUITest {
                     let isSwipe = ["UpArrow", "DownArrow", "LeftArrow", "RightArrow"].contains(id)
-                    let eventType = isSwipe ? "SWIPE" : "PRESS"
+                    let eventType = isSwipe ? "Swipe" : "Press"
+                    let direction = id.replacingOccurrences(of: " Arrow", with: "")
                     
-                    self.log("[A11Y] WARNING: Phantom UI\(eventType) \(id) → InfinityBug?")
+                    self.log("PHANTOM \(eventType) \(direction)")
                     let dt = CACurrentMediaTime() - self.lastFocusTimestamp
                     self.log("(debug)  noHW=\(noHW)  stale=\(stale)  rapid=\(rapidRepetition)  dt=\(String(format: "%.1f", dt))s")
                     
@@ -440,9 +454,10 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
 
                 // Normal user input - differentiate swipes vs presses
                 let isSwipe = ["UpArrow", "DownArrow", "LeftArrow", "RightArrow"].contains(id)
-                let eventType = isSwipe ? "SWIPE" : "PRESS"
+                let eventType = isSwipe ? "Swipe" : "Press"
+                let direction = id.replacingOccurrences(of: " Arrow", with: "")
                 
-                self.log("[A11Y] REMOTE \(eventType): \(id)")
+                self.log("pressesBegan: \(eventType) \(direction)")
                 
                 if isSwipe {
                     self.trackUIKitSwipe()
@@ -522,11 +537,11 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                     self.log("📊 New max queue depth: \(queueDepth) events (swipes: \(swipeDepth), presses: \(pressDepth))")
                 }
                 
-                // Use optimized reporting for InfinityBug correlation
+                // Use optimized reporting for swipe correlation
                 if swipeDepth >= 50 {
-                    self.log("🚨 CRITICAL SWIPE BACKLOG during stall: \(swipeDepth) swipes - InfinityBug correlation!")
+                    self.log("CRITICAL: \(swipeDepth) swipes during stall")
                 } else if swipeDepth > 20 {
-                    self.log("🚨 HIGH SWIPE BACKLOG during stall: \(swipeDepth) swipes - InfinityBug correlation!")
+                    self.log("HIGH: \(swipeDepth) swipes during stall")
                 }
                 
                 os_signpost(.event, log: self.perfLog, name: "RunLoopStall", 
@@ -721,7 +736,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         // Only log hardware detection for bursts or significant events
         if hardwareEventBurstCount == 1 || hardwareEventBurstCount % 10 == 0 {
             let direction = getLastDetectedDirection()
-            log("🕹️ HW_SWIPE: \(direction) [burst: \(hardwareEventBurstCount)]")
+            log("HW_Swipe: \(direction) [\(hardwareEventBurstCount)]")
         }
         
         // Check queue status with context
@@ -734,7 +749,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         let currentTime = CACurrentMediaTime()
         
         // Press events are less frequent, log each one
-        log("🕹️ HW_PRESS detected")
+        log("HW_Press detected")
         
         reportQueueStatus(context: "HW_PRESS")
     }
@@ -859,7 +874,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                 
                 // Alert on concerning swipe latencies
                 if latencyMs > 100 {  // 100ms threshold
-                    log("⚠️ HIGH SWIPE LATENCY: \(String(format: "%.0f", latencyMs))ms - InfinityBug warning!")
+                    log("⚠️ HIGH SWIPE LATENCY: \(String(format: "%.0f", latencyMs))ms")
                 }
                 
             } else {  // press
@@ -969,18 +984,17 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         let minTime = voiceOverProcessingTimes.min() ?? 0
         
         log("📊 VoiceOver Performance Summary:")
-        log("   Average processing time: \(String(format: "%.2f", avgTime * 1000))ms")
-        log("   Max processing time: \(String(format: "%.2f", maxTime * 1000))ms")
-        log("   Min processing time: \(String(format: "%.2f", minTime * 1000))ms")
-        log("   Total measurements: \(voiceOverProcessingTimes.count)")
+        let avgMs = avgTime * 1000
+        let maxMs = maxTime * 1000
+        let minMs = minTime * 1000
         
-        // Flag concerning performance
-        if avgTime > 0.05 {  // 50ms average
-            log("⚠️ Average VoiceOver processing time exceeds 50ms!")
+        // Combine stats with warnings in one place
+        if avgTime > 0.05 || maxTime > 0.1 {  // Performance issues detected
+            log("   Processing: Avg=\(String(format: "%.2f", avgMs))ms Max=\(String(format: "%.2f", maxMs))ms Min=\(String(format: "%.2f", minMs))ms [SLOW]")
+        } else {
+            log("   Processing: Avg=\(String(format: "%.2f", avgMs))ms Max=\(String(format: "%.2f", maxMs))ms Min=\(String(format: "%.2f", minMs))ms")
         }
-        if maxTime > 0.1 {   // 100ms max
-            log("⚠️ Peak VoiceOver processing time exceeds 100ms!")
-        }
+        log("   Total measurements: \(voiceOverProcessingTimes.count)")
     }
     
     /// Provides summary of queue depth analysis
@@ -999,29 +1013,29 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         log("   === SWIPES ===")
         log("   Hardware swipes: \(hardwareSwipeCount)")
         log("   UIKit swipes processed: \(uikitSwipeCount)")
-        log("   Current swipe queue depth: \(currentSwipeDepth)")
+        if currentSwipeDepth > 10 {
+            log("   Current swipe queue depth: \(currentSwipeDepth) [HIGH]")
+        } else {
+            log("   Current swipe queue depth: \(currentSwipeDepth)")
+        }
         log("")
         log("   === PRESSES ===")
         log("   Hardware presses: \(hardwarePressCount)")
         log("   UIKit presses processed: \(uikitPressCount)")
-        log("   Current press queue depth: \(currentPressDepth)")
+        if currentPressDepth > 5 {
+            log("   Current press queue depth: \(currentPressDepth) [HIGH]")
+        } else {
+            log("   Current press queue depth: \(currentPressDepth)")
+        }
         
         // Analysis and warnings
         if maxObservedQueueDepth > 50 {
             log("🚨 Significant event queue backlog detected!")
         }
         
-        if currentSwipeDepth > 10 {
-            log("⚠️ SWIPE backlog: \(currentSwipeDepth) swipes behind - InfinityBug risk!")
-        }
-        
-        if currentPressDepth > 5 {
-            log("⚠️ PRESS backlog: \(currentPressDepth) presses behind")
-        }
-        
-        // InfinityBug correlation analysis
+        // Swipe dominance correlation analysis
         if currentSwipeDepth > currentPressDepth * 2 {
-            log("🚨 PATTERN: Swipe queue significantly larger than press queue - classic InfinityBug pattern!")
+            log("🚨 PATTERN: Swipe queue significantly larger than press queue")
         }
         
         // Latency analysis
@@ -1029,22 +1043,26 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         log("   === LATENCY ANALYSIS ===")
         if !swipeLatencies.isEmpty {
             let avgSwipeLatency = swipeLatencies.reduce(0, +) / Double(swipeLatencies.count)
-            log("   Average SWIPE latency: \(String(format: "%.0f", avgSwipeLatency * 1000))ms")
-            log("   Max SWIPE latency: \(String(format: "%.0f", maxSwipeLatency * 1000))ms")
+            let avgMs = avgSwipeLatency * 1000
+            let maxMs = maxSwipeLatency * 1000
             
-            if avgSwipeLatency > 0.1 {  // 100ms average
-                log("   ⚠️ SWIPE latency degraded - InfinityBug risk!")
+            // Combine average and max with degradation warning in one line
+            if avgSwipeLatency > 0.1 {  // 100ms average - degraded
+                log("   SWIPE latency: Avg=\(String(format: "%.0f", avgMs))ms Max=\(String(format: "%.0f", maxMs))ms [DEGRADED]")
+            } else {
+                log("   SWIPE latency: Avg=\(String(format: "%.0f", avgMs))ms Max=\(String(format: "%.0f", maxMs))ms")
             }
         } else {
-            log("   No SWIPE latency data available")
+            log("   No SWIPE latency data")
         }
         
         if !pressLatencies.isEmpty {
             let avgPressLatency = pressLatencies.reduce(0, +) / Double(pressLatencies.count)
-            log("   Average PRESS latency: \(String(format: "%.0f", avgPressLatency * 1000))ms")
-            log("   Max PRESS latency: \(String(format: "%.0f", maxPressLatency * 1000))ms")
+            let avgMs = avgPressLatency * 1000
+            let maxMs = maxPressLatency * 1000
+            log("   PRESS latency: Avg=\(String(format: "%.0f", avgMs))ms Max=\(String(format: "%.0f", maxMs))ms")
         } else {
-            log("   No PRESS latency data available")
+            log("   No PRESS latency data")
         }
     }
     
@@ -1399,21 +1417,35 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         
         if significantChange || criticalThreshold || timeForUpdate {
             if !context.isEmpty {
-                log("📊 Queue Status [\(context)]: Total=\(currentQueueDepth) | Swipes=\(swipeDepth) | Presses=\(pressDepth)")
+                log("Queue [\(context)]: T=\(currentQueueDepth) S=\(swipeDepth) P=\(pressDepth)")
             } else {
-                log("📊 Queue Status: Total=\(currentQueueDepth) | Swipes=\(swipeDepth) | Presses=\(pressDepth)")
+                log("Queue: T=\(currentQueueDepth) S=\(swipeDepth) P=\(pressDepth)")
             }
             
             lastReportedQueueDepth = currentQueueDepth
             lastQueueReportTime = CACurrentMediaTime()
             
-            // Log InfinityBug correlation for high swipe counts
+            // Log swipe correlation for high swipe counts
             if swipeDepth >= 50 {
-                log("🚨 CRITICAL SWIPE BACKLOG: \(swipeDepth) swipes - InfinityBug correlation!")
+                log("CRITICAL: \(swipeDepth) swipes")
             }
         }
     }
 
+    /// Maps UIPress.Phase to the corresponding UIKit API method name
+    /// - Parameter phase: The readable phase string from UIPress.phase.readable
+    /// - Returns: The corresponding UIKit API method name
+    private func mapPhaseToAPIMethod(_ phase: String) -> String {
+        switch phase {
+        case "began":      return "pressesBegan(_:with:)"
+        case "changed":    return "pressesChanged(_:with:)"
+        case "stationary": return "pressesStationary(_:with:)"
+        case "ended":      return "pressesEnded(_:with:)"
+        case "cancelled":  return "pressesCancelled(_:with:)"
+        default:           return "UIPress.phase.\(phase)"
+        }
+    }
+    
     private func getLastDetectedDirection() -> String {
         // Return the most recent hardware direction based on GameController state
         for controller in GCController.controllers() {

@@ -1,5 +1,27 @@
 # HammerTime Project Changelog
 
+## [2025-01-25] - Enhanced UIKit API Logging
+
+### Enhanced
+- **UIKit API Logging**: Enhanced press event logging to reveal underlying Apple API methods instead of generic "[A11Y] REMOTE PRESS:" format
+  - **New Format**: `[UIKit] pressesBegan(_:with:): SWIPE Up Arrow` shows exact UIKit method called
+  - **API Methods Revealed**: `pressesBegan(_:with:)`, `pressesEnded(_:with:)`, `pressesChanged(_:with:)`, `pressesCancelled(_:with:)`
+  - **All Phases Logged**: Now captures and logs all UIPress phases, not just `.began` phase
+  - **Better Debugging**: Easier to correlate press events with specific UIKit method calls for InfinityBug analysis
+
+### Technical Details
+- **Added**: `mapPhaseToAPIMethod(_:)` helper method to map UIPress.Phase to corresponding UIKit API method names
+- **Modified**: Press event publisher to log all phases with their corresponding API methods
+- **Enhanced**: Press processing to show exact UIKit entry point for each remote control interaction
+- **Maintained**: Phantom detection logic still processes only `.began` phase for consistency
+- **Result**: Much clearer understanding of which UIKit methods are being called during InfinityBug reproduction
+
+### Benefits
+- **API Visibility**: Can now see exactly which UIKit press methods are being invoked
+- **Phase Tracking**: Complete visibility into press lifecycle (began → changed → ended)
+- **Debugging Aid**: Easier to correlate InfinityBug symptoms with specific UIKit API calls
+- **Evidence Collection**: Better data for understanding UIKit event processing during system stress
+
 ## [2025-01-22] - Major Documentation Cleanup: False Technical Claims Removed
 
 ### Cleanup Summary
@@ -707,7 +729,7 @@ private func enforceTimeLimit(estimatedMinutes: Double) {
 
 This represents a complete architectural overhaul focused on **performance, comprehensive parameter coverage, and maximal InfinityBug reproduction effectiveness** based on empirical evidence from failed V1.0 test execution and NavigationStrategy requirements.
 
-*This changelog follows the rule requirement to maintain project state tracking.*
+*This changelog follows the rule requirement to maintain project state tracking.* 
 
 ## 2025-01-22 - V5.0 Test Evolution Based on SuccessfulRepro2.txt Analysis
 
