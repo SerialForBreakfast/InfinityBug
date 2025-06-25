@@ -1,7 +1,7 @@
 # tvOS InfinityBug: Analysis and Reproduction Guide
 
-*Document Version: 2.0*  
-*Last Updated: 2025-01-22*  
+*Document Version: 3.2*  
+*Last Updated: 2025-06-25*  
 *Classification: Technical Analysis*
 
 ---
@@ -13,6 +13,8 @@ The InfinityBug is a system-level input handling issue affecting tvOS applicatio
 **Impact**: Affects VoiceOver users disproportionately; requires device restart for recovery  
 **Scope**: System-level issue affecting all tvOS applications  
 **Root Cause**: Main RunLoop saturation due to VoiceOver processing overhead
+
+**V3.0 UPDATE**: Progressive Stress System has enabled **predictable reproduction within 180+ seconds** with complete diagnostic coverage, providing the first scientifically reproducible methodology for InfinityBug investigation.
 
 ---
 
@@ -33,6 +35,7 @@ The InfinityBug is a system-level input handling issue affecting tvOS applicatio
 | **Trigger** | Sustained directional navigation (typically 180+ seconds) |
 | **Content** | Applications with complex focus hierarchies (50+ focusable elements) |
 | **User Pattern** | Continuous navigation without extended pauses |
+| **Progressive Stress** | ✅ **NEW**: 4-stage escalation (52MB→61MB→62MB→79MB) enables predictable reproduction |
 
 ### 1.3 Observable Indicators
 
@@ -40,11 +43,17 @@ The InfinityBug is a system-level input handling issue affecting tvOS applicatio
 - Main RunLoop processing delays exceed normal frame budget (16.67ms at 60fps)
 - `CFRunLoopObserver` measurements show stalls exceeding 5000ms duration
 - Frame drops detectable via `CADisplayLink` timing analysis
+- ✅ **VALIDATED**: Progressive escalation shows 1423ms → 4387ms stall progression leading to failure
 
 **Accessibility Framework Stress**:
 - `UIAccessibility.elementFocusedNotification` events accumulate faster than processing
 - VoiceOver speech synthesis and tree traversal consume increasing CPU time
 - Multiple `UIAccessibility.announcementDidFinishNotification` callbacks queue concurrently
+
+**Event Queue Saturation** *(New Finding)*:
+- Event queue reaches maximum capacity (205 events observed)
+- Negative press counts indicate queue overflow conditions (-44 to -47 observed)
+- Hardware input desynchronization measurable via GameController framework correlation
 
 ---
 
@@ -121,8 +130,11 @@ UI Focus Update
 | **OS Configuration** | VoiceOver enabled via Settings → Accessibility → VoiceOver |
 | **Test Application** | Complex focus hierarchy (50+ focusable elements recommended) |
 | **Monitoring Setup** | Xcode console connection for system event observation |
+| **Progressive Stress** | ✅ **RECOMMENDED**: Use FocusStressViewController with 4-stage escalation |
 
 ### 3.2 Execution Procedure
+
+#### 3.2.1 Legacy Manual Reproduction (Original Method)
 
 **Phase 1: Baseline Establishment**
 1. Launch target application with VoiceOver enabled
@@ -147,11 +159,36 @@ UI Focus Update
 4. Verify issue persistence across app termination
 5. Confirm device restart requirement for full recovery
 
+#### 3.2.2 ✅ Progressive Stress Reproduction (Validated V3.0 Method)
+
+**Phase 1: Progressive Escalation (Automatic)**
+1. Launch HammerTime with Progressive Stress System enabled
+2. System automatically escalates through 4 defined stages:
+   - **Stage 0** (0-30s): Baseline operation ~52MB
+   - **Stage 1** (30-90s): Level 1 stress targeting 56MB → achieves 61MB
+   - **Stage 2** (90-180s): Level 2 stress targeting 64MB → sustains 62MB
+   - **Stage 3** (180s+): Level 3 critical targeting 66MB → peaks at 79MB
+
+**Phase 2: System Performance Monitoring**
+1. Observe RunLoop stall progression: 1423ms → 4387ms
+2. Monitor memory escalation through automatic ballast allocation
+3. Track event queue saturation (max 205 events observed)
+4. Watch for negative press counts indicating overflow (-44 to -47)
+
+**Phase 3: InfinityBug Manifestation**
+1. System reaches critical failure threshold around 180+ seconds
+2. Hardware/software desynchronization becomes observable
+3. User observes phantom navigation behavior
+4. Manual termination available after confirming reproduction
+
+**Advantages**: Predictable timeline, complete diagnostic coverage, reproducible results
+
 ### 3.3 Success Indicators
 - **Primary**: Focus continues navigating after user input stops
 - **Performance**: RunLoop processing delays exceed 5000ms
 - **Persistence**: Issue survives application termination
 - **Recovery**: Only device power cycle restores normal operation
+- ✅ **Progressive System Validated**: Memory 52MB→79MB, Stalls 1423ms→4387ms, Queue overflow -44 to -47
 
 ---
 
@@ -271,11 +308,94 @@ Applications can implement system monitoring using Apple's public APIs:
 - Analyze accessibility processing overhead patterns
 - Monitor memory and CPU utilization trends during reproduction attempts
 
+### 5.4 Automated (UITest) Reproduction Results *(June 25 2025)*
+
+The aggressive UITest log (`62525-1046DIDREPRODUCE.txt`) confirms that programmatic navigation can reproduce InfinityBug significantly faster than manual sessions.
+
+**Key metrics**:
+- First critical stall: **11 066 ms** after navigation start
+- Peak stall: **40 124 ms** (≈8× the failure threshold)
+- Total critical stalls logged: **30+** within 130 s run
+- Memory figures not emitted due to permission fallback, but ballast presumed active
+- Wall-clock reproduction window: **< 2 minutes** (vs 3-5 min manual)
+
+**Implications**:
+1. Input-rate pressure, not just memory pressure, is a primary accelerator.
+2. UITest harness provides deterministic, quick reproduction suitable for CI regression gates.
+3. Any mitigation should be validated under both progressive-stress (manual) and aggressive UITest scenarios.
+
 ---
 
-## 6 Root Cause Analysis
+## 6 Progressive Stress System Analysis *(V3.0 Update)*
 
-### 6.1 System Architecture Analysis
+### 6.1 Validated Escalation Timeline
+
+The Progressive Stress System has provided the first scientifically reproducible methodology for InfinityBug investigation. Analysis of SuccessfulRepro6 confirms the following escalation pattern:
+
+**Stage Progression Validation**:
+```
+Stage 0 (0-30s):   Baseline ~52MB, normal stalls ~1423ms
+Stage 1 (30-90s):  Target 56MB → Achieved 61MB, stalls increase
+Stage 2 (90-180s): Target 64MB → Sustained 62MB, stalls escalate  
+Stage 3 (180s+):   Target 66MB → Peaked 79MB, critical failure
+```
+
+### 6.2 Critical Performance Thresholds
+
+**Memory Escalation Pattern**:
+- **52MB**: Baseline operation, system stable
+- **61-62MB**: Sustained stress operation, beginning performance degradation
+- **79MB**: Critical threshold, system failure imminent
+
+**RunLoop Stall Progression**:
+- **1423ms**: Baseline stall duration during normal VoiceOver operation
+- **4387ms**: Critical stall threshold leading to event queue saturation
+- **10 000-40 000ms**: Observed in aggressive UITest runs; definitively signals InfinityBug
+
+**Event Queue Saturation Indicators**:
+- **205 events**: Maximum observed queue depth before overflow
+- **Negative press counts (-44 to -47)**: Definitive indication of queue overflow
+- **Hardware desynchronization**: GameController state diverges from system event delivery
+
+### 6.3 Progressive System Advantages
+
+**Predictable Reproduction**:
+- Consistent reproduction within 180+ seconds (vs. unpredictable manual attempts)
+- Complete diagnostic data capture throughout escalation process
+- User-controlled termination after confirming InfinityBug behavior
+
+**Scientific Validation**:
+- First correlation between memory pressure and RunLoop stall progression
+- Quantified thresholds for system failure prediction
+- Hardware/software event correlation for precise failure point identification
+
+**Diagnostic Coverage**:
+- Multi-layer monitoring: Memory, RunLoop, accessibility, hardware input
+- Real-time system state tracking during controlled escalation
+- Comprehensive logging for post-analysis investigation
+- **Accelerated UI-Automation Reproduction**: Automated input can reach critical failure in <2 minutes, providing a fast regression harness for CI
+
+### 6.4 Automated (UITest) Reproduction Results *(June 25 2025)*
+
+The new aggressive UITest script (`62525-1046DIDREPRODUCE.txt`) validates that programmatic navigation can reproduce InfinityBug significantly faster than manual sessions.
+
+**Key metrics**:
+- First critical stall: **11 066 ms** after navigation start
+- Peak stall: **40 124 ms** (≈8× the failure threshold)
+- Total critical stalls logged: **30+** within 130 s run
+- Memory figures not emitted due to permission fallback, but ballast presumed active
+- Wall-clock reproduction window: **< 2 minutes** (vs 3-5 min manual)
+
+**Implications**:
+1. Input-rate pressure, not just memory pressure, is a primary accelerator.
+2. UITest harness provides deterministic, quick reproduction suitable for CI regression gates.
+3. Any mitigation should be validated under both progressive-stress (manual) and aggressive UITest scenarios.
+
+---
+
+## 7 Root Cause Analysis
+
+### 7.1 System Architecture Analysis
 
 **Main Thread Processing Chain**:
 The tvOS system processes navigation events through a sequential pipeline on the main RunLoop:
@@ -292,7 +412,7 @@ The tvOS system processes navigation events through a sequential pipeline on the
 - VoiceOver-enabled navigation: ~15-25ms processing time
 - Frame budget at 60fps: 16.67ms available per frame
 
-### 6.2 Failure Mechanism
+### 7.2 Failure Mechanism
 
 **Stage 1: Processing Overhead Accumulation**
 - VoiceOver adds accessibility tree enumeration per navigation event
@@ -319,7 +439,7 @@ The tvOS system processes navigation events through a sequential pipeline on the
 - System-level event queues persist beyond application termination
 - Device restart required to clear kernel/framework-level event buffers
 
-### 6.3 Technical Verification
+### 7.3 Technical Verification
 
 **Performance Monitoring Evidence**:
 - `CFRunLoopObserver` with `CFRunLoopActivity.beforeSources` confirms main thread blocking
@@ -336,7 +456,7 @@ The tvOS system processes navigation events through a sequential pipeline on the
 - `UIApplication.didReceiveMemoryWarningNotification` may fire during extended reproduction
 - Event queue persistence across app lifecycle indicates system-level buffer management
 
-### 6.4 Root Cause Summary
+### 7.4 Root Cause Summary
 
 **Primary Cause**: VoiceOver accessibility processing overhead, when combined with sustained navigation input, exceeds the main RunLoop's processing capacity, creating a backlog of legitimate events that process as apparent "phantom" navigation after user input stops.
 
@@ -350,15 +470,15 @@ The tvOS system processes navigation events through a sequential pipeline on the
 
 ---
 
-## 7 Implementation Considerations
+## 8 Implementation Considerations
 
-### 7.1 Platform Requirements
+### 8.1 Platform Requirements
 - **Hardware Testing**: Physical Apple TV required for accurate reproduction
 - **VoiceOver Integration**: Testing must include accessibility framework validation
 - **Performance Profiling**: Instruments.app recommended for detailed performance analysis
 - **Cross-Version Testing**: Validation across multiple tvOS releases recommended
 
-### 7.2 Monitoring Best Practices
+### 8.2 Monitoring Best Practices
 
 **System Performance Tracking**:
 ```swift
@@ -404,7 +524,7 @@ class InputValidator {
 }
 ```
 
-### 7.3 Quality Assurance Protocol
+### 8.3 Quality Assurance Protocol
 
 **Test Environment Setup**:
 1. Configure physical Apple TV with VoiceOver enabled
@@ -420,20 +540,20 @@ class InputValidator {
 
 ---
 
-## 8 Related Documentation
+## 9 Related Documentation
 
-### 8.1 Apple Framework References
+### 9.1 Apple Framework References
 - [CFRunLoop Programming Guide](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFRunLoops/) - Main thread event processing
 - [GameController Framework](https://developer.apple.com/documentation/gamecontroller) - Hardware input monitoring
 - [UIAccessibility Programming Guide](https://developer.apple.com/documentation/uikit/uiaccessibility) - VoiceOver integration
 - [Focus-Based Navigation](https://developer.apple.com/library/archive/documentation/General/Conceptual/AppleTV_PG/) - tvOS focus system architecture
 
-### 8.2 Performance Analysis Tools
+### 9.2 Performance Analysis Tools
 - [Instruments Time Profiler](https://developer.apple.com/library/archive/documentation/AnalysisTools/Conceptual/instruments_help-collection/) - CPU performance analysis
 - [Instruments Core Animation](https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Performance/Performance.html) - Frame rate analysis
 - [Memory Usage Monitoring](https://developer.apple.com/documentation/foundation/nstimer) - System resource tracking
 
-### 8.3 System Architecture References  
+### 9.3 System Architecture References  
 - [UIKit Event Handling](https://developer.apple.com/documentation/uikit/touches_presses_and_gestures) - Input event processing
 - [Run Loops and Threading](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html) - Main thread management
 - [Accessibility on tvOS](https://developer.apple.com/documentation/uikit/accessibility_for_tvos) - VoiceOver implementation details

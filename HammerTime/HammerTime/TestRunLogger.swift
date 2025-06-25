@@ -192,20 +192,90 @@ public final class TestRunLogger {
             NSLog("📁 NO-ACTIVE-LOG: TestRunLogger not currently logging")
         }
         
-        let logsURL = getLogsDirectoryURL()
-        NSLog("📁 LOGS-DIRECTORY: \(logsURL.path)")
+        // Check all possible log locations
+        printAllLogLocations()
+    }
+    
+    /// Comprehensive log location discovery for troubleshooting
+    /// 
+    /// Searches all possible log directories and lists found files
+    public func printAllLogLocations() {
+        NSLog("📁 COMPREHENSIVE-LOG-SEARCH:")
         
-        // List existing log files
+        // 1. Main HammerTimeLogs directory
+        let logsURL = getLogsDirectoryURL()
+        NSLog("📁 1. MAIN-DIRECTORY: \(logsURL.path)")
+        listFilesInDirectory(logsURL, prefix: "  ")
+        
+        // 2. UITestRunLogs subdirectory
+        let testRunLogsURL = logsURL.appendingPathComponent("UITestRunLogs")
+        NSLog("📁 2. UITEST-DIRECTORY: \(testRunLogsURL.path)")
+        listFilesInDirectory(testRunLogsURL, prefix: "  ")
+        
+        // 3. Documents root directory
+        if let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            NSLog("📁 3. DOCUMENTS-ROOT: \(documentsURL.path)")
+            listHammerTimeFilesInDirectory(documentsURL, prefix: "  ")
+        }
+        
+        // 4. Temporary directory
+        let tempURL = FileManager.default.temporaryDirectory
+        NSLog("📁 4. TEMPORARY-DIRECTORY: \(tempURL.path)")
+        listHammerTimeFilesInDirectory(tempURL, prefix: "  ")
+    }
+    
+    /// Lists all files in the specified directory
+    /// 
+    /// - Parameters:
+    ///   - directoryURL: Directory to search
+    ///   - prefix: Prefix for console output formatting
+    private func listFilesInDirectory(_ directoryURL: URL, prefix: String) {
         do {
-            let testRunLogsURL = logsURL.appendingPathComponent("UITestRunLogs")
-            let files = try FileManager.default.contentsOfDirectory(at: testRunLogsURL, 
+            let files = try FileManager.default.contentsOfDirectory(at: directoryURL, 
                                                                    includingPropertiesForKeys: nil)
-            NSLog("📁 EXISTING-LOGS: \(files.count) files")
-            for file in files.prefix(5) {
-                NSLog("📁   - \(file.lastPathComponent)")
+            if files.isEmpty {
+                NSLog("\(prefix)❌ No files found")
+            } else {
+                NSLog("\(prefix)✅ \(files.count) files found:")
+                for file in files.prefix(10) {
+                    NSLog("\(prefix)  - \(file.lastPathComponent)")
+                }
+                if files.count > 10 {
+                    NSLog("\(prefix)  ... and \(files.count - 10) more files")
+                }
             }
         } catch {
-            NSLog("📁 LOG-DIRECTORY-ERROR: \(error)")
+            NSLog("\(prefix)❌ Error accessing directory: \(error)")
+        }
+    }
+    
+    /// Lists HammerTime-related files in the specified directory
+    /// 
+    /// - Parameters:
+    ///   - directoryURL: Directory to search
+    ///   - prefix: Prefix for console output formatting
+    private func listHammerTimeFilesInDirectory(_ directoryURL: URL, prefix: String) {
+        do {
+            let files = try FileManager.default.contentsOfDirectory(at: directoryURL, 
+                                                                   includingPropertiesForKeys: nil)
+            let hammerTimeFiles = files.filter { file in
+                let name = file.lastPathComponent.lowercased()
+                return name.contains("hammer") || name.contains("manual") || name.contains("focus") || name.hasSuffix(".txt")
+            }
+            
+            if hammerTimeFiles.isEmpty {
+                NSLog("\(prefix)❌ No HammerTime files found")
+            } else {
+                NSLog("\(prefix)✅ \(hammerTimeFiles.count) HammerTime-related files found:")
+                for file in hammerTimeFiles.prefix(10) {
+                    NSLog("\(prefix)  - \(file.lastPathComponent)")
+                }
+                if hammerTimeFiles.count > 10 {
+                    NSLog("\(prefix)  ... and \(hammerTimeFiles.count - 10) more files")
+                }
+            }
+        } catch {
+            NSLog("\(prefix)❌ Error accessing directory: \(error)")
         }
     }
     
@@ -246,33 +316,100 @@ public final class TestRunLogger {
     /// Creates logs directory structure if it doesn't exist
     private func createLogsDirectoryIfNeeded() {
         let logsURL = getLogsDirectoryURL()
-        let testRunLogsURL = logsURL.appendingPathComponent("UITestRunLogs")
         
         do {
+            // First ensure main HammerTimeLogs directory exists
+            try FileManager.default.createDirectory(at: logsURL, 
+                                                  withIntermediateDirectories: true, 
+                                                  attributes: nil)
+            log("✅ MAIN-DIRECTORY: \(logsURL.path)")
+            
+            // Try to create UITestRunLogs subdirectory (but don't fail if it can't)
+            let testRunLogsURL = logsURL.appendingPathComponent("UITestRunLogs")
             try FileManager.default.createDirectory(at: testRunLogsURL, 
                                                   withIntermediateDirectories: true, 
                                                   attributes: nil)
-            log("✅ DIRECTORY-CREATED: \(testRunLogsURL.path)")
+            log("✅ SUB-DIRECTORY: \(testRunLogsURL.path)")
         } catch {
-            log("❌ DIRECTORY-FAILED: \(error)")
-            NSLog("TestRunLogger: Failed to create UITestRunLogs directory: \(error)")
+            log("⚠️ DIRECTORY-WARNING: \(error)")
+            NSLog("TestRunLogger: Directory creation warning (fallback available): \(error)")
         }
     }
     
-    /// Creates a new log file with the specified name
+    /// Creates a new log file with the specified name using multiple fallback strategies
     /// 
     /// - Parameter fileName: Name for the log file
     /// - Returns: URL of created log file, or nil if creation failed
     private func createLogFile(named fileName: String) -> URL? {
-        let logsURL = getLogsDirectoryURL()
-        let testRunLogsURL = logsURL.appendingPathComponent("UITestRunLogs")
-        let logFileURL = testRunLogsURL.appendingPathComponent(fileName)
+        // Strategy 1: Try UITestRunLogs subdirectory
+        if let logFileURL = tryCreateLogFile(fileName, in: .uiTestRunLogs) {
+            return logFileURL
+        }
+        
+        // Strategy 2: Try main HammerTimeLogs directory
+        if let logFileURL = tryCreateLogFile(fileName, in: .mainDirectory) {
+            return logFileURL
+        }
+        
+        // Strategy 3: Try Documents directory directly
+        if let logFileURL = tryCreateLogFile(fileName, in: .documentsRoot) {
+            return logFileURL
+        }
+        
+        // Strategy 4: Use temporary directory
+        if let logFileURL = tryCreateLogFile(fileName, in: .temporary) {
+            return logFileURL
+        }
+        
+        log("❌ ALL-STRATEGIES-FAILED: Could not create log file anywhere")
+        return nil
+    }
+    
+    /// Directory strategies for log file creation
+    private enum LogDirectoryStrategy {
+        case uiTestRunLogs
+        case mainDirectory
+        case documentsRoot
+        case temporary
+    }
+    
+    /// Attempts to create a log file using the specified directory strategy
+    /// 
+    /// - Parameters:
+    ///   - fileName: Name for the log file
+    ///   - strategy: Directory strategy to use
+    /// - Returns: URL of created log file, or nil if creation failed
+    private func tryCreateLogFile(_ fileName: String, in strategy: LogDirectoryStrategy) -> URL? {
+        let directoryURL: URL
+        let strategyName: String
+        
+        switch strategy {
+        case .uiTestRunLogs:
+            directoryURL = getLogsDirectoryURL().appendingPathComponent("UITestRunLogs")
+            strategyName = "UITestRunLogs"
+        case .mainDirectory:
+            directoryURL = getLogsDirectoryURL()
+            strategyName = "HammerTimeLogs"
+        case .documentsRoot:
+            guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                return nil
+            }
+            directoryURL = documentsURL
+            strategyName = "Documents"
+        case .temporary:
+            directoryURL = FileManager.default.temporaryDirectory
+            strategyName = "Temporary"
+        }
+        
+        let logFileURL = directoryURL.appendingPathComponent(fileName)
         
         do {
-            // Ensure parent directory exists
-            try FileManager.default.createDirectory(at: testRunLogsURL, 
-                                                  withIntermediateDirectories: true, 
-                                                  attributes: nil)
+            // Ensure parent directory exists (except for temporary)
+            if strategy != .temporary {
+                try FileManager.default.createDirectory(at: directoryURL, 
+                                                      withIntermediateDirectories: true, 
+                                                      attributes: nil)
+            }
             
             // Create empty file
             let success = FileManager.default.createFile(atPath: logFileURL.path, contents: nil, attributes: nil)
@@ -283,23 +420,11 @@ public final class TestRunLogger {
             // Open file handle for writing
             logFileHandle = try FileHandle(forWritingTo: logFileURL)
             
-            log("✅ LOG-FILE-CREATED: \(logFileURL.path)")
+            log("✅ LOG-FILE-SUCCESS: \(strategyName) strategy - \(logFileURL.path)")
             return logFileURL
         } catch {
-            log("❌ LOG-FILE-FAILED: \(error)")
-            NSLog("TestRunLogger: Failed to create log file: \(error)")
-            
-            // Try fallback in temporary directory
-            let tempLogURL = FileManager.default.temporaryDirectory.appendingPathComponent(fileName)
-            do {
-                FileManager.default.createFile(atPath: tempLogURL.path, contents: nil, attributes: nil)
-                logFileHandle = try FileHandle(forWritingTo: tempLogURL)
-                log("✅ FALLBACK-LOG: \(tempLogURL.path)")
-                return tempLogURL
-            } catch {
-                log("❌ FALLBACK-FAILED: \(error)")
-                return nil
-            }
+            log("⚠️ STRATEGY-FAILED: \(strategyName) - \(error)")
+            return nil
         }
     }
     
@@ -496,5 +621,131 @@ extension TestRunLogger {
             includeSystemInfo: true
         )
         return startLogging(config: config)
+    }
+    
+    /// Copies all HammerTime log files to an easily accessible location for retrieval
+    /// 
+    /// This method consolidates all log files from various locations into a single
+    /// directory that can be easily accessed via Xcode's Devices and Simulators window.
+    /// 
+    /// - Returns: URL of the consolidated logs directory
+    @discardableResult
+    public func consolidateLogsForRetrieval() -> URL? {
+        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            NSLog("❌ CONSOLIDATE: Cannot access Documents directory")
+            return nil
+        }
+        
+        let consolidatedURL = documentsURL.appendingPathComponent("ConsolidatedHammerTimeLogs")
+        
+        do {
+            // Create consolidated directory
+            try FileManager.default.createDirectory(at: consolidatedURL, 
+                                                  withIntermediateDirectories: true, 
+                                                  attributes: nil)
+            
+            var totalFilesCopied = 0
+            
+            // Copy from main HammerTimeLogs directory
+            totalFilesCopied += copyLogsFromDirectory(getLogsDirectoryURL(), 
+                                                    to: consolidatedURL, 
+                                                    sourceName: "MainLogs")
+            
+            // Copy from UITestRunLogs subdirectory
+            let testRunLogsURL = getLogsDirectoryURL().appendingPathComponent("UITestRunLogs")
+            totalFilesCopied += copyLogsFromDirectory(testRunLogsURL, 
+                                                    to: consolidatedURL, 
+                                                    sourceName: "UITestLogs")
+            
+            // Copy from temporary directory
+            totalFilesCopied += copyHammerTimeLogsFromDirectory(FileManager.default.temporaryDirectory, 
+                                                              to: consolidatedURL, 
+                                                              sourceName: "TempLogs")
+            
+            NSLog("✅ CONSOLIDATE-SUCCESS: \(totalFilesCopied) files copied to \(consolidatedURL.path)")
+            NSLog("📁 RETRIEVAL-INSTRUCTIONS:")
+            NSLog("   1. Open Xcode → Window → Devices and Simulators")
+            NSLog("   2. Select your Apple TV device")
+            NSLog("   3. Click on 'Installed Apps' and find HammerTime")
+            NSLog("   4. Click 'Download Container...' and save to your Mac")
+            NSLog("   5. Look in Documents/ConsolidatedHammerTimeLogs/ for all log files")
+            
+            return consolidatedURL
+        } catch {
+            NSLog("❌ CONSOLIDATE-FAILED: \(error)")
+            return nil
+        }
+    }
+    
+    /// Copies log files from source directory to consolidated directory
+    /// 
+    /// - Parameters:
+    ///   - sourceURL: Source directory URL
+    ///   - destinationURL: Destination directory URL
+    ///   - sourceName: Descriptive name for logging
+    /// - Returns: Number of files copied
+    private func copyLogsFromDirectory(_ sourceURL: URL, to destinationURL: URL, sourceName: String) -> Int {
+        do {
+            let files = try FileManager.default.contentsOfDirectory(at: sourceURL, 
+                                                                   includingPropertiesForKeys: nil)
+            let logFiles = files.filter { $0.pathExtension.lowercased() == "txt" }
+            
+            var copiedCount = 0
+            for file in logFiles {
+                let destinationFile = destinationURL.appendingPathComponent("\(sourceName)_\(file.lastPathComponent)")
+                do {
+                    try FileManager.default.copyItem(at: file, to: destinationFile)
+                    copiedCount += 1
+                } catch {
+                    NSLog("⚠️ COPY-FAILED: \(file.lastPathComponent) - \(error)")
+                }
+            }
+            
+            if copiedCount > 0 {
+                NSLog("✅ COPIED: \(copiedCount) files from \(sourceName)")
+            }
+            return copiedCount
+        } catch {
+            NSLog("⚠️ SOURCE-ACCESS-FAILED: \(sourceName) - \(error)")
+            return 0
+        }
+    }
+    
+    /// Copies HammerTime-related log files from source directory to consolidated directory
+    /// 
+    /// - Parameters:
+    ///   - sourceURL: Source directory URL
+    ///   - destinationURL: Destination directory URL
+    ///   - sourceName: Descriptive name for logging
+    /// - Returns: Number of files copied
+    private func copyHammerTimeLogsFromDirectory(_ sourceURL: URL, to destinationURL: URL, sourceName: String) -> Int {
+        do {
+            let files = try FileManager.default.contentsOfDirectory(at: sourceURL, 
+                                                                   includingPropertiesForKeys: nil)
+            let hammerTimeFiles = files.filter { file in
+                let name = file.lastPathComponent.lowercased()
+                return (name.contains("hammer") || name.contains("manual") || name.contains("focus")) && 
+                       file.pathExtension.lowercased() == "txt"
+            }
+            
+            var copiedCount = 0
+            for file in hammerTimeFiles {
+                let destinationFile = destinationURL.appendingPathComponent("\(sourceName)_\(file.lastPathComponent)")
+                do {
+                    try FileManager.default.copyItem(at: file, to: destinationFile)
+                    copiedCount += 1
+                } catch {
+                    NSLog("⚠️ COPY-FAILED: \(file.lastPathComponent) - \(error)")
+                }
+            }
+            
+            if copiedCount > 0 {
+                NSLog("✅ COPIED: \(copiedCount) HammerTime files from \(sourceName)")
+            }
+            return copiedCount
+        } catch {
+            NSLog("⚠️ SOURCE-ACCESS-FAILED: \(sourceName) - \(error)")
+            return 0
+        }
     }
 } 
