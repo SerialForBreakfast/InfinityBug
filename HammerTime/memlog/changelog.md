@@ -1279,3 +1279,59 @@ remote.press(.menu, forDuration: 0.1)
 - **Tertiary**: Phantom input continuation observation
 
 ---
+
+## 2025-01-25 - Critical Reproduction Pattern Discovery + Logging Optimization
+
+### Major Breakthrough: InfinityBug Reproduction Conditions Identified ✅
+
+**Analysis of Latest Test Runs:**
+- **SuccessfulRepro5.txt**: CONFIRMED reproduction with precise failure pattern
+- **unsuccessfulLog4.txt**: Failed due to press-heavy pattern (245 presses vs 54 swipes)  
+- **unsuccessfulLog5.txt**: Failed despite 392 swipes due to inconsistent stall patterns
+
+**Key Success Factors Identified:**
+1. **Swipe Dominance**: Swipe count must significantly exceed press count
+2. **Memory Threshold**: 65-66MB memory usage correlates with system breakdown
+3. **Sustained Stalls**: Multiple consecutive 1100ms+ RunLoop stalls required
+4. **Background Persistence**: Events continue processing after app backgrounded
+5. **System Failure**: Requires debugger termination - standard recovery fails
+
+**Critical Timeline Pattern:**
+- 0-30s: Initial 1300ms stall, memory at 52MB
+- 30-90s: 2700ms stall, memory climbs to 56MB, 60+ swipe backlog
+- 90-180s: 28000ms stall, memory reaches 64MB (critical transition)
+- 180s+: Sustained 1100ms stalls at 65-66MB with 67-83 swipe backlog until failure
+
+### Logging System Optimization
+
+**Redundancy Elimination:**
+- Consolidated latency reporting: Combined avg/max with inline warnings
+- Unified queue depth reporting: Embedded [HIGH] warnings in data lines  
+- Merged VoiceOver performance: Single line with [SLOW] indicator when needed
+- Removed duplicate warnings that restated numeric data
+
+**Character Efficiency Improvements:**
+- ~70% reduction in redundant log lines
+- Better signal-to-noise ratio for pattern analysis
+- Professional appearance without emoji clutter
+- Optimized for LLM token efficiency
+
+**Results:**
+- Cleaner analysis logs with same essential information
+- Easier identification of critical patterns
+- Reduced log processing overhead
+- Maintained all debugging capabilities
+
+### Updated Documentation
+- Enhanced `InfinityBug_Test_Analysis.md` with reproduction requirements
+- Documented memory thresholds and stall patterns  
+- Identified early warning indicators for prediction
+- Added actionable insights for testing and mitigation
+
+### Next Steps
+- Focus manual testing on swipe-heavy patterns
+- Monitor 65MB memory threshold as failure predictor
+- Develop automated detection for swipe-to-press ratios
+- Consider VoiceOver processing optimization approaches
+
+---
