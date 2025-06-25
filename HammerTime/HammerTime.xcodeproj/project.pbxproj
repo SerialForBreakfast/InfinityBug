@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4409808F2E00B71A00BF3FC0 /* Debugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4409808E2E00B71A00BF3FC0 /* Debugger.swift */; };
 		440980962E04150100BF3FC0 /* changelog.md in Resources */ = {isa = PBXBuildFile; fileRef = 440980922E04150100BF3FC0 /* changelog.md */; };
 		440980972E04150100BF3FC0 /* tasks.md in Resources */ = {isa = PBXBuildFile; fileRef = 440980942E04150100BF3FC0 /* tasks.md */; };
 		440980982E04150100BF3FC0 /* directory_tree.md in Resources */ = {isa = PBXBuildFile; fileRef = 440980932E04150100BF3FC0 /* directory_tree.md */; };
@@ -33,7 +32,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4409808E2E00B71A00BF3FC0 /* Debugger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debugger.swift; sourceTree = "<group>"; };
 		440980922E04150100BF3FC0 /* changelog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = changelog.md; sourceTree = "<group>"; };
 		440980932E04150100BF3FC0 /* directory_tree.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = directory_tree.md; sourceTree = "<group>"; };
 		440980942E04150100BF3FC0 /* tasks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = tasks.md; sourceTree = "<group>"; };
@@ -116,7 +114,6 @@
 		44B9F2692DFCE8B700511113 = {
 			isa = PBXGroup;
 			children = (
-				4409808E2E00B71A00BF3FC0 /* Debugger.swift */,
 				44F183EF2DFD0ECC00B6B23E /* NewTestPlan.xctestplan */,
 				44B9F2B62DFD0E8600511113 /* HammerTime.xctestplan */,
 				44B9F2742DFCE8B700511113 /* HammerTime */,
@@ -285,7 +282,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4409808F2E00B71A00BF3FC0 /* Debugger.swift in Sources */,
 				441C937F2E0873A000C5FC8A /* UnreliableTests.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,0 +1,2115 @@
+CLIENT OF UIKIT REQUIRES UPDATE: This process does not adopt UIScene lifecycle. This will become an assert in a future version.
+void * _Nullable NSMapGet(NSMapTable * _Nonnull, const void * _Nullable): map table argument is NULL
+App is being debugged, do not track this hang
+Hang detected: 0.31s (debugger attached, not reporting)
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/65A5CD5D-150F-45E7-AD65-A8AB229855D2/Documents/HammerTimeLogs
+TestRunLogger: ❌ DIRECTORY-FAILED: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “UITestRunLogs” in the folder “HammerTimeLogs”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/65A5CD5D-150F-45E7-AD65-A8AB229855D2/Documents/HammerTimeLogs/UITestRunLogs, NSURL=file:///var/mobile/Containers/Data/Application/65A5CD5D-150F-45E7-AD65-A8AB229855D2/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x300b92910 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: Failed to create UITestRunLogs directory: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “UITestRunLogs” in the folder “HammerTimeLogs”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/65A5CD5D-150F-45E7-AD65-A8AB229855D2/Documents/HammerTimeLogs/UITestRunLogs, NSURL=file:///var/mobile/Containers/Data/Application/65A5CD5D-150F-45E7-AD65-A8AB229855D2/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x300b92910 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/65A5CD5D-150F-45E7-AD65-A8AB229855D2/Documents/HammerTimeLogs
+TestRunLogger: ❌ LOG-FILE-FAILED: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “UITestRunLogs” in the folder “HammerTimeLogs”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/65A5CD5D-150F-45E7-AD65-A8AB229855D2/Documents/HammerTimeLogs/UITestRunLogs, NSURL=file:///var/mobile/Containers/Data/Application/65A5CD5D-150F-45E7-AD65-A8AB229855D2/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x300b920a0 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: Failed to create log file: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “UITestRunLogs” in the folder “HammerTimeLogs”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/65A5CD5D-150F-45E7-AD65-A8AB229855D2/Documents/HammerTimeLogs/UITestRunLogs, NSURL=file:///var/mobile/Containers/Data/Application/65A5CD5D-150F-45E7-AD65-A8AB229855D2/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x300b920a0 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: ✅ FALLBACK-LOG: /private/var/mobile/Containers/Data/Application/65A5CD5D-150F-45E7-AD65-A8AB229855D2/tmp/062525-0922-Manual_FocusStress_heavyReproduction.txt
+TestRunLogger: 📊 SYSTEM-INFO:
+TestRunLogger:   Device: Apple TV
+TestRunLogger:   OS: tvOS 18.5
+TestRunLogger:   Model: Apple TV
+TestRunLogger:   Memory: 37 MB
+TestRunLogger:   VoiceOver: ENABLED
+TestRunLogger:   Reduce Motion: DISABLED
+TestRunLogger: 🚀 TEST-START: Manual_FocusStress_heavyReproduction (Manual)
+TestRunLogger: 📱 FocusStressViewController: Starting manual execution
+TestRunLogger: 📱 Configuration: heavyReproduction
+TestRunLogger: 📊 SYSTEM-INFO:
+TestRunLogger:   Device: Apple TV
+TestRunLogger:   OS: tvOS 18.5
+TestRunLogger:   Model: Apple TV
+TestRunLogger:   Memory: 37 MB
+TestRunLogger:   VoiceOver: ENABLED
+TestRunLogger:   Reduce Motion: DISABLED
+TestRunLogger: 🔄 FocusStressViewController: Circular focus guides activated
+TestRunLogger: 🔀 FocusStressViewController: Dynamic focus guides activated
+TestRunLogger: ⚡ FocusStressViewController: Rapid layout changes activated
+TestRunLogger: 🎯 FocusStressViewController: Overlapping elements activated
+TestRunLogger: 📢 FocusStressViewController: VoiceOver announcements activated
+[AXDBG] 162254.539 SUCCESS: Starting tvOS low-level input monitoring
+[AXDBG] 162254.540 WARNING: Private API monitoring is experimental and may not work
+TestRunLogger: 🔍 FocusStressViewController: AXFocusDebugger started
+[AXDBG] 162255.818 CONTROLLER: Enhanced monitoring for controller: Siri Remote (2nd Generation)
+[AXDBG] 162255.819 🔌 Controller connected: Siri Remote (2nd Generation)
+[AXDBG] 162255.830 [A11Y] WARNING: FocusGuide tiny frame {{10, 10}, {1, 1}}
+[AXDBG] 162255.831 [A11Y] WARNING: FocusGuide tiny frame {{12, 12}, {1, 1}}
+[AXDBG] 162255.831 [A11Y] WARNING: FocusGuide tiny frame {{20, 20}, {1, 1}}
+[AXDBG] 162255.831 [A11Y] WARNING: FocusGuide tiny frame {{25, 25}, {1, 1}}
+[AXDBG] 162255.832 [A11Y] WARNING: FocusGuide tiny frame {{30, 30}, {1, 1}}
+[AXDBG] 162255.834 [A11Y] WARNING: FocusGuide tiny frame {{35, 35}, {1, 1}}
+[AXDBG] 162255.834 [A11Y] WARNING: FocusGuide tiny frame {{40, 40}, {1, 1}}
+App is being debugged, do not track this hang
+Hang detected: 1.47s (debugger attached, not reporting)
+[AXDBG] 162255.836 ⚠️ RunLoop stall 1300ms | Memory: 52MB | Total queue: 0 | Swipes: 0 | Presses: 0
+[AXDBG] 162255.841 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162255.843 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162255.844 🕹️ DPAD STATE: Left (x:-0.916, y:0.000, ts:72736.165216)
+[AXDBG] 162255.907 POLL: Left detected via polling (x:-0.916, y:0.091)
+[AXDBG] 162255.908 🕹️ HARDWARE SWIPE DETECTED: Left (x:-0.916, y:0.091)
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Display structure reorganized
+[AXDBG] 162255.991 🕹️ HARDWARE SWIPE DETECTED: Left (x:-0.916, y:0.091)
+[AXDBG] 162256.059 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162256.062 🕹️ DPAD STATE: Left (x:-0.858, y:-0.150, ts:72736.383382)
+[AXDBG] 162256.063 🕹️ DPAD STATE: Left (x:-0.751, y:-0.236, ts:72736.383992)
+[AXDBG] 162256.077 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162256.139 🕹️ DPAD STATE: Left (x:-0.701, y:-0.390, ts:72736.460135)
+[AXDBG] 162256.141 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162256.427 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162256.429 🕹️ DPAD STATE: Center (x:-0.291, y:-0.434, ts:72736.750279)
+[AXDBG] 162256.429 🕹️ DPAD STATE: Up (x:-0.291, y:-0.844, ts:72736.750630)
+[AXDBG] 162256.440 POLL: Up detected via polling (x:-0.291, y:-0.844)
+[AXDBG] 162256.441 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.291, y:-0.844)
+[AXDBG] 162256.513 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.291, y:-0.844)
+[AXDBG] 162256.582 POLL: Up detected via polling (x:-0.291, y:-0.844)
+[AXDBG] 162256.582 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.291, y:-0.844)
+[AXDBG] 162256.582 📊 SWIPE queue building: 5 swipes behind
+[AXDBG] 162256.644 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.291, y:-0.844)
+[AXDBG] 162256.712 POLL: Up detected via polling (x:-0.291, y:-0.844)
+[AXDBG] 162256.712 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.291, y:-0.844)
+[AXDBG] 162256.712 📊 Event queue building: 10 events behind
+[AXDBG] 162256.769 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.291, y:-0.844)
+[AXDBG] 162256.830 POLL: Up detected via polling (x:-0.291, y:-0.844)
+[AXDBG] 162256.831 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.291, y:-0.844)
+[AXDBG] 162256.898 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.291, y:-0.844)
+[AXDBG] 162256.898 📊 SWIPE queue building: 10 swipes behind
+[AXDBG] 162256.957 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162256.959 POLL: Up detected via polling (x:-0.289, y:-0.856)
+[AXDBG] 162256.960 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.289, y:-0.856)
+[AXDBG] 162256.974 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162257.033 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.287, y:-0.856)
+[AXDBG] 162257.095 POLL: Up detected via polling (x:-0.287, y:-0.856)
+[AXDBG] 162257.096 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.287, y:-0.856)
+[AXDBG] 162257.156 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.287, y:-0.856)
+[AXDBG] 162257.213 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.287, y:-0.856)
+[AXDBG] 162257.213 📊 SWIPE queue building: 15 swipes behind
+[AXDBG] 162257.214 POLL: Up detected via polling (x:-0.287, y:-0.856)
+[AXDBG] 162257.273 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.287, y:-0.856)
+[AXDBG] 162257.350 POLL: Up detected via polling (x:-0.287, y:-0.856)
+[AXDBG] 162257.350 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.287, y:-0.856)
+[AXDBG] 162257.351 📊 Event queue building: 20 events behind
+[AXDBG] 162257.415 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.287, y:-0.856)
+[AXDBG] 162257.485 POLL: Up detected via polling (x:-0.287, y:-0.856)
+[AXDBG] 162257.485 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.287, y:-0.856)
+[AXDBG] 162257.539 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.287, y:-0.856)
+[AXDBG] 162257.540 📊 SWIPE queue building: 20 swipes behind
+[AXDBG] 162257.608 POLL: Up detected via polling (x:-0.287, y:-0.856)
+[AXDBG] 162257.609 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.287, y:-0.856)
+[AXDBG] 162257.679 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.287, y:-0.856)
+[AXDBG] 162257.762 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162257.803 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162257.807 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162257.809 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162257.809 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162257.886 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Content arrangement updated
+[AXDBG] 162257.980 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162257.980 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162257.980 📊 SWIPE queue building: 25 swipes behind
+[AXDBG] 162258.061 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.135 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.135 📊 Event queue building: 30 events behind
+[AXDBG] 162258.136 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162258.196 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.258 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.258 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162258.319 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.319 📊 SWIPE queue building: 30 swipes behind
+[AXDBG] 162258.380 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162258.380 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.454 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Content arrangement updated
+[AXDBG] 162258.529 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162258.529 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.587 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.649 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162258.653 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.653 📊 SWIPE queue building: 35 swipes behind
+[AXDBG] 162258.716 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.780 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.781 📊 Event queue building: 40 events behind
+[AXDBG] 162258.781 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162258.859 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.922 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162258.922 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.984 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162258.984 📊 SWIPE queue building: 40 swipes behind
+[AXDBG] 162259.052 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162259.056 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.114 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.172 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162259.173 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.231 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.289 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162259.289 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.289 📊 SWIPE queue building: 45 swipes behind
+[AXDBG] 162259.354 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Display structure reorganized
+[AXDBG] 162259.428 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162259.429 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.429 📊 Event queue building: 50 events behind
+[AXDBG] 162259.487 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.549 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162259.549 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.612 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.612 📊 SWIPE queue building: 50 swipes behind
+[AXDBG] 162259.672 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.672 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162259.746 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.802 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162259.803 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.867 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.932 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162259.933 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162259.933 📊 SWIPE queue building: 55 swipes behind
+[AXDBG] 162300.027 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162300.105 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162300.106 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162300.106 📊 Event queue building: 60 events behind
+[AXDBG] 162300.185 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162300.263 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162300.263 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162300.351 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162300.352 📊 SWIPE queue building: 60 swipes behind
+[AXDBG] 162300.406 POLL: Up detected via polling (x:-0.235, y:-0.858)
+[AXDBG] 162300.406 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162300.470 🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+[AXDBG] 162300.525 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162300.553 🕹️ DPAD STATE: Up (x:0.000, y:-0.858, ts:72740.874539)
+[AXDBG] 162300.554 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72740.874935)
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Focus environment refreshed
+[AXDBG] 162300.643 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162300.644 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162301.039 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162301.245 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162301.246 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162301.303 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162301.305 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162301.305 [A11Y] REMOTE PRESS: Right Arrow
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Content arrangement updated
+[AXDBG] 162302.732 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162302.733 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162302.733 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162302.786 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162302.787 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162302.896 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162303.051 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162303.052 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162303.053 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162303.067 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162303.107 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162303.108 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162303.137 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162303.632 🕹️ DPAD STATE: Right (x:0.660, y:0.000, ts:72743.953234)
+[AXDBG] 162303.632 📊 Event queue building: 60 events behind
+[AXDBG] 162303.638 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162303.649 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162303.699 🕹️ DPAD STATE: Center (x:0.000, y:0.024, ts:72744.020018)
+[AXDBG] 162303.715 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162303.716 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162303.780 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162303.780 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162303.897 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162304.015 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162304.016 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162304.343 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162304.389 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162304.390 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162304.763 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162305.107 🕹️ DPAD STATE: Up (x:-0.080, y:-0.773, ts:72745.428557)
+[AXDBG] 162305.114 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162305.130 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162305.136 📊 Event queue building: 60 events behind
+[AXDBG] 162305.136 🕹️ DPAD STATE: Up (x:0.095, y:-0.720, ts:72745.457622)
+[AXDBG] 162305.136 🕹️ DPAD STATE: Center (x:0.095, y:-0.493, ts:72745.457902)
+[AXDBG] 162305.147 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162305.155 🕹️ DPAD STATE: Center (x:0.135, y:-0.294, ts:72745.475960)
+[AXDBG] 162305.165 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162305.182 🕹️ DPAD STATE: Center (x:0.162, y:-0.085, ts:72745.503045)
+[AXDBG] 162305.184 🕹️ DPAD STATE: Center (x:0.185, y:0.132, ts:72745.505273)
+[AXDBG] 162305.196 🕹️ DPAD STATE: Center (x:0.000, y:0.132, ts:72745.517173)
+[AXDBG] 162305.196 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72745.517710)
+[AXDBG] 162305.197 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162305.199 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162305.249 ⚠️ RunLoop stall 2734ms | Memory: 56MB | Total queue: 61 | Swipes: 62 | Presses: -1
+[AXDBG] 162305.250 🚨 HIGH SWIPE BACKLOG during stall: 62 swipes - InfinityBug correlation!
+[AXDBG] 162305.351 🕹️ DPAD STATE: Center (x:0.378, y:0.000, ts:72745.672083)
+[AXDBG] 162305.351 🕹️ DPAD STATE: Center (x:0.378, y:0.279, ts:72745.672455)
+[AXDBG] 162305.413 🕹️ DPAD STATE: Center (x:0.382, y:0.454, ts:72745.734501)
+[AXDBG] 162305.413 🕹️ DPAD STATE: Down (x:0.382, y:0.592, ts:72745.734940)
+[AXDBG] 162305.414 🕹️ DPAD STATE: Down (x:0.000, y:0.592, ts:72745.735134)
+[AXDBG] 162305.414 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72745.735280)
+[AXDBG] 162305.415 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162305.416 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162305.416 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162305.488 🕹️ DPAD STATE: Center (x:0.215, y:0.000, ts:72745.809657)
+[AXDBG] 162305.489 🕹️ DPAD STATE: Down (x:0.215, y:0.822, ts:72745.810095)
+[AXDBG] 162305.489 🕹️ HARDWARE SWIPE DETECTED: Down (x:0.215, y:0.822)
+[AXDBG] 162305.489 POLL: Down detected via polling (x:0.215, y:0.822)
+[AXDBG] 162305.494 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162305.560 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162305.657 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162305.669 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162305.751 🕹️ DPAD STATE: Down (x:0.146, y:0.714, ts:72746.072492)
+[AXDBG] 162305.753 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162306.229 🕹️ DPAD STATE: Down (x:0.000, y:0.714, ts:72746.550594)
+[AXDBG] 162306.229 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72746.551008)
+[AXDBG] 162306.235 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162306.317 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162306.317 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162306.419 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162306.421 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162306.421 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162306.566 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162306.582 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162306.583 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162306.583 📊 PRESS queue caught up! Processed 13 presses
+[AXDBG] 162306.648 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162306.787 🕹️ DPAD STATE: Right (x:0.915, y:0.000, ts:72747.108689)
+[AXDBG] 162306.799 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162306.832 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162306.833 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162306.949 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162307.016 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162307.017 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162307.017 📊 PRESS queue caught up! Processed 15 presses
+[AXDBG] 162307.082 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162307.216 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162307.217 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162307.217 📊 PRESS queue caught up! Processed 16 presses
+[AXDBG] 162307.399 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162307.500 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162307.502 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162307.502 📊 PRESS queue caught up! Processed 17 presses
+[AXDBG] 162307.550 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162307.658 🕹️ DPAD STATE: Right (x:0.875, y:-0.141, ts:72747.979184)
+[AXDBG] 162307.670 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162307.746 🕹️ DPAD STATE: Center (x:-0.003, y:-0.141, ts:72748.067685)
+[AXDBG] 162307.750 🕹️ DPAD STATE: Up (x:-0.003, y:-0.961, ts:72748.071724)
+[AXDBG] 162307.751 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162307.766 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162307.767 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162307.767 📊 PRESS queue caught up! Processed 18 presses
+[AXDBG] 162307.866 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162307.896 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72748.217816)
+[AXDBG] 162307.899 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162308.000 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162308.001 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162308.001 📊 PRESS queue caught up! Processed 19 presses
+[AXDBG] 162308.053 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162308.116 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162308.117 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162308.117 📊 PRESS queue caught up! Processed 20 presses
+[AXDBG] 162308.216 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162308.283 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162308.284 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162308.284 📊 PRESS queue caught up! Processed 21 presses
+[AXDBG] 162308.383 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162308.584 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162308.585 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162308.585 📊 PRESS queue caught up! Processed 22 presses
+[AXDBG] 162308.736 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162308.968 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162308.969 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162308.969 📊 PRESS queue caught up! Processed 23 presses
+[AXDBG] 162309.035 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162309.389 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162309.390 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162309.390 📊 PRESS queue caught up! Processed 24 presses
+[AXDBG] 162309.408 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162309.409 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162309.409 📊 PRESS queue caught up! Processed 25 presses
+[AXDBG] 162309.688 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162309.690 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162309.907 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162309.908 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162309.908 📊 PRESS queue caught up! Processed 26 presses
+[AXDBG] 162309.920 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162309.943 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162309.944 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162309.944 📊 PRESS queue caught up! Processed 27 presses
+[AXDBG] 162309.972 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162309.972 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162309.973 📊 PRESS queue caught up! Processed 28 presses
+[AXDBG] 162310.019 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162310.020 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162310.057 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162310.058 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162310.058 📊 PRESS queue caught up! Processed 29 presses
+[AXDBG] 162310.838 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162310.859 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162310.859 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162310.859 📊 PRESS queue caught up! Processed 30 presses
+[AXDBG] 162310.886 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162310.887 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162310.887 📊 PRESS queue caught up! Processed 31 presses
+[AXDBG] 162311.040 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162311.041 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162311.200 📊 Event queue building: 50 events behind
+[AXDBG] 162311.200 🕹️ DPAD STATE: Center (x:-0.061, y:-0.380, ts:72751.521976)
+[AXDBG] 162311.205 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162311.226 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162311.250 🕹️ DPAD STATE: Center (x:0.072, y:-0.300, ts:72751.571866)
+[AXDBG] 162311.253 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162311.261 🕹️ DPAD STATE: Center (x:0.114, y:-0.110, ts:72751.582375)
+[AXDBG] 162311.269 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162311.282 🕹️ DPAD STATE: Center (x:0.156, y:0.022, ts:72751.603846)
+[AXDBG] 162311.286 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162311.295 🕹️ DPAD STATE: Center (x:0.225, y:0.227, ts:72751.616892)
+[AXDBG] 162311.304 🕹️ DPAD STATE: Center (x:0.000, y:0.227, ts:72751.625698)
+[AXDBG] 162311.305 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72751.626490)
+[AXDBG] 162311.305 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162311.405 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162311.415 🕹️ DPAD STATE: Right (x:0.930, y:0.000, ts:72751.736106)
+[AXDBG] 162311.415 🕹️ DPAD STATE: Right (x:0.930, y:0.114, ts:72751.736797)
+[AXDBG] 162311.637 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162311.638 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162311.638 📊 PRESS queue caught up! Processed 32 presses
+[AXDBG] 162311.686 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162311.855 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162311.855 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162311.856 📊 PRESS queue caught up! Processed 33 presses
+[AXDBG] 162312.037 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162312.038 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162312.039 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162312.039 📊 PRESS queue caught up! Processed 34 presses
+[AXDBG] 162312.154 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162312.186 🕹️ DPAD STATE: Center (x:0.000, y:0.114, ts:72752.507353)
+[AXDBG] 162312.187 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.195 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72752.516361)
+[AXDBG] 162312.314 🕹️ DPAD STATE: Center (x:0.127, y:0.000, ts:72752.635694)
+[AXDBG] 162312.315 🕹️ DPAD STATE: Up (x:0.127, y:-0.603, ts:72752.636407)
+[AXDBG] 162312.321 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.354 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.366 🕹️ DPAD STATE: Center (x:0.139, y:-0.422, ts:72752.687938)
+[AXDBG] 162312.370 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.383 🕹️ DPAD STATE: Center (x:0.169, y:-0.294, ts:72752.704522)
+[AXDBG] 162312.388 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.400 🕹️ DPAD STATE: Center (x:0.183, y:-0.179, ts:72752.721241)
+[AXDBG] 162312.405 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.415 🕹️ DPAD STATE: Center (x:0.198, y:-0.062, ts:72752.737161)
+[AXDBG] 162312.422 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.450 🕹️ DPAD STATE: Center (x:0.223, y:0.061, ts:72752.771721)
+[AXDBG] 162312.450 🕹️ DPAD STATE: Center (x:0.246, y:0.174, ts:72752.772082)
+[AXDBG] 162312.451 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.463 🕹️ DPAD STATE: Center (x:0.000, y:0.174, ts:72752.784709)
+[AXDBG] 162312.463 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72752.785073)
+[AXDBG] 162312.472 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.590 🕹️ DPAD STATE: Center (x:-0.122, y:0.000, ts:72752.911897)
+[AXDBG] 162312.590 🕹️ DPAD STATE: Up (x:-0.122, y:-0.509, ts:72752.912319)
+[AXDBG] 162312.593 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.594 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.613 🕹️ DPAD STATE: Center (x:0.033, y:-0.424, ts:72752.934368)
+[AXDBG] 162312.613 🕹️ DPAD STATE: Center (x:0.033, y:-0.210, ts:72752.934725)
+[AXDBG] 162312.621 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.629 🕹️ DPAD STATE: Center (x:0.083, y:-0.024, ts:72752.950410)
+[AXDBG] 162312.636 🕹️ DPAD STATE: Center (x:0.131, y:0.195, ts:72752.957383)
+[AXDBG] 162312.637 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.653 🕹️ DPAD STATE: Center (x:0.158, y:0.387, ts:72752.974590)
+[AXDBG] 162312.654 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.682 🕹️ DPAD STATE: Center (x:0.000, y:0.387, ts:72753.003782)
+[AXDBG] 162312.682 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72753.004148)
+[AXDBG] 162312.684 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.817 📊 Event queue building: 60 events behind
+[AXDBG] 162312.818 🕹️ DPAD STATE: Center (x:0.164, y:0.000, ts:72753.139457)
+[AXDBG] 162312.818 🕹️ DPAD STATE: Down (x:0.164, y:0.841, ts:72753.139714)
+[AXDBG] 162312.822 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.854 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.866 🕹️ DPAD STATE: Down (x:0.054, y:0.808, ts:72753.187735)
+[AXDBG] 162312.871 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.888 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.904 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.921 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.938 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.954 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.971 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162312.988 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162313.004 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162313.005 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162313.005 📊 PRESS queue caught up! Processed 35 presses
+[AXDBG] 162313.059 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162313.224 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162313.226 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162313.226 📊 PRESS queue caught up! Processed 36 presses
+[AXDBG] 162313.280 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162313.505 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162313.505 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162313.506 📊 PRESS queue caught up! Processed 37 presses
+[AXDBG] 162313.609 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162313.774 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162313.774 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162313.774 📊 PRESS queue caught up! Processed 38 presses
+[AXDBG] 162314.023 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162314.039 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162314.039 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162314.039 📊 PRESS queue caught up! Processed 39 presses
+[AXDBG] 162314.172 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162314.206 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162314.207 [A11Y] WARNING: Phantom UIPRESS Up Arrow → InfinityBug?
+[AXDBG] 162314.207 (debug)  noHW=true  stale=true  rapid=true  dt=19.7s
+[AXDBG] 162314.207 📊 PRESS queue depth during phantom: -7 | Total: 56
+[AXDBG] 162314.207 📊 PRESS queue caught up! Processed 40 presses
+[AXDBG] 162314.272 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162314.340 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162314.341 [A11Y] WARNING: Phantom UIPRESS Up Arrow → InfinityBug?
+[AXDBG] 162314.341 (debug)  noHW=true  stale=true  rapid=true  dt=19.8s
+[AXDBG] 162314.341 📊 PRESS queue depth during phantom: -8 | Total: 55
+[AXDBG] 162314.341 📊 PRESS queue caught up! Processed 41 presses
+[AXDBG] 162314.575 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162314.590 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162314.591 [A11Y] WARNING: Phantom UIPRESS Up Arrow → InfinityBug?
+[AXDBG] 162314.591 (debug)  noHW=true  stale=true  rapid=true  dt=20.1s
+[AXDBG] 162314.591 📊 PRESS queue depth during phantom: -9 | Total: 54
+[AXDBG] 162314.591 📊 PRESS queue caught up! Processed 42 presses
+[AXDBG] 162314.757 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162314.807 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162314.807 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162314.807 📊 PRESS queue caught up! Processed 43 presses
+[AXDBG] 162314.859 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162314.990 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162314.991 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162314.991 📊 PRESS queue caught up! Processed 44 presses
+[AXDBG] 162315.040 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162315.157 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162315.157 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162315.158 📊 PRESS queue caught up! Processed 45 presses
+[AXDBG] 162315.223 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162315.360 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162315.361 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162315.362 📊 PRESS queue caught up! Processed 46 presses
+[AXDBG] 162315.424 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162315.559 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162315.560 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162315.560 📊 PRESS queue caught up! Processed 47 presses
+[AXDBG] 162315.694 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162315.707 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162315.708 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162315.708 📊 PRESS queue caught up! Processed 48 presses
+[AXDBG] 162315.844 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162315.861 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162315.862 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162315.862 📊 PRESS queue caught up! Processed 49 presses
+[AXDBG] 162315.924 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162315.925 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162315.925 📊 PRESS queue caught up! Processed 50 presses
+[AXDBG] 162316.132 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162316.133 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162316.212 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162316.213 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162316.214 📊 PRESS queue caught up! Processed 51 presses
+[AXDBG] 162316.221 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162316.222 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162316.222 📊 PRESS queue caught up! Processed 52 presses
+[AXDBG] 162316.559 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162316.560 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162316.576 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162316.577 [A11Y] WARNING: Phantom UIPRESS Down Arrow → InfinityBug?
+[AXDBG] 162316.577 (debug)  noHW=true  stale=true  rapid=true  dt=22.1s
+[AXDBG] 162316.577 📊 PRESS queue depth during phantom: -20 | Total: 43
+[AXDBG] 162316.577 📊 PRESS queue caught up! Processed 53 presses
+[AXDBG] 162316.652 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162316.652 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162316.653 📊 PRESS queue caught up! Processed 54 presses
+[AXDBG] 162317.013 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162317.014 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162317.031 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162317.031 [A11Y] WARNING: Phantom UIPRESS Down Arrow → InfinityBug?
+[AXDBG] 162317.032 (debug)  noHW=true  stale=true  rapid=true  dt=22.5s
+[AXDBG] 162317.032 📊 PRESS queue depth during phantom: -22 | Total: 41
+[AXDBG] 162317.032 📊 PRESS queue caught up! Processed 55 presses
+[AXDBG] 162317.056 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162317.228 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162317.229 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162317.230 📊 PRESS queue caught up! Processed 56 presses
+[AXDBG] 162317.246 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162317.635 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72757.957312)
+[AXDBG] 162317.636 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162317.733 📊 Event queue building: 40 events behind
+[AXDBG] 162317.733 🕹️ DPAD STATE: Center (x:0.373, y:0.000, ts:72758.055296)
+[AXDBG] 162317.734 🕹️ DPAD STATE: Center (x:0.373, y:0.348, ts:72758.055594)
+[AXDBG] 162317.735 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162317.766 🕹️ DPAD STATE: Center (x:0.212, y:0.348, ts:72758.088348)
+[AXDBG] 162317.767 🕹️ DPAD STATE: Center (x:0.212, y:0.132, ts:72758.088748)
+[AXDBG] 162317.767 🕹️ DPAD STATE: Center (x:0.106, y:0.132, ts:72758.088942)
+[AXDBG] 162317.767 🕹️ DPAD STATE: Center (x:0.106, y:-0.083, ts:72758.089156)
+[AXDBG] 162317.768 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162317.770 🕹️ DPAD STATE: Center (x:0.024, y:-0.258, ts:72758.092083)
+[AXDBG] 162317.813 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162317.814 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162317.814 📊 PRESS queue caught up! Processed 57 presses
+[AXDBG] 162317.834 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162317.836 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162317.839 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72758.160809)
+[AXDBG] 162317.887 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162317.888 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162317.888 📊 PRESS queue caught up! Processed 58 presses
+[AXDBG] 162317.930 🕹️ DPAD STATE: Center (x:0.353, y:0.000, ts:72758.252127)
+[AXDBG] 162317.931 🕹️ DPAD STATE: Center (x:0.353, y:0.492, ts:72758.252546)
+[AXDBG] 162317.933 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162317.934 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162317.935 🕹️ DPAD STATE: Center (x:0.221, y:0.492, ts:72758.257167)
+[AXDBG] 162317.935 🕹️ DPAD STATE: Center (x:0.221, y:0.239, ts:72758.257424)
+[AXDBG] 162317.974 🕹️ DPAD STATE: Center (x:0.121, y:0.239, ts:72758.296354)
+[AXDBG] 162317.975 🕹️ DPAD STATE: Center (x:0.121, y:-0.152, ts:72758.296810)
+[AXDBG] 162317.976 🕹️ DPAD STATE: Center (x:0.095, y:-0.279, ts:72758.297749)
+[AXDBG] 162317.977 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162317.994 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162317.995 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162318.022 🕹️ DPAD STATE: Center (x:0.095, y:-0.403, ts:72758.344345)
+[AXDBG] 162318.027 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72758.349460)
+[AXDBG] 162318.029 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162318.029 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162318.130 🕹️ DPAD STATE: Center (x:0.242, y:0.000, ts:72758.451731)
+[AXDBG] 162318.130 🕹️ DPAD STATE: Center (x:0.242, y:0.158, ts:72758.452150)
+[AXDBG] 162318.131 🕹️ DPAD STATE: Center (x:0.118, y:0.158, ts:72758.452785)
+[AXDBG] 162318.131 🕹️ DPAD STATE: Center (x:0.118, y:-0.058, ts:72758.453137)
+[AXDBG] 162318.133 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162318.134 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162318.165 🕹️ DPAD STATE: Center (x:0.114, y:-0.169, ts:72758.486720)
+[AXDBG] 162318.166 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162318.197 🕹️ DPAD STATE: Center (x:0.154, y:-0.277, ts:72758.518593)
+[AXDBG] 162318.199 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162318.212 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162318.221 🕹️ DPAD STATE: Center (x:0.000, y:-0.279, ts:72758.542656)
+[AXDBG] 162318.221 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72758.543058)
+[AXDBG] 162318.230 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162318.260 🕹️ DPAD STATE: Center (x:-0.143, y:0.000, ts:72758.581570)
+[AXDBG] 162318.260 🕹️ DPAD STATE: Up (x:-0.143, y:-0.942, ts:72758.582097)
+[AXDBG] 162318.266 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162318.410 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162318.410 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162318.410 📊 PRESS queue caught up! Processed 59 presses
+[AXDBG] 162318.559 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162318.652 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162318.653 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162318.653 📊 PRESS queue caught up! Processed 60 presses
+[AXDBG] 162318.693 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162318.827 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162318.827 [A11Y] WARNING: Phantom UIPRESS Down Arrow → InfinityBug?
+[AXDBG] 162318.828 (debug)  noHW=true  stale=true  rapid=true  dt=24.3s
+[AXDBG] 162318.828 📊 PRESS queue depth during phantom: -17 | Total: 46
+[AXDBG] 162318.828 📊 PRESS queue caught up! Processed 61 presses
+[AXDBG] 162318.896 🕹️ DPAD STATE: Up (x:0.000, y:-0.942, ts:72759.217888)
+[AXDBG] 162318.896 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72759.218305)
+[AXDBG] 162318.897 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162318.943 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162319.153 🕹️ DPAD STATE: Center (x:-0.003, y:0.132, ts:72759.475472)
+[AXDBG] 162319.162 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.169 🕹️ DPAD STATE: Center (x:-0.034, y:-0.047, ts:72759.491427)
+[AXDBG] 162319.176 🕹️ DPAD STATE: Center (x:-0.057, y:-0.206, ts:72759.497688)
+[AXDBG] 162319.178 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.192 🕹️ DPAD STATE: Center (x:-0.080, y:-0.317, ts:72759.513892)
+[AXDBG] 162319.195 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.210 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.222 🕹️ DPAD STATE: Center (x:-0.086, y:-0.436, ts:72759.543687)
+[AXDBG] 162319.228 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.237 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72759.558793)
+[AXDBG] 162319.244 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.356 🕹️ DPAD STATE: Center (x:0.118, y:0.000, ts:72759.677606)
+[AXDBG] 162319.356 📊 Event queue building: 50 events behind
+[AXDBG] 162319.361 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.371 🕹️ DPAD STATE: Center (x:0.093, y:-0.212, ts:72759.692615)
+[AXDBG] 162319.377 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.394 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.404 🕹️ DPAD STATE: Center (x:0.093, y:-0.346, ts:72759.725652)
+[AXDBG] 162319.411 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.427 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.444 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.453 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72759.775317)
+[AXDBG] 162319.462 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.502 🕹️ DPAD STATE: Up (x:-0.091, y:-0.850, ts:72759.824137)
+[AXDBG] 162319.511 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.628 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162319.628 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162319.628 📊 PRESS queue caught up! Processed 62 presses
+[AXDBG] 162319.678 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162319.769 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72760.091422)
+[AXDBG] 162319.778 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.795 🕹️ DPAD STATE: Center (x:-0.107, y:0.000, ts:72760.116854)
+[AXDBG] 162319.795 🕹️ DPAD STATE: Up (x:-0.107, y:-0.953, ts:72760.117282)
+[AXDBG] 162319.796 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162319.844 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162319.845 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162319.846 📊 PRESS queue caught up! Processed 63 presses
+[AXDBG] 162319.894 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162319.958 🕹️ DPAD STATE: Up (x:0.000, y:-0.953, ts:72760.279569)
+[AXDBG] 162319.959 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72760.280649)
+[AXDBG] 162319.964 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.003 🕹️ DPAD STATE: Center (x:0.129, y:0.000, ts:72760.325560)
+[AXDBG] 162320.004 🕹️ DPAD STATE: Down (x:0.129, y:0.590, ts:72760.326482)
+[AXDBG] 162320.006 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.020 🕹️ DPAD STATE: Down (x:0.008, y:0.590, ts:72760.342065)
+[AXDBG] 162320.020 🕹️ DPAD STATE: Center (x:0.008, y:0.385, ts:72760.342489)
+[AXDBG] 162320.032 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.040 🕹️ DPAD STATE: Center (x:-0.040, y:0.252, ts:72760.362095)
+[AXDBG] 162320.045 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.056 🕹️ DPAD STATE: Center (x:-0.072, y:0.137, ts:72760.377899)
+[AXDBG] 162320.064 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.072 🕹️ DPAD STATE: Center (x:-0.086, y:0.003, ts:72760.394193)
+[AXDBG] 162320.109 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.118 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.123 🕹️ DPAD STATE: Center (x:-0.097, y:-0.141, ts:72760.445324)
+[AXDBG] 162320.125 🕹️ DPAD STATE: Center (x:-0.103, y:-0.298, ts:72760.446679)
+[AXDBG] 162320.125 🕹️ DPAD STATE: Center (x:-0.103, y:-0.442, ts:72760.447362)
+[AXDBG] 162320.126 🕹️ DPAD STATE: Up (x:-0.103, y:-0.549, ts:72760.447676)
+[AXDBG] 162320.128 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.147 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.155 🕹️ DPAD STATE: Up (x:0.000, y:-0.624, ts:72760.476753)
+[AXDBG] 162320.155 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72760.477109)
+[AXDBG] 162320.161 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.241 🕹️ DPAD STATE: Center (x:-0.109, y:0.000, ts:72760.562672)
+[AXDBG] 162320.241 🕹️ DPAD STATE: Up (x:-0.109, y:-0.647, ts:72760.563106)
+[AXDBG] 162320.245 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.256 🕹️ DPAD STATE: Center (x:-0.086, y:-0.497, ts:72760.577810)
+[AXDBG] 162320.263 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.272 🕹️ DPAD STATE: Center (x:-0.047, y:-0.338, ts:72760.593586)
+[AXDBG] 162320.279 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.288 🕹️ DPAD STATE: Center (x:0.060, y:-0.338, ts:72760.610548)
+[AXDBG] 162320.289 🕹️ DPAD STATE: Center (x:0.060, y:-0.152, ts:72760.611005)
+[AXDBG] 162320.296 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.306 🕹️ DPAD STATE: Center (x:0.169, y:-0.152, ts:72760.628404)
+[AXDBG] 162320.363 📊 Event queue building: 60 events behind
+[AXDBG] 162320.363 🕹️ DPAD STATE: Center (x:0.169, y:0.038, ts:72760.685218)
+[AXDBG] 162320.365 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.408 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.411 🕹️ DPAD STATE: Center (x:0.248, y:0.208, ts:72760.733514)
+[AXDBG] 162320.412 🕹️ DPAD STATE: Center (x:0.300, y:0.344, ts:72760.733870)
+[AXDBG] 162320.412 🕹️ DPAD STATE: Center (x:0.000, y:0.344, ts:72760.734064)
+[AXDBG] 162320.412 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72760.734242)
+[AXDBG] 162320.504 🕹️ DPAD STATE: Center (x:-0.137, y:0.000, ts:72760.826304)
+[AXDBG] 162320.505 🕹️ DPAD STATE: Center (x:-0.137, y:-0.353, ts:72760.827001)
+[AXDBG] 162320.512 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.513 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.520 🕹️ DPAD STATE: Center (x:-0.026, y:-0.353, ts:72760.842350)
+[AXDBG] 162320.521 🕹️ DPAD STATE: Center (x:-0.026, y:-0.139, ts:72760.842727)
+[AXDBG] 162320.527 🕹️ DPAD STATE: Center (x:0.035, y:0.049, ts:72760.848793)
+[AXDBG] 162320.550 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.595 🕹️ DPAD STATE: Center (x:0.056, y:0.241, ts:72760.916902)
+[AXDBG] 162320.596 🕹️ DPAD STATE: Center (x:0.058, y:0.394, ts:72760.917920)
+[AXDBG] 162320.596 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72760.918218)
+[AXDBG] 162320.599 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.600 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.709 🕹️ DPAD STATE: Center (x:-0.155, y:0.000, ts:72761.030739)
+[AXDBG] 162320.709 🕹️ DPAD STATE: Center (x:-0.155, y:-0.281, ts:72761.031372)
+[AXDBG] 162320.716 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.723 🕹️ DPAD STATE: Center (x:-0.051, y:-0.281, ts:72761.045474)
+[AXDBG] 162320.724 🕹️ DPAD STATE: Center (x:-0.051, y:-0.118, ts:72761.045825)
+[AXDBG] 162320.731 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.739 🕹️ DPAD STATE: Center (x:0.125, y:-0.118, ts:72761.060794)
+[AXDBG] 162320.739 📊 PRESS queue building: 5 presses behind
+[AXDBG] 162320.740 🕹️ DPAD STATE: Center (x:0.125, y:0.112, ts:72761.061820)
+[AXDBG] 162320.747 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.755 🕹️ DPAD STATE: Center (x:0.238, y:0.112, ts:72761.077566)
+[AXDBG] 162320.756 🕹️ DPAD STATE: Center (x:0.238, y:0.348, ts:72761.077927)
+[AXDBG] 162320.772 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.807 🕹️ DPAD STATE: Center (x:0.000, y:0.348, ts:72761.129055)
+[AXDBG] 162320.807 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72761.129470)
+[AXDBG] 162320.812 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.903 🕹️ DPAD STATE: Center (x:0.284, y:0.000, ts:72761.225132)
+[AXDBG] 162320.903 📊 Event queue building: 70 events behind
+[AXDBG] 162320.914 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.936 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.963 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162320.973 🕹️ DPAD STATE: Center (x:0.424, y:0.049, ts:72761.295608)
+[AXDBG] 162320.974 🕹️ DPAD STATE: Center (x:0.424, y:0.296, ts:72761.296044)
+[AXDBG] 162320.974 🕹️ DPAD STATE: Center (x:0.428, y:0.469, ts:72761.296297)
+[AXDBG] 162320.974 🕹️ DPAD STATE: Center (x:0.000, y:0.469, ts:72761.296480)
+[AXDBG] 162320.974 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72761.296653)
+[AXDBG] 162320.979 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162321.016 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162321.171 🕹️ DPAD STATE: Center (x:-0.107, y:0.000, ts:72761.492782)
+[AXDBG] 162321.171 📊 PRESS queue building: 10 presses behind
+[AXDBG] 162321.172 🕹️ DPAD STATE: Up (x:-0.107, y:-0.969, ts:72761.493981)
+[AXDBG] 162321.181 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162321.197 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162321.198 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162321.512 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162321.637 🕹️ DPAD STATE: Up (x:0.000, y:-0.969, ts:72761.959593)
+[AXDBG] 162321.638 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72761.959983)
+[AXDBG] 162321.646 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162321.703 📊 PRESS queue building: 10 presses behind
+[AXDBG] 162321.703 🕹️ DPAD STATE: Right (x:0.890, y:0.000, ts:72762.025058)
+[AXDBG] 162321.713 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162321.787 🕹️ DPAD STATE: Center (x:0.000, y:0.015, ts:72762.108815)
+[AXDBG] 162321.797 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162321.863 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162321.864 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162321.914 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162322.209 🕹️ DPAD STATE: Center (x:-0.103, y:0.000, ts:72762.530846)
+[AXDBG] 162322.209 🕹️ DPAD STATE: Up (x:-0.103, y:-0.645, ts:72762.531341)
+[AXDBG] 162322.214 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.255 🕹️ DPAD STATE: Center (x:-0.158, y:-0.451, ts:72762.577458)
+[AXDBG] 162322.264 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.282 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.297 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.304 🕹️ DPAD STATE: Center (x:-0.143, y:-0.281, ts:72762.626569)
+[AXDBG] 162322.312 🕹️ DPAD STATE: Center (x:-0.047, y:-0.066, ts:72762.633610)
+[AXDBG] 162322.314 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.329 🕹️ DPAD STATE: Center (x:0.070, y:-0.066, ts:72762.650788)
+[AXDBG] 162322.329 🕹️ DPAD STATE: Center (x:0.070, y:0.185, ts:72762.651194)
+[AXDBG] 162322.330 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.341 🕹️ DPAD STATE: Center (x:0.160, y:0.367, ts:72762.663304)
+[AXDBG] 162322.348 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.395 🕹️ DPAD STATE: Center (x:0.000, y:0.367, ts:72762.717460)
+[AXDBG] 162322.396 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72762.717868)
+[AXDBG] 162322.399 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.553 📊 PRESS queue building: 15 presses behind
+[AXDBG] 162322.553 🕹️ DPAD STATE: Center (x:-0.164, y:0.000, ts:72762.875186)
+[AXDBG] 162322.553 🕹️ DPAD STATE: Center (x:-0.164, y:-0.179, ts:72762.875376)
+[AXDBG] 162322.564 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.597 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.610 🕹️ DPAD STATE: Center (x:0.000, y:-0.100, ts:72762.932564)
+[AXDBG] 162322.614 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.686 📊 Event queue building: 80 events behind
+[AXDBG] 162322.687 🕹️ DPAD STATE: Center (x:0.064, y:-0.396, ts:72763.009159)
+[AXDBG] 162322.698 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.714 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.716 🕹️ DPAD STATE: Up (x:0.062, y:-0.501, ts:72763.038133)
+[AXDBG] 162322.730 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.747 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.758 🕹️ DPAD STATE: Up (x:0.077, y:-0.652, ts:72763.079974)
+[AXDBG] 162322.764 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.776 🕹️ DPAD STATE: Up (x:0.133, y:-0.547, ts:72763.098564)
+[AXDBG] 162322.780 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.792 🕹️ DPAD STATE: Center (x:0.173, y:-0.330, ts:72763.114034)
+[AXDBG] 162322.797 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.807 🕹️ DPAD STATE: Center (x:0.229, y:0.026, ts:72763.129038)
+[AXDBG] 162322.814 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.866 🕹️ DPAD STATE: Center (x:0.000, y:0.026, ts:72763.188609)
+[AXDBG] 162322.868 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162322.888 📊 PRESS queue building: 20 presses behind
+[AXDBG] 162322.888 🕹️ DPAD STATE: Up (x:-0.057, y:-0.942, ts:72763.210505)
+[AXDBG] 162322.898 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162323.032 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162323.119 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162323.131 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162323.150 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162323.151 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162323.264 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162323.346 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72763.667844)
+[AXDBG] 162323.348 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162323.382 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162323.383 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162323.598 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162323.599 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162323.609 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162323.748 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162323.765 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162323.765 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162323.931 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162323.948 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162323.949 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162323.999 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162324.427 📊 Event queue building: 80 events behind
+[AXDBG] 162324.427 🕹️ DPAD STATE: Center (x:0.177, y:0.000, ts:72764.749726)
+[AXDBG] 162324.428 🕹️ DPAD STATE: Up (x:0.177, y:-0.637, ts:72764.750031)
+[AXDBG] 162324.433 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.517 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.528 🕹️ DPAD STATE: Center (x:0.131, y:-0.497, ts:72764.850298)
+[AXDBG] 162324.531 🕹️ DPAD STATE: Center (x:0.146, y:-0.302, ts:72764.853242)
+[AXDBG] 162324.539 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.550 🕹️ DPAD STATE: Center (x:0.190, y:-0.058, ts:72764.871872)
+[AXDBG] 162324.551 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.562 🕹️ DPAD STATE: Center (x:0.219, y:0.101, ts:72764.884029)
+[AXDBG] 162324.566 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.578 🕹️ DPAD STATE: Center (x:0.000, y:0.101, ts:72764.900617)
+[AXDBG] 162324.588 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72764.909829)
+[AXDBG] 162324.589 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.681 📊 PRESS queue building: 20 presses behind
+[AXDBG] 162324.683 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.684 🕹️ DPAD STATE: Center (x:-0.281, y:0.000, ts:72765.006412)
+[AXDBG] 162324.685 🕹️ DPAD STATE: Center (x:-0.281, y:-0.365, ts:72765.007034)
+[AXDBG] 162324.712 🕹️ DPAD STATE: Center (x:-0.078, y:-0.365, ts:72765.034130)
+[AXDBG] 162324.712 🕹️ DPAD STATE: Center (x:-0.078, y:-0.217, ts:72765.034695)
+[AXDBG] 162324.717 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.728 🕹️ DPAD STATE: Center (x:0.024, y:-0.217, ts:72765.050594)
+[AXDBG] 162324.729 🕹️ DPAD STATE: Center (x:0.024, y:-0.106, ts:72765.050914)
+[AXDBG] 162324.733 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.743 🕹️ DPAD STATE: Center (x:0.083, y:0.013, ts:72765.064951)
+[AXDBG] 162324.749 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.757 🕹️ DPAD STATE: Center (x:0.135, y:0.170, ts:72765.079531)
+[AXDBG] 162324.767 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.856 🕹️ DPAD STATE: Center (x:0.177, y:0.344, ts:72765.178429)
+[AXDBG] 162324.856 🕹️ DPAD STATE: Center (x:0.000, y:0.344, ts:72765.178823)
+[AXDBG] 162324.857 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72765.179017)
+[AXDBG] 162324.860 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.861 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.892 🕹️ DPAD STATE: Center (x:0.369, y:0.000, ts:72765.214126)
+[AXDBG] 162324.892 📊 PRESS queue building: 25 presses behind
+[AXDBG] 162324.902 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162324.973 🕹️ DPAD STATE: Center (x:0.000, y:0.082, ts:72765.294961)
+[AXDBG] 162324.983 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162325.011 🕹️ DPAD STATE: Right (x:0.612, y:0.000, ts:72765.333269)
+[AXDBG] 162325.011 📊 Event queue building: 90 events behind
+[AXDBG] 162325.016 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162325.033 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162325.050 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162325.067 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162325.085 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162325.086 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162325.133 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162325.301 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162325.301 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162325.500 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162325.633 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162325.634 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162325.775 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162325.886 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162325.887 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162325.937 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162325.938 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162326.017 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162326.018 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162326.167 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162326.168 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162326.475 🕹️ DPAD STATE: Center (x:0.000, y:0.011, ts:72766.797095)
+[AXDBG] 162326.478 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162326.521 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162326.522 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162326.620 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162326.621 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162326.622 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162326.902 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162327.015 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162327.015 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162327.039 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162327.321 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162327.339 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162327.340 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162327.443 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162327.445 🕹️ DPAD STATE: Right (x:0.760, y:0.000, ts:72767.767043)
+[AXDBG] 162327.445 🕹️ DPAD STATE: Right (x:0.760, y:-0.413, ts:72767.767515)
+[AXDBG] 162327.571 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162327.572 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162327.583 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162327.888 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162327.890 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162327.891 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162328.003 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162328.053 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162328.054 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162328.237 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162328.255 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162328.256 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162328.336 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162328.372 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162328.373 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162328.453 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162328.603 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162328.603 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162328.738 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162328.754 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162328.755 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162328.897 🕹️ DPAD STATE: Center (x:0.000, y:-0.413, ts:72769.219388)
+[AXDBG] 162328.897 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72769.219791)
+[AXDBG] 162328.903 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162328.903 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162328.986 🕹️ DPAD STATE: Center (x:0.012, y:0.325, ts:72769.307902)
+[AXDBG] 162328.987 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162329.103 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162329.104 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162329.171 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162329.189 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162329.190 [A11Y] REMOTE PRESS: Select
+[AXDBG] 162329.192 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162329.206 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72769.528588)
+[AXDBG] 162329.453 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162329.504 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162329.504 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162329.561 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162329.707 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162329.708 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162329.770 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162329.972 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162329.972 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162330.277 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162330.278 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162330.279 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162330.333 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162330.334 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162330.448 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162330.448 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162330.491 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162330.492 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162330.691 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162330.692 [A11Y] REMOTE PRESS: Select
+[AXDBG] 162330.823 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162330.857 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162330.858 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162330.946 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162331.140 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162331.255 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162331.256 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162331.265 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162331.422 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162331.423 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162331.489 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162331.640 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162331.641 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162331.744 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162331.744 [A11Y] REMOTE PRESS: Select
+[AXDBG] 162331.744 📊 PRESS queue caught up! Processed 101 presses
+[AXDBG] 162331.807 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162331.923 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162331.924 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162331.924 📊 PRESS queue caught up! Processed 102 presses
+[AXDBG] 162332.012 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.173 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.173 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162332.174 📊 PRESS queue caught up! Processed 103 presses
+[AXDBG] 162332.260 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.261 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162332.261 📊 PRESS queue caught up! Processed 104 presses
+[AXDBG] 162332.342 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.343 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.390 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.391 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162332.391 📊 PRESS queue caught up! Processed 105 presses
+[AXDBG] 162332.474 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.491 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.492 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162332.492 📊 PRESS queue caught up! Processed 106 presses
+[AXDBG] 162332.556 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.590 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.591 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162332.591 📊 PRESS queue caught up! Processed 107 presses
+[AXDBG] 162332.657 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.760 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.761 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162332.762 📊 PRESS queue caught up! Processed 108 presses
+[AXDBG] 162332.810 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.811 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162332.811 📊 PRESS queue caught up! Processed 109 presses
+[AXDBG] 162332.923 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162332.940 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162333.444 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162333.445 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162333.445 📊 PRESS queue caught up! Processed 110 presses
+[AXDBG] 162333.626 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162334.002 🕹️ DPAD STATE: Center (x:0.263, y:0.000, ts:72774.324919)
+[AXDBG] 162334.011 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.019 🕹️ DPAD STATE: Center (x:0.221, y:-0.164, ts:72774.341185)
+[AXDBG] 162334.025 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.028 🕹️ DPAD STATE: Center (x:0.198, y:-0.304, ts:72774.351055)
+[AXDBG] 162334.041 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.056 🕹️ DPAD STATE: Center (x:0.185, y:-0.449, ts:72774.378939)
+[AXDBG] 162334.059 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.075 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.090 🕹️ DPAD STATE: Center (x:0.294, y:-0.488, ts:72774.412313)
+[AXDBG] 162334.091 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.108 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.115 🕹️ DPAD STATE: Right (x:0.549, y:-0.493, ts:72774.438149)
+[AXDBG] 162334.126 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.137 🕹️ DPAD STATE: Center (x:0.000, y:-0.438, ts:72774.459379)
+[AXDBG] 162334.138 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72774.460319)
+[AXDBG] 162334.143 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.206 🕹️ DPAD STATE: Right (x:0.959, y:0.000, ts:72774.528535)
+[AXDBG] 162334.209 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.222 📊 Event queue building: 60 events behind
+[AXDBG] 162334.226 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.238 🕹️ DPAD STATE: Right (x:0.881, y:-0.137, ts:72774.560622)
+[AXDBG] 162334.243 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.259 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.267 🕹️ DPAD STATE: Right (x:0.741, y:-0.223, ts:72774.589094)
+[AXDBG] 162334.276 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.281 🕹️ DPAD STATE: Center (x:0.000, y:-0.265, ts:72774.603299)
+[AXDBG] 162334.281 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72774.603722)
+[AXDBG] 162334.292 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.356 🕹️ DPAD STATE: Center (x:0.129, y:0.000, ts:72774.678866)
+[AXDBG] 162334.357 🕹️ DPAD STATE: Center (x:0.129, y:-0.244, ts:72774.679324)
+[AXDBG] 162334.359 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.375 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.386 🕹️ DPAD STATE: Center (x:-0.003, y:-0.321, ts:72774.708322)
+[AXDBG] 162334.392 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.408 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.410 ⚠️ RunLoop stall 28094ms | Memory: 64MB | Total queue: 63 | Swipes: 63 | Presses: 0
+[AXDBG] 162334.411 🚨 HIGH SWIPE BACKLOG during stall: 63 swipes - InfinityBug correlation!
+[AXDBG] 162334.517 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.518 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.526 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.534 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.537 🕹️ DPAD STATE: Center (x:-0.051, y:-0.495, ts:72774.859640)
+[AXDBG] 162334.537 🕹️ DPAD STATE: Right (x:0.637, y:-0.495, ts:72774.860037)
+[AXDBG] 162334.538 🕹️ DPAD STATE: Right (x:0.637, y:-0.275, ts:72774.860239)
+[AXDBG] 162334.538 🕹️ DPAD STATE: Right (x:0.752, y:-0.275, ts:72774.860419)
+[AXDBG] 162334.538 🕹️ DPAD STATE: Right (x:0.752, y:-0.173, ts:72774.860582)
+[AXDBG] 162334.538 🕹️ DPAD STATE: Right (x:0.869, y:-0.087, ts:72774.860753)
+[AXDBG] 162334.538 🕹️ DPAD STATE: Center (x:0.000, y:0.003, ts:72774.860958)
+[AXDBG] 162334.674 🕹️ DPAD STATE: Center (x:-0.385, y:0.000, ts:72774.996561)
+[AXDBG] 162334.674 🕹️ DPAD STATE: Up (x:-0.385, y:-0.624, ts:72774.996941)
+[AXDBG] 162334.675 🕹️ DPAD STATE: Up (x:-0.158, y:-0.654, ts:72774.997764)
+[AXDBG] 162334.675 📊 PRESS queue building: 5 presses behind
+[AXDBG] 162334.675 🕹️ DPAD STATE: Up (x:0.068, y:-0.654, ts:72774.998174)
+[AXDBG] 162334.681 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.682 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.769 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.771 🕹️ DPAD STATE: Up (x:0.231, y:-0.576, ts:72775.094187)
+[AXDBG] 162334.772 🕹️ DPAD STATE: Up (x:0.353, y:-0.507, ts:72775.094515)
+[AXDBG] 162334.773 🕹️ DPAD STATE: Right (x:0.532, y:-0.445, ts:72775.094887)
+[AXDBG] 162334.773 🕹️ DPAD STATE: Right (x:0.532, y:-0.340, ts:72775.095922)
+[AXDBG] 162334.773 🕹️ DPAD STATE: Right (x:0.683, y:-0.267, ts:72775.096139)
+[AXDBG] 162334.774 🕹️ DPAD STATE: Right (x:0.729, y:-0.150, ts:72775.096315)
+[AXDBG] 162334.785 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.791 🕹️ DPAD STATE: Right (x:0.829, y:-0.114, ts:72775.113908)
+[AXDBG] 162334.792 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.881 🕹️ DPAD STATE: Right (x:0.902, y:0.011, ts:72775.203705)
+[AXDBG] 162334.883 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.885 POLL: Right detected via polling (x:0.934, y:0.057)
+[AXDBG] 162334.891 🕹️ HARDWARE SWIPE DETECTED: Right (x:0.934, y:0.057)
+[AXDBG] 162334.892 📊 Event queue building: 70 events behind
+[AXDBG] 162334.893 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162334.982 🕹️ HARDWARE SWIPE DETECTED: Right (x:0.934, y:0.057)
+[AXDBG] 162334.982 📊 SWIPE queue building: 65 swipes behind
+[AXDBG] 162334.994 POLL: Right detected via polling (x:0.934, y:0.057)
+[AXDBG] 162335.078 🕹️ HARDWARE SWIPE DETECTED: Right (x:0.934, y:0.057)
+[AXDBG] 162335.079 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162335.161 🕹️ DPAD STATE: Right (x:0.844, y:-0.106, ts:72775.483229)
+[AXDBG] 162335.163 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162335.164 POLL: Right detected via polling (x:0.844, y:-0.106)
+[AXDBG] 162335.165 🕹️ HARDWARE SWIPE DETECTED: Right (x:0.844, y:-0.106)
+[AXDBG] 162335.244 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162335.247 🕹️ DPAD STATE: Right (x:0.679, y:-0.192, ts:72775.569318)
+[AXDBG] 162335.247 🕹️ DPAD STATE: Right (x:0.679, y:-0.292, ts:72775.569631)
+[AXDBG] 162335.247 🕹️ DPAD STATE: Right (x:0.566, y:-0.292, ts:72775.570098)
+[AXDBG] 162335.248 🕹️ DPAD STATE: Right (x:0.566, y:-0.403, ts:72775.570441)
+[AXDBG] 162335.248 🕹️ DPAD STATE: Center (x:0.419, y:-0.476, ts:72775.570632)
+[AXDBG] 162335.337 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162335.338 🕹️ DPAD STATE: Up (x:0.334, y:-0.606, ts:72775.661176)
+[AXDBG] 162335.339 🕹️ DPAD STATE: Up (x:0.231, y:-0.662, ts:72775.661481)
+[AXDBG] 162335.339 🕹️ DPAD STATE: Up (x:0.175, y:-0.769, ts:72775.661662)
+[AXDBG] 162335.416 🕹️ DPAD STATE: Up (x:0.000, y:-0.798, ts:72775.738317)
+[AXDBG] 162335.416 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72775.738783)
+[AXDBG] 162335.417 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162335.428 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162335.529 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162335.530 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162335.710 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162335.810 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162335.811 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162335.863 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162336.061 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162336.061 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162336.310 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162336.344 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162336.346 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162336.594 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162336.627 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162336.777 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162336.778 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162336.822 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.061 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.062 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162337.132 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.161 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.162 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162337.162 📊 PRESS queue caught up! Processed 117 presses
+[AXDBG] 162337.246 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.282 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.283 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162337.283 📊 PRESS queue caught up! Processed 118 presses
+[AXDBG] 162337.378 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.445 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.446 [A11Y] REMOTE PRESS: Select
+[AXDBG] 162337.446 📊 PRESS queue caught up! Processed 119 presses
+[AXDBG] 162337.479 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.480 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162337.481 📊 PRESS queue caught up! Processed 120 presses
+[AXDBG] 162337.562 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.678 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.679 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162337.679 📊 PRESS queue caught up! Processed 121 presses
+[AXDBG] 162337.693 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.728 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.845 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.846 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162337.846 📊 PRESS queue caught up! Processed 122 presses
+[AXDBG] 162337.912 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.913 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162337.913 📊 PRESS queue caught up! Processed 123 presses
+[AXDBG] 162337.947 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162337.981 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162338.029 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162338.030 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162338.030 📊 PRESS queue caught up! Processed 124 presses
+[AXDBG] 162338.095 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162338.147 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162338.147 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162338.148 📊 PRESS queue caught up! Processed 125 presses
+[AXDBG] 162338.312 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162338.314 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162338.314 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162338.315 📊 PRESS queue caught up! Processed 126 presses
+[AXDBG] 162338.379 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162338.564 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162338.564 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162338.564 📊 PRESS queue caught up! Processed 127 presses
+[AXDBG] 162338.847 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162338.888 🕹️ DPAD STATE: Center (x:-0.132, y:0.000, ts:72779.211103)
+[AXDBG] 162338.889 🕹️ DPAD STATE: Center (x:-0.132, y:0.147, ts:72779.211495)
+[AXDBG] 162338.898 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162338.909 📊 Event queue building: 60 events behind
+[AXDBG] 162338.910 🕹️ DPAD STATE: Center (x:-0.160, y:-0.072, ts:72779.233182)
+[AXDBG] 162338.913 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162338.977 🕹️ DPAD STATE: Center (x:-0.174, y:-0.302, ts:72779.300122)
+[AXDBG] 162338.978 🕹️ DPAD STATE: Center (x:-0.178, y:-0.430, ts:72779.300503)
+[AXDBG] 162338.978 🕹️ DPAD STATE: Up (x:-0.178, y:-0.547, ts:72779.300701)
+[AXDBG] 162338.978 🕹️ DPAD STATE: Up (x:-0.178, y:-0.664, ts:72779.301018)
+[AXDBG] 162338.980 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.022 🕹️ DPAD STATE: Up (x:0.000, y:-0.664, ts:72779.344970)
+[AXDBG] 162339.022 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72779.345332)
+[AXDBG] 162339.023 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.111 🕹️ DPAD STATE: Center (x:0.003, y:-0.162, ts:72779.433344)
+[AXDBG] 162339.114 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.115 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.122 🕹️ DPAD STATE: Center (x:-0.005, y:-0.411, ts:72779.444665)
+[AXDBG] 162339.143 🕹️ DPAD STATE: Up (x:-0.007, y:-0.566, ts:72779.466247)
+[AXDBG] 162339.147 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.156 🕹️ DPAD STATE: Up (x:-0.072, y:-0.685, ts:72779.478678)
+[AXDBG] 162339.163 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.247 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.254 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72779.576659)
+[AXDBG] 162339.263 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.351 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.353 🕹️ DPAD STATE: Center (x:0.043, y:0.484, ts:72779.676196)
+[AXDBG] 162339.361 🕹️ DPAD STATE: Center (x:0.016, y:0.197, ts:72779.683295)
+[AXDBG] 162339.361 🕹️ DPAD STATE: Center (x:0.016, y:-0.024, ts:72779.684156)
+[AXDBG] 162339.364 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.397 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.399 🕹️ DPAD STATE: Center (x:0.014, y:-0.240, ts:72779.720913)
+[AXDBG] 162339.399 🕹️ DPAD STATE: Center (x:-0.030, y:-0.417, ts:72779.721971)
+[AXDBG] 162339.400 🕹️ DPAD STATE: Up (x:-0.089, y:-0.547, ts:72779.722506)
+[AXDBG] 162339.411 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72779.733823)
+[AXDBG] 162339.414 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.438 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.593 🕹️ DPAD STATE: Center (x:-0.176, y:0.000, ts:72779.916354)
+[AXDBG] 162339.594 🕹️ DPAD STATE: Down (x:-0.176, y:0.716, ts:72779.916735)
+[AXDBG] 162339.601 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.611 🕹️ DPAD STATE: Down (x:-0.193, y:0.530, ts:72779.934203)
+[AXDBG] 162339.612 🕹️ DPAD STATE: Center (x:-0.193, y:0.193, ts:72779.934570)
+[AXDBG] 162339.612 📊 Event queue building: 70 events behind
+[AXDBG] 162339.612 🕹️ DPAD STATE: Center (x:-0.187, y:-0.039, ts:72779.934884)
+[AXDBG] 162339.617 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.675 🕹️ DPAD STATE: Center (x:-0.176, y:-0.252, ts:72779.998314)
+[AXDBG] 162339.676 🕹️ DPAD STATE: Center (x:-0.172, y:-0.426, ts:72779.998782)
+[AXDBG] 162339.676 🕹️ DPAD STATE: Up (x:-0.172, y:-0.532, ts:72779.999010)
+[AXDBG] 162339.676 🕹️ DPAD STATE: Up (x:0.000, y:-0.532, ts:72779.999195)
+[AXDBG] 162339.676 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72779.999354)
+[AXDBG] 162339.681 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.706 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.919 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.920 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.922 🕹️ DPAD STATE: Center (x:-0.260, y:0.000, ts:72780.244641)
+[AXDBG] 162339.922 📊 PRESS queue building: 5 presses behind
+[AXDBG] 162339.922 🕹️ DPAD STATE: Down (x:-0.260, y:0.534, ts:72780.245099)
+[AXDBG] 162339.922 🕹️ DPAD STATE: Center (x:-0.181, y:0.402, ts:72780.245280)
+[AXDBG] 162339.926 🕹️ DPAD STATE: Center (x:-0.101, y:0.262, ts:72780.248459)
+[AXDBG] 162339.930 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.940 🕹️ DPAD STATE: Center (x:-0.055, y:0.114, ts:72780.263229)
+[AXDBG] 162339.949 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.959 🕹️ DPAD STATE: Center (x:-0.055, y:-0.041, ts:72780.281762)
+[AXDBG] 162339.964 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162339.988 🕹️ DPAD STATE: Center (x:-0.055, y:-0.179, ts:72780.310473)
+[AXDBG] 162339.989 🕹️ DPAD STATE: Center (x:-0.107, y:-0.300, ts:72780.311795)
+[AXDBG] 162339.990 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.007 🕹️ DPAD STATE: Center (x:-0.164, y:-0.409, ts:72780.329714)
+[AXDBG] 162340.017 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.026 🕹️ DPAD STATE: Up (x:0.000, y:-0.503, ts:72780.349341)
+[AXDBG] 162340.027 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72780.349694)
+[AXDBG] 162340.032 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.177 🕹️ DPAD STATE: Center (x:-0.224, y:0.000, ts:72780.499749)
+[AXDBG] 162340.177 🕹️ DPAD STATE: Center (x:-0.224, y:-0.139, ts:72780.500411)
+[AXDBG] 162340.182 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.192 🕹️ DPAD STATE: Center (x:-0.197, y:-0.348, ts:72780.514610)
+[AXDBG] 162340.198 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.212 🕹️ DPAD STATE: Center (x:-0.195, y:-0.468, ts:72780.535406)
+[AXDBG] 162340.215 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.224 🕹️ DPAD STATE: Up (x:-0.176, y:-0.589, ts:72780.547421)
+[AXDBG] 162340.231 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.241 🕹️ DPAD STATE: Up (x:-0.164, y:-0.695, ts:72780.563536)
+[AXDBG] 162340.248 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.276 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.277 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.293 🕹️ DPAD STATE: Up (x:0.000, y:-0.777, ts:72780.616362)
+[AXDBG] 162340.294 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72780.616885)
+[AXDBG] 162340.312 🕹️ DPAD STATE: Right (x:0.911, y:0.000, ts:72780.634654)
+[AXDBG] 162340.312 📊 PRESS queue building: 10 presses behind
+[AXDBG] 162340.319 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.348 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.367 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.389 🕹️ DPAD STATE: Center (x:0.000, y:-0.043, ts:72780.712384)
+[AXDBG] 162340.390 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162340.432 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162340.433 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162340.486 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162340.618 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162340.618 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162340.816 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162340.832 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162340.833 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162340.898 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162341.015 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162341.016 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162341.166 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162341.183 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162341.184 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162341.235 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162341.566 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162341.567 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162342.019 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162342.035 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162342.036 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162342.102 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162342.300 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162342.300 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162342.318 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162342.383 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162342.384 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162342.502 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162342.533 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162342.534 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162342.534 📊 PRESS queue caught up! Processed 137 presses
+[AXDBG] 162342.769 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162342.784 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162342.784 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162342.784 📊 PRESS queue caught up! Processed 138 presses
+[AXDBG] 162342.833 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162342.967 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162342.968 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162342.969 📊 PRESS queue caught up! Processed 139 presses
+[AXDBG] 162343.134 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162343.284 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162343.284 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162343.284 📊 PRESS queue caught up! Processed 140 presses
+[AXDBG] 162343.401 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162343.452 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162343.453 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162343.453 📊 PRESS queue caught up! Processed 141 presses
+[AXDBG] 162343.507 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162343.651 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162343.651 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162343.652 📊 PRESS queue caught up! Processed 142 presses
+[AXDBG] 162343.701 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162343.903 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162343.904 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162343.904 📊 PRESS queue caught up! Processed 143 presses
+[AXDBG] 162344.001 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162344.151 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162344.152 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162344.152 📊 PRESS queue caught up! Processed 144 presses
+[AXDBG] 162344.218 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162344.452 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162344.452 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162344.453 📊 PRESS queue caught up! Processed 145 presses
+[AXDBG] 162344.622 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162344.635 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162344.636 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162344.636 📊 PRESS queue caught up! Processed 146 presses
+[AXDBG] 162344.853 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162344.969 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162344.970 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162344.970 📊 PRESS queue caught up! Processed 147 presses
+[AXDBG] 162345.102 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162345.153 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162345.153 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162345.154 📊 PRESS queue caught up! Processed 148 presses
+[AXDBG] 162345.219 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162345.336 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162345.337 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162345.337 📊 PRESS queue caught up! Processed 149 presses
+[AXDBG] 162345.469 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162345.670 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162345.670 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162345.670 📊 PRESS queue caught up! Processed 150 presses
+[AXDBG] 162346.104 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162346.120 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162346.120 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162346.120 📊 PRESS queue caught up! Processed 151 presses
+[AXDBG] 162346.190 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162346.221 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162346.221 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162346.221 📊 PRESS queue caught up! Processed 152 presses
+[AXDBG] 162346.392 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162346.403 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162346.404 [A11Y] WARNING: Phantom UIPRESS Down Arrow → InfinityBug?
+[AXDBG] 162346.404 (debug)  noHW=true  stale=true  rapid=true  dt=51.9s
+[AXDBG] 162346.404 📊 PRESS queue depth during phantom: -15 | Total: 52
+[AXDBG] 162346.404 📊 PRESS queue caught up! Processed 153 presses
+[AXDBG] 162346.649 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162346.731 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162346.732 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162346.732 📊 PRESS queue caught up! Processed 154 presses
+[AXDBG] 162346.943 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162346.971 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162346.971 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162346.972 📊 PRESS queue caught up! Processed 155 presses
+[AXDBG] 162347.087 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162347.108 📊 Event queue building: 50 events behind
+[AXDBG] 162347.108 🕹️ DPAD STATE: Up (x:-0.091, y:-0.702, ts:72787.431445)
+[AXDBG] 162347.109 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.110 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.111 🕹️ DPAD STATE: Up (x:-0.028, y:-0.591, ts:72787.434327)
+[AXDBG] 162347.143 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.152 🕹️ DPAD STATE: Center (x:0.041, y:-0.476, ts:72787.474867)
+[AXDBG] 162347.156 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.171 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.201 🕹️ DPAD STATE: Center (x:0.185, y:-0.394, ts:72787.523942)
+[AXDBG] 162347.205 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.222 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.236 🕹️ DPAD STATE: Center (x:0.355, y:-0.338, ts:72787.559078)
+[AXDBG] 162347.238 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.244 🕹️ DPAD STATE: Right (x:0.520, y:-0.284, ts:72787.567617)
+[AXDBG] 162347.245 🕹️ DPAD STATE: Right (x:0.520, y:-0.143, ts:72787.568163)
+[AXDBG] 162347.256 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.263 🕹️ DPAD STATE: Right (x:0.595, y:0.009, ts:72787.586082)
+[AXDBG] 162347.271 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.272 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.279 🕹️ DPAD STATE: Center (x:0.000, y:0.009, ts:72787.601961)
+[AXDBG] 162347.465 🕹️ DPAD STATE: Center (x:-0.126, y:0.000, ts:72787.788626)
+[AXDBG] 162347.466 🕹️ DPAD STATE: Up (x:-0.126, y:-0.942, ts:72787.789056)
+[AXDBG] 162347.472 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.481 🕹️ DPAD STATE: Up (x:-0.001, y:-0.942, ts:72787.804201)
+[AXDBG] 162347.488 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.497 🕹️ DPAD STATE: Up (x:0.045, y:-0.777, ts:72787.820404)
+[AXDBG] 162347.505 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.517 🕹️ DPAD STATE: Up (x:0.079, y:-0.652, ts:72787.839805)
+[AXDBG] 162347.521 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.531 🕹️ DPAD STATE: Center (x:0.100, y:-0.463, ts:72787.853888)
+[AXDBG] 162347.539 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.548 🕹️ DPAD STATE: Center (x:0.135, y:-0.236, ts:72787.870998)
+[AXDBG] 162347.556 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.563 🕹️ DPAD STATE: Center (x:0.000, y:-0.236, ts:72787.886383)
+[AXDBG] 162347.563 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72787.886763)
+[AXDBG] 162347.573 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.705 🕹️ DPAD STATE: Center (x:0.164, y:0.000, ts:72788.027927)
+[AXDBG] 162347.705 🕹️ DPAD STATE: Center (x:0.164, y:0.306, ts:72788.028697)
+[AXDBG] 162347.706 🕹️ DPAD STATE: Center (x:0.112, y:0.132, ts:72788.028952)
+[AXDBG] 162347.707 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.708 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.718 🕹️ DPAD STATE: Center (x:0.169, y:-0.029, ts:72788.041555)
+[AXDBG] 162347.719 🕹️ DPAD STATE: Center (x:0.317, y:-0.029, ts:72788.042047)
+[AXDBG] 162347.729 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.741 🕹️ DPAD STATE: Center (x:0.447, y:-0.091, ts:72788.063771)
+[AXDBG] 162347.753 🕹️ DPAD STATE: Right (x:0.570, y:-0.133, ts:72788.076298)
+[AXDBG] 162347.763 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.774 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.789 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.807 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.824 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162347.825 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162347.826 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162347.826 📊 PRESS queue caught up! Processed 156 presses
+[AXDBG] 162348.005 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162348.105 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162348.106 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162348.106 📊 PRESS queue caught up! Processed 157 presses
+[AXDBG] 162348.238 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162348.305 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162348.306 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162348.306 📊 PRESS queue caught up! Processed 158 presses
+[AXDBG] 162348.439 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162348.523 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162348.525 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162348.525 📊 PRESS queue caught up! Processed 159 presses
+[AXDBG] 162348.573 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162348.822 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162348.823 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162348.823 📊 PRESS queue caught up! Processed 160 presses
+[AXDBG] 162348.975 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162348.976 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162348.976 📊 PRESS queue caught up! Processed 161 presses
+[AXDBG] 162348.984 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162349.093 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162349.095 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162349.095 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162349.096 📊 PRESS queue caught up! Processed 162 presses
+[AXDBG] 162349.254 🕹️ DPAD STATE: Center (x:0.000, y:-0.158, ts:72789.576892)
+[AXDBG] 162349.254 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72789.577255)
+[AXDBG] 162349.257 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162349.258 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162349.358 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162349.359 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162349.359 📊 PRESS queue caught up! Processed 163 presses
+[AXDBG] 162349.423 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162349.575 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162349.576 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162349.577 📊 PRESS queue caught up! Processed 164 presses
+[AXDBG] 162349.711 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162349.790 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162349.791 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162349.791 📊 PRESS queue caught up! Processed 165 presses
+[AXDBG] 162349.890 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162349.974 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162349.974 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162349.974 📊 PRESS queue caught up! Processed 166 presses
+[AXDBG] 162350.026 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162350.174 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162350.175 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162350.175 📊 PRESS queue caught up! Processed 167 presses
+[AXDBG] 162350.240 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162350.295 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162350.296 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162350.296 📊 PRESS queue caught up! Processed 168 presses
+[AXDBG] 162350.396 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162350.397 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162350.397 📊 PRESS queue caught up! Processed 169 presses
+[AXDBG] 162350.406 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162350.544 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162350.545 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162350.545 📊 PRESS queue caught up! Processed 170 presses
+[AXDBG] 162350.578 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162350.625 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162350.625 [A11Y] WARNING: Phantom UIPRESS Right Arrow → InfinityBug?
+[AXDBG] 162350.626 (debug)  noHW=true  stale=true  rapid=true  dt=56.1s
+[AXDBG] 162350.626 📊 PRESS queue depth during phantom: -23 | Total: 44
+[AXDBG] 162350.626 📊 PRESS queue caught up! Processed 171 presses
+[AXDBG] 162350.796 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162350.810 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162350.811 [A11Y] WARNING: Phantom UIPRESS Up Arrow → InfinityBug?
+[AXDBG] 162350.811 (debug)  noHW=true  stale=true  rapid=true  dt=56.3s
+[AXDBG] 162350.811 📊 PRESS queue depth during phantom: -24 | Total: 43
+[AXDBG] 162350.811 📊 PRESS queue caught up! Processed 172 presses
+[AXDBG] 162351.914 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162351.915 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162351.981 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162351.982 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162351.982 📊 PRESS queue caught up! Processed 173 presses
+[AXDBG] 162352.057 🕹️ DPAD STATE: Center (x:0.008, y:0.233, ts:72792.380418)
+[AXDBG] 162352.057 🕹️ DPAD STATE: Center (x:-0.017, y:0.040, ts:72792.380797)
+[AXDBG] 162352.062 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162352.077 🕹️ DPAD STATE: Center (x:-0.034, y:-0.152, ts:72792.400213)
+[AXDBG] 162352.078 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162352.080 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162352.103 🕹️ DPAD STATE: Center (x:-0.034, y:-0.336, ts:72792.426186)
+[AXDBG] 162352.104 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162352.104 🕹️ DPAD STATE: Center (x:-0.034, y:-0.480, ts:72792.427937)
+[AXDBG] 162352.127 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72792.450059)
+[AXDBG] 162352.128 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162352.251 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162352.252 🕹️ DPAD STATE: Center (x:0.279, y:0.000, ts:72792.575466)
+[AXDBG] 162352.252 🕹️ DPAD STATE: Center (x:0.279, y:-0.208, ts:72792.575749)
+[AXDBG] 162352.284 🕹️ DPAD STATE: Center (x:0.185, y:-0.403, ts:72792.607792)
+[AXDBG] 162352.285 🕹️ DPAD STATE: Up (x:0.106, y:-0.524, ts:72792.608159)
+[AXDBG] 162352.285 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162352.308 🕹️ DPAD STATE: Up (x:0.043, y:-0.629, ts:72792.631489)
+[AXDBG] 162352.310 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162352.328 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162352.343 🕹️ DPAD STATE: Up (x:0.018, y:-0.752, ts:72792.666456)
+[AXDBG] 162352.344 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162352.359 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162352.375 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72792.697989)
+[AXDBG] 162352.376 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162352.431 🕹️ DPAD STATE: Right (x:0.930, y:0.000, ts:72792.754782)
+[AXDBG] 162352.444 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162352.559 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162352.560 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162352.560 📊 PRESS queue caught up! Processed 174 presses
+[AXDBG] 162352.626 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162352.793 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162352.794 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162352.794 📊 PRESS queue caught up! Processed 175 presses
+[AXDBG] 162352.859 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162353.012 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162353.013 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162353.013 📊 PRESS queue caught up! Processed 176 presses
+[AXDBG] 162353.080 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162353.120 🕹️ DPAD STATE: Center (x:0.000, y:0.028, ts:72793.443803)
+[AXDBG] 162353.127 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.258 🕹️ DPAD STATE: Center (x:-0.109, y:0.000, ts:72793.581669)
+[AXDBG] 162353.259 🕹️ DPAD STATE: Up (x:-0.109, y:-0.756, ts:72793.582098)
+[AXDBG] 162353.261 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.277 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.294 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.310 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.327 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.340 🕹️ DPAD STATE: Up (x:-0.178, y:-0.656, ts:72793.663369)
+[AXDBG] 162353.343 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.362 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.394 🕹️ DPAD STATE: Up (x:-0.143, y:-0.553, ts:72793.717495)
+[AXDBG] 162353.395 🕹️ DPAD STATE: Center (x:-0.055, y:-0.330, ts:72793.718076)
+[AXDBG] 162353.397 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.399 🕹️ DPAD STATE: Center (x:0.045, y:-0.330, ts:72793.722364)
+[AXDBG] 162353.399 🕹️ DPAD STATE: Center (x:0.045, y:-0.095, ts:72793.722634)
+[AXDBG] 162353.405 📊 Event queue building: 50 events behind
+[AXDBG] 162353.406 🕹️ DPAD STATE: Center (x:0.131, y:0.078, ts:72793.729107)
+[AXDBG] 162353.433 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.434 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.444 🕹️ DPAD STATE: Center (x:0.000, y:0.078, ts:72793.767388)
+[AXDBG] 162353.519 🕹️ DPAD STATE: Center (x:-0.082, y:0.331, ts:72793.842162)
+[AXDBG] 162353.528 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.530 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.540 🕹️ DPAD STATE: Center (x:-0.118, y:0.231, ts:72793.863823)
+[AXDBG] 162353.544 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.558 🕹️ DPAD STATE: Center (x:-0.066, y:0.089, ts:72793.881043)
+[AXDBG] 162353.560 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.577 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.595 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.607 🕹️ DPAD STATE: Center (x:0.045, y:0.038, ts:72793.930506)
+[AXDBG] 162353.611 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.628 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.631 🕹️ DPAD STATE: Center (x:0.162, y:0.057, ts:72793.954553)
+[AXDBG] 162353.631 🕹️ DPAD STATE: Center (x:0.162, y:0.162, ts:72793.954949)
+[AXDBG] 162353.644 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.656 🕹️ DPAD STATE: Center (x:0.204, y:0.283, ts:72793.979639)
+[AXDBG] 162353.661 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.664 🕹️ DPAD STATE: Center (x:0.269, y:0.438, ts:72793.987272)
+[AXDBG] 162353.677 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.679 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162353.729 🕹️ DPAD STATE: Center (x:0.000, y:0.438, ts:72794.052452)
+[AXDBG] 162353.729 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72794.052879)
+[AXDBG] 162354.745 ⚠️ RunLoop stall 19328ms | Memory: 64MB | Total queue: 53 | Swipes: 67 | Presses: -14
+[AXDBG] 162354.746 🚨 HIGH SWIPE BACKLOG during stall: 67 swipes - InfinityBug correlation!
+[AXDBG] 162355.086 🕹️ DPAD STATE: Down (x:0.060, y:0.712, ts:72795.409636)
+[AXDBG] 162355.087 🕹️ DPAD STATE: Down (x:-0.032, y:0.551, ts:72795.410161)
+[AXDBG] 162355.087 🕹️ DPAD STATE: Center (x:-0.122, y:0.277, ts:72795.410381)
+[AXDBG] 162355.087 🕹️ DPAD STATE: Center (x:-0.168, y:0.103, ts:72795.410556)
+[AXDBG] 162355.087 🕹️ DPAD STATE: Center (x:-0.191, y:-0.039, ts:72795.410746)
+[AXDBG] 162355.088 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162355.089 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162355.179 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162355.195 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162355.199 🕹️ DPAD STATE: Center (x:-0.195, y:-0.169, ts:72795.522604)
+[AXDBG] 162355.199 🕹️ DPAD STATE: Center (x:-0.195, y:-0.294, ts:72795.523049)
+[AXDBG] 162355.200 🕹️ DPAD STATE: Center (x:-0.195, y:-0.426, ts:72795.523272)
+[AXDBG] 162355.200 🕹️ DPAD STATE: Up (x:-0.183, y:-0.543, ts:72795.523457)
+[AXDBG] 162355.200 🕹️ DPAD STATE: Up (x:0.000, y:-0.543, ts:72795.523638)
+[AXDBG] 162355.200 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72795.523797)
+[AXDBG] 162355.380 🕹️ DPAD STATE: Center (x:0.271, y:0.000, ts:72795.703848)
+[AXDBG] 162355.381 🕹️ DPAD STATE: Down (x:0.271, y:0.502, ts:72795.704258)
+[AXDBG] 162355.381 🕹️ DPAD STATE: Center (x:0.196, y:0.354, ts:72795.704482)
+[AXDBG] 162355.381 🕹️ DPAD STATE: Center (x:0.185, y:0.185, ts:72795.704659)
+[AXDBG] 162355.383 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162355.384 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162355.386 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162355.387 🕹️ DPAD STATE: Center (x:0.185, y:0.024, ts:72795.710821)
+[AXDBG] 162355.483 📊 Event queue building: 60 events behind
+[AXDBG] 162355.484 🕹️ DPAD STATE: Center (x:0.185, y:-0.118, ts:72795.807231)
+[AXDBG] 162355.484 🕹️ DPAD STATE: Center (x:0.187, y:-0.238, ts:72795.807505)
+[AXDBG] 162355.484 🕹️ DPAD STATE: Center (x:0.190, y:-0.338, ts:72795.807681)
+[AXDBG] 162355.484 🕹️ DPAD STATE: Up (x:0.190, y:-0.505, ts:72795.807847)
+[AXDBG] 162355.485 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162355.508 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162355.526 🕹️ DPAD STATE: Up (x:0.000, y:-0.553, ts:72795.849548)
+[AXDBG] 162355.526 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72795.850035)
+[AXDBG] 162355.688 🕹️ DPAD STATE: Right (x:0.898, y:0.000, ts:72796.011818)
+[AXDBG] 162355.698 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162355.813 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162355.813 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162355.814 📊 PRESS queue caught up! Processed 177 presses
+[AXDBG] 162356.013 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162356.030 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162356.030 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162356.031 📊 PRESS queue caught up! Processed 178 presses
+[AXDBG] 162356.099 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162356.180 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162356.180 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162356.181 📊 PRESS queue caught up! Processed 179 presses
+[AXDBG] 162356.281 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162356.366 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162356.367 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162356.367 📊 PRESS queue caught up! Processed 180 presses
+[AXDBG] 162356.530 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162356.880 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162356.881 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162356.881 📊 PRESS queue caught up! Processed 181 presses
+[AXDBG] 162356.920 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162357.080 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162357.081 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162357.081 📊 PRESS queue caught up! Processed 182 presses
+[AXDBG] 162357.150 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162357.247 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162357.248 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162357.248 📊 PRESS queue caught up! Processed 183 presses
+[AXDBG] 162357.303 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162357.383 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162357.384 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162357.384 📊 PRESS queue caught up! Processed 184 presses
+[AXDBG] 162357.464 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162357.583 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162357.583 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162357.584 📊 PRESS queue caught up! Processed 185 presses
+[AXDBG] 162357.621 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162357.621 [A11Y] WARNING: Phantom UIPRESS Right Arrow → InfinityBug?
+[AXDBG] 162357.621 (debug)  noHW=true  stale=true  rapid=true  dt=63.1s
+[AXDBG] 162357.622 📊 PRESS queue depth during phantom: -14 | Total: 53
+[AXDBG] 162357.622 📊 PRESS queue caught up! Processed 186 presses
+[AXDBG] 162357.781 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162357.782 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162357.805 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162357.805 [A11Y] WARNING: Phantom UIPRESS Right Arrow → InfinityBug?
+[AXDBG] 162357.806 (debug)  noHW=true  stale=true  rapid=true  dt=63.3s
+[AXDBG] 162357.806 📊 PRESS queue depth during phantom: -15 | Total: 52
+[AXDBG] 162357.806 📊 PRESS queue caught up! Processed 187 presses
+[AXDBG] 162357.830 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162357.833 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162357.833 📊 PRESS queue caught up! Processed 188 presses
+[AXDBG] 162358.076 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162358.077 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162358.138 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162358.139 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162358.139 📊 PRESS queue caught up! Processed 189 presses
+[AXDBG] 162358.237 🕹️ DPAD STATE: Center (x:0.000, y:0.082, ts:72798.560469)
+[AXDBG] 162358.238 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.295 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162358.296 📊 Event queue building: 50 events behind
+[AXDBG] 162358.296 🕹️ DPAD STATE: Center (x:0.292, y:0.000, ts:72798.619841)
+[AXDBG] 162358.296 🕹️ DPAD STATE: Center (x:0.292, y:0.208, ts:72798.620064)
+[AXDBG] 162358.299 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.333 🕹️ DPAD STATE: Center (x:0.212, y:-0.062, ts:72798.656497)
+[AXDBG] 162358.334 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.342 🕹️ DPAD STATE: Center (x:0.177, y:-0.181, ts:72798.665340)
+[AXDBG] 162358.348 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.367 🕹️ DPAD STATE: Center (x:0.137, y:-0.315, ts:72798.690925)
+[AXDBG] 162358.369 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.374 🕹️ DPAD STATE: Center (x:0.093, y:-0.465, ts:72798.697671)
+[AXDBG] 162358.382 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.404 🕹️ DPAD STATE: Up (x:0.052, y:-0.624, ts:72798.727729)
+[AXDBG] 162358.406 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.407 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.408 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72798.731822)
+[AXDBG] 162358.578 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.605 🕹️ DPAD STATE: Center (x:-0.082, y:-0.212, ts:72798.928700)
+[AXDBG] 162358.606 🕹️ DPAD STATE: Center (x:-0.120, y:-0.380, ts:72798.929389)
+[AXDBG] 162358.607 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.611 🕹️ DPAD STATE: Center (x:-0.120, y:-0.499, ts:72798.934785)
+[AXDBG] 162358.616 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.634 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.640 🕹️ DPAD STATE: Up (x:0.052, y:-0.580, ts:72798.964105)
+[AXDBG] 162358.657 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.658 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.680 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72799.003202)
+[AXDBG] 162358.735 🕹️ DPAD STATE: Right (x:0.808, y:0.000, ts:72799.058306)
+[AXDBG] 162358.735 🕹️ DPAD STATE: Right (x:0.808, y:-0.286, ts:72799.058705)
+[AXDBG] 162358.737 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.785 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162358.800 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162358.801 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162358.801 📊 PRESS queue caught up! Processed 190 presses
+[AXDBG] 162359.216 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162359.218 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162359.218 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162359.219 📊 PRESS queue caught up! Processed 191 presses
+[AXDBG] 162359.266 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162359.267 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162359.267 📊 PRESS queue caught up! Processed 192 presses
+[AXDBG] 162359.617 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162359.618 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162359.835 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162359.835 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162359.836 📊 PRESS queue caught up! Processed 193 presses
+[AXDBG] 162359.872 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162359.872 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162359.873 📊 PRESS queue caught up! Processed 194 presses
+[AXDBG] 162359.959 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162359.969 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162400.055 🕹️ DPAD STATE: Center (x:0.000, y:-0.376, ts:72800.378915)
+[AXDBG] 162400.056 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72800.379436)
+[AXDBG] 162400.056 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.069 🕹️ DPAD STATE: Center (x:-0.034, y:-0.405, ts:72800.392467)
+[AXDBG] 162400.070 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.090 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.097 🕹️ DPAD STATE: Center (x:-0.043, y:-0.288, ts:72800.420406)
+[AXDBG] 162400.100 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.118 🕹️ DPAD STATE: Center (x:-0.043, y:-0.185, ts:72800.441366)
+[AXDBG] 162400.118 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.134 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.150 🕹️ DPAD STATE: Center (x:-0.009, y:-0.001, ts:72800.474053)
+[AXDBG] 162400.152 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.155 🕹️ DPAD STATE: Center (x:0.056, y:0.206, ts:72800.479102)
+[AXDBG] 162400.167 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.183 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72800.506895)
+[AXDBG] 162400.184 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.281 🕹️ DPAD STATE: Center (x:-0.227, y:0.000, ts:72800.605158)
+[AXDBG] 162400.282 🕹️ DPAD STATE: Up (x:-0.227, y:-0.560, ts:72800.606036)
+[AXDBG] 162400.289 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.317 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.328 🕹️ DPAD STATE: Up (x:-0.061, y:-0.557, ts:72800.651564)
+[AXDBG] 162400.328 🕹️ DPAD STATE: Center (x:-0.061, y:-0.434, ts:72800.651938)
+[AXDBG] 162400.334 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.344 🕹️ DPAD STATE: Center (x:0.020, y:-0.317, ts:72800.668161)
+[AXDBG] 162400.354 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.363 🕹️ DPAD STATE: Center (x:0.060, y:-0.204, ts:72800.686246)
+[AXDBG] 162400.365 🕹️ DPAD STATE: Center (x:0.075, y:-0.081, ts:72800.689021)
+[AXDBG] 162400.367 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.380 📊 Event queue building: 60 events behind
+[AXDBG] 162400.381 🕹️ DPAD STATE: Center (x:0.079, y:0.053, ts:72800.704402)
+[AXDBG] 162400.384 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.404 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.435 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.450 🕹️ DPAD STATE: Center (x:0.098, y:0.273, ts:72800.773473)
+[AXDBG] 162400.450 🕹️ DPAD STATE: Center (x:0.116, y:0.390, ts:72800.774148)
+[AXDBG] 162400.452 🕹️ DPAD STATE: Center (x:0.148, y:0.494, ts:72800.775783)
+[AXDBG] 162400.453 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.467 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.486 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.504 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.516 🕹️ DPAD STATE: Down (x:0.202, y:0.603, ts:72800.839368)
+[AXDBG] 162400.518 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.551 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.569 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.579 🕹️ DPAD STATE: Down (x:0.194, y:0.718, ts:72800.903120)
+[AXDBG] 162400.585 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.601 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.617 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.634 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.651 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.669 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.684 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162400.822 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162400.822 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162400.823 📊 PRESS queue caught up! Processed 195 presses
+[AXDBG] 162400.900 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.001 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.001 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162401.002 📊 PRESS queue caught up! Processed 196 presses
+[AXDBG] 162401.062 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.062 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162401.062 📊 PRESS queue caught up! Processed 197 presses
+[AXDBG] 162401.104 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.185 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.204 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.204 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162401.204 📊 PRESS queue caught up! Processed 198 presses
+[AXDBG] 162401.321 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.322 [A11Y] REMOTE PRESS: Up Arrow
+[AXDBG] 162401.322 📊 PRESS queue caught up! Processed 199 presses
+[AXDBG] 162401.535 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.536 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.569 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.570 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162401.570 📊 PRESS queue caught up! Processed 200 presses
+[AXDBG] 162401.635 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.737 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.738 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162401.738 📊 PRESS queue caught up! Processed 201 presses
+[AXDBG] 162401.820 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.968 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162401.969 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162401.970 📊 PRESS queue caught up! Processed 202 presses
+[AXDBG] 162402.037 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162402.120 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162402.120 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162402.121 📊 PRESS queue caught up! Processed 203 presses
+[AXDBG] 162402.221 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162402.319 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162402.319 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162402.320 📊 PRESS queue caught up! Processed 204 presses
+[AXDBG] 162402.453 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162402.455 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162402.455 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162402.456 📊 PRESS queue caught up! Processed 205 presses
+[AXDBG] 162402.619 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162402.753 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162402.754 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162402.754 📊 PRESS queue caught up! Processed 206 presses
+[AXDBG] 162402.822 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162402.938 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162402.939 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162402.939 📊 PRESS queue caught up! Processed 207 presses
+[AXDBG] 162402.988 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162403.086 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162403.087 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162403.087 📊 PRESS queue caught up! Processed 208 presses
+[AXDBG] 162403.136 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162403.153 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162403.154 [A11Y] WARNING: Phantom UIPRESS Right Arrow → InfinityBug?
+[AXDBG] 162403.155 (debug)  noHW=true  stale=true  rapid=true  dt=68.6s
+[AXDBG] 162403.155 📊 PRESS queue depth during phantom: -21 | Total: 46
+[AXDBG] 162403.155 📊 PRESS queue caught up! Processed 209 presses
+[AXDBG] 162403.277 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162403.547 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162403.548 🕹️ DPAD STATE: Down (x:-0.109, y:0.812, ts:72803.871983)
+[AXDBG] 162403.548 🕹️ DPAD STATE: Up (x:-0.109, y:-0.932, ts:72803.872266)
+[AXDBG] 162403.607 🕹️ DPAD STATE: Up (x:0.000, y:-0.932, ts:72803.931236)
+[AXDBG] 162403.608 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72803.931800)
+[AXDBG] 162403.609 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162403.675 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162403.675 [A11Y] WARNING: Phantom UIPRESS Right Arrow → InfinityBug?
+[AXDBG] 162403.676 (debug)  noHW=true  stale=true  rapid=true  dt=69.2s
+[AXDBG] 162403.676 📊 PRESS queue depth during phantom: -20 | Total: 47
+[AXDBG] 162403.676 📊 PRESS queue caught up! Processed 210 presses
+[AXDBG] 162403.704 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162403.705 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162403.705 📊 PRESS queue caught up! Processed 211 presses
+[AXDBG] 162403.741 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162403.742 🕹️ DPAD STATE: Center (x:-0.128, y:0.000, ts:72804.065451)
+[AXDBG] 162403.742 🕹️ DPAD STATE: Up (x:-0.128, y:-0.564, ts:72804.065713)
+[AXDBG] 162403.757 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162403.773 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162403.774 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162403.775 🕹️ DPAD STATE: Center (x:-0.072, y:-0.382, ts:72804.099297)
+[AXDBG] 162403.788 🕹️ DPAD STATE: Center (x:-0.005, y:-0.252, ts:72804.112298)
+[AXDBG] 162403.789 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162403.804 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162403.812 🕹️ DPAD STATE: Center (x:0.043, y:-0.125, ts:72804.136333)
+[AXDBG] 162403.817 🕹️ DPAD STATE: Center (x:0.081, y:0.026, ts:72804.141368)
+[AXDBG] 162403.822 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162403.849 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162403.936 📊 Event queue building: 50 events behind
+[AXDBG] 162403.936 🕹️ DPAD STATE: Center (x:-0.145, y:0.000, ts:72804.259976)
+[AXDBG] 162403.937 🕹️ DPAD STATE: Up (x:-0.145, y:-0.723, ts:72804.261321)
+[AXDBG] 162403.939 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162403.966 🕹️ DPAD STATE: Up (x:-0.013, y:-0.723, ts:72804.289736)
+[AXDBG] 162403.974 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162403.983 🕹️ DPAD STATE: Up (x:0.106, y:-0.674, ts:72804.307223)
+[AXDBG] 162403.984 🕹️ DPAD STATE: Up (x:0.106, y:-0.557, ts:72804.307549)
+[AXDBG] 162403.990 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.001 🕹️ DPAD STATE: Center (x:0.177, y:-0.440, ts:72804.324537)
+[AXDBG] 162404.004 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.014 🕹️ DPAD STATE: Center (x:0.215, y:-0.304, ts:72804.337910)
+[AXDBG] 162404.020 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.031 🕹️ DPAD STATE: Center (x:0.242, y:-0.154, ts:72804.354694)
+[AXDBG] 162404.037 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.047 🕹️ DPAD STATE: Center (x:0.000, y:-0.154, ts:72804.371142)
+[AXDBG] 162404.048 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72804.371489)
+[AXDBG] 162404.056 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.165 🕹️ DPAD STATE: Center (x:-0.036, y:-0.344, ts:72804.489344)
+[AXDBG] 162404.172 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.206 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.222 🕹️ DPAD STATE: Center (x:0.114, y:-0.298, ts:72804.546271)
+[AXDBG] 162404.223 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.225 🕹️ DPAD STATE: Center (x:0.177, y:-0.081, ts:72804.548624)
+[AXDBG] 162404.236 🕹️ DPAD STATE: Center (x:0.202, y:0.043, ts:72804.559468)
+[AXDBG] 162404.239 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.275 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.285 🕹️ DPAD STATE: Center (x:0.000, y:0.139, ts:72804.608783)
+[AXDBG] 162404.286 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72804.609410)
+[AXDBG] 162404.287 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.333 🕹️ DPAD STATE: Center (x:0.164, y:0.000, ts:72804.656871)
+[AXDBG] 162404.334 🕹️ DPAD STATE: Center (x:0.164, y:0.128, ts:72804.657664)
+[AXDBG] 162404.336 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.348 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.375 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.422 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.435 🕹️ DPAD STATE: Center (x:0.179, y:0.003, ts:72804.758436)
+[AXDBG] 162404.435 🕹️ DPAD STATE: Center (x:0.392, y:-0.033, ts:72804.758938)
+[AXDBG] 162404.435 📊 Event queue building: 60 events behind
+[AXDBG] 162404.435 🕹️ DPAD STATE: Center (x:0.392, y:0.139, ts:72804.759425)
+[AXDBG] 162404.439 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.447 🕹️ DPAD STATE: Center (x:0.000, y:0.139, ts:72804.771182)
+[AXDBG] 162404.461 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72804.785245)
+[AXDBG] 162404.462 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.539 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.541 🕹️ DPAD STATE: Center (x:0.296, y:0.000, ts:72804.865034)
+[AXDBG] 162404.572 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.580 🕹️ DPAD STATE: Right (x:0.539, y:-0.058, ts:72804.903424)
+[AXDBG] 162404.584 🕹️ DPAD STATE: Right (x:0.645, y:-0.058, ts:72804.907896)
+[AXDBG] 162404.590 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.613 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.630 🕹️ DPAD STATE: Right (x:0.756, y:-0.058, ts:72804.953548)
+[AXDBG] 162404.638 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.659 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.688 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.708 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162404.738 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162404.739 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162404.739 📊 PRESS queue caught up! Processed 212 presses
+[AXDBG] 162404.790 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162405.016 🕹️ DPAD STATE: Center (x:0.000, y:-0.058, ts:72805.339729)
+[AXDBG] 162405.022 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162406.057 ⚠️ RunLoop stall 10572ms | Memory: 65MB | Total queue: 61 | Swipes: 67 | Presses: -6
+[AXDBG] 162406.057 🚨 HIGH SWIPE BACKLOG during stall: 67 swipes - InfinityBug correlation!
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Navigation layout modified
+[AXDBG] 162406.457 🕹️ DPAD STATE: Left (x:-0.565, y:0.000, ts:72806.781435)
+[AXDBG] 162406.458 🕹️ DPAD STATE: Left (x:-0.565, y:0.456, ts:72806.781879)
+[AXDBG] 162406.459 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162407.441 ⚠️ RunLoop stall 1118ms | Memory: 65MB | Total queue: 63 | Swipes: 67 | Presses: -4
+[AXDBG] 162407.441 🚨 HIGH SWIPE BACKLOG during stall: 67 swipes - InfinityBug correlation!
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Content arrangement updated
+[AXDBG] 162408.960 ⚠️ RunLoop stall 1177ms | Memory: 65MB | Total queue: 63 | Swipes: 67 | Presses: -4
+[AXDBG] 162408.961 🚨 HIGH SWIPE BACKLOG during stall: 67 swipes - InfinityBug correlation!
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Layout updated with new content
+[AXDBG] 162410.694 ⚠️ RunLoop stall 1126ms | Memory: 65MB | Total queue: 63 | Swipes: 67 | Presses: -4
+[AXDBG] 162410.695 🚨 HIGH SWIPE BACKLOG during stall: 67 swipes - InfinityBug correlation!
+[AXDBG] 162410.771 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162410.772 🕹️ DPAD STATE: Center (x:0.000, y:0.456, ts:72811.096313)
+[AXDBG] 162410.772 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72811.096670)
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Focus environment refreshed
+[AXDBG] 162413.431 ⚠️ RunLoop stall 1128ms | Memory: 65MB | Total queue: 63 | Swipes: 67 | Presses: -4
+[AXDBG] 162413.431 🚨 HIGH SWIPE BACKLOG during stall: 67 swipes - InfinityBug correlation!
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Navigation layout modified
+[AXDBG] 162414.665 ⚠️ RunLoop stall 1152ms | Memory: 65MB | Total queue: 63 | Swipes: 67 | Presses: -4
+[AXDBG] 162414.666 🚨 HIGH SWIPE BACKLOG during stall: 67 swipes - InfinityBug correlation!
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Focus environment refreshed
+[AXDBG] 162416.384 ⚠️ RunLoop stall 1139ms | Memory: 65MB | Total queue: 63 | Swipes: 67 | Presses: -4
+[AXDBG] 162416.384 🚨 HIGH SWIPE BACKLOG during stall: 67 swipes - InfinityBug correlation!
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Navigation layout modified
+[AXDBG] 162418.269 ⚠️ RunLoop stall 1129ms | Memory: 65MB | Total queue: 63 | Swipes: 67 | Presses: -4
+[AXDBG] 162418.270 🚨 HIGH SWIPE BACKLOG during stall: 67 swipes - InfinityBug correlation!
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Navigation layout modified
+[AXDBG] 162419.504 ⚠️ RunLoop stall 1141ms | Memory: 65MB | Total queue: 63 | Swipes: 67 | Presses: -4
+[AXDBG] 162419.505 🚨 HIGH SWIPE BACKLOG during stall: 67 swipes - InfinityBug correlation!
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Display structure reorganized
+[AXDBG] 162420.976 🕹️ DPAD STATE: Right (x:0.720, y:0.000, ts:72821.300673)
+[AXDBG] 162420.977 🕹️ DPAD STATE: Right (x:0.720, y:-0.413, ts:72821.301411)
+[AXDBG] 162420.987 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162421.038 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162421.040 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162421.040 📊 PRESS queue caught up! Processed 213 presses
+[AXDBG] 162421.089 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162421.238 ⚠️ RunLoop stall 1123ms | Memory: 65MB | Total queue: 64 | Swipes: 67 | Presses: -3
+[AXDBG] 162421.238 🚨 HIGH SWIPE BACKLOG during stall: 67 swipes - InfinityBug correlation!
+[AXDBG] 162421.306 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162421.308 🕹️ DPAD STATE: Center (x:0.000, y:-0.413, ts:72821.632162)
+[AXDBG] 162421.308 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72821.632458)
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Navigation layout modified
+[AXDBG] 162422.990 ⚠️ RunLoop stall 1111ms | Memory: 65MB | Total queue: 64 | Swipes: 67 | Presses: -3
+[AXDBG] 162422.990 🚨 HIGH SWIPE BACKLOG during stall: 67 swipes - InfinityBug correlation!
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Display structure reorganized
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Content arrangement updated
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Layout updated with new content
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Layout updated with new content
+[AXDBG] 162430.007 🕹️ DPAD STATE: Right (x:0.823, y:0.000, ts:72830.331821)
+[AXDBG] 162430.007 🕹️ DPAD STATE: Right (x:0.823, y:-0.361, ts:72830.332233)
+[AXDBG] 162430.008 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162430.010 POLL: Right detected via polling (x:0.823, y:-0.361)
+[AXDBG] 162430.010 🕹️ HARDWARE SWIPE DETECTED: Right (x:0.823, y:-0.361)
+[AXDBG] 162430.075 🕹️ HARDWARE SWIPE DETECTED: Right (x:0.823, y:-0.361)
+[AXDBG] 162430.139 POLL: Right detected via polling (x:0.823, y:-0.361)
+[AXDBG] 162430.140 🕹️ HARDWARE SWIPE DETECTED: Right (x:0.823, y:-0.361)
+[AXDBG] 162430.140 📊 SWIPE queue building: 70 swipes behind
+[AXDBG] 162430.212 🕹️ HARDWARE SWIPE DETECTED: Right (x:0.823, y:-0.361)
+[AXDBG] 162430.212 📊 Event queue building: 70 events behind
+[AXDBG] 162430.272 POLL: Right detected via polling (x:0.823, y:-0.361)
+[AXDBG] 162430.273 🕹️ HARDWARE SWIPE DETECTED: Right (x:0.823, y:-0.361)
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Content arrangement updated
+[AXDBG] 162430.354 🕹️ HARDWARE SWIPE DETECTED: Right (x:0.823, y:-0.361)
+[AXDBG] 162430.414 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162430.414 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162430.414 📊 PRESS queue caught up! Processed 214 presses
+[AXDBG] 162430.435 🕹️ DPAD STATE: Center (x:0.000, y:-0.361, ts:72830.760491)
+[AXDBG] 162430.436 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72830.760840)
+[AXDBG] 162430.436 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162430.507 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Content arrangement updated
+[AXDBG] 162430.638 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162430.668 🕹️ DPAD STATE: Center (x:0.127, y:0.000, ts:72830.993456)
+[AXDBG] 162430.669 🕹️ DPAD STATE: Up (x:0.127, y:-0.946, ts:72830.993855)
+[AXDBG] 162430.673 POLL: Up detected via polling (x:0.127, y:-0.946)
+[AXDBG] 162430.673 🕹️ HARDWARE SWIPE DETECTED: Up (x:0.127, y:-0.946)
+[AXDBG] 162430.740 🕹️ HARDWARE SWIPE DETECTED: Up (x:0.127, y:-0.946)
+[AXDBG] 162430.741 📊 SWIPE queue building: 75 swipes behind
+[AXDBG] 162430.807 POLL: Up detected via polling (x:0.127, y:-0.946)
+[AXDBG] 162430.807 🕹️ HARDWARE SWIPE DETECTED: Up (x:0.127, y:-0.946)
+[AXDBG] 162430.874 🕹️ HARDWARE SWIPE DETECTED: Up (x:0.127, y:-0.946)
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Focus environment refreshed
+[AXDBG] 162430.960 POLL: Up detected via polling (x:0.127, y:-0.946)
+[AXDBG] 162430.961 🕹️ HARDWARE SWIPE DETECTED: Up (x:0.127, y:-0.946)
+[AXDBG] 162431.027 🕹️ DPAD STATE: Up (x:0.000, y:-0.946, ts:72831.351576)
+[AXDBG] 162431.027 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72831.351997)
+[AXDBG] 162431.032 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162431.495 📊 Event queue building: 80 events behind
+[AXDBG] 162431.495 🕹️ DPAD STATE: Up (x:0.012, y:-0.955, ts:72831.820501)
+[AXDBG] 162431.496 🕹️ HARDWARE SWIPE DETECTED: Up (x:0.012, y:-0.955)
+[AXDBG] 162431.497 POLL: Up detected via polling (x:0.012, y:-0.955)
+[AXDBG] 162431.499 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162431.562 🕹️ HARDWARE SWIPE DETECTED: Up (x:0.012, y:-0.955)
+[AXDBG] 162431.563 📊 SWIPE queue building: 80 swipes behind
+[AXDBG] 162431.627 POLL: Up detected via polling (x:0.012, y:-0.955)
+[AXDBG] 162431.627 🕹️ HARDWARE SWIPE DETECTED: Up (x:0.012, y:-0.955)
+[AXDBG] 162431.693 🕹️ HARDWARE SWIPE DETECTED: Up (x:0.012, y:-0.955)
+[AXDBG] 162431.753 POLL: Up detected via polling (x:0.012, y:-0.955)
+[AXDBG] 162431.754 🕹️ HARDWARE SWIPE DETECTED: Up (x:0.012, y:-0.955)
+[AXDBG] 162431.838 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:72832.163300)
+[AXDBG] 162431.904 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 162432.117 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162432.118 [A11Y] REMOTE PRESS: Down Arrow
+[AXDBG] 162432.923 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162432.935 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162432.935 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162432.936 📊 PRESS queue caught up! Processed 216 presses
+[AXDBG] 162433.101 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162433.452 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162433.453 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162433.453 📊 PRESS queue caught up! Processed 217 presses
+[AXDBG] 162433.566 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162433.866 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162433.867 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162433.867 📊 PRESS queue caught up! Processed 218 presses
+[AXDBG] 162433.966 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162433.968 ⚠️ RunLoop stall 1265ms | Memory: 65MB | Total queue: 81 | Swipes: 83 | Presses: -2
+[AXDBG] 162433.969 🚨 HIGH SWIPE BACKLOG during stall: 83 swipes - InfinityBug correlation!
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Collection view structure changed
+[AXDBG] 162434.266 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162434.267 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162434.267 📊 PRESS queue caught up! Processed 219 presses
+[AXDBG] 162434.400 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162434.667 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162434.668 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162434.668 📊 PRESS queue caught up! Processed 220 presses
+[AXDBG] 162434.733 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162435.085 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162435.085 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162435.086 📊 PRESS queue caught up! Processed 221 presses
+[AXDBG] 162435.097 ⚠️ RunLoop stall 1064ms | Memory: 65MB | Total queue: 78 | Swipes: 83 | Presses: -5
+[AXDBG] 162435.097 🚨 HIGH SWIPE BACKLOG during stall: 83 swipes - InfinityBug correlation!
+[AXDBG] 162435.456 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162436.320 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162436.320 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162436.320 📊 PRESS queue caught up! Processed 222 presses
+[AXDBG] 162436.427 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162436.653 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162436.654 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162436.654 📊 PRESS queue caught up! Processed 223 presses
+[AXDBG] 162436.719 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162437.069 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162437.070 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162437.070 📊 PRESS queue caught up! Processed 224 presses
+[AXDBG] 162437.169 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162437.471 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162437.471 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162437.471 📊 PRESS queue caught up! Processed 225 presses
+[AXDBG] 162437.586 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162437.887 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162437.888 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162437.888 📊 PRESS queue caught up! Processed 226 presses
+[AXDBG] 162438.054 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162438.290 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162438.290 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162438.291 📊 PRESS queue caught up! Processed 227 presses
+[AXDBG] 162438.420 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162438.704 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162438.705 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162438.705 📊 PRESS queue caught up! Processed 228 presses
+[AXDBG] 162438.837 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162439.121 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162439.122 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162439.122 📊 PRESS queue caught up! Processed 229 presses
+[AXDBG] 162439.221 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162439.339 ⚠️ RunLoop stall 3019ms | Memory: 65MB | Total queue: 70 | Swipes: 83 | Presses: -13
+[AXDBG] 162439.340 🚨 HIGH SWIPE BACKLOG during stall: 83 swipes - InfinityBug correlation!
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Layout updated with new content
+[AXDBG] 162439.624 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162439.625 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162439.625 📊 PRESS queue caught up! Processed 230 presses
+[AXDBG] 162439.711 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162440.039 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162440.039 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162440.040 📊 PRESS queue caught up! Processed 231 presses
+[AXDBG] 162440.093 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162440.533 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162440.533 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162440.534 📊 PRESS queue caught up! Processed 232 presses
+[AXDBG] 162440.550 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162441.790 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162441.791 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162441.791 📊 PRESS queue caught up! Processed 233 presses
+[AXDBG] 162441.892 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162442.211 🔄 App going to background | Events processed: 233
+[AXDBG] 162442.266 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 162442.266 [A11Y] REMOTE PRESS: Right Arrow
+[AXDBG] 162442.267 📊 PRESS queue caught up! Processed 234 presses
+[AXDBG] 162442.597 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+Snapshot request 0x300b036c0 complete with error: <NSError: 0x300b745d0; domain: BSActionErrorDomain; code: 1 ("response-not-possible")>
+Snapshot request 0x300b77c00 complete with error: <NSError: 0x300b3fd50; domain: BSActionErrorDomain; code: 1 ("response-not-possible")>
+[AXDBG] 162444.260 ⚠️ RunLoop stall 2470ms | Memory: 66MB | Total queue: 65 | Swipes: 83 | Presses: -18
+[AXDBG] 162444.260 🚨 HIGH SWIPE BACKLOG during stall: 83 swipes - InfinityBug correlation!
+[AXDBG] 162444.268 🔍 Background event processing detected: +1 events
+[AXDBG] 162445.213 🔍 Background event processing detected: +1 events
+[AXDBG] 162446.281 🔍 Background event processing detected: +1 events
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Focus environment refreshed
+[AXDBG] 162447.255 🔍 Background event processing detected: +1 events
+Message from debugger: killed

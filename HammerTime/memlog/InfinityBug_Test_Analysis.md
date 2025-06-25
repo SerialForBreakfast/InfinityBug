@@ -1,3 +1,131 @@
+# InfinityBug Test Analysis
+
+*Updated: 2025-01-25*  
+*Status: New reproduction patterns identified, logging optimized*
+
+## Latest Test Series Analysis (Runs 4-5)
+
+### 🎯 **Successful Reproduction (SuccessfulRepro5.txt)**
+
+**Key Characteristics:**
+- **Duration**: ~3 minutes before termination
+- **Critical Pattern**: Sustained swipe backlog of 67-83 swipes with persistent 1100ms RunLoop stalls
+- **Memory Usage**: Escalated from 52MB to 66MB during reproduction
+- **Termination**: Required debugger kill - system unrecoverable
+
+**Escalation Timeline:**
+1. **Initial**: Normal swipe detection, minor stalls (~1300ms)
+2. **Build-up**: Queue depth reached 63 events (62 swipes, -1 presses)
+3. **Critical Point**: 28,094ms stall with 63 swipes queued
+4. **Sustained Failure**: Multiple consecutive 1100-1200ms stalls
+5. **Background Persistence**: Event processing continued after app backgrounded
+
+**Diagnostic Indicators:**
+- Swipe-to-press ratio heavily favored swipes (67+ swipes vs negative press counts)
+- High memory usage (65-66MB) during critical phase
+- Background event processing detected (`🔍 Background event processing detected`)
+
+### ❌ **Unsuccessful Reproductions**
+
+#### **Log 4 Pattern (Press-Heavy)**
+- **Max Queue**: 299 events (54 swipes, 245 presses)
+- **Issue**: Press events dominated, insufficient swipe saturation
+- **Memory**: Peaked at 65MB but didn't escalate further
+- **Duration**: Longer session but system remained responsive
+
+#### **Log 5 Pattern (High Swipes, Poor Timing)**
+- **Max Queue**: 407 events (392 swipes, 15 presses)
+- **Issue**: Achieved high swipe count but stalls were inconsistent
+- **Memory**: Reached 65MB but stalls weren't sustained
+- **Outcome**: System degraded but recovered
+
+### 🔑 **Critical Success Factors Identified**
+
+1. **Swipe Dominance**: Successful reproduction requires swipe count >> press count
+2. **Sustained Stalls**: Multiple consecutive 1000+ms stalls necessary for failure
+3. **Memory Pressure**: 65-66MB threshold correlates with system breakdown
+4. **Persistence**: Event queues must survive app lifecycle transitions
+
+## Logging Optimization Implementation
+
+### 📊 **Repetitive Logging Issues Addressed**
+
+**Problems Identified:**
+- Hardware polling at 8ms intervals generated excessive logs
+- Queue status reported on every 5th event regardless of significance
+- Duplicate hardware swipe detection from multiple sources
+- Verbose coordinate logging cluttered critical data
+
+**Optimizations Implemented:**
+
+#### **Rate-Limited Hardware Polling**
+```swift
+// Before: Logged every detection (~125/second)
+🕹️ HARDWARE SWIPE DETECTED: Up (x:-0.235, y:-0.858)
+
+// After: Burst detection with smart logging
+🕹️ HW_SWIPE: Up [burst: 1]
+🕹️ HW_SWIPE: Up [burst: 10]  // Only every 10th in burst
+```
+
+#### **Smart Queue Status Reporting**
+```swift
+// Before: Frequent redundant messages
+📊 SWIPE queue building: 25 swipes behind
+📊 Event queue building: 30 events behind  
+📊 SWIPE queue building: 30 swipes behind
+
+// After: Consolidated, threshold-based reporting
+📊 Queue Status [HW_SWIPE]: Total=81 | Swipes=83 | Presses=-2
+🚨 CRITICAL SWIPE BACKLOG: 83 swipes - InfinityBug correlation!
+```
+
+#### **Burst Detection for Hardware Events**
+- Groups rapid-fire hardware events into bursts
+- Logs first event and every 10th in sequence
+- Reduces log volume by ~90% during heavy input periods
+
+### 📈 **Data Processing Improvements**
+
+**Cleaner Log Structure:**
+- Eliminated coordinate-heavy polling logs
+- Consolidated queue status into single-line reports
+- Added context tags for easier parsing (`[HW_SWIPE]`, `[CRITICAL]`)
+- Implemented significance thresholds (10+ event changes, 5s intervals)
+
+**Enhanced Signal-to-Noise Ratio:**
+- Critical InfinityBug indicators clearly flagged
+- Reduced log volume by ~70% while preserving essential data
+- Better correlation tracking between events and system state
+
+## Test Strategy Refinements
+
+### 🎯 **Reproduction Requirements** 
+Based on successful pattern analysis:
+
+1. **Sustained Swipe Input**: Focus on directional navigation without pauses
+2. **Avoid Press-Heavy Sequences**: Select/Menu button usage dilutes swipe concentration  
+3. **Monitor Memory Threshold**: Watch for 65MB+ usage as failure predictor
+4. **Target Swipe Saturation**: Aim for 60+ swipe backlog
+5. **Sustained Duration**: Maintain input pattern for 180+ seconds
+
+### 📊 **Monitoring Priorities**
+- **Primary**: Swipe queue depth and growth rate
+- **Secondary**: RunLoop stall frequency and duration  
+- **Tertiary**: Memory usage and background event persistence
+
+### 🚀 **Next Steps**
+1. Test reproduction consistency with optimized logging
+2. Validate swipe-to-press ratio hypothesis with targeted input patterns
+3. Investigate background event persistence mechanism
+4. Document memory usage correlation with queue depth escalation
+
+---
+
+## Historical Context
+
+*[Previous analysis entries preserved below]*
+
 # InfinityBug Test Failure Analysis & New Strategy
 
 *Created: 2025-01-22*

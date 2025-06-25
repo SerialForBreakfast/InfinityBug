@@ -3,8 +3,11 @@
 //  InfinityBugDiagnostics
 //
 //  Created by You on 2025-06-16.
-//  Fully refreshed 2025-06-16 — now checks Run-Loop stalls, dup IDs/labels,
-//  preferredFocusEnvironments bloat, tiny focus-guides, memory warnings.
+//  Enhanced 2025-01-22 for InfinityBug investigation:
+//  - Event Queue Depth Estimation (hardware vs UIKit event tracking)
+//  - VoiceOver Processing Time Measurement (accessibility operation timing)
+//  - Memory Pressure Correlation Analysis (memory usage during RunLoop stalls)
+//  - Queue Persistence Mystery Investigation (event processing across app states)
 //
 
 import UIKit
@@ -12,6 +15,7 @@ import os
 import Combine
 import ObjectiveC.runtime
 import GameController
+import Darwin.Mach
 
 private struct AXNotificationKeys {
     static let focusedElement = "UIAccessibilityFocusedElementKey"
@@ -29,6 +33,45 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
 
     @objc static let shared = AXFocusDebugger()
     @objc func start() { guard !enabled else { return }; enabled = true; bootstrap() }
+    
+    /// Comprehensive analysis report for InfinityBug investigation
+    @objc func logInfinityBugAnalysis() {
+        log("🔍 ====== InfinityBug Analysis Report ======")
+        logQueueDepthAnalysis()
+        logVoiceOverPerformanceSummary()
+        logMemoryCorrelationAnalysis()
+        log("🔍 ======================================")
+    }
+    
+    /// Quick summary of current swipe vs press status for manual testing
+    @objc func logSwipeVsPressStatus() {
+        let totalQueue = hardwareEventCount - uikitEventCount
+        log("📊 SWIPE vs PRESS Status:")
+        log("   🏃‍♂️ SWIPES: Hardware=\(hardwareSwipeCount), UIKit=\(uikitSwipeCount), Queue=\(swipeQueueDepth)")
+        log("   👆 PRESSES: Hardware=\(hardwarePressCount), UIKit=\(uikitPressCount), Queue=\(pressQueueDepth)")
+        log("   📈 TOTAL: Queue depth=\(totalQueue), Max observed=\(maxObservedQueueDepth)")
+        
+        // Current latency status
+        if !swipeLatencies.isEmpty {
+            let currentSwipeLatency = swipeLatencies.last! * 1000
+            log("   ⏱️ Current SWIPE latency: \(String(format: "%.0f", currentSwipeLatency))ms")
+        }
+        if !pressLatencies.isEmpty {
+            let currentPressLatency = pressLatencies.last! * 1000
+            log("   ⏱️ Current PRESS latency: \(String(format: "%.0f", currentPressLatency))ms")
+        }
+        
+        // Status assessment
+        if swipeQueueDepth > pressQueueDepth * 2 {
+            log("   🚨 Swipe queue dominates - InfinityBug pattern detected!")
+        } else if swipeQueueDepth > 10 {
+            log("   ⚠️ Significant swipe backlog - monitor for InfinityBug")
+        } else if !swipeLatencies.isEmpty && swipeLatencies.last! > 0.1 {
+            log("   ⚠️ High swipe latency - performance degradation detected")
+        } else {
+            log("   ✅ Queue depths and latencies appear normal")
+        }
+    }
 
     // MARK: – Private -------------------------------------------------------
 
@@ -50,6 +93,62 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
     
     /// High-frequency controller state monitoring
     private var controllerPollingTimer: Timer?
+    
+    // MARK: – Enhanced InfinityBug Investigation Properties -----------------
+    
+    /// Event Queue Depth Estimation
+    private var hardwareEventCount: Int = 0
+    private var uikitEventCount: Int = 0
+    private var queueDepthHistory: [TimeInterval: Int] = [:]
+    private var maxObservedQueueDepth: Int = 0
+    
+    /// Input Type Differentiation
+    private var hardwareSwipeCount: Int = 0
+    private var hardwarePressCount: Int = 0
+    private var uikitSwipeCount: Int = 0
+    private var uikitPressCount: Int = 0
+    private var swipeQueueDepth: Int = 0
+    private var pressQueueDepth: Int = 0
+    
+    /// Input to Focus Change Latency Tracking
+    private var hardwareInputTimestamps: [TimeInterval] = []  // FIFO queue of hardware input times
+    private var uikitInputTimestamps: [(TimeInterval, String)] = []  // FIFO queue of (time, inputType)
+    private var swipeLatencies: [TimeInterval] = []  // Recent swipe latencies
+    private var pressLatencies: [TimeInterval] = []  // Recent press latencies
+    private var maxSwipeLatency: TimeInterval = 0
+    private var maxPressLatency: TimeInterval = 0
+    
+    /// VoiceOver Processing Time Measurement
+    private var accessibilityOperationStartTime: TimeInterval = 0
+    private var voiceOverProcessingTimes: [TimeInterval] = []
+    private var focusChangeStartTime: TimeInterval = 0
+    private var announcementStartTimes: [String: TimeInterval] = [:]
+    
+    /// Memory Pressure Correlation Analysis
+    private var memoryUsageHistory: [TimeInterval: Int] = [:]  // timestamp: bytes
+    private var runLoopStallHistory: [TimeInterval: TimeInterval] = [:]  // timestamp: stall_duration
+    private var lastMemoryCheck: TimeInterval = 0
+    private let memoryCheckInterval: TimeInterval = 0.5  // Check every 500ms
+    
+    /// Queue Persistence Mystery Investigation
+    private var appStateTransitions: [TimeInterval: String] = [:]
+    private var backgroundEventCount: Int = 0
+    private var foregroundEventCount: Int = 0
+    private var persistentEventTimer: Timer?
+
+    // MARK: – Optimized Logging Properties ---------------------------------
+    
+    /// Polling rate limiting
+    private var lastPollingLogTimes: [String: TimeInterval] = [:]
+    private var hardwarePollingCounter: Int = 0
+    
+    /// Queue status reporting optimization
+    private var lastReportedQueueDepth: Int = 0
+    private var lastQueueReportTime: TimeInterval = 0
+    
+    /// Hardware event burst detection
+    private var lastHardwareEventTime: TimeInterval = 0
+    private var hardwareEventBurstCount: Int = 0
 
     private let poiLog  = OSLog(subsystem: Bundle.main.bundleIdentifier ?? "com.infinitybug",
                                 category: "FocusPOI")
@@ -80,8 +179,11 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
 
             let label = name.isEmpty ? (fallback ?? "Button") : name
 
-            b.pressedChangedHandler = { _, _, pressed in
-                if pressed { HardwarePressCache.markDown(label) }
+            b.pressedChangedHandler = { [weak self] _, _, pressed in
+                if pressed { 
+                    HardwarePressCache.markDown(label)
+                    self?.trackHardwarePress()
+                }
             }
         }
 
@@ -96,14 +198,26 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             wire(mg.dpad.down,  id: "Down Arrow")
             wire(mg.dpad.left,  id: "Left Arrow")
             wire(mg.dpad.right, id: "Right Arrow")
-            mg.dpad.valueChangedHandler = { _, x, y in
+            mg.dpad.valueChangedHandler = { [weak self] _, x, y in
                 // X‑axis is unchanged
-                if x < -0.5 { HardwarePressCache.markDown("Left Arrow")  }
-                if x >  0.5 { HardwarePressCache.markDown("Right Arrow") }
+                if x < -0.5 { 
+                    HardwarePressCache.markDown("Left Arrow")
+                    self?.trackHardwareSwipe()
+                }
+                if x >  0.5 { 
+                    HardwarePressCache.markDown("Right Arrow")
+                    self?.trackHardwareSwipe()
+                }
 
                 // Y‑axis on tvOS:  Up = negative –1,  Down = positive +1
-                if y < -0.5 { HardwarePressCache.markDown("Up Arrow")    }
-                if y >  0.5 { HardwarePressCache.markDown("Down Arrow")  }
+                if y < -0.5 { 
+                    HardwarePressCache.markDown("Up Arrow")
+                    self?.trackHardwareSwipe()
+                }
+                if y >  0.5 { 
+                    HardwarePressCache.markDown("Down Arrow")
+                    self?.trackHardwareSwipe()
+                }
             }
 
             // A‑button = Select/Play (on some remotes)
@@ -182,12 +296,36 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         NotificationCenter.default.publisher(for: UIAccessibility.elementFocusedNotification)
             .sink { [weak self] note in
                 guard let self else { return }
-                self.lastFocusTimestamp = CACurrentMediaTime()
+                let currentTime = CACurrentMediaTime()
+                
+                // Measure VoiceOver processing time if we had a previous accessibility operation
+                if self.accessibilityOperationStartTime > 0 {
+                    let processingTime = currentTime - self.accessibilityOperationStartTime
+                    self.voiceOverProcessingTimes.append(processingTime)
+                    self.log("📊 VoiceOver processing time: \(String(format: "%.2f", processingTime * 1000))ms")
+                    
+                    // Keep only last 100 measurements
+                    if self.voiceOverProcessingTimes.count > 100 {
+                        self.voiceOverProcessingTimes.removeFirst()
+                    }
+                }
+                
+                self.lastFocusTimestamp = currentTime
+                self.focusChangeStartTime = currentTime
                 let from = note.userInfo?[AXNotificationKeys.focusedElement] as? NSObject
                 let to = note.userInfo?[AXNotificationKeys.nextFocusedElement] as? NSObject
                 let desc = "\(Self.describe(from)) → \(Self.describe(to))"
                 self.log("FOCUS HOP: \(desc)")
                 os_signpost(.event, log: self.poiLog, name: "AXFocus", "%{public}s", desc)
+                
+                // Track UIKit event processing
+                self.trackUIKitEvent()
+                
+                // Calculate and log input-to-focus latencies
+                self.calculateInputLatencies(currentTime)
+                
+                // Track memory usage during focus changes
+                self.checkMemoryUsage()
 
                 // ---- 5. Duplicate IDs & labels check (visible hierarchy) -----
                 DispatchQueue.main.async {
@@ -221,6 +359,9 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             .compactMap { $0.userInfo?[AXNotificationKeys.announcementMessage] as? String }
             .sink { [weak self] msg in
                 guard let self else { return }
+                let currentTime = CACurrentMediaTime()
+                self.announcementStartTimes[msg] = currentTime
+                self.accessibilityOperationStartTime = currentTime  // Track for processing time measurement
                 let txt = "🔈 VoiceOver announcement starting – \"\(msg)\""
                 self.log(txt)
                 os_signpost(.event, log: self.poiLog, name: "AXAnnounceStart", "%{public}s", txt)
@@ -265,18 +406,55 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                 let rapidRepetition = self.recentPressByType[id, default: 0] > 5 // >5 of same press in 2s
                 
                 if noHW && stale && rapidRepetition && !isUITest {
-                    self.log("[A11Y] WARNING: Phantom UIPress \(id) → InfinityBug?")
+                    let isSwipe = ["UpArrow", "DownArrow", "LeftArrow", "RightArrow"].contains(id)
+                    let eventType = isSwipe ? "SWIPE" : "PRESS"
+                    
+                    self.log("[A11Y] WARNING: Phantom UI\(eventType) \(id) → InfinityBug?")
                     let dt = CACurrentMediaTime() - self.lastFocusTimestamp
                     self.log("(debug)  noHW=\(noHW)  stale=\(stale)  rapid=\(rapidRepetition)  dt=\(String(format: "%.1f", dt))s")
-                    os_signpost(.event, log: self.poiLog,
-                                name: "InfinityBugPhantomPress",
-                                "%{public}s", id)
+                    
+                    // Log current queue depth for phantom events
+                    let currentQueueDepth = self.hardwareEventCount - self.uikitEventCount
+                    let swipeDepth = self.swipeQueueDepth
+                    let pressDepth = self.pressQueueDepth
+                    
+                    if isSwipe {
+                        self.log("📊 SWIPE queue depth during phantom: \(swipeDepth) | Total: \(currentQueueDepth)")
+                        self.trackUIKitSwipe()
+                    } else {
+                        self.log("📊 PRESS queue depth during phantom: \(pressDepth) | Total: \(currentQueueDepth)")
+                        self.trackUIKitPress()
+                    }
+                    
+                    if isSwipe {
+                        os_signpost(.event, log: self.poiLog,
+                                    name: "InfinityBugPhantomSwipe",
+                                    "%{public}s queueDepth:%d", id, currentQueueDepth)
+                    } else {
+                        os_signpost(.event, log: self.poiLog,
+                                    name: "InfinityBugPhantomPress",
+                                    "%{public}s queueDepth:%d", id, currentQueueDepth)
+                    }
                     return
                 }
 
-                // Normal user press
-                self.log("[A11Y] REMOTE \(id)")
-                os_signpost(.event, log: self.poiLog, name: "UserPress", "%{public}s", id)
+                // Normal user input - differentiate swipes vs presses
+                let isSwipe = ["UpArrow", "DownArrow", "LeftArrow", "RightArrow"].contains(id)
+                let eventType = isSwipe ? "SWIPE" : "PRESS"
+                
+                self.log("[A11Y] REMOTE \(eventType): \(id)")
+                
+                if isSwipe {
+                    self.trackUIKitSwipe()
+                } else {
+                    self.trackUIKitPress()
+                }
+                
+                if isSwipe {
+                    os_signpost(.event, log: self.poiLog, name: "UserSwipe", "%{public}s", id)
+                } else {
+                    os_signpost(.event, log: self.poiLog, name: "UserPress", "%{public}s", id)
+                }
             }
             .store(in: &cancellables)
         //-------------------------- 5. Memory warnings ---------------------------
@@ -308,6 +486,9 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         
         //-------------------------- 12. Enhanced hardware polling ----------------
         setupHardwarePolling()
+        
+        //-------------------------- 13. Queue persistence mystery investigation ---
+        setupQueuePersistenceMonitoring()
 
         UIWindow.performSwizzling()
     }
@@ -323,8 +504,39 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             let diff = now - lastTime
             if diff > 1 {
                 let ms = Int(diff * 1_000)
-                self.log("WARNING: RunLoop stall \(ms) ms")
-                os_signpost(.event, log: self.perfLog, name: "RunLoopStall", "%d", ms)
+                
+                // Store stall in history for correlation analysis
+                self.runLoopStallHistory[now] = diff
+                
+                // Check memory usage during stalls
+                let memoryMB = self.getCurrentMemoryUsage()
+                let queueDepth = self.hardwareEventCount - self.uikitEventCount
+                let swipeDepth = self.swipeQueueDepth
+                let pressDepth = self.pressQueueDepth
+                
+                self.log("⚠️ RunLoop stall \(ms)ms | Memory: \(memoryMB)MB | Total queue: \(queueDepth) | Swipes: \(swipeDepth) | Presses: \(pressDepth)")
+                
+                // Update max observed queue depth
+                if queueDepth > self.maxObservedQueueDepth {
+                    self.maxObservedQueueDepth = queueDepth
+                    self.log("📊 New max queue depth: \(queueDepth) events (swipes: \(swipeDepth), presses: \(pressDepth))")
+                }
+                
+                // Use optimized reporting for InfinityBug correlation
+                if swipeDepth >= 50 {
+                    self.log("🚨 CRITICAL SWIPE BACKLOG during stall: \(swipeDepth) swipes - InfinityBug correlation!")
+                } else if swipeDepth > 20 {
+                    self.log("🚨 HIGH SWIPE BACKLOG during stall: \(swipeDepth) swipes - InfinityBug correlation!")
+                }
+                
+                os_signpost(.event, log: self.perfLog, name: "RunLoopStall", 
+                           "%d ms, %d MB, total:%d, swipes:%d, presses:%d", ms, memoryMB, queueDepth, swipeDepth, pressDepth)
+                
+                // Clean up old history (keep last 5 minutes)
+                let cutoff = now - 300
+                self.runLoopStallHistory = self.runLoopStallHistory.filter { $0.key > cutoff }
+                self.memoryUsageHistory = self.memoryUsageHistory.filter { $0.key > cutoff }
+                self.queueDepthHistory = self.queueDepthHistory.filter { $0.key > cutoff }
             }
             lastTime = now
         }
@@ -471,6 +683,403 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         }
         for (label, count) in dict where count > 5 { // >5 identical labels usually smells
             log("WARNING: Potential duplicate label \"\(label)\" ×\(count)")
+        }
+    }
+
+    // MARK: – Enhanced InfinityBug Investigation Methods --------------------
+    
+    /// Tracks hardware events for queue depth estimation
+    private func trackHardwareEvent() {
+        hardwareEventCount += 1
+        let currentTime = CACurrentMediaTime()
+        let queueDepth = hardwareEventCount - uikitEventCount
+        queueDepthHistory[currentTime] = queueDepth
+        
+        if queueDepth > maxObservedQueueDepth {
+            maxObservedQueueDepth = queueDepth
+        }
+        
+        // Log significant queue buildups
+        if queueDepth > 0 && queueDepth % 10 == 0 {
+            log("📊 Event queue building: \(queueDepth) events behind")
+        }
+    }
+    
+    /// Tracks hardware swipe events specifically
+    private func trackHardwareSwipe() {
+        hardwareEventCount += 1
+        let currentTime = CACurrentMediaTime()
+        
+        // Burst detection for hardware events
+        if currentTime - lastHardwareEventTime < 0.1 {
+            hardwareEventBurstCount += 1
+        } else {
+            hardwareEventBurstCount = 1
+        }
+        lastHardwareEventTime = currentTime
+        
+        // Only log hardware detection for bursts or significant events
+        if hardwareEventBurstCount == 1 || hardwareEventBurstCount % 10 == 0 {
+            let direction = getLastDetectedDirection()
+            log("🕹️ HW_SWIPE: \(direction) [burst: \(hardwareEventBurstCount)]")
+        }
+        
+        // Check queue status with context
+        reportQueueStatus(context: "HW_SWIPE")
+    }
+    
+    /// Tracks hardware press events specifically  
+    private func trackHardwarePress() {
+        hardwareEventCount += 1
+        let currentTime = CACurrentMediaTime()
+        
+        // Press events are less frequent, log each one
+        log("🕹️ HW_PRESS detected")
+        
+        reportQueueStatus(context: "HW_PRESS")
+    }
+    
+    /// Tracks UIKit events for queue depth estimation
+    private func trackUIKitEvent() {
+        uikitEventCount += 1
+        let currentTime = CACurrentMediaTime()
+        let queueDepth = hardwareEventCount - uikitEventCount
+        queueDepthHistory[currentTime] = queueDepth
+        
+        // Log when queue catches up
+        if queueDepth <= 0 && maxObservedQueueDepth > 5 {
+            log("📊 Event queue caught up! Max depth was: \(maxObservedQueueDepth)")
+        }
+    }
+    
+    /// Tracks UIKit swipe events specifically
+    private func trackUIKitSwipe() {
+        let currentTime = CACurrentMediaTime()
+        uikitSwipeCount += 1
+        swipeQueueDepth = hardwareSwipeCount - uikitSwipeCount
+        trackUIKitEvent()  // Also update general count
+        
+        // Record UIKit event timestamp with type for latency calculation
+        uikitInputTimestamps.append((currentTime, "swipe"))
+        
+        // Keep only last 50 timestamps
+        if uikitInputTimestamps.count > 50 {
+            uikitInputTimestamps.removeFirst()
+        }
+        
+        if swipeQueueDepth <= 0 && hardwareSwipeCount > 5 {
+            log("📊 SWIPE queue caught up! Processed \(uikitSwipeCount) swipes")
+        }
+    }
+    
+    /// Tracks UIKit press events specifically
+    private func trackUIKitPress() {
+        let currentTime = CACurrentMediaTime()
+        uikitPressCount += 1
+        pressQueueDepth = hardwarePressCount - uikitPressCount
+        trackUIKitEvent()  // Also update general count
+        
+        // Record UIKit event timestamp with type for latency calculation
+        uikitInputTimestamps.append((currentTime, "press"))
+        
+        // Keep only last 50 timestamps
+        if uikitInputTimestamps.count > 50 {
+            uikitInputTimestamps.removeFirst()
+        }
+        
+        if pressQueueDepth <= 0 && hardwarePressCount > 5 {
+            log("📊 PRESS queue caught up! Processed \(uikitPressCount) presses")
+        }
+    }
+    
+    /// Checks current memory usage for correlation analysis
+    private func checkMemoryUsage() {
+        let currentTime = CACurrentMediaTime()
+        
+        // Only check memory periodically to avoid performance impact
+        if currentTime - lastMemoryCheck < memoryCheckInterval {
+            return
+        }
+        lastMemoryCheck = currentTime
+        
+        let memoryMB = getCurrentMemoryUsage()
+        memoryUsageHistory[currentTime] = memoryMB
+        
+        // Log memory spikes during navigation
+        if let previousMemory = memoryUsageHistory.values.suffix(2).first,
+           memoryMB > previousMemory + 50 {  // 50MB spike
+            log("🧠 Memory spike: +\(memoryMB - previousMemory)MB during navigation")
+        }
+    }
+    
+    /// Gets current memory usage in MB
+    private func getCurrentMemoryUsage() -> Int {
+        var info = mach_task_basic_info()
+        var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size)/4
+        
+        let kerr: kern_return_t = withUnsafeMutablePointer(to: &info) {
+            $0.withMemoryRebound(to: integer_t.self, capacity: 1) {
+                task_info(mach_task_self_,
+                         task_flavor_t(MACH_TASK_BASIC_INFO),
+                         $0,
+                         &count)
+            }
+        }
+        
+        if kerr == KERN_SUCCESS {
+            return Int(info.resident_size) / (1024 * 1024)  // Convert to MB
+        }
+        return 0
+    }
+    
+    /// Calculates latencies from hardware input to focus change completion
+    private func calculateInputLatencies(_ focusChangeTime: TimeInterval) {
+        // Calculate hardware-to-focus latency (oldest hardware input)
+        if let oldestHardwareTime = hardwareInputTimestamps.first {
+            let hardwareLatency = focusChangeTime - oldestHardwareTime
+            log("⏱️ HARDWARE→FOCUS latency: \(String(format: "%.0f", hardwareLatency * 1000))ms")
+            
+            // Remove the consumed hardware timestamp
+            hardwareInputTimestamps.removeFirst()
+        }
+        
+        // Calculate UIKit-to-focus latency (oldest UIKit input of each type)
+        if let oldestUIKitEntry = uikitInputTimestamps.first {
+            let (uikitTime, inputType) = oldestUIKitEntry
+            let uikitLatency = focusChangeTime - uikitTime
+            let latencyMs = uikitLatency * 1000
+            
+            if inputType == "swipe" {
+                log("⏱️ SWIPE→FOCUS latency: \(String(format: "%.0f", latencyMs))ms")
+                swipeLatencies.append(uikitLatency)
+                if uikitLatency > maxSwipeLatency {
+                    maxSwipeLatency = uikitLatency
+                    log("📊 New max SWIPE latency: \(String(format: "%.0f", latencyMs))ms")
+                }
+                
+                // Alert on concerning swipe latencies
+                if latencyMs > 100 {  // 100ms threshold
+                    log("⚠️ HIGH SWIPE LATENCY: \(String(format: "%.0f", latencyMs))ms - InfinityBug warning!")
+                }
+                
+            } else {  // press
+                log("⏱️ PRESS→FOCUS latency: \(String(format: "%.0f", latencyMs))ms")
+                pressLatencies.append(uikitLatency)
+                if uikitLatency > maxPressLatency {
+                    maxPressLatency = uikitLatency
+                    log("📊 New max PRESS latency: \(String(format: "%.0f", latencyMs))ms")
+                }
+                
+                // Alert on concerning press latencies
+                if latencyMs > 200 {  // 200ms threshold (presses should be less frequent)
+                    log("⚠️ HIGH PRESS LATENCY: \(String(format: "%.0f", latencyMs))ms")
+                }
+            }
+            
+            // Remove the consumed UIKit timestamp
+            uikitInputTimestamps.removeFirst()
+            
+            // Keep only last 100 latency measurements
+            if swipeLatencies.count > 100 {
+                swipeLatencies.removeFirst()
+            }
+            if pressLatencies.count > 100 {
+                pressLatencies.removeFirst()
+            }
+        }
+    }
+    
+    /// Sets up monitoring for queue persistence across app state changes
+    private func setupQueuePersistenceMonitoring() {
+        // Monitor app state transitions
+        NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                let currentTime = CACurrentMediaTime()
+                self.appStateTransitions[currentTime] = "willResignActive"
+                self.backgroundEventCount = self.uikitEventCount
+                self.log("🔄 App going to background | Events processed: \(self.uikitEventCount)")
+                
+                // Start monitoring events while backgrounded
+                self.startPersistentEventMonitoring()
+            }
+            .store(in: &cancellables)
+        
+        NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                let currentTime = CACurrentMediaTime()
+                self.appStateTransitions[currentTime] = "didBecomeActive"
+                self.foregroundEventCount = self.uikitEventCount
+                
+                let backgroundEvents = self.foregroundEventCount - self.backgroundEventCount
+                if backgroundEvents > 0 {
+                    self.log("🔄 App returned to foreground | Background events: \(backgroundEvents)")
+                    self.log("🚨 QUEUE PERSISTENCE: Events continued processing while backgrounded!")
+                }
+                
+                self.stopPersistentEventMonitoring()
+            }
+            .store(in: &cancellables)
+        
+        // Monitor for system-level events that might indicate queue persistence
+        NotificationCenter.default.publisher(for: UIApplication.didReceiveMemoryWarningNotification)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                let queueDepth = self.hardwareEventCount - self.uikitEventCount
+                self.log("🧠 Memory warning with queue depth: \(queueDepth)")
+                
+                // Check if memory pressure correlates with queue depth
+                if queueDepth > 20 {
+                    self.log("🚨 High queue depth during memory warning - potential correlation!")
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    /// Starts monitoring for persistent events during background state
+    private func startPersistentEventMonitoring() {
+        persistentEventTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            guard let self else { return }
+            let currentEventCount = self.uikitEventCount
+            if currentEventCount > self.backgroundEventCount {
+                let backgroundEvents = currentEventCount - self.backgroundEventCount
+                self.log("🔍 Background event processing detected: +\(backgroundEvents) events")
+            }
+        }
+    }
+    
+    /// Stops monitoring for persistent events
+    private func stopPersistentEventMonitoring() {
+        persistentEventTimer?.invalidate()
+        persistentEventTimer = nil
+    }
+    
+    // MARK: – Analysis and Reporting Methods --------------------------------
+    
+    /// Provides summary of VoiceOver processing performance
+    @objc func logVoiceOverPerformanceSummary() {
+        guard !voiceOverProcessingTimes.isEmpty else {
+            log("📊 No VoiceOver processing time data available")
+            return
+        }
+        
+        let avgTime = voiceOverProcessingTimes.reduce(0, +) / Double(voiceOverProcessingTimes.count)
+        let maxTime = voiceOverProcessingTimes.max() ?? 0
+        let minTime = voiceOverProcessingTimes.min() ?? 0
+        
+        log("📊 VoiceOver Performance Summary:")
+        log("   Average processing time: \(String(format: "%.2f", avgTime * 1000))ms")
+        log("   Max processing time: \(String(format: "%.2f", maxTime * 1000))ms")
+        log("   Min processing time: \(String(format: "%.2f", minTime * 1000))ms")
+        log("   Total measurements: \(voiceOverProcessingTimes.count)")
+        
+        // Flag concerning performance
+        if avgTime > 0.05 {  // 50ms average
+            log("⚠️ Average VoiceOver processing time exceeds 50ms!")
+        }
+        if maxTime > 0.1 {   // 100ms max
+            log("⚠️ Peak VoiceOver processing time exceeds 100ms!")
+        }
+    }
+    
+    /// Provides summary of queue depth analysis
+    @objc func logQueueDepthAnalysis() {
+        let currentQueueDepth = hardwareEventCount - uikitEventCount
+        let currentSwipeDepth = swipeQueueDepth
+        let currentPressDepth = pressQueueDepth
+        
+        log("📊 Event Queue Analysis:")
+        log("   === TOTAL EVENTS ===")
+        log("   Hardware events: \(hardwareEventCount)")
+        log("   UIKit events processed: \(uikitEventCount)")
+        log("   Current queue depth: \(currentQueueDepth)")
+        log("   Max observed queue depth: \(maxObservedQueueDepth)")
+        log("")
+        log("   === SWIPES ===")
+        log("   Hardware swipes: \(hardwareSwipeCount)")
+        log("   UIKit swipes processed: \(uikitSwipeCount)")
+        log("   Current swipe queue depth: \(currentSwipeDepth)")
+        log("")
+        log("   === PRESSES ===")
+        log("   Hardware presses: \(hardwarePressCount)")
+        log("   UIKit presses processed: \(uikitPressCount)")
+        log("   Current press queue depth: \(currentPressDepth)")
+        
+        // Analysis and warnings
+        if maxObservedQueueDepth > 50 {
+            log("🚨 Significant event queue backlog detected!")
+        }
+        
+        if currentSwipeDepth > 10 {
+            log("⚠️ SWIPE backlog: \(currentSwipeDepth) swipes behind - InfinityBug risk!")
+        }
+        
+        if currentPressDepth > 5 {
+            log("⚠️ PRESS backlog: \(currentPressDepth) presses behind")
+        }
+        
+        // InfinityBug correlation analysis
+        if currentSwipeDepth > currentPressDepth * 2 {
+            log("🚨 PATTERN: Swipe queue significantly larger than press queue - classic InfinityBug pattern!")
+        }
+        
+        // Latency analysis
+        log("")
+        log("   === LATENCY ANALYSIS ===")
+        if !swipeLatencies.isEmpty {
+            let avgSwipeLatency = swipeLatencies.reduce(0, +) / Double(swipeLatencies.count)
+            log("   Average SWIPE latency: \(String(format: "%.0f", avgSwipeLatency * 1000))ms")
+            log("   Max SWIPE latency: \(String(format: "%.0f", maxSwipeLatency * 1000))ms")
+            
+            if avgSwipeLatency > 0.1 {  // 100ms average
+                log("   ⚠️ SWIPE latency degraded - InfinityBug risk!")
+            }
+        } else {
+            log("   No SWIPE latency data available")
+        }
+        
+        if !pressLatencies.isEmpty {
+            let avgPressLatency = pressLatencies.reduce(0, +) / Double(pressLatencies.count)
+            log("   Average PRESS latency: \(String(format: "%.0f", avgPressLatency * 1000))ms")
+            log("   Max PRESS latency: \(String(format: "%.0f", maxPressLatency * 1000))ms")
+        } else {
+            log("   No PRESS latency data available")
+        }
+    }
+    
+    /// Provides correlation analysis between memory usage and performance
+    @objc func logMemoryCorrelationAnalysis() {
+        guard !memoryUsageHistory.isEmpty && !runLoopStallHistory.isEmpty else {
+            log("📊 Insufficient data for memory correlation analysis")
+            return
+        }
+        
+        // Find memory usage during stalls
+        var correlatedStalls: [(TimeInterval, Int, TimeInterval)] = []  // (time, memory, stall_duration)
+        
+        for (stallTime, stallDuration) in runLoopStallHistory {
+            // Find closest memory measurement
+            let closestMemory = memoryUsageHistory
+                .min(by: { abs($0.key - stallTime) < abs($1.key - stallTime) })
+            
+            if let memory = closestMemory, abs(memory.key - stallTime) < 2.0 {  // Within 2 seconds
+                correlatedStalls.append((stallTime, memory.value, stallDuration))
+            }
+        }
+        
+        if !correlatedStalls.isEmpty {
+            let avgMemoryDuringStalls = correlatedStalls.map { $0.1 }.reduce(0, +) / correlatedStalls.count
+            let avgStallDuration = correlatedStalls.map { $0.2 }.reduce(0, +) / Double(correlatedStalls.count)
+            
+            log("📊 Memory-Performance Correlation:")
+            log("   Average memory during stalls: \(avgMemoryDuringStalls)MB")
+            log("   Average stall duration: \(String(format: "%.0f", avgStallDuration * 1000))ms")
+            log("   Correlated samples: \(correlatedStalls.count)")
+            
+            if avgMemoryDuringStalls > 200 {  // 200MB
+                log("🧠 High memory usage correlated with performance issues!")
+            }
         }
     }
 
@@ -744,17 +1353,82 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         // Poll GameController state directly
         for controller in GCController.controllers() {
             if let micro = controller.microGamepad {
-                // Check D-pad state
+                // Check D-pad state for swipes
                 let x = micro.dpad.xAxis.value
                 let y = micro.dpad.yAxis.value
                 
-                // Detect state changes that might have been missed
+                // Detect swipe state changes that might have been missed
                 if abs(x) > 0.8 || abs(y) > 0.8 {
                     let direction = x > 0.8 ? "Right" : x < -0.8 ? "Left" : y > 0.8 ? "Down" : "Up"
-                    HardwarePressCache.markDown("Polled \(direction)")
+                    
+                    // Rate-limit polling logs - only log state changes or every 30th detection
+                    let currentTime = CACurrentMediaTime()
+                    let stateKey = "poll_\(direction)"
+                    let lastLogTime = lastPollingLogTimes[stateKey] ?? 0
+                    let shouldLog = currentTime - lastLogTime > 0.5 || hardwarePollingCounter % 30 == 0
+                    
+                    if shouldLog {
+                        log("POLL: \(direction) detected via polling (x:\(String(format: "%.3f", x)), y:\(String(format: "%.3f", y)))")
+                        lastPollingLogTimes[stateKey] = currentTime
+                    }
+                    
+                    // Always track for queue monitoring
+                    trackHardwareSwipe()
+                } else {
+                    // Reset polling burst counter when no input detected
+                    hardwarePollingCounter = 0
+                }
+                
+                hardwarePollingCounter += 1
+            }
+        }
+    }
+
+    // MARK: – Queue Status Monitoring (Optimized) -----------------------------
+    
+    /// Smart queue status reporting - only logs significant changes or thresholds
+    private func reportQueueStatus(context: String = "") {
+        let currentQueueDepth = hardwareEventCount - uikitEventCount
+        let swipeDepth = swipeQueueDepth
+        let pressDepth = pressQueueDepth
+        
+        // Only log if significant change or hitting critical thresholds
+        let significantChange = abs(currentQueueDepth - lastReportedQueueDepth) >= 10
+        let criticalThreshold = currentQueueDepth >= 50 || swipeDepth >= 30 || pressDepth >= 20
+        let timeForUpdate = CACurrentMediaTime() - lastQueueReportTime > 5.0  // Every 5 seconds max
+        
+        if significantChange || criticalThreshold || timeForUpdate {
+            if !context.isEmpty {
+                log("📊 Queue Status [\(context)]: Total=\(currentQueueDepth) | Swipes=\(swipeDepth) | Presses=\(pressDepth)")
+            } else {
+                log("📊 Queue Status: Total=\(currentQueueDepth) | Swipes=\(swipeDepth) | Presses=\(pressDepth)")
+            }
+            
+            lastReportedQueueDepth = currentQueueDepth
+            lastQueueReportTime = CACurrentMediaTime()
+            
+            // Log InfinityBug correlation for high swipe counts
+            if swipeDepth >= 50 {
+                log("🚨 CRITICAL SWIPE BACKLOG: \(swipeDepth) swipes - InfinityBug correlation!")
+            }
+        }
+    }
+
+    private func getLastDetectedDirection() -> String {
+        // Return the most recent hardware direction based on GameController state
+        for controller in GCController.controllers() {
+            if let micro = controller.microGamepad {
+                let x = micro.dpad.xAxis.value
+                let y = micro.dpad.yAxis.value
+                
+                if abs(x) > abs(y) {
+                    return x > 0 ? "Right" : "Left"
+                } else if abs(y) > 0.1 {
+                    return y > 0 ? "Down" : "Up"
                 }
             }
         }
+        return "Unknown"
     }
 }
 
