@@ -1054,3 +1054,17 @@
 - **Target**: Bridge gap between manual success and automated reproduction
 
 ---
+
+## 2025-06-25 – New Stressor Ideas to Implement
+
+1. **Incremental Layout Thrash** – DONE: core manager + test trigger via Darwin notification.
+2. **Controlled per-press Memory Ballast** – DONE: 1 MB every 15 presses.
+3. **Data-Compression GC Stall** – Implement `CompressionStallTask` that appends 64 KB & compresses blob each tick.  ➡️ TODO.
+4. **Accessibility Query Flood Ramp** – Move AX query loop into dedicated `AXStressTask`; parameterise queries per tick.  ➡️ TODO.
+5. **Log Write Amplification** – Add `repeatCount` param to `TestRunLogger.log` and escalate every 30 s.  ➡️ TODO.
+6. **Actor Mailbox Clutter** – Create `FocusLoadActor` to buffer direction events; batch size grows linearly.  ➡️ TODO.
+7. **AsyncLet Fan-Out** – Timer-driven CPU burst using `async let` hashing; fan-out grows per tick.  ➡️ TODO.
+
+Document learnings & add unit tests once each stressor is in place.
+
+---

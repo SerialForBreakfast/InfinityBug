@@ -51,6 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             enableVoiceOverForTesting()
         }
         
+        // Configure linear RunLoop stall if requested (InfinityBug stress helper)
+        configureLinearStallTimerIfNeeded()
+        
+        // Enable constraint thrash if requested
+        ConstraintThrashManager.shared.configureIfNeeded()
+        
         return true
     }
     
@@ -118,6 +124,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("ANNOUNCEMENT: Posted VoiceOver announcement")
         }
         #endif
+    }
+
+    /// Parses launch arguments / env vars and starts the linear stall timer when requested.
+    private func configureLinearStallTimerIfNeeded() {
+        let args = ProcessInfo.processInfo.arguments
+        let env = ProcessInfo.processInfo.environment
+
+        guard args.contains("-LinearStallMode") || env["LINEAR_STALL_MODE"] == "1" else { return }
+
+        // Defaults
+        var baseMs: UInt32? = nil
+        var stepMs: UInt32? = nil
+
+        // Parse launch argument overrides (-LinearStallBaseMS 30 -LinearStallStepMS 25)
+        if let baseIndex = args.firstIndex(of: "-LinearStallBaseMS"), args.indices.contains(baseIndex + 1) {
+            baseMs = UInt32(args[baseIndex + 1])
+        }
+        if let stepIndex = args.firstIndex(of: "-LinearStallStepMS"), args.indices.contains(stepIndex + 1) {
+            stepMs = UInt32(args[stepIndex + 1])
+        }
+
+        // Env overrides
+        if let envBase = env["LINEAR_STALL_BASE_MS"], let val = UInt32(envBase) { baseMs = val }
+        if let envStep = env["LINEAR_STALL_STEP_MS"], let val = UInt32(envStep) { stepMs = val }
+
+        // Start timer on main actor after app launch completes
+        DispatchQueue.main.async {
+            LinearStallTimer.shared.start(baseMs: baseMs, stepMs: stepMs)
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

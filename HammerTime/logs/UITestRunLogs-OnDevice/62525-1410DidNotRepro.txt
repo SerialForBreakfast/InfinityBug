@@ -1,0 +1,570 @@
+CLIENT OF UIKIT REQUIRES UPDATE: This process does not adopt UIScene lifecycle. This will become an assert in a future version.
+Running tests...
+Test Suite 'Selected tests' started at 2025-06-25 14:03:34.312.
+Test Suite 'HammerTimeUITests.xctest' started at 2025-06-25 14:03:34.320.
+Test Suite 'FocusStressUITests' started at 2025-06-25 14:03:34.321.
+Test Case '-[HammerTimeUITests.FocusStressUITests testEvolvedInfinityBugReproduction]' started.
+    t =     0.00s Start Test at 2025-06-25 14:03:34.323
+    t =     0.06s Set Up
+    t =     0.35s     Open com.showblender.HammerTime
+    t =     0.36s         Launch com.showblender.HammerTime
+    t =     8.88s             Setting up automation session
+    t =    13.61s             Wait for com.showblender.HammerTime to idle
+    t =    16.43s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    17.60s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    17.60s             Checking existence of `"FocusStressCollectionView" CollectionView`
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs
+📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs
+TestRunLogger: ⚠️ DIRECTORY-WARNING: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “HammerTimeLogs” in the folder “Documents”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs, NSURL=file:///var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs, NSUnderlyingError=0x30312cb40 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+⚠️ DIRECTORY-WARNING: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “HammerTimeLogs” in the folder “Documents”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs, NSURL=file:///var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs, NSUnderlyingError=0x30312cb40 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: Directory creation warning (fallback available): Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “HammerTimeLogs” in the folder “Documents”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs, NSURL=file:///var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs, NSUnderlyingError=0x30312cb40 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: 🎯 V8.2-SETUP: Ready for DevTicket-focused InfinityBug reproduction
+🎯 V8.2-SETUP: Ready for DevTicket-focused InfinityBug reproduction
+📁 NO-ACTIVE-LOG: TestRunLogger not currently logging
+📁 COMPREHENSIVE-LOG-SEARCH:
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs
+📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs
+📁 1. MAIN-DIRECTORY: /var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs
+  ❌ Error accessing directory: Error Domain=NSCocoaErrorDomain Code=260 "The file “HammerTimeLogs” couldn’t be opened because there is no such file." UserInfo={NSURL=file:///var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs, NSFilePath=/var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs, NSUnderlyingError=0x30312e5b0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+📁 2. UITEST-DIRECTORY: /var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs/UITestRunLogs
+  ❌ Error accessing directory: Error Domain=NSCocoaErrorDomain Code=260 "The file “UITestRunLogs” couldn’t be opened because there is no such file." UserInfo={NSURL=file:///var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs/UITestRunLogs, NSFilePath=/var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x30312cf90 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+📁 3. DOCUMENTS-ROOT: /var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents
+  ❌ Error accessing directory: Error Domain=NSCocoaErrorDomain Code=257 "The file “Documents” couldn’t be opened because you don’t have permission to view it." UserInfo={NSURL=file:///private/var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents, NSFilePath=/private/var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/Documents, NSUnderlyingError=0x30312f1e0 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+📁 4. TEMPORARY-DIRECTORY: /private/var/mobile/Containers/Data/Application/0E8DCF35-9AE1-4439-AD47-5BD0EDB3994F/tmp
+  ✅ 14 HammerTime-related files found:
+    - 062525-1020-EdgeAvoidanceNavigationPattern__.txt
+    - 062325-1940-AggressiveRunLoopStallMonitoring__.txt
+    - 062325-1950-EdgeAvoidanceNavigationPattern__.txt
+    - 062425-0851-EdgeAvoidanceNavigationPattern__.txt
+    - 062525-1114-UpBurstFromSuccessfulReproduction__.txt
+    - 062525-1258-AggressiveRunLoopStallMonitoring__.txt
+    - 062525-1025-UpBurstFromSuccessfulReproduction__.txt
+    - 062425-0840-AggressiveRunLoopStallMonitoring__.txt
+    - 062525-1236-UpBurstFromSuccessfulReproduction__.txt
+    - 062525-1008-AggressiveRunLoopStallMonitoring__.txt
+    ... and 4 more files
+🎯 V8.0-IMPROVED: Starting enhanced InfinityBug reproduction
+🎯 TARGET: RunLoop stall >5179ms (SuccessfulRepro3.txt critical pattern)
+➡️ IMPROVED-RIGHT: Sustained Right-heavy with natural timing (SuccessfulRepro3 pattern)
+    t =    20.51s Pressing and holding Right button for 0.1s
+    t =    21.48s Pressing and holding Right button for 0.1s
+    t =    22.16s Pressing and holding Right button for 0.1s
+    t =    22.71s Pressing and holding Right button for 0.1s
+    t =    23.61s Pressing and holding Right button for 0.1s
+    t =    24.31s Pressing and holding Right button for 0.1s
+    t =    24.86s Pressing and holding Right button for 0.1s
+    t =    25.51s Pressing and holding Right button for 0.1s
+    t =    26.14s Pressing and holding Down button for 0.1s
+    t =    26.80s Pressing and holding Down button for 0.1s
+    t =    27.53s Pressing and holding Right button for 0.1s
+    t =    28.18s Pressing and holding Right button for 0.1s
+    t =    29.18s Pressing and holding Right button for 0.1s
+    t =    29.82s Pressing and holding Right button for 0.1s
+    t =    30.58s Pressing and holding Right button for 0.1s
+    t =    31.33s Pressing and holding Right button for 0.1s
+    t =    32.23s Pressing and holding Right button for 0.1s
+    t =    32.91s Pressing and holding Right button for 0.1s
+    t =    33.67s Pressing and holding Down button for 0.1s
+    t =    34.29s Pressing and holding Down button for 0.1s
+    t =    34.95s Pressing and holding Right button for 0.1s
+    t =    35.57s Pressing and holding Right button for 0.1s
+    t =    36.10s Pressing and holding Right button for 0.1s
+    t =    36.62s Pressing and holding Right button for 0.1s
+    t =    37.28s Pressing and holding Right button for 0.1s
+    t =    38.13s Pressing and holding Right button for 0.1s
+    t =    38.71s Pressing and holding Right button for 0.1s
+    t =    39.78s Pressing and holding Right button for 0.1s
+    t =    40.27s Pressing and holding Down button for 0.1s
+    t =    40.83s Pressing and holding Down button for 0.1s
+    t =    41.70s Pressing and holding Right button for 0.1s
+    t =    42.31s Pressing and holding Right button for 0.1s
+    t =    42.79s Pressing and holding Right button for 0.1s
+    t =    43.33s Pressing and holding Right button for 0.1s
+    t =    43.78s Pressing and holding Right button for 0.1s
+    t =    44.56s Pressing and holding Right button for 0.1s
+    t =    45.10s Pressing and holding Right button for 0.1s
+    t =    45.88s Pressing and holding Right button for 0.1s
+    t =    46.56s Pressing and holding Down button for 0.1s
+    t =    47.15s Pressing and holding Down button for 0.1s
+    t =    47.76s Pressing and holding Right button for 0.1s
+    t =    48.70s Pressing and holding Right button for 0.1s
+    t =    49.38s Pressing and holding Right button for 0.1s
+    t =    50.05s Pressing and holding Right button for 0.1s
+    t =    50.65s Pressing and holding Right button for 0.1s
+    t =    52.03s Pressing and holding Right button for 0.1s
+    t =    52.67s Pressing and holding Right button for 0.1s
+    t =    53.29s Pressing and holding Right button for 0.1s
+    t =    53.89s Pressing and holding Down button for 0.1s
+    t =    54.58s Pressing and holding Down button for 0.1s
+➡️ Improved Right-heavy: 50 presses (80 Right, 20 0own)
+    t =    55.32s Pressing and holding Right button for 0.1s
+    t =    55.97s Pressing and holding Right button for 0.1s
+    t =    56.76s Pressing and holding Right button for 0.1s
+    t =    57.61s Pressing and holding Right button for 0.1s
+    t =    58.23s Pressing and holding Right button for 0.1s
+    t =    58.86s Pressing and holding Right button for 0.1s
+    t =    59.49s Pressing and holding Right button for 0.1s
+    t =    60.20s Pressing and holding Right button for 0.1s
+    t =    60.77s Pressing and holding Down button for 0.1s
+    t =    61.55s Pressing and holding Down button for 0.1s
+    t =    62.34s Pressing and holding Right button for 0.1s
+    t =    63.03s Pressing and holding Right button for 0.1s
+    t =    63.63s Pressing and holding Right button for 0.1s
+    t =    64.16s Pressing and holding Right button for 0.1s
+    t =    64.69s Pressing and holding Right button for 0.1s
+    t =    65.72s Pressing and holding Right button for 0.1s
+    t =    66.51s Pressing and holding Right button for 0.1s
+    t =    67.19s Pressing and holding Right button for 0.1s
+    t =    67.73s Pressing and holding Down button for 0.1s
+    t =    68.28s Pressing and holding Down button for 0.1s
+    t =    69.08s Pressing and holding Right button for 0.1s
+    t =    69.56s Pressing and holding Right button for 0.1s
+    t =    70.04s Pressing and holding Right button for 0.1s
+    t =    70.91s Pressing and holding Right button for 0.1s
+    t =    71.50s Pressing and holding Right button for 0.1s
+    t =    72.20s Pressing and holding Right button for 0.1s
+    t =    72.78s Pressing and holding Right button for 0.1s
+    t =    73.41s Pressing and holding Right button for 0.1s
+    t =    74.13s Pressing and holding Down button for 0.1s
+    t =    74.68s Pressing and holding Down button for 0.1s
+    t =    75.43s Pressing and holding Right button for 0.1s
+    t =    76.05s Pressing and holding Right button for 0.1s
+    t =    76.68s Pressing and holding Right button for 0.1s
+    t =    77.47s Pressing and holding Right button for 0.1s
+    t =    78.06s Pressing and holding Right button for 0.1s
+    t =    78.83s Pressing and holding Right button for 0.1s
+    t =    79.51s Pressing and holding Right button for 0.1s
+    t =    80.17s Pressing and holding Right button for 0.1s
+    t =    80.88s Pressing and holding Down button for 0.1s
+    t =    81.72s Pressing and holding Down button for 0.1s
+    t =    82.25s Pressing and holding Right button for 0.1s
+    t =    83.01s Pressing and holding Right button for 0.1s
+    t =    83.55s Pressing and holding Right button for 0.1s
+    t =    84.02s Pressing and holding Right button for 0.1s
+    t =    84.56s Pressing and holding Right button for 0.1s
+    t =    85.06s Pressing and holding Right button for 0.1s
+    t =    85.72s Pressing and holding Right button for 0.1s
+    t =    86.39s Pressing and holding Right button for 0.1s
+    t =    86.96s Pressing and holding Down button for 0.1s
+    t =    87.56s Pressing and holding Down button for 0.1s
+➡️ Improved Right-heavy: 100 presses (80 Right, 20 0own)
+    t =    88.05s Pressing and holding Right button for 0.1s
+    t =    88.73s Pressing and holding Right button for 0.1s
+    t =    89.53s Pressing and holding Right button for 0.1s
+    t =    90.06s Pressing and holding Right button for 0.1s
+    t =    90.57s Pressing and holding Right button for 0.1s
+    t =    91.13s Pressing and holding Right button for 0.1s
+    t =    91.79s Pressing and holding Right button for 0.1s
+    t =    92.78s Pressing and holding Right button for 0.1s
+    t =    93.43s Pressing and holding Down button for 0.1s
+    t =    94.05s Pressing and holding Down button for 0.1s
+    t =    94.53s Pressing and holding Right button for 0.1s
+    t =    95.03s Pressing and holding Right button for 0.1s
+    t =    95.98s Pressing and holding Right button for 0.1s
+    t =    96.60s Pressing and holding Right button for 0.1s
+    t =    97.71s Pressing and holding Right button for 0.1s
+    t =    98.28s Pressing and holding Right button for 0.1s
+    t =    98.92s Pressing and holding Right button for 0.1s
+    t =    99.46s Pressing and holding Right button for 0.1s
+    t =    99.95s Pressing and holding Down button for 0.1s
+    t =   100.58s Pressing and holding Down button for 0.1s
+    t =   101.84s Pressing and holding Right button for 0.1s
+    t =   102.74s Pressing and holding Right button for 0.1s
+    t =   103.56s Pressing and holding Right button for 0.1s
+    t =   104.13s Pressing and holding Right button for 0.1s
+    t =   104.76s Pressing and holding Right button for 0.1s
+    t =   106.19s Pressing and holding Right button for 0.1s
+    t =   106.85s Pressing and holding Right button for 0.1s
+    t =   107.56s Pressing and holding Right button for 0.1s
+    t =   108.13s Pressing and holding Down button for 0.1s
+    t =   108.86s Pressing and holding Down button for 0.1s
+    t =   109.46s Pressing and holding Right button for 0.1s
+    t =   110.08s Pressing and holding Right button for 0.1s
+    t =   110.73s Pressing and holding Right button for 0.1s
+    t =   111.49s Pressing and holding Right button for 0.1s
+    t =   112.07s Pressing and holding Right button for 0.1s
+    t =   112.68s Pressing and holding Right button for 0.1s
+    t =   113.39s Pressing and holding Right button for 0.1s
+    t =   114.02s Pressing and holding Right button for 0.1s
+    t =   114.49s Pressing and holding Down button for 0.1s
+    t =   115.07s Pressing and holding Down button for 0.1s
+    t =   115.61s Pressing and holding Right button for 0.1s
+    t =   116.15s Pressing and holding Right button for 0.1s
+    t =   116.83s Pressing and holding Right button for 0.1s
+    t =   117.49s Pressing and holding Right button for 0.1s
+    t =   118.47s Pressing and holding Right button for 0.1s
+    t =   119.24s Pressing and holding Right button for 0.1s
+    t =   119.92s Pressing and holding Right button for 0.1s
+    t =   120.47s Pressing and holding Right button for 0.1s
+    t =   121.64s Pressing and holding Down button for 0.1s
+    t =   122.11s Pressing and holding Down button for 0.1s
+➡️ Improved Right-heavy: 150 presses (80 Right, 20 0own)
+    t =   122.74s Pressing and holding Right button for 0.1s
+    t =   123.39s Pressing and holding Right button for 0.1s
+    t =   123.94s Pressing and holding Right button for 0.1s
+    t =   124.56s Pressing and holding Right button for 0.1s
+    t =   125.23s Pressing and holding Right button for 0.1s
+    t =   125.92s Pressing and holding Right button for 0.1s
+    t =   126.55s Pressing and holding Right button for 0.1s
+    t =   127.43s Pressing and holding Right button for 0.1s
+    t =   128.10s Pressing and holding Down button for 0.1s
+    t =   128.70s Pressing and holding Down button for 0.1s
+    t =   129.37s Pressing and holding Right button for 0.1s
+    t =   130.00s Pressing and holding Right button for 0.1s
+    t =   130.77s Pressing and holding Right button for 0.1s
+    t =   131.34s Pressing and holding Right button for 0.1s
+    t =   131.83s Pressing and holding Right button for 0.1s
+    t =   132.41s Pressing and holding Right button for 0.1s
+    t =   133.16s Pressing and holding Right button for 0.1s
+    t =   133.73s Pressing and holding Right button for 0.1s
+    t =   134.51s Pressing and holding Down button for 0.1s
+    t =   135.17s Pressing and holding Down button for 0.1s
+    t =   135.78s Pressing and holding Right button for 0.1s
+    t =   136.27s Pressing and holding Right button for 0.1s
+    t =   136.79s Pressing and holding Right button for 0.1s
+    t =   137.26s Pressing and holding Right button for 0.1s
+    t =   137.83s Pressing and holding Right button for 0.1s
+    t =   138.67s Pressing and holding Right button for 0.1s
+    t =   139.23s Pressing and holding Right button for 0.1s
+    t =   139.76s Pressing and holding Right button for 0.1s
+    t =   140.29s Pressing and holding Down button for 0.1s
+    t =   141.10s Pressing and holding Down button for 0.1s
+    t =   141.70s Pressing and holding Right button for 0.1s
+    t =   142.49s Pressing and holding Right button for 0.1s
+    t =   143.02s Pressing and holding Right button for 0.1s
+    t =   143.65s Pressing and holding Right button for 0.1s
+    t =   144.29s Pressing and holding Right button for 0.1s
+    t =   145.00s Pressing and holding Right button for 0.1s
+    t =   145.51s Pressing and holding Right button for 0.1s
+    t =   146.28s Pressing and holding Right button for 0.1s
+    t =   146.82s Pressing and holding Down button for 0.1s
+    t =   147.66s Pressing and holding Down button for 0.1s
+    t =   148.26s Pressing and holding Right button for 0.1s
+    t =   149.00s Pressing and holding Right button for 0.1s
+    t =   149.90s Pressing and holding Right button for 0.1s
+    t =   150.57s Pressing and holding Right button for 0.1s
+    t =   151.27s Pressing and holding Right button for 0.1s
+    t =   151.76s Pressing and holding Right button for 0.1s
+    t =   152.32s Pressing and holding Right button for 0.1s
+    t =   153.15s Pressing and holding Right button for 0.1s
+    t =   153.72s Pressing and holding Down button for 0.1s
+    t =   154.30s Pressing and holding Down button for 0.1s
+➡️ Improved Right-heavy: 200 presses (80 Right, 20 0own)
+    t =   154.86s Pressing and holding Right button for 0.1s
+    t =   155.37s Pressing and holding Right button for 0.1s
+    t =   156.22s Pressing and holding Right button for 0.1s
+    t =   156.84s Pressing and holding Right button for 0.1s
+    t =   157.41s Pressing and holding Right button for 0.1s
+    t =   158.34s Pressing and holding Right button for 0.1s
+    t =   158.94s Pressing and holding Right button for 0.1s
+    t =   159.45s Pressing and holding Right button for 0.1s
+    t =   160.03s Pressing and holding Down button for 0.1s
+    t =   160.59s Pressing and holding Down button for 0.1s
+    t =   161.53s Pressing and holding Right button for 0.1s
+    t =   162.18s Pressing and holding Right button for 0.1s
+    t =   162.76s Pressing and holding Right button for 0.1s
+    t =   163.39s Pressing and holding Right button for 0.1s
+    t =   164.14s Pressing and holding Right button for 0.1s
+    t =   164.66s Pressing and holding Right button for 0.1s
+    t =   165.50s Pressing and holding Right button for 0.1s
+    t =   166.31s Pressing and holding Right button for 0.1s
+    t =   167.12s Pressing and holding Down button for 0.1s
+    t =   168.14s Pressing and holding Down button for 0.1s
+    t =   168.77s Pressing and holding Right button for 0.1s
+    t =   169.69s Pressing and holding Right button for 0.1s
+    t =   170.39s Pressing and holding Right button for 0.1s
+    t =   171.02s Pressing and holding Right button for 0.1s
+    t =   171.62s Pressing and holding Right button for 0.1s
+    t =   172.20s Pressing and holding Right button for 0.1s
+    t =   172.68s Pressing and holding Right button for 0.1s
+    t =   173.15s Pressing and holding Right button for 0.1s
+    t =   173.81s Pressing and holding Down button for 0.1s
+    t =   174.60s Pressing and holding Down button for 0.1s
+    t =   175.15s Pressing and holding Right button for 0.1s
+    t =   175.65s Pressing and holding Right button for 0.1s
+    t =   176.22s Pressing and holding Right button for 0.1s
+    t =   177.00s Pressing and holding Right button for 0.1s
+    t =   177.53s Pressing and holding Right button for 0.1s
+    t =   178.13s Pressing and holding Right button for 0.1s
+    t =   179.03s Pressing and holding Right button for 0.1s
+    t =   179.57s Pressing and holding Right button for 0.1s
+    t =   180.37s Pressing and holding Down button for 0.1s
+    t =   180.95s Pressing and holding Down button for 0.1s
+    t =   181.48s Pressing and holding Right button for 0.1s
+    t =   182.23s Pressing and holding Right button for 0.1s
+    t =   182.85s Pressing and holding Right button for 0.1s
+    t =   183.49s Pressing and holding Right button for 0.1s
+    t =   184.14s Pressing and holding Right button for 0.1s
+    t =   184.66s Pressing and holding Right button for 0.1s
+    t =   185.16s Pressing and holding Right button for 0.1s
+    t =   185.62s Pressing and holding Right button for 0.1s
+    t =   186.17s Pressing and holding Down button for 0.1s
+    t =   186.85s Pressing and holding Down button for 0.1s
+➡️ Improved Right-heavy: 250 presses (80 Right, 20 0own)
+    t =   187.56s Pressing and holding Right button for 0.1s
+    t =   188.02s Pressing and holding Right button for 0.1s
+    t =   188.52s Pressing and holding Right button for 0.1s
+    t =   189.16s Pressing and holding Right button for 0.1s
+    t =   189.84s Pressing and holding Right button for 0.1s
+    t =   190.42s Pressing and holding Right button for 0.1s
+    t =   190.94s Pressing and holding Right button for 0.1s
+    t =   191.46s Pressing and holding Right button for 0.1s
+    t =   191.95s Pressing and holding Down button for 0.1s
+    t =   192.45s Pressing and holding Down button for 0.1s
+    t =   193.08s Pressing and holding Right button for 0.1s
+    t =   193.58s Pressing and holding Right button for 0.1s
+    t =   194.11s Pressing and holding Right button for 0.1s
+    t =   194.75s Pressing and holding Right button for 0.1s
+    t =   195.40s Pressing and holding Right button for 0.1s
+    t =   196.11s Pressing and holding Right button for 0.1s
+    t =   196.57s Pressing and holding Right button for 0.1s
+    t =   197.10s Pressing and holding Right button for 0.1s
+    t =   197.66s Pressing and holding Down button for 0.1s
+    t =   198.27s Pressing and holding Down button for 0.1s
+    t =   198.80s Pressing and holding Right button for 0.1s
+    t =   199.40s Pressing and holding Right button for 0.1s
+    t =   200.05s Pressing and holding Right button for 0.1s
+➡️ IMPROVED-RIGHT complete: 273 sustained presses
+↘️ IMPROVED-PATTERN: Right-Down alternating (SuccessfulRepro3.txt critical sequence)
+    t =   200.91s Pressing and holding Right button for 0.1s
+    t =   201.66s Pressing and holding Down button for 0.1s
+    t =   202.40s Pressing and holding Right button for 0.1s
+    t =   203.30s Pressing and holding Down button for 0.1s
+    t =   203.96s Pressing and holding Right button for 0.1s
+    t =   204.92s Pressing and holding Down button for 0.1s
+    t =   205.96s Pressing and holding Right button for 0.1s
+    t =   206.82s Pressing and holding Down button for 0.1s
+    t =   207.33s Pressing and holding Right button for 0.1s
+    t =   207.98s Pressing and holding Down button for 0.1s
+    t =   209.34s Pressing and holding Right button for 0.1s
+    t =   210.17s Pressing and holding Down button for 0.1s
+    t =   210.81s Pressing and holding Right button for 0.1s
+    t =   211.83s Pressing and holding Down button for 0.1s
+    t =   212.52s Pressing and holding Right button for 0.1s
+    t =   213.10s Pressing and holding Down button for 0.1s
+    t =   214.20s Pressing and holding Right button for 0.1s
+    t =   214.70s Pressing and holding Down button for 0.1s
+    t =   215.55s Pressing and holding Right button for 0.1s
+    t =   216.16s Pressing and holding Down button for 0.1s
+    t =   216.97s Pressing and holding Right button for 0.1s
+    t =   217.84s Pressing and holding Down button for 0.1s
+    t =   218.55s Pressing and holding Right button for 0.1s
+    t =   219.33s Pressing and holding Down button for 0.1s
+    t =   220.43s Pressing and holding Right button for 0.1s
+    t =   220.97s Pressing and holding Down button for 0.1s
+    t =   221.96s Pressing and holding Right button for 0.1s
+    t =   222.51s Pressing and holding Down button for 0.1s
+    t =   223.43s Pressing and holding Right button for 0.1s
+    t =   224.29s Pressing and holding Down button for 0.1s
+    t =   225.00s Pressing and holding Right button for 0.1s
+    t =   225.76s Pressing and holding Down button for 0.1s
+    t =   226.51s Pressing and holding Right button for 0.1s
+    t =   227.04s Pressing and holding Down button for 0.1s
+    t =   228.18s Pressing and holding Right button for 0.1s
+    t =   229.04s Pressing and holding Down button for 0.1s
+    t =   230.01s Pressing and holding Right button for 0.1s
+    t =   230.92s Pressing and holding Down button for 0.1s
+    t =   231.46s Pressing and holding Right button for 0.1s
+    t =   232.37s Pressing and holding Down button for 0.1s
+↘️ Right-Down pattern: 40 alternating sequences
+    t =   233.24s Pressing and holding Right button for 0.1s
+    t =   234.19s Pressing and holding Down button for 0.1s
+    t =   235.21s Pressing and holding Right button for 0.1s
+    t =   235.88s Pressing and holding Down button for 0.1s
+    t =   236.55s Pressing and holding Right button for 0.1s
+    t =   237.22s Pressing and holding Down button for 0.1s
+    t =   237.97s Pressing and holding Right button for 0.1s
+    t =   238.76s Pressing and holding Down button for 0.1s
+    t =   239.67s Pressing and holding Right button for 0.1s
+    t =   240.48s Pressing and holding Down button for 0.1s
+    t =   241.21s Pressing and holding Right button for 0.1s
+    t =   242.00s Pressing and holding Down button for 0.1s
+    t =   242.78s Pressing and holding Right button for 0.1s
+    t =   243.68s Pressing and holding Down button for 0.1s
+    t =   244.55s Pressing and holding Right button for 0.1s
+    t =   245.33s Pressing and holding Down button for 0.1s
+    t =   246.04s Pressing and holding Right button for 0.1s
+    t =   246.58s Pressing and holding Down button for 0.1s
+    t =   247.87s Pressing and holding Right button for 0.1s
+    t =   248.46s Pressing and holding Down button for 0.1s
+    t =   249.35s Pressing and holding Right button for 0.1s
+    t =   250.16s Pressing and holding Down button for 0.1s
+    t =   250.99s Pressing and holding Right button for 0.1s
+    t =   251.71s Pressing and holding Down button for 0.1s
+    t =   252.60s Pressing and holding Right button for 0.1s
+    t =   253.29s Pressing and holding Down button for 0.1s
+    t =   254.29s Pressing and holding Right button for 0.1s
+    t =   254.89s Pressing and holding Down button for 0.1s
+    t =   255.74s Pressing and holding Right button for 0.1s
+    t =   256.34s Pressing and holding Down button for 0.1s
+    t =   257.38s Pressing and holding Right button for 0.1s
+    t =   258.23s Pressing and holding Down button for 0.1s
+    t =   259.10s Pressing and holding Right button for 0.1s
+    t =   260.10s Pressing and holding Down button for 0.1s
+    t =   260.78s Pressing and holding Right button for 0.1s
+    t =   261.68s Pressing and holding Down button for 0.1s
+    t =   262.32s Pressing and holding Right button for 0.1s
+    t =   262.95s Pressing and holding Down button for 0.1s
+    t =   264.17s Pressing and holding Right button for 0.1s
+    t =   264.93s Pressing and holding Down button for 0.1s
+↘️ Right-Down pattern: 80 alternating sequences
+    t =   265.84s Pressing and holding Right button for 0.1s
+    t =   266.72s Pressing and holding Down button for 0.1s
+    t =   267.63s Pressing and holding Right button for 0.1s
+    t =   268.28s Pressing and holding Down button for 0.1s
+    t =   269.07s Pressing and holding Right button for 0.1s
+    t =   269.86s Pressing and holding Down button for 0.1s
+    t =   270.88s Pressing and holding Right button for 0.1s
+    t =   271.57s Pressing and holding Down button for 0.1s
+    t =   272.67s Pressing and holding Right button for 0.1s
+    t =   273.32s Pressing and holding Down button for 0.1s
+    t =   274.19s Pressing and holding Right button for 0.1s
+    t =   274.88s Pressing and holding Down button for 0.1s
+    t =   275.79s Pressing and holding Right button for 0.1s
+    t =   276.58s Pressing and holding Down button for 0.1s
+    t =   277.32s Pressing and holding Right button for 0.1s
+    t =   278.04s Pressing and holding Down button for 0.1s
+    t =   279.20s Pressing and holding Right button for 0.1s
+    t =   279.88s Pressing and holding Down button for 0.1s
+    t =   280.60s Pressing and holding Right button for 0.1s
+    t =   281.24s Pressing and holding Down button for 0.1s
+    t =   282.34s Pressing and holding Right button for 0.1s
+    t =   283.15s Pressing and holding Down button for 0.1s
+    t =   283.85s Pressing and holding Right button for 0.1s
+    t =   284.59s Pressing and holding Down button for 0.1s
+    t =   285.20s Pressing and holding Right button for 0.1s
+    t =   285.85s Pressing and holding Down button for 0.1s
+    t =   286.92s Pressing and holding Right button for 0.1s
+    t =   287.89s Pressing and holding Down button for 0.1s
+    t =   288.82s Pressing and holding Right button for 0.1s
+    t =   289.83s Pressing and holding Down button for 0.1s
+    t =   290.64s Pressing and holding Right button for 0.1s
+    t =   291.77s Pressing and holding Down button for 0.1s
+    t =   292.56s Pressing and holding Right button for 0.1s
+    t =   293.18s Pressing and holding Down button for 0.1s
+    t =   294.04s Pressing and holding Right button for 0.1s
+    t =   294.91s Pressing and holding Down button for 0.1s
+    t =   295.72s Pressing and holding Right button for 0.1s
+    t =   296.48s Pressing and holding Down button for 0.1s
+    t =   297.50s Pressing and holding Right button for 0.1s
+    t =   298.19s Pressing and holding Down button for 0.1s
+↘️ Right-Down pattern: 120 alternating sequences
+    t =   299.11s Pressing and holding Right button for 0.1s
+    t =   299.76s Pressing and holding Down button for 0.1s
+    t =   300.77s Pressing and holding Right button for 0.1s
+    t =   301.39s Pressing and holding Down button for 0.1s
+    t =   302.30s Pressing and holding Right button for 0.1s
+    t =   303.02s Pressing and holding Down button for 0.1s
+    t =   303.91s Pressing and holding Right button for 0.1s
+    t =   304.58s Pressing and holding Down button for 0.1s
+    t =   305.37s Pressing and holding Right button for 0.1s
+    t =   306.19s Pressing and holding Down button for 0.1s
+    t =   307.06s Pressing and holding Right button for 0.1s
+    t =   307.73s Pressing and holding Down button for 0.1s
+    t =   308.53s Pressing and holding Right button for 0.1s
+    t =   309.41s Pressing and holding Down button for 0.1s
+    t =   310.07s Pressing and holding Right button for 0.1s
+    t =   310.75s Pressing and holding Down button for 0.1s
+    t =   311.63s Pressing and holding Right button for 0.1s
+    t =   312.43s Pressing and holding Down button for 0.1s
+    t =   313.18s Pressing and holding Right button for 0.1s
+    t =   313.86s Pressing and holding Down button for 0.1s
+    t =   314.40s Pressing and holding Right button for 0.1s
+    t =   315.56s Pressing and holding Down button for 0.1s
+    t =   316.32s Pressing and holding Right button for 0.1s
+    t =   316.89s Pressing and holding Down button for 0.1s
+    t =   317.98s Pressing and holding Right button for 0.1s
+    t =   318.52s Pressing and holding Down button for 0.1s
+    t =   319.39s Pressing and holding Right button for 0.1s
+    t =   320.09s Pressing and holding Down button for 0.1s
+↘️ IMPROVED-PATTERN complete: 148 Right-Down sequences
+💥 IMPROVED-PRESSURE: Sustained Right-Down pressure (targeting >5179ms stalls)
+    t =   320.95s Pressing and holding Down button for 0.1s
+    t =   321.66s Pressing and holding Right button for 0.1s
+    t =   322.66s Pressing and holding Right button for 0.1s
+    t =   323.24s Pressing and holding Down button for 0.1s
+    t =   323.89s Pressing and holding Right button for 0.1s
+    t =   324.88s Pressing and holding Right button for 0.1s
+    t =   325.82s Pressing and holding Down button for 0.1s
+    t =   326.58s Pressing and holding Right button for 0.1s
+    t =   327.12s Pressing and holding Right button for 0.1s
+    t =   327.76s Pressing and holding Down button for 0.1s
+    t =   328.49s Pressing and holding Right button for 0.1s
+    t =   329.44s Pressing and holding Right button for 0.1s
+    t =   330.10s Pressing and holding Down button for 0.1s
+    t =   330.96s Pressing and holding Right button for 0.1s
+    t =   331.64s Pressing and holding Right button for 0.1s
+    t =   332.32s Pressing and holding Down button for 0.1s
+    t =   332.95s Pressing and holding Right button for 0.1s
+    t =   333.71s Pressing and holding Right button for 0.1s
+    t =   334.49s Pressing and holding Down button for 0.1s
+    t =   335.19s Pressing and holding Right button for 0.1s
+    t =   335.87s Pressing and holding Right button for 0.1s
+    t =   337.00s Pressing and holding Down button for 0.1s
+    t =   337.59s Pressing and holding Right button for 0.1s
+    t =   338.14s Pressing and holding Right button for 0.1s
+    t =   338.78s Pressing and holding Down button for 0.1s
+    t =   339.53s Pressing and holding Right button for 0.1s
+    t =   340.54s Pressing and holding Right button for 0.1s
+    t =   341.20s Pressing and holding Down button for 0.1s
+    t =   342.40s Pressing and holding Right button for 0.1s
+    t =   343.03s Pressing and holding Right button for 0.1s
+💥 Sustained pressure: 30 consistent Right-Down presses
+    t =   343.66s Pressing and holding Down button for 0.1s
+    t =   344.61s Pressing and holding Right button for 0.1s
+    t =   345.18s Pressing and holding Right button for 0.1s
+    t =   346.06s Pressing and holding Down button for 0.1s
+    t =   346.75s Pressing and holding Right button for 0.1s
+    t =   347.38s Pressing and holding Right button for 0.1s
+    t =   348.07s Pressing and holding Down button for 0.1s
+    t =   348.76s Pressing and holding Right button for 0.1s
+    t =   349.45s Pressing and holding Right button for 0.1s
+    t =   350.22s Pressing and holding Down button for 0.1s
+    t =   351.46s Pressing and holding Right button for 0.1s
+    t =   352.45s Pressing and holding Right button for 0.1s
+    t =   353.21s Pressing and holding Down button for 0.1s
+    t =   354.14s Pressing and holding Right button for 0.1s
+    t =   355.05s Pressing and holding Right button for 0.1s
+    t =   355.81s Pressing and holding Down button for 0.1s
+    t =   356.65s Pressing and holding Right button for 0.1s
+    t =   357.30s Pressing and holding Right button for 0.1s
+    t =   358.25s Pressing and holding Down button for 0.1s
+    t =   358.81s Pressing and holding Right button for 0.1s
+    t =   359.75s Pressing and holding Right button for 0.1s
+    t =   360.51s Pressing and holding Down button for 0.1s
+    t =   361.58s Pressing and holding Right button for 0.1s
+    t =   362.37s Pressing and holding Right button for 0.1s
+    t =   362.91s Pressing and holding Down button for 0.1s
+    t =   363.66s Pressing and holding Right button for 0.1s
+    t =   364.75s Pressing and holding Right button for 0.1s
+    t =   365.48s Pressing and holding Down button for 0.1s
+    t =   366.44s Pressing and holding Right button for 0.1s
+    t =   366.97s Pressing and holding Right button for 0.1s
+💥 Sustained pressure: 60 consistent Right-Down presses
+    t =   367.50s Pressing and holding Down button for 0.1s
+    t =   368.22s Pressing and holding Right button for 0.1s
+    t =   369.06s Pressing and holding Right button for 0.1s
+    t =   369.84s Pressing and holding Down button for 0.1s
+    t =   371.22s Pressing and holding Right button for 0.1s
+    t =   371.91s Pressing and holding Right button for 0.1s
+    t =   372.89s Pressing and holding Down button for 0.1s
+    t =   373.64s Pressing and holding Right button for 0.1s
+    t =   375.10s Pressing and holding Right button for 0.1s
+    t =   375.89s Pressing and holding Down button for 0.1s
+    t =   376.79s Pressing and holding Right button for 0.1s
+    t =   377.61s Pressing and holding Right button for 0.1s
+    t =   378.28s Pressing and holding Down button for 0.1s
+    t =   379.05s Pressing and holding Right button for 0.1s
+    t =   380.02s Pressing and holding Right button for 0.1s
+    t =   380.81s Pressing and holding Down button for 0.1s
+💥 IMPROVED-PRESSURE complete: 76 sustained pressure presses
+🎯 V8.0-IMPROVED: Completed enhanced reproduction in 361.1s
+🎯 CRITICAL: Monitor for RunLoop stall >5179ms (SuccessfulRepro3.txt pattern)
+    t =   381.63s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testEvolvedInfinityBugReproduction]' passed (382.093 seconds).
+Test Suite 'FocusStressUITests' passed at 2025-06-25 14:09:56.421.
+	 Executed 1 test, with 0 failures (0 unexpected) in 382.093 (382.100) seconds
+Test Suite 'HammerTimeUITests.xctest' passed at 2025-06-25 14:09:56.472.
+	 Executed 1 test, with 0 failures (0 unexpected) in 382.093 (382.152) seconds
+Test Suite 'Selected tests' passed at 2025-06-25 14:09:56.520.
+	 Executed 1 test, with 0 failures (0 unexpected) in 382.093 (382.208) seconds

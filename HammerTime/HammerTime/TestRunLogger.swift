@@ -137,6 +137,12 @@ public final class TestRunLogger {
         testName = nil
         
         NSLog("TestRunLogger: Log saved to \(finalLogFile?.lastPathComponent ?? "unknown")")
+        
+        // Only consolidate logs for manual/automation runs.  tvOS UI-test sandbox blocks Documents access
+        // and the consolidation attempt just emits errors, wasting time.
+        if ProcessInfo.processInfo.environment["XCInjectBundleInto"] == nil {
+            _ = consolidateLogsForRetrieval()
+        }
     }
     
     /// Logs a message with timestamp and automatic file writing
@@ -151,9 +157,18 @@ public final class TestRunLogger {
             logFileHandle?.write(data)
         }
         
-        // Output to both NSLog (for UITest capture) and unified logging (for console filtering)
-        NSLog("TestRunLogger: \(message)")
-        Self.logger.info("\(message, privacy: .public)")
+        let isUITest = ProcessInfo.processInfo.environment["XCInjectBundleInto"] != nil
+
+        if isUITest {
+            // For UITest context: single output to avoid duplication
+            print("TestRunLogger: \(message)")
+        } else {
+            // For manual/automation context: use NSLog only
+            NSLog("TestRunLogger: \(message)")
+        }
+        
+        // // Use unified logging for structured console capture
+        // Self.logger.notice("\(message, privacy: .public)")
     }
     
     /// Logs a message specifically for UITest execution context
@@ -161,7 +176,7 @@ public final class TestRunLogger {
     /// - Parameter message: Message to log during UITest
     public func logUITest(_ message: String) {
         log(message) // Use standard logging
-        Self.uiTestLogger.info("UITEST: \(message, privacy: .public)")
+        Self.uiTestLogger.notice("UITEST: \(message, privacy: .public)")
     }
     
     /// Logs accessibility debugging information with separate category
@@ -227,22 +242,34 @@ public final class TestRunLogger {
     public func printAllLogLocations() {
         NSLog("📁 COMPREHENSIVE-LOG-SEARCH:")
         
+        let isUITest = ProcessInfo.processInfo.environment["XCInjectBundleInto"] != nil
+
+        if isUITest {
+            // In UI-test sandbox only tmp is accessible. Listing others just produces errors.
+            let tempURL = FileManager.default.temporaryDirectory
+            NSLog("📁 TEMPORARY-DIRECTORY: \(tempURL.path)")
+            listHammerTimeFilesInDirectory(tempURL, prefix: "  ")
+            return
+        }
+
+        // Manual / automation context: list all potential directories
+
         // 1. Main HammerTimeLogs directory
         let logsURL = getLogsDirectoryURL()
         NSLog("📁 1. MAIN-DIRECTORY: \(logsURL.path)")
         listFilesInDirectory(logsURL, prefix: "  ")
-        
+
         // 2. UITestRunLogs subdirectory
         let testRunLogsURL = logsURL.appendingPathComponent("UITestRunLogs")
         NSLog("📁 2. UITEST-DIRECTORY: \(testRunLogsURL.path)")
         listFilesInDirectory(testRunLogsURL, prefix: "  ")
-        
+
         // 3. Documents root directory
         if let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             NSLog("📁 3. DOCUMENTS-ROOT: \(documentsURL.path)")
             listHammerTimeFilesInDirectory(documentsURL, prefix: "  ")
         }
-        
+
         // 4. Temporary directory
         let tempURL = FileManager.default.temporaryDirectory
         NSLog("📁 4. TEMPORARY-DIRECTORY: \(tempURL.path)")
@@ -547,7 +574,7 @@ public final class TestRunLogger {
     /// - Returns: Formatted timestamp string matching existing log format
     private func generateTimestamp() -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMddyy-HHmm"  // Match existing format like "62325-1439"
+        formatter.dateFormat = "MMddyy-HHmmss"
         return formatter.string(from: Date())
     }
     
@@ -564,17 +591,25 @@ public final class TestRunLogger {
     /// 
     /// - Returns: URL of logs directory that's guaranteed to be writable
     private func getLogsDirectoryURL() -> URL {
-        // Always use app's Documents directory for guaranteed write access
-        guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            // Ultimate fallback: temporary directory
-            log("⚠️ FALLBACK: Using temporary directory for logs")
-            return FileManager.default.temporaryDirectory.appendingPathComponent("HammerTimeLogs")
+        // Prefer a tmp directory when running inside a UI-test sandbox – Documents is usually read-only.
+        let isUITest = ProcessInfo.processInfo.environment["XCInjectBundleInto"] != nil
+        if isUITest {
+            let tmpURL = FileManager.default.temporaryDirectory.appendingPathComponent("HammerTimeLogs")
+            log("📁 UITEST-MODE: Using tmp/HammerTimeLogs at \(tmpURL.path)")
+            return tmpURL
         }
-        
-        let logsURL = documentsURL.appendingPathComponent("HammerTimeLogs")
-        log("📁 LOGS-PATH: Using Documents/HammerTimeLogs at \(logsURL.path)")
-        
-        return logsURL
+
+        // Otherwise attempt Documents → HammerTimeLogs
+        if let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let logsURL = documentsURL.appendingPathComponent("HammerTimeLogs")
+            log("📁 LOGS-PATH: Using Documents/HammerTimeLogs at \(logsURL.path)")
+            return logsURL
+        }
+
+        // Ultimate fallback: tmp directory
+        let fallbackURL = FileManager.default.temporaryDirectory.appendingPathComponent("HammerTimeLogs")
+        log("⚠️ FALLBACK: Could not access Documents – using tmp at \(fallbackURL.path)")
+        return fallbackURL
     }
     
     /// Gets current memory usage information
