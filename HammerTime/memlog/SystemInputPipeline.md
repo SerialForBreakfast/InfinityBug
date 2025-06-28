@@ -1,8 +1,8 @@
 # tvOS System Input Architecture and InfinityBug Analysis
 
 *Created 2025-06-24*  
-*Last Updated: 2025-01-22*  
-*Status: Updated with V9.0 Evidence - Progressive Stress System*
+*Last Updated: 2025-06-27*  
+*Status: Updated with V9.1 Evidence & Verified Instrumentation*
 
 ---
 
@@ -124,7 +124,7 @@ let observer = CFRunLoopObserverCreateWithHandler(
     }
     lastTime = currentTime
 }
-CFRunLoopAddObserver(CFRunLoopGetMain(), observer, .defaultMode)
+CFRunLoopAddObserver(CFRunLoopGetMain(), observer, .commonModes)
 ```
 
 **Progressive Memory Pressure Tracking**:
@@ -133,8 +133,8 @@ CFRunLoopAddObserver(CFRunLoopGetMain(), observer, .defaultMode)
 private var memoryBallast: [Data] = []
 
 func allocateMemoryBallast(_ targetMB: Int) {
-    let currentMB = memoryBallast.count * 5
-    while currentMB < targetMB {
+    // Re-evaluate memory usage on each iteration to avoid infinite loops
+    while memoryBallast.count * 5 < targetMB {
         let chunk = Data(count: 5 * 1024 * 1024) // 5MB chunks
         memoryBallast.append(chunk)
         
@@ -380,6 +380,11 @@ The InfinityBug represents a performance limitation in tvOS accessibility proces
 - SuccessfulRepro6: 52MB→61MB→62MB→79MB memory progression analysis
 - V8.3 Failure Analysis: Machine-gun timing ineffectiveness documentation
 - V9.0 Development: 4-stage progressive methodology validation
+
+### V9.1 Supplementary Technical References (verified)
+- Input-to-Output Latency Measurement Sample (“Is It Snappy?”): https://github.com/chadaustin/is-it-snappy — open-source iOS project that measures hardware → UIKit rendering delay.
+- WWDC22 Session 11034 “Diagnose and optimize VoiceOver in your app”: https://developer.apple.com/videos/play/wwdc2022/11034/
+- WWDC18 Session 235 “Advanced TV Input with UIKit”: https://developer.apple.com/videos/play/wwdc2018/235/
 
 
  

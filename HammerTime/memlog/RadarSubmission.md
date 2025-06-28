@@ -20,7 +20,7 @@ The tvOS focus engine enters an infinite loop when VoiceOver navigates rapidly t
 ### Steps to Reproduce
 1. Enable VoiceOver on Apple TV device
 2. Launch app with UICollectionView using compositional layout
-3. Navigate rapidly using directional buttons (particularly Right/Down combinations)
+3. Navigate rapidly using a combination of swipes and directional buttons (avoid sticking at the edges and navigate for the most changes in focus)
 4. Continue rapid navigation for 2-3 minutes until system becomes unresponsive
 5. Press Home button to exit app
 
