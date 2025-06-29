@@ -109,8 +109,8 @@ final class FocusStressViewController: UIViewController {
             }
             
             TestRunLogger.shared.startManualTest("Manual_FocusStress_\(presetName)")
-            TestRunLogger.shared.log("📱 FocusStressViewController: Starting manual execution")
-            TestRunLogger.shared.log("📱 Configuration: \(presetName)")
+                    TestRunLogger.shared.log("FocusStressViewController: Starting manual execution")
+        TestRunLogger.shared.log("Configuration: \(presetName)")
             TestRunLogger.shared.logSystemInfo()
         }
         
@@ -120,7 +120,7 @@ final class FocusStressViewController: UIViewController {
         let stressors = configuration.stress.stressors
         if stressors.contains(.circularFocusGuides) { 
             addCircularGuides()
-            TestRunLogger.shared.log("🔄 FocusStressViewController: Circular focus guides activated")
+            TestRunLogger.shared.log("FocusStressViewController: Circular focus guides activated")
         }
         if stressors.contains(.dynamicFocusGuides) { 
             startDynamicFocusGuides()
@@ -128,11 +128,11 @@ final class FocusStressViewController: UIViewController {
         }
         if stressors.contains(.rapidLayoutChanges) { 
             startRapidLayoutChanges()
-            TestRunLogger.shared.log("⚡ FocusStressViewController: Rapid layout changes activated")
+            TestRunLogger.shared.log("FocusStressViewController: Rapid layout changes activated")
         }
         if stressors.contains(.overlappingElements) { 
             addOverlappingElements()
-            TestRunLogger.shared.log("🎯 FocusStressViewController: Overlapping elements activated")
+            TestRunLogger.shared.log("FocusStressViewController: Overlapping elements activated")
         }
         if stressors.contains(.voAnnouncements) { 
             startVOAnnouncements()
@@ -142,7 +142,7 @@ final class FocusStressViewController: UIViewController {
         // V6.0 memory stress features for guaranteed reproduction
         if ProcessInfo.processInfo.environment["MEMORY_STRESS_ENABLED"] == "1" {
             startMemoryStress()
-            TestRunLogger.shared.log("💾 FocusStressViewController: Memory stress enabled for V6.0 reproduction")
+            TestRunLogger.shared.log("FocusStressViewController: Memory stress enabled for V6.0 reproduction")
         }
         
         // NEW: Start progressive stress system for predictable InfinityBug reproduction
@@ -174,8 +174,8 @@ final class FocusStressViewController: UIViewController {
     private func startProgressiveStressSystem() {
         stressStartTime = CACurrentMediaTime()
         
-        TestRunLogger.shared.log("🎯 PROGRESSIVE-STRESS: Starting predictable escalation system")
-        TestRunLogger.shared.log("🎯 TARGET: 52MB→56MB→64MB→66MB with escalating stalls")
+        TestRunLogger.shared.log("PROGRESSIVE-STRESS: Starting predictable escalation system")
+        TestRunLogger.shared.log("TARGET: 52MB→56MB→64MB→66MB with escalating stalls")
         
         progressiveStressTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
             self?.updateProgressiveStress()
@@ -214,24 +214,24 @@ final class FocusStressViewController: UIViewController {
         
         switch level {
         case 1:
-            TestRunLogger.shared.log("🎯 STRESS-ESCALATION: Level 1 at \(String(format: "%.1f", elapsed))s - targeting 56MB")
+            TestRunLogger.shared.log("STRESS-ESCALATION: Level 1 at \(String(format: "%.1f", elapsed))s - targeting 56MB")
             addMemoryPressure(targetMB: 56)
             increaseVoiceOverLoad(factor: 1.5)
             
         case 2:
-            TestRunLogger.shared.log("🎯 STRESS-ESCALATION: Level 2 at \(String(format: "%.1f", elapsed))s - targeting 64MB")
+            TestRunLogger.shared.log("STRESS-ESCALATION: Level 2 at \(String(format: "%.1f", elapsed))s - targeting 64MB")
             addMemoryPressure(targetMB: 64)
             increaseVoiceOverLoad(factor: 2.0)
             artificialStallDuration = 0.1 // Start injecting 100ms stalls
             
         case 3:
-            TestRunLogger.shared.log("🎯 STRESS-ESCALATION: Level 3 at \(String(format: "%.1f", elapsed))s - targeting 66MB+ CRITICAL")
+            TestRunLogger.shared.log("STRESS-ESCALATION: Level 3 at \(String(format: "%.1f", elapsed))s - targeting 66MB+ CRITICAL")
             addMemoryPressure(targetMB: 66)
             increaseVoiceOverLoad(factor: 3.0)
             artificialStallDuration = 0.5 // Inject 500ms stalls to trigger 1000ms+ stalls
             
         default:
-            TestRunLogger.shared.log("🎯 STRESS-BASELINE: Level 0 - normal operation ~52MB")
+            TestRunLogger.shared.log("STRESS-BASELINE: Level 0 - normal operation ~52MB")
         }
     }
     
@@ -247,14 +247,14 @@ final class FocusStressViewController: UIViewController {
             }
             memoryBallast.append(megabyteOfStrings)
             
-            TestRunLogger.shared.log("🎯 MEMORY-PRESSURE: Added \(additionalMB)MB ballast (target: \(targetMB)MB)")
+            TestRunLogger.shared.log("MEMORY-PRESSURE: Added \(additionalMB)MB ballast (target: \(targetMB)MB)")
         }
     }
     
     /// Simulates increasing VoiceOver processing overhead
     private func increaseVoiceOverLoad(factor: Double) {
         voiceOverProcessingLoad = Int(Double(voiceOverProcessingLoad + 10) * factor)
-        TestRunLogger.shared.log("🎯 VOICEOVER-LOAD: Increased to level \(voiceOverProcessingLoad)")
+        TestRunLogger.shared.log("VOICEOVER-LOAD: Increased to level \(voiceOverProcessingLoad)")
     }
     
     /// Applies stress appropriate to current level
@@ -414,7 +414,7 @@ final class FocusStressViewController: UIViewController {
     /// Creates background accessibility stress elements during navigation.
     /// These elements stress the accessibility system similar to conditions in successful reproductions.
     private func addFocusConflicts() {
-        NSLog("💾 FocusStressViewController: Adding accessibility stress elements")
+        NSLog("FocusStressViewController: Adding accessibility stress elements")
         
         // 75+ accessibility elements for system stress during large navigation traversals
         for i in 0..<75 {
@@ -496,7 +496,7 @@ final class FocusStressViewController: UIViewController {
     /// Starts memory stress timer to create system pressure for guaranteed InfinityBug reproduction.
     /// Generates background memory allocations to stress the system similar to successful manual reproductions.
     private func startMemoryStress() {
-        NSLog("💾 FocusStressViewController: Starting memory stress for V6.0 reproduction")
+        NSLog("FocusStressViewController: Starting memory stress for V6.0 reproduction")
         
         memoryStressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
             // Generate memory allocations to stress system
@@ -590,7 +590,7 @@ final class FocusStressViewController: UIViewController {
     private func activateMemoryStress() {
         guard configuration.layout.numberOfSections >= 150 else { return } // Only for extreme presets
         
-        TestRunLogger.shared.log("💾 MEMORY-STRESS: Activating continuous allocation pressure")
+        TestRunLogger.shared.log("MEMORY-STRESS: Activating continuous allocation pressure")
         
         // Continuous memory allocation background task for system pressure
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -615,7 +615,7 @@ final class FocusStressViewController: UIViewController {
                     
                     // Log memory pressure progress
                     if allocationCycle % 20 == 0 {
-                        TestRunLogger.shared.log("💾 MEMORY-STRESS: Cycle \(allocationCycle) - \(memoryBurst.count) elements allocated")
+                        TestRunLogger.shared.log("MEMORY-STRESS: Cycle \(allocationCycle) - \(memoryBurst.count) elements allocated")
                     }
                 }
                 

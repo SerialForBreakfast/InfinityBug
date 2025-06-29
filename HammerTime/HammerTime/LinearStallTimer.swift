@@ -49,7 +49,7 @@ final class LinearStallTimer {
 
         guard timer == nil else { return }
 
-        TestRunLogger.shared.log("⏱ LinearStallTimer starting – base: \(self.baseMs) ms, step: \(self.stepMs) ms")
+        TestRunLogger.shared.log("LinearStallTimer starting – base: \(self.baseMs) ms, step: \(self.stepMs) ms")
 
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
             guard let self = self else { return }
@@ -64,7 +64,7 @@ final class LinearStallTimer {
         timer?.invalidate()
         timer = nil
         tickCount = 0
-        TestRunLogger.shared.log("⏱ LinearStallTimer stopped")
+        TestRunLogger.shared.log("LinearStallTimer stopped")
     }
 
     // MARK: Internal
@@ -95,6 +95,6 @@ final class LinearStallTimer {
             _ = UIAccessibility.focusedElement(using: nil)
         }
 
-        TestRunLogger.shared.log("⏱ LinearStallTimer tick #\(tickCount) – cumulative stall \(totalMs) ms, AX queries: \(axQueries)")
+        TestRunLogger.shared.log("LinearStallTimer tick #\(tickCount) – cumulative stall \(totalMs) ms, AX queries: \(axQueries)")
     }
 } 

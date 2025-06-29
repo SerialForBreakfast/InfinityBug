@@ -46,30 +46,30 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
     /// Quick summary of current swipe vs press status for manual testing
     @objc func logSwipeVsPressStatus() {
         let totalQueue = hardwareEventCount - uikitEventCount
-        log("📊 SWIPE vs PRESS Status:")
-        log("   🏃‍♂️ SWIPES: Hardware=\(hardwareSwipeCount), UIKit=\(uikitSwipeCount), Queue=\(swipeQueueDepth)")
-        log("   👆 PRESSES: Hardware=\(hardwarePressCount), UIKit=\(uikitPressCount), Queue=\(pressQueueDepth)")
-        log("   📈 TOTAL: Queue depth=\(totalQueue), Max observed=\(maxObservedQueueDepth)")
+        log("SWIPE vs PRESS Status:")
+        log("   SWIPES: Hardware=\(hardwareSwipeCount), UIKit=\(uikitSwipeCount), Queue=\(swipeQueueDepth)")
+        log("   PRESSES: Hardware=\(hardwarePressCount), UIKit=\(uikitPressCount), Queue=\(pressQueueDepth)")
+        log("   TOTAL: Queue depth=\(totalQueue), Max observed=\(maxObservedQueueDepth)")
         
         // Current latency status
         if !swipeLatencies.isEmpty {
             let currentSwipeLatency = swipeLatencies.last! * 1000
-            log("   ⏱️ Current SWIPE latency: \(String(format: "%.0f", currentSwipeLatency))ms")
+            log("   Current SWIPE latency: \(String(format: "%.0f", currentSwipeLatency))ms")
         }
         if !pressLatencies.isEmpty {
             let currentPressLatency = pressLatencies.last! * 1000
-            log("   ⏱️ Current PRESS latency: \(String(format: "%.0f", currentPressLatency))ms")
+            log("   Current PRESS latency: \(String(format: "%.0f", currentPressLatency))ms")
         }
         
         // Status assessment
         if swipeQueueDepth > pressQueueDepth * 2 {
-                    log("   🚨 Swipe queue dominates - pattern detected!")
+                    log("   Swipe queue dominates - pattern detected!")
     } else if swipeQueueDepth > 10 {
-        log("   ⚠️ Significant swipe backlog")
+        log("   Significant swipe backlog")
         } else if !swipeLatencies.isEmpty && swipeLatencies.last! > 0.1 {
-            log("   ⚠️ High swipe latency - performance degradation detected")
+            log("   High swipe latency - performance degradation detected")
         } else {
-            log("   ✅ Queue depths and latencies appear normal")
+            log("   Queue depths and latencies appear normal")
         }
     }
 
@@ -302,7 +302,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                 if self.accessibilityOperationStartTime > 0 {
                     let processingTime = currentTime - self.accessibilityOperationStartTime
                     self.voiceOverProcessingTimes.append(processingTime)
-                    self.log("📊 VoiceOver processing time: \(String(format: "%.2f", processingTime * 1000))ms")
+                    self.log("VoiceOver processing time: \(String(format: "%.2f", processingTime * 1000))ms")
                     
                     // Keep only last 100 measurements
                     if self.voiceOverProcessingTimes.count > 100 {
@@ -433,10 +433,10 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                     let pressDepth = self.pressQueueDepth
                     
                     if isSwipe {
-                        self.log("📊 SWIPE queue depth during phantom: \(swipeDepth) | Total: \(currentQueueDepth)")
+                        self.log("SWIPE queue depth during phantom: \(swipeDepth) | Total: \(currentQueueDepth)")
                         self.trackUIKitSwipe()
                     } else {
-                        self.log("📊 PRESS queue depth during phantom: \(pressDepth) | Total: \(currentQueueDepth)")
+                        self.log("PRESS queue depth during phantom: \(pressDepth) | Total: \(currentQueueDepth)")
                         self.trackUIKitPress()
                     }
                     
@@ -529,12 +529,12 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                 let swipeDepth = self.swipeQueueDepth
                 let pressDepth = self.pressQueueDepth
                 
-                self.log("⚠️ RunLoop stall \(ms)ms | Memory: \(memoryMB)MB | Total queue: \(queueDepth) | Swipes: \(swipeDepth) | Presses: \(pressDepth)")
+                self.log("RunLoop stall \(ms)ms | Memory: \(memoryMB)MB | Total queue: \(queueDepth) | Swipes: \(swipeDepth) | Presses: \(pressDepth)")
                 
                 // Update max observed queue depth
                 if queueDepth > self.maxObservedQueueDepth {
                     self.maxObservedQueueDepth = queueDepth
-                    self.log("📊 New max queue depth: \(queueDepth) events (swipes: \(swipeDepth), presses: \(pressDepth))")
+                    self.log("New max queue depth: \(queueDepth) events (swipes: \(swipeDepth), presses: \(pressDepth))")
                 }
                 
                 // Use optimized reporting for swipe correlation
@@ -581,7 +581,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
 
-            // 1️⃣ Gather every UIFocusGuide from every window / view tree
+            // 1. Gather every UIFocusGuide from every window / view tree
             var guides: [UIFocusGuide] = []
 
             func walk(_ view: UIView) {
@@ -598,7 +598,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             guard let self else {
                 return
             }
-            // 2️⃣ Check each guide's size in global coordinates
+            // 2. Check each guide's size in global coordinates
             for guide in guides {
                 guard let host = guide.owningView else { continue }
                 let global = host.convert(guide.layoutFrame, to: nil)   // layoutFrame is correct API
@@ -716,7 +716,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         
         // Log significant queue buildups
         if queueDepth > 0 && queueDepth % 10 == 0 {
-            log("📊 Event queue building: \(queueDepth) events behind")
+            log("Event queue building: \(queueDepth) events behind")
         }
     }
     
@@ -763,7 +763,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         
         // Log when queue catches up
         if queueDepth <= 0 && maxObservedQueueDepth > 5 {
-            log("📊 Event queue caught up! Max depth was: \(maxObservedQueueDepth)")
+            log("Event queue caught up! Max depth was: \(maxObservedQueueDepth)")
         }
     }
     
@@ -783,7 +783,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         }
         
         if swipeQueueDepth <= 0 && hardwareSwipeCount > 5 {
-            log("📊 SWIPE queue caught up! Processed \(uikitSwipeCount) swipes")
+            log("SWIPE queue caught up! Processed \(uikitSwipeCount) swipes")
         }
     }
     
@@ -803,7 +803,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         }
         
         if pressQueueDepth <= 0 && hardwarePressCount > 5 {
-            log("📊 PRESS queue caught up! Processed \(uikitPressCount) presses")
+            log("PRESS queue caught up! Processed \(uikitPressCount) presses")
         }
     }
     
@@ -852,7 +852,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         // Calculate hardware-to-focus latency (oldest hardware input)
         if let oldestHardwareTime = hardwareInputTimestamps.first {
             let hardwareLatency = focusChangeTime - oldestHardwareTime
-            log("⏱️ HARDWARE→FOCUS latency: \(String(format: "%.0f", hardwareLatency * 1000))ms")
+            log("HARDWARE→FOCUS latency: \(String(format: "%.0f", hardwareLatency * 1000))ms")
             
             // Remove the consumed hardware timestamp
             hardwareInputTimestamps.removeFirst()
@@ -865,29 +865,29 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             let latencyMs = uikitLatency * 1000
             
             if inputType == "swipe" {
-                log("⏱️ SWIPE→FOCUS latency: \(String(format: "%.0f", latencyMs))ms")
+                log("SWIPE→FOCUS latency: \(String(format: "%.0f", latencyMs))ms")
                 swipeLatencies.append(uikitLatency)
                 if uikitLatency > maxSwipeLatency {
                     maxSwipeLatency = uikitLatency
-                    log("📊 New max SWIPE latency: \(String(format: "%.0f", latencyMs))ms")
+                    log("New max SWIPE latency: \(String(format: "%.0f", latencyMs))ms")
                 }
                 
                 // Alert on concerning swipe latencies
                 if latencyMs > 100 {  // 100ms threshold
-                    log("⚠️ HIGH SWIPE LATENCY: \(String(format: "%.0f", latencyMs))ms")
+                    log("HIGH SWIPE LATENCY: \(String(format: "%.0f", latencyMs))ms")
                 }
                 
             } else {  // press
-                log("⏱️ PRESS→FOCUS latency: \(String(format: "%.0f", latencyMs))ms")
+                log("PRESS→FOCUS latency: \(String(format: "%.0f", latencyMs))ms")
                 pressLatencies.append(uikitLatency)
                 if uikitLatency > maxPressLatency {
                     maxPressLatency = uikitLatency
-                    log("📊 New max PRESS latency: \(String(format: "%.0f", latencyMs))ms")
+                    log("New max PRESS latency: \(String(format: "%.0f", latencyMs))ms")
                 }
                 
                 // Alert on concerning press latencies
                 if latencyMs > 200 {  // 200ms threshold (presses should be less frequent)
-                    log("⚠️ HIGH PRESS LATENCY: \(String(format: "%.0f", latencyMs))ms")
+                    log("HIGH PRESS LATENCY: \(String(format: "%.0f", latencyMs))ms")
                 }
             }
             
@@ -913,7 +913,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                 let currentTime = CACurrentMediaTime()
                 self.appStateTransitions[currentTime] = "willResignActive"
                 self.backgroundEventCount = self.uikitEventCount
-                self.log("🔄 App going to background | Events processed: \(self.uikitEventCount)")
+                self.log("App going to background | Events processed: \(self.uikitEventCount)")
                 
                 // Start monitoring events while backgrounded
                 self.startPersistentEventMonitoring()
@@ -929,8 +929,8 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                 
                 let backgroundEvents = self.foregroundEventCount - self.backgroundEventCount
                 if backgroundEvents > 0 {
-                    self.log("🔄 App returned to foreground | Background events: \(backgroundEvents)")
-                    self.log("🚨 QUEUE PERSISTENCE: Events continued processing while backgrounded!")
+                    self.log("App returned to foreground | Background events: \(backgroundEvents)")
+                                            self.log("QUEUE PERSISTENCE: Events continued processing while backgrounded!")
                 }
                 
                 self.stopPersistentEventMonitoring()
@@ -946,7 +946,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                 
                 // Check if memory pressure correlates with queue depth
                 if queueDepth > 20 {
-                    self.log("🚨 High queue depth during memory warning - potential correlation!")
+                    self.log("High queue depth during memory warning - potential correlation!")
                 }
             }
             .store(in: &cancellables)
@@ -975,7 +975,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
     /// Provides summary of VoiceOver processing performance
     @objc func logVoiceOverPerformanceSummary() {
         guard !voiceOverProcessingTimes.isEmpty else {
-            log("📊 No VoiceOver processing time data available")
+            log("No VoiceOver processing time data available")
             return
         }
         
@@ -983,7 +983,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         let maxTime = voiceOverProcessingTimes.max() ?? 0
         let minTime = voiceOverProcessingTimes.min() ?? 0
         
-        log("📊 VoiceOver Performance Summary:")
+        log("VoiceOver Performance Summary:")
         let avgMs = avgTime * 1000
         let maxMs = maxTime * 1000
         let minMs = minTime * 1000
@@ -1003,7 +1003,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         let currentSwipeDepth = swipeQueueDepth
         let currentPressDepth = pressQueueDepth
         
-        log("📊 Event Queue Analysis:")
+        log("Event Queue Analysis:")
         log("   === TOTAL EVENTS ===")
         log("   Hardware events: \(hardwareEventCount)")
         log("   UIKit events processed: \(uikitEventCount)")
@@ -1030,12 +1030,12 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
         
         // Analysis and warnings
         if maxObservedQueueDepth > 50 {
-            log("🚨 Significant event queue backlog detected!")
+            log("Significant event queue backlog detected!")
         }
         
         // Swipe dominance correlation analysis
         if currentSwipeDepth > currentPressDepth * 2 {
-            log("🚨 PATTERN: Swipe queue significantly larger than press queue")
+            log("PATTERN: Swipe queue significantly larger than press queue")
         }
         
         // Latency analysis
@@ -1069,7 +1069,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
     /// Provides correlation analysis between memory usage and performance
     @objc func logMemoryCorrelationAnalysis() {
         guard !memoryUsageHistory.isEmpty && !runLoopStallHistory.isEmpty else {
-            log("📊 Insufficient data for memory correlation analysis")
+            log("Insufficient data for memory correlation analysis")
             return
         }
         
@@ -1090,7 +1090,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
             let avgMemoryDuringStalls = correlatedStalls.map { $0.1 }.reduce(0, +) / correlatedStalls.count
             let avgStallDuration = correlatedStalls.map { $0.2 }.reduce(0, +) / Double(correlatedStalls.count)
             
-            log("📊 Memory-Performance Correlation:")
+            log("Memory-Performance Correlation:")
             log("   Average memory during stalls: \(avgMemoryDuringStalls)MB")
             log("   Average stall duration: \(String(format: "%.0f", avgStallDuration * 1000))ms")
             log("   Correlated samples: \(correlatedStalls.count)")
@@ -1184,7 +1184,7 @@ private let notificationUserInfoKeyNextFocusedElement = "UIAccessibilityNextFocu
                 if abs(x - previousDPadState.x) > 0.1 || abs(y - previousDPadState.y) > 0.1 {
                     let direction = self?.mapDPadToDirection(x: x, y: y) ?? "Unknown"
                     
-                    self?.log("🕹️ DPAD STATE: \(direction) (x:\(String(format: "%.3f", x)), y:\(String(format: "%.3f", y)), ts:\(String(format: "%.6f", currentTime)))")
+                    self?.log("DPAD STATE: \(direction) (x:\(String(format: "%.3f", x)), y:\(String(format: "%.3f", y)), ts:\(String(format: "%.6f", currentTime)))")
                     
                     os_signpost(.event, log: self?.inputLog ?? OSLog.disabled,
                                name: "DPadStateChange",

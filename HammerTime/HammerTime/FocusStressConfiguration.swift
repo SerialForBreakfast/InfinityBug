@@ -128,14 +128,15 @@ public struct FocusStressConfiguration {
             // The preset name might be passed with quote marks from the test runner
             let trimmedName = presetName.trimmingCharacters(in: .whitespacesAndNewlines)
             if let preset = FocusStressPreset.from(string: trimmedName) {
-                print("✅ Loaded FocusStressPreset from launch argument: \(presetName)")
+                print("LOADED FocusStressPreset from launch argument: \(presetName)")
                 return preset.settings
             } else {
-                print("⚠️ Could not find a FocusStressPreset matching '\(presetName)'. Known values are: \(FocusStressPreset.allCases.map { $0.stringValue })")
+                print("WARNING: Could not find a FocusStressPreset matching '\(presetName)'. Known values are: \(FocusStressPreset.allCases.map { $0.stringValue })")
             }
         }
         
-        print("✅ Using default FocusStressPreset: \(defaultPreset.stringValue)")
+        let defaultPreset = FocusStressPreset.allCases.first!
+        print("USING default FocusStressPreset: \(defaultPreset.stringValue)")
         return defaultPreset.settings
     }
 }

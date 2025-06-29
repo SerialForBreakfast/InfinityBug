@@ -104,7 +104,7 @@ public final class TestRunLogger {
         // Initialize log file with metadata header
         writeLogHeader(config: config, timestamp: timestamp)
         
-        log("🚀 TEST-START: \(config.testName) (\(config.executionContext.rawValue))")
+        log("TEST-START: \(config.testName) (\(config.executionContext.rawValue))")
         
         return true
     }
@@ -189,7 +189,7 @@ public final class TestRunLogger {
     
     /// Logs system information for debugging and analysis
     public func logSystemInfo() {
-        log("📊 SYSTEM-INFO:")
+        log("SYSTEM-INFO:")
         log("  Device: \(UIDevice.current.name)")
         log("  OS: \(UIDevice.current.systemName) \(UIDevice.current.systemVersion)")
         log("  Model: \(UIDevice.current.model)")
@@ -204,7 +204,7 @@ public final class TestRunLogger {
     ///   - eventType: Type of InfinityBug event detected
     ///   - details: Additional context and debugging information
     public func logInfinityBugEvent(eventType: String, details: [String: Any]) {
-        log("🚨 INFINITYBUG-EVENT: \(eventType)")
+        log("INFINITYBUG-EVENT: \(eventType)")
         for (key, value) in details {
             log("  \(key): \(value)")
         }
@@ -214,7 +214,7 @@ public final class TestRunLogger {
     /// 
     /// - Parameter metrics: Performance metrics dictionary
     public func logPerformanceMetrics(_ metrics: [String: Any]) {
-        log("⚡ PERFORMANCE-METRICS:")
+        log("PERFORMANCE-METRICS:")
         for (key, value) in metrics {
             log("  \(key): \(value)")
         }
@@ -226,10 +226,10 @@ public final class TestRunLogger {
     /// since tvOS/iOS sandboxing may put them in unexpected locations.
     public func printLogFileLocation() {
         if let logFile = currentLogFile {
-            NSLog("📁 CURRENT-LOG-LOCATION: \(logFile.path)")
-            NSLog("📁 PARENT-DIRECTORY: \(logFile.deletingLastPathComponent().path)")
-        } else {
-            NSLog("📁 NO-ACTIVE-LOG: TestRunLogger not currently logging")
+                    NSLog("CURRENT-LOG-LOCATION: \(logFile.path)")
+        NSLog("PARENT-DIRECTORY: \(logFile.deletingLastPathComponent().path)")
+    } else {
+        NSLog("NO-ACTIVE-LOG: TestRunLogger not currently logging")
         }
         
         // Check all possible log locations
@@ -240,14 +240,14 @@ public final class TestRunLogger {
     /// 
     /// Searches all possible log directories and lists found files
     public func printAllLogLocations() {
-        NSLog("📁 COMPREHENSIVE-LOG-SEARCH:")
+        NSLog("COMPREHENSIVE-LOG-SEARCH:")
         
         let isUITest = ProcessInfo.processInfo.environment["XCInjectBundleInto"] != nil
 
         if isUITest {
             // In UI-test sandbox only tmp is accessible. Listing others just produces errors.
             let tempURL = FileManager.default.temporaryDirectory
-            NSLog("📁 TEMPORARY-DIRECTORY: \(tempURL.path)")
+            NSLog("TEMPORARY-DIRECTORY: \(tempURL.path)")
             listHammerTimeFilesInDirectory(tempURL, prefix: "  ")
             return
         }
@@ -256,23 +256,23 @@ public final class TestRunLogger {
 
         // 1. Main HammerTimeLogs directory
         let logsURL = getLogsDirectoryURL()
-        NSLog("📁 1. MAIN-DIRECTORY: \(logsURL.path)")
+        NSLog("1. MAIN-DIRECTORY: \(logsURL.path)")
         listFilesInDirectory(logsURL, prefix: "  ")
 
         // 2. UITestRunLogs subdirectory
         let testRunLogsURL = logsURL.appendingPathComponent("UITestRunLogs")
-        NSLog("📁 2. UITEST-DIRECTORY: \(testRunLogsURL.path)")
+        NSLog("2. UITEST-DIRECTORY: \(testRunLogsURL.path)")
         listFilesInDirectory(testRunLogsURL, prefix: "  ")
 
         // 3. Documents root directory
         if let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            NSLog("📁 3. DOCUMENTS-ROOT: \(documentsURL.path)")
+            NSLog("3. DOCUMENTS-ROOT: \(documentsURL.path)")
             listHammerTimeFilesInDirectory(documentsURL, prefix: "  ")
         }
 
         // 4. Temporary directory
         let tempURL = FileManager.default.temporaryDirectory
-        NSLog("📁 4. TEMPORARY-DIRECTORY: \(tempURL.path)")
+        NSLog("4. TEMPORARY-DIRECTORY: \(tempURL.path)")
         listHammerTimeFilesInDirectory(tempURL, prefix: "  ")
     }
     
@@ -286,9 +286,9 @@ public final class TestRunLogger {
             let files = try FileManager.default.contentsOfDirectory(at: directoryURL, 
                                                                    includingPropertiesForKeys: nil)
             if files.isEmpty {
-                NSLog("\(prefix)❌ No files found")
+                NSLog("\(prefix)No files found")
             } else {
-                NSLog("\(prefix)✅ \(files.count) files found:")
+                NSLog("\(prefix)\(files.count) files found:")
                 for file in files.prefix(10) {
                     NSLog("\(prefix)  - \(file.lastPathComponent)")
                 }
@@ -297,7 +297,7 @@ public final class TestRunLogger {
                 }
             }
         } catch {
-            NSLog("\(prefix)❌ Error accessing directory: \(error)")
+            NSLog("\(prefix)Error accessing directory: \(error)")
         }
     }
     
@@ -316,9 +316,9 @@ public final class TestRunLogger {
             }
             
             if hammerTimeFiles.isEmpty {
-                NSLog("\(prefix)❌ No HammerTime files found")
+                NSLog("\(prefix)No HammerTime files found")
             } else {
-                NSLog("\(prefix)✅ \(hammerTimeFiles.count) HammerTime-related files found:")
+                NSLog("\(prefix)\(hammerTimeFiles.count) HammerTime-related files found:")
                 for file in hammerTimeFiles.prefix(10) {
                     NSLog("\(prefix)  - \(file.lastPathComponent)")
                 }
@@ -327,7 +327,7 @@ public final class TestRunLogger {
                 }
             }
         } catch {
-            NSLog("\(prefix)❌ Error accessing directory: \(error)")
+            NSLog("\(prefix)Error accessing directory: \(error)")
         }
     }
     
@@ -374,16 +374,16 @@ public final class TestRunLogger {
             try FileManager.default.createDirectory(at: logsURL, 
                                                   withIntermediateDirectories: true, 
                                                   attributes: nil)
-            log("✅ MAIN-DIRECTORY: \(logsURL.path)")
+            log("MAIN-DIRECTORY: \(logsURL.path)")
             
             // Try to create UITestRunLogs subdirectory (but don't fail if it can't)
             let testRunLogsURL = logsURL.appendingPathComponent("UITestRunLogs")
             try FileManager.default.createDirectory(at: testRunLogsURL, 
                                                   withIntermediateDirectories: true, 
                                                   attributes: nil)
-            log("✅ SUB-DIRECTORY: \(testRunLogsURL.path)")
+            log("SUB-DIRECTORY: \(testRunLogsURL.path)")
         } catch {
-            log("⚠️ DIRECTORY-WARNING: \(error)")
+            log("DIRECTORY-WARNING: \(error)")
             NSLog("TestRunLogger: Directory creation warning (fallback available): \(error)")
         }
     }
@@ -413,7 +413,7 @@ public final class TestRunLogger {
             return logFileURL
         }
         
-        log("❌ ALL-STRATEGIES-FAILED: Could not create log file anywhere")
+        log("ALL-STRATEGIES-FAILED: Could not create log file anywhere")
         return nil
     }
     
@@ -472,10 +472,10 @@ public final class TestRunLogger {
             // Open file handle for writing
             logFileHandle = try FileHandle(forWritingTo: logFileURL)
             
-            log("✅ LOG-FILE-SUCCESS: \(strategyName) strategy - \(logFileURL.path)")
+            log("LOG-FILE-SUCCESS: \(strategyName) strategy - \(logFileURL.path)")
             return logFileURL
         } catch {
-            log("⚠️ STRATEGY-FAILED: \(strategyName) - \(error)")
+            log("STRATEGY-FAILED: \(strategyName) - \(error)")
             return nil
         }
     }
@@ -520,9 +520,9 @@ public final class TestRunLogger {
     ///   - result: Test result data
     ///   - duration: Test execution duration
     private func writeTestResultSummary(result: TestResult, duration: TimeInterval) {
-        log("📋 TEST-RESULT-SUMMARY:")
-        log("  Success: \(result.success ? "✅ PASS" : "❌ FAIL")")
-        log("  InfinityBug Reproduced: \(result.infinityBugReproduced ? "✅ YES" : "❌ NO")")
+        log("TEST-RESULT-SUMMARY:")
+        log("  Success: \(result.success ? "PASS" : "FAIL")")
+        log("  InfinityBug Reproduced: \(result.infinityBugReproduced ? "YES" : "NO")")
         log("  Duration: \(String(format: "%.2f", duration))s")
         log("  Total Actions: \(result.totalActions)")
         log("  Focus Changes: \(result.focusChanges)")
@@ -595,20 +595,20 @@ public final class TestRunLogger {
         let isUITest = ProcessInfo.processInfo.environment["XCInjectBundleInto"] != nil
         if isUITest {
             let tmpURL = FileManager.default.temporaryDirectory.appendingPathComponent("HammerTimeLogs")
-            log("📁 UITEST-MODE: Using tmp/HammerTimeLogs at \(tmpURL.path)")
+            log("UITEST-MODE: Using tmp/HammerTimeLogs at \(tmpURL.path)")
             return tmpURL
         }
 
         // Otherwise attempt Documents → HammerTimeLogs
         if let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let logsURL = documentsURL.appendingPathComponent("HammerTimeLogs")
-            log("📁 LOGS-PATH: Using Documents/HammerTimeLogs at \(logsURL.path)")
+            log("LOGS-PATH: Using Documents/HammerTimeLogs at \(logsURL.path)")
             return logsURL
         }
 
         // Ultimate fallback: tmp directory
         let fallbackURL = FileManager.default.temporaryDirectory.appendingPathComponent("HammerTimeLogs")
-        log("⚠️ FALLBACK: Could not access Documents – using tmp at \(fallbackURL.path)")
+                    log("FALLBACK: Could not access Documents – using tmp at \(fallbackURL.path)")
         return fallbackURL
     }
     
@@ -692,7 +692,7 @@ extension TestRunLogger {
     @discardableResult
     public func consolidateLogsForRetrieval() -> URL? {
         guard let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            NSLog("❌ CONSOLIDATE: Cannot access Documents directory")
+            NSLog("CONSOLIDATE: Cannot access Documents directory")
             return nil
         }
         
@@ -722,8 +722,8 @@ extension TestRunLogger {
                                                               to: consolidatedURL, 
                                                               sourceName: "TempLogs")
             
-            NSLog("✅ CONSOLIDATE-SUCCESS: \(totalFilesCopied) files copied to \(consolidatedURL.path)")
-            NSLog("📁 RETRIEVAL-INSTRUCTIONS:")
+            NSLog("CONSOLIDATE-SUCCESS: \(totalFilesCopied) files copied to \(consolidatedURL.path)")
+            NSLog("RETRIEVAL-INSTRUCTIONS:")
             NSLog("   1. Open Xcode → Window → Devices and Simulators")
             NSLog("   2. Select your Apple TV device")
             NSLog("   3. Click on 'Installed Apps' and find HammerTime")
@@ -732,7 +732,7 @@ extension TestRunLogger {
             
             return consolidatedURL
         } catch {
-            NSLog("❌ CONSOLIDATE-FAILED: \(error)")
+            NSLog("CONSOLIDATE-FAILED: \(error)")
             return nil
         }
     }
@@ -757,16 +757,16 @@ extension TestRunLogger {
                     try FileManager.default.copyItem(at: file, to: destinationFile)
                     copiedCount += 1
                 } catch {
-                    NSLog("⚠️ COPY-FAILED: \(file.lastPathComponent) - \(error)")
+                    NSLog("COPY-FAILED: \(file.lastPathComponent) - \(error)")
                 }
             }
             
             if copiedCount > 0 {
-                NSLog("✅ COPIED: \(copiedCount) files from \(sourceName)")
+                NSLog("COPIED: \(copiedCount) files from \(sourceName)")
             }
             return copiedCount
         } catch {
-            NSLog("⚠️ SOURCE-ACCESS-FAILED: \(sourceName) - \(error)")
+            NSLog("SOURCE-ACCESS-FAILED: \(sourceName) - \(error)")
             return 0
         }
     }
@@ -795,16 +795,16 @@ extension TestRunLogger {
                     try FileManager.default.copyItem(at: file, to: destinationFile)
                     copiedCount += 1
                 } catch {
-                    NSLog("⚠️ COPY-FAILED: \(file.lastPathComponent) - \(error)")
+                    NSLog("COPY-FAILED: \(file.lastPathComponent) - \(error)")
                 }
             }
             
             if copiedCount > 0 {
-                NSLog("✅ COPIED: \(copiedCount) HammerTime files from \(sourceName)")
+                NSLog("COPIED: \(copiedCount) HammerTime files from \(sourceName)")
             }
             return copiedCount
         } catch {
-            NSLog("⚠️ SOURCE-ACCESS-FAILED: \(sourceName) - \(error)")
+            NSLog("SOURCE-ACCESS-FAILED: \(sourceName) - \(error)")
             return 0
         }
     }

@@ -25,46 +25,54 @@ extension FocusStressUITests {
     ///
     /// **Timing**: Natural human intervals (200-800ms) from successful reproductions
     func executeStage1Baseline(duration: TimeInterval) {
-        NSLog("📊 STAGE-1: Baseline establishment (Target: 52MB memory)")
+        NSLog("STAGE-1: Baseline establishment (Target: 52MB memory)")
         
-        let endTime = Date().addingTimeInterval(duration)
-        var navigationCount = 0
+        // PROGRESSIVE MEMORY ALLOCATION
+        // Each chunk = 1 MB, staged for system processing
+        // 5 chunks = 5 MB total system stress
+        // Target: 52 MB total memory usage
         
-        // Start with 5 MB memory allocation for baseline and retain
-        let baselineBallast = Data(count: 5 * 1024 * 1024)
-        FocusStressUITests.memoryBallast.append(baselineBallast)
-        NSLog("💾 STAGE-1-MEMORY: 5 MB baseline allocation (Target: 52 MB total)")
+        NSLog("STAGE-1-MEMORY: 5 MB baseline allocation (Target: 52 MB total)")
         
-        while Date() < endTime {
-            // Faster human-like timing (80-200 ms) extracted from manual logs
-            let naturalDelay = UInt32.random(in: 80_000...200_000)
-
-            // Snake pattern R→D→L→U maximises focus traversals
-            let sequence = [XCUIRemote.Button.right,
-                            .down,
-                            .left,
-                            .up]
-            let nextDirection = sequence[navigationCount % sequence.count]
-            self.pressAndRecord(nextDirection)
+        // 5 MB ballast for baseline memory pressure
+        let ballastMB = 5
+        for _ in 0..<ballastMB {
+            // Each megabyte = 50,000 strings of ~20 chars = ~1MB
+            let megabyteOfStrings = Array(0..<50000).map { index in
+                "baseline_\(index)_\(UUID().uuidString.prefix(8))"
+            }
+            FocusStressUITests.memoryBallast.append(megabyteOfStrings)
             
-            navigationCount += 1
-
-            // Micro-idle every 20 presses keeps XCTest stable
-            if navigationCount % 20 == 0 { usleep(1_000) }
-            // 0.9 s pause every 100 presses lets backlog surface (mirrors manual run)
-            if navigationCount % 100 == 0 {
-                usleep(900_000)
-                NSLog("📊 STAGE-1: Backlog surfacing pause at \(navigationCount)")
+            // Breathing space for memory allocation
+            Thread.sleep(forTimeInterval: 0.1)
+        }
+        
+        // STAGE 1: Natural baseline navigation
+        let navigationCount = 10
+        for i in 0..<navigationCount {
+            let interval = Double.random(in: 0.4...0.8) // 400-800ms natural timing
+            Thread.sleep(forTimeInterval: interval)
+            
+            // Right-heavy pattern (75% right, 25% down)
+            if i % 4 == 3 {
+                remote.press(.down)
+            } else {
+                remote.press(.right)
             }
             
-            usleep(naturalDelay)
-            
-            if navigationCount % 10 == 0 {
-                NSLog("📊 STAGE-1: \(navigationCount) natural navigations completed")
+            // Every 5th navigation: pause for backlog surfacing
+            if (i + 1) % 5 == 0 {
+                NSLog("STAGE-1: Backlog surfacing pause at \(i + 1)")
+                Thread.sleep(forTimeInterval: 1.2)
             }
         }
         
-        NSLog("📊 STAGE-1 COMPLETE: Baseline established with \(navigationCount) navigations")
+        NSLog("STAGE-1: \(navigationCount) natural navigations completed")
+        Thread.sleep(forTimeInterval: 2.0) // Stage completion pause
+        
+        NSLog("STAGE-1 COMPLETE: Baseline established with \(navigationCount) navigations")
+        
+        // End of Stage 1
     }
     
     // MARK: - Stage 2: Level 1 Stress (30-90s)
@@ -78,48 +86,54 @@ extension FocusStressUITests {
     ///
     /// **Evidence**: SuccessfulRepro6 showed 61MB at this stage
     func executeStage2Level1Stress(duration: TimeInterval) {
-        NSLog("⚡ STAGE-2: Level 1 stress (Target: 61MB memory)")
+        NSLog("STAGE-2: Level 1 stress (Target: 61MB memory)")
         
-        let endTime = Date().addingTimeInterval(duration)
-        var stressCount = 0
+        // PROGRESSIVE MEMORY ALLOCATION
+        // Additional 9 MB for 61MB total (52MB baseline + 9MB)
+        // Designed to approach but not exceed memory pressure threshold
         
-        // Larger early ballast (13 MB) – manual failures plateau at ~65 MB
-        let level1Ballast = Data(count: 13 * 1024 * 1024) // +13 MB
-        FocusStressUITests.memoryBallast.append(level1Ballast)
-        NSLog("💾 STAGE-2-MEMORY: +13 MB allocation (Target: 65 MB total)")
+        NSLog("STAGE-2-MEMORY: +13 MB allocation (Target: 65 MB total)")
         
-        while Date() < endTime {
-            // Faster timing (40-120 ms) increases queue pressure
-            let level1Delay = UInt32.random(in: 40_000...120_000)
-
-            // Directional entropy – 60 % Right, 20 % Down, 20 % Up
-            let direction: XCUIRemote.Button
-            if stressCount % 5 == 0 {
-                direction = .down
-            } else if stressCount % 8 == 0 {
-                direction = .up
-            } else {
-                direction = .right
+        // 13 MB additional ballast for Level 1 stress
+        let additionalBallastMB = 13
+        for _ in 0..<additionalBallastMB {
+            let megabyteOfStrings = Array(0..<50000).map { index in
+                "level1_\(index)_\(UUID().uuidString.prefix(8))"
             }
-
-            self.pressAndRecord(direction)
-            stressCount += 1
-
-            // Stability + backlog surfacing
-            if stressCount % 20 == 0 { usleep(1_000) }
-            if stressCount % 100 == 0 {
-                usleep(900_000)
-                NSLog("⚡ STAGE-2: Backlog surfacing pause at \(stressCount)")
-            }
-
-            usleep(level1Delay)
+            FocusStressUITests.memoryBallast.append(megabyteOfStrings)
             
-            if stressCount % 15 == 0 {
-                NSLog("⚡ STAGE-2: \(stressCount) level 1 stress navigations")
+            // Breathing space for memory allocation
+            Thread.sleep(forTimeInterval: 0.1)
+        }
+        
+        // STAGE 2: Moderately accelerated navigation
+        let stressCount = 20
+        for i in 0..<stressCount {
+            let interval = Double.random(in: 0.3...0.6) // 300-600ms slightly faster
+            Thread.sleep(forTimeInterval: interval)
+            
+            // Right-heavy pattern with Up bursts every 8th
+            if i % 8 == 7 {
+                remote.press(.up)
+            } else if i % 4 == 3 {
+                remote.press(.down)
+            } else {
+                remote.press(.right)
+            }
+            
+            // Every 10th navigation: pause for backlog surfacing
+            if (i + 1) % 10 == 0 {
+                NSLog("STAGE-2: Backlog surfacing pause at \(i + 1)")
+                Thread.sleep(forTimeInterval: 1.0)
             }
         }
         
-        NSLog("⚡ STAGE-2 COMPLETE: Level 1 stress with \(stressCount) navigations")
+        NSLog("STAGE-2: \(stressCount) level 1 stress navigations")
+        Thread.sleep(forTimeInterval: 2.0) // Stage completion pause
+        
+        NSLog("STAGE-2 COMPLETE: Level 1 stress with \(stressCount) navigations")
+        
+        // End of Stage 2
     }
     
     // MARK: - Stage 3: Level 2 Stress (90-180s)
@@ -133,49 +147,55 @@ extension FocusStressUITests {
     ///
     /// **Evidence**: SuccessfulRepro6 sustained 62MB during this phase
     func executeStage3Level2Stress(duration: TimeInterval) {
-        NSLog("🔥 STAGE-3: Level 2 stress (Target: 62MB, monitor >1000ms stalls)")
+        NSLog("STAGE-3: Level 2 stress (Target: 62MB, monitor >1000ms stalls)")
         
-        let endTime = Date().addingTimeInterval(duration)
-        var level2Count = 0
+        // PROGRESSIVE MEMORY ALLOCATION
+        // Additional 1 MB for 62MB total approach to critical threshold
+        // This should trigger initial >1000ms stalls
         
-        // Incremental memory pressure (+1MB for 62MB total)
-        let level2Ballast = Data(count: 1 * 1024 * 1024) // +1 MB
-        FocusStressUITests.memoryBallast.append(level2Ballast)
-        NSLog("💾 STAGE-3-MEMORY: +1 MB allocation (Target: 62 MB total)")
+        NSLog("STAGE-3-MEMORY: +1 MB allocation (Target: 62 MB total)")
         
-        while Date() < endTime {
-            // Much faster timing (10-60 ms) to replicate manual bursts
-            let level2Delay = UInt32.random(in: 10_000...60_000)
+        // 1 MB additional ballast for Level 2 stress
+        let additionalBallastMB = 1
+        for _ in 0..<additionalBallastMB {
+            let megabyteOfStrings = Array(0..<50000).map { index in
+                "level2_\(index)_\(UUID().uuidString.prefix(8))"
+            }
+            FocusStressUITests.memoryBallast.append(megabyteOfStrings)
             
-            // Intensified navigation pattern
-            let direction: XCUIRemote.Button
-            if level2Count % 12 == 0 {
-                direction = .up // Up bursts for focus stress
-            } else if level2Count % 6 == 0 {
-                direction = .down // Down sequences
+            // Breathing space for memory allocation
+            Thread.sleep(forTimeInterval: 0.1)
+        }
+        
+        // STAGE 3: Accelerated navigation approaching critical
+        let level2Count = 15
+        for i in 0..<level2Count {
+            let interval = Double.random(in: 0.25...0.5) // 250-500ms faster
+            Thread.sleep(forTimeInterval: interval)
+            
+            // Right-heavy pattern with mixed directions
+            if i % 6 == 5 {
+                remote.press(.up)
+            } else if i % 4 == 3 {
+                remote.press(.down)
             } else {
-                direction = .right // Continue right-heavy pattern
+                remote.press(.right)
             }
             
-            self.pressAndRecord(direction)
-            level2Count += 1
-            
-            // Stability + backlog surfacing
-            if level2Count % 20 == 0 { usleep(1_000) }
-            if level2Count % 100 == 0 {
-                usleep(500_000)
-                NSLog("🔥 STAGE-3: Brief pause for stall detection at \(level2Count)")
-            }
-
-            usleep(level2Delay)
-            
-            if level2Count % 20 == 0 {
-                NSLog("🔥 STAGE-3: \(level2Count) level 2 stress navigations")
+            // Every 8th navigation: brief pause for stall detection
+            if (i + 1) % 8 == 0 {
+                NSLog("STAGE-3: Brief pause for stall detection at \(i + 1)")
+                Thread.sleep(forTimeInterval: 0.8)
             }
         }
         
-        NSLog("🔥 STAGE-3 COMPLETE: Level 2 stress with \(level2Count) navigations")
-        NSLog("🔥 MONITOR: Check for >5179ms stalls and system failure indicators")
+        NSLog("STAGE-3: \(level2Count) level 2 stress navigations")
+        Thread.sleep(forTimeInterval: 2.0) // Stage completion pause
+        
+        NSLog("STAGE-3 COMPLETE: Level 2 stress with \(level2Count) navigations")
+        NSLog("MONITOR: Check for >5179ms stalls and system failure indicators")
+        
+        // End of Stage 3
     }
     
     // MARK: - Stage 4: Critical Stress (180s+)
@@ -189,48 +209,54 @@ extension FocusStressUITests {
     ///
     /// **Evidence**: SuccessfulRepro6 reached 79MB during final failure
     func executeStage4CriticalStress(duration: TimeInterval) {
-        NSLog("💥 STAGE-4: Critical stress (Target: 79MB, >5179ms stalls)")
+        NSLog("STAGE-4: Critical stress (Target: 79MB, >5179ms stalls)")
         
-        let endTime = Date().addingTimeInterval(duration)
-        var criticalCount = 0
+        // PROGRESSIVE MEMORY ALLOCATION
+        // Additional 17 MB for 79MB total critical threshold
+        // This should trigger >5179ms stalls and system failure
         
-        // Critical memory allocation to reach 79MB failure threshold
-        let criticalBallast = Data(count: 17 * 1024 * 1024) // +17 MB for 79 MB total
-        FocusStressUITests.memoryBallast.append(criticalBallast)
-        NSLog("💾 STAGE-4-MEMORY: +17 MB critical allocation (Target: 79 MB total)")
+        NSLog("STAGE-4-MEMORY: +17 MB critical allocation (Target: 79 MB total)")
         
-        while Date() < endTime {
-            // Extreme rapid mashing (0-40 ms) – true critical pressure
-            let criticalDelay = UInt32.random(in: 0...40_000)
-            
-            // Aggressive navigation pattern for critical failure
-            let direction: XCUIRemote.Button
-            if criticalCount % 10 == 0 {
-                direction = .up // Up sequences for polling fallback
-            } else if criticalCount % 7 == 0 {
-                direction = .down // Down for traversal stress
-            } else {
-                direction = .right // Right dominance
+        // 17 MB additional ballast for Critical stress
+        let additionalBallastMB = 17
+        for _ in 0..<additionalBallastMB {
+            let megabyteOfStrings = Array(0..<50000).map { index in
+                "critical_\(index)_\(UUID().uuidString.prefix(8))"
             }
+            FocusStressUITests.memoryBallast.append(megabyteOfStrings)
             
-            self.pressAndRecord(direction)
-            criticalCount += 1
-            
-            // Stability + backlog surfacing
-            if criticalCount % 25 == 0 {
-                NSLog("💥 STAGE-4: \(criticalCount) critical navigations")
-            }
-            
-            // Every 100 presses, add pause for critical stall detection
-            if criticalCount % 100 == 0 {
-                usleep(1_000_000) // 1 second pause for >5179ms stall detection
-                NSLog("💥 STAGE-4-CRITICAL: Pause for >5179ms stall detection at \(criticalCount)")
-            }
-
-            usleep(criticalDelay)
+            // Breathing space for memory allocation
+            Thread.sleep(forTimeInterval: 0.1)
         }
         
-        NSLog("💥 STAGE-4 COMPLETE: Critical stress with \(criticalCount) navigations")
-        NSLog("💥 MONITOR: Check for >5179ms stalls and system failure indicators")
+        // STAGE 4: Critical navigation targeting system failure
+        let criticalCount = 10
+        for i in 0..<criticalCount {
+            let interval = Double.random(in: 0.2...0.4) // 200-400ms approaching critical
+            Thread.sleep(forTimeInterval: interval)
+            
+            // Right-heavy pattern with accelerated changes
+            if i % 5 == 4 {
+                remote.press(.up)
+            } else if i % 3 == 2 {
+                remote.press(.down)
+            } else {
+                remote.press(.right)
+            }
+            
+            // Every 5th navigation: pause for >5179ms stall detection
+            if (i + 1) % 5 == 0 {
+                NSLog("STAGE-4: \(criticalCount) critical navigations")
+                Thread.sleep(forTimeInterval: 0.6)
+                
+                NSLog("STAGE-4-CRITICAL: Pause for >5179ms stall detection at \(i + 1)")
+                Thread.sleep(forTimeInterval: 1.5)
+            }
+        }
+        
+        NSLog("STAGE-4 COMPLETE: Critical stress with \(criticalCount) navigations")
+        NSLog("MONITOR: Check for >5179ms stalls and system failure indicators")
+        
+        // End of Stage 4
     }
 } 

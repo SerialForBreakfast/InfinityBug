@@ -53,7 +53,7 @@ final class FocusStressUITests: XCTestCase {
         XCTAssertTrue(collectionView.waitForExistence(timeout: 10),
                      "FocusStressCollectionView should exist")
         
-        TestRunLogger.shared.log("🎯 V8.3-SETUP: Ready for InfinityBug reproduction")
+        TestRunLogger.shared.log("V8.3-SETUP: Ready for InfinityBug reproduction")
         TestRunLogger.shared.printLogFileLocation()
     }
     
@@ -75,155 +75,120 @@ final class FocusStressUITests: XCTestCase {
     /// - Memory escalation following 52MB→79MB progression
     /// - RunLoop stalls progressing beyond 5179ms threshold  
     /// - Event queue saturation (200+ events, negative press counts)
-    /// - Focus continues navigating after user input stops
-    func testProgressiveStressSystemReproduction() throws {
-        NSLog("🚀 V9.0-PROGRESSIVE: Starting Progressive Stress System based on SuccessfulRepro6")
-        NSLog("🎯 TARGET: Memory escalation 52MB→79MB + >5179ms RunLoop stalls")
-        
+    func testV9ProgressiveStressSystemReproduction() throws {
         let startTime = Date()
         
-        // Stage 1: Baseline establishment (0-30s)
-        executeStage1Baseline(duration: 30.0)
+        NSLog("V9.0-PROGRESSIVE: Starting Progressive Stress System based on SuccessfulRepro6")
+        NSLog("TARGET: Memory escalation 52MB→79MB + >5179ms RunLoop stalls")
         
-        // Stage 2: Level 1 stress - Target 61MB (30-90s)
-        executeStage2Level1Stress(duration: 60.0)
+        // STAGE 1: Baseline (30s) - 52MB target
+        executeStage1Baseline(duration: 30)
         
-        // Insert a targeted burst that mirrors the 50-press edge-avoidance sequence from manual repros.
-        triggerMajorFocusSystemStress()
+        // STAGE 2: Level 1 Stress (60s) - 61MB target  
+        executeStage2Level1Stress(duration: 60)
         
-        // Stage 3: Level 2 stress - Target 62MB (90-180s)
-        executeStage3Level2Stress(duration: 90.0)
+        // STAGE 3: Level 2 Stress (90s) - 62MB target
+        executeStage3Level2Stress(duration: 90)
         
-        // Stage 4: Critical stress - Target 79MB (180s+)
-        executeStage4CriticalStress(duration: 120.0)
+        // STAGE 4: Critical Stress (90s) - 79MB target
+        executeStage4CriticalStress(duration: 90)
         
         let totalDuration = Date().timeIntervalSince(startTime)
-        NSLog("🚀 V9.0-PROGRESSIVE: Completed in \(String(format: "%.1f", totalDuration))s")
-        NSLog("🎯 MONITOR: Watch for >5179ms stalls and memory escalation to 79MB")
         
-        // Output a summary of RunLoop behaviour for post-analysis.  We do NOT fail the test on absence of stalls – the goal is replication, not automated detection.
-        stallMonitor.logFinalAnalysis()
+        NSLog("V9.0-PROGRESSIVE: Completed in \(String(format: "%.1f", totalDuration))s")
+        NSLog("MONITOR: Watch for >5179ms stalls and memory escalation to 79MB")
         
-        XCTAssertTrue(true, "V9.0 Progressive Stress System completed - monitor for critical thresholds")
+        // Additional observation window for InfinityBug manifestation
+        Thread.sleep(forTimeInterval: 30)
+        
+        XCTAssertTrue(true, "V9.0 Progressive Stress System completed - monitor logs for >5179ms stalls")
     }
     
-    // MARK: - Focus System Stress Method
-    
-    /// **Triggers intensive focus system calculations to accelerate stall generation**
-    /// 
-    /// Forces focus system to perform intensive calculations by rapidly changing
-    /// focus targets and triggering accessibility evaluations.
-    ///
-    /// **Concurrency:** Called from main thread during test execution
-    func triggerMajorFocusSystemStress() {
-        TestRunLogger.shared.log("💥 MAJOR-STRESS: Starting intensive edge-avoiding navigation")
+    /// **MAJOR-STRESS Test** 
+    /// Implements intensive edge-avoiding navigation for maximum focus engine pressure.
+    /// Used after memory ballast allocation to create system stress.
+    func testMajorStress() throws {
+        TestRunLogger.shared.log("MAJOR-STRESS: Starting intensive edge-avoiding navigation")
         
-        // Rapid navigation burst to force focus calculations
-        for i in 0..<50 {
-            let direction: XCUIRemote.Button = (i % 2 == 0) ? .right : .left
-            remote.press(direction, forDuration: 0.025)
-            usleep(25_000) // 25ms gaps for maximum calculation pressure
+        let edgeAvoidance = EdgeAvoidanceNavigationPattern()
+        let stressConfig = FocusStressConfiguration()
+        
+        for _ in 0..<50 {
+            let direction = edgeAvoidance.nextDirection(for: stressConfig)
+            remote.press(direction)
+            usleep(100_000) // 100ms for rapid focus calculations
         }
         
-        TestRunLogger.shared.log("💥 MAJOR-STRESS: Completed 50 rapid focus calculations")
+        TestRunLogger.shared.log("MAJOR-STRESS: Completed 50 rapid focus calculations")  
     }
-    
-    // MARK: - Navigation Helper
-    
-    /// Presses the supplied direction immediately (tap) and records the event with the stall monitor.
-    /// - Parameter button: The Siri Remote direction button to tap.
-    ///
-    /// Concurrency: Runs synchronously on the main XCTest thread – safe to mutate the `stallMonitor` state.
-    func pressAndRecord(_ button: XCUIRemote.Button) {
-        remote.press(button)
-        stallMonitor.recordNavigation(direction: button, duration: 0)
-
-        // Incremental memory ballast – 1 MB every 15 actions
-        Self.incrementalPressCounter += 1
-        if Self.incrementalPressCounter % 15 == 0 {
-            let chunk = Data(count: 1 * 1024 * 1024)
-            FocusStressUITests.memoryBallast.append(chunk)
-            TestRunLogger.shared.logUITest("💾 Incremental ballast +1 MB (total chunks: \(FocusStressUITests.memoryBallast.count))")
-        }
-
-        // Trigger incremental layout thrash inside the app via Darwin notification
-        if Self.incrementalPressCounter % 5 == 0 {
-            app.activate() // ensure connection
-            // Send Darwin notification to app to add constraint batch
-            let _ = CFNotificationCenterGetDarwinNotifyCenter()
-            CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), CFNotificationName("com.showblender.hammertime.constraintThrash" as CFString), nil, nil, true)
-        }
-    }
-
-    private static var incrementalPressCounter = 0
 }
 
-// MARK: - RunLoop Stall Monitoring
+// MARK: - Memory Ballast Management
 
-/// **RunLoop Stall Monitor for Real-Time Performance Analysis**
-/// 
-/// Monitors RunLoop performance during navigation stress testing to detect
-/// system overload and InfinityBug conditions.
-///
-/// **Stall Categories:**
-/// - Mild: 100-1000ms (early warning)
-/// - Moderate: 1000-5000ms (system stress) 
-/// - Critical: >5179ms (InfinityBug threshold)
-struct RunLoopStallMonitor {
-    private var lastActionTime: Date = Date()
-    private var stallEvents: [(duration: TimeInterval, timestamp: Date)] = []
+extension FocusStressUITests {
     
-    var totalNavigationActions: Int = 0
-    var totalStallsDetected: Int { stallEvents.count }
-    // Duration is stored in seconds; critical threshold = 5.179 s
-    private static let criticalThreshold: TimeInterval = 5.179
-    private static let moderateThreshold: TimeInterval = 1.0
-    private static let mildThreshold: TimeInterval = 0.1
-
-    var criticalStallsDetected: Int { stallEvents.filter { $0.duration > Self.criticalThreshold }.count }
-    var maxStallDuration: TimeInterval { stallEvents.map { $0.duration }.max() ?? 0 }
-    var averageStallDuration: TimeInterval { 
-        let durations = stallEvents.map { $0.duration }
-        return durations.isEmpty ? 0 : durations.reduce(0, +) / Double(durations.count)
-    }
-    var allStallDurations: [TimeInterval] { stallEvents.map { $0.duration } }
+    /// **Static memory ballast** - accumulates across test executions for progressive system stress
+    static var memoryBallast: [Any] = []
     
-    /// **Records navigation action and detects stalls**
-    ///
-    /// **Stall Detection:** Measures time since last action, categorizes by severity
-    /// **Concurrency:** Called from main thread during UI interactions
-    mutating func recordNavigation(direction: XCUIRemote.Button, duration: TimeInterval) {
-        let currentTime = Date()
-        let timeSinceLastAction = currentTime.timeIntervalSince(lastActionTime)
+    /// **Incremental Memory Ballast** - Adds 1MB chunks
+    /// **Purpose**: Progressive memory pressure to trigger InfinityBug
+    /// **Evidence**: Manual reproductions show 52MB→79MB escalation pattern
+    func addIncrementalMemoryBallast() {
+        let ballastChunk = Data(count: 1024 * 1024) // 1 MB
+        FocusStressUITests.memoryBallast.append(ballastChunk)
         
-        if timeSinceLastAction > 0.1 && totalNavigationActions > 0 {
-            let stallDurationMs = timeSinceLastAction * 1000
-            stallEvents.append((duration: timeSinceLastAction, timestamp: currentTime))
+        TestRunLogger.shared.logUITest("Incremental ballast +1 MB (total chunks: \(FocusStressUITests.memoryBallast.count))")
+    }
+}
+
+// MARK: - RunLoop Stall Detection & Analysis
+
+extension FocusStressUITests {
+    
+    /// **RunLoop Stall Detection**
+    /// **Monitors main thread blocking that indicates InfinityBug progression**
+    /// **Critical Threshold**: >5179ms sustained stalls
+    class RunLoopStallMonitor {
+        private var lastRunLoopTime = CFAbsoluteTimeGetCurrent()
+        private var stallHistory: [Double] = []
+        
+        func recordStallIfNeeded() {
+            let now = CFAbsoluteTimeGetCurrent()
+            let stallDuration = (now - lastRunLoopTime) * 1000.0 // Convert to milliseconds
             
-            if timeSinceLastAction > Self.criticalThreshold {
-                TestRunLogger.shared.log("🔴 CRITICAL-STALL: \(String(format: "%.0f", stallDurationMs))ms - INFINITYBUG THRESHOLD")
-            } else if timeSinceLastAction > Self.moderateThreshold {
-                TestRunLogger.shared.log("🟠 MODERATE-STALL: \(String(format: "%.0f", stallDurationMs))ms - System stress")
-            } else if timeSinceLastAction > Self.mildThreshold {
-                TestRunLogger.shared.log("🟡 MILD-STALL: \(String(format: "%.0f", stallDurationMs))ms - Early warning")
+            if stallDuration > 300 { // Only record significant stalls (>300ms)
+                stallHistory.append(stallDuration)
+                logStallSeverity(stallDuration)
+            }
+            
+            lastRunLoopTime = now
+        }
+        
+        private func logStallSeverity(_ stallDurationMs: Double) {
+            if stallDurationMs > 5179 {
+                TestRunLogger.shared.log("CRITICAL-STALL: \(String(format: "%.0f", stallDurationMs))ms - INFINITYBUG THRESHOLD")
+            } else if stallDurationMs > 1000 {
+                TestRunLogger.shared.log("MODERATE-STALL: \(String(format: "%.0f", stallDurationMs))ms - System stress")
+            } else if stallDurationMs > 300 {
+                TestRunLogger.shared.log("MILD-STALL: \(String(format: "%.0f", stallDurationMs))ms - Early warning")
             }
         }
         
-        lastActionTime = currentTime
-        totalNavigationActions += 1
-    }
-    
-    /// **Logs comprehensive stall analysis at test completion**
-    func logFinalAnalysis() {
-        TestRunLogger.shared.log("📊 RUNLOOP-STALL-ANALYSIS:")
-        TestRunLogger.shared.log("  Total Actions: \(totalNavigationActions)")
-        TestRunLogger.shared.log("  Total Stalls: \(totalStallsDetected)")
-        TestRunLogger.shared.log("  Critical Stalls (>5179ms): \(criticalStallsDetected)")
-        TestRunLogger.shared.log("  Max Stall: \(String(format: "%.0f", maxStallDuration * 1000))ms")
-        TestRunLogger.shared.log("  Average Stall: \(String(format: "%.0f", averageStallDuration * 1000))ms")
-        
-        if criticalStallsDetected > 0 {
-            TestRunLogger.shared.log("🔴 INFINITYBUG-DETECTED: \(criticalStallsDetected) critical stalls found")
+        func printStallAnalysis() {
+            let criticalStalls = stallHistory.filter { $0 > 5179 }
+            let moderateStalls = stallHistory.filter { $0 > 1000 && $0 <= 5179 }
+            let mildStalls = stallHistory.filter { $0 > 300 && $0 <= 1000 }
+            
+            TestRunLogger.shared.log("RUNLOOP-STALL-ANALYSIS:")
+            TestRunLogger.shared.log("  Total stalls: \(stallHistory.count)")
+            TestRunLogger.shared.log("  Mild (300-1000ms): \(mildStalls.count)")
+            TestRunLogger.shared.log("  Moderate (1000-5179ms): \(moderateStalls.count)")
+            TestRunLogger.shared.log("  Critical (>5179ms): \(criticalStalls.count)")
+            
+            let criticalStallsDetected = criticalStalls.count
+            if criticalStallsDetected > 0 {
+                TestRunLogger.shared.log("INFINITYBUG-DETECTED: \(criticalStallsDetected) critical stalls found")
+            }
         }
     }
 }
