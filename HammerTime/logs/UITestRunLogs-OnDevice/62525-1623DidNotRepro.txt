@@ -1,0 +1,1132 @@
+CLIENT OF UIKIT REQUIRES UPDATE: This process does not adopt UIScene lifecycle. This will become an assert in a future version.
+Running tests...
+Test Suite 'Selected tests' started at 2025-06-25 16:17:46.461.
+Test Suite 'HammerTimeUITests.xctest' started at 2025-06-25 16:17:46.464.
+Test Suite 'FocusStressUITests' started at 2025-06-25 16:17:46.465.
+Test Case '-[HammerTimeUITests.FocusStressUITests testProgressiveStressSystemReproduction]' started.
+    t =     0.00s Start Test at 2025-06-25 16:17:46.469
+    t =     0.05s Set Up
+    t =     0.17s     Open com.showblender.HammerTime
+    t =     0.18s         Launch com.showblender.HammerTime
+    t =     5.18s             Setting up automation session
+    t =    10.42s             Wait for com.showblender.HammerTime to idle
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs
+📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs
+TestRunLogger: ⚠️ DIRECTORY-WARNING: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “HammerTimeLogs” in the folder “Documents”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs, NSURL=file:///var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs, NSUnderlyingError=0x301c5e280 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+⚠️ DIRECTORY-WARNING: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “HammerTimeLogs” in the folder “Documents”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs, NSURL=file:///var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs, NSUnderlyingError=0x301c5e280 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: Directory creation warning (fallback available): Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “HammerTimeLogs” in the folder “Documents”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs, NSURL=file:///var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs, NSUnderlyingError=0x301c5e280 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs
+📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs
+TestRunLogger: ⚠️ STRATEGY-FAILED: UITestRunLogs - Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “UITestRunLogs” in the folder “HammerTimeLogs”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs/UITestRunLogs, NSURL=file:///var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x301c41290 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+⚠️ STRATEGY-FAILED: UITestRunLogs - Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “UITestRunLogs” in the folder “HammerTimeLogs”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs/UITestRunLogs, NSURL=file:///var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x301c41290 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs
+📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs
+TestRunLogger: ⚠️ STRATEGY-FAILED: HammerTimeLogs - Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “HammerTimeLogs” in the folder “Documents”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs, NSURL=file:///var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs, NSUnderlyingError=0x301c5c510 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+⚠️ STRATEGY-FAILED: HammerTimeLogs - Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “HammerTimeLogs” in the folder “Documents”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs, NSURL=file:///var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs, NSUnderlyingError=0x301c5c510 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: ⚠️ STRATEGY-FAILED: Documents - Error Domain=TestRunLogger Code=1 "Failed to create file" UserInfo={NSLocalizedDescription=Failed to create file}
+⚠️ STRATEGY-FAILED: Documents - Error Domain=TestRunLogger Code=1 "Failed to create file" UserInfo={NSLocalizedDescription=Failed to create file}
+TestRunLogger: ✅ LOG-FILE-SUCCESS: Temporary strategy - /private/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/tmp/062525-161800-ProgressiveStressSystemReproduction.txt
+✅ LOG-FILE-SUCCESS: Temporary strategy - /private/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/tmp/062525-161800-ProgressiveStressSystemReproduction.txt
+TestRunLogger: 📊 SYSTEM-INFO:
+📊 SYSTEM-INFO:
+TestRunLogger:   Device: Apple TV
+  Device: Apple TV
+TestRunLogger:   OS: tvOS 18.5
+  OS: tvOS 18.5
+TestRunLogger:   Model: Apple TV
+  Model: Apple TV
+TestRunLogger:   Memory: 35 MB
+  Memory: 35 MB
+TestRunLogger:   VoiceOver: ENABLED
+  VoiceOver: ENABLED
+TestRunLogger:   Reduce Motion: DISABLED
+  Reduce Motion: DISABLED
+TestRunLogger: 🚀 TEST-START: ProgressiveStressSystemReproduction (UITest)
+🚀 TEST-START: ProgressiveStressSystemReproduction (UITest)
+    t =    13.76s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    14.80s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    14.80s             Checking existence of `"FocusStressCollectionView" CollectionView`
+TestRunLogger: 🎯 V8.3-SETUP: Ready for InfinityBug reproduction
+🎯 V8.3-SETUP: Ready for InfinityBug reproduction
+📁 CURRENT-LOG-LOCATION: /private/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/tmp/062525-161800-ProgressiveStressSystemReproduction.txt
+📁 PARENT-DIRECTORY: /private/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/tmp
+📁 COMPREHENSIVE-LOG-SEARCH:
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs
+📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs
+📁 1. MAIN-DIRECTORY: /var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs
+  ❌ Error accessing directory: Error Domain=NSCocoaErrorDomain Code=260 "The file “HammerTimeLogs” couldn’t be opened because there is no such file." UserInfo={NSURL=file:///var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs, NSFilePath=/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs, NSUnderlyingError=0x301c429d0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+📁 2. UITEST-DIRECTORY: /var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs/UITestRunLogs
+  ❌ Error accessing directory: Error Domain=NSCocoaErrorDomain Code=260 "The file “UITestRunLogs” couldn’t be opened because there is no such file." UserInfo={NSURL=file:///var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs/UITestRunLogs, NSFilePath=/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x301c42790 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+📁 3. DOCUMENTS-ROOT: /var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents
+  ❌ Error accessing directory: Error Domain=NSCocoaErrorDomain Code=257 "The file “Documents” couldn’t be opened because you don’t have permission to view it." UserInfo={NSURL=file:///private/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents, NSFilePath=/private/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/Documents, NSUnderlyingError=0x301c42fa0 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+📁 4. TEMPORARY-DIRECTORY: /private/var/mobile/Containers/Data/Application/5D4938A2-35A2-46C5-9CE6-54B13ED24E04/tmp
+  ✅ 20 HammerTime-related files found:
+    - 062525-1020-EdgeAvoidanceNavigationPattern__.txt
+    - 062325-1940-AggressiveRunLoopStallMonitoring__.txt
+    - 062325-1950-EdgeAvoidanceNavigationPattern__.txt
+    - 062425-0851-EdgeAvoidanceNavigationPattern__.txt
+    - 062525-1114-UpBurstFromSuccessfulReproduction__.txt
+    - 062525-161800-ProgressiveStressSystemReproduction.txt
+    - 062525-1258-AggressiveRunLoopStallMonitoring__.txt
+    - 062525-1025-UpBurstFromSuccessfulReproduction__.txt
+    - 062425-0840-AggressiveRunLoopStallMonitoring__.txt
+    - 062525-1236-UpBurstFromSuccessfulReproduction__.txt
+    ... and 10 more files
+🚀 V9.0-PROGRESSIVE: Starting Progressive Stress System based on SuccessfulRepro6
+🎯 TARGET: Memory escalation 52MB→79MB + >5179ms RunLoop stalls
+📊 STAGE-1: Baseline establishment (Target: 52MB memory)
+💾 STAGE-1-MEMORY: 5 MB baseline allocation (Target: 52 MB total)
+    t =    18.03s Pressing Right button
+    t =    18.41s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 413ms - Early warning
+🟡 MILD-STALL: 413ms - Early warning
+    t =    18.85s Pressing Left button
+TestRunLogger: 🟡 MILD-STALL: 451ms - Early warning
+🟡 MILD-STALL: 451ms - Early warning
+    t =    19.35s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 620ms - Early warning
+🟡 MILD-STALL: 620ms - Early warning
+    t =    19.87s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 406ms - Early warning
+🟡 MILD-STALL: 406ms - Early warning
+    t =    20.25s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 373ms - Early warning
+🟡 MILD-STALL: 373ms - Early warning
+    t =    20.72s Pressing Left button
+TestRunLogger: 🟡 MILD-STALL: 454ms - Early warning
+🟡 MILD-STALL: 454ms - Early warning
+    t =    21.11s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 377ms - Early warning
+🟡 MILD-STALL: 377ms - Early warning
+    t =    21.54s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 477ms - Early warning
+🟡 MILD-STALL: 477ms - Early warning
+    t =    21.98s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 617ms - Early warning
+🟡 MILD-STALL: 617ms - Early warning
+📊 STAGE-1: 10 natural navigations completed
+    t =    22.63s Pressing Left button
+TestRunLogger: 🟡 MILD-STALL: 442ms - Early warning
+🟡 MILD-STALL: 442ms - Early warning
+    t =    23.09s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 459ms - Early warning
+🟡 MILD-STALL: 459ms - Early warning
+    t =    23.47s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 380ms - Early warning
+🟡 MILD-STALL: 380ms - Early warning
+    t =    23.95s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 837ms - Early warning
+🟡 MILD-STALL: 837ms - Early warning
+    t =    24.72s Pressing Left button
+TestRunLogger: 🟡 MILD-STALL: 831ms - Early warning
+🟡 MILD-STALL: 831ms - Early warning
+    t =    25.53s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 373ms - Early warning
+🟡 MILD-STALL: 373ms - Early warning
+    t =    25.93s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 399ms - Early warning
+🟡 MILD-STALL: 399ms - Early warning
+    t =    26.35s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 421ms - Early warning
+🟡 MILD-STALL: 421ms - Early warning
+    t =    26.81s Pressing Left button
+TestRunLogger: 🟡 MILD-STALL: 755ms - Early warning
+🟡 MILD-STALL: 755ms - Early warning
+    t =    27.52s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 687ms - Early warning
+🟡 MILD-STALL: 687ms - Early warning
+📊 STAGE-1: 20 natural navigations completed
+    t =    28.20s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 638ms - Early warning
+🟡 MILD-STALL: 638ms - Early warning
+    t =    28.84s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 427ms - Early warning
+🟡 MILD-STALL: 427ms - Early warning
+    t =    29.26s Pressing Left button
+TestRunLogger: 🟡 MILD-STALL: 492ms - Early warning
+🟡 MILD-STALL: 492ms - Early warning
+    t =    29.80s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 481ms - Early warning
+🟡 MILD-STALL: 481ms - Early warning
+    t =    30.28s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 564ms - Early warning
+🟡 MILD-STALL: 564ms - Early warning
+    t =    30.85s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 756ms - Early warning
+🟡 MILD-STALL: 756ms - Early warning
+    t =    31.52s Pressing Left button
+TestRunLogger: 🟡 MILD-STALL: 496ms - Early warning
+🟡 MILD-STALL: 496ms - Early warning
+    t =    32.06s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 715ms - Early warning
+🟡 MILD-STALL: 715ms - Early warning
+    t =    32.76s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 409ms - Early warning
+🟡 MILD-STALL: 409ms - Early warning
+    t =    33.16s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 628ms - Early warning
+🟡 MILD-STALL: 628ms - Early warning
+📊 STAGE-1: 30 natural navigations completed
+    t =    33.88s Pressing Left button
+TestRunLogger: 🟠 MODERATE-STALL: 1163ms - System stress
+🟠 MODERATE-STALL: 1163ms - System stress
+    t =    34.96s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 913ms - Early warning
+🟡 MILD-STALL: 913ms - Early warning
+    t =    35.87s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 408ms - Early warning
+🟡 MILD-STALL: 408ms - Early warning
+    t =    36.25s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 557ms - Early warning
+🟡 MILD-STALL: 557ms - Early warning
+    t =    36.91s Pressing Left button
+TestRunLogger: 🟠 MODERATE-STALL: 1025ms - System stress
+🟠 MODERATE-STALL: 1025ms - System stress
+    t =    37.88s Pressing Up button
+TestRunLogger: 🟠 MODERATE-STALL: 1008ms - System stress
+🟠 MODERATE-STALL: 1008ms - System stress
+    t =    38.88s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1036ms - System stress
+🟠 MODERATE-STALL: 1036ms - System stress
+    t =    39.85s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 343ms - Early warning
+🟡 MILD-STALL: 343ms - Early warning
+    t =    40.25s Pressing Left button
+TestRunLogger: 🟡 MILD-STALL: 663ms - Early warning
+🟡 MILD-STALL: 663ms - Early warning
+    t =    40.88s Pressing Up button
+TestRunLogger: 🟠 MODERATE-STALL: 1221ms - System stress
+🟠 MODERATE-STALL: 1221ms - System stress
+📊 STAGE-1: 40 natural navigations completed
+    t =    42.10s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 867ms - Early warning
+🟡 MILD-STALL: 867ms - Early warning
+    t =    42.98s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 1074ms - System stress
+🟠 MODERATE-STALL: 1074ms - System stress
+    t =    44.02s Pressing Left button
+TestRunLogger: 🟡 MILD-STALL: 348ms - Early warning
+🟡 MILD-STALL: 348ms - Early warning
+    t =    44.45s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 757ms - Early warning
+🟡 MILD-STALL: 757ms - Early warning
+    t =    45.14s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 900ms - Early warning
+🟡 MILD-STALL: 900ms - Early warning
+    t =    46.07s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 1040ms - System stress
+🟠 MODERATE-STALL: 1040ms - System stress
+    t =    47.06s Pressing Left button
+TestRunLogger: 🟠 MODERATE-STALL: 1044ms - System stress
+🟠 MODERATE-STALL: 1044ms - System stress
+📊 STAGE-1 COMPLETE: Baseline established with 47 navigations
+⚡ STAGE-2: Level 1 stress (Target: 61MB memory)
+💾 STAGE-2-MEMORY: +13 MB allocation (Target: 65 MB total)
+    t =    48.14s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 1043ms - System stress
+🟠 MODERATE-STALL: 1043ms - System stress
+    t =    49.17s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1044ms - System stress
+🟠 MODERATE-STALL: 1044ms - System stress
+    t =    50.18s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 342ms - Early warning
+🟡 MILD-STALL: 342ms - Early warning
+    t =    50.53s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 369ms - Early warning
+🟡 MILD-STALL: 369ms - Early warning
+    t =    50.90s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 342ms - Early warning
+🟡 MILD-STALL: 342ms - Early warning
+    t =    51.26s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 958ms - Early warning
+🟡 MILD-STALL: 958ms - Early warning
+    t =    52.16s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 771ms - Early warning
+🟡 MILD-STALL: 771ms - Early warning
+    t =    53.27s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 650ms - Early warning
+🟡 MILD-STALL: 650ms - Early warning
+    t =    53.62s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 602ms - Early warning
+🟡 MILD-STALL: 602ms - Early warning
+    t =    54.23s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 999ms - Early warning
+🟡 MILD-STALL: 999ms - Early warning
+    t =    55.25s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 401ms - Early warning
+🟡 MILD-STALL: 401ms - Early warning
+    t =    55.64s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 428ms - Early warning
+🟡 MILD-STALL: 428ms - Early warning
+    t =    56.08s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1218ms - System stress
+🟠 MODERATE-STALL: 1218ms - System stress
+    t =    57.23s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 331ms - Early warning
+🟡 MILD-STALL: 331ms - Early warning
+    t =    57.58s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 539ms - Early warning
+🟡 MILD-STALL: 539ms - Early warning
+⚡ STAGE-2: 15 level 1 stress navigations
+    t =    58.10s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 1091ms - System stress
+🟠 MODERATE-STALL: 1091ms - System stress
+    t =    59.26s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 391ms - Early warning
+🟡 MILD-STALL: 391ms - Early warning
+    t =    59.63s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 493ms - Early warning
+🟡 MILD-STALL: 493ms - Early warning
+    t =    60.15s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1403ms - System stress
+🟠 MODERATE-STALL: 1403ms - System stress
+    t =    61.62s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 646ms - Early warning
+🟡 MILD-STALL: 646ms - Early warning
+    t =    62.20s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 1203ms - System stress
+🟠 MODERATE-STALL: 1203ms - System stress
+    t =    63.40s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 395ms - Early warning
+🟡 MILD-STALL: 395ms - Early warning
+    t =    63.78s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 376ms - Early warning
+🟡 MILD-STALL: 376ms - Early warning
+    t =    64.12s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1204ms - System stress
+🟠 MODERATE-STALL: 1204ms - System stress
+    t =    65.36s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 491ms - Early warning
+🟡 MILD-STALL: 491ms - Early warning
+    t =    65.85s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 401ms - Early warning
+🟡 MILD-STALL: 401ms - Early warning
+    t =    66.25s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1202ms - System stress
+🟠 MODERATE-STALL: 1202ms - System stress
+    t =    67.40s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 359ms - Early warning
+🟡 MILD-STALL: 359ms - Early warning
+    t =    67.80s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 348ms - Early warning
+🟡 MILD-STALL: 348ms - Early warning
+    t =    68.17s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1265ms - System stress
+🟠 MODERATE-STALL: 1265ms - System stress
+⚡ STAGE-2: 30 level 1 stress navigations
+    t =    69.38s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 518ms - Early warning
+🟡 MILD-STALL: 518ms - Early warning
+    t =    70.25s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 969ms - Early warning
+🟡 MILD-STALL: 969ms - Early warning
+    t =    71.07s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 557ms - Early warning
+🟡 MILD-STALL: 557ms - Early warning
+    t =    71.53s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 490ms - Early warning
+🟡 MILD-STALL: 490ms - Early warning
+    t =    72.08s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1564ms - System stress
+🟠 MODERATE-STALL: 1564ms - System stress
+    t =    73.48s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 361ms - Early warning
+🟡 MILD-STALL: 361ms - Early warning
+    t =    73.85s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 344ms - Early warning
+🟡 MILD-STALL: 344ms - Early warning
+    t =    74.20s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1204ms - System stress
+🟠 MODERATE-STALL: 1204ms - System stress
+    t =    75.46s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 498ms - Early warning
+🟡 MILD-STALL: 498ms - Early warning
+    t =    75.92s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1653ms - System stress
+🟠 MODERATE-STALL: 1653ms - System stress
+    t =    77.55s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 377ms - Early warning
+🟡 MILD-STALL: 377ms - Early warning
+    t =    77.97s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 904ms - Early warning
+🟡 MILD-STALL: 904ms - Early warning
+    t =    78.94s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 470ms - Early warning
+🟡 MILD-STALL: 470ms - Early warning
+    t =    79.38s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 569ms - Early warning
+🟡 MILD-STALL: 569ms - Early warning
+    t =    79.98s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1198ms - System stress
+🟠 MODERATE-STALL: 1198ms - System stress
+⚡ STAGE-2: 45 level 1 stress navigations
+    t =    81.06s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 1450ms - System stress
+🟠 MODERATE-STALL: 1450ms - System stress
+    t =    82.56s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 407ms - Early warning
+🟡 MILD-STALL: 407ms - Early warning
+    t =    82.94s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 496ms - Early warning
+🟡 MILD-STALL: 496ms - Early warning
+    t =    83.50s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 568ms - Early warning
+🟡 MILD-STALL: 568ms - Early warning
+    t =    83.99s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 349ms - Early warning
+🟡 MILD-STALL: 349ms - Early warning
+    t =    84.33s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 358ms - Early warning
+🟡 MILD-STALL: 358ms - Early warning
+    t =    84.72s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 373ms - Early warning
+🟡 MILD-STALL: 373ms - Early warning
+    t =    85.16s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 591ms - Early warning
+🟡 MILD-STALL: 591ms - Early warning
+    t =    85.76s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 619ms - Early warning
+🟡 MILD-STALL: 619ms - Early warning
+    t =    86.42s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1632ms - System stress
+🟠 MODERATE-STALL: 1632ms - System stress
+    t =    87.90s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 1750ms - System stress
+🟠 MODERATE-STALL: 1750ms - System stress
+    t =    89.67s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 445ms - Early warning
+🟡 MILD-STALL: 445ms - Early warning
+    t =    90.12s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 864ms - Early warning
+🟡 MILD-STALL: 864ms - Early warning
+    t =    91.00s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 607ms - Early warning
+🟡 MILD-STALL: 607ms - Early warning
+    t =    91.60s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 644ms - Early warning
+🟡 MILD-STALL: 644ms - Early warning
+⚡ STAGE-2: 60 level 1 stress navigations
+    t =    92.22s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 1457ms - System stress
+🟠 MODERATE-STALL: 1457ms - System stress
+    t =    93.70s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 388ms - Early warning
+🟡 MILD-STALL: 388ms - Early warning
+    t =    94.10s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 574ms - Early warning
+🟡 MILD-STALL: 574ms - Early warning
+    t =    94.69s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 923ms - Early warning
+🟡 MILD-STALL: 923ms - Early warning
+    t =    95.57s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 536ms - Early warning
+🟡 MILD-STALL: 536ms - Early warning
+    t =    96.12s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 1420ms - System stress
+🟠 MODERATE-STALL: 1420ms - System stress
+    t =    97.53s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 816ms - Early warning
+🟡 MILD-STALL: 816ms - Early warning
+    t =    98.33s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1254ms - System stress
+🟠 MODERATE-STALL: 1254ms - System stress
+    t =    99.60s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 433ms - Early warning
+🟡 MILD-STALL: 433ms - Early warning
+    t =   100.07s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 421ms - Early warning
+🟡 MILD-STALL: 421ms - Early warning
+    t =   100.46s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 442ms - Early warning
+🟡 MILD-STALL: 442ms - Early warning
+    t =   100.96s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 627ms - Early warning
+🟡 MILD-STALL: 627ms - Early warning
+    t =   101.64s Pressing Up button
+TestRunLogger: 🟠 MODERATE-STALL: 2294ms - System stress
+🟠 MODERATE-STALL: 2294ms - System stress
+    t =   103.89s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 499ms - Early warning
+🟡 MILD-STALL: 499ms - Early warning
+    t =   104.39s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 887ms - Early warning
+🟡 MILD-STALL: 887ms - Early warning
+⚡ STAGE-2: 75 level 1 stress navigations
+    t =   105.19s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 1179ms - System stress
+🟠 MODERATE-STALL: 1179ms - System stress
+    t =   106.39s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 366ms - Early warning
+🟡 MILD-STALL: 366ms - Early warning
+    t =   106.73s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 343ms - Early warning
+🟡 MILD-STALL: 343ms - Early warning
+    t =   107.12s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 399ms - Early warning
+🟡 MILD-STALL: 399ms - Early warning
+    t =   107.49s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 580ms - Early warning
+🟡 MILD-STALL: 580ms - Early warning
+⚡ STAGE-2 COMPLETE: Level 1 stress with 80 navigations
+TestRunLogger: 💥 MAJOR-STRESS: Starting intensive edge-avoiding navigation
+💥 MAJOR-STRESS: Starting intensive edge-avoiding navigation
+    t =   108.15s Pressing and holding Right button for 0.0s
+    t =   109.72s Pressing and holding Left button for 0.0s
+    t =   110.12s Pressing and holding Right button for 0.0s
+    t =   110.67s Pressing and holding Left button for 0.0s
+    t =   111.18s Pressing and holding Right button for 0.0s
+    t =   111.48s Pressing and holding Left button for 0.0s
+    t =   111.81s Pressing and holding Right button for 0.0s
+    t =   112.26s Pressing and holding Left button for 0.0s
+    t =   112.72s Pressing and holding Right button for 0.0s
+    t =   113.12s Pressing and holding Left button for 0.0s
+    t =   113.52s Pressing and holding Right button for 0.0s
+    t =   113.96s Pressing and holding Left button for 0.0s
+    t =   114.66s Pressing and holding Right button for 0.0s
+    t =   115.32s Pressing and holding Left button for 0.0s
+    t =   115.63s Pressing and holding Right button for 0.0s
+    t =   115.93s Pressing and holding Left button for 0.0s
+    t =   116.23s Pressing and holding Right button for 0.0s
+    t =   116.62s Pressing and holding Left button for 0.0s
+    t =   117.34s Pressing and holding Right button for 0.0s
+    t =   117.64s Pressing and holding Left button for 0.0s
+    t =   117.94s Pressing and holding Right button for 0.0s
+    t =   118.24s Pressing and holding Left button for 0.0s
+    t =   118.57s Pressing and holding Right button for 0.0s
+    t =   119.00s Pressing and holding Left button for 0.0s
+    t =   119.43s Pressing and holding Right button for 0.0s
+    t =   119.94s Pressing and holding Left button for 0.0s
+    t =   120.28s Pressing and holding Right button for 0.0s
+    t =   120.58s Pressing and holding Left button for 0.0s
+    t =   120.88s Pressing and holding Right button for 0.0s
+    t =   121.20s Pressing and holding Left button for 0.0s
+    t =   121.76s Pressing and holding Right button for 0.0s
+    t =   122.50s Pressing and holding Left button for 0.0s
+    t =   122.84s Pressing and holding Right button for 0.0s
+    t =   123.27s Pressing and holding Left button for 0.0s
+    t =   123.79s Pressing and holding Right button for 0.0s
+    t =   124.46s Pressing and holding Left button for 0.0s
+    t =   124.77s Pressing and holding Right button for 0.0s
+    t =   125.11s Pressing and holding Left button for 0.0s
+    t =   125.56s Pressing and holding Right button for 0.0s
+    t =   126.16s Pressing and holding Left button for 0.0s
+    t =   126.83s Pressing and holding Right button for 0.0s
+    t =   127.16s Pressing and holding Left button for 0.0s
+    t =   127.47s Pressing and holding Right button for 0.0s
+    t =   127.80s Pressing and holding Left button for 0.0s
+    t =   128.11s Pressing and holding Right button for 0.0s
+    t =   128.66s Pressing and holding Left button for 0.0s
+    t =   129.30s Pressing and holding Right button for 0.0s
+    t =   129.63s Pressing and holding Left button for 0.0s
+    t =   129.97s Pressing and holding Right button for 0.0s
+    t =   130.27s Pressing and holding Left button for 0.0s
+TestRunLogger: 💥 MAJOR-STRESS: Completed 50 rapid focus calculations
+💥 MAJOR-STRESS: Completed 50 rapid focus calculations
+🔥 STAGE-3: Level 2 stress (Target: 62MB, monitor >1000ms stalls)
+💾 STAGE-3-MEMORY: +1 MB allocation (Target: 62 MB total)
+    t =   130.68s Pressing Up button
+TestRunLogger: 🔴 CRITICAL-STALL: 23212ms - INFINITYBUG THRESHOLD
+🔴 CRITICAL-STALL: 23212ms - INFINITYBUG THRESHOLD
+    t =   131.40s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 698ms - Early warning
+🟡 MILD-STALL: 698ms - Early warning
+    t =   131.95s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1782ms - System stress
+🟠 MODERATE-STALL: 1782ms - System stress
+    t =   133.71s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 333ms - Early warning
+🟡 MILD-STALL: 333ms - Early warning
+    t =   134.07s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 332ms - Early warning
+🟡 MILD-STALL: 332ms - Early warning
+    t =   134.41s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 507ms - Early warning
+🟡 MILD-STALL: 507ms - Early warning
+    t =   134.96s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 651ms - Early warning
+🟡 MILD-STALL: 651ms - Early warning
+    t =   135.56s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1635ms - System stress
+🟠 MODERATE-STALL: 1635ms - System stress
+    t =   137.18s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 331ms - Early warning
+🟡 MILD-STALL: 331ms - Early warning
+    t =   137.57s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 431ms - Early warning
+🟡 MILD-STALL: 431ms - Early warning
+    t =   137.96s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 364ms - Early warning
+🟡 MILD-STALL: 364ms - Early warning
+    t =   138.29s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 298ms - Early warning
+🟡 MILD-STALL: 298ms - Early warning
+    t =   138.59s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 296ms - Early warning
+🟡 MILD-STALL: 296ms - Early warning
+    t =   138.89s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1777ms - System stress
+🟠 MODERATE-STALL: 1777ms - System stress
+    t =   140.66s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 340ms - Early warning
+🟡 MILD-STALL: 340ms - Early warning
+    t =   141.03s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 360ms - Early warning
+🟡 MILD-STALL: 360ms - Early warning
+    t =   141.37s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 336ms - Early warning
+🟡 MILD-STALL: 336ms - Early warning
+    t =   141.70s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 297ms - Early warning
+🟡 MILD-STALL: 297ms - Early warning
+    t =   142.04s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 411ms - Early warning
+🟡 MILD-STALL: 411ms - Early warning
+    t =   142.42s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 340ms - Early warning
+🟡 MILD-STALL: 340ms - Early warning
+🔥 STAGE-3: 20 level 2 stress navigations
+    t =   142.77s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 368ms - Early warning
+🟡 MILD-STALL: 368ms - Early warning
+    t =   143.12s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 366ms - Early warning
+🟡 MILD-STALL: 366ms - Early warning
+    t =   143.49s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 306ms - Early warning
+🟡 MILD-STALL: 306ms - Early warning
+    t =   143.81s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 431ms - Early warning
+🟡 MILD-STALL: 431ms - Early warning
+    t =   144.32s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 469ms - Early warning
+🟡 MILD-STALL: 469ms - Early warning
+    t =   144.70s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1801ms - System stress
+🟠 MODERATE-STALL: 1801ms - System stress
+    t =   146.59s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 423ms - Early warning
+🟡 MILD-STALL: 423ms - Early warning
+    t =   146.95s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 647ms - Early warning
+🟡 MILD-STALL: 647ms - Early warning
+    t =   147.78s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 552ms - Early warning
+🟡 MILD-STALL: 552ms - Early warning
+    t =   148.13s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1711ms - System stress
+🟠 MODERATE-STALL: 1711ms - System stress
+    t =   149.85s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 470ms - Early warning
+🟡 MILD-STALL: 470ms - Early warning
+    t =   150.31s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 732ms - Early warning
+🟡 MILD-STALL: 732ms - Early warning
+    t =   151.18s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 508ms - Early warning
+🟡 MILD-STALL: 508ms - Early warning
+    t =   151.56s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 349ms - Early warning
+🟡 MILD-STALL: 349ms - Early warning
+    t =   151.89s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 367ms - Early warning
+🟡 MILD-STALL: 367ms - Early warning
+    t =   152.28s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1949ms - System stress
+🟠 MODERATE-STALL: 1949ms - System stress
+    t =   154.19s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 337ms - Early warning
+🟡 MILD-STALL: 337ms - Early warning
+    t =   154.56s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 336ms - Early warning
+🟡 MILD-STALL: 336ms - Early warning
+    t =   154.89s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 382ms - Early warning
+🟡 MILD-STALL: 382ms - Early warning
+    t =   155.28s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 372ms - Early warning
+🟡 MILD-STALL: 372ms - Early warning
+🔥 STAGE-3: 40 level 2 stress navigations
+    t =   155.65s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 530ms - Early warning
+🟡 MILD-STALL: 530ms - Early warning
+    t =   156.28s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2151ms - System stress
+🟠 MODERATE-STALL: 2151ms - System stress
+    t =   158.31s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 351ms - Early warning
+🟡 MILD-STALL: 351ms - Early warning
+    t =   158.71s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 734ms - Early warning
+🟡 MILD-STALL: 734ms - Early warning
+    t =   159.47s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 582ms - Early warning
+🟡 MILD-STALL: 582ms - Early warning
+    t =   160.00s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 431ms - Early warning
+🟡 MILD-STALL: 431ms - Early warning
+    t =   160.47s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1884ms - System stress
+🟠 MODERATE-STALL: 1884ms - System stress
+    t =   162.31s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 335ms - Early warning
+🟡 MILD-STALL: 335ms - Early warning
+    t =   162.62s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 337ms - Early warning
+🟡 MILD-STALL: 337ms - Early warning
+    t =   162.98s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 327ms - Early warning
+🟡 MILD-STALL: 327ms - Early warning
+    t =   163.31s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 363ms - Early warning
+🟡 MILD-STALL: 363ms - Early warning
+    t =   163.69s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 372ms - Early warning
+🟡 MILD-STALL: 372ms - Early warning
+    t =   164.04s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 388ms - Early warning
+🟡 MILD-STALL: 388ms - Early warning
+    t =   164.44s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 703ms - Early warning
+🟡 MILD-STALL: 703ms - Early warning
+    t =   165.13s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 351ms - Early warning
+🟡 MILD-STALL: 351ms - Early warning
+    t =   165.53s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 389ms - Early warning
+🟡 MILD-STALL: 389ms - Early warning
+    t =   165.84s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 310ms - Early warning
+🟡 MILD-STALL: 310ms - Early warning
+    t =   166.18s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 368ms - Early warning
+🟡 MILD-STALL: 368ms - Early warning
+    t =   166.54s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 518ms - Early warning
+🟡 MILD-STALL: 518ms - Early warning
+    t =   167.07s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 548ms - Early warning
+🟡 MILD-STALL: 548ms - Early warning
+🔥 STAGE-3: 60 level 2 stress navigations
+    t =   167.60s Pressing Up button
+TestRunLogger: 🟠 MODERATE-STALL: 1900ms - System stress
+🟠 MODERATE-STALL: 1900ms - System stress
+    t =   169.50s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 308ms - Early warning
+🟡 MILD-STALL: 308ms - Early warning
+    t =   169.84s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 341ms - Early warning
+🟡 MILD-STALL: 341ms - Early warning
+    t =   170.14s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1689ms - System stress
+🟠 MODERATE-STALL: 1689ms - System stress
+    t =   171.84s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 286ms - Early warning
+🟡 MILD-STALL: 286ms - Early warning
+    t =   172.14s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1797ms - System stress
+🟠 MODERATE-STALL: 1797ms - System stress
+    t =   173.95s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 302ms - Early warning
+🟡 MILD-STALL: 302ms - Early warning
+    t =   174.23s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1826ms - System stress
+🟠 MODERATE-STALL: 1826ms - System stress
+    t =   176.07s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1976ms - System stress
+🟠 MODERATE-STALL: 1976ms - System stress
+    t =   178.11s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 501ms - Early warning
+🟡 MILD-STALL: 501ms - Early warning
+    t =   178.55s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 602ms - Early warning
+🟡 MILD-STALL: 602ms - Early warning
+    t =   179.31s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 618ms - Early warning
+🟡 MILD-STALL: 618ms - Early warning
+    t =   179.77s Pressing Up button
+TestRunLogger: 🟠 MODERATE-STALL: 2065ms - System stress
+🟠 MODERATE-STALL: 2065ms - System stress
+    t =   181.83s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 332ms - Early warning
+🟡 MILD-STALL: 332ms - Early warning
+    t =   182.13s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 335ms - Early warning
+🟡 MILD-STALL: 335ms - Early warning
+    t =   182.52s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 362ms - Early warning
+🟡 MILD-STALL: 362ms - Early warning
+    t =   182.93s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1922ms - System stress
+🟠 MODERATE-STALL: 1922ms - System stress
+    t =   184.79s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 430ms - Early warning
+🟡 MILD-STALL: 430ms - Early warning
+    t =   185.23s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 442ms - Early warning
+🟡 MILD-STALL: 442ms - Early warning
+    t =   185.75s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 509ms - Early warning
+🟡 MILD-STALL: 509ms - Early warning
+🔥 STAGE-3: 80 level 2 stress navigations
+    t =   186.17s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 344ms - Early warning
+🟡 MILD-STALL: 344ms - Early warning
+    t =   186.56s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1972ms - System stress
+🟠 MODERATE-STALL: 1972ms - System stress
+    t =   188.44s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 268ms - Early warning
+🟡 MILD-STALL: 268ms - Early warning
+    t =   188.77s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 331ms - Early warning
+🟡 MILD-STALL: 331ms - Early warning
+    t =   189.07s Pressing Up button
+TestRunLogger: 🟠 MODERATE-STALL: 2015ms - System stress
+🟠 MODERATE-STALL: 2015ms - System stress
+    t =   191.10s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2713ms - System stress
+🟠 MODERATE-STALL: 2713ms - System stress
+    t =   193.81s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 584ms - Early warning
+🟡 MILD-STALL: 584ms - Early warning
+    t =   194.37s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 603ms - Early warning
+🟡 MILD-STALL: 603ms - Early warning
+    t =   195.17s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 736ms - Early warning
+🟡 MILD-STALL: 736ms - Early warning
+    t =   195.74s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 418ms - Early warning
+🟡 MILD-STALL: 418ms - Early warning
+    t =   196.15s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 2261ms - System stress
+🟠 MODERATE-STALL: 2261ms - System stress
+    t =   198.38s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2117ms - System stress
+🟠 MODERATE-STALL: 2117ms - System stress
+    t =   200.54s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 445ms - Early warning
+🟡 MILD-STALL: 445ms - Early warning
+    t =   200.98s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2182ms - System stress
+🟠 MODERATE-STALL: 2182ms - System stress
+    t =   203.12s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 400ms - Early warning
+🟡 MILD-STALL: 400ms - Early warning
+    t =   203.54s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 373ms - Early warning
+🟡 MILD-STALL: 373ms - Early warning
+    t =   203.97s Pressing Up button
+TestRunLogger: 🟠 MODERATE-STALL: 2282ms - System stress
+🟠 MODERATE-STALL: 2282ms - System stress
+    t =   206.23s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 592ms - Early warning
+🟡 MILD-STALL: 592ms - Early warning
+    t =   206.79s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 375ms - Early warning
+🟡 MILD-STALL: 375ms - Early warning
+    t =   207.25s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 650ms - Early warning
+🟡 MILD-STALL: 650ms - Early warning
+🔥 STAGE-3: Brief pause for stall detection at 100
+🔥 STAGE-3: 100 level 2 stress navigations
+    t =   208.58s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 3199ms - System stress
+🟠 MODERATE-STALL: 3199ms - System stress
+    t =   211.02s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2247ms - System stress
+🟠 MODERATE-STALL: 2247ms - System stress
+    t =   213.26s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 526ms - Early warning
+🟡 MILD-STALL: 526ms - Early warning
+    t =   213.80s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 333ms - Early warning
+🟡 MILD-STALL: 333ms - Early warning
+    t =   214.11s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2179ms - System stress
+🟠 MODERATE-STALL: 2179ms - System stress
+    t =   216.30s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 520ms - Early warning
+🟡 MILD-STALL: 520ms - Early warning
+    t =   216.83s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 392ms - Early warning
+🟡 MILD-STALL: 392ms - Early warning
+    t =   217.25s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2213ms - System stress
+🟠 MODERATE-STALL: 2213ms - System stress
+    t =   219.47s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 503ms - Early warning
+🟡 MILD-STALL: 503ms - Early warning
+    t =   219.93s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 309ms - Early warning
+🟡 MILD-STALL: 309ms - Early warning
+    t =   220.23s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2174ms - System stress
+🟠 MODERATE-STALL: 2174ms - System stress
+🔥 STAGE-3 COMPLETE: Level 2 stress with 111 navigations
+🔥 MONITOR: Check for >5179ms stalls and system failure indicators
+💥 STAGE-4: Critical stress (Target: 79MB, >5179ms stalls)
+💾 STAGE-4-MEMORY: +17 MB critical allocation (Target: 79 MB total)
+    t =   222.43s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 532ms - Early warning
+🟡 MILD-STALL: 532ms - Early warning
+    t =   222.92s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 271ms - Early warning
+🟡 MILD-STALL: 271ms - Early warning
+    t =   223.19s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2160ms - System stress
+🟠 MODERATE-STALL: 2160ms - System stress
+    t =   225.36s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 461ms - Early warning
+🟡 MILD-STALL: 461ms - Early warning
+    t =   225.84s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 390ms - Early warning
+🟡 MILD-STALL: 390ms - Early warning
+    t =   226.32s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 1003ms - System stress
+🟠 MODERATE-STALL: 1003ms - System stress
+    t =   227.29s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 582ms - Early warning
+🟡 MILD-STALL: 582ms - Early warning
+    t =   227.84s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 2469ms - System stress
+🟠 MODERATE-STALL: 2469ms - System stress
+    t =   230.29s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2374ms - System stress
+🟠 MODERATE-STALL: 2374ms - System stress
+    t =   232.62s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 474ms - Early warning
+🟡 MILD-STALL: 474ms - Early warning
+    t =   233.15s Pressing Up button
+TestRunLogger: 🟠 MODERATE-STALL: 2395ms - System stress
+🟠 MODERATE-STALL: 2395ms - System stress
+    t =   235.50s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 517ms - Early warning
+🟡 MILD-STALL: 517ms - Early warning
+    t =   236.05s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2481ms - System stress
+🟠 MODERATE-STALL: 2481ms - System stress
+    t =   238.55s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 837ms - Early warning
+🟡 MILD-STALL: 837ms - Early warning
+    t =   239.55s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 502ms - Early warning
+🟡 MILD-STALL: 502ms - Early warning
+    t =   239.83s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 370ms - Early warning
+🟡 MILD-STALL: 370ms - Early warning
+    t =   240.24s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2603ms - System stress
+🟠 MODERATE-STALL: 2603ms - System stress
+    t =   242.83s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 522ms - Early warning
+🟡 MILD-STALL: 522ms - Early warning
+    t =   243.36s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2446ms - System stress
+🟠 MODERATE-STALL: 2446ms - System stress
+    t =   245.78s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2894ms - System stress
+🟠 MODERATE-STALL: 2894ms - System stress
+    t =   248.69s Pressing Up button
+TestRunLogger: 🟠 MODERATE-STALL: 3027ms - System stress
+🟠 MODERATE-STALL: 3027ms - System stress
+    t =   251.71s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 536ms - Early warning
+🟡 MILD-STALL: 536ms - Early warning
+    t =   252.24s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2505ms - System stress
+🟠 MODERATE-STALL: 2505ms - System stress
+    t =   254.78s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 528ms - Early warning
+🟡 MILD-STALL: 528ms - Early warning
+    t =   255.27s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2536ms - System stress
+🟠 MODERATE-STALL: 2536ms - System stress
+💥 STAGE-4: 25 critical navigations
+    t =   257.81s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 489ms - Early warning
+🟡 MILD-STALL: 489ms - Early warning
+    t =   258.28s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2574ms - System stress
+🟠 MODERATE-STALL: 2574ms - System stress
+    t =   260.89s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 444ms - Early warning
+🟡 MILD-STALL: 444ms - Early warning
+    t =   261.31s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 2618ms - System stress
+🟠 MODERATE-STALL: 2618ms - System stress
+    t =   263.93s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 513ms - Early warning
+🟡 MILD-STALL: 513ms - Early warning
+    t =   264.44s Pressing Up button
+TestRunLogger: 🟠 MODERATE-STALL: 2992ms - System stress
+🟠 MODERATE-STALL: 2992ms - System stress
+    t =   267.45s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 3008ms - System stress
+🟠 MODERATE-STALL: 3008ms - System stress
+    t =   270.44s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 3024ms - System stress
+🟠 MODERATE-STALL: 3024ms - System stress
+    t =   273.47s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 465ms - Early warning
+🟡 MILD-STALL: 465ms - Early warning
+    t =   273.95s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 285ms - Early warning
+🟡 MILD-STALL: 285ms - Early warning
+    t =   274.22s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 2500ms - System stress
+🟠 MODERATE-STALL: 2500ms - System stress
+    t =   276.73s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 469ms - Early warning
+🟡 MILD-STALL: 469ms - Early warning
+    t =   277.19s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2760ms - System stress
+🟠 MODERATE-STALL: 2760ms - System stress
+    t =   279.98s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 701ms - Early warning
+🟡 MILD-STALL: 701ms - Early warning
+    t =   281.21s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 921ms - Early warning
+🟡 MILD-STALL: 921ms - Early warning
+    t =   281.60s Pressing Up button
+TestRunLogger: 🟠 MODERATE-STALL: 3081ms - System stress
+🟠 MODERATE-STALL: 3081ms - System stress
+    t =   284.66s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 589ms - Early warning
+🟡 MILD-STALL: 589ms - Early warning
+    t =   285.24s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 2795ms - System stress
+🟠 MODERATE-STALL: 2795ms - System stress
+    t =   288.03s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 3220ms - System stress
+🟠 MODERATE-STALL: 3220ms - System stress
+    t =   291.26s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 469ms - Early warning
+🟡 MILD-STALL: 469ms - Early warning
+    t =   291.75s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 285ms - Early warning
+🟡 MILD-STALL: 285ms - Early warning
+    t =   292.00s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2805ms - System stress
+🟠 MODERATE-STALL: 2805ms - System stress
+    t =   294.85s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 493ms - Early warning
+🟡 MILD-STALL: 493ms - Early warning
+    t =   295.32s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2872ms - System stress
+🟠 MODERATE-STALL: 2872ms - System stress
+    t =   298.17s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 466ms - Early warning
+🟡 MILD-STALL: 466ms - Early warning
+💥 STAGE-4: 50 critical navigations
+    t =   298.64s Pressing Up button
+TestRunLogger: 🟡 MILD-STALL: 287ms - Early warning
+🟡 MILD-STALL: 287ms - Early warning
+    t =   298.94s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2972ms - System stress
+🟠 MODERATE-STALL: 2972ms - System stress
+    t =   301.93s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 490ms - Early warning
+🟡 MILD-STALL: 490ms - Early warning
+    t =   302.40s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2896ms - System stress
+🟠 MODERATE-STALL: 2896ms - System stress
+    t =   305.32s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 581ms - Early warning
+🟡 MILD-STALL: 581ms - Early warning
+    t =   305.90s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 978ms - Early warning
+🟡 MILD-STALL: 978ms - Early warning
+    t =   306.84s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 3280ms - System stress
+🟠 MODERATE-STALL: 3280ms - System stress
+    t =   310.15s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 531ms - Early warning
+🟡 MILD-STALL: 531ms - Early warning
+    t =   310.68s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 289ms - Early warning
+🟡 MILD-STALL: 289ms - Early warning
+    t =   310.94s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 260ms - Early warning
+🟡 MILD-STALL: 260ms - Early warning
+    t =   311.21s Pressing Up button
+TestRunLogger: 🟠 MODERATE-STALL: 2829ms - System stress
+🟠 MODERATE-STALL: 2829ms - System stress
+    t =   314.06s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 3311ms - System stress
+🟠 MODERATE-STALL: 3311ms - System stress
+    t =   317.36s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 494ms - Early warning
+🟡 MILD-STALL: 494ms - Early warning
+    t =   317.85s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 472ms - Early warning
+🟡 MILD-STALL: 472ms - Early warning
+    t =   318.56s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 971ms - Early warning
+🟡 MILD-STALL: 971ms - Early warning
+    t =   319.30s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 3520ms - System stress
+🟠 MODERATE-STALL: 3520ms - System stress
+    t =   322.81s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 312ms - Early warning
+🟡 MILD-STALL: 312ms - Early warning
+    t =   323.11s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 2989ms - System stress
+🟠 MODERATE-STALL: 2989ms - System stress
+    t =   326.12s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 3423ms - System stress
+🟠 MODERATE-STALL: 3423ms - System stress
+    t =   329.53s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 467ms - Early warning
+🟡 MILD-STALL: 467ms - Early warning
+    t =   330.01s Pressing Up button
+TestRunLogger: 🟠 MODERATE-STALL: 3095ms - System stress
+🟠 MODERATE-STALL: 3095ms - System stress
+    t =   333.10s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 3459ms - System stress
+🟠 MODERATE-STALL: 3459ms - System stress
+    t =   336.55s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 548ms - Early warning
+🟡 MILD-STALL: 548ms - Early warning
+    t =   337.10s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 408ms - Early warning
+🟡 MILD-STALL: 408ms - Early warning
+    t =   337.53s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 780ms - Early warning
+🟡 MILD-STALL: 780ms - Early warning
+💥 STAGE-4: 75 critical navigations
+    t =   338.40s Pressing Right button
+TestRunLogger: 🟡 MILD-STALL: 521ms - Early warning
+🟡 MILD-STALL: 521ms - Early warning
+    t =   338.82s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 3418ms - System stress
+🟠 MODERATE-STALL: 3418ms - System stress
+    t =   342.26s Pressing Down button
+TestRunLogger: 🟡 MILD-STALL: 436ms - Early warning
+🟡 MILD-STALL: 436ms - Early warning
+💥 STAGE-4 COMPLETE: Critical stress with 78 navigations
+💥 MONITOR: Check for >5179ms stalls and system failure indicators
+🚀 V9.0-PROGRESSIVE: Completed in 324.7s
+🎯 MONITOR: Watch for >5179ms stalls and memory escalation to 79MB
+TestRunLogger: 📊 RUNLOOP-STALL-ANALYSIS:
+📊 RUNLOOP-STALL-ANALYSIS:
+TestRunLogger:   Total Actions: 316
+  Total Actions: 316
+TestRunLogger:   Total Stalls: 315
+  Total Stalls: 315
+TestRunLogger:   Critical Stalls (>5179ms): 1
+  Critical Stalls (>5179ms): 1
+TestRunLogger:   Max Stall: 23212ms
+  Max Stall: 23212ms
+TestRunLogger:   Average Stall: 1030ms
+  Average Stall: 1030ms
+TestRunLogger: 🔴 INFINITYBUG-DETECTED: 1 critical stalls found
+🔴 INFINITYBUG-DETECTED: 1 critical stalls found
+    t =   342.97s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testProgressiveStressSystemReproduction]' passed (343.730 seconds).
+Test Suite 'FocusStressUITests' passed at 2025-06-25 16:23:30.198.
+	 Executed 1 test, with 0 failures (0 unexpected) in 343.730 (343.733) seconds
+Test Suite 'HammerTimeUITests.xctest' passed at 2025-06-25 16:23:30.240.
+	 Executed 1 test, with 0 failures (0 unexpected) in 343.730 (343.776) seconds
+Test Suite 'Selected tests' passed at 2025-06-25 16:23:30.245.
+	 Executed 1 test, with 0 failures (0 unexpected) in 343.730 (343.784) seconds

@@ -128,7 +128,7 @@ public enum ContainerFactory {
         let innerAnimal: Animal = .random()
         let outerPlant: Plant = .random()
         
-        // 1️⃣ SwiftUI hosting controller around the childVC
+        // 1. SwiftUI hosting controller around the childVC
         let hosting = UIHostingController(
             rootView: PaddedControllerView(
                 embedded: childVC,
@@ -140,7 +140,7 @@ public enum ContainerFactory {
         )
         hosting.view.translatesAutoresizingMaskIntoConstraints = false
         
-        // 2️⃣ Outer UIKit parent - REDUCED conflicts for testing
+        // 2. Outer UIKit parent - REDUCED conflicts for testing
         let parentVC = UIViewController()
         parentVC.view.backgroundColor = randomUIColor()
         // Don't make parent accessible in test mode - let child elements be accessible
@@ -149,7 +149,7 @@ public enum ContainerFactory {
         let plantTraits = outerPlant.traits
         parentVC.view.accessibilityIdentifier = "Plant-\(plantTraits.name)"
         
-        // 3️⃣ Embed hosting controller with 10 pt padding
+        // 3. Embed hosting controller with 10 pt padding
         parentVC.addChild(hosting)
         parentVC.view.addSubview(hosting.view)
         NSLayoutConstraint.activate([
@@ -171,7 +171,7 @@ public enum ContainerFactory {
         let innerAnimal: Animal = .random()
         let outerPlant: Plant = .random()
         
-        // 1️⃣ SwiftUI hosting controller around the childVC
+        // 1. SwiftUI hosting controller around the childVC
         let hosting = UIHostingController(
             rootView: PaddedControllerView(
                 embedded: childVC,
@@ -183,7 +183,7 @@ public enum ContainerFactory {
         )
         hosting.view.translatesAutoresizingMaskIntoConstraints = false
         
-        // 2️⃣ Outer UIKit parent - KEEP accessibility conflicts
+        // 2. Outer UIKit parent - KEEP accessibility conflicts
         let parentVC = UIViewController()
         parentVC.view.backgroundColor = randomUIColor()
         parentVC.view.isAccessibilityElement = true
@@ -194,7 +194,7 @@ public enum ContainerFactory {
         parentVC.view.accessibilityHint = "Climate: \(plantTraits.climate)"
         parentVC.view.accessibilityIdentifier = "Plant-\(plantTraits.name)"
         
-        // 3️⃣ Embed hosting controller with 10 pt padding
+        // 3. Embed hosting controller with 10 pt padding
         parentVC.addChild(hosting)
         parentVC.view.addSubview(hosting.view)
         NSLayoutConstraint.activate([

@@ -3,21 +3,52 @@
 ## Project Root Structure
 ```
 HammerTime/
-├── memlog/                               # Project state tracking (NEW)
+├── memlog/                               # Project state tracking and analysis
 │   ├── changelog.md                      # Change history and project status
 │   ├── directory_tree.md                 # This file - project structure
-│   └── tasks.md                          # Task management and progress
+│   ├── tasks.md                          # Task management and progress
+│   ├── Confluence2.md                    # Professional InfinityBug technical analysis
+│   ├── DualPipelineCollision.md          # Analysis of false technical claims (learning record)
+│   ├── SystemInputPipeline.md            # Corrected tvOS input architecture analysis
+│   ├── failed_attempts.md               # Historical record of failed approaches
+│   ├── UnreliableTests.md               # Test reliability and performance analysis
+│   ├── AutomatedTest_FailureAnalysis.md  # Why automation fails analysis
+│   ├── DevTicket_CreateInfinityBugUITest.md # Project management
+│   ├── EvolutionaryTestImprovementPlan.md # High-level strategy
+│   ├── FocusStressViewController_Summary.md # Component analysis
+│   ├── RadarSubmission.md                # Bug report template
+│   ├── SearchResults.md                  # Reference material
+│   ├── SimulatorVSManualTestingLimitations.md # Platform differences
+│   ├── Terminology.md                    # Definitions
+│   ├── Test_Documentation_Summary.md     # Documentation overview
+│   ├── UITestingFacts.md                 # Testing platform limitations
+│   ├── V3_Performance_Analysis.md        # Performance measurements
+│   ├── InfinityBug_Test_Analysis.md      # Test analysis
+│   ├── InfinityBug_Mitigation_Strategy.md # Mitigation approaches
+│   ├── LogComparison.md                  # Log analysis
+│   ├── InfinityBug_LogAnalysis_Summary.md # Log analysis summary
+│   ├── InfinityBug_SuccessfulRepro4_Analysis.md # Reproduction analysis
+│   └── SuccessfulReproduction_PatternAnalysis.md # Pattern analysis
 ├── HammerTime/                           # Main app target
 │   ├── AppDelegate.swift                 # App lifecycle management
 │   ├── ViewController.swift              # Root container with InfinityBug stress
 │   ├── ContainerFactory.swift           # Complex accessibility hierarchy creator
+│   ├── FocusStressViewController.swift   # Enhanced stress testing controller
+│   ├── InfinityBugDetector.swift         # Bug detection system
+│   ├── MainMenuViewController.swift      # Navigation controller
+│   ├── TestRunLogger.swift              # Test execution logging
+│   ├── FocusStressConfiguration.swift   # Configuration management
 │   ├── Assets.xcassets/                  # App icons and images
 │   └── Base.lproj/                       # Storyboards and localization
 ├── HammerTimeTests/                      # Unit tests
 │   └── HammerTimeTests.swift             # Basic unit test structure
 ├── HammerTimeUITests/                    # UI Tests for InfinityBug detection
-│   ├── HammerTimeUITests.swift           # Comprehensive InfinityBug test suite
-│   └── HammerTimeUITestsLaunchTests.swift # Launch behavior tests
+│   ├── FocusStressUITests.swift          # Comprehensive stress test suite
+│   ├── FocusStressUITests+Extensions.swift # Test utilities and extensions
+│   └── NavigationStrategy.swift         # Navigation strategy implementation
+├── logs/                                 # Test execution logs and analysis
+│   ├── manualExecutionLogs/              # Manual reproduction evidence
+│   └── UITestRunLogs-OnDevice/           # Device test execution logs
 ├── HammerTime.xcodeproj/                 # Xcode project configuration
 ├── Debugger.swift                        # Low-level input/accessibility monitoring
 ├── README_HID_DEBUGGING.md              # HID debugging documentation
@@ -26,71 +57,76 @@ HammerTime/
 
 ## Key Components by Purpose
 
-### InfinityBug Detection Infrastructure
+### InfinityBug Analysis Infrastructure
 - `Debugger.swift` - Ultra low-level input monitoring, accessibility tree analysis
-- `HammerTimeUITests.swift` - 20+ test methods for InfinityBug reproduction
-- `ViewController.swift` - Performance stress elements, accessibility conflicts
+- `FocusStressUITests.swift` - Comprehensive test methods for InfinityBug reproduction
+- `SystemInputPipeline.md` - Technical analysis of tvOS input architecture
+- `Confluence2.md` - Professional technical documentation
 
-### Accessibility Conflict Generation
-- `ContainerFactory.swift` - Creates Plant->Animal->SampleVC hierarchy conflicts
-- Complex view layering with competing accessibility properties
-- Focus guide conflicts and circular reference creation
+### Evidence-Based Documentation
+- `DualPipelineCollision.md` - Documents analytical failures (learning record)
+- `failed_attempts.md` - Historical record of what didn't work and why
+- `SimulatorVSManualTestingLimitations.md` - Platform-specific constraints
+- `UITestingFacts.md` - Testing environment limitations
 
 ### Core App Structure
 - `AppDelegate.swift` - Basic tvOS app lifecycle with debugger integration
-- `ViewController.swift` - Main container orchestrating all conflict elements
-- Asset and storyboard resources for tvOS deployment
+- `FocusStressViewController.swift` - Enhanced stress testing with configurable parameters
+- `InfinityBugDetector.swift` - Actor-based detection system
+- `ContainerFactory.swift` - Complex accessibility hierarchy generation
+
+## Documentation Cleanup Summary
+
+### Files Removed (False Technical Claims)
+The following files contained false "dual pipeline collision" claims and have been removed:
+- ~~`InfinityBug_GroundTruth_Analysis.md`~~ - False claims about dual pipeline collisions
+- ~~`RootCauseAnalysis.md`~~ - Built on false technical premises
+- ~~`Confluence.md`~~ - Superseded by corrected `Confluence2.md`
+- ~~`MetricAnalysis.md`~~ - Performance metrics based on false assumptions
+- ~~`V7_Evolution_Summary.md`~~ - Evolution plan based on impossible simulation
+- ~~`InfinityBug_7Step_Analysis.md`~~ - Implementation plan using invalid methods
+- ~~`InfinityBug_Immediate_Fixes.md`~~ - Fixes based on incorrect root cause
+
+### Files Corrected
+- `SystemInputPipeline.md` - Rewritten with evidence-based technical analysis
+- `failed_attempts.md` - Dual pipeline references removed, failure analysis preserved
+- `UnreliableTests.md` - Verified clean of false claims
+
+### Current Valid Documentation
+- `Confluence2.md` - Professional technical analysis using only Apple's public APIs
+- `DualPipelineCollision.md` - Analysis of analytical failures | ✅ Learning Record | Documents errors to prevent repetition
 
 ## File Purposes
 
-| File | Primary Purpose | Lines | Key Features |
-|------|----------------|-------|--------------|
-| `Debugger.swift` | Input monitoring & accessibility analysis | 956 | GameController integration, focus tracking |
-| `HammerTimeUITests.swift` | InfinityBug detection test suite | 1373 | 20+ test methods, rapid input simulation |
-| `ViewController.swift` | Main app container with stress elements | 971 | Accessibility conflicts, performance stress |
-| `ContainerFactory.swift` | Complex hierarchy generation | 227 | Plant/Animal themed accessibility conflicts |
+| File | Primary Purpose | Status | Key Features |
+|------|----------------|--------|--------------|
+| `Debugger.swift` | Input monitoring & accessibility analysis | ✅ Valid | GameController integration, focus tracking |
+| `FocusStressUITests.swift` | InfinityBug detection test suite | ✅ Valid | Comprehensive test methods, rapid input simulation |
+| `Confluence2.md` | Professional technical documentation | ✅ Valid | Evidence-based analysis, Apple API references |
+| `SystemInputPipeline.md` | tvOS input architecture analysis | ✅ Corrected | Accurate technical description, no false claims |
+| `DualPipelineCollision.md` | Analysis of analytical failures | ✅ Learning Record | Documents errors to prevent repetition |
 
 ## Testing Strategy Structure
 ```
-UI Tests (HammerTimeUITests.swift):
-├── Basic Navigation Tests
-│   ├── testAppLaunchesAndUIIsAccessible()
-│   ├── testBasicNavigation()
-│   └── testAccessibilityIdentifiersExist()
-├── InfinityBug Detection Tests  
-│   ├── testRandomHammerScroll()
-│   ├── testInfinityBugReplication()
-│   ├── testInfinityBugReplicationBrute()
-│   └── testInfinityBugDirectionalSwitchAfterHang()
-├── Focus Behavior Tests
-│   ├── testRapidDirectionalFocusChanges()
-│   ├── testFocusDuringInterruptions()
-│   └── testFocusRecoveryAfterStress()
-└── Container Conflict Tests
-    ├── testContainerFactoryAccessibilityConflicts()
-    ├── testContainerAccessibilityPropertyConflicts()
-    └── testVoiceOverNestedContainerBehavior()
+UI Tests (FocusStressUITests.swift):
+├── Basic Functionality Tests
+│   ├── testAppLaunchesWithoutCrashing()
+│   ├── testBasicNavigationWorks()
+│   └── testAccessibilityTreeIsValid()
+├── InfinityBug Investigation Tests  
+│   ├── testExtendedNavigationStress()
+│   ├── testMemoryPressureDuringNavigation()
+│   ├── testFocusConflictGeneration()
+│   └── testVoiceOverStressConditions()
+├── Performance Monitoring Tests
+│   ├── testRunLoopPerformanceTracking()
+│   ├── testHardwareInputCorrelation()
+│   └── testAccessibilityProcessingOverhead()
+└── Platform Limitation Tests
+    ├── testUITestEnvironmentLimitations()
+    ├── testSimulatorVsDeviceDifferences()
+    └── testVoiceOverIntegrationConstraints()
 ```
 
-## File-by-File Breakdown
-
-| Path                                        | LoC | Purpose                                                      |
-| ------------------------------------------- | --- | ------------------------------------------------------------ |
-| **App Logic & UI**                          |     |                                                              |
-| `HammerTime/AppDelegate.swift`              | 80  | App entry point, lifecycle management, test harness routing.   |
-| `HammerTime/ViewController.swift`           | 971 | Root view controller for the main application.                 |
-| `HammerTime/ContainerFactory.swift`         | 108 | Creates complex, nested view controller hierarchies for stress.|
-| `HammerTime/FocusStressViewController.swift`| 212 | **NEW**: `DEBUG`-only view controller with multiple focus stressors.|
-| **Debugging & Diagnostics**                 |     |                                                              |
-| `Debugger.swift`                            | 956 | Low-level event monitoring and logging framework.            |
-| `HammerTime/InfinityBugDetector.swift`      | 202 | **NEW**: Actor-based system for high-confidence bug detection.|
-| **UI Testing**                              |     |                                                              |
-| `HammerTimeUITests/HammerTimeUITests.swift` | 1373| Original UI test suite for the main `ViewController`.          |
-| `HammerTimeUITests/FocusStressUITests.swift`| 335 | **NEW**: UI tests for the `FocusStressViewController`.         |
-| **Project & Memlog**                        |     |                                                              |
-| `memlog/changelog.md`                       | 66  | Project history and status.                                  |
-| `memlog/tasks.md`                           | 128 | Task management and progress tracking.                       |
-| `memlog/directory_tree.md`                  | 76  | This file.                                                   |
-
 ---
-*This directory structure supports the InfinityBug detection strategy through systematic accessibility conflict generation and comprehensive testing.* 
+*This directory structure supports evidence-based InfinityBug analysis through systematic accessibility testing and accurate technical documentation. All false technical claims have been removed and replaced with verified, evidence-based analysis.* 

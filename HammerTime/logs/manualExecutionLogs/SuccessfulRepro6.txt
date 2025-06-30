@@ -1,0 +1,1827 @@
+CLIENT OF UIKIT REQUIRES UPDATE: This process does not adopt UIScene lifecycle. This will become an assert in a future version.
+void * _Nullable NSMapGet(NSMapTable * _Nonnull, const void * _Nullable): map table argument is NULL
+App is being debugged, do not track this hang
+Hang detected: 0.42s (debugger attached, not reporting)
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/3D9C708C-FBD1-47F1-904A-24D19FAA7DAF/Documents/HammerTimeLogs
+TestRunLogger: ❌ DIRECTORY-FAILED: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “UITestRunLogs” in the folder “HammerTimeLogs”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/3D9C708C-FBD1-47F1-904A-24D19FAA7DAF/Documents/HammerTimeLogs/UITestRunLogs, NSURL=file:///var/mobile/Containers/Data/Application/3D9C708C-FBD1-47F1-904A-24D19FAA7DAF/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x303d53960 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: Failed to create UITestRunLogs directory: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “UITestRunLogs” in the folder “HammerTimeLogs”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/3D9C708C-FBD1-47F1-904A-24D19FAA7DAF/Documents/HammerTimeLogs/UITestRunLogs, NSURL=file:///var/mobile/Containers/Data/Application/3D9C708C-FBD1-47F1-904A-24D19FAA7DAF/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x303d53960 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/3D9C708C-FBD1-47F1-904A-24D19FAA7DAF/Documents/HammerTimeLogs
+TestRunLogger: ❌ LOG-FILE-FAILED: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “UITestRunLogs” in the folder “HammerTimeLogs”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/3D9C708C-FBD1-47F1-904A-24D19FAA7DAF/Documents/HammerTimeLogs/UITestRunLogs, NSURL=file:///var/mobile/Containers/Data/Application/3D9C708C-FBD1-47F1-904A-24D19FAA7DAF/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x303d7b840 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: Failed to create log file: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “UITestRunLogs” in the folder “HammerTimeLogs”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/3D9C708C-FBD1-47F1-904A-24D19FAA7DAF/Documents/HammerTimeLogs/UITestRunLogs, NSURL=file:///var/mobile/Containers/Data/Application/3D9C708C-FBD1-47F1-904A-24D19FAA7DAF/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x303d7b840 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: ✅ FALLBACK-LOG: /private/var/mobile/Containers/Data/Application/3D9C708C-FBD1-47F1-904A-24D19FAA7DAF/tmp/062525-1005-Manual_FocusStress_heavyReproduction.txt
+TestRunLogger: 📊 SYSTEM-INFO:
+TestRunLogger:   Device: Apple TV
+TestRunLogger:   OS: tvOS 18.5
+TestRunLogger:   Model: Apple TV
+TestRunLogger:   Memory: 37 MB
+TestRunLogger:   VoiceOver: ENABLED
+TestRunLogger:   Reduce Motion: DISABLED
+TestRunLogger: 🚀 TEST-START: Manual_FocusStress_heavyReproduction (Manual)
+TestRunLogger: 📱 FocusStressViewController: Starting manual execution
+TestRunLogger: 📱 Configuration: heavyReproduction
+TestRunLogger: 📊 SYSTEM-INFO:
+TestRunLogger:   Device: Apple TV
+TestRunLogger:   OS: tvOS 18.5
+TestRunLogger:   Model: Apple TV
+TestRunLogger:   Memory: 37 MB
+TestRunLogger:   VoiceOver: ENABLED
+TestRunLogger:   Reduce Motion: DISABLED
+TestRunLogger: 🔄 FocusStressViewController: Circular focus guides activated
+TestRunLogger: 🔀 FocusStressViewController: Dynamic focus guides activated
+TestRunLogger: ⚡ FocusStressViewController: Rapid layout changes activated
+TestRunLogger: 🎯 FocusStressViewController: Overlapping elements activated
+TestRunLogger: 📢 FocusStressViewController: VoiceOver announcements activated
+TestRunLogger: 🎯 PROGRESSIVE-STRESS: Starting predictable escalation system
+TestRunLogger: 🎯 TARGET: 52MB→56MB→64MB→66MB with escalating stalls
+[AXDBG] 170520.036 SUCCESS: Starting tvOS low-level input monitoring
+[AXDBG] 170520.037 WARNING: Private API monitoring is experimental and may not work
+TestRunLogger: 🔍 FocusStressViewController: AXFocusDebugger started
+[AXDBG] 170521.439 CONTROLLER: Enhanced monitoring for controller: Siri Remote (2nd Generation)
+[AXDBG] 170521.439 🔌 Controller connected: Siri Remote (2nd Generation)
+[AXDBG] 170521.451 [A11Y] WARNING: FocusGuide tiny frame {{10, 10}, {1, 1}}
+[AXDBG] 170521.451 [A11Y] WARNING: FocusGuide tiny frame {{12, 12}, {1, 1}}
+[AXDBG] 170521.451 [A11Y] WARNING: FocusGuide tiny frame {{20, 20}, {1, 1}}
+[AXDBG] 170521.452 [A11Y] WARNING: FocusGuide tiny frame {{25, 25}, {1, 1}}
+[AXDBG] 170521.452 [A11Y] WARNING: FocusGuide tiny frame {{30, 30}, {1, 1}}
+[AXDBG] 170521.454 [A11Y] WARNING: FocusGuide tiny frame {{35, 35}, {1, 1}}
+[AXDBG] 170521.454 [A11Y] WARNING: FocusGuide tiny frame {{40, 40}, {1, 1}}
+App is being debugged, do not track this hang
+Hang detected: 1.61s (debugger attached, not reporting)
+[AXDBG] 170521.456 ⚠️ RunLoop stall 1423ms | Memory: 52MB | Total queue: 0 | Swipes: 0 | Presses: 0
+[AXDBG] 170521.457 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170521.459 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170521.460 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Display structure reorganized
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Collection view structure changed
+[AXDBG] 170522.096 HW_Press detected
+[AXDBG] 170522.096 Queue [HW_PRESS]: T=1 S=0 P=0
+[AXDBG] 170522.097 🕹️ DPAD STATE: Right (x:0.925, y:0.000, ts:1855.061107)
+[AXDBG] 170522.097 HW_Press detected
+[AXDBG] 170522.097 🕹️ DPAD STATE: Right (x:0.925, y:0.103, ts:1855.061459)
+[AXDBG] 170522.098 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170522.102 POLL: Right detected via polling (x:0.925, y:0.103)
+[AXDBG] 170522.107 POLL: Right detected via polling (x:0.925, y:0.103)
+[AXDBG] 170522.107 HW_Swipe: Right [1]
+[AXDBG] 170522.237 POLL: Right detected via polling (x:0.925, y:0.103)
+[AXDBG] 170522.365 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170522.366 🕹️ DPAD STATE: Center (x:0.000, y:0.103, ts:1855.330464)
+[AXDBG] 170522.366 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1855.330878)
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Collection view structure changed
+[AXDBG] 170522.538 HW_Press detected
+[AXDBG] 170522.538 🕹️ DPAD STATE: Right (x:0.861, y:0.000, ts:1855.502743)
+[AXDBG] 170522.538 HW_Press detected
+[AXDBG] 170522.539 🕹️ DPAD STATE: Right (x:0.861, y:-0.160, ts:1855.503094)
+[AXDBG] 170522.539 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170522.552 POLL: Right detected via polling (x:0.861, y:-0.160)
+[AXDBG] 170522.552 HW_Swipe: Right [1]
+[AXDBG] 170522.552 Queue [HW_SWIPE]: T=11 S=0 P=0
+[AXDBG] 170522.609 POLL: Right detected via polling (x:0.861, y:-0.160)
+[AXDBG] 170522.668 POLL: Right detected via polling (x:0.861, y:-0.160)
+[AXDBG] 170522.790 POLL: Right detected via polling (x:0.835, y:-0.125)
+[AXDBG] 170522.791 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170522.852 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170522.911 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170522.913 POLL: Right detected via polling (x:0.835, y:-0.089)
+[AXDBG] 170522.926 HW_Swipe: Right [10]
+[AXDBG] 170522.930 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170522.993 🕹️ DPAD STATE: Center (x:0.000, y:-0.085, ts:1855.957695)
+[AXDBG] 170523.000 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170523.001 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Layout updated with new content
+[AXDBG] 170523.464 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170523.465 pressesBegan: Press Right
+[AXDBG] 170524.699 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170524.699 pressesEnded: Press Right
+[AXDBG] 170524.701 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170524.702 pressesBegan: Press Right
+[AXDBG] 170524.716 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170524.717 pressesBegan: Press Down
+[AXDBG] 170524.831 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170524.832 pressesEnded: Press Right
+[AXDBG] 170524.916 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170524.917 pressesBegan: Press Right
+[AXDBG] 170524.983 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170524.984 pressesEnded: Press Right
+[AXDBG] 170524.985 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170524.985 pressesEnded: Press Down
+[AXDBG] 170525.033 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170525.034 pressesBegan: Press Down
+[AXDBG] 170525.487 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170525.487 pressesEnded: Press Down
+[AXDBG] 170525.498 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170525.499 pressesBegan: Press Down
+[AXDBG] 170525.566 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170525.567 pressesBegan: Press Right
+[AXDBG] 170525.826 HW_Press detected
+[AXDBG] 170525.827 🕹️ DPAD STATE: Center (x:0.104, y:0.000, ts:1858.791462)
+[AXDBG] 170525.827 HW_Press detected
+[AXDBG] 170525.827 🕹️ DPAD STATE: Center (x:0.104, y:-0.438, ts:1858.791724)
+[AXDBG] 170525.834 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170525.835 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170525.861 🕹️ DPAD STATE: Center (x:0.022, y:-0.302, ts:1858.825965)
+[AXDBG] 170525.862 HW_Press detected
+[AXDBG] 170525.868 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170525.918 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170525.950 🕹️ DPAD STATE: Center (x:-0.061, y:-0.146, ts:1858.914418)
+[AXDBG] 170525.950 HW_Press detected
+[AXDBG] 170525.950 🕹️ DPAD STATE: Center (x:-0.109, y:0.045, ts:1858.915073)
+[AXDBG] 170525.951 🕹️ DPAD STATE: Center (x:-0.112, y:0.170, ts:1858.915466)
+[AXDBG] 170525.951 🕹️ DPAD STATE: Center (x:-0.112, y:0.285, ts:1858.915913)
+[AXDBG] 170525.954 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170525.980 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170525.980 pressesEnded: Press Down
+[AXDBG] 170526.022 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170526.022 pressesEnded: Press Right
+[AXDBG] 170526.139 HW_Press detected
+[AXDBG] 170526.139 🕹️ DPAD STATE: Center (x:0.106, y:0.367, ts:1859.103786)
+[AXDBG] 170526.140 🕹️ DPAD STATE: Center (x:0.106, y:0.022, ts:1859.104033)
+[AXDBG] 170526.141 🕹️ DPAD STATE: Center (x:0.116, y:0.218, ts:1859.105332)
+[AXDBG] 170526.151 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.177 🕹️ DPAD STATE: Center (x:0.131, y:0.329, ts:1859.141335)
+[AXDBG] 170526.178 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.207 🕹️ DPAD STATE: Center (x:0.135, y:0.465, ts:1859.171159)
+[AXDBG] 170526.209 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.217 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.242 🕹️ DPAD STATE: Down (x:0.000, y:0.517, ts:1859.206687)
+[AXDBG] 170526.243 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1859.207277)
+[AXDBG] 170526.244 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.245 HW_Press detected
+[AXDBG] 170526.246 HW_Press detected
+[AXDBG] 170526.246 🕹️ DPAD STATE: Center (x:-0.070, y:0.341, ts:1859.210371)
+[AXDBG] 170526.256 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.287 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.293 🕹️ DPAD STATE: Center (x:-0.084, y:0.166, ts:1859.257230)
+[AXDBG] 170526.299 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.347 HW_Press detected
+[AXDBG] 170526.347 Queue [HW_PRESS]: T=21 S=0 P=-7
+[AXDBG] 170526.347 🕹️ DPAD STATE: Center (x:0.043, y:0.120, ts:1859.312061)
+[AXDBG] 170526.350 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.371 🕹️ DPAD STATE: Center (x:0.102, y:0.235, ts:1859.335670)
+[AXDBG] 170526.372 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.380 🕹️ DPAD STATE: Center (x:0.135, y:0.337, ts:1859.344366)
+[AXDBG] 170526.383 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.435 🕹️ DPAD STATE: Center (x:0.171, y:0.170, ts:1859.400083)
+[AXDBG] 170526.441 🕹️ DPAD STATE: Center (x:0.160, y:0.038, ts:1859.405153)
+[AXDBG] 170526.450 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.472 HW_Press detected
+[AXDBG] 170526.472 🕹️ DPAD STATE: Center (x:0.160, y:-0.070, ts:1859.436646)
+[AXDBG] 170526.473 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.503 🕹️ DPAD STATE: Center (x:0.000, y:-0.156, ts:1859.468013)
+[AXDBG] 170526.504 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1859.468416)
+[AXDBG] 170526.505 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.606 HW_Press detected
+[AXDBG] 170526.607 🕹️ DPAD STATE: Center (x:0.221, y:0.000, ts:1859.571446)
+[AXDBG] 170526.607 HW_Press detected
+[AXDBG] 170526.607 🕹️ DPAD STATE: Down (x:0.221, y:0.536, ts:1859.571933)
+[AXDBG] 170526.609 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.634 🕹️ DPAD STATE: Center (x:0.133, y:0.235, ts:1859.598477)
+[AXDBG] 170526.635 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.638 HW_Press detected
+[AXDBG] 170526.638 🕹️ DPAD STATE: Center (x:0.072, y:-0.010, ts:1859.602639)
+[AXDBG] 170526.651 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.708 🕹️ DPAD STATE: Center (x:0.026, y:-0.244, ts:1859.672167)
+[AXDBG] 170526.710 🕹️ DPAD STATE: Center (x:0.012, y:-0.426, ts:1859.675087)
+[AXDBG] 170526.711 🕹️ DPAD STATE: Up (x:0.012, y:-0.549, ts:1859.675398)
+[AXDBG] 170526.711 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1859.675573)
+[AXDBG] 170526.718 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.731 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.857 HW_Press detected
+[AXDBG] 170526.858 🕹️ DPAD STATE: Center (x:0.411, y:0.000, ts:1859.822386)
+[AXDBG] 170526.858 HW_Press detected
+[AXDBG] 170526.858 🕹️ DPAD STATE: Center (x:0.411, y:0.283, ts:1859.822743)
+[AXDBG] 170526.861 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.863 🕹️ DPAD STATE: Center (x:0.365, y:0.086, ts:1859.827326)
+[AXDBG] 170526.867 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.890 HW_Press detected
+[AXDBG] 170526.890 🕹️ DPAD STATE: Center (x:0.292, y:-0.098, ts:1859.854951)
+[AXDBG] 170526.891 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.919 🕹️ DPAD STATE: Center (x:0.231, y:-0.238, ts:1859.883135)
+[AXDBG] 170526.919 🕹️ DPAD STATE: Center (x:0.198, y:-0.340, ts:1859.883567)
+[AXDBG] 170526.922 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170526.934 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.111 🕹️ DPAD STATE: Center (x:0.190, y:-0.461, ts:1860.075788)
+[AXDBG] 170527.112 🕹️ DPAD STATE: Center (x:0.000, y:-0.497, ts:1860.076454)
+[AXDBG] 170527.112 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1860.076683)
+[AXDBG] 170527.112 HW_Press detected
+[AXDBG] 170527.112 🕹️ DPAD STATE: Center (x:0.403, y:0.000, ts:1860.076986)
+[AXDBG] 170527.112 HW_Press detected
+[AXDBG] 170527.113 🕹️ DPAD STATE: Right (x:0.530, y:-0.100, ts:1860.077535)
+[AXDBG] 170527.121 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.122 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.124 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.125 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.135 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.151 🕹️ DPAD STATE: Right (x:0.622, y:-0.200, ts:1860.115910)
+[AXDBG] 170527.153 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.168 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.188 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.201 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.403 🕹️ DPAD STATE: Center (x:0.000, y:-0.279, ts:1860.368085)
+[AXDBG] 170527.404 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1860.368441)
+[AXDBG] 170527.419 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.420 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.467 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170527.468 pressesBegan: Press Right
+[AXDBG] 170527.736 HW_Press detected
+[AXDBG] 170527.736 HW_Press detected
+[AXDBG] 170527.736 Queue [HW_PRESS]: T=31 S=0 P=-8
+[AXDBG] 170527.737 🕹️ DPAD STATE: Up (x:0.022, y:-0.658, ts:1860.701280)
+[AXDBG] 170527.739 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.775 🕹️ DPAD STATE: Up (x:0.056, y:-0.528, ts:1860.739316)
+[AXDBG] 170527.775 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.776 🕹️ DPAD STATE: Center (x:0.121, y:-0.348, ts:1860.740981)
+[AXDBG] 170527.800 🕹️ DPAD STATE: Center (x:0.173, y:-0.156, ts:1860.764184)
+[AXDBG] 170527.805 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.828 HW_Press detected
+[AXDBG] 170527.829 🕹️ DPAD STATE: Center (x:0.204, y:0.059, ts:1860.793306)
+[AXDBG] 170527.829 🕹️ DPAD STATE: Center (x:0.000, y:0.059, ts:1860.793784)
+[AXDBG] 170527.830 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.831 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.901 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170527.902 pressesEnded: Press Right
+[AXDBG] 170527.969 HW_Press detected
+[AXDBG] 170527.970 HW_Press detected
+[AXDBG] 170527.970 🕹️ DPAD STATE: Center (x:-0.055, y:0.293, ts:1860.934590)
+[AXDBG] 170527.989 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170527.990 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.003 HW_Press detected
+[AXDBG] 170528.004 🕹️ DPAD STATE: Down (x:0.018, y:0.523, ts:1860.968572)
+[AXDBG] 170528.005 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.021 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.040 🕹️ DPAD STATE: Down (x:0.102, y:0.649, ts:1861.004214)
+[AXDBG] 170528.040 🕹️ DPAD STATE: Down (x:0.000, y:0.649, ts:1861.004619)
+[AXDBG] 170528.040 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1861.004843)
+[AXDBG] 170528.041 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.106 HW_Press detected
+[AXDBG] 170528.107 🕹️ DPAD STATE: Center (x:0.405, y:0.000, ts:1861.071569)
+[AXDBG] 170528.107 HW_Press detected
+[AXDBG] 170528.107 🕹️ DPAD STATE: Down (x:0.405, y:0.601, ts:1861.071981)
+[AXDBG] 170528.118 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.178 🕹️ DPAD STATE: Down (x:0.516, y:0.565, ts:1861.142692)
+[AXDBG] 170528.185 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.200 🕹️ DPAD STATE: Right (x:0.601, y:0.456, ts:1861.164258)
+[AXDBG] 170528.201 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.218 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.240 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.253 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.267 🕹️ DPAD STATE: Right (x:0.748, y:0.362, ts:1861.231442)
+[AXDBG] 170528.269 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.285 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.302 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.312 🕹️ DPAD STATE: Right (x:0.825, y:0.250, ts:1861.276655)
+[AXDBG] 170528.318 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.336 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.356 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.368 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.385 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.404 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.419 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.436 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.452 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.468 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170528.520 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170528.520 pressesBegan: Press Right
+[AXDBG] 170528.635 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170528.635 pressesEnded: Press Right
+[AXDBG] 170528.752 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170528.752 pressesBegan: Press Right
+[AXDBG] 170528.885 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170528.885 pressesEnded: Press Right
+[AXDBG] 170528.953 🕹️ DPAD STATE: Center (x:0.000, y:0.162, ts:1861.917926)
+[AXDBG] 170528.954 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1861.918369)
+[AXDBG] 170528.955 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.022 HW_Press detected
+[AXDBG] 170529.022 HW_Press detected
+[AXDBG] 170529.022 🕹️ DPAD STATE: Center (x:-0.040, y:-0.359, ts:1861.987244)
+[AXDBG] 170529.036 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.052 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.065 🕹️ DPAD STATE: Center (x:-0.001, y:-0.200, ts:1862.029513)
+[AXDBG] 170529.066 HW_Press detected
+[AXDBG] 170529.066 🕹️ DPAD STATE: Center (x:0.047, y:-0.075, ts:1862.031108)
+[AXDBG] 170529.069 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.080 HW_Press detected
+[AXDBG] 170529.080 🕹️ DPAD STATE: Center (x:0.075, y:0.070, ts:1862.045088)
+[AXDBG] 170529.085 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.095 🕹️ DPAD STATE: Center (x:0.093, y:0.224, ts:1862.060009)
+[AXDBG] 170529.103 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.110 🕹️ DPAD STATE: Center (x:0.095, y:0.371, ts:1862.074346)
+[AXDBG] 170529.120 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.128 🕹️ DPAD STATE: Center (x:0.095, y:0.486, ts:1862.092937)
+[AXDBG] 170529.136 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.152 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.155 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1862.120060)
+[AXDBG] 170529.170 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.293 HW_Press detected
+[AXDBG] 170529.294 🕹️ DPAD STATE: Center (x:-0.178, y:0.000, ts:1862.258685)
+[AXDBG] 170529.294 HW_Press detected
+[AXDBG] 170529.294 Queue [HW_PRESS]: T=41 S=0 P=-10
+[AXDBG] 170529.303 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.319 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.321 HW_Press detected
+[AXDBG] 170529.321 🕹️ DPAD STATE: Center (x:0.020, y:0.093, ts:1862.286257)
+[AXDBG] 170529.332 🕹️ DPAD STATE: Center (x:0.020, y:0.264, ts:1862.297001)
+[AXDBG] 170529.335 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.341 🕹️ DPAD STATE: Center (x:0.106, y:0.477, ts:1862.305336)
+[AXDBG] 170529.355 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.357 🕹️ DPAD STATE: Down (x:0.167, y:0.615, ts:1862.322016)
+[AXDBG] 170529.365 🕹️ DPAD STATE: Down (x:0.000, y:0.615, ts:1862.329804)
+[AXDBG] 170529.366 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1862.330308)
+[AXDBG] 170529.369 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.387 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.397 ⚠️ RunLoop stall 4875ms | Memory: 61MB | Total queue: 42 | Swipes: 0 | Presses: -10
+[AXDBG] 170529.397 📊 New max queue depth: 42 events (swipes: 0, presses: -10)
+[AXDBG] 170529.474 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.478 HW_Press detected
+[AXDBG] 170529.479 🕹️ DPAD STATE: Center (x:0.302, y:0.000, ts:1862.443468)
+[AXDBG] 170529.479 HW_Press detected
+[AXDBG] 170529.479 🕹️ DPAD STATE: Down (x:0.302, y:0.659, ts:1862.443738)
+[AXDBG] 170529.553 🕹️ DPAD STATE: Center (x:0.229, y:0.486, ts:1862.517818)
+[AXDBG] 170529.553 🕹️ DPAD STATE: Center (x:0.202, y:0.304, ts:1862.518239)
+[AXDBG] 170529.556 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.638 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.656 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.659 🕹️ DPAD STATE: Center (x:0.196, y:0.128, ts:1862.623902)
+[AXDBG] 170529.659 HW_Press detected
+[AXDBG] 170529.660 🕹️ DPAD STATE: Center (x:0.196, y:-0.016, ts:1862.624384)
+[AXDBG] 170529.660 🕹️ DPAD STATE: Center (x:0.196, y:-0.131, ts:1862.624575)
+[AXDBG] 170529.660 🕹️ DPAD STATE: Center (x:0.196, y:-0.286, ts:1862.624753)
+[AXDBG] 170529.660 🕹️ DPAD STATE: Center (x:0.000, y:-0.286, ts:1862.625116)
+[AXDBG] 170529.661 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1862.625347)
+[AXDBG] 170529.759 HW_Press detected
+[AXDBG] 170529.760 🕹️ DPAD STATE: Center (x:0.183, y:0.000, ts:1862.724478)
+[AXDBG] 170529.760 HW_Press detected
+[AXDBG] 170529.760 🕹️ DPAD STATE: Center (x:0.183, y:0.323, ts:1862.724759)
+[AXDBG] 170529.760 🕹️ DPAD STATE: Center (x:0.125, y:0.141, ts:1862.724912)
+[AXDBG] 170529.760 HW_Press detected
+[AXDBG] 170529.760 🕹️ DPAD STATE: Center (x:0.064, y:-0.041, ts:1862.725181)
+[AXDBG] 170529.761 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.762 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.860 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.875 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.878 🕹️ DPAD STATE: Center (x:0.018, y:-0.179, ts:1862.842378)
+[AXDBG] 170529.878 HW_Press detected
+[AXDBG] 170529.878 🕹️ DPAD STATE: Center (x:-0.011, y:-0.330, ts:1862.842885)
+[AXDBG] 170529.878 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1862.843099)
+[AXDBG] 170529.955 HW_Press detected
+[AXDBG] 170529.955 Queue [HW_PRESS]: T=50 S=0 P=-10
+[AXDBG] 170529.956 🕹️ DPAD STATE: Center (x:0.244, y:0.000, ts:1862.920511)
+[AXDBG] 170529.956 HW_Press detected
+[AXDBG] 170529.956 Queue [HW_PRESS]: T=51 S=0 P=-10
+[AXDBG] 170529.956 🕹️ DPAD STATE: Center (x:0.244, y:0.239, ts:1862.921018)
+[AXDBG] 170529.957 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.980 🕹️ DPAD STATE: Center (x:0.244, y:0.126, ts:1862.944545)
+[AXDBG] 170529.981 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170529.998 HW_Press detected
+[AXDBG] 170529.998 Queue [HW_PRESS]: T=52 S=0 P=-10
+[AXDBG] 170529.999 🕹️ DPAD STATE: Center (x:0.221, y:-0.121, ts:1862.963429)
+[AXDBG] 170530.003 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170530.017 🕹️ DPAD STATE: Center (x:0.192, y:-0.281, ts:1862.981301)
+[AXDBG] 170530.027 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170530.054 🕹️ DPAD STATE: Center (x:0.160, y:-0.424, ts:1863.018839)
+[AXDBG] 170530.055 🕹️ DPAD STATE: Up (x:0.141, y:-0.532, ts:1863.019740)
+[AXDBG] 170530.057 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170530.079 🕹️ DPAD STATE: Up (x:0.000, y:-0.601, ts:1863.044087)
+[AXDBG] 170530.080 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1863.044689)
+[AXDBG] 170530.091 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170530.213 HW_Press detected
+[AXDBG] 170530.213 Queue [HW_PRESS]: T=53 S=0 P=-10
+[AXDBG] 170530.213 HW_Press detected
+[AXDBG] 170530.213 Queue [HW_PRESS]: T=54 S=0 P=-10
+[AXDBG] 170530.213 🕹️ DPAD STATE: Center (x:-0.043, y:0.126, ts:1863.177964)
+[AXDBG] 170530.225 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170530.233 HW_Press detected
+[AXDBG] 170530.233 Queue [HW_PRESS]: T=55 S=0 P=-10
+[AXDBG] 170530.233 🕹️ DPAD STATE: Center (x:-0.040, y:-0.056, ts:1863.198160)
+[AXDBG] 170530.240 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170530.250 🕹️ DPAD STATE: Center (x:-0.040, y:-0.233, ts:1863.214411)
+[AXDBG] 170530.254 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170530.261 🕹️ DPAD STATE: Center (x:-0.005, y:-0.394, ts:1863.225616)
+[AXDBG] 170530.270 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170530.301 HW_Press detected
+[AXDBG] 170530.301 Queue [HW_PRESS]: T=56 S=0 P=-10
+[AXDBG] 170530.302 🕹️ DPAD STATE: Up (x:0.026, y:-0.528, ts:1863.266438)
+[AXDBG] 170530.304 🕹️ DPAD STATE: Up (x:0.072, y:-0.679, ts:1863.268352)
+[AXDBG] 170530.304 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170530.319 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1863.283454)
+[AXDBG] 170530.320 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170530.527 HW_Press detected
+[AXDBG] 170530.528 Queue [HW_PRESS]: T=57 S=0 P=-10
+[AXDBG] 170530.528 🕹️ DPAD STATE: Right (x:0.856, y:0.000, ts:1863.492643)
+[AXDBG] 170530.528 HW_Press detected
+[AXDBG] 170530.528 Queue [HW_PRESS]: T=58 S=0 P=-10
+[AXDBG] 170530.528 🕹️ DPAD STATE: Right (x:0.856, y:0.107, ts:1863.493153)
+[AXDBG] 170530.537 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170530.804 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170530.805 pressesBegan: Press Right
+[AXDBG] 170530.921 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170530.921 pressesEnded: Press Right
+[AXDBG] 170530.954 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170530.955 pressesBegan: Press Right
+[AXDBG] 170531.087 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170531.088 pressesEnded: Press Right
+[AXDBG] 170531.150 🕹️ DPAD STATE: Center (x:0.000, y:0.107, ts:1864.114714)
+[AXDBG] 170531.150 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1864.115154)
+[AXDBG] 170531.154 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.264 HW_Press detected
+[AXDBG] 170531.264 Queue [HW_PRESS]: T=57 S=0 P=-12
+[AXDBG] 170531.264 HW_Press detected
+[AXDBG] 170531.264 Queue [HW_PRESS]: T=58 S=0 P=-12
+[AXDBG] 170531.264 🕹️ DPAD STATE: Center (x:0.054, y:-0.422, ts:1864.228986)
+[AXDBG] 170531.272 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.300 🕹️ DPAD STATE: Center (x:0.062, y:-0.319, ts:1864.264653)
+[AXDBG] 170531.304 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.315 🕹️ DPAD STATE: Center (x:0.098, y:-0.169, ts:1864.279694)
+[AXDBG] 170531.321 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.330 HW_Press detected
+[AXDBG] 170531.330 Queue [HW_PRESS]: T=59 S=0 P=-12
+[AXDBG] 170531.331 🕹️ DPAD STATE: Center (x:0.190, y:0.074, ts:1864.295413)
+[AXDBG] 170531.338 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.347 🕹️ DPAD STATE: Center (x:0.238, y:0.260, ts:1864.311239)
+[AXDBG] 170531.354 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.363 🕹️ DPAD STATE: Center (x:0.000, y:0.260, ts:1864.328232)
+[AXDBG] 170531.364 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1864.328581)
+[AXDBG] 170531.371 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.518 HW_Press detected
+[AXDBG] 170531.519 Queue [HW_PRESS]: T=60 S=0 P=-12
+[AXDBG] 170531.519 🕹️ DPAD STATE: Center (x:-0.195, y:0.000, ts:1864.483688)
+[AXDBG] 170531.519 HW_Press detected
+[AXDBG] 170531.519 Queue [HW_PRESS]: T=61 S=0 P=-12
+[AXDBG] 170531.519 🕹️ DPAD STATE: Center (x:-0.195, y:-0.160, ts:1864.484027)
+[AXDBG] 170531.521 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.530 🕹️ DPAD STATE: Center (x:-0.059, y:-0.160, ts:1864.494491)
+[AXDBG] 170531.539 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.548 HW_Press detected
+[AXDBG] 170531.548 Queue [HW_PRESS]: T=62 S=0 P=-12
+[AXDBG] 170531.548 🕹️ DPAD STATE: Center (x:0.010, y:-0.020, ts:1864.512925)
+[AXDBG] 170531.555 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.563 HW_Press detected
+[AXDBG] 170531.563 Queue [HW_PRESS]: T=63 S=0 P=-12
+[AXDBG] 170531.570 🕹️ DPAD STATE: Center (x:0.075, y:0.139, ts:1864.534631)
+[AXDBG] 170531.577 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.587 🕹️ DPAD STATE: Center (x:0.102, y:0.279, ts:1864.551353)
+[AXDBG] 170531.588 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.600 🕹️ DPAD STATE: Center (x:0.000, y:0.279, ts:1864.564598)
+[AXDBG] 170531.600 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1864.565001)
+[AXDBG] 170531.604 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.739 HW_Press detected
+[AXDBG] 170531.739 Queue [HW_PRESS]: T=64 S=0 P=-12
+[AXDBG] 170531.739 HW_Press detected
+[AXDBG] 170531.740 Queue [HW_PRESS]: T=65 S=0 P=-12
+[AXDBG] 170531.740 🕹️ DPAD STATE: Center (x:0.037, y:-0.294, ts:1864.704779)
+[AXDBG] 170531.741 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.756 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.768 🕹️ DPAD STATE: Center (x:0.173, y:-0.200, ts:1864.732711)
+[AXDBG] 170531.773 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.781 🕹️ DPAD STATE: Center (x:0.173, y:-0.064, ts:1864.746309)
+[AXDBG] 170531.784 HW_Press detected
+[AXDBG] 170531.784 Queue [HW_PRESS]: T=66 S=0 P=-12
+[AXDBG] 170531.784 🕹️ DPAD STATE: Center (x:0.225, y:0.116, ts:1864.748971)
+[AXDBG] 170531.788 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.819 🕹️ DPAD STATE: Center (x:0.256, y:0.319, ts:1864.784336)
+[AXDBG] 170531.826 🕹️ DPAD STATE: Center (x:0.000, y:0.319, ts:1864.791168)
+[AXDBG] 170531.827 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1864.791492)
+[AXDBG] 170531.827 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.828 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.949 HW_Press detected
+[AXDBG] 170531.949 Queue [HW_PRESS]: T=67 S=0 P=-12
+[AXDBG] 170531.949 HW_Press detected
+[AXDBG] 170531.949 Queue [HW_PRESS]: T=68 S=0 P=-12
+[AXDBG] 170531.949 🕹️ DPAD STATE: Center (x:-0.091, y:-0.261, ts:1864.914371)
+[AXDBG] 170531.956 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.971 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.985 HW_Press detected
+[AXDBG] 170531.986 Queue [HW_PRESS]: T=69 S=0 P=-12
+[AXDBG] 170531.986 🕹️ DPAD STATE: Center (x:0.098, y:-0.196, ts:1864.950664)
+[AXDBG] 170531.986 🕹️ DPAD STATE: Center (x:0.098, y:-0.020, ts:1864.950885)
+[AXDBG] 170531.988 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170531.996 HW_Press detected
+[AXDBG] 170531.997 Queue [HW_PRESS]: T=70 S=0 P=-12
+[AXDBG] 170531.997 🕹️ DPAD STATE: Center (x:0.146, y:0.139, ts:1864.961767)
+[AXDBG] 170532.008 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.041 🕹️ DPAD STATE: Center (x:0.187, y:0.344, ts:1865.005801)
+[AXDBG] 170532.041 🕹️ DPAD STATE: Center (x:0.000, y:0.344, ts:1865.006301)
+[AXDBG] 170532.042 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1865.006508)
+[AXDBG] 170532.043 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.044 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.160 HW_Press detected
+[AXDBG] 170532.160 Queue [HW_PRESS]: T=71 S=0 P=-12
+[AXDBG] 170532.161 🕹️ DPAD STATE: Center (x:-0.170, y:0.000, ts:1865.125428)
+[AXDBG] 170532.161 HW_Press detected
+[AXDBG] 170532.161 Queue [HW_PRESS]: T=72 S=0 P=-12
+[AXDBG] 170532.161 🕹️ DPAD STATE: Center (x:-0.170, y:0.373, ts:1865.125751)
+[AXDBG] 170532.162 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.188 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.200 HW_Press detected
+[AXDBG] 170532.200 Queue [HW_PRESS]: T=73 S=0 P=-12
+[AXDBG] 170532.201 🕹️ DPAD STATE: Center (x:0.052, y:0.385, ts:1865.165533)
+[AXDBG] 170532.205 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.218 🕹️ DPAD STATE: Center (x:0.167, y:0.479, ts:1865.183308)
+[AXDBG] 170532.219 🕹️ DPAD STATE: Down (x:0.167, y:0.582, ts:1865.183641)
+[AXDBG] 170532.222 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.260 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.261 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.265 🕹️ DPAD STATE: Down (x:0.000, y:0.651, ts:1865.230126)
+[AXDBG] 170532.266 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1865.230617)
+[AXDBG] 170532.387 HW_Press detected
+[AXDBG] 170532.388 Queue [HW_PRESS]: T=74 S=0 P=-12
+[AXDBG] 170532.388 HW_Press detected
+[AXDBG] 170532.388 Queue [HW_PRESS]: T=75 S=0 P=-12
+[AXDBG] 170532.388 🕹️ DPAD STATE: Center (x:0.024, y:0.398, ts:1865.353388)
+[AXDBG] 170532.391 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.403 HW_Press detected
+[AXDBG] 170532.404 Queue [HW_PRESS]: T=76 S=0 P=-12
+[AXDBG] 170532.404 🕹️ DPAD STATE: Center (x:-0.043, y:0.204, ts:1865.368825)
+[AXDBG] 170532.411 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.419 🕹️ DPAD STATE: Center (x:-0.043, y:0.063, ts:1865.383682)
+[AXDBG] 170532.422 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.431 HW_Press detected
+[AXDBG] 170532.431 Queue [HW_PRESS]: T=77 S=0 P=-12
+[AXDBG] 170532.441 🕹️ DPAD STATE: Center (x:-0.024, y:-0.062, ts:1865.405551)
+[AXDBG] 170532.442 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.460 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.463 HW_Press detected
+[AXDBG] 170532.463 Queue [HW_PRESS]: T=78 S=0 P=-12
+[AXDBG] 170532.464 🕹️ DPAD STATE: Center (x:0.010, y:-0.169, ts:1865.428368)
+[AXDBG] 170532.474 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.482 🕹️ DPAD STATE: Center (x:0.039, y:-0.338, ts:1865.446405)
+[AXDBG] 170532.490 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.500 🕹️ DPAD STATE: Center (x:0.039, y:-0.486, ts:1865.465123)
+[AXDBG] 170532.505 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.516 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1865.480601)
+[AXDBG] 170532.523 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.636 HW_Press detected
+[AXDBG] 170532.636 Queue [HW_PRESS]: T=79 S=0 P=-12
+[AXDBG] 170532.640 🕹️ DPAD STATE: Right (x:0.760, y:0.000, ts:1865.604388)
+[AXDBG] 170532.640 HW_Press detected
+[AXDBG] 170532.640 Queue [HW_PRESS]: T=80 S=0 P=-12
+[AXDBG] 170532.640 🕹️ DPAD STATE: Right (x:0.760, y:0.456, ts:1865.605019)
+[AXDBG] 170532.642 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.656 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.674 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.681 🕹️ DPAD STATE: Right (x:0.764, y:0.348, ts:1865.646355)
+[AXDBG] 170532.689 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.706 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.725 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.739 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170532.740 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170532.741 pressesBegan: Press Right
+[AXDBG] 170532.805 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170532.806 pressesEnded: Press Right
+[AXDBG] 170532.974 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170532.975 pressesBegan: Press Right
+[AXDBG] 170533.072 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170533.073 pressesEnded: Press Right
+[AXDBG] 170533.093 ⚠️ RunLoop stall 3234ms | Memory: 61MB | Total queue: 78 | Swipes: 0 | Presses: -14
+[AXDBG] 170533.093 📊 New max queue depth: 78 events (swipes: 0, presses: -14)
+[AXDBG] 170533.173 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170533.174 pressesBegan: Press Right
+[AXDBG] 170533.275 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170533.276 pressesEnded: Press Right
+[AXDBG] 170533.281 🕹️ DPAD STATE: Center (x:0.000, y:0.314, ts:1866.245498)
+[AXDBG] 170533.281 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1866.245939)
+[AXDBG] 170533.291 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.389 HW_Press detected
+[AXDBG] 170533.389 Queue [HW_PRESS]: T=78 S=0 P=-15
+[AXDBG] 170533.390 HW_Press detected
+[AXDBG] 170533.390 Queue [HW_PRESS]: T=79 S=0 P=-15
+[AXDBG] 170533.390 🕹️ DPAD STATE: Up (x:0.100, y:-0.528, ts:1866.354904)
+[AXDBG] 170533.391 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.393 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.407 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.430 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.431 🕹️ DPAD STATE: Center (x:0.156, y:-0.371, ts:1866.396209)
+[AXDBG] 170533.457 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.466 🕹️ DPAD STATE: Center (x:0.156, y:-0.252, ts:1866.431291)
+[AXDBG] 170533.474 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.489 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.503 🕹️ DPAD STATE: Center (x:0.000, y:-0.192, ts:1866.467945)
+[AXDBG] 170533.503 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1866.468319)
+[AXDBG] 170533.507 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.565 HW_Press detected
+[AXDBG] 170533.566 Queue [HW_PRESS]: T=80 S=0 P=-15
+[AXDBG] 170533.566 🕹️ DPAD STATE: Center (x:0.131, y:0.000, ts:1866.530904)
+[AXDBG] 170533.567 HW_Press detected
+[AXDBG] 170533.567 Queue [HW_PRESS]: T=81 S=0 P=-15
+[AXDBG] 170533.567 🕹️ DPAD STATE: Center (x:0.131, y:0.208, ts:1866.531924)
+[AXDBG] 170533.575 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.602 🕹️ DPAD STATE: Center (x:0.085, y:0.319, ts:1866.566615)
+[AXDBG] 170533.606 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.625 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.636 🕹️ DPAD STATE: Center (x:0.056, y:0.103, ts:1866.600789)
+[AXDBG] 170533.640 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.650 HW_Press detected
+[AXDBG] 170533.650 Queue [HW_PRESS]: T=82 S=0 P=-15
+[AXDBG] 170533.651 🕹️ DPAD STATE: Center (x:0.047, y:-0.041, ts:1866.615563)
+[AXDBG] 170533.657 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.670 🕹️ DPAD STATE: Center (x:0.026, y:-0.240, ts:1866.634610)
+[AXDBG] 170533.671 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1866.635458)
+[AXDBG] 170533.673 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.696 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.855 HW_Press detected
+[AXDBG] 170533.855 Queue [HW_PRESS]: T=83 S=0 P=-15
+[AXDBG] 170533.856 🕹️ DPAD STATE: Center (x:0.192, y:0.000, ts:1866.820469)
+[AXDBG] 170533.856 HW_Press detected
+[AXDBG] 170533.856 Queue [HW_PRESS]: T=84 S=0 P=-15
+[AXDBG] 170533.856 🕹️ DPAD STATE: Down (x:0.192, y:0.548, ts:1866.821449)
+[AXDBG] 170533.859 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.871 🕹️ DPAD STATE: Down (x:0.033, y:0.548, ts:1866.835854)
+[AXDBG] 170533.873 🕹️ DPAD STATE: Center (x:0.033, y:0.168, ts:1866.837517)
+[AXDBG] 170533.874 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.904 HW_Press detected
+[AXDBG] 170533.905 Queue [HW_PRESS]: T=85 S=0 P=-15
+[AXDBG] 170533.905 🕹️ DPAD STATE: Center (x:-0.091, y:0.168, ts:1866.870013)
+[AXDBG] 170533.905 HW_Press detected
+[AXDBG] 170533.905 Queue [HW_PRESS]: T=86 S=0 P=-15
+[AXDBG] 170533.913 🕹️ DPAD STATE: Center (x:-0.091, y:-0.288, ts:1866.877437)
+[AXDBG] 170533.913 🕹️ DPAD STATE: Center (x:-0.103, y:-0.472, ts:1866.877794)
+[AXDBG] 170533.914 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.943 🕹️ DPAD STATE: Up (x:-0.103, y:-0.603, ts:1866.908142)
+[AXDBG] 170533.948 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.949 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170533.958 🕹️ DPAD STATE: Up (x:0.000, y:-0.689, ts:1866.922800)
+[AXDBG] 170533.958 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1866.923144)
+[AXDBG] 170534.086 HW_Press detected
+[AXDBG] 170534.086 Queue [HW_PRESS]: T=87 S=0 P=-15
+[AXDBG] 170534.087 🕹️ DPAD STATE: Center (x:0.231, y:0.000, ts:1867.051569)
+[AXDBG] 170534.087 HW_Press detected
+[AXDBG] 170534.087 Queue [HW_PRESS]: T=88 S=0 P=-15
+[AXDBG] 170534.087 🕹️ DPAD STATE: Center (x:0.231, y:0.306, ts:1867.051897)
+[AXDBG] 170534.092 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.108 🕹️ DPAD STATE: Center (x:0.100, y:0.306, ts:1867.072734)
+[AXDBG] 170534.108 HW_Press detected
+[AXDBG] 170534.108 Queue [HW_PRESS]: T=89 S=0 P=-15
+[AXDBG] 170534.108 🕹️ DPAD STATE: Center (x:0.100, y:-0.058, ts:1867.073385)
+[AXDBG] 170534.109 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.132 🕹️ DPAD STATE: Center (x:0.037, y:-0.292, ts:1867.096524)
+[AXDBG] 170534.133 🕹️ DPAD STATE: Center (x:0.031, y:-0.478, ts:1867.097744)
+[AXDBG] 170534.145 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.165 🕹️ DPAD STATE: Up (x:0.031, y:-0.622, ts:1867.129584)
+[AXDBG] 170534.167 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.169 🕹️ DPAD STATE: Up (x:0.066, y:-0.775, ts:1867.134368)
+[AXDBG] 170534.176 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.204 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1867.168933)
+[AXDBG] 170534.210 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.296 HW_Press detected
+[AXDBG] 170534.297 Queue [HW_PRESS]: T=90 S=0 P=-15
+[AXDBG] 170534.297 🕹️ DPAD STATE: Right (x:0.796, y:0.000, ts:1867.261735)
+[AXDBG] 170534.297 HW_Press detected
+[AXDBG] 170534.297 Queue [HW_PRESS]: T=91 S=0 P=-15
+[AXDBG] 170534.297 🕹️ DPAD STATE: Right (x:0.796, y:0.101, ts:1867.262168)
+[AXDBG] 170534.300 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.308 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.335 HW_Press detected
+[AXDBG] 170534.335 Queue [HW_PRESS]: T=92 S=0 P=-15
+[AXDBG] 170534.336 🕹️ DPAD STATE: Right (x:0.804, y:-0.006, ts:1867.300493)
+[AXDBG] 170534.336 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.360 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.376 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.395 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.411 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.444 🕹️ DPAD STATE: Center (x:0.000, y:-0.026, ts:1867.408460)
+[AXDBG] 170534.675 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170534.675 pressesBegan: Press Right
+[AXDBG] 170534.741 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170534.741 pressesEnded: Press Right
+[AXDBG] 170534.872 HW_Press detected
+[AXDBG] 170534.872 Queue [HW_PRESS]: T=92 S=0 P=-16
+[AXDBG] 170534.872 HW_Press detected
+[AXDBG] 170534.873 Queue [HW_PRESS]: T=93 S=0 P=-16
+[AXDBG] 170534.873 🕹️ DPAD STATE: Up (x:0.010, y:-0.846, ts:1867.837723)
+[AXDBG] 170534.879 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.891 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.910 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.919 🕹️ DPAD STATE: Up (x:0.114, y:-0.833, ts:1867.884151)
+[AXDBG] 170534.927 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.935 🕹️ DPAD STATE: Up (x:0.150, y:-0.716, ts:1867.899683)
+[AXDBG] 170534.941 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.956 🕹️ DPAD STATE: Up (x:0.190, y:-0.576, ts:1867.920757)
+[AXDBG] 170534.958 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.968 🕹️ DPAD STATE: Center (x:0.250, y:-0.334, ts:1867.932568)
+[AXDBG] 170534.977 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170534.985 🕹️ DPAD STATE: Center (x:0.330, y:-0.008, ts:1867.950431)
+[AXDBG] 170534.991 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.001 HW_Press detected
+[AXDBG] 170535.001 Queue [HW_PRESS]: T=94 S=0 P=-16
+[AXDBG] 170535.002 🕹️ DPAD STATE: Center (x:0.384, y:0.187, ts:1867.966858)
+[AXDBG] 170535.006 🕹️ DPAD STATE: Center (x:0.000, y:0.187, ts:1867.971269)
+[AXDBG] 170535.013 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.013 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.020 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1867.985320)
+[AXDBG] 170535.248 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.249 HW_Press detected
+[AXDBG] 170535.249 Queue [HW_PRESS]: T=95 S=0 P=-16
+[AXDBG] 170535.255 HW_Press detected
+[AXDBG] 170535.256 Queue [HW_PRESS]: T=96 S=0 P=-16
+[AXDBG] 170535.256 🕹️ DPAD STATE: Center (x:0.060, y:0.174, ts:1868.220858)
+[AXDBG] 170535.258 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.262 🕹️ DPAD STATE: Center (x:0.110, y:0.310, ts:1868.226781)
+[AXDBG] 170535.277 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.283 🕹️ DPAD STATE: Center (x:0.187, y:0.465, ts:1868.248125)
+[AXDBG] 170535.290 🕹️ DPAD STATE: Center (x:0.000, y:0.465, ts:1868.254747)
+[AXDBG] 170535.290 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1868.255191)
+[AXDBG] 170535.291 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.306 HW_Press detected
+[AXDBG] 170535.306 Queue [HW_PRESS]: T=97 S=0 P=-16
+[AXDBG] 170535.307 🕹️ DPAD STATE: Center (x:0.286, y:0.000, ts:1868.271669)
+[AXDBG] 170535.307 HW_Press detected
+[AXDBG] 170535.307 Queue [HW_PRESS]: T=98 S=0 P=-16
+[AXDBG] 170535.307 🕹️ DPAD STATE: Down (x:0.286, y:0.576, ts:1868.272272)
+[AXDBG] 170535.308 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.325 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.373 🕹️ DPAD STATE: Down (x:0.000, y:0.609, ts:1868.337513)
+[AXDBG] 170535.373 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1868.337923)
+[AXDBG] 170535.375 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.455 HW_Press detected
+[AXDBG] 170535.455 Queue [HW_PRESS]: T=99 S=0 P=-16
+[AXDBG] 170535.455 🕹️ DPAD STATE: Center (x:0.102, y:0.000, ts:1868.420065)
+[AXDBG] 170535.455 HW_Press detected
+[AXDBG] 170535.455 Queue [HW_PRESS]: T=100 S=0 P=-16
+[AXDBG] 170535.458 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.492 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.508 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.525 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.530 🕹️ DPAD STATE: Center (x:0.254, y:0.095, ts:1868.494846)
+[AXDBG] 170535.541 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.545 🕹️ DPAD STATE: Center (x:0.353, y:0.212, ts:1868.509815)
+[AXDBG] 170535.558 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.561 ⚠️ RunLoop stall 2388ms | Memory: 61MB | Total queue: 100 | Swipes: 0 | Presses: -16
+[AXDBG] 170535.561 📊 New max queue depth: 100 events (swipes: 0, presses: -16)
+[AXDBG] 170535.575 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.673 🕹️ DPAD STATE: Center (x:0.000, y:0.283, ts:1868.637699)
+[AXDBG] 170535.673 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1868.638104)
+[AXDBG] 170535.677 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.717 HW_Press detected
+[AXDBG] 170535.718 Queue [HW_PRESS]: T=101 S=0 P=-16
+[AXDBG] 170535.718 HW_Press detected
+[AXDBG] 170535.718 Queue [HW_PRESS]: T=102 S=0 P=-16
+[AXDBG] 170535.718 🕹️ DPAD STATE: Center (x:0.039, y:-0.365, ts:1868.682913)
+[AXDBG] 170535.735 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.736 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.737 🕹️ DPAD STATE: Center (x:0.242, y:-0.365, ts:1868.702274)
+[AXDBG] 170535.738 🕹️ DPAD STATE: Center (x:0.242, y:-0.231, ts:1868.702614)
+[AXDBG] 170535.743 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.756 🕹️ DPAD STATE: Center (x:0.294, y:-0.024, ts:1868.721432)
+[AXDBG] 170535.812 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.867 HW_Press detected
+[AXDBG] 170535.867 Queue [HW_PRESS]: T=103 S=0 P=-16
+[AXDBG] 170535.867 🕹️ DPAD STATE: Center (x:0.304, y:0.112, ts:1868.832278)
+[AXDBG] 170535.867 🕹️ DPAD STATE: Center (x:0.304, y:0.243, ts:1868.832473)
+[AXDBG] 170535.868 🕹️ DPAD STATE: Center (x:0.288, y:0.371, ts:1868.832639)
+[AXDBG] 170535.871 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.897 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.926 🕹️ DPAD STATE: Center (x:0.208, y:0.178, ts:1868.890972)
+[AXDBG] 170535.931 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.937 HW_Press detected
+[AXDBG] 170535.937 Queue [HW_PRESS]: T=104 S=0 P=-16
+[AXDBG] 170535.937 🕹️ DPAD STATE: Center (x:0.137, y:-0.012, ts:1868.902511)
+[AXDBG] 170535.943 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170535.984 🕹️ DPAD STATE: Center (x:0.075, y:-0.150, ts:1868.949227)
+[AXDBG] 170535.985 🕹️ DPAD STATE: Center (x:0.026, y:-0.263, ts:1868.950419)
+[AXDBG] 170535.986 HW_Press detected
+[AXDBG] 170535.986 Queue [HW_PRESS]: T=105 S=0 P=-16
+[AXDBG] 170535.988 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.014 🕹️ DPAD STATE: Center (x:-0.028, y:-0.484, ts:1868.978653)
+[AXDBG] 170536.015 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.036 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1869.001308)
+[AXDBG] 170536.039 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.187 HW_Press detected
+[AXDBG] 170536.188 Queue [HW_PRESS]: T=106 S=0 P=-16
+[AXDBG] 170536.188 HW_Press detected
+[AXDBG] 170536.188 Queue [HW_PRESS]: T=107 S=0 P=-16
+[AXDBG] 170536.193 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.196 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.224 🕹️ DPAD STATE: Center (x:-0.032, y:-0.114, ts:1869.188670)
+[AXDBG] 170536.224 🕹️ DPAD STATE: Center (x:-0.030, y:-0.304, ts:1869.189344)
+[AXDBG] 170536.226 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.244 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.300 HW_Press detected
+[AXDBG] 170536.300 Queue [HW_PRESS]: T=108 S=0 P=-16
+[AXDBG] 170536.300 🕹️ DPAD STATE: Center (x:0.001, y:-0.484, ts:1869.265234)
+[AXDBG] 170536.302 🕹️ DPAD STATE: Up (x:0.037, y:-0.587, ts:1869.266655)
+[AXDBG] 170536.303 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.345 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.346 🕹️ DPAD STATE: Center (x:0.114, y:-0.340, ts:1869.311035)
+[AXDBG] 170536.356 🕹️ DPAD STATE: Center (x:0.087, y:-0.121, ts:1869.320590)
+[AXDBG] 170536.360 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.431 HW_Press detected
+[AXDBG] 170536.432 Queue [HW_PRESS]: T=109 S=0 P=-16
+[AXDBG] 170536.432 🕹️ DPAD STATE: Center (x:0.026, y:0.017, ts:1869.396828)
+[AXDBG] 170536.432 HW_Press detected
+[AXDBG] 170536.432 Queue [HW_PRESS]: T=110 S=0 P=-16
+[AXDBG] 170536.432 🕹️ DPAD STATE: Center (x:-0.076, y:0.017, ts:1869.397231)
+[AXDBG] 170536.432 🕹️ DPAD STATE: Center (x:-0.076, y:0.153, ts:1869.397386)
+[AXDBG] 170536.433 🕹️ DPAD STATE: Center (x:-0.201, y:0.153, ts:1869.398419)
+[AXDBG] 170536.434 🕹️ DPAD STATE: Center (x:-0.335, y:0.210, ts:1869.398790)
+[AXDBG] 170536.435 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.486 🕹️ DPAD STATE: Center (x:-0.479, y:0.174, ts:1869.450760)
+[AXDBG] 170536.486 🕹️ DPAD STATE: Left (x:-0.532, y:0.057, ts:1869.451368)
+[AXDBG] 170536.489 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.495 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.496 🕹️ DPAD STATE: Left (x:-0.634, y:0.015, ts:1869.461383)
+[AXDBG] 170536.497 HW_Press detected
+[AXDBG] 170536.497 Queue [HW_PRESS]: T=111 S=0 P=-16
+[AXDBG] 170536.511 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.598 🕹️ DPAD STATE: Left (x:-0.720, y:-0.114, ts:1869.563376)
+[AXDBG] 170536.599 🕹️ DPAD STATE: Center (x:0.000, y:-0.175, ts:1869.564216)
+[AXDBG] 170536.599 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1869.564496)
+[AXDBG] 170536.602 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.603 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.694 HW_Press detected
+[AXDBG] 170536.694 Queue [HW_PRESS]: T=112 S=0 P=-16
+[AXDBG] 170536.694 🕹️ DPAD STATE: Right (x:0.668, y:0.000, ts:1869.659234)
+[AXDBG] 170536.694 HW_Press detected
+[AXDBG] 170536.694 Queue [HW_PRESS]: T=113 S=0 P=-16
+[AXDBG] 170536.695 🕹️ DPAD STATE: Right (x:0.668, y:0.199, ts:1869.659624)
+[AXDBG] 170536.696 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.737 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.774 🕹️ DPAD STATE: Center (x:0.488, y:0.128, ts:1869.739040)
+[AXDBG] 170536.775 🕹️ DPAD STATE: Center (x:0.380, y:0.080, ts:1869.739621)
+[AXDBG] 170536.778 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.806 🕹️ DPAD STATE: Center (x:0.263, y:0.032, ts:1869.771432)
+[AXDBG] 170536.807 HW_Press detected
+[AXDBG] 170536.807 Queue [HW_PRESS]: T=114 S=0 P=-16
+[AXDBG] 170536.807 🕹️ DPAD STATE: Center (x:0.137, y:-0.016, ts:1869.772189)
+[AXDBG] 170536.816 HW_Press detected
+[AXDBG] 170536.816 Queue [HW_PRESS]: T=115 S=0 P=-16
+[AXDBG] 170536.816 🕹️ DPAD STATE: Center (x:-0.049, y:-0.066, ts:1869.781485)
+[AXDBG] 170536.818 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.831 🕹️ DPAD STATE: Center (x:-0.168, y:-0.141, ts:1869.795661)
+[AXDBG] 170536.833 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.845 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170536.902 🕹️ DPAD STATE: Center (x:0.000, y:-0.212, ts:1869.866640)
+[AXDBG] 170536.902 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1869.867052)
+[AXDBG] 170536.906 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170537.050 HW_Press detected
+[AXDBG] 170537.051 Queue [HW_PRESS]: T=116 S=0 P=-16
+[AXDBG] 170537.051 🕹️ DPAD STATE: Left (x:-0.571, y:0.000, ts:1870.015950)
+[AXDBG] 170537.051 HW_Press detected
+[AXDBG] 170537.051 Queue [HW_PRESS]: T=117 S=0 P=-16
+[AXDBG] 170537.052 🕹️ DPAD STATE: Left (x:-0.571, y:0.176, ts:1870.016704)
+[AXDBG] 170537.053 🕹️ DPAD STATE: Left (x:-0.622, y:0.074, ts:1870.017865)
+[AXDBG] 170537.053 HW_Press detected
+[AXDBG] 170537.082 Queue [HW_PRESS]: T=118 S=0 P=-16
+[AXDBG] 170537.086 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170537.087 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170537.089 🕹️ DPAD STATE: Left (x:-0.672, y:-0.054, ts:1870.053923)
+[AXDBG] 170537.094 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170537.135 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170537.148 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170537.185 🕹️ DPAD STATE: Center (x:0.000, y:-0.093, ts:1870.149903)
+[AXDBG] 170537.186 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170537.662 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170537.663 pressesBegan: Press Left
+[AXDBG] 170537.789 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170537.790 pressesBegan: Press Right
+[AXDBG] 170537.912 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170537.913 pressesEnded: Press Left
+[AXDBG] 170537.944 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170537.944 pressesEnded: Press Right
+[AXDBG] 170538.047 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170538.048 pressesBegan: Press Right
+[AXDBG] 170538.149 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170538.149 pressesEnded: Press Right
+[AXDBG] 170538.202 HW_Press detected
+[AXDBG] 170538.203 Queue [HW_PRESS]: T=116 S=0 P=-19
+[AXDBG] 170538.203 HW_Press detected
+[AXDBG] 170538.203 Queue [HW_PRESS]: T=117 S=0 P=-19
+[AXDBG] 170538.203 🕹️ DPAD STATE: Up (x:-0.032, y:-0.961, ts:1871.168227)
+[AXDBG] 170538.211 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.263 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.264 HW_Press detected
+[AXDBG] 170538.264 Queue [HW_PRESS]: T=118 S=0 P=-19
+[AXDBG] 170538.276 🕹️ DPAD STATE: Up (x:0.077, y:-0.884, ts:1871.241181)
+[AXDBG] 170538.277 🕹️ DPAD STATE: Up (x:0.077, y:-0.698, ts:1871.242015)
+[AXDBG] 170538.278 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.306 🕹️ DPAD STATE: Up (x:0.179, y:-0.698, ts:1871.271324)
+[AXDBG] 170538.307 🕹️ DPAD STATE: Center (x:0.179, y:-0.302, ts:1871.271712)
+[AXDBG] 170538.307 🕹️ DPAD STATE: Center (x:0.288, y:-0.302, ts:1871.271912)
+[AXDBG] 170538.307 HW_Press detected
+[AXDBG] 170538.307 Queue [HW_PRESS]: T=119 S=0 P=-19
+[AXDBG] 170538.307 🕹️ DPAD STATE: Center (x:0.288, y:0.116, ts:1871.272293)
+[AXDBG] 170538.312 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.374 🕹️ DPAD STATE: Center (x:0.000, y:0.116, ts:1871.339242)
+[AXDBG] 170538.374 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1871.339633)
+[AXDBG] 170538.379 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.488 HW_Press detected
+[AXDBG] 170538.488 Queue [HW_PRESS]: T=120 S=0 P=-19
+[AXDBG] 170538.488 🕹️ DPAD STATE: Center (x:-0.160, y:0.000, ts:1871.453509)
+[AXDBG] 170538.489 HW_Press detected
+[AXDBG] 170538.489 Queue [HW_PRESS]: T=121 S=0 P=-19
+[AXDBG] 170538.489 🕹️ DPAD STATE: Center (x:-0.160, y:-0.325, ts:1871.454354)
+[AXDBG] 170538.497 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.512 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.532 HW_Press detected
+[AXDBG] 170538.533 Queue [HW_PRESS]: T=122 S=0 P=-19
+[AXDBG] 170538.533 🕹️ DPAD STATE: Center (x:0.041, y:-0.265, ts:1871.497902)
+[AXDBG] 170538.533 🕹️ DPAD STATE: Center (x:0.041, y:-0.164, ts:1871.498134)
+[AXDBG] 170538.533 🕹️ DPAD STATE: Center (x:0.108, y:-0.060, ts:1871.498545)
+[AXDBG] 170538.535 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.561 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.574 HW_Press detected
+[AXDBG] 170538.574 Queue [HW_PRESS]: T=123 S=0 P=-19
+[AXDBG] 170538.575 🕹️ DPAD STATE: Center (x:0.156, y:0.070, ts:1871.539602)
+[AXDBG] 170538.575 🕹️ DPAD STATE: Center (x:0.204, y:0.235, ts:1871.540598)
+[AXDBG] 170538.577 🕹️ DPAD STATE: Center (x:0.000, y:0.235, ts:1871.542353)
+[AXDBG] 170538.578 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.582 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.639 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1871.603819)
+[AXDBG] 170538.698 HW_Press detected
+[AXDBG] 170538.698 Queue [HW_PRESS]: T=124 S=0 P=-19
+[AXDBG] 170538.698 🕹️ DPAD STATE: Center (x:0.150, y:0.000, ts:1871.663412)
+[AXDBG] 170538.698 HW_Press detected
+[AXDBG] 170538.698 Queue [HW_PRESS]: T=125 S=0 P=-19
+[AXDBG] 170538.699 🕹️ DPAD STATE: Down (x:0.150, y:0.599, ts:1871.663807)
+[AXDBG] 170538.700 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.723 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.728 HW_Press detected
+[AXDBG] 170538.729 Queue [HW_PRESS]: T=126 S=0 P=-19
+[AXDBG] 170538.729 🕹️ DPAD STATE: Down (x:-0.011, y:0.599, ts:1871.694478)
+[AXDBG] 170538.730 🕹️ DPAD STATE: Center (x:-0.011, y:0.264, ts:1871.694682)
+[AXDBG] 170538.730 🕹️ DPAD STATE: Center (x:-0.091, y:0.063, ts:1871.695220)
+[AXDBG] 170538.731 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.757 HW_Press detected
+[AXDBG] 170538.757 Queue [HW_PRESS]: T=127 S=0 P=-19
+[AXDBG] 170538.757 🕹️ DPAD STATE: Center (x:-0.139, y:-0.135, ts:1871.722350)
+[AXDBG] 170538.760 🕹️ DPAD STATE: Center (x:-0.149, y:-0.300, ts:1871.724615)
+[AXDBG] 170538.761 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.780 🕹️ DPAD STATE: Center (x:-0.149, y:-0.428, ts:1871.745378)
+[AXDBG] 170538.786 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.809 🕹️ DPAD STATE: Up (x:-0.130, y:-0.593, ts:1871.773850)
+[AXDBG] 170538.812 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.829 🕹️ DPAD STATE: Up (x:0.000, y:-0.593, ts:1871.793736)
+[AXDBG] 170538.829 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1871.794156)
+[AXDBG] 170538.831 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.980 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.981 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170538.988 HW_Press detected
+[AXDBG] 170538.988 Queue [HW_PRESS]: T=128 S=0 P=-19
+[AXDBG] 170538.988 🕹️ DPAD STATE: Center (x:0.229, y:0.000, ts:1871.953543)
+[AXDBG] 170538.989 HW_Press detected
+[AXDBG] 170538.989 Queue [HW_PRESS]: T=129 S=0 P=-19
+[AXDBG] 170538.989 🕹️ DPAD STATE: Down (x:0.229, y:0.594, ts:1871.953946)
+[AXDBG] 170538.989 🕹️ DPAD STATE: Down (x:0.089, y:0.594, ts:1871.954119)
+[AXDBG] 170538.989 🕹️ DPAD STATE: Center (x:0.089, y:0.360, ts:1871.954277)
+[AXDBG] 170538.993 HW_Press detected
+[AXDBG] 170538.993 Queue [HW_PRESS]: T=130 S=0 P=-19
+[AXDBG] 170538.994 🕹️ DPAD STATE: Center (x:-0.053, y:0.360, ts:1871.958992)
+[AXDBG] 170538.994 HW_Press detected
+[AXDBG] 170538.995 Queue [HW_PRESS]: T=131 S=0 P=-19
+[AXDBG] 170538.995 🕹️ DPAD STATE: Center (x:-0.053, y:-0.039, ts:1871.959959)
+[AXDBG] 170538.996 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.012 🕹️ DPAD STATE: Center (x:-0.124, y:-0.294, ts:1871.977286)
+[AXDBG] 170539.017 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.036 🕹️ DPAD STATE: Up (x:-0.160, y:-0.518, ts:1872.000672)
+[AXDBG] 170539.036 🕹️ DPAD STATE: Up (x:-0.172, y:-0.679, ts:1872.001061)
+[AXDBG] 170539.037 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.054 🕹️ DPAD STATE: Up (x:0.000, y:-0.679, ts:1872.019175)
+[AXDBG] 170539.055 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1872.019764)
+[AXDBG] 170539.063 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.214 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.221 HW_Press detected
+[AXDBG] 170539.222 Queue [HW_PRESS]: T=132 S=0 P=-19
+[AXDBG] 170539.222 🕹️ DPAD STATE: Center (x:-0.132, y:0.000, ts:1872.186952)
+[AXDBG] 170539.222 HW_Press detected
+[AXDBG] 170539.223 Queue [HW_PRESS]: T=133 S=0 P=-19
+[AXDBG] 170539.223 🕹️ DPAD STATE: Center (x:-0.132, y:0.398, ts:1872.187932)
+[AXDBG] 170539.231 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.253 🕹️ DPAD STATE: Center (x:-0.112, y:0.266, ts:1872.218596)
+[AXDBG] 170539.258 🕹️ DPAD STATE: Center (x:-0.084, y:0.114, ts:1872.222997)
+[AXDBG] 170539.259 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.276 HW_Press detected
+[AXDBG] 170539.276 Queue [HW_PRESS]: T=134 S=0 P=-19
+[AXDBG] 170539.276 🕹️ DPAD STATE: Center (x:-0.059, y:-0.049, ts:1872.241300)
+[AXDBG] 170539.281 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.308 🕹️ DPAD STATE: Center (x:-0.040, y:-0.215, ts:1872.273596)
+[AXDBG] 170539.309 🕹️ DPAD STATE: Center (x:-0.040, y:-0.373, ts:1872.274233)
+[AXDBG] 170539.314 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.322 🕹️ DPAD STATE: Center (x:-0.040, y:-0.495, ts:1872.287090)
+[AXDBG] 170539.327 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1872.292269)
+[AXDBG] 170539.333 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.355 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.492 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.493 HW_Press detected
+[AXDBG] 170539.494 Queue [HW_PRESS]: T=135 S=0 P=-19
+[AXDBG] 170539.494 HW_Press detected
+[AXDBG] 170539.494 Queue [HW_PRESS]: T=136 S=0 P=-19
+[AXDBG] 170539.498 🕹️ DPAD STATE: Down (x:0.095, y:0.628, ts:1872.463148)
+[AXDBG] 170539.498 🕹️ DPAD STATE: Center (x:0.035, y:0.346, ts:1872.463685)
+[AXDBG] 170539.499 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.555 HW_Press detected
+[AXDBG] 170539.555 Queue [HW_PRESS]: T=137 S=0 P=-19
+[AXDBG] 170539.555 HW_Press detected
+[AXDBG] 170539.555 Queue [HW_PRESS]: T=138 S=0 P=-19
+[AXDBG] 170539.555 🕹️ DPAD STATE: Center (x:-0.036, y:-0.018, ts:1872.520426)
+[AXDBG] 170539.555 🕹️ DPAD STATE: Center (x:-0.047, y:-0.202, ts:1872.520616)
+[AXDBG] 170539.556 🕹️ DPAD STATE: Center (x:-0.047, y:-0.342, ts:1872.520786)
+[AXDBG] 170539.556 🕹️ DPAD STATE: Center (x:-0.043, y:-0.449, ts:1872.521134)
+[AXDBG] 170539.583 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.643 HW_Press detected
+[AXDBG] 170539.643 Queue [HW_PRESS]: T=139 S=0 P=-19
+[AXDBG] 170539.643 🕹️ DPAD STATE: Up (x:0.014, y:-0.585, ts:1872.608342)
+[AXDBG] 170539.646 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1872.611198)
+[AXDBG] 170539.650 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.652 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.861 HW_Press detected
+[AXDBG] 170539.861 Queue [HW_PRESS]: T=140 S=0 P=-19
+[AXDBG] 170539.863 🕹️ DPAD STATE: Right (x:0.771, y:0.000, ts:1872.828241)
+[AXDBG] 170539.863 HW_Press detected
+[AXDBG] 170539.863 Queue [HW_PRESS]: T=141 S=0 P=-19
+[AXDBG] 170539.864 🕹️ DPAD STATE: Right (x:0.771, y:0.277, ts:1872.828811)
+[AXDBG] 170539.865 🕹️ DPAD STATE: Center (x:0.000, y:0.220, ts:1872.830062)
+[AXDBG] 170539.865 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1872.830307)
+[AXDBG] 170539.874 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.876 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170539.876 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170540.025 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170540.026 pressesBegan: Press Right
+[AXDBG] 170540.099 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170540.100 pressesEnded: Press Right
+[AXDBG] 170540.101 ⚠️ RunLoop stall 4526ms | Memory: 63MB | Total queue: 140 | Swipes: 0 | Presses: -20
+[AXDBG] 170540.102 📊 New max queue depth: 140 events (swipes: 0, presses: -20)
+[AXDBG] 170540.540 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170540.540 pressesBegan: Press Right
+[AXDBG] 170540.603 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170540.603 pressesEnded: Press Right
+[AXDBG] 170541.169 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170541.169 pressesBegan: Press Select
+[AXDBG] 170541.170 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170541.170 pressesEnded: Press Select
+[AXDBG] 170541.492 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170541.493 HW_Press detected
+[AXDBG] 170541.493 Queue [HW_PRESS]: T=139 S=0 P=-22
+[AXDBG] 170541.493 HW_Press detected
+[AXDBG] 170541.494 Queue [HW_PRESS]: T=140 S=0 P=-22
+[AXDBG] 170541.494 🕹️ DPAD STATE: Up (x:-0.068, y:-0.967, ts:1874.459107)
+[AXDBG] 170541.503 POLL: Up detected via polling (x:-0.068, y:-0.967)
+[AXDBG] 170541.503 POLL: Up detected via polling (x:-0.068, y:-0.967)
+[AXDBG] 170541.504 HW_Swipe: Up [1]
+[AXDBG] 170541.504 Queue [HW_SWIPE]: T=141 S=0 P=-22
+[AXDBG] 170541.509 Queue [HW_SWIPE]: T=142 S=0 P=-22
+[AXDBG] 170541.589 Queue [HW_SWIPE]: T=143 S=0 P=-22
+[AXDBG] 170541.669 POLL: Up detected via polling (x:-0.068, y:-0.967)
+[AXDBG] 170541.670 Queue [HW_SWIPE]: T=144 S=0 P=-22
+[AXDBG] 170541.677 Queue [HW_SWIPE]: T=145 S=0 P=-22
+[AXDBG] 170541.754 Queue [HW_SWIPE]: T=146 S=0 P=-22
+[AXDBG] 170541.832 POLL: Up detected via polling (x:-0.068, y:-0.967)
+[AXDBG] 170541.832 Queue [HW_SWIPE]: T=147 S=0 P=-22
+[AXDBG] 170541.895 Queue [HW_SWIPE]: T=148 S=0 P=-22
+[AXDBG] 170541.976 POLL: Up detected via polling (x:-0.068, y:-0.967)
+[AXDBG] 170541.976 Queue [HW_SWIPE]: T=149 S=0 P=-22
+[AXDBG] 170542.062 POLL: Up detected via polling (x:-0.068, y:-0.967)
+[AXDBG] 170542.063 HW_Swipe: Up [10]
+[AXDBG] 170542.063 Queue [HW_SWIPE]: T=150 S=0 P=-22
+[AXDBG] 170542.067 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170542.068 pressesBegan: Press Down
+[AXDBG] 170542.198 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170542.198 pressesEnded: Press Down
+[AXDBG] 170542.274 HW_Press detected
+[AXDBG] 170542.274 Queue [HW_PRESS]: T=150 S=0 P=-23
+[AXDBG] 170542.275 🕹️ DPAD STATE: Up (x:0.911, y:-0.967, ts:1875.239886)
+[AXDBG] 170542.275 HW_Press detected
+[AXDBG] 170542.275 Queue [HW_PRESS]: T=151 S=0 P=-23
+[AXDBG] 170542.275 🕹️ DPAD STATE: Right (x:0.911, y:0.201, ts:1875.240318)
+[AXDBG] 170542.283 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170542.348 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170542.349 pressesBegan: Press Right
+[AXDBG] 170542.416 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170542.416 pressesEnded: Press Right
+[AXDBG] 170542.502 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170542.503 pressesBegan: Press Right
+[AXDBG] 170542.599 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170542.600 pressesEnded: Press Right
+[AXDBG] 170542.706 🕹️ DPAD STATE: Center (x:0.000, y:0.201, ts:1875.670816)
+[AXDBG] 170542.706 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1875.671313)
+[AXDBG] 170542.717 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170542.959 HW_Press detected
+[AXDBG] 170542.959 Queue [HW_PRESS]: T=150 S=0 P=-25
+[AXDBG] 170542.959 🕹️ DPAD STATE: Center (x:-0.143, y:0.000, ts:1875.924623)
+[AXDBG] 170542.959 HW_Press detected
+[AXDBG] 170542.959 Queue [HW_PRESS]: T=151 S=0 P=-25
+[AXDBG] 170542.960 🕹️ DPAD STATE: Up (x:-0.143, y:-0.698, ts:1875.924951)
+[AXDBG] 170542.966 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.003 🕹️ DPAD STATE: Up (x:-0.089, y:-0.553, ts:1875.968595)
+[AXDBG] 170543.016 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.018 🕹️ DPAD STATE: Center (x:-0.024, y:-0.438, ts:1875.983009)
+[AXDBG] 170543.030 HW_Press detected
+[AXDBG] 170543.030 Queue [HW_PRESS]: T=152 S=0 P=-25
+[AXDBG] 170543.031 🕹️ DPAD STATE: Center (x:0.031, y:-0.321, ts:1875.995832)
+[AXDBG] 170543.032 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.045 🕹️ DPAD STATE: Center (x:0.081, y:-0.196, ts:1876.010253)
+[AXDBG] 170543.049 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.060 🕹️ DPAD STATE: Center (x:0.196, y:-0.196, ts:1876.025751)
+[AXDBG] 170543.061 HW_Press detected
+[AXDBG] 170543.061 Queue [HW_PRESS]: T=153 S=0 P=-25
+[AXDBG] 170543.061 🕹️ DPAD STATE: Center (x:0.196, y:0.078, ts:1876.026459)
+[AXDBG] 170543.065 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.088 🕹️ DPAD STATE: Center (x:0.273, y:0.310, ts:1876.052947)
+[AXDBG] 170543.089 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.150 🕹️ DPAD STATE: Center (x:0.000, y:0.310, ts:1876.115438)
+[AXDBG] 170543.151 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1876.115885)
+[AXDBG] 170543.153 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.183 ⚠️ RunLoop stall 1116ms | Memory: 62MB | Total queue: 153 | Swipes: 0 | Presses: -25
+[AXDBG] 170543.183 📊 New max queue depth: 153 events (swipes: 0, presses: -25)
+[AXDBG] 170543.291 HW_Press detected
+[AXDBG] 170543.291 Queue [HW_PRESS]: T=154 S=0 P=-25
+[AXDBG] 170543.291 HW_Press detected
+[AXDBG] 170543.292 Queue [HW_PRESS]: T=155 S=0 P=-25
+[AXDBG] 170543.292 🕹️ DPAD STATE: Center (x:0.100, y:-0.457, ts:1876.257072)
+[AXDBG] 170543.293 🕹️ DPAD STATE: Center (x:0.198, y:-0.313, ts:1876.258194)
+[AXDBG] 170543.294 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.295 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.392 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.443 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.446 🕹️ DPAD STATE: Center (x:0.215, y:-0.202, ts:1876.411532)
+[AXDBG] 170543.447 🕹️ DPAD STATE: Center (x:0.223, y:-0.060, ts:1876.411882)
+[AXDBG] 170543.447 HW_Press detected
+[AXDBG] 170543.447 Queue [HW_PRESS]: T=156 S=0 P=-25
+[AXDBG] 170543.447 🕹️ DPAD STATE: Center (x:0.246, y:0.183, ts:1876.412309)
+[AXDBG] 170543.447 🕹️ DPAD STATE: Center (x:0.000, y:0.183, ts:1876.412478)
+[AXDBG] 170543.497 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1876.462684)
+[AXDBG] 170543.500 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.502 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.504 HW_Press detected
+[AXDBG] 170543.504 Queue [HW_PRESS]: T=157 S=0 P=-25
+[AXDBG] 170543.504 🕹️ DPAD STATE: Center (x:-0.208, y:0.000, ts:1876.469695)
+[AXDBG] 170543.505 HW_Press detected
+[AXDBG] 170543.505 Queue [HW_PRESS]: T=158 S=0 P=-25
+[AXDBG] 170543.505 HW_Press detected
+[AXDBG] 170543.505 Queue [HW_PRESS]: T=159 S=0 P=-25
+[AXDBG] 170543.519 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.543 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.568 🕹️ DPAD STATE: Center (x:-0.101, y:-0.020, ts:1876.533203)
+[AXDBG] 170543.569 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.583 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.605 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.620 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.638 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.648 🕹️ DPAD STATE: Center (x:-0.017, y:-0.156, ts:1876.613196)
+[AXDBG] 170543.653 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.663 🕹️ DPAD STATE: Center (x:-0.007, y:-0.304, ts:1876.628079)
+[AXDBG] 170543.666 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.683 🕹️ DPAD STATE: Center (x:-0.007, y:-0.417, ts:1876.648329)
+[AXDBG] 170543.684 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.709 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.720 🕹️ DPAD STATE: Up (x:-0.007, y:-0.572, ts:1876.685029)
+[AXDBG] 170543.725 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.729 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1876.693866)
+[AXDBG] 170543.903 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.904 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.912 HW_Press detected
+[AXDBG] 170543.912 Queue [HW_PRESS]: T=160 S=0 P=-25
+[AXDBG] 170543.912 🕹️ DPAD STATE: Center (x:0.167, y:0.000, ts:1876.877649)
+[AXDBG] 170543.913 HW_Press detected
+[AXDBG] 170543.913 Queue [HW_PRESS]: T=161 S=0 P=-25
+[AXDBG] 170543.914 🕹️ DPAD STATE: Down (x:0.167, y:0.714, ts:1876.878904)
+[AXDBG] 170543.914 🕹️ DPAD STATE: Center (x:0.068, y:0.392, ts:1876.879188)
+[AXDBG] 170543.914 HW_Press detected
+[AXDBG] 170543.915 Queue [HW_PRESS]: T=162 S=0 P=-25
+[AXDBG] 170543.915 🕹️ DPAD STATE: Center (x:-0.005, y:0.091, ts:1876.880119)
+[AXDBG] 170543.915 HW_Press detected
+[AXDBG] 170543.919 Queue [HW_PRESS]: T=163 S=0 P=-25
+[AXDBG] 170543.919 🕹️ DPAD STATE: Center (x:-0.043, y:-0.152, ts:1876.884413)
+[AXDBG] 170543.920 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.948 🕹️ DPAD STATE: Center (x:-0.049, y:-0.338, ts:1876.913040)
+[AXDBG] 170543.948 🕹️ DPAD STATE: Center (x:-0.049, y:-0.486, ts:1876.913428)
+[AXDBG] 170543.950 🕹️ DPAD STATE: Up (x:-0.047, y:-0.595, ts:1876.915000)
+[AXDBG] 170543.951 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.969 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.989 🕹️ DPAD STATE: Up (x:-0.001, y:-0.714, ts:1876.954009)
+[AXDBG] 170543.992 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170543.993 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1876.958633)
+[AXDBG] 170544.001 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170544.104 HW_Press detected
+[AXDBG] 170544.104 Queue [HW_PRESS]: T=164 S=0 P=-25
+[AXDBG] 170544.105 🕹️ DPAD STATE: Right (x:0.852, y:0.000, ts:1877.070107)
+[AXDBG] 170544.105 HW_Press detected
+[AXDBG] 170544.105 Queue [HW_PRESS]: T=165 S=0 P=-25
+[AXDBG] 170544.105 🕹️ DPAD STATE: Right (x:0.852, y:0.360, ts:1877.070579)
+[AXDBG] 170544.107 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170544.160 🕹️ DPAD STATE: Center (x:0.000, y:0.360, ts:1877.125373)
+[AXDBG] 170544.160 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1877.125755)
+[AXDBG] 170544.167 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170544.236 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170544.237 pressesBegan: Press Right
+[AXDBG] 170544.366 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170544.367 pressesEnded: Press Right
+[AXDBG] 170544.418 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170544.418 pressesBegan: Press Right
+[AXDBG] 170544.483 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170544.484 pressesEnded: Press Right
+[AXDBG] 170544.898 HW_Press detected
+[AXDBG] 170544.898 Queue [HW_PRESS]: T=164 S=0 P=-27
+[AXDBG] 170544.901 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170544.910 HW_Press detected
+[AXDBG] 170544.911 Queue [HW_PRESS]: T=165 S=0 P=-27
+[AXDBG] 170544.911 🕹️ DPAD STATE: Center (x:0.047, y:-0.419, ts:1877.876297)
+[AXDBG] 170544.951 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170544.959 🕹️ DPAD STATE: Center (x:0.079, y:-0.265, ts:1877.924195)
+[AXDBG] 170544.980 🕹️ DPAD STATE: Center (x:0.133, y:-0.146, ts:1877.945308)
+[AXDBG] 170544.982 🕹️ DPAD STATE: Center (x:0.254, y:-0.146, ts:1877.947496)
+[AXDBG] 170544.982 HW_Press detected
+[AXDBG] 170544.983 Queue [HW_PRESS]: T=166 S=0 P=-27
+[AXDBG] 170544.983 🕹️ DPAD STATE: Center (x:0.254, y:0.114, ts:1877.948233)
+[AXDBG] 170544.986 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170544.997 🕹️ DPAD STATE: Center (x:0.317, y:0.273, ts:1877.962704)
+[AXDBG] 170545.020 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.069 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.091 🕹️ DPAD STATE: Center (x:0.000, y:0.273, ts:1878.056037)
+[AXDBG] 170545.091 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1878.056432)
+[AXDBG] 170545.165 HW_Press detected
+[AXDBG] 170545.166 Queue [HW_PRESS]: T=167 S=0 P=-27
+[AXDBG] 170545.166 🕹️ DPAD STATE: Center (x:-0.270, y:0.000, ts:1878.131352)
+[AXDBG] 170545.167 HW_Press detected
+[AXDBG] 170545.167 Queue [HW_PRESS]: T=168 S=0 P=-27
+[AXDBG] 170545.167 🕹️ DPAD STATE: Up (x:-0.270, y:-0.654, ts:1878.132776)
+[AXDBG] 170545.170 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.180 🕹️ DPAD STATE: Up (x:-0.158, y:-0.654, ts:1878.145351)
+[AXDBG] 170545.186 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.196 HW_Press detected
+[AXDBG] 170545.196 Queue [HW_PRESS]: T=169 S=0 P=-27
+[AXDBG] 170545.197 🕹️ DPAD STATE: Up (x:0.066, y:-0.635, ts:1878.162098)
+[AXDBG] 170545.197 🕹️ DPAD STATE: Center (x:0.066, y:-0.497, ts:1878.162329)
+[AXDBG] 170545.201 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.230 🕹️ DPAD STATE: Center (x:0.125, y:-0.382, ts:1878.194843)
+[AXDBG] 170545.230 🕹️ DPAD STATE: Center (x:0.150, y:-0.246, ts:1878.195292)
+[AXDBG] 170545.231 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.246 🕹️ DPAD STATE: Center (x:0.162, y:-0.075, ts:1878.211525)
+[AXDBG] 170545.255 HW_Press detected
+[AXDBG] 170545.255 Queue [HW_PRESS]: T=170 S=0 P=-27
+[AXDBG] 170545.255 🕹️ DPAD STATE: Center (x:0.177, y:0.135, ts:1878.220441)
+[AXDBG] 170545.270 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.328 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.358 🕹️ DPAD STATE: Center (x:0.000, y:0.135, ts:1878.323199)
+[AXDBG] 170545.358 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1878.323610)
+[AXDBG] 170545.423 HW_Press detected
+[AXDBG] 170545.423 Queue [HW_PRESS]: T=171 S=0 P=-27
+[AXDBG] 170545.424 🕹️ DPAD STATE: Center (x:-0.185, y:0.000, ts:1878.388968)
+[AXDBG] 170545.424 HW_Press detected
+[AXDBG] 170545.424 Queue [HW_PRESS]: T=172 S=0 P=-27
+[AXDBG] 170545.424 🕹️ DPAD STATE: Center (x:-0.185, y:0.465, ts:1878.389314)
+[AXDBG] 170545.428 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.438 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.456 🕹️ DPAD STATE: Center (x:-0.210, y:0.187, ts:1878.421626)
+[AXDBG] 170545.457 HW_Press detected
+[AXDBG] 170545.457 Queue [HW_PRESS]: T=173 S=0 P=-27
+[AXDBG] 170545.457 🕹️ DPAD STATE: Center (x:-0.214, y:-0.087, ts:1878.422534)
+[AXDBG] 170545.459 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.495 🕹️ DPAD STATE: Center (x:-0.214, y:-0.309, ts:1878.459971)
+[AXDBG] 170545.495 🕹️ DPAD STATE: Center (x:-0.176, y:-0.493, ts:1878.460343)
+[AXDBG] 170545.497 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.524 🕹️ DPAD STATE: Up (x:-0.143, y:-0.618, ts:1878.489210)
+[AXDBG] 170545.524 🕹️ DPAD STATE: Up (x:0.000, y:-0.618, ts:1878.489627)
+[AXDBG] 170545.524 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1878.489819)
+[AXDBG] 170545.527 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.735 HW_Press detected
+[AXDBG] 170545.735 Queue [HW_PRESS]: T=174 S=0 P=-27
+[AXDBG] 170545.735 🕹️ DPAD STATE: Center (x:0.434, y:0.000, ts:1878.700801)
+[AXDBG] 170545.736 HW_Press detected
+[AXDBG] 170545.736 Queue [HW_PRESS]: T=175 S=0 P=-27
+[AXDBG] 170545.736 🕹️ DPAD STATE: Down (x:0.434, y:0.720, ts:1878.701353)
+[AXDBG] 170545.739 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.753 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.799 🕹️ DPAD STATE: Down (x:0.518, y:0.586, ts:1878.764852)
+[AXDBG] 170545.800 🕹️ DPAD STATE: Right (x:0.618, y:0.532, ts:1878.765336)
+[AXDBG] 170545.806 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.824 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.836 🕹️ DPAD STATE: Right (x:0.687, y:0.417, ts:1878.801546)
+[AXDBG] 170545.840 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.855 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.868 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.886 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.897 🕹️ DPAD STATE: Right (x:0.792, y:0.365, ts:1878.862524)
+[AXDBG] 170545.905 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.922 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.936 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.970 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170545.987 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170546.002 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170546.020 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170546.035 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170546.045 🕹️ DPAD STATE: Right (x:0.865, y:0.264, ts:1879.010680)
+[AXDBG] 170546.053 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170546.068 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170546.089 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170546.161 🕹️ DPAD STATE: Center (x:0.000, y:0.260, ts:1879.126027)
+[AXDBG] 170546.161 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1879.126451)
+[AXDBG] 170546.172 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170546.234 HW_Press detected
+[AXDBG] 170546.234 Queue [HW_PRESS]: T=176 S=0 P=-27
+[AXDBG] 170546.235 🕹️ DPAD STATE: Right (x:0.858, y:0.000, ts:1879.200386)
+[AXDBG] 170546.236 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170546.243 HW_Press detected
+[AXDBG] 170546.243 Queue [HW_PRESS]: T=177 S=0 P=-27
+[AXDBG] 170546.243 🕹️ DPAD STATE: Right (x:0.858, y:0.224, ts:1879.208881)
+[AXDBG] 170546.269 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170546.269 pressesBegan: Press Right
+[AXDBG] 170546.385 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170546.386 pressesEnded: Press Right
+[AXDBG] 170546.455 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170546.456 pressesBegan: Press Right
+[AXDBG] 170546.552 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170546.553 pressesEnded: Press Right
+[AXDBG] 170546.603 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170546.603 pressesBegan: Press Right
+[AXDBG] 170546.685 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170546.686 pressesEnded: Press Right
+[AXDBG] 170546.843 🕹️ DPAD STATE: Center (x:0.000, y:0.224, ts:1879.808267)
+[AXDBG] 170546.843 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1879.808626)
+[AXDBG] 170546.854 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170546.907 ⚠️ RunLoop stall 3515ms | Memory: 62MB | Total queue: 174 | Swipes: 0 | Presses: -30
+[AXDBG] 170546.907 📊 New max queue depth: 174 events (swipes: 0, presses: -30)
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Content arrangement updated
+[AXDBG] 170548.017 HW_Press detected
+[AXDBG] 170548.017 Queue [HW_PRESS]: T=175 S=0 P=-30
+[AXDBG] 170548.017 🕹️ DPAD STATE: Left (x:-0.847, y:0.000, ts:1880.982864)
+[AXDBG] 170548.017 HW_Press detected
+[AXDBG] 170548.018 Queue [HW_PRESS]: T=176 S=0 P=-30
+[AXDBG] 170548.018 🕹️ DPAD STATE: Left (x:-0.847, y:0.109, ts:1880.983290)
+[AXDBG] 170548.023 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170548.104 🕹️ DPAD STATE: Center (x:0.000, y:0.109, ts:1881.068176)
+[AXDBG] 170548.104 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1881.069530)
+[AXDBG] 170548.104 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170548.154 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170548.155 pressesBegan: Press Left
+[AXDBG] 170548.487 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170548.488 pressesEnded: Press Left
+[AXDBG] 170549.639 ⚠️ RunLoop stall 1727ms | Memory: 62MB | Total queue: 175 | Swipes: 0 | Presses: -31
+[AXDBG] 170549.640 📊 New max queue depth: 175 events (swipes: 0, presses: -31)
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Layout updated with new content
+[AXDBG] 170549.797 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170549.799 HW_Press detected
+[AXDBG] 170549.799 Queue [HW_PRESS]: T=176 S=0 P=-31
+[AXDBG] 170549.800 🕹️ DPAD STATE: Right (x:0.833, y:0.000, ts:1882.765251)
+[AXDBG] 170549.800 HW_Press detected
+[AXDBG] 170549.800 Queue [HW_PRESS]: T=177 S=0 P=-31
+[AXDBG] 170549.923 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170549.942 🕹️ DPAD STATE: Center (x:0.000, y:0.040, ts:1882.907632)
+[AXDBG] 170550.022 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170550.023 pressesBegan: Press Right
+[AXDBG] 170550.158 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170550.159 pressesEnded: Press Right
+[AXDBG] 170550.857 ⚠️ RunLoop stall 1147ms | Memory: 62MB | Total queue: 176 | Swipes: 0 | Presses: -32
+[AXDBG] 170550.857 📊 New max queue depth: 176 events (swipes: 0, presses: -32)
+TestRunLogger: 🎯 STRESS-ESCALATION: Level 1 at 30.9s - targeting 56MB
+TestRunLogger: 🎯 MEMORY-PRESSURE: Added 4MB ballast (target: 56MB)
+TestRunLogger: 🎯 VOICEOVER-LOAD: Increased to level 15
+App is being debugged, do not track this hang
+Hang detected: 0.34s (debugger attached, not reporting)
+[AXDBG] 170551.203 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170551.204 HW_Press detected
+[AXDBG] 170551.205 Queue [HW_PRESS]: T=177 S=0 P=-32
+[AXDBG] 170551.206 🕹️ DPAD STATE: Right (x:0.852, y:0.000, ts:1884.171909)
+[AXDBG] 170551.206 HW_Press detected
+[AXDBG] 170551.207 Queue [HW_PRESS]: T=178 S=0 P=-32
+[AXDBG] 170551.207 🕹️ DPAD STATE: Right (x:0.852, y:0.149, ts:1884.172458)
+[AXDBG] 170551.207 POLL: Right detected via polling (x:0.852, y:0.149)
+[AXDBG] 170551.207 POLL: Right detected via polling (x:0.852, y:0.149)
+[AXDBG] 170551.208 HW_Swipe: Right [1]
+[AXDBG] 170551.208 Queue [HW_SWIPE]: T=179 S=0 P=-32
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Content arrangement updated
+[AXDBG] 170551.377 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170551.378 pressesBegan: Press Right
+[AXDBG] 170551.579 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170551.580 pressesEnded: Press Right
+[AXDBG] 170551.715 🕹️ DPAD STATE: Center (x:0.077, y:0.149, ts:1884.680599)
+[AXDBG] 170551.716 HW_Press detected
+[AXDBG] 170551.716 Queue [HW_PRESS]: T=179 S=0 P=-33
+[AXDBG] 170551.716 🕹️ DPAD STATE: Up (x:0.077, y:-0.812, ts:1884.681877)
+[AXDBG] 170551.730 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170551.750 🕹️ DPAD STATE: Up (x:0.173, y:-0.700, ts:1884.716063)
+[AXDBG] 170551.758 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170551.768 🕹️ DPAD STATE: Up (x:0.202, y:-0.511, ts:1884.733153)
+[AXDBG] 170551.776 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170551.794 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170551.802 🕹️ DPAD STATE: Center (x:0.202, y:-0.388, ts:1884.767211)
+[AXDBG] 170551.802 🕹️ DPAD STATE: Center (x:0.202, y:-0.233, ts:1884.767560)
+[AXDBG] 170551.805 🕹️ DPAD STATE: Center (x:0.202, y:-0.043, ts:1884.771131)
+[AXDBG] 170551.810 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170551.820 HW_Press detected
+[AXDBG] 170551.820 Queue [HW_PRESS]: T=180 S=0 P=-33
+[AXDBG] 170551.831 🕹️ DPAD STATE: Center (x:0.212, y:0.147, ts:1884.796615)
+[AXDBG] 170551.832 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170551.848 🕹️ DPAD STATE: Center (x:0.000, y:0.147, ts:1884.813212)
+[AXDBG] 170551.848 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1884.813734)
+[AXDBG] 170551.858 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170551.891 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170551.892 pressesBegan: Press Right
+[AXDBG] 170551.956 HW_Press detected
+[AXDBG] 170551.956 Queue [HW_PRESS]: T=180 S=0 P=-34
+[AXDBG] 170551.956 HW_Press detected
+[AXDBG] 170551.956 Queue [HW_PRESS]: T=181 S=0 P=-34
+[AXDBG] 170551.956 🕹️ DPAD STATE: Center (x:-0.024, y:-0.344, ts:1884.921953)
+[AXDBG] 170551.957 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170551.958 pressesEnded: Press Right
+[AXDBG] 170551.960 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170551.972 HW_Press detected
+[AXDBG] 170551.972 Queue [HW_PRESS]: T=182 S=0 P=-34
+[AXDBG] 170551.972 🕹️ DPAD STATE: Center (x:0.070, y:-0.215, ts:1884.937889)
+[AXDBG] 170551.974 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170551.995 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.001 🕹️ DPAD STATE: Center (x:0.104, y:-0.031, ts:1884.966893)
+[AXDBG] 170552.008 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.027 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.027 HW_Press detected
+[AXDBG] 170552.028 Queue [HW_PRESS]: T=183 S=0 P=-34
+[AXDBG] 170552.028 🕹️ DPAD STATE: Center (x:0.106, y:0.086, ts:1884.993512)
+[AXDBG] 170552.032 🕹️ DPAD STATE: Center (x:0.106, y:0.206, ts:1884.997264)
+[AXDBG] 170552.041 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.049 🕹️ DPAD STATE: Center (x:0.106, y:0.319, ts:1885.014616)
+[AXDBG] 170552.058 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.070 🕹️ DPAD STATE: Center (x:0.000, y:0.319, ts:1885.036058)
+[AXDBG] 170552.071 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1885.036437)
+[AXDBG] 170552.078 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.199 HW_Press detected
+[AXDBG] 170552.200 Queue [HW_PRESS]: T=184 S=0 P=-34
+[AXDBG] 170552.200 HW_Press detected
+[AXDBG] 170552.200 Queue [HW_PRESS]: T=185 S=0 P=-34
+[AXDBG] 170552.200 🕹️ DPAD STATE: Center (x:-0.024, y:-0.390, ts:1885.165883)
+[AXDBG] 170552.213 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.216 HW_Press detected
+[AXDBG] 170552.217 Queue [HW_PRESS]: T=186 S=0 P=-34
+[AXDBG] 170552.217 🕹️ DPAD STATE: Center (x:0.047, y:-0.284, ts:1885.182609)
+[AXDBG] 170552.226 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.228 🕹️ DPAD STATE: Center (x:0.137, y:-0.121, ts:1885.193704)
+[AXDBG] 170552.239 HW_Press detected
+[AXDBG] 170552.239 Queue [HW_PRESS]: T=187 S=0 P=-34
+[AXDBG] 170552.240 🕹️ DPAD STATE: Center (x:0.204, y:0.074, ts:1885.205315)
+[AXDBG] 170552.241 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.255 🕹️ DPAD STATE: Center (x:0.246, y:0.279, ts:1885.220282)
+[AXDBG] 170552.265 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.316 🕹️ DPAD STATE: Center (x:0.000, y:0.279, ts:1885.281933)
+[AXDBG] 170552.317 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1885.282293)
+[AXDBG] 170552.318 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.345 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170552.346 pressesBegan: Press Right
+[AXDBG] 170552.363 HW_Press detected
+[AXDBG] 170552.363 Queue [HW_PRESS]: T=187 S=0 P=-35
+[AXDBG] 170552.364 🕹️ DPAD STATE: Center (x:0.215, y:0.000, ts:1885.329381)
+[AXDBG] 170552.364 HW_Press detected
+[AXDBG] 170552.364 Queue [HW_PRESS]: T=188 S=0 P=-35
+[AXDBG] 170552.364 🕹️ DPAD STATE: Down (x:0.215, y:0.806, ts:1885.329749)
+[AXDBG] 170552.367 🕹️ DPAD STATE: Down (x:0.179, y:0.661, ts:1885.332649)
+[AXDBG] 170552.368 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.369 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.394 🕹️ DPAD STATE: Center (x:0.121, y:0.452, ts:1885.359712)
+[AXDBG] 170552.395 🕹️ DPAD STATE: Center (x:0.054, y:0.239, ts:1885.360332)
+[AXDBG] 170552.396 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.406 HW_Press detected
+[AXDBG] 170552.412 Queue [HW_PRESS]: T=189 S=0 P=-35
+[AXDBG] 170552.412 🕹️ DPAD STATE: Center (x:-0.003, y:0.045, ts:1885.377884)
+[AXDBG] 170552.413 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.429 HW_Press detected
+[AXDBG] 170552.429 Queue [HW_PRESS]: T=190 S=0 P=-35
+[AXDBG] 170552.429 🕹️ DPAD STATE: Center (x:-0.045, y:-0.110, ts:1885.394941)
+[AXDBG] 170552.433 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.441 🕹️ DPAD STATE: Center (x:-0.066, y:-0.229, ts:1885.407093)
+[AXDBG] 170552.443 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.461 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.470 🕹️ DPAD STATE: Center (x:-0.068, y:-0.382, ts:1885.435646)
+[AXDBG] 170552.476 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.483 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1885.448487)
+[AXDBG] 170552.495 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.496 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170552.497 pressesEnded: Press Right
+[AXDBG] 170552.649 HW_Press detected
+[AXDBG] 170552.650 Queue [HW_PRESS]: T=191 S=0 P=-35
+[AXDBG] 170552.650 🕹️ DPAD STATE: Center (x:-0.128, y:0.000, ts:1885.615526)
+[AXDBG] 170552.650 HW_Press detected
+[AXDBG] 170552.650 Queue [HW_PRESS]: T=192 S=0 P=-35
+[AXDBG] 170552.650 🕹️ DPAD STATE: Center (x:-0.128, y:0.335, ts:1885.615998)
+[AXDBG] 170552.662 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.669 HW_Press detected
+[AXDBG] 170552.669 Queue [HW_PRESS]: T=193 S=0 P=-35
+[AXDBG] 170552.670 🕹️ DPAD STATE: Center (x:-0.189, y:-0.139, ts:1885.635229)
+[AXDBG] 170552.676 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.683 🕹️ DPAD STATE: Center (x:-0.195, y:-0.415, ts:1885.648379)
+[AXDBG] 170552.695 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.705 🕹️ DPAD STATE: Up (x:-0.195, y:-0.647, ts:1885.670389)
+[AXDBG] 170552.710 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.711 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.717 🕹️ DPAD STATE: Up (x:0.000, y:-0.647, ts:1885.682437)
+[AXDBG] 170552.717 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1885.683040)
+[AXDBG] 170552.742 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170552.742 pressesBegan: Press Right
+[AXDBG] 170552.808 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170552.809 pressesEnded: Press Right
+[AXDBG] 170552.920 HW_Press detected
+[AXDBG] 170552.921 Queue [HW_PRESS]: T=193 S=0 P=-36
+[AXDBG] 170552.921 HW_Press detected
+[AXDBG] 170552.921 Queue [HW_PRESS]: T=194 S=0 P=-36
+[AXDBG] 170552.921 🕹️ DPAD STATE: Center (x:0.003, y:-0.290, ts:1885.886864)
+[AXDBG] 170552.926 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.940 HW_Press detected
+[AXDBG] 170552.940 Queue [HW_PRESS]: T=195 S=0 P=-36
+[AXDBG] 170552.940 🕹️ DPAD STATE: Center (x:-0.055, y:-0.445, ts:1885.906076)
+[AXDBG] 170552.942 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.953 🕹️ DPAD STATE: Up (x:-0.086, y:-0.574, ts:1885.918724)
+[AXDBG] 170552.960 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.972 🕹️ DPAD STATE: Up (x:-0.093, y:-0.674, ts:1885.937458)
+[AXDBG] 170552.980 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170552.994 🕹️ DPAD STATE: Up (x:-0.093, y:-0.775, ts:1885.959551)
+[AXDBG] 170552.995 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170553.016 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170553.028 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170553.060 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170553.075 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170553.100 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170553.127 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170553.144 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170553.159 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170553.160 pressesBegan: Press Right
+[AXDBG] 170553.209 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170553.210 pressesBegan: Press Down
+[AXDBG] 170553.261 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170553.261 pressesEnded: Press Right
+[AXDBG] 170553.359 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170553.360 pressesEnded: Press Down
+[AXDBG] 170553.442 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170553.443 pressesBegan: Press Down
+[AXDBG] 170553.603 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170553.604 pressesBegan: Press Right
+[AXDBG] 170553.879 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170553.897 HW_Press detected
+[AXDBG] 170553.898 Queue [HW_PRESS]: T=192 S=0 P=-40
+[AXDBG] 170553.898 🕹️ DPAD STATE: Up (x:0.190, y:-0.869, ts:1886.863625)
+[AXDBG] 170553.898 HW_Press detected
+[AXDBG] 170553.898 Queue [HW_PRESS]: T=193 S=0 P=-40
+[AXDBG] 170553.898 🕹️ DPAD STATE: Down (x:0.190, y:0.712, ts:1886.864012)
+[AXDBG] 170553.898 🕹️ DPAD STATE: Down (x:0.091, y:0.594, ts:1886.864190)
+[AXDBG] 170553.944 HW_Press detected
+[AXDBG] 170553.944 Queue [HW_PRESS]: T=194 S=0 P=-40
+[AXDBG] 170553.944 🕹️ DPAD STATE: Down (x:-0.015, y:0.594, ts:1886.909981)
+[AXDBG] 170553.944 🕹️ DPAD STATE: Center (x:-0.015, y:0.296, ts:1886.910261)
+[AXDBG] 170553.946 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170553.949 🕹️ DPAD STATE: Center (x:-0.045, y:0.095, ts:1886.914315)
+[AXDBG] 170553.949 HW_Press detected
+[AXDBG] 170553.986 Queue [HW_PRESS]: T=195 S=0 P=-40
+[AXDBG] 170553.987 🕹️ DPAD STATE: Center (x:-0.047, y:-0.106, ts:1886.952382)
+[AXDBG] 170553.987 🕹️ DPAD STATE: Center (x:-0.047, y:-0.288, ts:1886.952616)
+[AXDBG] 170553.988 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170553.989 🕹️ DPAD STATE: Center (x:-0.047, y:-0.445, ts:1886.954954)
+[AXDBG] 170553.989 🕹️ DPAD STATE: Up (x:-0.028, y:-0.564, ts:1886.955241)
+[AXDBG] 170554.018 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1886.983370)
+[AXDBG] 170554.028 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.045 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170554.045 pressesEnded: Press Down
+[AXDBG] 170554.047 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170554.047 pressesEnded: Press Right
+[AXDBG] 170554.094 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170554.094 pressesBegan: Press Right
+[AXDBG] 170554.151 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.152 HW_Press detected
+[AXDBG] 170554.152 Queue [HW_PRESS]: T=195 S=0 P=-41
+[AXDBG] 170554.152 🕹️ DPAD STATE: Center (x:0.187, y:0.000, ts:1887.117867)
+[AXDBG] 170554.152 HW_Press detected
+[AXDBG] 170554.152 Queue [HW_PRESS]: T=196 S=0 P=-41
+[AXDBG] 170554.181 HW_Press detected
+[AXDBG] 170554.181 Queue [HW_PRESS]: T=197 S=0 P=-41
+[AXDBG] 170554.187 🕹️ DPAD STATE: Center (x:0.160, y:-0.152, ts:1887.153061)
+[AXDBG] 170554.189 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.207 🕹️ DPAD STATE: Center (x:0.158, y:-0.309, ts:1887.172492)
+[AXDBG] 170554.210 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.224 🕹️ DPAD STATE: Center (x:0.158, y:-0.438, ts:1887.189314)
+[AXDBG] 170554.227 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.245 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170554.246 pressesEnded: Press Right
+[AXDBG] 170554.248 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.271 🕹️ DPAD STATE: Up (x:0.158, y:-0.583, ts:1887.236791)
+[AXDBG] 170554.272 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.289 🕹️ DPAD STATE: Up (x:0.000, y:-0.629, ts:1887.255069)
+[AXDBG] 170554.290 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1887.255432)
+[AXDBG] 170554.297 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.441 HW_Press detected
+[AXDBG] 170554.441 Queue [HW_PRESS]: T=198 S=0 P=-41
+[AXDBG] 170554.441 🕹️ DPAD STATE: Right (x:0.725, y:0.000, ts:1887.406878)
+[AXDBG] 170554.441 HW_Press detected
+[AXDBG] 170554.441 Queue [HW_PRESS]: T=199 S=0 P=-41
+[AXDBG] 170554.441 🕹️ DPAD STATE: Right (x:0.725, y:0.149, ts:1887.407218)
+[AXDBG] 170554.444 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.460 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.475 🕹️ DPAD STATE: Right (x:0.720, y:0.030, ts:1887.440370)
+[AXDBG] 170554.477 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.500 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.510 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170554.511 pressesBegan: Press Right
+[AXDBG] 170554.521 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.540 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.846 🕹️ DPAD STATE: Center (x:0.000, y:0.011, ts:1887.812056)
+[AXDBG] 170554.849 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.877 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170554.878 pressesEnded: Press Right
+[AXDBG] 170554.927 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170554.928 pressesBegan: Press Right
+[AXDBG] 170554.948 HW_Press detected
+[AXDBG] 170554.948 Queue [HW_PRESS]: T=198 S=0 P=-43
+[AXDBG] 170554.948 HW_Press detected
+[AXDBG] 170554.948 Queue [HW_PRESS]: T=199 S=0 P=-43
+[AXDBG] 170554.949 🕹️ DPAD STATE: Center (x:-0.070, y:-0.497, ts:1887.914449)
+[AXDBG] 170554.950 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.964 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.974 🕹️ DPAD STATE: Center (x:-0.172, y:-0.468, ts:1887.939622)
+[AXDBG] 170554.978 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170554.993 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170554.994 pressesEnded: Press Right
+[AXDBG] 170554.996 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.012 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.023 🕹️ DPAD STATE: Center (x:-0.181, y:-0.348, ts:1887.988712)
+[AXDBG] 170555.031 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.062 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.079 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.092 🕹️ DPAD STATE: Up (x:-0.084, y:-0.578, ts:1888.057540)
+[AXDBG] 170555.097 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.114 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1888.079745)
+[AXDBG] 170555.115 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.270 HW_Press detected
+[AXDBG] 170555.270 Queue [HW_PRESS]: T=200 S=0 P=-43
+[AXDBG] 170555.271 🕹️ DPAD STATE: Center (x:0.102, y:0.000, ts:1888.236422)
+[AXDBG] 170555.271 HW_Press detected
+[AXDBG] 170555.271 Queue [HW_PRESS]: T=201 S=0 P=-43
+[AXDBG] 170555.271 🕹️ DPAD STATE: Center (x:0.102, y:0.362, ts:1888.236769)
+[AXDBG] 170555.278 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.287 HW_Press detected
+[AXDBG] 170555.301 Queue [HW_PRESS]: T=202 S=0 P=-43
+[AXDBG] 170555.302 🕹️ DPAD STATE: Center (x:-0.020, y:0.362, ts:1888.267649)
+[AXDBG] 170555.302 🕹️ DPAD STATE: Center (x:-0.020, y:0.057, ts:1888.267874)
+[AXDBG] 170555.303 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.304 HW_Press detected
+[AXDBG] 170555.304 Queue [HW_PRESS]: T=203 S=0 P=-43
+[AXDBG] 170555.304 🕹️ DPAD STATE: Center (x:-0.103, y:-0.192, ts:1888.270172)
+[AXDBG] 170555.325 🕹️ DPAD STATE: Center (x:-0.164, y:-0.373, ts:1888.290363)
+[AXDBG] 170555.328 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.329 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170555.330 pressesBegan: Press Right
+[AXDBG] 170555.349 🕹️ DPAD STATE: Up (x:-0.174, y:-0.509, ts:1888.315096)
+[AXDBG] 170555.350 🕹️ DPAD STATE: Up (x:-0.174, y:-0.612, ts:1888.316262)
+[AXDBG] 170555.351 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.361 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.375 🕹️ DPAD STATE: Up (x:-0.145, y:-0.723, ts:1888.340541)
+[AXDBG] 170555.379 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.390 🕹️ DPAD STATE: Up (x:0.000, y:-0.723, ts:1888.355730)
+[AXDBG] 170555.390 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1888.356329)
+[AXDBG] 170555.396 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.427 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170555.428 pressesEnded: Press Right
+[AXDBG] 170555.512 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.514 HW_Press detected
+[AXDBG] 170555.514 Queue [HW_PRESS]: T=203 S=0 P=-44
+[AXDBG] 170555.515 🕹️ DPAD STATE: Center (x:0.261, y:0.000, ts:1888.480355)
+[AXDBG] 170555.515 HW_Press detected
+[AXDBG] 170555.515 Queue [HW_PRESS]: T=204 S=0 P=-44
+[AXDBG] 170555.515 🕹️ DPAD STATE: Center (x:0.261, y:0.149, ts:1888.481203)
+[AXDBG] 170555.527 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.533 🕹️ DPAD STATE: Center (x:0.296, y:0.264, ts:1888.498804)
+[AXDBG] 170555.546 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.556 🕹️ DPAD STATE: Center (x:0.269, y:0.011, ts:1888.521984)
+[AXDBG] 170555.561 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.570 HW_Press detected
+[AXDBG] 170555.571 Queue [HW_PRESS]: T=205 S=0 P=-44
+[AXDBG] 170555.571 🕹️ DPAD STATE: Center (x:0.221, y:-0.152, ts:1888.536873)
+[AXDBG] 170555.578 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.585 🕹️ DPAD STATE: Center (x:0.173, y:-0.300, ts:1888.551024)
+[AXDBG] 170555.596 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.600 🕹️ DPAD STATE: Center (x:0.141, y:-0.430, ts:1888.566012)
+[AXDBG] 170555.613 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.617 🕹️ DPAD STATE: Up (x:0.125, y:-0.530, ts:1888.582964)
+[AXDBG] 170555.629 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.633 🕹️ DPAD STATE: Up (x:0.000, y:-0.530, ts:1888.598485)
+[AXDBG] 170555.633 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:1888.598949)
+[AXDBG] 170555.646 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 170555.662 ⚠️ RunLoop stall 4387ms | Memory: 79MB | Total queue: 205 | Swipes: 0 | Presses: -44
+[AXDBG] 170555.662 📊 New max queue depth: 205 events (swipes: 0, presses: -44)
+[AXDBG] 170555.795 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170555.796 pressesBegan: Press Right
+[AXDBG] 170555.873 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170555.874 pressesEnded: Press Right
+[AXDBG] 170556.212 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170556.213 pressesBegan: Press Right
+[AXDBG] 170556.262 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170556.263 pressesEnded: Press Right
+[AXDBG] 170556.630 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170556.630 pressesBegan: Press Right
+[AXDBG] 170556.696 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170556.696 pressesEnded: Press Right
+[AXDBG] 170557.029 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170557.030 pressesBegan: Press Right
+[AXDBG] 170557.113 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170557.113 pressesEnded: Press Right
+[AXDBG] 170557.314 ⚠️ RunLoop stall 1519ms | Memory: 79MB | Total queue: 201 | Swipes: 0 | Presses: -48
+[AXDBG] 170557.714 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170557.715 pressesBegan: Press Right
+[AXDBG] 170557.791 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170557.791 pressesEnded: Press Right
+[AXDBG] 170558.131 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170558.132 pressesBegan: Press Right
+[AXDBG] 170558.347 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170558.347 pressesEnded: Press Right
+[AXDBG] 170558.547 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170558.548 pressesBegan: Press Right
+[AXDBG] 170558.732 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170558.732 pressesEnded: Press Right
+[AXDBG] 170558.948 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170558.948 pressesBegan: Press Right
+[AXDBG] 170559.031 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170559.031 pressesEnded: Press Right
+[AXDBG] 170559.249 ⚠️ RunLoop stall 1534ms | Memory: 79MB | Total queue: 197 | Swipes: 0 | Presses: -52
+[AXDBG] 170559.349 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170559.349 pressesBegan: Press Right
+[AXDBG] 170559.581 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170559.582 pressesEnded: Press Right
+[AXDBG] 170559.765 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170559.766 pressesBegan: Press Right
+[AXDBG] 170559.833 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170559.833 pressesEnded: Press Right
+[AXDBG] 170600.182 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170600.183 pressesBegan: Press Right
+[AXDBG] 170600.382 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170600.383 pressesEnded: Press Right
+[AXDBG] 170600.582 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170600.583 pressesBegan: Press Right
+[AXDBG] 170600.666 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170600.666 pressesEnded: Press Right
+[AXDBG] 170600.950 ⚠️ RunLoop stall 1602ms | Memory: 79MB | Total queue: 193 | Swipes: 0 | Presses: -56
+[AXDBG] 170601.141 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170601.142 pressesBegan: Press Right
+[AXDBG] 170601.200 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170601.201 pressesEnded: Press Right
+[AXDBG] 170601.503 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170601.503 pressesBegan: Press Right
+[AXDBG] 170601.683 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170601.684 pressesEnded: Press Right
+[AXDBG] 170601.900 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170601.901 pressesBegan: Press Right
+[AXDBG] 170602.034 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170602.034 pressesEnded: Press Right
+[AXDBG] 170602.318 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170602.319 pressesBegan: Press Right
+[AXDBG] 170602.418 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170602.418 pressesEnded: Press Right
+[AXDBG] 170602.686 ⚠️ RunLoop stall 1545ms | Memory: 79MB | Total queue: 189 | Swipes: 0 | Presses: -60
+[AXDBG] 170602.987 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170602.987 pressesBegan: Press Right
+[AXDBG] 170602.999 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170603.000 pressesEnded: Press Right
+[AXDBG] 170603.320 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170603.321 pressesBegan: Press Right
+[AXDBG] 170603.371 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170603.372 pressesEnded: Press Right
+[AXDBG] 170603.736 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170603.737 pressesBegan: Press Right
+[AXDBG] 170603.953 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170603.954 pressesEnded: Press Right
+[AXDBG] 170604.136 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170604.137 pressesBegan: Press Right
+[AXDBG] 170604.219 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170604.220 pressesEnded: Press Right
+[AXDBG] 170604.538 ⚠️ RunLoop stall 1552ms | Memory: 79MB | Total queue: 185 | Swipes: 0 | Presses: -64
+TestRunLogger: 📢 LAYOUT-ANNOUNCEMENT: Collection view structure changed
+[AXDBG] 170604.628 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170604.629 pressesBegan: Press Right
+[AXDBG] 170604.705 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170604.706 pressesEnded: Press Right
+[AXDBG] 170605.106 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170605.107 pressesBegan: Press Right
+[AXDBG] 170605.273 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170605.273 pressesEnded: Press Right
+[AXDBG] 170605.505 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170605.505 pressesBegan: Press Right
+[AXDBG] 170605.557 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170605.558 pressesEnded: Press Right
+[AXDBG] 170605.921 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170605.922 pressesBegan: Press Right
+[AXDBG] 170605.988 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170605.989 pressesEnded: Press Right
+[AXDBG] 170606.224 ⚠️ RunLoop stall 1596ms | Memory: 79MB | Total queue: 181 | Swipes: 0 | Presses: -68
+[AXDBG] 170606.422 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170606.423 pressesBegan: Press Right
+[AXDBG] 170606.531 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170606.532 pressesEnded: Press Right
+[AXDBG] 170606.739 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170606.740 pressesBegan: Press Right
+[AXDBG] 170606.806 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170606.807 pressesEnded: Press Right
+[AXDBG] 170607.156 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170607.156 pressesBegan: Press Right
+[AXDBG] 170607.340 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170607.340 pressesEnded: Press Right
+[AXDBG] 170607.574 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170607.575 pressesBegan: Press Right
+[AXDBG] 170607.625 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170607.626 pressesEnded: Press Right
+[AXDBG] 170607.973 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170607.974 pressesBegan: Press Right
+[AXDBG] 170608.090 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170608.090 pressesEnded: Press Right
+[AXDBG] 170608.374 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170608.375 pressesBegan: Press Right
+[AXDBG] 170608.575 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170608.576 pressesEnded: Press Right
+[AXDBG] 170608.792 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170608.794 pressesBegan: Press Right
+[AXDBG] 170608.976 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170608.977 pressesEnded: Press Right
+[AXDBG] 170609.209 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170609.210 pressesBegan: Press Right
+[AXDBG] 170609.258 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 170609.258 pressesEnded: Press Right
+[AXDBG] 170609.458 ⚠️ RunLoop stall 3036ms | Memory: 79MB | Total queue: 173 | Swipes: 0 | Presses: -76
+Message from debugger: killed

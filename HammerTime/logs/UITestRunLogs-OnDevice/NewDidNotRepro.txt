@@ -1,0 +1,207 @@
+CLIENT OF UIKIT REQUIRES UPDATE: This process does not adopt UIScene lifecycle. This will become an assert in a future version.
+Running tests...
+Test Suite 'Selected tests' started at 2025-06-25 19:02:16.709.
+Test Suite 'HammerTimeUITests.xctest' started at 2025-06-25 19:02:16.713.
+Test Suite 'FocusStressUITests' started at 2025-06-25 19:02:16.714.
+Test Case '-[HammerTimeUITests.FocusStressUITests testProgressiveStressSystemReproduction]' started.
+    t =     0.00s Start Test at 2025-06-25 19:02:16.717
+    t =     0.05s Set Up
+    t =     0.19s     Open com.showblender.HammerTime
+    t =     0.19s         Launch com.showblender.HammerTime
+    t =     6.33s             Setting up automation session
+    t =    11.17s             Wait for com.showblender.HammerTime to idle
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs
+TestRunLogger: ⚠️ DIRECTORY-WARNING: Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “HammerTimeLogs” in the folder “Documents”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs, NSURL=file:///var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs, NSUnderlyingError=0x301d00c00 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: Directory creation warning (fallback available): Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “HammerTimeLogs” in the folder “Documents”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs, NSURL=file:///var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs, NSUnderlyingError=0x301d00c00 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs
+TestRunLogger: ⚠️ STRATEGY-FAILED: UITestRunLogs - Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “UITestRunLogs” in the folder “HammerTimeLogs”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs/UITestRunLogs, NSURL=file:///var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x301d01530 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs
+TestRunLogger: ⚠️ STRATEGY-FAILED: HammerTimeLogs - Error Domain=NSCocoaErrorDomain Code=513 "You don’t have permission to save the file “HammerTimeLogs” in the folder “Documents”." UserInfo={NSFilePath=/var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs, NSURL=file:///var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs, NSUnderlyingError=0x301d01290 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+TestRunLogger: ⚠️ STRATEGY-FAILED: Documents - Error Domain=TestRunLogger Code=1 "Failed to create file" UserInfo={NSLocalizedDescription=Failed to create file}
+TestRunLogger: ✅ LOG-FILE-SUCCESS: Temporary strategy - /private/var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/tmp/062525-190230-ProgressiveStressSystemReproduction.txt
+TestRunLogger: 📊 SYSTEM-INFO:
+TestRunLogger:   Device: Apple TV
+TestRunLogger:   OS: tvOS 18.5
+TestRunLogger:   Model: Apple TV
+TestRunLogger:   Memory: 35 MB
+TestRunLogger:   VoiceOver: ENABLED
+TestRunLogger:   Reduce Motion: DISABLED
+TestRunLogger: 🚀 TEST-START: ProgressiveStressSystemReproduction (UITest)
+    t =    13.96s     Waiting 10.0s for "FocusStressCollectionView" CollectionView to exist
+    t =    14.96s         Checking `Expect predicate `existsNoRetry == 1` for object "FocusStressCollectionView" CollectionView`
+    t =    14.97s             Checking existence of `"FocusStressCollectionView" CollectionView`
+TestRunLogger: 🎯 V8.3-SETUP: Ready for InfinityBug reproduction
+📁 CURRENT-LOG-LOCATION: /private/var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/tmp/062525-190230-ProgressiveStressSystemReproduction.txt
+📁 PARENT-DIRECTORY: /private/var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/tmp
+📁 COMPREHENSIVE-LOG-SEARCH:
+TestRunLogger: 📁 LOGS-PATH: Using Documents/HammerTimeLogs at /var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs
+📁 1. MAIN-DIRECTORY: /var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs
+  ❌ Error accessing directory: Error Domain=NSCocoaErrorDomain Code=260 "The file “HammerTimeLogs” couldn’t be opened because there is no such file." UserInfo={NSURL=file:///var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs, NSFilePath=/var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs, NSUnderlyingError=0x301d022e0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+📁 2. UITEST-DIRECTORY: /var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs/UITestRunLogs
+  ❌ Error accessing directory: Error Domain=NSCocoaErrorDomain Code=260 "The file “UITestRunLogs” couldn’t be opened because there is no such file." UserInfo={NSURL=file:///var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs/UITestRunLogs, NSFilePath=/var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents/HammerTimeLogs/UITestRunLogs, NSUnderlyingError=0x301d015c0 {Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"}}
+📁 3. DOCUMENTS-ROOT: /var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents
+  ❌ Error accessing directory: Error Domain=NSCocoaErrorDomain Code=257 "The file “Documents” couldn’t be opened because you don’t have permission to view it." UserInfo={NSURL=file:///private/var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents, NSFilePath=/private/var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/Documents, NSUnderlyingError=0x301d04030 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+📁 4. TEMPORARY-DIRECTORY: /private/var/mobile/Containers/Data/Application/0704999E-1765-4F8E-9944-8E0214716075/tmp
+  ✅ 28 HammerTime-related files found:
+    - 062525-1020-EdgeAvoidanceNavigationPattern__.txt
+    - 062325-1940-AggressiveRunLoopStallMonitoring__.txt
+    - 062525-173408-ProgressiveStressSystemReproduction.txt
+    - 062325-1950-EdgeAvoidanceNavigationPattern__.txt
+    - 062425-0851-EdgeAvoidanceNavigationPattern__.txt
+    - 062525-171850-ProgressiveStressSystemReproduction.txt
+    - 062525-1114-UpBurstFromSuccessfulReproduction__.txt
+    - 062525-161800-ProgressiveStressSystemReproduction.txt
+    - 062525-1258-AggressiveRunLoopStallMonitoring__.txt
+    - 062525-171054-ProgressiveStressSystemReproduction.txt
+    ... and 18 more files
+🚀 V9.0-PROGRESSIVE: Starting Progressive Stress System based on SuccessfulRepro6
+🎯 TARGET: Memory escalation 52MB→79MB + >5179ms RunLoop stalls
+📊 STAGE-1: Baseline establishment (Target: 52MB memory)
+💾 STAGE-1-MEMORY: 5 MB baseline allocation (Target: 52 MB total)
+    t =    17.20s Pressing Right button
+    t =    18.87s Pressing Down button
+TestRunLogger: 🟠 MODERATE-STALL: 2644ms - System stress
+    t =    21.54s Pressing Left button
+TestRunLogger: 🟠 MODERATE-STALL: 3695ms - System stress
+    t =    25.21s Pressing Up button
+TestRunLogger: 🔴 CRITICAL-STALL: 5403ms - INFINITYBUG THRESHOLD
+    t =    30.61s Pressing Right button
+TestRunLogger: 🟠 MODERATE-STALL: 5123ms - System stress
+    t =    35.58s Open com.showblender.HammerTime
+    t =    35.59s     Activate com.showblender.HammerTime
+    t =    35.64s         Wait for com.showblender.HammerTime to idle
+    t =    95.72s             App event loop idle notification not received, will attempt to continue.
+📊 STAGE-1 COMPLETE: Baseline established with 5 navigations
+⚡ STAGE-2: Level 1 stress (Target: 61MB memory)
+💾 STAGE-2-MEMORY: +13 MB allocation (Target: 65 MB total)
+    t =   113.48s Pressing Down button
+TestRunLogger: 🔴 CRITICAL-STALL: 83155ms - INFINITYBUG THRESHOLD
+    t =   118.79s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5311ms - INFINITYBUG THRESHOLD
+    t =   124.08s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5288ms - INFINITYBUG THRESHOLD
+    t =   129.39s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5321ms - INFINITYBUG THRESHOLD
+    t =   134.76s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5410ms - INFINITYBUG THRESHOLD
+    t =   140.06s Open com.showblender.HammerTime
+    t =   140.07s     Activate com.showblender.HammerTime
+    t =   140.12s         Wait for com.showblender.HammerTime to idle
+    t =   200.18s             App event loop idle notification not received, will attempt to continue.
+⚡ STAGE-2 COMPLETE: Level 1 stress with 5 navigations
+TestRunLogger: 💥 MAJOR-STRESS: Starting intensive edge-avoiding navigation
+    t =   217.57s Pressing and holding Right button for 0.0s
+    t =   222.87s Pressing and holding Left button for 0.0s
+    t =   228.14s Pressing and holding Right button for 0.0s
+    t =   233.41s Pressing and holding Left button for 0.0s
+    t =   238.69s Pressing and holding Right button for 0.0s
+    t =   243.97s Pressing and holding Left button for 0.0s
+    t =   249.25s Pressing and holding Right button for 0.0s
+    t =   254.52s Pressing and holding Left button for 0.0s
+    t =   259.80s Pressing and holding Right button for 0.0s
+    t =   265.08s Pressing and holding Left button for 0.0s
+    t =   270.35s Pressing and holding Right button for 0.0s
+    t =   275.62s Pressing and holding Left button for 0.0s
+    t =   280.89s Pressing and holding Right button for 0.0s
+    t =   286.16s Pressing and holding Left button for 0.0s
+    t =   291.43s Pressing and holding Right button for 0.0s
+    t =   296.70s Pressing and holding Left button for 0.0s
+    t =   302.00s Pressing and holding Right button for 0.0s
+    t =   307.27s Pressing and holding Left button for 0.0s
+    t =   312.55s Pressing and holding Right button for 0.0s
+    t =   317.83s Pressing and holding Left button for 0.0s
+    t =   323.12s Pressing and holding Right button for 0.0s
+    t =   328.38s Pressing and holding Left button for 0.0s
+    t =   333.67s Pressing and holding Right button for 0.0s
+    t =   338.94s Pressing and holding Left button for 0.0s
+    t =   344.22s Pressing and holding Right button for 0.0s
+    t =   349.50s Pressing and holding Left button for 0.0s
+    t =   354.78s Pressing and holding Right button for 0.0s
+    t =   360.05s Pressing and holding Left button for 0.0s
+    t =   365.33s Pressing and holding Right button for 0.0s
+    t =   370.62s Pressing and holding Left button for 0.0s
+    t =   375.89s Pressing and holding Right button for 0.0s
+    t =   381.17s Pressing and holding Left button for 0.0s
+    t =   386.45s Pressing and holding Right button for 0.0s
+    t =   391.74s Pressing and holding Left button for 0.0s
+    t =   397.01s Pressing and holding Right button for 0.0s
+    t =   402.31s Pressing and holding Left button for 0.0s
+    t =   407.59s Pressing and holding Right button for 0.0s
+    t =   412.85s Pressing and holding Left button for 0.0s
+    t =   418.13s Pressing and holding Right button for 0.0s
+    t =   423.40s Pressing and holding Left button for 0.0s
+    t =   428.69s Pressing and holding Right button for 0.0s
+    t =   433.96s Pressing and holding Left button for 0.0s
+    t =   439.24s Pressing and holding Right button for 0.0s
+    t =   444.52s Pressing and holding Left button for 0.0s
+    t =   449.80s Pressing and holding Right button for 0.0s
+    t =   455.07s Pressing and holding Left button for 0.0s
+    t =   460.35s Pressing and holding Right button for 0.0s
+    t =   465.62s Pressing and holding Left button for 0.0s
+    t =   470.90s Pressing and holding Right button for 0.0s
+    t =   476.18s Pressing and holding Left button for 0.0s
+TestRunLogger: 💥 MAJOR-STRESS: Completed 50 rapid focus calculations
+🔥 STAGE-3: Level 2 stress (Target: 62MB, monitor >1000ms stalls)
+💾 STAGE-3-MEMORY: +1 MB allocation (Target: 62 MB total)
+    t =   481.47s Pressing Up button
+TestRunLogger: 🔴 CRITICAL-STALL: 346662ms - INFINITYBUG THRESHOLD
+    t =   486.78s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5307ms - INFINITYBUG THRESHOLD
+    t =   492.06s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5283ms - INFINITYBUG THRESHOLD
+    t =   497.36s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5290ms - INFINITYBUG THRESHOLD
+    t =   502.63s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5267ms - INFINITYBUG THRESHOLD
+TestRunLogger: 💾 Incremental ballast +1 MB (total chunks: 4)
+UITEST: 💾 Incremental ballast +1 MB (total chunks: 4)
+    t =   507.87s Open com.showblender.HammerTime
+    t =   507.88s     Activate com.showblender.HammerTime
+    t =   507.95s         Wait for com.showblender.HammerTime to idle
+    t =   568.04s             App event loop idle notification not received, will attempt to continue.
+🔥 STAGE-3 COMPLETE: Level 2 stress with 5 navigations
+🔥 MONITOR: Check for >5179ms stalls and system failure indicators
+💥 STAGE-4: Critical stress (Target: 79MB, >5179ms stalls)
+💾 STAGE-4-MEMORY: +17 MB critical allocation (Target: 79 MB total)
+    t =   585.11s Pressing Up button
+TestRunLogger: 🔴 CRITICAL-STALL: 82499ms - INFINITYBUG THRESHOLD
+    t =   590.38s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5262ms - INFINITYBUG THRESHOLD
+    t =   595.67s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5283ms - INFINITYBUG THRESHOLD
+    t =   600.93s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5267ms - INFINITYBUG THRESHOLD
+    t =   606.22s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5294ms - INFINITYBUG THRESHOLD
+    t =   611.47s Open com.showblender.HammerTime
+    t =   611.48s     Activate com.showblender.HammerTime
+    t =   611.54s         Wait for com.showblender.HammerTime to idle
+    t =   671.60s             App event loop idle notification not received, will attempt to continue.
+    t =   687.74s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 81529ms - INFINITYBUG THRESHOLD
+    t =   693.05s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5300ms - INFINITYBUG THRESHOLD
+    t =   698.33s Pressing Down button
+TestRunLogger: 🔴 CRITICAL-STALL: 5264ms - INFINITYBUG THRESHOLD
+    t =   703.58s Pressing Right button
+TestRunLogger: 🔴 CRITICAL-STALL: 5260ms - INFINITYBUG THRESHOLD
+💥 STAGE-4 COMPLETE: Critical stress with 9 navigations
+💥 MONITOR: Check for >5179ms stalls and system failure indicators
+🚀 V9.0-PROGRESSIVE: Completed in 691.6s
+🎯 MONITOR: Watch for >5179ms stalls and memory escalation to 79MB
+TestRunLogger: 📊 RUNLOOP-STALL-ANALYSIS:
+TestRunLogger:   Total Actions: 24
+TestRunLogger:   Total Stalls: 23
+TestRunLogger:   Critical Stalls (>5179ms): 20
+TestRunLogger:   Max Stall: 346662ms
+TestRunLogger:   Average Stall: 30005ms
+TestRunLogger: 🔴 INFINITYBUG-DETECTED: 20 critical stalls found
+    t =   708.85s Tear Down
+Test Case '-[HammerTimeUITests.FocusStressUITests testProgressiveStressSystemReproduction]' passed (709.166 seconds).
+Test Suite 'FocusStressUITests' passed at 2025-06-25 19:14:05.882.
+	 Executed 1 test, with 0 failures (0 unexpected) in 709.166 (709.169) seconds
+Test Suite 'HammerTimeUITests.xctest' passed at 2025-06-25 19:14:05.887.
+	 Executed 1 test, with 0 failures (0 unexpected) in 709.166 (709.174) seconds
+Test Suite 'Selected tests' passed at 2025-06-25 19:14:05.889.
+	 Executed 1 test, with 0 failures (0 unexpected) in 709.166 (709.180) seconds
+     

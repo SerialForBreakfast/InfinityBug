@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4409808F2E00B71A00BF3FC0 /* Debugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4409808E2E00B71A00BF3FC0 /* Debugger.swift */; };
-		440980962E04150100BF3FC0 /* changelog.md in Resources */ = {isa = PBXBuildFile; fileRef = 440980922E04150100BF3FC0 /* changelog.md */; };
-		440980972E04150100BF3FC0 /* tasks.md in Resources */ = {isa = PBXBuildFile; fileRef = 440980942E04150100BF3FC0 /* tasks.md */; };
-		440980982E04150100BF3FC0 /* directory_tree.md in Resources */ = {isa = PBXBuildFile; fileRef = 440980932E04150100BF3FC0 /* directory_tree.md */; };
 		44F183F02DFD0ECC00B6B23E /* NewTestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = 44F183EF2DFD0ECC00B6B23E /* NewTestPlan.xctestplan */; };
 /* End PBXBuildFile section */
 
@@ -32,10 +28,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4409808E2E00B71A00BF3FC0 /* Debugger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debugger.swift; sourceTree = "<group>"; };
-		440980922E04150100BF3FC0 /* changelog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = changelog.md; sourceTree = "<group>"; };
-		440980932E04150100BF3FC0 /* directory_tree.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = directory_tree.md; sourceTree = "<group>"; };
-		440980942E04150100BF3FC0 /* tasks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = tasks.md; sourceTree = "<group>"; };
 		44B9F2722DFCE8B700511113 /* HammerTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HammerTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B9F2852DFCE8B900511113 /* HammerTimeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HammerTimeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B9F28F2DFCE8B900511113 /* HammerTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HammerTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +40,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				InfinityBugDetector.swift,
+				TestRunLogger.swift,
 			);
 			target = 44B9F28E2DFCE8B900511113 /* HammerTimeUITests */;
 		};
@@ -99,27 +92,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		440980952E04150100BF3FC0 /* memlog */ = {
-			isa = PBXGroup;
-			children = (
-				440980922E04150100BF3FC0 /* changelog.md */,
-				440980932E04150100BF3FC0 /* directory_tree.md */,
-				440980942E04150100BF3FC0 /* tasks.md */,
-			);
-			path = memlog;
-			sourceTree = "<group>";
-		};
 		44B9F2692DFCE8B700511113 = {
 			isa = PBXGroup;
 			children = (
-				4409808E2E00B71A00BF3FC0 /* Debugger.swift */,
 				44F183EF2DFD0ECC00B6B23E /* NewTestPlan.xctestplan */,
 				44B9F2B62DFD0E8600511113 /* HammerTime.xctestplan */,
 				44B9F2742DFCE8B700511113 /* HammerTime */,
 				44B9F2882DFCE8B900511113 /* HammerTimeTests */,
 				44B9F2922DFCE8B900511113 /* HammerTimeUITests */,
 				44B9F2732DFCE8B700511113 /* Products */,
-				440980952E04150100BF3FC0 /* memlog */,
 			);
 			sourceTree = "<group>";
 		};
@@ -254,9 +235,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				44F183F02DFD0ECC00B6B23E /* NewTestPlan.xctestplan in Resources */,
-				440980962E04150100BF3FC0 /* changelog.md in Resources */,
-				440980972E04150100BF3FC0 /* tasks.md in Resources */,
-				440980982E04150100BF3FC0 /* directory_tree.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +259,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4409808F2E00B71A00BF3FC0 /* Debugger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

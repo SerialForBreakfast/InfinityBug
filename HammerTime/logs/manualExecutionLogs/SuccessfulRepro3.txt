@@ -1,0 +1,1320 @@
+CLIENT OF UIKIT REQUIRES UPDATE: This process does not adopt UIScene lifecycle. This will become an assert in a future version.
+void * _Nullable NSMapGet(NSMapTable * _Nonnull, const void * _Nullable): map table argument is NULL
+App is being debugged, do not track this hang
+Hang detected: 0.27s (debugger attached, not reporting)
+App is being debugged, do not track this hang
+Hang detected: 0.29s (debugger attached, not reporting)
+[AXDBG] 065639.133 SUCCESS: Starting tvOS low-level input monitoring
+[AXDBG] 065639.133 WARNING: Private API monitoring is experimental and may not work
+[AXDBG] 065640.266 [A11Y] WARNING: FocusGuide tiny frame {{10, 10}, {1, 1}}
+[AXDBG] 065640.267 [A11Y] WARNING: FocusGuide tiny frame {{12, 12}, {1, 1}}
+[AXDBG] 065640.267 [A11Y] WARNING: FocusGuide tiny frame {{20, 20}, {1, 1}}
+[AXDBG] 065640.267 [A11Y] WARNING: FocusGuide tiny frame {{25, 25}, {1, 1}}
+[AXDBG] 065640.267 [A11Y] WARNING: FocusGuide tiny frame {{30, 30}, {1, 1}}
+[AXDBG] 065640.268 [A11Y] WARNING: FocusGuide tiny frame {{35, 35}, {1, 1}}
+[AXDBG] 065640.268 [A11Y] WARNING: FocusGuide tiny frame {{40, 40}, {1, 1}}
+App is being debugged, do not track this hang
+Hang detected: 1.18s (debugger attached, not reporting)
+[AXDBG] 065640.271 WARNING: RunLoop stall 1150 ms
+[AXDBG] 065640.271 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065640.274 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065640.281 CONTROLLER: Enhanced monitoring for controller: Siri Remote (2nd Generation)
+[AXDBG] 065640.282 🔌 Controller connected: Siri Remote (2nd Generation)
+[AXDBG] 065641.004 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065641.982 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065641.983 [A11Y] REMOTE Right Arrow
+[AXDBG] 065643.198 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065643.200 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065643.200 [A11Y] REMOTE Right Arrow
+[AXDBG] 065643.215 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065643.223 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065643.223 [A11Y] REMOTE Right Arrow
+[AXDBG] 065643.396 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065643.432 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065643.432 [A11Y] REMOTE Right Arrow
+[AXDBG] 065643.450 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065643.513 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065643.514 [A11Y] REMOTE Down Arrow
+[AXDBG] 065643.857 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065644.014 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065644.014 [A11Y] REMOTE Down Arrow
+[AXDBG] 065644.315 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065644.330 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065644.331 [A11Y] REMOTE Down Arrow
+[AXDBG] 065644.345 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065644.632 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065644.632 [A11Y] REMOTE Down Arrow
+[AXDBG] 065644.666 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065644.667 [A11Y] REMOTE Right Arrow
+[AXDBG] 065644.681 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065644.714 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065645.014 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065645.016 [A11Y] REMOTE Right Arrow
+[AXDBG] 065645.539 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065645.550 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065645.550 [A11Y] REMOTE Right Arrow
+[AXDBG] 065645.678 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065645.934 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065645.934 [A11Y] REMOTE Up Arrow
+[AXDBG] 065646.082 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065646.084 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065646.085 [A11Y] REMOTE Up Arrow
+[AXDBG] 065646.268 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065646.382 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065646.384 [A11Y] REMOTE Right Arrow
+[AXDBG] 065646.450 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065646.528 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065646.529 [A11Y] REMOTE Up Arrow
+[AXDBG] 065646.996 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065647.004 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065647.005 [A11Y] REMOTE Up Arrow
+[AXDBG] 065647.797 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065647.797 [A11Y] REMOTE Right Arrow
+[AXDBG] 065647.837 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065647.839 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065647.839 [A11Y] REMOTE Up Arrow
+[AXDBG] 065647.994 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065647.995 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065648.089 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.098 🕹️ DPAD STATE: Center (x:0.499, y:0.000, ts:399.808027)
+[AXDBG] 065648.099 🕹️ DPAD STATE: Center (x:0.499, y:0.390, ts:399.808665)
+[AXDBG] 065648.099 🕹️ DPAD STATE: Down (x:0.474, y:0.515, ts:399.808952)
+[AXDBG] 065648.101 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.122 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.123 WARNING: RunLoop stall 5179 ms
+[AXDBG] 065648.191 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.193 🕹️ DPAD STATE: Down (x:0.288, y:0.538, ts:399.902811)
+[AXDBG] 065648.194 🕹️ DPAD STATE: Center (x:0.141, y:0.473, ts:399.903621)
+[AXDBG] 065648.194 🕹️ DPAD STATE: Center (x:0.141, y:0.310, ts:399.903827)
+[AXDBG] 065648.194 🕹️ DPAD STATE: Center (x:-0.013, y:0.310, ts:399.903993)
+[AXDBG] 065648.194 🕹️ DPAD STATE: Center (x:-0.013, y:0.128, ts:399.904147)
+[AXDBG] 065648.194 🕹️ DPAD STATE: Center (x:-0.103, y:0.013, ts:399.904303)
+[AXDBG] 065648.195 🕹️ DPAD STATE: Center (x:-0.229, y:-0.083, ts:399.904577)
+[AXDBG] 065648.202 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.275 🕹️ DPAD STATE: Center (x:-0.266, y:-0.212, ts:399.984907)
+[AXDBG] 065648.275 🕹️ DPAD STATE: Center (x:-0.362, y:-0.363, ts:399.985314)
+[AXDBG] 065648.277 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.286 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.345 🕹️ DPAD STATE: Center (x:-0.256, y:-0.440, ts:400.055066)
+[AXDBG] 065648.346 🕹️ DPAD STATE: Center (x:-0.141, y:-0.438, ts:400.055463)
+[AXDBG] 065648.346 🕹️ DPAD STATE: Center (x:0.000, y:-0.359, ts:400.055622)
+[AXDBG] 065648.346 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:400.055758)
+[AXDBG] 065648.347 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.347 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.414 🕹️ DPAD STATE: Center (x:0.112, y:0.000, ts:400.123665)
+[AXDBG] 065648.414 🕹️ DPAD STATE: Center (x:0.112, y:0.193, ts:400.124157)
+[AXDBG] 065648.430 🕹️ DPAD STATE: Center (x:0.064, y:0.043, ts:400.139787)
+[AXDBG] 065648.499 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.501 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.503 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.504 🕹️ DPAD STATE: Center (x:0.016, y:-0.106, ts:400.214014)
+[AXDBG] 065648.504 🕹️ DPAD STATE: Center (x:-0.015, y:-0.229, ts:400.214315)
+[AXDBG] 065648.505 🕹️ DPAD STATE: Center (x:-0.032, y:-0.434, ts:400.214481)
+[AXDBG] 065648.505 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:400.214628)
+[AXDBG] 065648.615 🕹️ DPAD STATE: Center (x:0.045, y:0.283, ts:400.325101)
+[AXDBG] 065648.619 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.681 🕹️ DPAD STATE: Center (x:-0.076, y:0.283, ts:400.390458)
+[AXDBG] 065648.681 🕹️ DPAD STATE: Center (x:-0.076, y:0.032, ts:400.390893)
+[AXDBG] 065648.681 🕹️ DPAD STATE: Center (x:-0.109, y:-0.181, ts:400.391118)
+[AXDBG] 065648.681 🕹️ DPAD STATE: Center (x:-0.109, y:-0.334, ts:400.391298)
+[AXDBG] 065648.745 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.763 🕹️ DPAD STATE: Center (x:0.018, y:-0.407, ts:400.472776)
+[AXDBG] 065648.765 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.840 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.842 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:400.552114)
+[AXDBG] 065648.963 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065648.965 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065649.050 🕹️ DPAD STATE: Center (x:-0.093, y:0.385, ts:400.759726)
+[AXDBG] 065649.050 🕹️ DPAD STATE: Center (x:-0.191, y:0.155, ts:400.760137)
+[AXDBG] 065649.051 🕹️ DPAD STATE: Center (x:-0.270, y:-0.075, ts:400.760335)
+[AXDBG] 065649.051 🕹️ DPAD STATE: Center (x:-0.308, y:-0.265, ts:400.761110)
+[AXDBG] 065649.051 🕹️ DPAD STATE: Center (x:-0.310, y:-0.436, ts:400.761341)
+[AXDBG] 065649.052 🕹️ DPAD STATE: Up (x:-0.310, y:-0.570, ts:400.761591)
+[AXDBG] 065649.052 🕹️ DPAD STATE: Up (x:-0.264, y:-0.712, ts:400.761963)
+[AXDBG] 065649.094 🕹️ DPAD STATE: Up (x:0.000, y:-0.712, ts:400.804183)
+[AXDBG] 065649.095 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:400.804525)
+[AXDBG] 065649.098 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065649.099 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065649.193 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065649.195 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065649.196 🕹️ DPAD STATE: Center (x:-0.214, y:0.000, ts:400.905887)
+[AXDBG] 065649.196 🕹️ DPAD STATE: Center (x:-0.252, y:-0.240, ts:400.906199)
+[AXDBG] 065649.206 🕹️ DPAD STATE: Center (x:-0.176, y:-0.384, ts:400.916319)
+[AXDBG] 065649.207 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065649.313 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065649.315 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065649.316 🕹️ DPAD STATE: Center (x:-0.028, y:-0.472, ts:401.026330)
+[AXDBG] 065649.317 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:401.026639)
+[AXDBG] 065649.600 🕹️ DPAD STATE: Up (x:-0.038, y:-0.925, ts:401.309423)
+[AXDBG] 065649.604 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065649.612 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:401.321793)
+[AXDBG] 065649.620 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065649.636 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065649.637 [A11Y] REMOTE Down Arrow
+[AXDBG] 065650.003 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065650.036 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065650.037 [A11Y] REMOTE Right Arrow
+[AXDBG] 065650.221 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065650.223 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065650.223 [A11Y] REMOTE Down Arrow
+[AXDBG] 065650.275 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065650.275 [A11Y] REMOTE Right Arrow
+[AXDBG] 065650.637 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065650.705 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065650.725 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065650.726 [A11Y] REMOTE Down Arrow
+[AXDBG] 065650.993 🕹️ DPAD STATE: Center (x:-0.030, y:-0.442, ts:402.703359)
+[AXDBG] 065650.994 🕹️ DPAD STATE: Center (x:-0.015, y:-0.294, ts:402.703721)
+[AXDBG] 065650.994 🕹️ DPAD STATE: Center (x:0.031, y:-0.077, ts:402.703939)
+[AXDBG] 065650.994 🕹️ DPAD STATE: Center (x:0.072, y:0.132, ts:402.704279)
+[AXDBG] 065651.000 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:402.710061)
+[AXDBG] 065651.007 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.009 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.034 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.052 🕹️ DPAD STATE: Center (x:0.150, y:0.000, ts:402.761545)
+[AXDBG] 065651.052 🕹️ DPAD STATE: Center (x:0.150, y:0.356, ts:402.761918)
+[AXDBG] 065651.052 🕹️ DPAD STATE: Down (x:0.160, y:0.513, ts:402.762257)
+[AXDBG] 065651.054 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.056 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.110 🕹️ DPAD STATE: Center (x:0.072, y:0.356, ts:402.819461)
+[AXDBG] 065651.110 🕹️ DPAD STATE: Center (x:-0.034, y:0.356, ts:402.819817)
+[AXDBG] 065651.110 🕹️ DPAD STATE: Center (x:-0.034, y:0.059, ts:402.819964)
+[AXDBG] 065651.110 🕹️ DPAD STATE: Center (x:-0.122, y:-0.275, ts:402.820115)
+[AXDBG] 065651.110 🕹️ DPAD STATE: Center (x:-0.145, y:-0.461, ts:402.820252)
+[AXDBG] 065651.123 🕹️ DPAD STATE: Center (x:0.000, y:-0.461, ts:402.833048)
+[AXDBG] 065651.124 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:402.833773)
+[AXDBG] 065651.127 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.142 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.461 🕹️ DPAD STATE: Center (x:-0.024, y:-0.348, ts:403.170704)
+[AXDBG] 065651.461 🕹️ DPAD STATE: Up (x:-0.095, y:-0.583, ts:403.171328)
+[AXDBG] 065651.462 🕹️ DPAD STATE: Up (x:-0.107, y:-0.695, ts:403.171635)
+[AXDBG] 065651.463 🕹️ DPAD STATE: Up (x:-0.105, y:-0.804, ts:403.172436)
+[AXDBG] 065651.463 🕹️ DPAD STATE: Up (x:0.000, y:-0.804, ts:403.172947)
+[AXDBG] 065651.463 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:403.173306)
+[AXDBG] 065651.485 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.488 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.489 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.521 🕹️ DPAD STATE: Center (x:0.062, y:-0.265, ts:403.230631)
+[AXDBG] 065651.523 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.527 🕹️ DPAD STATE: Center (x:0.033, y:-0.468, ts:403.236802)
+[AXDBG] 065651.538 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.564 🕹️ DPAD STATE: Up (x:0.012, y:-0.595, ts:403.274098)
+[AXDBG] 065651.565 🕹️ DPAD STATE: Up (x:0.008, y:-0.700, ts:403.274503)
+[AXDBG] 065651.566 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.571 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.596 🕹️ DPAD STATE: Up (x:0.008, y:-0.838, ts:403.306253)
+[AXDBG] 065651.597 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.639 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:403.348720)
+[AXDBG] 065651.640 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.759 🕹️ DPAD STATE: Up (x:0.100, y:-0.760, ts:403.468560)
+[AXDBG] 065651.759 🕹️ DPAD STATE: Up (x:-0.026, y:-0.760, ts:403.469027)
+[AXDBG] 065651.759 🕹️ DPAD STATE: Up (x:-0.026, y:-0.892, ts:403.469261)
+[AXDBG] 065651.761 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.761 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.789 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.790 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065651.817 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:403.526603)
+[AXDBG] 065651.911 🕹️ DPAD STATE: Center (x:-0.329, y:0.000, ts:403.621116)
+[AXDBG] 065651.912 🕹️ DPAD STATE: Down (x:-0.329, y:0.528, ts:403.621455)
+[AXDBG] 065651.913 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.069 🕹️ DPAD STATE: Down (x:0.098, y:0.528, ts:403.778467)
+[AXDBG] 065652.069 🕹️ DPAD STATE: Center (x:0.098, y:-0.108, ts:403.778812)
+[AXDBG] 065652.075 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.100 🕹️ DPAD STATE: Center (x:0.137, y:0.024, ts:403.809469)
+[AXDBG] 065652.100 🕹️ DPAD STATE: Center (x:0.183, y:0.143, ts:403.809803)
+[AXDBG] 065652.101 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.129 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.146 🕹️ DPAD STATE: Center (x:0.000, y:0.233, ts:403.855548)
+[AXDBG] 065652.146 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:403.856081)
+[AXDBG] 065652.147 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.174 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065652.291 🕹️ DPAD STATE: Center (x:-0.250, y:0.000, ts:404.001220)
+[AXDBG] 065652.292 🕹️ DPAD STATE: Up (x:-0.250, y:-0.689, ts:404.001671)
+[AXDBG] 065652.294 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.318 🕹️ DPAD STATE: Up (x:-0.199, y:-0.562, ts:404.027433)
+[AXDBG] 065652.318 🕹️ DPAD STATE: Up (x:-0.036, y:-0.562, ts:404.027817)
+[AXDBG] 065652.318 🕹️ DPAD STATE: Center (x:-0.036, y:-0.236, ts:404.028224)
+[AXDBG] 065652.322 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.375 🕹️ DPAD STATE: Center (x:0.039, y:-0.014, ts:404.085174)
+[AXDBG] 065652.376 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.391 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.393 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.415 🕹️ DPAD STATE: Center (x:0.102, y:0.199, ts:404.124738)
+[AXDBG] 065652.415 🕹️ DPAD STATE: Center (x:0.160, y:0.335, ts:404.125108)
+[AXDBG] 065652.415 🕹️ DPAD STATE: Center (x:0.000, y:0.335, ts:404.125261)
+[AXDBG] 065652.415 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:404.125394)
+[AXDBG] 065652.452 🕹️ DPAD STATE: Center (x:-0.396, y:0.000, ts:404.161658)
+[AXDBG] 065652.452 🕹️ DPAD STATE: Down (x:-0.396, y:0.764, ts:404.162163)
+[AXDBG] 065652.456 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.520 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.524 🕹️ DPAD STATE: Down (x:-0.291, y:0.741, ts:404.233518)
+[AXDBG] 065652.538 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.555 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.574 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.600 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.622 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065652.623 🕹️ DPAD STATE: Down (x:0.000, y:0.755, ts:404.333165)
+[AXDBG] 065652.624 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:404.333621)
+[AXDBG] 065652.905 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065652.906 [A11Y] REMOTE Up Arrow
+[AXDBG] 065652.931 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065652.932 [A11Y] REMOTE Right Arrow
+[AXDBG] 065653.072 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065653.074 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065653.239 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065653.240 [A11Y] REMOTE Right Arrow
+[AXDBG] 065653.324 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065653.466 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065653.467 [A11Y] REMOTE Right Arrow
+[AXDBG] 065653.590 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065653.607 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065653.607 [A11Y] REMOTE Up Arrow
+[AXDBG] 065653.832 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065654.109 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065654.110 [A11Y] REMOTE Up Arrow
+[AXDBG] 065654.392 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065654.407 🕹️ DPAD STATE: Left (x:-0.816, y:0.000, ts:406.117223)
+[AXDBG] 065654.408 🕹️ DPAD STATE: Left (x:-0.816, y:-0.204, ts:406.117645)
+[AXDBG] 065654.572 🕹️ DPAD STATE: Center (x:0.000, y:-0.204, ts:406.281824)
+[AXDBG] 065654.572 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:406.282221)
+[AXDBG] 065654.578 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065654.695 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065654.771 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065654.772 [A11Y] REMOTE Left Arrow
+[AXDBG] 065655.191 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065655.210 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065655.211 [A11Y] REMOTE Right Arrow
+[AXDBG] 065655.488 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065655.489 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065655.490 [A11Y] REMOTE Right Arrow
+[AXDBG] 065655.499 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065655.731 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065655.732 [A11Y] REMOTE Right Arrow
+[AXDBG] 065655.909 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065656.259 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065656.260 [A11Y] REMOTE Down Arrow
+[AXDBG] 065656.392 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065656.577 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065656.578 [A11Y] REMOTE Down Arrow
+[AXDBG] 065656.643 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065656.753 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065656.754 [A11Y] REMOTE Down Arrow
+[AXDBG] 065657.227 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065657.227 [A11Y] REMOTE Up Arrow
+[AXDBG] 065657.494 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065657.585 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.587 🕹️ DPAD STATE: Center (x:-0.174, y:0.000, ts:409.296570)
+[AXDBG] 065657.587 🕹️ DPAD STATE: Center (x:-0.174, y:-0.181, ts:409.296891)
+[AXDBG] 065657.631 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.633 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065657.634 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.654 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.676 🕹️ DPAD STATE: Center (x:0.024, y:-0.171, ts:409.385611)
+[AXDBG] 065657.677 🕹️ DPAD STATE: Center (x:0.024, y:-0.026, ts:409.386582)
+[AXDBG] 065657.677 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.682 🕹️ DPAD STATE: Center (x:0.173, y:-0.026, ts:409.392028)
+[AXDBG] 065657.690 🕹️ DPAD STATE: Center (x:0.300, y:0.013, ts:409.400240)
+[AXDBG] 065657.695 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.714 🕹️ DPAD STATE: Center (x:0.405, y:0.063, ts:409.423719)
+[AXDBG] 065657.716 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.721 🕹️ DPAD STATE: Right (x:0.543, y:0.078, ts:409.430465)
+[AXDBG] 065657.727 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.744 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.751 🕹️ DPAD STATE: Right (x:0.702, y:0.086, ts:409.460830)
+[AXDBG] 065657.796 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.822 🕹️ DPAD STATE: Right (x:0.792, y:-0.035, ts:409.531697)
+[AXDBG] 065657.829 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.839 🕹️ DPAD STATE: Right (x:0.833, y:-0.137, ts:409.549010)
+[AXDBG] 065657.849 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.861 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.863 WARNING: RunLoop stall 8656 ms
+[AXDBG] 065657.880 POLL: Right detected via polling (x:0.835, y:-0.173)
+[AXDBG] 065657.881 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065657.963 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065658.070 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065658.071 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065658.072 🕹️ DPAD STATE: Center (x:0.000, y:-0.154, ts:409.782066)
+[AXDBG] 065658.072 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:409.782332)
+[AXDBG] 065659.080 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065659.080 [A11Y] REMOTE Right Arrow
+[AXDBG] 065659.197 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065659.198 [A11Y] REMOTE Down Arrow
+[AXDBG] 065659.631 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065659.701 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065659.701 [A11Y] REMOTE Right Arrow
+[AXDBG] 065659.710 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065659.866 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065659.867 [A11Y] REMOTE Down Arrow
+[AXDBG] 065659.993 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065700.059 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065700.060 [A11Y] REMOTE Select
+[AXDBG] 065700.100 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065700.415 🕹️ DPAD STATE: Center (x:-0.143, y:0.000, ts:412.124893)
+[AXDBG] 065700.415 🕹️ DPAD STATE: Up (x:-0.143, y:-0.545, ts:412.125367)
+[AXDBG] 065700.418 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.443 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.471 🕹️ DPAD STATE: Up (x:-0.112, y:-0.712, ts:412.180938)
+[AXDBG] 065700.475 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.480 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.503 🕹️ DPAD STATE: Up (x:0.018, y:-0.716, ts:412.213363)
+[AXDBG] 065700.504 🕹️ DPAD STATE: Up (x:0.018, y:-0.601, ts:412.213774)
+[AXDBG] 065700.505 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.528 🕹️ DPAD STATE: Center (x:0.077, y:-0.390, ts:412.237603)
+[AXDBG] 065700.528 🕹️ DPAD STATE: Center (x:0.110, y:-0.173, ts:412.238239)
+[AXDBG] 065700.530 🕹️ DPAD STATE: Center (x:0.158, y:0.166, ts:412.239561)
+[AXDBG] 065700.530 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.572 🕹️ DPAD STATE: Center (x:0.200, y:0.348, ts:412.282325)
+[AXDBG] 065700.573 🕹️ DPAD STATE: Center (x:0.000, y:0.348, ts:412.282698)
+[AXDBG] 065700.573 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:412.282882)
+[AXDBG] 065700.576 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.577 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.602 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.604 🕹️ DPAD STATE: Center (x:0.210, y:0.000, ts:412.313979)
+[AXDBG] 065700.604 🕹️ DPAD STATE: Down (x:0.210, y:0.707, ts:412.314286)
+[AXDBG] 065700.642 🕹️ DPAD STATE: Down (x:0.068, y:0.707, ts:412.352183)
+[AXDBG] 065700.643 🕹️ DPAD STATE: Center (x:0.068, y:0.475, ts:412.352570)
+[AXDBG] 065700.643 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:412.353000)
+[AXDBG] 065700.644 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.646 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.694 🕹️ DPAD STATE: Center (x:-0.298, y:0.000, ts:412.403898)
+[AXDBG] 065700.695 🕹️ DPAD STATE: Center (x:-0.298, y:-0.167, ts:412.404730)
+[AXDBG] 065700.718 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.721 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.743 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.774 🕹️ DPAD STATE: Center (x:-0.222, y:-0.029, ts:412.484063)
+[AXDBG] 065700.783 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.804 🕹️ DPAD STATE: Center (x:-0.181, y:0.135, ts:412.513663)
+[AXDBG] 065700.805 🕹️ DPAD STATE: Center (x:0.000, y:0.135, ts:412.515088)
+[AXDBG] 065700.805 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:412.515359)
+[AXDBG] 065700.806 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.806 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.848 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065700.901 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.902 🕹️ DPAD STATE: Center (x:-0.141, y:0.000, ts:412.612179)
+[AXDBG] 065700.903 🕹️ DPAD STATE: Center (x:-0.141, y:0.220, ts:412.612498)
+[AXDBG] 065700.939 🕹️ DPAD STATE: Center (x:-0.158, y:0.118, ts:412.648457)
+[AXDBG] 065700.941 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.972 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065700.976 🕹️ DPAD STATE: Center (x:-0.038, y:0.099, ts:412.685381)
+[AXDBG] 065700.984 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.002 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.015 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.037 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.038 🕹️ DPAD STATE: Center (x:0.085, y:0.158, ts:412.747588)
+[AXDBG] 065701.038 🕹️ DPAD STATE: Center (x:0.085, y:0.264, ts:412.748339)
+[AXDBG] 065701.072 🕹️ DPAD STATE: Center (x:0.102, y:0.383, ts:412.781798)
+[AXDBG] 065701.073 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.086 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.099 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.118 🕹️ DPAD STATE: Center (x:0.041, y:0.254, ts:412.827686)
+[AXDBG] 065701.119 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.127 🕹️ DPAD STATE: Center (x:0.010, y:0.112, ts:412.837039)
+[AXDBG] 065701.131 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.149 🕹️ DPAD STATE: Center (x:-0.001, y:-0.003, ts:412.858404)
+[AXDBG] 065701.150 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.175 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.193 🕹️ DPAD STATE: Center (x:-0.001, y:-0.164, ts:412.902403)
+[AXDBG] 065701.193 🕹️ DPAD STATE: Center (x:-0.001, y:-0.304, ts:412.902941)
+[AXDBG] 065701.199 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.218 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.231 🕹️ DPAD STATE: Center (x:0.169, y:-0.384, ts:412.941051)
+[AXDBG] 065701.232 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.248 🕹️ DPAD STATE: Center (x:0.000, y:-0.307, ts:412.958365)
+[AXDBG] 065701.249 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:412.958709)
+[AXDBG] 065701.250 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.336 🕹️ DPAD STATE: Center (x:0.131, y:0.000, ts:413.046141)
+[AXDBG] 065701.337 🕹️ DPAD STATE: Center (x:0.131, y:0.264, ts:413.046476)
+[AXDBG] 065701.356 🕹️ DPAD STATE: Center (x:0.095, y:0.074, ts:413.065589)
+[AXDBG] 065701.358 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.359 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.375 🕹️ DPAD STATE: Center (x:0.095, y:-0.060, ts:413.084829)
+[AXDBG] 065701.376 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.382 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.400 🕹️ DPAD STATE: Center (x:0.095, y:-0.212, ts:413.109571)
+[AXDBG] 065701.401 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.436 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.440 🕹️ DPAD STATE: Center (x:0.181, y:-0.313, ts:413.150217)
+[AXDBG] 065701.500 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.519 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.533 🕹️ DPAD STATE: Center (x:0.000, y:-0.342, ts:413.242882)
+[AXDBG] 065701.533 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:413.243373)
+[AXDBG] 065701.548 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.564 🕹️ DPAD STATE: Up (x:-0.011, y:-0.957, ts:413.273503)
+[AXDBG] 065701.574 🕹️ DPAD STATE: Up (x:0.066, y:-0.823, ts:413.284359)
+[AXDBG] 065701.581 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.598 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.647 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065701.648 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065701.649 [A11Y] REMOTE Down Arrow
+[AXDBG] 065701.758 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065702.050 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065702.051 [A11Y] REMOTE Right Arrow
+[AXDBG] 065702.283 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065702.465 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065702.466 [A11Y] REMOTE Right Arrow
+[AXDBG] 065702.473 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065702.582 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065702.583 [A11Y] REMOTE Up Arrow
+[AXDBG] 065702.683 WARNING: RunLoop stall 3603 ms
+[AXDBG] 065702.686 POLL: Up detected via polling (x:0.062, y:-0.831)
+[AXDBG] 065702.775 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065702.853 POLL: Up detected via polling (x:0.062, y:-0.831)
+[AXDBG] 065702.935 🕹️ DPAD STATE: Up (x:-0.268, y:-0.831, ts:414.644662)
+[AXDBG] 065702.935 🕹️ DPAD STATE: Up (x:-0.268, y:-0.560, ts:414.645064)
+[AXDBG] 065702.935 🕹️ DPAD STATE: Center (x:-0.227, y:-0.424, ts:414.645227)
+[AXDBG] 065702.936 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065702.937 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065703.134 🕹️ DPAD STATE: Center (x:-0.013, y:-0.424, ts:414.843591)
+[AXDBG] 065703.134 🕹️ DPAD STATE: Center (x:-0.013, y:-0.062, ts:414.844007)
+[AXDBG] 065703.134 🕹️ DPAD STATE: Center (x:0.085, y:0.097, ts:414.844360)
+[AXDBG] 065703.135 🕹️ DPAD STATE: Center (x:0.169, y:0.262, ts:414.844554)
+[AXDBG] 065703.136 🕹️ DPAD STATE: Center (x:0.000, y:0.316, ts:414.845875)
+[AXDBG] 065703.136 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:414.846096)
+[AXDBG] 065703.137 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065703.145 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065703.304 🕹️ DPAD STATE: Left (x:-0.923, y:0.000, ts:415.013450)
+[AXDBG] 065703.304 🕹️ DPAD STATE: Left (x:-0.923, y:-0.177, ts:415.013877)
+[AXDBG] 065703.305 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065703.306 POLL: Left detected via polling (x:-0.923, y:-0.177)
+[AXDBG] 065703.397 🕹️ DPAD STATE: Center (x:0.000, y:-0.177, ts:415.106341)
+[AXDBG] 065703.397 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:415.107021)
+[AXDBG] 065703.477 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065703.934 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065703.934 [A11Y] REMOTE Left Arrow
+[AXDBG] 065704.118 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065704.189 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.191 🕹️ DPAD STATE: Up (x:-0.086, y:-0.930, ts:415.900837)
+[AXDBG] 065704.191 POLL: Up detected via polling (x:-0.086, y:-0.930)
+[AXDBG] 065704.275 🕹️ DPAD STATE: Up (x:-0.013, y:-0.748, ts:415.985234)
+[AXDBG] 065704.276 🕹️ DPAD STATE: Up (x:0.039, y:-0.574, ts:415.985644)
+[AXDBG] 065704.276 🕹️ DPAD STATE: Center (x:0.089, y:-0.359, ts:415.985850)
+[AXDBG] 065704.277 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.361 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.362 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.363 🕹️ DPAD STATE: Center (x:0.139, y:-0.110, ts:416.072796)
+[AXDBG] 065704.363 🕹️ DPAD STATE: Center (x:0.192, y:0.149, ts:416.073104)
+[AXDBG] 065704.363 🕹️ DPAD STATE: Center (x:0.227, y:0.296, ts:416.073288)
+[AXDBG] 065704.364 🕹️ DPAD STATE: Center (x:0.000, y:0.296, ts:416.073458)
+[AXDBG] 065704.364 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:416.073613)
+[AXDBG] 065704.615 🕹️ DPAD STATE: Center (x:-0.135, y:0.000, ts:416.325048)
+[AXDBG] 065704.616 🕹️ DPAD STATE: Up (x:-0.135, y:-0.591, ts:416.325459)
+[AXDBG] 065704.616 🕹️ DPAD STATE: Center (x:-0.059, y:-0.474, ts:416.325666)
+[AXDBG] 065704.616 🕹️ DPAD STATE: Center (x:-0.047, y:-0.338, ts:416.325848)
+[AXDBG] 065704.635 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.636 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.702 🕹️ DPAD STATE: Center (x:-0.032, y:-0.223, ts:416.412064)
+[AXDBG] 065704.703 🕹️ DPAD STATE: Center (x:-0.007, y:-0.085, ts:416.412498)
+[AXDBG] 065704.703 🕹️ DPAD STATE: Center (x:0.029, y:0.078, ts:416.412738)
+[AXDBG] 065704.707 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.708 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.809 🕹️ DPAD STATE: Center (x:-0.158, y:0.000, ts:416.519308)
+[AXDBG] 065704.810 🕹️ DPAD STATE: Center (x:-0.158, y:-0.394, ts:416.519664)
+[AXDBG] 065704.812 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.820 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.837 🕹️ DPAD STATE: Center (x:-0.032, y:-0.338, ts:416.546553)
+[AXDBG] 065704.838 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.855 🕹️ DPAD STATE: Center (x:0.003, y:-0.171, ts:416.564272)
+[AXDBG] 065704.855 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.872 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.887 🕹️ DPAD STATE: Center (x:0.049, y:0.051, ts:416.596733)
+[AXDBG] 065704.891 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065704.914 🕹️ DPAD STATE: Center (x:0.098, y:0.247, ts:416.624183)
+[AXDBG] 065704.933 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:416.643357)
+[AXDBG] 065704.934 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065705.456 🕹️ DPAD STATE: Center (x:0.494, y:0.000, ts:417.165664)
+[AXDBG] 065705.456 🕹️ DPAD STATE: Center (x:0.494, y:-0.483, ts:417.166056)
+[AXDBG] 065705.459 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065705.473 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065705.509 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065705.536 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065705.538 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065705.696 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065705.696 [A11Y] REMOTE Right Arrow
+[AXDBG] 065705.724 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065705.837 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065705.837 [A11Y] REMOTE Right Arrow
+[AXDBG] 065705.902 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065706.103 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065706.104 [A11Y] REMOTE Right Arrow
+[AXDBG] 065706.536 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065706.569 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065706.570 [A11Y] REMOTE Right Arrow
+[AXDBG] 065706.638 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065706.904 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065706.904 [A11Y] REMOTE Right Arrow
+[AXDBG] 065706.969 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065706.971 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065706.971 [A11Y] WARNING: Phantom UIPress Right Arrow → InfinityBug?
+[AXDBG] 065706.972 (debug)  noHW=true  stale=true  rapid=true  dt=27.9s
+[AXDBG] 065707.121 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065707.358 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065707.358 [A11Y] WARNING: Phantom UIPress Right Arrow → InfinityBug?
+[AXDBG] 065707.358 (debug)  noHW=true  stale=true  rapid=true  dt=28.3s
+[AXDBG] 065707.570 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065707.571 [A11Y] REMOTE Down Arrow
+[AXDBG] 065707.605 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065707.905 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065707.929 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065707.930 [A11Y] REMOTE Down Arrow
+[AXDBG] 065708.489 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065708.515 🕹️ DPAD STATE: Center (x:-0.266, y:-0.493, ts:420.225248)
+[AXDBG] 065708.516 🕹️ DPAD STATE: Up (x:-0.266, y:-0.683, ts:420.226005)
+[AXDBG] 065708.551 🕹️ DPAD STATE: Up (x:-0.241, y:-0.570, ts:420.260764)
+[AXDBG] 065708.552 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065708.581 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065708.582 🕹️ DPAD STATE: Center (x:-0.189, y:-0.313, ts:420.292014)
+[AXDBG] 065708.621 🕹️ DPAD STATE: Center (x:-0.132, y:-0.102, ts:420.331191)
+[AXDBG] 065708.623 🕹️ DPAD STATE: Center (x:-0.063, y:0.139, ts:420.333219)
+[AXDBG] 065708.624 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065708.627 🕹️ DPAD STATE: Center (x:-0.013, y:0.273, ts:420.337374)
+[AXDBG] 065708.639 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065708.662 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:420.371459)
+[AXDBG] 065708.662 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065708.798 🕹️ DPAD STATE: Center (x:-0.135, y:0.000, ts:420.508233)
+[AXDBG] 065708.799 🕹️ DPAD STATE: Center (x:-0.135, y:-0.171, ts:420.508634)
+[AXDBG] 065708.800 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065708.843 🕹️ DPAD STATE: Center (x:-0.034, y:-0.171, ts:420.553147)
+[AXDBG] 065708.844 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065708.867 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065708.890 🕹️ DPAD STATE: Center (x:-0.005, y:-0.012, ts:420.599869)
+[AXDBG] 065708.892 🕹️ DPAD STATE: Center (x:0.066, y:0.218, ts:420.602231)
+[AXDBG] 065708.893 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065708.895 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:420.604912)
+[AXDBG] 065708.906 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.064 🕹️ DPAD STATE: Center (x:0.012, y:0.162, ts:420.773579)
+[AXDBG] 065709.065 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.091 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.122 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.167 🕹️ DPAD STATE: Center (x:0.083, y:0.344, ts:420.876658)
+[AXDBG] 065709.167 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:420.877064)
+[AXDBG] 065709.168 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.169 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.332 🕹️ DPAD STATE: Center (x:-0.143, y:0.000, ts:421.042303)
+[AXDBG] 065709.333 🕹️ DPAD STATE: Center (x:-0.143, y:-0.162, ts:421.042718)
+[AXDBG] 065709.335 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.336 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.363 🕹️ DPAD STATE: Center (x:-0.051, y:-0.047, ts:421.072471)
+[AXDBG] 065709.364 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.403 🕹️ DPAD STATE: Center (x:0.129, y:-0.047, ts:421.113016)
+[AXDBG] 065709.403 🕹️ DPAD STATE: Center (x:0.129, y:0.245, ts:421.113383)
+[AXDBG] 065709.404 🕹️ DPAD STATE: Center (x:0.181, y:0.396, ts:421.113566)
+[AXDBG] 065709.407 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.430 🕹️ DPAD STATE: Down (x:0.233, y:0.525, ts:421.140024)
+[AXDBG] 065709.431 🕹️ DPAD STATE: Down (x:0.000, y:0.525, ts:421.140447)
+[AXDBG] 065709.431 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:421.140713)
+[AXDBG] 065709.431 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.432 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.556 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.558 🕹️ DPAD STATE: Left (x:-0.858, y:0.000, ts:421.267860)
+[AXDBG] 065709.559 🕹️ DPAD STATE: Left (x:-0.858, y:-0.438, ts:421.269106)
+[AXDBG] 065709.866 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065709.915 🕹️ DPAD STATE: Center (x:0.000, y:-0.438, ts:421.624511)
+[AXDBG] 065709.915 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:421.625159)
+[AXDBG] 065709.918 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065709.940 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065709.941 [A11Y] REMOTE Down Arrow
+[AXDBG] 065709.995 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065709.996 [A11Y] REMOTE Left Arrow
+[AXDBG] 065710.044 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065710.123 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065710.175 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065710.176 [A11Y] REMOTE Left Arrow
+[AXDBG] 065710.239 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065710.241 WARNING: RunLoop stall 5535 ms
+[AXDBG] 065710.624 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065710.624 [A11Y] REMOTE Left Arrow
+[AXDBG] 065710.773 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065710.924 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065710.924 [A11Y] REMOTE Left Arrow
+[AXDBG] 065711.060 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065711.696 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065711.697 [A11Y] REMOTE Select
+[AXDBG] 065711.698 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065711.894 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065711.894 [A11Y] REMOTE Left Arrow
+[AXDBG] 065713.096 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065713.251 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065713.251 [A11Y] REMOTE Left Arrow
+[AXDBG] 065713.638 🕹️ DPAD STATE: Right (x:0.720, y:0.000, ts:425.347410)
+[AXDBG] 065713.638 🕹️ DPAD STATE: Right (x:0.756, y:-0.104, ts:425.348085)
+[AXDBG] 065713.639 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065713.641 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065713.642 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065713.716 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065713.957 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065713.957 [A11Y] REMOTE Right Arrow
+[AXDBG] 065713.967 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065714.144 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065714.144 [A11Y] REMOTE Right Arrow
+[AXDBG] 065714.672 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065714.673 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065714.675 🕹️ DPAD STATE: Center (x:0.000, y:-0.133, ts:426.384797)
+[AXDBG] 065714.675 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:426.385123)
+[AXDBG] 065714.675 🕹️ DPAD STATE: Up (x:-0.020, y:-0.927, ts:426.385344)
+[AXDBG] 065714.677 POLL: Up detected via polling (x:-0.020, y:-0.927)
+[AXDBG] 065714.826 POLL: Up detected via polling (x:-0.020, y:-0.927)
+[AXDBG] 065714.971 POLL: Up detected via polling (x:-0.020, y:-0.927)
+[AXDBG] 065715.080 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065715.096 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065715.096 [A11Y] REMOTE Right Arrow
+[AXDBG] 065715.129 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065715.130 [A11Y] REMOTE Down Arrow
+[AXDBG] 065715.196 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065715.224 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:426.933532)
+[AXDBG] 065715.224 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065715.232 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065716.932 🕹️ DPAD STATE: Right (x:0.595, y:0.000, ts:428.641628)
+[AXDBG] 065716.933 🕹️ DPAD STATE: Right (x:0.595, y:-0.436, ts:428.642916)
+[AXDBG] 065716.935 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065717.030 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065717.031 [A11Y] REMOTE Right Arrow
+[AXDBG] 065717.180 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065717.186 🕹️ DPAD STATE: Center (x:0.000, y:-0.436, ts:428.896076)
+[AXDBG] 065717.187 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:428.896798)
+[AXDBG] 065717.217 WARNING: RunLoop stall 2244 ms
+[AXDBG] 065717.751 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065717.782 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065717.782 [A11Y] REMOTE Right Arrow
+[AXDBG] 065718.793 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065720.184 WARNING: RunLoop stall 1663 ms
+[AXDBG] 065721.500 🕹️ DPAD STATE: Center (x:0.022, y:0.452, ts:433.210020)
+[AXDBG] 065721.501 🕹️ DPAD STATE: Center (x:-0.074, y:0.210, ts:433.210448)
+[AXDBG] 065721.583 🕹️ DPAD STATE: Center (x:-0.084, y:0.068, ts:433.292831)
+[AXDBG] 065721.584 🕹️ DPAD STATE: Center (x:-0.084, y:-0.060, ts:433.293613)
+[AXDBG] 065721.585 🕹️ DPAD STATE: Center (x:-0.084, y:-0.171, ts:433.294439)
+[AXDBG] 065721.585 🕹️ DPAD STATE: Center (x:-0.057, y:-0.332, ts:433.294653)
+[AXDBG] 065721.586 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065721.587 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065721.600 🕹️ DPAD STATE: Center (x:0.016, y:-0.451, ts:433.309817)
+[AXDBG] 065721.601 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065721.669 🕹️ DPAD STATE: Center (x:0.129, y:-0.486, ts:433.378942)
+[AXDBG] 065721.669 🕹️ DPAD STATE: Center (x:0.233, y:-0.461, ts:433.379367)
+[AXDBG] 065721.670 🕹️ DPAD STATE: Center (x:0.233, y:-0.336, ts:433.379528)
+[AXDBG] 065721.670 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065721.695 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065721.697 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065721.812 🕹️ DPAD STATE: Center (x:0.273, y:-0.123, ts:433.521556)
+[AXDBG] 065721.812 🕹️ DPAD STATE: Center (x:0.000, y:-0.123, ts:433.521964)
+[AXDBG] 065721.812 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:433.522135)
+[AXDBG] 065721.812 🕹️ DPAD STATE: Center (x:0.271, y:0.000, ts:433.522294)
+[AXDBG] 065721.813 🕹️ DPAD STATE: Center (x:0.271, y:0.379, ts:433.522446)
+[AXDBG] 065721.813 🕹️ DPAD STATE: Center (x:0.091, y:0.438, ts:433.522714)
+[AXDBG] 065721.813 🕹️ DPAD STATE: Center (x:0.091, y:0.260, ts:433.523075)
+[AXDBG] 065721.815 🕹️ DPAD STATE: Center (x:0.022, y:0.068, ts:433.524821)
+[AXDBG] 065721.841 🕹️ DPAD STATE: Center (x:0.022, y:-0.083, ts:433.551175)
+[AXDBG] 065721.860 🕹️ DPAD STATE: Center (x:0.047, y:-0.252, ts:433.569647)
+[AXDBG] 065721.861 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065721.863 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065721.943 🕹️ DPAD STATE: Center (x:-0.070, y:-0.298, ts:433.653131)
+[AXDBG] 065721.944 🕹️ DPAD STATE: Up (x:-0.070, y:-0.953, ts:433.653479)
+[AXDBG] 065721.945 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065721.946 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.041 🕹️ DPAD STATE: Up (x:0.185, y:-0.953, ts:433.750710)
+[AXDBG] 065722.041 🕹️ DPAD STATE: Center (x:0.185, y:0.197, ts:433.751085)
+[AXDBG] 065722.043 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.099 🕹️ DPAD STATE: Center (x:0.137, y:-0.035, ts:433.808930)
+[AXDBG] 065722.099 🕹️ DPAD STATE: Center (x:0.137, y:-0.160, ts:433.809308)
+[AXDBG] 065722.105 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.107 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.121 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.145 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.175 🕹️ DPAD STATE: Center (x:0.000, y:-0.242, ts:433.884940)
+[AXDBG] 065722.175 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:433.885305)
+[AXDBG] 065722.176 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.249 🕹️ DPAD STATE: Center (x:0.026, y:0.105, ts:433.958709)
+[AXDBG] 065722.256 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.264 🕹️ DPAD STATE: Center (x:-0.005, y:-0.012, ts:433.973902)
+[AXDBG] 065722.270 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.293 🕹️ DPAD STATE: Center (x:-0.011, y:-0.175, ts:434.002849)
+[AXDBG] 065722.294 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.322 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.330 🕹️ DPAD STATE: Center (x:-0.011, y:-0.346, ts:434.040092)
+[AXDBG] 065722.337 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.360 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:434.069582)
+[AXDBG] 065722.361 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.362 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.465 🕹️ DPAD STATE: Center (x:0.369, y:0.000, ts:434.175040)
+[AXDBG] 065722.465 🕹️ DPAD STATE: Down (x:0.369, y:0.538, ts:434.175393)
+[AXDBG] 065722.474 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.567 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.570 🕹️ DPAD STATE: Down (x:0.179, y:0.538, ts:434.279757)
+[AXDBG] 065722.570 🕹️ DPAD STATE: Center (x:0.179, y:0.210, ts:434.280182)
+[AXDBG] 065722.571 🕹️ DPAD STATE: Center (x:0.129, y:0.059, ts:434.280655)
+[AXDBG] 065722.571 🕹️ DPAD STATE: Center (x:0.110, y:-0.049, ts:434.280926)
+[AXDBG] 065722.571 🕹️ DPAD STATE: Center (x:0.110, y:-0.183, ts:434.281107)
+[AXDBG] 065722.587 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.659 🕹️ DPAD STATE: Center (x:0.000, y:-0.252, ts:434.368495)
+[AXDBG] 065722.659 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:434.369066)
+[AXDBG] 065722.661 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.936 🕹️ DPAD STATE: Right (x:0.629, y:0.000, ts:434.646093)
+[AXDBG] 065722.937 🕹️ DPAD STATE: Right (x:0.629, y:0.331, ts:434.646483)
+[AXDBG] 065722.938 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065722.939 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065723.015 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065723.016 🕹️ DPAD STATE: Right (x:0.729, y:0.258, ts:434.726313)
+[AXDBG] 065723.032 🕹️ DPAD STATE: Right (x:0.756, y:0.151, ts:434.741892)
+[AXDBG] 065723.033 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065723.215 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065723.318 🕹️ DPAD STATE: Center (x:0.000, y:0.126, ts:435.027526)
+[AXDBG] 065723.318 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:435.028060)
+[AXDBG] 065723.353 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065723.807 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065723.808 [A11Y] REMOTE Right Arrow
+[AXDBG] 065724.415 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065724.416 [A11Y] REMOTE Down Arrow
+[AXDBG] 065724.436 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065724.522 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065724.907 🕹️ DPAD STATE: Center (x:0.146, y:0.000, ts:436.616814)
+[AXDBG] 065724.908 🕹️ DPAD STATE: Up (x:0.146, y:-0.637, ts:436.617682)
+[AXDBG] 065724.909 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065724.924 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065724.954 🕹️ DPAD STATE: Center (x:0.229, y:-0.394, ts:436.664284)
+[AXDBG] 065724.955 🕹️ DPAD STATE: Center (x:0.246, y:-0.263, ts:436.664697)
+[AXDBG] 065724.956 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065724.961 🕹️ DPAD STATE: Center (x:0.263, y:-0.114, ts:436.671147)
+[AXDBG] 065724.972 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065724.998 🕹️ DPAD STATE: Center (x:0.279, y:0.045, ts:436.707447)
+[AXDBG] 065724.998 🕹️ DPAD STATE: Center (x:0.298, y:0.204, ts:436.708021)
+[AXDBG] 065724.999 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065725.031 🕹️ DPAD STATE: Center (x:0.000, y:0.204, ts:436.740594)
+[AXDBG] 065725.031 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:436.740954)
+[AXDBG] 065725.032 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065725.133 🕹️ DPAD STATE: Center (x:-0.220, y:0.000, ts:436.843310)
+[AXDBG] 065725.134 🕹️ DPAD STATE: Center (x:-0.220, y:-0.296, ts:436.843684)
+[AXDBG] 065725.196 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065725.198 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065725.200 🕹️ DPAD STATE: Center (x:-0.063, y:-0.311, ts:436.909454)
+[AXDBG] 065725.200 🕹️ DPAD STATE: Center (x:0.006, y:-0.141, ts:436.909790)
+[AXDBG] 065725.200 🕹️ DPAD STATE: Center (x:0.047, y:-0.026, ts:436.910012)
+[AXDBG] 065725.202 🕹️ DPAD STATE: Center (x:0.079, y:0.105, ts:436.911738)
+[AXDBG] 065725.208 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065725.228 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065725.230 🕹️ DPAD STATE: Center (x:0.108, y:0.237, ts:436.939530)
+[AXDBG] 065725.233 🕹️ DPAD STATE: Center (x:0.000, y:0.237, ts:436.942964)
+[AXDBG] 065725.233 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:436.943258)
+[AXDBG] 065725.247 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065726.257 WARNING: RunLoop stall 1842 ms
+[AXDBG] 065726.473 🕹️ DPAD STATE: Right (x:0.794, y:0.000, ts:438.182881)
+[AXDBG] 065726.473 🕹️ DPAD STATE: Right (x:0.794, y:0.137, ts:438.183258)
+[AXDBG] 065726.474 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065726.858 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065726.858 [A11Y] REMOTE Right Arrow
+[AXDBG] 065726.899 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065727.143 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065727.144 [A11Y] REMOTE Right Arrow
+[AXDBG] 065727.369 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065727.392 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065727.393 [A11Y] REMOTE Right Arrow
+[AXDBG] 065727.608 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065727.892 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065727.892 [A11Y] REMOTE Right Arrow
+[AXDBG] 065727.901 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065727.925 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065727.925 [A11Y] REMOTE Right Arrow
+[AXDBG] 065728.109 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065728.124 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065728.125 [A11Y] REMOTE Down Arrow
+[AXDBG] 065728.294 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065728.377 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065728.377 [A11Y] REMOTE Down Arrow
+[AXDBG] 065728.944 🕹️ DPAD STATE: Center (x:-0.252, y:0.137, ts:440.654370)
+[AXDBG] 065728.945 🕹️ DPAD STATE: Up (x:-0.252, y:-0.679, ts:440.654716)
+[AXDBG] 065728.945 🕹️ DPAD STATE: Up (x:-0.233, y:-0.549, ts:440.654894)
+[AXDBG] 065728.946 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065728.947 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065728.988 🕹️ DPAD STATE: Center (x:-0.216, y:-0.382, ts:440.697882)
+[AXDBG] 065728.989 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065729.010 🕹️ DPAD STATE: Center (x:-0.178, y:-0.137, ts:440.719592)
+[AXDBG] 065729.012 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065729.033 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065729.060 🕹️ DPAD STATE: Center (x:-0.130, y:0.036, ts:440.769402)
+[AXDBG] 065729.060 🕹️ DPAD STATE: Center (x:-0.051, y:0.227, ts:440.769809)
+[AXDBG] 065729.060 🕹️ DPAD STATE: Center (x:0.020, y:0.352, ts:440.770074)
+[AXDBG] 065729.060 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:440.770233)
+[AXDBG] 065729.063 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065729.064 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065729.093 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065729.093 [A11Y] REMOTE Down Arrow
+[AXDBG] 065729.165 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065729.166 🕹️ DPAD STATE: Center (x:-0.250, y:0.000, ts:440.875508)
+[AXDBG] 065729.166 🕹️ DPAD STATE: Up (x:-0.250, y:-0.691, ts:440.875758)
+[AXDBG] 065729.205 🕹️ DPAD STATE: Up (x:0.018, y:-0.691, ts:440.915348)
+[AXDBG] 065729.206 🕹️ DPAD STATE: Center (x:0.018, y:-0.079, ts:440.915698)
+[AXDBG] 065729.206 🕹️ DPAD STATE: Center (x:-0.009, y:-0.254, ts:440.915898)
+[AXDBG] 065729.209 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065729.210 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065729.211 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065729.232 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065729.237 🕹️ DPAD STATE: Center (x:0.085, y:-0.045, ts:440.946885)
+[AXDBG] 065729.245 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065729.268 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065729.346 🕹️ DPAD STATE: Center (x:-0.323, y:-0.001, ts:441.055736)
+[AXDBG] 065729.346 🕹️ DPAD STATE: Up (x:-0.323, y:-0.973, ts:441.056141)
+[AXDBG] 065729.348 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065729.560 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065729.929 🕹️ DPAD STATE: Up (x:0.000, y:-0.973, ts:441.638979)
+[AXDBG] 065729.929 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:441.639377)
+[AXDBG] 065729.930 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065729.995 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065729.996 [A11Y] REMOTE Down Arrow
+[AXDBG] 065730.496 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065730.563 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065730.563 [A11Y] REMOTE Right Arrow
+[AXDBG] 065730.736 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065730.737 [A11Y] REMOTE Down Arrow
+[AXDBG] 065731.309 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065731.411 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065731.412 [A11Y] REMOTE Right Arrow
+[AXDBG] 065731.422 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065731.423 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065731.516 🕹️ DPAD STATE: Center (x:-0.149, y:0.000, ts:443.225380)
+[AXDBG] 065731.516 🕹️ DPAD STATE: Up (x:-0.149, y:-0.595, ts:443.225786)
+[AXDBG] 065731.517 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065731.519 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065731.529 🕹️ DPAD STATE: Center (x:-0.076, y:-0.470, ts:443.238712)
+[AXDBG] 065731.530 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065731.578 🕹️ DPAD STATE: Center (x:-0.009, y:-0.309, ts:443.287428)
+[AXDBG] 065731.580 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065731.591 🕹️ DPAD STATE: Center (x:0.035, y:-0.181, ts:443.300948)
+[AXDBG] 065731.594 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065731.642 🕹️ DPAD STATE: Center (x:0.043, y:-0.024, ts:443.352023)
+[AXDBG] 065731.643 🕹️ DPAD STATE: Center (x:0.049, y:0.109, ts:443.352412)
+[AXDBG] 065731.646 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065731.702 🕹️ DPAD STATE: Center (x:0.068, y:0.260, ts:443.411505)
+[AXDBG] 065731.702 🕹️ DPAD STATE: Center (x:0.085, y:0.365, ts:443.412150)
+[AXDBG] 065731.702 🕹️ DPAD STATE: Center (x:0.102, y:0.494, ts:443.412394)
+[AXDBG] 065731.705 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065731.714 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065731.768 🕹️ DPAD STATE: Down (x:0.102, y:0.605, ts:443.477357)
+[AXDBG] 065731.771 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065731.780 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065731.781 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065731.782 [A11Y] REMOTE Down Arrow
+[AXDBG] 065731.868 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065731.881 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065731.881 [A11Y] REMOTE Right Arrow
+[AXDBG] 065731.952 🕹️ DPAD STATE: Down (x:0.000, y:0.668, ts:443.661591)
+[AXDBG] 065731.952 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:443.661985)
+[AXDBG] 065731.953 🕹️ DPAD STATE: Center (x:-0.074, y:-0.198, ts:443.663295)
+[AXDBG] 065731.954 🕹️ DPAD STATE: Center (x:-0.024, y:-0.054, ts:443.663530)
+[AXDBG] 065731.958 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065731.959 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065731.964 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065732.035 🕹️ DPAD STATE: Center (x:0.031, y:0.162, ts:443.745229)
+[AXDBG] 065732.036 🕹️ DPAD STATE: Center (x:0.058, y:0.273, ts:443.746166)
+[AXDBG] 065732.037 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:443.746508)
+[AXDBG] 065732.038 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065732.039 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065732.137 🕹️ DPAD STATE: Center (x:0.081, y:-0.162, ts:443.846993)
+[AXDBG] 065732.138 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065732.139 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065732.210 🕹️ DPAD STATE: Center (x:0.493, y:-0.183, ts:443.919825)
+[AXDBG] 065732.210 🕹️ DPAD STATE: Center (x:0.493, y:-0.010, ts:443.920330)
+[AXDBG] 065732.212 🕹️ DPAD STATE: Right (x:0.539, y:0.112, ts:443.922005)
+[AXDBG] 065732.212 🕹️ DPAD STATE: Right (x:0.585, y:0.243, ts:443.922338)
+[AXDBG] 065732.215 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065732.281 🕹️ DPAD STATE: Left (x:-0.787, y:0.243, ts:443.990737)
+[AXDBG] 065732.281 🕹️ DPAD STATE: Left (x:-0.787, y:-0.488, ts:443.991137)
+[AXDBG] 065732.283 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065732.359 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065732.535 🕹️ DPAD STATE: Center (x:0.000, y:-0.488, ts:444.245172)
+[AXDBG] 065732.536 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:444.245552)
+[AXDBG] 065732.538 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065732.800 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065732.848 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065732.849 [A11Y] REMOTE Left Arrow
+[AXDBG] 065733.469 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065733.565 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065733.565 [A11Y] REMOTE Left Arrow
+[AXDBG] 065733.600 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065733.635 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065733.636 [A11Y] REMOTE Down Arrow
+[AXDBG] 065733.782 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065733.783 [A11Y] REMOTE Left Arrow
+[AXDBG] 065733.867 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065733.868 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065734.353 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065734.353 [A11Y] REMOTE Right Arrow
+[AXDBG] 065734.362 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065734.366 [A11Y] REMOTE Left Arrow
+[AXDBG] 065734.505 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065734.551 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065734.600 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065734.601 [A11Y] REMOTE Right Arrow
+[AXDBG] 065734.721 WARNING: RunLoop stall 7577 ms
+[AXDBG] 065734.942 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065735.328 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065735.329 [A11Y] REMOTE Right Arrow
+[AXDBG] 065735.800 🕹️ DPAD STATE: Center (x:-0.118, y:0.000, ts:447.509602)
+[AXDBG] 065735.800 🕹️ DPAD STATE: Up (x:-0.118, y:-0.769, ts:447.510059)
+[AXDBG] 065735.802 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065735.803 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065735.887 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065735.888 🕹️ DPAD STATE: Up (x:-0.116, y:-0.654, ts:447.598001)
+[AXDBG] 065735.888 🕹️ DPAD STATE: Up (x:-0.116, y:-0.532, ts:447.598311)
+[AXDBG] 065735.946 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065736.130 🕹️ DPAD STATE: Up (x:-0.162, y:-0.946, ts:447.840297)
+[AXDBG] 065736.131 POLL: Up detected via polling (x:-0.162, y:-0.938)
+[AXDBG] 065736.218 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065736.220 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065736.221 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065736.223 🕹️ DPAD STATE: Up (x:-0.116, y:-0.800, ts:447.932558)
+[AXDBG] 065736.223 🕹️ DPAD STATE: Up (x:-0.061, y:-0.687, ts:447.932873)
+[AXDBG] 065736.314 🕹️ DPAD STATE: Up (x:0.204, y:-0.616, ts:448.023120)
+[AXDBG] 065736.314 🕹️ DPAD STATE: Center (x:0.204, y:-0.070, ts:448.023865)
+[AXDBG] 065736.317 🕹️ DPAD STATE: Center (x:-0.178, y:-0.070, ts:448.027263)
+[AXDBG] 065736.318 🕹️ DPAD STATE: Up (x:-0.178, y:-0.988, ts:448.027580)
+[AXDBG] 065736.319 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065736.320 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065736.321 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065736.568 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065736.569 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065736.570 [A11Y] REMOTE Down Arrow
+[AXDBG] 065736.820 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065737.258 🕹️ DPAD STATE: Up (x:0.000, y:-0.988, ts:448.967716)
+[AXDBG] 065737.259 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:448.968384)
+[AXDBG] 065737.259 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065737.652 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065737.652 [A11Y] REMOTE Down Arrow
+[AXDBG] 065737.771 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065737.771 [A11Y] REMOTE Up Arrow
+[AXDBG] 065737.994 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065737.995 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065738.018 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065738.019 [A11Y] REMOTE Down Arrow
+[AXDBG] 065738.266 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065738.266 [A11Y] REMOTE Right Arrow
+[AXDBG] 065738.356 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065738.635 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065738.703 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065738.704 [A11Y] REMOTE Right Arrow
+[AXDBG] 065738.714 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065738.715 [A11Y] REMOTE Down Arrow
+[AXDBG] 065739.776 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065739.778 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065739.807 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065739.857 🕹️ DPAD STATE: Center (x:0.075, y:0.155, ts:451.567036)
+[AXDBG] 065739.859 🕹️ DPAD STATE: Down (x:0.098, y:0.507, ts:451.569228)
+[AXDBG] 065739.860 🕹️ DPAD STATE: Down (x:0.123, y:0.674, ts:451.569877)
+[AXDBG] 065739.860 🕹️ DPAD STATE: Down (x:0.000, y:0.674, ts:451.570137)
+[AXDBG] 065739.861 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:451.570325)
+[AXDBG] 065739.862 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065739.863 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.109 🕹️ DPAD STATE: Center (x:0.052, y:0.109, ts:451.818638)
+[AXDBG] 065740.113 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065740.115 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.116 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.142 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.179 🕹️ DPAD STATE: Center (x:0.152, y:0.185, ts:451.888990)
+[AXDBG] 065740.180 🕹️ DPAD STATE: Center (x:0.152, y:0.287, ts:451.889704)
+[AXDBG] 065740.181 🕹️ DPAD STATE: Center (x:0.227, y:0.408, ts:451.891161)
+[AXDBG] 065740.183 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.190 🕹️ DPAD STATE: Center (x:0.342, y:0.421, ts:451.899358)
+[AXDBG] 065740.191 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.228 🕹️ DPAD STATE: Center (x:0.447, y:0.423, ts:451.937139)
+[AXDBG] 065740.232 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.256 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.346 🕹️ DPAD STATE: Right (x:0.578, y:0.423, ts:452.055780)
+[AXDBG] 065740.347 🕹️ DPAD STATE: Right (x:0.706, y:0.394, ts:452.057302)
+[AXDBG] 065740.350 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.351 🕹️ DPAD STATE: Right (x:0.817, y:0.323, ts:452.060548)
+[AXDBG] 065740.374 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.416 🕹️ DPAD STATE: Center (x:0.000, y:0.287, ts:452.126199)
+[AXDBG] 065740.417 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:452.126547)
+[AXDBG] 065740.423 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.424 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.484 🕹️ DPAD STATE: Right (x:0.884, y:0.000, ts:452.194003)
+[AXDBG] 065740.484 🕹️ DPAD STATE: Right (x:0.884, y:0.252, ts:452.194397)
+[AXDBG] 065740.506 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.532 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.576 🕹️ DPAD STATE: Right (x:0.865, y:0.145, ts:452.285912)
+[AXDBG] 065740.578 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.634 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.812 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.813 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065740.858 🕹️ DPAD STATE: Center (x:0.000, y:0.053, ts:452.567846)
+[AXDBG] 065740.872 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065740.889 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065740.890 [A11Y] REMOTE Down Arrow
+[AXDBG] 065740.939 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065740.940 [A11Y] REMOTE Right Arrow
+[AXDBG] 065741.023 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065741.025 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065741.038 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065741.039 [A11Y] REMOTE Right Arrow
+[AXDBG] 065741.087 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065741.089 WARNING: RunLoop stall 4863 ms
+[AXDBG] 065741.286 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065741.286 [A11Y] REMOTE Right Arrow
+[AXDBG] 065741.288 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065741.530 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065741.531 [A11Y] REMOTE Right Arrow
+[AXDBG] 065741.532 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065741.987 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065741.987 [A11Y] REMOTE Right Arrow
+[AXDBG] 065741.988 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065742.297 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065742.301 🕹️ DPAD STATE: Center (x:-0.068, y:-0.139, ts:454.011271)
+[AXDBG] 065742.322 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065742.323 [A11Y] WARNING: Phantom UIPress Right Arrow → InfinityBug?
+[AXDBG] 065742.323 (debug)  noHW=true  stale=true  rapid=true  dt=63.2s
+[AXDBG] 065742.372 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065742.422 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065742.423 [A11Y] REMOTE Select
+[AXDBG] 065742.424 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065742.542 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:454.251509)
+[AXDBG] 065742.556 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065743.014 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065743.015 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065743.017 🕹️ DPAD STATE: Center (x:-0.341, y:0.000, ts:454.726482)
+[AXDBG] 065743.017 🕹️ DPAD STATE: Up (x:-0.341, y:-0.509, ts:454.727034)
+[AXDBG] 065743.044 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065743.141 🕹️ DPAD STATE: Up (x:-0.448, y:-0.576, ts:454.850404)
+[AXDBG] 065743.141 🕹️ DPAD STATE: Left (x:-0.592, y:-0.553, ts:454.850816)
+[AXDBG] 065743.142 🕹️ DPAD STATE: Left (x:-0.703, y:-0.455, ts:454.851498)
+[AXDBG] 065743.144 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065743.206 🕹️ DPAD STATE: Center (x:0.000, y:-0.428, ts:454.915764)
+[AXDBG] 065743.206 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:454.916196)
+[AXDBG] 065743.211 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065743.527 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065743.529 🕹️ DPAD STATE: Center (x:0.428, y:0.000, ts:455.239017)
+[AXDBG] 065743.529 🕹️ DPAD STATE: Center (x:0.428, y:-0.112, ts:455.239335)
+[AXDBG] 065743.680 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065743.682 🕹️ DPAD STATE: Center (x:0.463, y:0.028, ts:455.391766)
+[AXDBG] 065743.682 🕹️ DPAD STATE: Center (x:0.474, y:0.151, ts:455.392069)
+[AXDBG] 065743.692 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065743.760 🕹️ DPAD STATE: Center (x:0.478, y:0.256, ts:455.469997)
+[AXDBG] 065743.761 🕹️ DPAD STATE: Center (x:0.000, y:0.256, ts:455.470445)
+[AXDBG] 065743.761 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:455.470603)
+[AXDBG] 065743.763 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065743.764 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065743.924 🕹️ DPAD STATE: Up (x:-0.047, y:-0.524, ts:455.634218)
+[AXDBG] 065743.925 🕹️ DPAD STATE: Center (x:0.075, y:-0.428, ts:455.634661)
+[AXDBG] 065743.925 🕹️ DPAD STATE: Center (x:0.102, y:-0.246, ts:455.635129)
+[AXDBG] 065744.039 🕹️ DPAD STATE: Center (x:0.121, y:-0.127, ts:455.749324)
+[AXDBG] 065744.040 🕹️ DPAD STATE: Center (x:0.133, y:0.013, ts:455.749761)
+[AXDBG] 065744.040 🕹️ DPAD STATE: Center (x:0.143, y:0.162, ts:455.749976)
+[AXDBG] 065744.040 🕹️ DPAD STATE: Center (x:0.000, y:0.162, ts:455.750270)
+[AXDBG] 065744.041 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:455.750483)
+[AXDBG] 065744.044 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065744.046 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065744.047 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065744.170 🕹️ DPAD STATE: Center (x:-0.147, y:0.000, ts:455.879685)
+[AXDBG] 065744.170 🕹️ DPAD STATE: Center (x:-0.147, y:0.256, ts:455.880083)
+[AXDBG] 065744.170 🕹️ DPAD STATE: Center (x:0.106, y:0.224, ts:455.880309)
+[AXDBG] 065744.171 🕹️ DPAD STATE: Center (x:0.215, y:0.241, ts:455.880495)
+[AXDBG] 065744.172 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065744.177 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065744.281 🕹️ DPAD STATE: Center (x:0.380, y:0.296, ts:455.990937)
+[AXDBG] 065744.281 🕹️ DPAD STATE: Right (x:0.534, y:0.281, ts:455.991352)
+[AXDBG] 065744.283 🕹️ DPAD STATE: Right (x:0.641, y:0.199, ts:455.992457)
+[AXDBG] 065744.284 🕹️ DPAD STATE: Right (x:0.723, y:0.078, ts:455.993897)
+[AXDBG] 065744.285 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065744.404 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065744.406 🕹️ DPAD STATE: Right (x:0.821, y:-0.031, ts:456.116015)
+[AXDBG] 065744.411 POLL: Right detected via polling (x:0.842, y:-0.056)
+[AXDBG] 065744.425 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065744.524 POLL: Right detected via polling (x:0.867, y:-0.056)
+[AXDBG] 065744.603 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065744.684 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065744.686 🕹️ DPAD STATE: Center (x:0.000, y:-0.056, ts:456.395503)
+[AXDBG] 065744.988 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065744.989 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065744.990 🕹️ DPAD STATE: Center (x:0.039, y:-0.256, ts:456.699870)
+[AXDBG] 065745.059 🕹️ DPAD STATE: Right (x:0.917, y:-0.256, ts:456.768511)
+[AXDBG] 065745.059 🕹️ DPAD STATE: Right (x:0.917, y:-0.026, ts:456.768910)
+[AXDBG] 065745.059 🕹️ DPAD STATE: Center (x:0.056, y:-0.026, ts:456.769111)
+[AXDBG] 065745.060 🕹️ DPAD STATE: Center (x:0.056, y:-0.252, ts:456.769485)
+[AXDBG] 065745.061 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.079 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.096 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.110 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065745.110 [A11Y] REMOTE Select
+[AXDBG] 065745.140 🕹️ DPAD STATE: Center (x:0.026, y:-0.110, ts:456.850334)
+[AXDBG] 065745.142 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.143 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065745.145 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.208 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:456.918075)
+[AXDBG] 065745.209 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.211 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.294 🕹️ DPAD STATE: Center (x:-0.316, y:0.000, ts:457.003417)
+[AXDBG] 065745.294 🕹️ DPAD STATE: Up (x:-0.316, y:-0.551, ts:457.004051)
+[AXDBG] 065745.295 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.383 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.469 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.470 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.540 🕹️ DPAD STATE: Center (x:-0.245, y:-0.413, ts:457.249505)
+[AXDBG] 065745.540 🕹️ DPAD STATE: Center (x:-0.181, y:-0.223, ts:457.249922)
+[AXDBG] 065745.542 🕹️ DPAD STATE: Center (x:-0.086, y:0.068, ts:457.251465)
+[AXDBG] 065745.542 🕹️ DPAD STATE: Center (x:-0.020, y:0.252, ts:457.251797)
+[AXDBG] 065745.542 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:457.252018)
+[AXDBG] 065745.583 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065745.584 [A11Y] REMOTE Right Arrow
+[AXDBG] 065745.668 🕹️ DPAD STATE: Center (x:0.154, y:0.000, ts:457.378226)
+[AXDBG] 065745.669 🕹️ DPAD STATE: Up (x:0.154, y:-0.505, ts:457.378896)
+[AXDBG] 065745.671 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.677 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065745.703 🕹️ DPAD STATE: Center (x:0.179, y:-0.323, ts:457.412495)
+[AXDBG] 065745.703 🕹️ DPAD STATE: Center (x:0.192, y:-0.202, ts:457.413217)
+[AXDBG] 065745.704 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.711 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.737 🕹️ DPAD STATE: Center (x:0.202, y:-0.056, ts:457.446973)
+[AXDBG] 065745.738 🕹️ DPAD STATE: Center (x:0.223, y:0.178, ts:457.447599)
+[AXDBG] 065745.738 🕹️ DPAD STATE: Center (x:0.000, y:0.178, ts:457.448007)
+[AXDBG] 065745.738 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:457.448231)
+[AXDBG] 065745.739 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.740 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.890 🕹️ DPAD STATE: Center (x:-0.260, y:0.000, ts:457.599401)
+[AXDBG] 065745.890 🕹️ DPAD STATE: Up (x:-0.260, y:-0.511, ts:457.599784)
+[AXDBG] 065745.896 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.922 🕹️ DPAD STATE: Up (x:-0.101, y:-0.509, ts:457.631548)
+[AXDBG] 065745.923 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.955 🕹️ DPAD STATE: Center (x:-0.043, y:-0.409, ts:457.664433)
+[AXDBG] 065745.955 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.982 🕹️ DPAD STATE: Center (x:0.035, y:-0.223, ts:457.691950)
+[AXDBG] 065745.982 🕹️ DPAD STATE: Center (x:0.060, y:-0.093, ts:457.692345)
+[AXDBG] 065745.983 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065745.996 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.021 🕹️ DPAD STATE: Center (x:0.106, y:0.120, ts:457.730752)
+[AXDBG] 065746.021 🕹️ DPAD STATE: Center (x:0.131, y:0.277, ts:457.731355)
+[AXDBG] 065746.023 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.053 🕹️ DPAD STATE: Center (x:0.000, y:0.277, ts:457.763101)
+[AXDBG] 065746.054 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:457.763491)
+[AXDBG] 065746.055 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.144 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.145 🕹️ DPAD STATE: Center (x:-0.404, y:0.000, ts:457.855163)
+[AXDBG] 065746.146 🕹️ DPAD STATE: Center (x:-0.404, y:0.197, ts:457.855428)
+[AXDBG] 065746.178 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.206 🕹️ DPAD STATE: Center (x:-0.260, y:0.130, ts:457.915673)
+[AXDBG] 065746.210 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.238 🕹️ DPAD STATE: Center (x:-0.130, y:0.143, ts:457.948006)
+[AXDBG] 065746.305 🕹️ DPAD STATE: Center (x:-0.093, y:0.266, ts:458.015275)
+[AXDBG] 065746.307 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.308 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.309 🕹️ DPAD STATE: Center (x:-0.036, y:0.379, ts:458.018474)
+[AXDBG] 065746.309 🕹️ DPAD STATE: Down (x:0.012, y:0.517, ts:458.018785)
+[AXDBG] 065746.309 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:458.018984)
+[AXDBG] 065746.473 🕹️ DPAD STATE: Center (x:0.194, y:0.000, ts:458.182517)
+[AXDBG] 065746.473 🕹️ DPAD STATE: Center (x:0.194, y:-0.152, ts:458.182872)
+[AXDBG] 065746.477 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.488 🕹️ DPAD STATE: Center (x:0.231, y:-0.008, ts:458.197655)
+[AXDBG] 065746.493 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.502 🕹️ DPAD STATE: Center (x:0.231, y:0.151, ts:458.211798)
+[AXDBG] 065746.510 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.632 🕹️ DPAD STATE: Center (x:0.246, y:0.344, ts:458.341342)
+[AXDBG] 065746.632 🕹️ DPAD STATE: Down (x:0.267, y:0.519, ts:458.341750)
+[AXDBG] 065746.632 🕹️ DPAD STATE: Down (x:0.000, y:0.519, ts:458.341965)
+[AXDBG] 065746.632 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:458.342133)
+[AXDBG] 065746.636 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.638 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.712 🕹️ DPAD STATE: Center (x:-0.398, y:0.000, ts:458.421440)
+[AXDBG] 065746.712 🕹️ DPAD STATE: Center (x:-0.398, y:0.438, ts:458.422164)
+[AXDBG] 065746.714 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.846 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.878 🕹️ DPAD STATE: Left (x:-0.525, y:0.367, ts:458.588238)
+[AXDBG] 065746.880 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.923 🕹️ DPAD STATE: Left (x:-0.638, y:0.304, ts:458.633213)
+[AXDBG] 065746.929 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065746.958 🕹️ DPAD STATE: Left (x:-0.764, y:0.212, ts:458.668224)
+[AXDBG] 065746.959 🕹️ DPAD STATE: Left (x:-0.810, y:0.057, ts:458.668643)
+[AXDBG] 065746.962 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065747.000 🕹️ DPAD STATE: Left (x:-0.837, y:-0.049, ts:458.709375)
+[AXDBG] 065747.001 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065747.031 🕹️ DPAD STATE: Left (x:-0.860, y:-0.162, ts:458.740649)
+[AXDBG] 065747.032 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065747.066 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065747.078 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065747.113 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065747.114 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065747.116 🕹️ DPAD STATE: Center (x:0.000, y:-0.208, ts:458.825501)
+[AXDBG] 065747.116 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:458.825781)
+[AXDBG] 065747.385 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065747.386 [A11Y] REMOTE Left Arrow
+[AXDBG] 065747.461 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065747.563 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065747.564 [A11Y] REMOTE Left Arrow
+[AXDBG] 065747.677 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065747.679 WARNING: RunLoop stall 2210 ms
+[AXDBG] 065750.611 🕹️ DPAD STATE: Left (x:-0.772, y:0.000, ts:462.320698)
+[AXDBG] 065750.611 🕹️ DPAD STATE: Left (x:-0.772, y:-0.553, ts:462.321085)
+[AXDBG] 065750.634 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065751.785 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065751.799 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065751.800 [A11Y] REMOTE Left Arrow
+[AXDBG] 065751.918 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065751.918 [A11Y] REMOTE Down Arrow
+[AXDBG] 065751.986 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065752.193 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065752.797 🕹️ DPAD STATE: Up (x:0.000, y:-0.541, ts:464.507001)
+[AXDBG] 065752.797 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:464.507394)
+[AXDBG] 065752.800 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065752.940 🕹️ DPAD STATE: Up (x:0.012, y:-0.938, ts:464.650210)
+[AXDBG] 065752.942 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065752.943 POLL: Up detected via polling (x:0.012, y:-0.938)
+[AXDBG] 065753.101 POLL: Up detected via polling (x:0.012, y:-0.938)
+[AXDBG] 065753.186 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:464.895642)
+[AXDBG] 065753.186 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065753.644 🕹️ DPAD STATE: Right (x:0.835, y:0.000, ts:465.353802)
+[AXDBG] 065753.644 🕹️ DPAD STATE: Right (x:0.835, y:-0.338, ts:465.354202)
+[AXDBG] 065753.645 POLL: Right detected via polling (x:0.835, y:-0.338)
+[AXDBG] 065753.751 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065753.768 POLL: Right detected via polling (x:0.835, y:-0.338)
+[AXDBG] 065753.879 POLL: Right detected via polling (x:0.835, y:-0.338)
+[AXDBG] 065754.089 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065754.092 POLL: Right detected via polling (x:0.850, y:-0.290)
+[AXDBG] 065754.212 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065754.322 🕹️ DPAD STATE: Center (x:0.000, y:-0.281, ts:466.031771)
+[AXDBG] 065754.322 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:466.032159)
+[AXDBG] 065754.323 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065754.324 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065755.070 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065755.070 [A11Y] REMOTE Down Arrow
+[AXDBG] 065755.109 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065755.109 [A11Y] REMOTE Right Arrow
+[AXDBG] 065755.117 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065755.219 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065755.820 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065755.821 [A11Y] REMOTE Right Arrow
+[AXDBG] 065755.880 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065756.103 WARNING: RunLoop stall 1034 ms
+[AXDBG] 065756.482 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065756.482 [A11Y] REMOTE Right Arrow
+[AXDBG] 065756.492 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065757.604 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065757.605 [A11Y] REMOTE Right Arrow
+[AXDBG] 065757.677 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065758.005 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065758.006 [A11Y] REMOTE Right Arrow
+[AXDBG] 065758.272 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065758.489 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065758.490 [A11Y] REMOTE Right Arrow
+[AXDBG] 065758.613 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065758.906 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065758.906 [A11Y] REMOTE Right Arrow
+[AXDBG] 065759.005 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065759.225 WARNING: RunLoop stall 1621 ms
+[AXDBG] 065759.489 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065759.490 [A11Y] REMOTE Right Arrow
+[AXDBG] 065759.612 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065759.945 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065759.947 🕹️ DPAD STATE: Left (x:-0.525, y:0.000, ts:471.656474)
+[AXDBG] 065759.947 🕹️ DPAD STATE: Up (x:-0.525, y:-0.773, ts:471.656732)
+[AXDBG] 065759.968 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065759.969 [A11Y] REMOTE Menu
+[AXDBG] 065759.970 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065800.010 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065800.042 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065800.043 [A11Y] REMOTE Right Arrow
+[AXDBG] 065800.163 🕹️ DPAD STATE: Up (x:0.000, y:-0.752, ts:471.872854)
+[AXDBG] 065800.163 🕹️ DPAD STATE: Center (x:0.000, y:0.000, ts:471.873301)
+[AXDBG] 065800.164 APP_EVENT: UIApplication Event: sendEvent: - UITouchesEvent
+[AXDBG] 065800.944 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065800.997 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065800.997 [A11Y] REMOTE Menu
+[AXDBG] 065800.998 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065801.001 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065801.001 [A11Y] REMOTE Right Arrow
+[AXDBG] 065801.121 APP_EVENT: UIApplication Event: sendEvent: - UIPressesEvent
+[AXDBG] 065801.807 WARNING: RunLoop stall 2318 ms
+Snapshot request 0x3012ee910 complete with error: <NSError: 0x3012e8db0; domain: BSActionErrorDomain; code: 1 ("response-not-possible")>
+Message from debugger: killed
