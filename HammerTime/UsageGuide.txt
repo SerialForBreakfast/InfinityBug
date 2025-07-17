@@ -1,0 +1,314 @@
+HammerTime Enhanced Stress Patterns Usage Guide
+=================================================
+
+This guide explains how to use the Enhanced Stress Patterns in FocusStressViewController
+to debug and reproduce the InfinityBug in tvOS applications.
+
+The InfinityBug occurs when VoiceOver focus gets stuck repeating button presses infinitely,
+even after the application is closed. These stress patterns recreate the conditions that
+trigger this bug by overwhelming the accessibility and focus systems.
+
+CONFIGURATION SYSTEM
+====================
+
+The stress patterns are controlled via FocusStressConfiguration using presets:
+
+Available Presets:
+- lightExploration: Minimal stress (10x10 sections, no stressors)
+- mediumStress: Moderate stress (25x35 sections, basic stressors) 
+- heavyReproduction: High stress (50x50 sections, all stressors)
+- edgeTesting: Edge case focus testing (20x20 sections, specific stressors)
+- performanceBaseline: Performance testing (100x100 sections, no stressors)
+- guaranteedInfinityBug: Maximum stress (150x150 sections, all stressors, aggressive timings)
+
+To set a preset, use launch arguments:
+-FocusStressPreset "guaranteedInfinityBug"
+
+ENHANCED STRESS PATTERNS
+========================
+
+1. NESTED LAYOUT STRUCTURES
+---------------------------
+What it does:
+Creates complex compositional layout hierarchies that stress the focus calculation system.
+
+Layout Levels:
+- simple: Single item per group
+- nested: Item -> Horizontal Group -> Vertical Group  
+- tripleNested: Item -> Horizontal Group -> Vertical Group -> Outer Group
+
+How to adjust:
+Change LayoutConfiguration.nestingLevel in your preset configuration.
+
+Impact on InfinityBug:
+Complex nested layouts force the focus engine to perform expensive calculations.
+Triple-nested layouts with 150x150 sections create the computational load seen
+in successful reproductions. The focus system struggles with deep hierarchy
+traversal, leading to stalls that can escalate to InfinityBug conditions.
+
+Configuration parameters:
+- numberOfSections: Number of collection view sections (10-150)
+- itemsPerSection: Items per section (10-150)
+- nestingLevel: Layout complexity (.simple, .nested, .tripleNested)
+
+2. HIDDEN/VISIBLE FOCUSABLE TRAPS
+---------------------------------
+What it does:
+Scatters 15 nearly-invisible focusable elements throughout each cell with
+conflicting accessibility properties and duplicate labels.
+
+How to adjust:
+Enable/disable via StressorConfiguration.stressors.contains(.hiddenFocusableTraps)
+Number of traps per cell is hardcoded to 15 in StressCell.configure()
+
+Impact on InfinityBug:
+Hidden focusable elements create accessibility tree inconsistencies. The system
+becomes confused about which elements are actually focusable, leading to focus
+calculation errors. Duplicate accessibility labels ("HiddenTrap0", "HiddenTrap1", etc.)
+further stress the VoiceOver system's element identification.
+
+Technical details:
+- 15 trap views per cell (increased from 8 for "AGGRESSIVE" mode)
+- Random visibility (isHidden = Bool.random())
+- Alpha 0.05 for visible traps, 0 for hidden
+- Conflicting accessibility traits [.button, .image, .selected]
+- Overlapping 25x20 point frames
+
+3. JIGGLE TIMER (CONSTANT LAYOUT CHANGES)
+-----------------------------------------
+What it does:
+Continuously modifies autolayout constraints every few milliseconds, causing
+constant layout recalculation during navigation.
+
+How to adjust:
+- Enable: Add .jiggleTimer to stressors set
+- Timing: Modify StressorConfiguration.jiggleInterval (default 0.05s)
+- Extreme: guaranteedInfinityBug preset uses 0.015s
+
+Impact on InfinityBug:
+Constant layout changes force the accessibility system to recalculate the
+element tree repeatedly. Combined with navigation, this creates the "layout
+thrashing" condition observed in successful reproductions where memory usage
+escalates and stalls become longer.
+
+Implementation:
+Timer alternates topConstraint.constant between 0 and 8 points, triggering
+UIView.performWithoutAnimation layout updates.
+
+4. CIRCULAR FOCUS GUIDES 
+------------------------
+What it does:
+Creates multiple UIFocusGuide objects with overlapping preferred environments,
+causing circular focus reference chains.
+
+How to adjust:
+Enable via .circularFocusGuides in stressors set.
+Number of guides and positioning are hardcoded in addCircularGuides().
+
+Impact on InfinityBug:
+Circular references in focus guides create infinite loops in focus calculation.
+When the focus system tries to determine the next focusable element, it can
+get trapped in circular dependency chains, leading to the infinite focus
+movement characteristic of InfinityBug.
+
+Technical details:
+- 2 overlapping 1x1 point focus guides
+- Both reference the same collectionView as preferredFocusEnvironment
+- Positioned at (10,10) and (12,12) points from top-left
+
+5. DUPLICATE ACCESSIBILITY IDENTIFIERS
+--------------------------------------
+What it does:
+Assigns the same accessibilityIdentifier ("dupCell") to multiple cells
+based on indexPath.item % 3 == 0.
+
+How to adjust:
+Enable via .duplicateIdentifiers in stressors set.
+Duplication logic is in StressCell.configure().
+
+Impact on InfinityBug:
+Duplicate IDs confuse the accessibility system's element tracking.
+VoiceOver relies on unique identifiers for navigation state management.
+When multiple elements have identical IDs, the system can lose track
+of the current focus position, leading to erratic focus behavior.
+
+6. DYNAMIC FOCUS GUIDES (RAPIDLY CHANGING ENVIRONMENTS)
+-------------------------------------------------------
+What it does:
+Creates 5 focus guides that rapidly change their preferredFocusEnvironments
+every few milliseconds between collectionView, view, and self.
+
+How to adjust:
+- Enable: Add .dynamicFocusGuides to stressors
+- Timing: Modify dynamicGuideInterval (default 0.1s, extreme 0.03s)
+
+Impact on InfinityBug:
+Rapidly changing focus environments create race conditions in focus calculation.
+The focus system struggles to maintain consistency when preferred environments
+change faster than it can process them, leading to focus state corruption.
+
+Technical details:
+- 5 guides positioned at (20+i*5, 20+i*5) points
+- Random selection from [collectionView, view, self] every interval
+- Extreme preset uses 30ms intervals for maximum chaos
+
+7. RAPID LAYOUT INVALIDATION CYCLES
+-----------------------------------
+What it does:
+Forces collection view layout invalidation at high frequency, overwhelming
+the layout calculation system.
+
+How to adjust:
+- Enable: Add .rapidLayoutChanges to stressors
+- Timing: Modify layoutChangeInterval (default 0.03s, extreme 0.008s)
+
+Impact on InfinityBug:
+Rapid layout invalidation creates sustained main thread pressure.
+Each invalidation triggers expensive focus environment recalculation.
+The extreme preset (8ms intervals) can saturate the main thread,
+creating the stall conditions necessary for InfinityBug reproduction.
+
+Implementation:
+Timer calls collectionView.collectionViewLayout.invalidateLayout(),
+collectionView.setNeedsLayout(), and view.setNeedsLayout() every interval.
+
+8. OVERLAPPING INVISIBLE FOCUSABLE ELEMENTS
+-------------------------------------------
+What it does:
+Adds 50+ nearly-invisible focusable views with overlapping frames
+and conflicting accessibility properties.
+
+How to adjust:
+Enable via .overlappingElements in stressors set.
+Count and positioning are hardcoded in addOverlappingElements().
+
+Impact on InfinityBug:
+Overlapping elements create ambiguous focus targets. The accessibility
+system struggles to determine which element should receive focus when
+multiple elements occupy the same screen region. This leads to focus
+calculation errors and potential infinite loops.
+
+Technical details:
+- 50 overlay views with alpha 0.01 (nearly invisible)
+- 300x200 point frames with aggressive overlap
+- Duplicate labels ("Overlay0" through "Overlay4")
+- Mixed accessibility traits for system confusion
+
+9. VOICEOVER ANNOUNCEMENTS
+--------------------------
+What it does:
+Posts random VoiceOver announcements and layout change notifications
+to stress the accessibility system.
+
+How to adjust:
+- Enable: Add .voAnnouncements to stressors
+- Timing: Modify voAnnouncementInterval (default 0.3s, extreme 0.12s)
+
+Impact on InfinityBug:
+Constant accessibility announcements overwhelm VoiceOver's processing queue.
+Layout change notifications (15% probability) force accessibility tree
+recalculation while triggering actual layout invalidation, creating the
+dual processing load observed in successful reproductions.
+
+Enhanced features for reproduction:
+- Layout change announcements trigger real layout invalidation
+- Forces focus system recalculation via setNeedsFocusUpdate()
+- Stress announcements during cell configuration for maximum impact
+
+PROGRESSIVE STRESS SYSTEM
+=========================
+
+What it does:
+Systematically escalates system stress over time to predictably reproduce
+InfinityBug conditions based on successful reproduction patterns.
+
+Timeline and Targets:
+- 0-30s: Baseline (~52MB, normal operation)
+- 30-90s: Level 1 (~56MB, 1-2s stalls)
+- 90-180s: Level 2 (~64MB, 5-10s stalls)  
+- 180s+: Level 3 (65-66MB, sustained 1000ms+ stalls → InfinityBug)
+
+How to adjust:
+Automatically activated in FocusStressViewController.
+Timing thresholds are hardcoded in updateProgressiveStress().
+
+Memory pressure implementation:
+- Adds 1MB string arrays to reach target memory usage
+- Simulates VoiceOver overhead with accessibility tree queries
+- Injects artificial stalls (Thread.sleep) to trigger longer system stalls
+
+Impact on InfinityBug:
+Reproduces the exact memory and timing conditions observed in successful
+manual reproductions. The predictable escalation ensures that critical
+thresholds (64-66MB memory usage) are reached systematically rather
+than randomly.
+
+MEMORY STRESS FEATURES
+=====================
+
+Continuous Memory Allocation:
+Activated automatically for extreme presets (guaranteedInfinityBug).
+Creates background memory pressure through continuous allocation cycles.
+
+How it works:
+- Background thread allocates 50,000 UUID strings every 25-100ms
+- Main thread processes allocations to create memory pressure
+- Progressive allocation frequency (starts 100ms, reduces to 25ms)
+
+Impact on InfinityBug:
+Memory pressure creates the system conditions necessary for InfinityBug.
+Successful reproductions consistently show memory usage of 64-66MB.
+The continuous allocation stress maintains this pressure throughout testing.
+
+PRESET RECOMMENDATIONS
+======================
+
+For InfinityBug Reproduction:
+1. guaranteedInfinityBug: Maximum stress with all patterns enabled
+2. heavyReproduction: High stress for general reproduction testing
+3. mediumStress: Moderate stress for initial testing
+
+For Debugging Specific Issues:
+1. edgeTesting: Focus edge cases (circularFocusGuides + overlappingElements)
+2. performanceBaseline: Isolate performance vs. accessibility issues
+3. lightExploration: Minimal stress for baseline comparison
+
+USAGE EXAMPLES
+==============
+
+Manual Testing:
+Launch with: -FocusStressPreset "guaranteedInfinityBug"
+Enable VoiceOver before execution (required for accessibility stress)
+Monitor system behavior for 3+ minutes to reach critical stress levels
+
+UI Testing:
+Set environment variable: FOCUS_TEST_MODE=1
+Use XCUIApplication.launchArguments = ["-FocusStressPreset", "heavyReproduction"]
+
+Custom Configuration:
+Modify FocusStressConfiguration presets or create new presets
+Focus on specific stressor combinations for targeted testing
+
+DEBUGGING TIPS
+==============
+
+1. Enable comprehensive logging via TestRunLogger.shared
+2. Monitor memory usage - target 64-66MB for reproduction conditions
+3. Watch for stall escalation: normal → 1-2s → 5-10s → 1000ms+ (InfinityBug)
+4. VoiceOver must be enabled on device before test execution
+5. Real device testing required - Simulator doesn't accurately reproduce accessibility stress
+
+TROUBLESHOOTING
+===============
+
+If InfinityBug doesn't reproduce:
+1. Verify VoiceOver is enabled on physical device
+2. Increase stress pattern timing (lower interval values)
+3. Use guaranteedInfinityBug preset for maximum stress
+4. Ensure tests run for 3+ minutes to reach critical stress levels
+5. Check memory pressure - should reach 64+ MB
+
+Performance Impact:
+These stress patterns intentionally degrade performance to reproduce bugs.
+Normal application performance will be severely impacted.
+Only use in dedicated debugging environments. 

@@ -1,5 +1,17 @@
 # HammerTime Project Changelog
 
+## [2025-06-25] - Enhanced Stress Patterns Documentation
+
+### Added UsageGuide.txt
+- **Comprehensive Usage Guide**: Created detailed documentation for all Enhanced Stress Patterns
+- **9 Stress Patterns Documented**: Complete technical details for each pattern including nested layouts, focusable traps, jiggle timer, circular focus guides, duplicate identifiers, dynamic focus guides, rapid layout changes, overlapping elements, and VoiceOver announcements
+- **Progressive Stress System**: Documented the predictable escalation system (52MB→56MB→64MB→66MB timeline)
+- **Configuration System**: Complete preset documentation (lightExploration, mediumStress, heavyReproduction, edgeTesting, performanceBaseline, guaranteedInfinityBug)
+- **Impact Analysis**: Detailed explanation of how each pattern contributes to InfinityBug reproduction
+- **Usage Examples**: Manual testing, UI testing, and custom configuration guidance
+- **Debugging Tips**: Memory monitoring, stall escalation patterns, VoiceOver requirements
+- **Troubleshooting**: Common issues and solutions for reproduction failures
+
 ## [2025-06-25] - V8.3 Test Evolution for 100% InfinityBug Reproduction
 
 ### V8.3 Evolution Strategy
