@@ -105,10 +105,10 @@ open HammerTime.xcodeproj
 
 #### 1. Manual Testing
 ```bash
-# Launch with guaranteed reproduction preset
+# Launch with high-stress reproduction preset
 xcodebuild test -scheme HammerTime -destination 'platform=tvOS,name=Apple TV' \
   -testPlan HammerTime.xctestplan \
-  -testArgs "-FocusStressPreset guaranteedInfinityBug"
+  -testArgs "-FocusStressPreset heavyReproduction"
 ```
 
 #### 2. Custom Configuration
@@ -143,7 +143,7 @@ xcodebuild test -scheme HammerTime -destination 'platform=tvOS,name=Apple TV' \
 | `heavyReproduction` | Research | 50-65MB | Moderate |
 | `edgeTesting` | Edge cases | 20-30MB | Specific scenarios |
 | `performanceBaseline` | Benchmarking | 100MB+ | Performance testing |
-| `guaranteedInfinityBug` | Maximum stress | 150MB+ | **High (validated)** |
+| `heavyReproduction` | High stress testing | 50-65MB | **Moderate (validated)** |
 
 ## 🔬 Research Methodology
 
@@ -185,7 +185,7 @@ Tests undergo **evolutionary pressure** - only successful reproduction methods a
 - [ ] **Apple Bug Report**: Preparing formal submission with evidence package
 
 ### 🎯 Goals
-- [ ] **100% Reproduction Rate**: Achieve deterministic InfinityBug triggering
+- [ ] **Reliable Reproduction**: Improve consistency of InfinityBug triggering
 - [ ] **Mitigation Strategies**: Develop protection mechanisms for production apps
 - [ ] **Apple Recognition**: Official acknowledgment and fix for this accessibility issue
 
@@ -235,7 +235,7 @@ This project is for **research and accessibility improvement purposes only**. Th
 ## 🤝 Contributing
 
 ### Current Focus
-- **Reproduction reliability** - achieving 100% deterministic triggering
+- **Reproduction reliability** - improving consistency and success rates
 - **Mitigation development** - protection strategies for production apps
 - **Documentation quality** - professional technical analysis improvement
 

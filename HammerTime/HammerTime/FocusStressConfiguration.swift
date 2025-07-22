@@ -9,7 +9,7 @@ public enum FocusStressPreset: CaseIterable {
     case heavyReproduction
     case edgeTesting
     case performanceBaseline
-    case guaranteedInfinityBug
+    case maxStress
 
     /// String representation for launch arguments and UI tests.
     /// This method avoids RawRepresentable protocol complications across targets.
@@ -20,7 +20,7 @@ public enum FocusStressPreset: CaseIterable {
         case .heavyReproduction: return "heavyReproduction"
         case .edgeTesting: return "edgeTesting"
         case .performanceBaseline: return "performanceBaseline"
-        case .guaranteedInfinityBug: return "guaranteedInfinityBug"
+        case .maxStress: return "maxStress"
         }
     }
     
@@ -33,7 +33,7 @@ public enum FocusStressPreset: CaseIterable {
         case "heavyReproduction": return .heavyReproduction
         case "edgeTesting": return .edgeTesting
         case "performanceBaseline": return .performanceBaseline
-        case "guaranteedInfinityBug": return .guaranteedInfinityBug
+        case "maxStress": return .maxStress
         default: return nil
         }
     }
@@ -76,7 +76,7 @@ public enum FocusStressPreset: CaseIterable {
                 navigation: .init(strategy: .snake, pauseBetweenCommands: 0.5),
                 performance: .init(prefetchingEnabled: true)
             )
-        case .guaranteedInfinityBug:
+        case .maxStress:
             return FocusStressConfiguration(
                 layout: .init(numberOfSections: 150, itemsPerSection: 150, nestingLevel: .tripleNested),
                 stress: .init(stressors: [

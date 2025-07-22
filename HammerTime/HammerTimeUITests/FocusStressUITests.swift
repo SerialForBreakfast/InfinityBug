@@ -3,7 +3,7 @@
 //  HammerTimeUITests
 //
 //  InfinityBug Reproduction Suite V8.3
-//  Focus: Single high-impact test for reliable InfinityBug reproduction
+//  Focus: Single high-impact test for InfinityBug reproduction research
 
 import XCTest
 
@@ -34,6 +34,7 @@ final class FocusStressUITests: XCTestCase {
         
         app.launchArguments += [
             "-FocusStressMode", "reproduction",
+            "-FocusStressPreset", "heavyReproduction", // Use Focus Stress (Heavy) for UI testing
             "-DebounceDisabled", "YES",
             "-AppleTVVoiceOverEnabled", "YES", // ensure VoiceOver matches manual runs
             "-LinearStallMode", "YES",
@@ -105,41 +106,25 @@ final class FocusStressUITests: XCTestCase {
     }
     
     /// **MAJOR-STRESS Test** 
-    /// Implements intensive edge-avoiding navigation for maximum focus engine pressure.
+    /// Implements intensive directional navigation for maximum focus engine pressure.
     /// Used after memory ballast allocation to create system stress.
     func testMajorStress() throws {
-        TestRunLogger.shared.log("MAJOR-STRESS: Starting intensive edge-avoiding navigation")
+        TestRunLogger.shared.log("MAJOR-STRESS: Starting intensive directional navigation")
         
-        let edgeAvoidance = EdgeAvoidanceNavigationPattern()
-        let stressConfig = FocusStressConfiguration()
+        let directions: [XCUIRemote.Button] = [.up, .down, .left, .right]
         
-        for _ in 0..<50 {
-            let direction = edgeAvoidance.nextDirection(for: stressConfig)
+        for i in 0..<50 {
+            let direction = directions[i % directions.count]
             remote.press(direction)
             usleep(100_000) // 100ms for rapid focus calculations
         }
         
         TestRunLogger.shared.log("MAJOR-STRESS: Completed 50 rapid focus calculations")  
     }
+
 }
 
-// MARK: - Memory Ballast Management
 
-extension FocusStressUITests {
-    
-    /// **Static memory ballast** - accumulates across test executions for progressive system stress
-    static var memoryBallast: [Any] = []
-    
-    /// **Incremental Memory Ballast** - Adds 1MB chunks
-    /// **Purpose**: Progressive memory pressure to trigger InfinityBug
-    /// **Evidence**: Manual reproductions show 52MB→79MB escalation pattern
-    func addIncrementalMemoryBallast() {
-        let ballastChunk = Data(count: 1024 * 1024) // 1 MB
-        FocusStressUITests.memoryBallast.append(ballastChunk)
-        
-        TestRunLogger.shared.logUITest("Incremental ballast +1 MB (total chunks: \(FocusStressUITests.memoryBallast.count))")
-    }
-}
 
 // MARK: - RunLoop Stall Detection & Analysis
 

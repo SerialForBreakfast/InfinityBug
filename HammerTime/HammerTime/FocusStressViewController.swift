@@ -139,7 +139,7 @@ final class FocusStressViewController: UIViewController {
             TestRunLogger.shared.log("📢 FocusStressViewController: VoiceOver announcements activated")
         }
         
-        // V6.0 memory stress features for guaranteed reproduction
+        // V6.0 memory stress features for reproduction enhancement
         if ProcessInfo.processInfo.environment["MEMORY_STRESS_ENABLED"] == "1" {
             startMemoryStress()
             TestRunLogger.shared.log("FocusStressViewController: Memory stress enabled for V6.0 reproduction")
@@ -148,7 +148,7 @@ final class FocusStressViewController: UIViewController {
         // NEW: Start progressive stress system for predictable InfinityBug reproduction
         startProgressiveStressSystem()
         
-        // Activate continuous memory stress for extreme presets (guaranteedInfinityBug)
+        // Activate continuous memory stress for extreme presets (maxStress)
         activateMemoryStress()
         
         AXFocusDebugger.shared.start()
@@ -493,7 +493,7 @@ final class FocusStressViewController: UIViewController {
     
     // MARK: - V6.0 Memory Stress Features
     
-    /// Starts memory stress timer to create system pressure for guaranteed InfinityBug reproduction.
+    /// Starts memory stress timer to create system pressure for InfinityBug reproduction enhancement.
     /// Generates background memory allocations to stress the system similar to successful manual reproductions.
     private func startMemoryStress() {
         NSLog("FocusStressViewController: Starting memory stress for V6.0 reproduction")
@@ -586,7 +586,7 @@ final class FocusStressViewController: UIViewController {
     
     /// Continuous memory allocation stress for InfinityBug reproduction
     /// **Concurrency Requirements:** Runs on background queue with main queue updates
-    /// **Usage:** Activated automatically with guaranteedInfinityBug preset
+    /// **Usage:** Activated automatically with maxStress preset
     private func activateMemoryStress() {
         guard configuration.layout.numberOfSections >= 150 else { return } // Only for extreme presets
         

@@ -12,7 +12,7 @@ import os.log
 extension FocusStressUITests {
 
     /// Retains allocated ballast data for the lifetime of the test run so the OS cannot reclaim it prematurely.
-    static var memoryBallast: [Data] = []
+    static var memoryBallast: [Any] = []
 
     // MARK: - Stage 1: Baseline Establishment (0-30s)
     

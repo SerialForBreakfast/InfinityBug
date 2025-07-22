@@ -19,10 +19,10 @@ Available Presets:
 - heavyReproduction: High stress (50x50 sections, all stressors)
 - edgeTesting: Edge case focus testing (20x20 sections, specific stressors)
 - performanceBaseline: Performance testing (100x100 sections, no stressors)
-- guaranteedInfinityBug: Maximum stress (150x150 sections, all stressors, aggressive timings)
+- maxStress: Maximum stress (150x150 sections, all stressors, aggressive timings)
 
 To set a preset, use launch arguments:
--FocusStressPreset "guaranteedInfinityBug"
+-FocusStressPreset "maxStress"
 
 ENHANCED STRESS PATTERNS
 ========================
@@ -83,7 +83,7 @@ constant layout recalculation during navigation.
 How to adjust:
 - Enable: Add .jiggleTimer to stressors set
 - Timing: Modify StressorConfiguration.jiggleInterval (default 0.05s)
-- Extreme: guaranteedInfinityBug preset uses 0.015s
+- Extreme: maxStress preset uses 0.015s
 
 Impact on InfinityBug:
 Constant layout changes force the accessibility system to recalculate the
@@ -247,7 +247,7 @@ MEMORY STRESS FEATURES
 =====================
 
 Continuous Memory Allocation:
-Activated automatically for extreme presets (guaranteedInfinityBug).
+Activated automatically for extreme presets (maxStress).
 Creates background memory pressure through continuous allocation cycles.
 
 How it works:
@@ -264,7 +264,7 @@ PRESET RECOMMENDATIONS
 ======================
 
 For InfinityBug Reproduction:
-1. guaranteedInfinityBug: Maximum stress with all patterns enabled
+1. maxStress: Maximum stress with all patterns enabled
 2. heavyReproduction: High stress for general reproduction testing
 3. mediumStress: Moderate stress for initial testing
 
@@ -277,7 +277,7 @@ USAGE EXAMPLES
 ==============
 
 Manual Testing:
-Launch with: -FocusStressPreset "guaranteedInfinityBug"
+Launch with: -FocusStressPreset "maxStress"
 Enable VoiceOver before execution (required for accessibility stress)
 Monitor system behavior for 3+ minutes to reach critical stress levels
 
@@ -304,7 +304,7 @@ TROUBLESHOOTING
 If InfinityBug doesn't reproduce:
 1. Verify VoiceOver is enabled on physical device
 2. Increase stress pattern timing (lower interval values)
-3. Use guaranteedInfinityBug preset for maximum stress
+3. Use maxStress preset for maximum stress
 4. Ensure tests run for 3+ minutes to reach critical stress levels
 5. Check memory pressure - should reach 64+ MB
 
