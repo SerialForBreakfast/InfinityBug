@@ -6,6 +6,10 @@ A tvOS research application for reproducing and analyzing the InfinityBug - a sy
 
 The InfinityBug occurs when VoiceOver is enabled and sustained navigation overwhelms the focus system. The device continues navigating autonomously after user input stops. Only a full restart recovers the system.
 
+## Video
+https://github.com/user-attachments/assets/ba3b7fe2-01a4-4b76-a36a-cd2da2573961
+
+
 ### What is the InfinityBug?
 The InfinityBug is a system-level tvOS issue that occurs when:
 - **VoiceOver accessibility is enabled**
